@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Commissioner:wght@100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 @font-face {
   font-family: "GrtskTera";
@@ -23,6 +21,14 @@
     opacity: 1;
     -webkit-transform: scale3d(1, 1, 1);
     transform: scale3d(1, 1, 1);
+  }
+}
+@keyframes showMobileMenu {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
 @keyframes modalSlideDown {
@@ -51,20 +57,36 @@
     opacity: 0;
   }
 }
-@keyframes moveSlideRight {
+@keyframes moveSlideDown {
   0% {
-    transform: translateX(-100%);
+    transform: translateY(-100%);
   }
   100% {
-    transform: translateX(0);
+    transform: translateY(0);
   }
 }
-@keyframes moveSlideLeft {
+@keyframes moveSlideUp {
   0% {
-    transform: translateX(0);
+    transform: translateY(0);
   }
   100% {
-    transform: translateX(-100%);
+    transform: translateY(-100%);
+  }
+}
+@keyframes modalMenuUp {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+@keyframes modalMenuDown {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(100%);
   }
 }
 @keyframes rotate {
@@ -121,51 +143,55 @@ textarea {
   -webkit-tap-highlight-color: transparent;
 }
 
+::-webkit-scrollbar {
+  width: 0;
+}
+
 h1 {
   font-size: 32px;
   font-weight: 800;
 }
 
-body {
+html body {
   background: var(--background-color);
 }
-body.scroll-locked {
+html body.scroll-locked {
   overflow: hidden;
 }
-body #root {
+html body #root {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
 }
-body #root .module-documents {
+html body #root .module-documents {
   width: 100%;
 }
-body #root .module-documents .module-body {
+html body #root .module-documents .module-body {
   width: 100%;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
   gap: 3px;
 }
-body #root .module-documents .module-body .document {
+html body #root .module-documents .module-body .document {
   display: flex;
   overflow: hidden;
   flex-direction: column;
-  border: 1px solid var(--additional-color);
+  border: 1px solid var(--background-color);
   border-radius: 10px;
   gap: 10px;
   background-color: #ffffff;
   padding: 10px 15px;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: transform 150ms ease, background-color 150ms ease;
 }
-body #root .module-documents .module-body .document .info {
+html body #root .module-documents .module-body .document .info {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
 }
-body #root .module-documents .module-body .document .info .document-status {
+html body #root .module-documents .module-body .document .info .document-status {
   border-radius: 35px;
   padding: 4px 0;
   width: 100px;
@@ -173,24 +199,25 @@ body #root .module-documents .module-body .document .info .document-status {
   font-weight: 600;
   align-items: center;
 }
-body #root .module-documents .module-body .document .info .document-status.status-end {
+html body #root .module-documents .module-body .document .info .document-status.status-end {
   background-color: rgba(255, 0, 0, 0.15);
 }
-body #root .module-documents .module-body .document .info .document-status.status-soon {
+html body #root .module-documents .module-body .document .info .document-status.status-soon {
   background-color: rgba(255, 255, 0, 0.15);
 }
-body #root .module-documents .module-body .document .info .document-status.status-active {
+html body #root .module-documents .module-body .document .info .document-status.status-active {
   background-color: rgba(0, 255, 0, 0.15);
 }
-body #root .module-documents .module-body .document:hover {
-  background-color: var(--background-color);
-}
-body #root .module-documents .module-body .document span,
-body #root .module-documents .module-body .document div {
+html body #root .module-documents .module-body .document span,
+html body #root .module-documents .module-body .document div {
   font-size: 14px;
   user-select: none;
 }
-body #root #mobileMenu {
+html body #root .module-documents .module-body .document:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  transform: translateY(-2px);
+}
+html body #root #mobileMenu {
   position: fixed;
   display: flex;
   flex-direction: column;
@@ -200,62 +227,72 @@ body #root #mobileMenu {
   height: 100vh;
   z-index: 10002;
 }
-body #root #mobileMenu.hidden .modal-content {
-  animation-name: moveSlideLeft;
+html body #root #mobileMenu.hidden .modal-content {
+  animation-name: moveSlideUp;
 }
-body #root #mobileMenu .content {
+html body #root #mobileMenu .content {
   background: var(--secondary-color);
-  height: 100vh;
-  width: 15rem;
-  animation: moveSlideRight 0.2s forwards;
-  z-index: 2;
-}
-body #root #mobileMenu .content.hidden {
-  animation: moveSlideLeft 0.2s forwards;
-}
-body #root #mobileMenu .content .header {
-  display: flex;
-  align-items: center;
-  padding: 0 0.5rem 0 1rem;
-  height: 4rem;
-  justify-content: space-between;
-}
-body #root #mobileMenu .content .header .logo {
-  display: flex;
-  align-items: center;
-  height: 100%;
-  max-width: 150px;
-}
-body #root #mobileMenu .content .header .logo img {
   height: 100%;
   width: 100%;
-  object-fit: contain;
+  animation: moveSlideDown 0.25s forwards;
+  z-index: 2;
 }
-body #root #mobileMenu .content .header .cross {
-  width: 2rem;
+html body #root #mobileMenu .content.hidden {
+  animation: moveSlideUp 0.25s forwards;
 }
-body #root #mobileMenu .content .body {
+html body #root #mobileMenu .content .header {
   display: flex;
-  margin-top: 1rem;
+  align-items: center;
+  padding: 12px 20px;
+  height: 56px;
+  justify-content: space-between;
 }
-body #root #mobileMenu .content .body .nav {
+html body #root #mobileMenu .content .header .logo {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+html body #root #mobileMenu .content .header .logo img {
+  height: 100%;
+}
+html body #root #mobileMenu .content .header .cross {
+  width: 35px;
+}
+html body #root #mobileMenu .content .body {
+  opacity: 0;
+  padding: 10px 0;
+  transform: translateY(100%);
+  background: #FFFFFF;
+  height: calc(100vh - 56px);
+  border-top-left-radius: 28px;
+  border-top-right-radius: 28px;
+  animation: modalMenuDown 0.25s forwards;
+}
+html body #root #mobileMenu .content .body.visible {
+  opacity: 1;
+  transform: translateY(0);
+  animation: modalMenuUp 0.25s forwards;
+}
+html body #root #mobileMenu .content .body .nav {
   width: 100%;
   display: flex;
   flex-direction: column;
   list-style: none;
+  padding: 0 15px;
 }
-body #root #mobileMenu .content .body .nav .nav-item {
+html body #root #mobileMenu .content .body .nav .nav-item {
   display: flex;
+  border-bottom: 0.6px solid var(--additional-color);
 }
-body #root #mobileMenu .content .body .nav .nav-item a {
+html body #root #mobileMenu .content .body .nav .nav-item a {
   width: 100%;
-  padding: 0.6rem 1.2rem;
+  padding: 14px 10px;
   text-decoration: none;
-  font-size: 16px;
-  color: #ffffff;
-  font-weight: 700;
+  font-size: 18px;
+  font-family: "GrtskTera", sans-serif;
+  color: var(--font-color);
 }
-body #root #mobileMenu .spoiler {
+html body #root #mobileMenu .spoiler {
   position: fixed;
   top: 0;
   left: 0;
@@ -263,12 +300,12 @@ body #root #mobileMenu .spoiler {
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
   cursor: pointer;
-  animation: fadeIn 0.2s ease-in-out forwards;
+  animation: fadeIn 0.35s ease-in-out forwards;
 }
-body #root #mobileMenu .spoiler.hidden {
-  animation: fadeOut 0.2s ease-in-out forwards;
+html body #root #mobileMenu .spoiler.hidden {
+  animation: fadeOut 0.35s ease-in-out forwards;
 }
-body #root .modal {
+html body #root .modal {
   position: fixed;
   top: 0;
   left: 0;
@@ -283,13 +320,13 @@ body #root .modal {
   z-index: 10001;
   animation: fadeIn 0.2s ease-in-out forwards;
 }
-body #root .modal.hidden {
+html body #root .modal.hidden {
   animation: fadeOut 0.2s ease-in-out forwards;
 }
-body #root .modal.hidden .modal-content {
+html body #root .modal.hidden .modal-content {
   animation-name: slideDown;
 }
-body #root .modal .modal-content {
+html body #root .modal .modal-content {
   display: flex;
   flex-direction: column;
   border-radius: 25px;
@@ -300,17 +337,17 @@ body #root .modal .modal-content {
   background-color: #ffffff;
   animation: modalSlideUp 0.3s forwards;
 }
-body #root .modal .modal-content.hidden {
+html body #root .modal .modal-content.hidden {
   animation: modalSlideDown 0.3s forwards;
 }
-body #root .modal .modal-content h1 {
+html body #root .modal .modal-content h1 {
   text-align: center;
 }
-body #root .modal .modal-content.modal-login {
+html body #root .modal .modal-content.modal-login {
   max-width: 400px;
   max-height: 550px;
 }
-body #root .modal .modal-content.modal-login form {
+html body #root .modal .modal-content.modal-login form {
   display: flex;
   flex-grow: 1;
   flex-direction: column;
@@ -319,18 +356,18 @@ body #root .modal .modal-content.modal-login form {
   margin-top: 45px;
   gap: 15px;
 }
-body #root .modal .modal-content.modal-login form .form-element {
+html body #root .modal .modal-content.modal-login form .form-element {
   display: flex;
   width: 100%;
 }
-body #root .modal .modal-content.modal-login form .form-element input[type=text] {
+html body #root .modal .modal-content.modal-login form .form-element input[type=text] {
   font-size: 28px;
   width: 100%;
   padding: 10px 20px;
   background: transparent;
   border-bottom: 3px solid var(--primary-color);
 }
-body #root .modal .modal-content.modal-login form .form-element #authButton {
+html body #root .modal .modal-content.modal-login form .form-element #authButton {
   position: relative;
   font-size: 28px;
   width: 100%;
@@ -342,19 +379,19 @@ body #root .modal .modal-content.modal-login form .form-element #authButton {
   cursor: pointer;
   overflow: hidden;
 }
-body #root .modal .modal-content.modal-login form .form-element #authButton span {
+html body #root .modal .modal-content.modal-login form .form-element #authButton span {
   color: black;
   z-index: 1;
 }
-body #root .modal .modal-content.modal-login form .form-element:has(#authButton) {
+html body #root .modal .modal-content.modal-login form .form-element:has(#authButton) {
   margin-top: auto;
 }
-body #root .modal .modal-content.modal-notifications {
+html body #root .modal .modal-content.modal-notifications {
   padding: 25px 5px 10px;
   max-width: 580px;
   max-height: 750px;
 }
-body #root .modal .modal-content.modal-notifications .notifications {
+html body #root .modal .modal-content.modal-notifications .notifications {
   display: flex;
   flex-direction: column;
   padding: 5px;
@@ -362,7 +399,7 @@ body #root .modal .modal-content.modal-notifications .notifications {
   margin-top: 20px;
   overflow: scroll;
 }
-body #root .modal .modal-content.modal-notifications .notifications .notification {
+html body #root .modal .modal-content.modal-notifications .notifications .notification {
   border-radius: 10px;
   padding: 10px 15px;
   cursor: pointer;
@@ -370,34 +407,34 @@ body #root .modal .modal-content.modal-notifications .notifications .notificatio
   border: 1px solid var(--background-color);
   transition: transform 150ms ease, background-color 150ms ease;
 }
-body #root .modal .modal-content.modal-notifications .notifications .notification .title {
+html body #root .modal .modal-content.modal-notifications .notifications .notification .title {
   font-size: 18px;
   font-weight: bold;
 }
-body #root .modal .modal-content.modal-notifications .notifications .notification .date {
+html body #root .modal .modal-content.modal-notifications .notifications .notification .date {
   font-size: 14px;
   margin-top: 5px;
   font-weight: 400;
   opacity: 0.5;
 }
-body #root .modal .modal-content.modal-notifications .notifications .notification:hover {
+html body #root .modal .modal-content.modal-notifications .notifications .notification:hover {
   background-color: rgba(0, 0, 0, 0.05);
   transform: translateY(-2px);
 }
-body #root .modal .modal-content.modal-notifications .notifications::-webkit-scrollbar {
+html body #root .modal .modal-content.modal-notifications .notifications::-webkit-scrollbar {
   z-index: 10;
   width: 10px;
   height: 10px;
 }
-body #root .modal .modal-content.modal-notifications .notifications::-webkit-scrollbar-thumb {
+html body #root .modal .modal-content.modal-notifications .notifications::-webkit-scrollbar-thumb {
   background-color: rgba(0, 0, 0, 0.1);
   border-radius: 15px;
   transition: background-color 150ms ease;
 }
-body #root .modal .modal-content.modal-notifications .notifications::-webkit-scrollbar-thumb:hover {
+html body #root .modal .modal-content.modal-notifications .notifications::-webkit-scrollbar-thumb:hover {
   background-color: rgba(0, 0, 0, 0.2);
 }
-body #root .modal .spoiler {
+html body #root .modal .spoiler {
   position: fixed;
   top: 0;
   left: 0;
@@ -407,63 +444,85 @@ body #root .modal .spoiler {
   cursor: pointer;
   animation: fadeIn 0.2s ease-in-out forwards;
 }
-body #root .modal .spoiler.hidden {
+html body #root .modal .spoiler.hidden {
   animation: fadeOut 0.2s ease-in-out forwards;
 }
-body #root #modalLoading {
+html body #root #modalLoading {
   animation: none;
 }
-body #root #modalLoading img {
+html body #root #modalLoading img {
   height: 70px;
   animation: rotate 1.5s linear infinite;
 }
-body #root .header-wrapper {
+html body #root .header-wrapper {
   display: flex;
   flex-direction: column;
   position: sticky;
   top: 0;
-  width: 100%;
+  width: 100vw;
+  height: 56px;
   background: var(--secondary-color);
-  padding: 0 16px;
+  padding: 0 20px;
   z-index: 10000;
 }
-body #root .header-wrapper header {
+html body #root .header-wrapper::before, html body #root .header-wrapper::after {
+  content: " ";
+  height: 95px;
+  background: var(--secondary-color);
+  position: absolute;
+  top: -2px;
+  width: 35.75px;
+}
+html body #root .header-wrapper::before {
+  clip-path: path("M35.75,0V56.68C7.58,57,.09,78,.09,87h-.09V0H35.75Z");
+  left: 0;
+}
+html body #root .header-wrapper::after {
+  clip-path: path("M35.75,0V87h-.09c0-9-7.49-30-35.66-30.32V0H35.75Z");
+  right: 0;
+}
+html body #root .header-wrapper header {
   display: flex;
   flex-direction: row;
-  align-items: stretch;
-  padding: 16px 0;
+  max-width: 1550px;
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+  padding: 12px 0;
+  z-index: 2;
 }
-body #root .header-wrapper header #logo {
-  margin-left: 15px;
+html body #root .header-wrapper header #logo {
   display: flex;
   align-items: center;
 }
-body #root .header-wrapper header #logo img {
-  height: 32px;
+html body #root .header-wrapper header #logo img {
+  height: 100%;
 }
-body #root .header-wrapper header nav {
+html body #root .header-wrapper header nav {
   display: none;
+  align-items: center;
+  margin-left: 50px;
 }
-body #root .header-wrapper header nav ul {
+html body #root .header-wrapper header nav ul {
   display: flex;
   flex-direction: row;
-  gap: 37px;
+  gap: 15px;
   list-style: none;
 }
-body #root .header-wrapper header nav ul li a {
+html body #root .header-wrapper header nav ul li a {
   text-decoration: none;
   font-size: 20px;
   color: #FFFFFF;
   font-weight: 400;
 }
-body #root .header-wrapper header .profile-container {
-  display: flex;
+html body #root .header-wrapper header .profile-container {
+  display: none;
   flex-grow: 1;
   flex-direction: row-reverse;
   gap: 10px;
 }
-body #root .header-wrapper header .profile-container .profile-wrapper,
-body #root .header-wrapper header .profile-container .notifications-wrapper {
+html body #root .header-wrapper header .profile-container .profile-wrapper,
+html body #root .header-wrapper header .profile-container .notifications-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -471,21 +530,21 @@ body #root .header-wrapper header .profile-container .notifications-wrapper {
   padding: 5px;
   border-radius: 10px;
 }
-body #root .header-wrapper header .profile-container .profile-wrapper .logo-container,
-body #root .header-wrapper header .profile-container .notifications-wrapper .logo-container {
+html body #root .header-wrapper header .profile-container .profile-wrapper .logo-container,
+html body #root .header-wrapper header .profile-container .notifications-wrapper .logo-container {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-body #root .header-wrapper header .profile-container .profile-wrapper .logo-container img,
-body #root .header-wrapper header .profile-container .notifications-wrapper .logo-container img {
+html body #root .header-wrapper header .profile-container .profile-wrapper .logo-container img,
+html body #root .header-wrapper header .profile-container .notifications-wrapper .logo-container img {
   height: 20px;
 }
-body #root .header-wrapper header .profile-container .profile-wrapper span,
-body #root .header-wrapper header .profile-container .notifications-wrapper span {
+html body #root .header-wrapper header .profile-container .profile-wrapper span,
+html body #root .header-wrapper header .profile-container .notifications-wrapper span {
   display: none;
 }
-body #root .header-wrapper header .profile-container .profile-wrapper {
+html body #root .header-wrapper header .profile-container .profile-wrapper {
   display: flex;
   user-select: none;
   height: 100%;
@@ -495,52 +554,53 @@ body #root .header-wrapper header .profile-container .profile-wrapper {
   cursor: pointer;
   transition: background-color 200ms;
 }
-body #root .header-wrapper header .profile-container .profile-wrapper span {
+html body #root .header-wrapper header .profile-container .profile-wrapper span {
   font-size: 14px;
   color: #ffffff;
   font-weight: 400;
 }
-body #root .header-wrapper header .profile-container .notifications-wrapper {
+html body #root .header-wrapper header .profile-container .notifications-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
   background: var(--primary-color);
 }
-body #root .header-wrapper header #burger {
+html body #root .header-wrapper header #burger {
+  margin-left: auto;
   aspect-ratio: 1/1;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
 }
-body #root .header-wrapper header #burger .body {
+html body #root .header-wrapper header #burger .body {
   height: 20px;
-  width: 33px;
-  align-self: center;
-  align-items: center;
-  justify-content: space-between;
-  flex-direction: column;
+  width: 30px;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 8px;
 }
-body #root .header-wrapper header #burger .body .line {
-  height: 3px;
+html body #root .header-wrapper header #burger .body .line {
+  height: 2px;
   background: #ffffff;
-  border-radius: 20px;
+  border-radius: 4px;
   width: 100%;
   transition: transform 0.3s, opacity 0.3s;
 }
-body #root footer {
+html body #root footer {
   width: 100%;
   padding: 20px 30px;
   background: var(--secondary-color);
 }
-body #root footer .nav {
+html body #root footer .nav {
   display: flex;
   flex-direction: column;
   gap: 10px;
   list-style: none;
 }
-body #root footer .nav .nav-item a {
+html body #root footer .nav .nav-item a {
   color: #ffffff;
   font-size: 10px;
   text-decoration: none;
@@ -548,30 +608,30 @@ body #root footer .nav .nav-item a {
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);
   font-weight: 400;
 }
-body #root footer .sep {
+html body #root footer .sep {
   border-bottom: 1px solid rgb(255, 255, 255);
   margin-top: 11px;
   margin-bottom: 11px;
   width: 100%;
 }
-body #root footer .logo-faq {
+html body #root footer .logo-faq {
   display: none;
 }
-body #root footer .logo {
+html body #root footer .logo {
   height: 22px;
 }
-body #root footer .logo img {
+html body #root footer .logo img {
   height: 100%;
   object-fit: contain;
 }
-body #root footer .faq {
+html body #root footer .faq {
   margin-top: 10px;
   display: flex;
   flex-direction: column;
   gap: 10px;
   list-style: none;
 }
-body #root footer .faq .faq-item a {
+html body #root footer .faq .faq-item a {
   color: #ffffff;
   font-size: 10px;
   text-decoration: none;
@@ -579,7 +639,7 @@ body #root footer .faq .faq-item a {
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);
   font-weight: 400;
 }
-body #root main {
+html body #root main {
   height: 100%;
   display: flex;
   overflow: unset !important;
@@ -588,31 +648,37 @@ body #root main {
   background: var(--background-color);
   flex-direction: column;
 }
-body #root main .page {
+html body #root main .page {
   display: flex;
+  width: 100%;
   flex-direction: column;
   max-width: 1400px;
   margin: 0 auto;
+  padding: 30px 5px;
 }
-body #root main .page.page-landing, body #root main .page.page-feed, body #root main .page.page-admin {
+html body #root main .page.page-landing, html body #root main .page.page-feed, html body #root main .page.page-admin {
   max-width: unset;
+  padding: 0;
   margin: 0;
 }
-body #root main .page .page-header {
+html body #root main .page .page-header {
   display: flex;
   flex-direction: column;
 }
-body #root main .page .page-header .page-title {
+html body #root main .page .page-header .page-title {
   font-weight: 700;
   font-style: italic;
   font-size: 22px;
 }
-body #root main .page.page-landing .landing-module__preview .photo-container {
+html body #root main .page.page-landing .landing-module-wide {
+  display: none;
+}
+html body #root main .page.page-landing .landing-module__preview .photo-container {
   display: flex;
   position: relative;
   align-items: center;
 }
-body #root main .page.page-landing .landing-module__preview .photo-container h1 {
+html body #root main .page.page-landing .landing-module__preview .photo-container h1 {
   position: absolute;
   top: 0;
   left: 50%;
@@ -625,56 +691,56 @@ body #root main .page.page-landing .landing-module__preview .photo-container h1 
   font-size: 24px;
   line-height: 29px;
 }
-body #root main .page.page-landing .landing-module__preview .photo-container .image-container {
+html body #root main .page.page-landing .landing-module__preview .photo-container .image-container {
   width: 100%;
   height: 221px;
   display: flex;
   justify-content: center;
 }
-body #root main .page.page-landing .landing-module__preview .photo-container .image-container img {
+html body #root main .page.page-landing .landing-module__preview .photo-container .image-container img {
   width: 100%;
   object-fit: cover;
 }
-body #root main .page.page-landing .content section {
+html body #root main .page.page-landing .content section {
   max-width: 1200px;
-  margin: 60px auto 0 auto;
+  margin: 30px auto 0 auto;
   padding: 0 37px;
 }
-body #root main .page.page-landing .content h2 {
+html body #root main .page.page-landing .content h2 {
   color: var(--secondary-color);
   font-style: italic;
   font-weight: 700;
   font-size: 20px;
   text-align: center;
 }
-body #root main .page.page-landing .content h2 .year {
+html body #root main .page.page-landing .content h2 .year {
   color: var(--primary-color);
 }
-body #root main .page.page-landing .content h2 .end {
+html body #root main .page.page-landing .content h2 .end {
   font-weight: 500;
   font-size: 16px;
   line-height: 10px;
 }
-body #root main .page.page-landing .content .section-map {
+html body #root main .page.page-landing .content .section-map {
   display: none;
 }
-body #root main .page.page-landing .content .dynamica-today {
+html body #root main .page.page-landing .content .dynamica-today {
   display: flex;
   flex-direction: column;
   color: var(--secondary-color);
 }
-body #root main .page.page-landing .content .dynamica-today p {
+html body #root main .page.page-landing .content .dynamica-today p {
   font-size: 14px;
 }
-body #root main .page.page-landing .content .dynamica-today p.bold {
+html body #root main .page.page-landing .content .dynamica-today p.bold {
   font-weight: 600;
 }
-body #root main .page.page-landing .content .dynamica-today p.gray {
+html body #root main .page.page-landing .content .dynamica-today p.gray {
   margin-top: 11px;
   font-size: 12px;
   color: var(--additional-color);
 }
-body #root main .page.page-landing .content .values-container {
+html body #root main .page.page-landing .content .values-container {
   display: flex;
   flex-direction: column;
   border-radius: 18px;
@@ -682,49 +748,49 @@ body #root main .page.page-landing .content .values-container {
   padding: 11px 15px 22px 15px;
   background: #ffffff;
 }
-body #root main .page.page-landing .content .values-container .container-title {
+html body #root main .page.page-landing .content .values-container .container-title {
   font-size: 14px;
   font-weight: 600;
 }
-body #root main .page.page-landing .content .values-container .values {
+html body #root main .page.page-landing .content .values-container .values {
   display: flex;
   flex-direction: column;
   gap: 10px;
   margin-top: 11px;
 }
-body #root main .page.page-landing .content .values-container .values .value span {
+html body #root main .page.page-landing .content .values-container .values .value span {
   line-height: 15px;
   font-size: 12px;
   font-weight: 400;
   color: rgba(0, 0, 0, 0.55);
 }
-body #root main .page.page-landing .content .values-container .values .value span .title {
+html body #root main .page.page-landing .content .values-container .values .value span .title {
   font-weight: 600;
   color: var(--primary-color);
 }
-body #root main .page.page-landing .content .section-achievements {
+html body #root main .page.page-landing .content .section-achievements {
   padding: 0;
 }
-body #root main .page.page-landing .content .section-achievements .swiper {
+html body #root main .page.page-landing .content .section-achievements .swiper {
   margin-top: 13px;
 }
-body #root main .page.page-landing .content .section-achievements .swiper .swiper-wrapper .swiper-slide .content {
+html body #root main .page.page-landing .content .section-achievements .swiper .swiper-wrapper .swiper-slide .content {
   width: 100%;
   display: flex;
   justify-content: center;
   flex-direction: column;
 }
-body #root main .page.page-landing .content .section-achievements .swiper .swiper-wrapper .swiper-slide .content .image-wrapper {
+html body #root main .page.page-landing .content .section-achievements .swiper .swiper-wrapper .swiper-slide .content .image-wrapper {
   border-radius: 18px;
   aspect-ratio: 1/1;
   overflow: hidden;
 }
-body #root main .page.page-landing .content .section-achievements .swiper .swiper-wrapper .swiper-slide .content .image-wrapper img {
+html body #root main .page.page-landing .content .section-achievements .swiper .swiper-wrapper .swiper-slide .content .image-wrapper img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-body #root main .page.page-landing .content .section-achievements .swiper .swiper-wrapper .swiper-slide .content .label {
+html body #root main .page.page-landing .content .section-achievements .swiper .swiper-wrapper .swiper-slide .content .label {
   margin-top: 5px;
   font-weight: bold;
   font-size: 20px;
@@ -732,64 +798,64 @@ body #root main .page.page-landing .content .section-achievements .swiper .swipe
   text-align: center;
   transition: opacity 200ms;
 }
-body #root main .page.page-landing .content .section-achievements .swiper .swiper-wrapper .swiper-slide-active .content .label {
+html body #root main .page.page-landing .content .section-achievements .swiper .swiper-wrapper .swiper-slide-active .content .label {
   opacity: 1;
 }
-body #root main .page.page-landing .content .section-achievements .swiper-1440 {
+html body #root main .page.page-landing .content .section-achievements .swiper-1440 {
   display: none;
 }
-body #root main .page.page-landing .content .section-form {
+html body #root main .page.page-landing .content .section-form {
   margin-bottom: 30px;
 }
-body #root main .page.page-landing .content .section-form form {
+html body #root main .page.page-landing .content .section-form form {
   background: var(--secondary-color);
   border-radius: 18px;
   padding: 14px 18px;
 }
-body #root main .page.page-landing .content .section-form form .form-picture {
+html body #root main .page.page-landing .content .section-form form .form-picture {
   display: none;
 }
-body #root main .page.page-landing .content .section-form form .form-body__wrapper .form-header {
+html body #root main .page.page-landing .content .section-form form .form-body__wrapper .form-header {
   display: flex;
   flex-direction: column;
   padding: 0 10px;
 }
-body #root main .page.page-landing .content .section-form form .form-body__wrapper .form-header span {
+html body #root main .page.page-landing .content .section-form form .form-body__wrapper .form-header span {
   color: var(--primary-color);
   font-style: italic;
   font-weight: bold;
   text-align: center;
 }
-body #root main .page.page-landing .content .section-form form .form-body__wrapper .form-header .primary {
+html body #root main .page.page-landing .content .section-form form .form-body__wrapper .form-header .primary {
   font-size: 20px;
 }
-body #root main .page.page-landing .content .section-form form .form-body__wrapper .form-header .secondary {
+html body #root main .page.page-landing .content .section-form form .form-body__wrapper .form-header .secondary {
   font-size: 12px;
 }
-body #root main .page.page-landing .content .section-form form .form-body__wrapper .form-body {
+html body #root main .page.page-landing .content .section-form form .form-body__wrapper .form-body {
   margin-top: 18px;
 }
-body #root main .page.page-landing .content .section-form form .form-body__wrapper .form-body .form-elem__text {
+html body #root main .page.page-landing .content .section-form form .form-body__wrapper .form-body .form-elem__text {
   font-size: 12px;
   padding: 20px 17px;
   border-radius: 12px;
   width: 100%;
 }
-body #root main .page.page-landing .content .section-form form .form-body__wrapper .form-body .form-elem__text::placeholder {
+html body #root main .page.page-landing .content .section-form form .form-body__wrapper .form-body .form-elem__text::placeholder {
   color: var(--additional-color);
   font-weight: bold;
   font-style: italic;
 }
-body #root main .page.page-landing .content .section-form form .form-body__wrapper .form-body .form-elem__text.form-input__description {
+html body #root main .page.page-landing .content .section-form form .form-body__wrapper .form-body .form-elem__text.form-input__description {
   margin-top: 11px;
   height: 211px;
 }
-body #root main .page.page-landing .content .section-form form .form-body__wrapper .form-body .submit-container {
+html body #root main .page.page-landing .content .section-form form .form-body__wrapper .form-body .submit-container {
   display: flex;
   justify-content: center;
   margin-top: 17px;
 }
-body #root main .page.page-landing .content .section-form form .form-body__wrapper .form-body .submit-container .form-input__submit {
+html body #root main .page.page-landing .content .section-form form .form-body__wrapper .form-body .submit-container .form-input__submit {
   position: relative;
   padding: 5px 23px;
   border-radius: 7px;
@@ -798,24 +864,25 @@ body #root main .page.page-landing .content .section-form form .form-body__wrapp
   background: var(--primary-color);
   font-size: 17px;
 }
-body #root main .page.page-feed {
+html body #root main .page.page-feed {
   display: flex;
   align-items: center;
-  padding: 0 5px;
+  padding: 5px;
 }
-body #root main .page.page-feed .feed-tiles {
+html body #root main .page.page-feed .feed-tiles {
   display: flex;
   flex-direction: column;
+  margin-top: 15px;
   gap: 13px;
   max-width: 520px;
   width: 100%;
 }
-body #root main .page.page-feed .feed-tiles .feed-tile__container {
+html body #root main .page.page-feed .feed-tiles .feed-tile__container {
   width: 100%;
   display: flex;
   justify-content: center;
 }
-body #root main .page.page-feed .feed-tiles .feed-tile__container .feed-tile {
+html body #root main .page.page-feed .feed-tiles .feed-tile__container .feed-tile {
   background: #ffffff;
   border-radius: 20px;
   width: 100%;
@@ -826,86 +893,85 @@ body #root main .page.page-feed .feed-tiles .feed-tile__container .feed-tile {
   flex-direction: column;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-body #root main .page.page-feed .feed-tiles .feed-tile__container .feed-tile:hover {
+html body #root main .page.page-feed .feed-tiles .feed-tile__container .feed-tile:hover {
   transform: translateY(-5px);
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
 }
-body #root main .page.page-feed .feed-tiles .feed-tile__container .feed-tile.pinned {
+html body #root main .page.page-feed .feed-tiles .feed-tile__container .feed-tile.pinned {
   background: var(--primary-color);
 }
-body #root main .page.page-feed .feed-tiles .feed-tile__container .feed-tile .feed-tile__header {
+html body #root main .page.page-feed .feed-tiles .feed-tile__container .feed-tile .feed-tile__header {
   display: flex;
   flex-direction: column;
   padding: 9px 13px 0 13px;
-  gap: 6px;
 }
-body #root main .page.page-feed .feed-tiles .feed-tile__container .feed-tile .feed-tile__header span {
+html body #root main .page.page-feed .feed-tiles .feed-tile__container .feed-tile .feed-tile__header span {
   color: #F1F2F2;
   font-size: 15px;
 }
-body #root main .page.page-feed .feed-tiles .feed-tile__container .feed-tile .feed-tile__header .feed-tile__title {
+html body #root main .page.page-feed .feed-tiles .feed-tile__container .feed-tile .feed-tile__header .feed-tile__title {
   font-weight: 600;
 }
-body #root main .page.page-feed .feed-tiles .feed-tile__container .feed-tile .feed-tile__header .feed-tile__description {
+html body #root main .page.page-feed .feed-tiles .feed-tile__container .feed-tile .feed-tile__header .feed-tile__description {
+  margin-top: 11px;
   font-weight: 300;
   font-size: 12px;
 }
-body #root main .page.page-feed .feed-tiles .feed-tile__container .feed-tile .feed-tile__image {
+html body #root main .page.page-feed .feed-tiles .feed-tile__container .feed-tile .feed-tile__image {
   overflow: hidden;
   margin-top: 12px;
   border-radius: 15px;
 }
-body #root main .page.page-feed .feed-tiles .feed-tile__container .feed-tile .feed-tile__image img {
+html body #root main .page.page-feed .feed-tiles .feed-tile__container .feed-tile .feed-tile__image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-body #root main .page.page-profile .page-header .page-title__district {
+html body #root main .page.page-profile .page-header .page-title__district {
   opacity: 0.65;
   font-size: 14px;
 }
-body #root main .page.page-profile .widgets {
+html body #root main .page.page-profile .widgets {
   display: flex;
   flex-direction: column;
   width: 100%;
   gap: 4px;
   margin-top: 20px;
 }
-body #root main .page.page-profile .widgets .widgets-head {
+html body #root main .page.page-profile .widgets .widgets-head {
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
-body #root main .page.page-profile .widgets .widgets-head .widget-notifications {
+html body #root main .page.page-profile .widgets .widgets-head .widget-notifications {
   width: 100%;
 }
-body #root main .page.page-profile .widgets .widgets-head .right-widgets {
+html body #root main .page.page-profile .widgets .widgets-head .right-widgets {
   width: 100%;
   gap: 4px;
   display: flex;
   flex-direction: column;
 }
-body #root main .page.page-profile .widgets .widget {
+html body #root main .page.page-profile .widgets .widget {
   display: flex;
   flex-direction: column;
   background: #fff;
   max-height: 350px;
-  box-shadow: 0 2px 30px 0 rgba(0, 0, 0, 0.05);
-  border-radius: 20px;
-  border: 1px solid var(--additional-color);
+  border-radius: 36px;
+  border: 1px solid var(--background-color);
   padding: 9px;
 }
-body #root main .page.page-profile .widgets .widget .widget-header .widget-title {
+html body #root main .page.page-profile .widgets .widget .widget-header .widget-title {
   user-select: none;
   font-weight: 700;
-  font-style: italic;
+  opacity: 0.8;
   font-size: 18px;
 }
-body #root main .page.page-profile .widgets .widget .widget-body {
+html body #root main .page.page-profile .widgets .widget .widget-body {
   overflow: auto;
   margin-top: 10px;
 }
-body #root main .page.page-profile .widgets .action {
+html body #root main .page.page-profile .widgets .action {
   width: 100%;
   padding: 22px 10px;
   border-radius: 20px;
@@ -916,16 +982,16 @@ body #root main .page.page-profile .widgets .action {
   background-color: rgba(90, 176, 88, 0.35);
   transition: background-color 0.3s ease;
 }
-body #root main .page.page-profile .widgets .action:hover {
+html body #root main .page.page-profile .widgets .action:hover {
   background-color: rgba(90, 176, 88, 0.6);
 }
-body #root main .page.page-admin {
+html body #root main .page.page-admin {
   display: flex;
   flex-direction: row;
   gap: 20px;
   flex-grow: 1;
 }
-body #root main .page.page-admin .menu {
+html body #root main .page.page-admin .menu {
   position: sticky;
   padding: 55px 10px;
   top: 0;
@@ -933,13 +999,13 @@ body #root main .page.page-admin .menu {
   left: 0;
   background: var(--secondary-color);
 }
-body #root main .page.page-admin .menu nav {
+html body #root main .page.page-admin .menu nav {
   height: 100%;
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
-body #root main .page.page-admin .menu nav a {
+html body #root main .page.page-admin .menu nav a {
   padding: 10px 15px;
   font-weight: 600;
   font-size: 24px;
@@ -948,193 +1014,209 @@ body #root main .page.page-admin .menu nav a {
   border-radius: 10px;
   transition: background-color 0.3s ease;
 }
-body #root main .page.page-admin .menu nav a:hover {
+html body #root main .page.page-admin .menu nav a:hover {
   background-color: rgba(241, 242, 242, 0.2);
 }
-body #root main .page.page-admin .content {
+html body #root main .page.page-admin .content {
   flex-grow: 1;
   padding: 30px;
 }
+html body #root main .page.page-contacts .filters-container {
+  display: flex;
+}
+html body #root main .page.page-contacts .filters-container .filters-select {
+  width: 100%;
+  display: flex;
+  gap: 5px;
+  overflow-x: scroll;
+}
+html body #root main .page.page-contacts .filters-container .filters-select .filter-select {
+  display: inline-block;
+  zoom: 1;
+  background: #0C1729;
+  color: #fff;
+  font-size: 14px;
+  border-radius: 10px;
+  padding: 7px 10px;
+}
 @media (min-width: 768px) {
-  body #root .module-documents .module-body {
+  html body #root .module-documents .module-body {
     gap: 5px;
   }
-  body #root .module-documents .module-body .document {
+  html body #root .module-documents .module-body .document {
     align-items: center;
     flex-direction: row;
     overflow: hidden;
     gap: 15px;
     padding: 15px 10px;
   }
-  body #root .module-documents .module-body .document .document-title {
+  html body #root .module-documents .module-body .document .document-title {
     flex-grow: 1;
     max-width: 70%;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
-  body #root .module-documents .module-body .document .info {
+  html body #root .module-documents .module-body .document .info {
     margin-left: auto;
     justify-content: unset;
     padding: 0;
     gap: 7px;
   }
-  body #root .module-documents .module-body .document .info .document-status {
+  html body #root .module-documents .module-body .document .info .document-status {
     padding: 5px 0;
     width: 115px;
   }
-  body #root .module-documents .module-body .document:hover {
+  html body #root .module-documents .module-body .document:hover {
     background-color: var(--background-color);
   }
-  body #root .module-documents .module-body .document span,
-  body #root .module-documents .module-body .document div {
+  html body #root .module-documents .module-body .document span,
+  html body #root .module-documents .module-body .document div {
     text-wrap: nowrap;
     font-size: 18px;
     user-select: none;
   }
-  body #root .header-wrapper {
-    padding: 0 55px;
+  html body #root .header-wrapper {
+    height: 70px;
+    padding: 0 35px;
   }
-  body #root .header-wrapper header {
-    padding: 22px 0;
+  html body #root .header-wrapper::before, html body #root .header-wrapper::after {
+    top: 13px;
   }
-  body #root .header-wrapper header #logo {
-    margin-left: 35px;
-  }
-  body #root .header-wrapper header #logo img {
-    height: 44px;
-  }
-  body #root .header-wrapper header .profile-container {
+  html body #root .header-wrapper header .profile-container {
     justify-content: flex-end;
     flex-direction: row;
     gap: 8px;
   }
-  body #root .header-wrapper header .profile-container .profile-wrapper,
-  body #root .header-wrapper header .profile-container .notifications-wrapper {
+  html body #root .header-wrapper header .profile-container .profile-wrapper,
+  html body #root .header-wrapper header .profile-container .notifications-wrapper {
     aspect-ratio: unset;
   }
-  body #root .header-wrapper header .profile-container .profile-wrapper .logo-container img,
-  body #root .header-wrapper header .profile-container .notifications-wrapper .logo-container img {
+  html body #root .header-wrapper header .profile-container .profile-wrapper .logo-container img,
+  html body #root .header-wrapper header .profile-container .notifications-wrapper .logo-container img {
     height: 30px;
   }
-  body #root .header-wrapper header .profile-container .profile-wrapper span,
-  body #root .header-wrapper header .profile-container .notifications-wrapper span {
+  html body #root .header-wrapper header .profile-container .profile-wrapper span,
+  html body #root .header-wrapper header .profile-container .notifications-wrapper span {
     display: block;
   }
-  body #root main .page .page-header .page-title {
+  html body #root main .page {
+    padding: 18px 0;
+  }
+  html body #root main .page .page-header .page-title {
     font-size: 28px;
   }
-  body #root main .page.page-landing .landing-module__preview .photo-container h1 {
+  html body #root main .page.page-landing .landing-module__preview .photo-container h1 {
     margin-top: 61px;
     font-size: 56px;
     line-height: 68px;
   }
-  body #root main .page.page-landing .landing-module__preview .photo-container .image-container {
+  html body #root main .page.page-landing .landing-module__preview .photo-container .image-container {
     height: 530px;
   }
-  body #root main .page.page-landing .content section {
+  html body #root main .page.page-landing .content section {
     padding: 0 80px;
   }
-  body #root main .page.page-landing .content h2 {
+  html body #root main .page.page-landing .content h2 {
     font-size: 40px;
   }
-  body #root main .page.page-landing .content h2 .end {
+  html body #root main .page.page-landing .content h2 .end {
     font-size: 36px;
   }
-  body #root main .page.page-landing .content .dynamica-today p {
+  html body #root main .page.page-landing .content .dynamica-today p {
     font-size: 32px;
   }
-  body #root main .page.page-landing .content .dynamica-today p.gray {
+  html body #root main .page.page-landing .content .dynamica-today p.gray {
     margin-top: 10px;
     font-size: 20px;
   }
-  body #root main .page.page-landing .content .values-container {
+  html body #root main .page.page-landing .content .values-container {
     padding: 26px 42px;
   }
-  body #root main .page.page-landing .content .values-container .container-title {
+  html body #root main .page.page-landing .content .values-container .container-title {
     font-size: 24px;
   }
-  body #root main .page.page-landing .content .values-container .values {
+  html body #root main .page.page-landing .content .values-container .values {
     gap: 20px;
     margin-top: 18px;
   }
-  body #root main .page.page-landing .content .values-container .values .value span {
+  html body #root main .page.page-landing .content .values-container .values .value span {
     line-height: 24px;
     font-size: 20px;
   }
-  body #root main .page.page-landing .content .section-achievements .swiper {
+  html body #root main .page.page-landing .content .section-achievements .swiper {
     margin-top: 17px;
   }
-  body #root main .page.page-landing .content .section-achievements .swiper .swiper-wrapper .swiper-slide .content .image-wrapper {
+  html body #root main .page.page-landing .content .section-achievements .swiper .swiper-wrapper .swiper-slide .content .image-wrapper {
     border-radius: 42px;
   }
-  body #root main .page.page-landing .content .section-achievements .swiper .swiper-wrapper .swiper-slide .content .label {
+  html body #root main .page.page-landing .content .section-achievements .swiper .swiper-wrapper .swiper-slide .content .label {
     margin-top: 11px;
     font-size: 36px;
   }
-  body #root main .page.page-landing .content .section-form form {
+  html body #root main .page.page-landing .content .section-form form {
     padding: 32px 43px;
     border-radius: 43px;
   }
-  body #root main .page.page-landing .content .section-form form .form-body__wrapper .form-header .primary {
+  html body #root main .page.page-landing .content .section-form form .form-body__wrapper .form-header .primary {
     font-size: 40px;
   }
-  body #root main .page.page-landing .content .section-form form .form-body__wrapper .form-header .secondary {
+  html body #root main .page.page-landing .content .section-form form .form-body__wrapper .form-header .secondary {
     font-size: 26px;
   }
-  body #root main .page.page-landing .content .section-form form .form-body__wrapper .form-body {
+  html body #root main .page.page-landing .content .section-form form .form-body__wrapper .form-body {
     margin-top: 43px;
   }
-  body #root main .page.page-landing .content .section-form form .form-body__wrapper .form-body .form-elem__text {
+  html body #root main .page.page-landing .content .section-form form .form-body__wrapper .form-body .form-elem__text {
     font-size: 30px;
     padding: 20px 17px;
   }
-  body #root main .page.page-landing .content .section-form form .form-body__wrapper .form-body .form-elem__text.form-input__description {
+  html body #root main .page.page-landing .content .section-form form .form-body__wrapper .form-body .form-elem__text.form-input__description {
     margin-top: 26px;
     height: 315px;
   }
-  body #root main .page.page-landing .content .section-form form .form-body__wrapper .form-body .submit-container {
+  html body #root main .page.page-landing .content .section-form form .form-body__wrapper .form-body .submit-container {
     margin-top: 43px;
   }
-  body #root main .page.page-landing .content .section-form form .form-body__wrapper .form-body .submit-container .form-input__submit {
+  html body #root main .page.page-landing .content .section-form form .form-body__wrapper .form-body .submit-container .form-input__submit {
     padding: 11px 57px;
     font-size: 40px;
   }
-  body #root main .page.page-feed {
+  html body #root main .page.page-feed {
     padding: 0;
     position: relative;
   }
-  body #root main .page.page-feed .rectangle {
+  html body #root main .page.page-feed .rectangle {
     position: absolute;
     background: var(--secondary-color);
     width: 100%;
     height: 400px;
   }
-  body #root main .page.page-feed h1 {
+  html body #root main .page.page-feed h1 {
     color: #ffffff;
     text-align: center;
     margin-top: 41px;
     z-index: 2;
   }
-  body #root main .page.page-feed .feed-tiles {
+  html body #root main .page.page-feed .feed-tiles {
     max-width: 1350px;
     margin-top: 82px;
-    padding: 0 20px;
+    padding: 0 15px 10px 15px;
     display: grid;
-    grid-template-columns: repeat(3, calc(33.3333333333% - 13.3333333333px));
+    grid-template-columns: repeat(2, calc(50% - 10px));
     gap: 20px;
     z-index: 2;
   }
-  body #root main .page.page-feed .feed-tiles .feed-tile__container {
+  html body #root main .page.page-feed .feed-tiles .feed-tile__container {
     margin-top: 0;
     max-width: none;
   }
-  body #root main .page.page-feed .feed-tiles .feed-tile__container:first-child {
+  html body #root main .page.page-feed .feed-tiles .feed-tile__container:first-child {
     grid-column: 1/-1;
     width: 100%;
     transform: translateY(0);
   }
-  body #root main .page.page-feed .feed-tiles .feed-tile__container:first-child .feed-tile {
+  html body #root main .page.page-feed .feed-tiles .feed-tile__container:first-child .feed-tile {
     width: 100%;
     display: flex;
     flex-direction: row-reverse;
@@ -1143,208 +1225,226 @@ body #root main .page.page-admin .content {
     background: var(--primary-color) !important;
     align-items: center;
   }
-  body #root main .page.page-feed .feed-tiles .feed-tile__container:first-child .feed-tile .feed-tile__header {
-    padding: 13px 47px 20px 0;
+  html body #root main .page.page-feed .feed-tiles .feed-tile__container:first-child .feed-tile .feed-tile__header {
+    padding: 14px 43px 13px 0;
     height: 100%;
     flex: 6;
-    gap: 12px;
   }
-  body #root main .page.page-feed .feed-tiles .feed-tile__container:first-child .feed-tile .feed-tile__header .feed-tile__title {
-    font-size: 20px;
+  html body #root main .page.page-feed .feed-tiles .feed-tile__container:first-child .feed-tile .feed-tile__header .feed-tile__title {
+    font-size: 24px;
   }
-  body #root main .page.page-feed .feed-tiles .feed-tile__container:first-child .feed-tile .feed-tile__header .feed-tile__description {
+  html body #root main .page.page-feed .feed-tiles .feed-tile__container:first-child .feed-tile .feed-tile__header .feed-tile__description {
+    font-size: 18px;
+  }
+  html body #root main .page.page-feed .feed-tiles .feed-tile__container:first-child .feed-tile .feed-tile__header .feed-tile__date {
     font-size: 16px;
+    margin-top: 21px;
   }
-  body #root main .page.page-feed .feed-tiles .feed-tile__container:first-child .feed-tile .feed-tile__header .feed-tile__date {
-    margin-top: 63px;
-  }
-  body #root main .page.page-feed .feed-tiles .feed-tile__container:first-child .feed-tile .feed-tile__image {
+  html body #root main .page.page-feed .feed-tiles .feed-tile__container:first-child .feed-tile .feed-tile__image {
     height: 100%;
     border-radius: 33px;
     display: flex;
-    flex: 4;
+    flex: 5;
   }
-  body #root main .page.page-feed .feed-tiles .feed-tile__container .feed-tile {
+  html body #root main .page.page-feed .feed-tiles .feed-tile__container .feed-tile {
     flex-direction: column-reverse;
   }
-  body #root main .page.page-feed .feed-tiles .feed-tile__container .feed-tile.pinned {
+  html body #root main .page.page-feed .feed-tiles .feed-tile__container .feed-tile.pinned {
     background: var(--secondary-color);
   }
-  body #root main .page.page-feed .feed-tiles .feed-tile__container .feed-tile .feed-tile__header {
-    padding: 28px 18px;
-    gap: 0;
+  html body #root main .page.page-feed .feed-tiles .feed-tile__container .feed-tile .feed-tile__header {
+    padding: 23px 17px;
   }
-  body #root main .page.page-feed .feed-tiles .feed-tile__container .feed-tile .feed-tile__header .feed-tile__title {
-    font-size: 20px;
-    font-weight: bold;
+  html body #root main .page.page-feed .feed-tiles .feed-tile__container .feed-tile .feed-tile__header .feed-tile__title {
+    font-size: 24px;
   }
-  body #root main .page.page-feed .feed-tiles .feed-tile__container .feed-tile .feed-tile__header .feed-tile__date {
-    margin-top: 28px;
-    font-size: 20px;
+  html body #root main .page.page-feed .feed-tiles .feed-tile__container .feed-tile .feed-tile__header .feed-tile__date {
     text-align: right;
-    font-style: italic;
-    font-weight: 400;
+    margin-top: 22px;
+    font-size: 20px;
   }
-  body #root main .page.page-feed .feed-tiles .feed-tile__container .feed-tile .feed-tile__image {
+  html body #root main .page.page-feed .feed-tiles .feed-tile__container .feed-tile .feed-tile__image {
     margin-top: 0;
   }
-  body #root main .page.page-profile .page-header .page-title__district {
+  html body #root main .page.page-profile .page-header .page-title__district {
     font-size: 20px;
   }
-  body #root main .page.page-profile .widgets {
+  html body #root main .page.page-profile .widgets {
     gap: 8px;
     margin-top: 30px;
   }
-  body #root main .page.page-profile .widgets .widgets-head {
+  html body #root main .page.page-profile .widgets .widgets-head {
     gap: 8px;
   }
-  body #root main .page.page-profile .widgets .widgets-head .right-widgets {
+  html body #root main .page.page-profile .widgets .widgets-head .right-widgets {
     gap: 8px;
   }
-  body #root main .page.page-profile .widgets .widget {
+  html body #root main .page.page-profile .widgets .widget {
     padding: 12px;
   }
-  body #root main .page.page-profile .widgets .widget .widget-header .widget-title {
+  html body #root main .page.page-profile .widgets .widget .widget-header .widget-title {
     font-size: 24px;
   }
-  body #root main .page.page-profile .widgets .widget .widget-body {
+  html body #root main .page.page-profile .widgets .widget .widget-body {
     margin-top: 12px;
   }
-  body #root main .page.page-profile .widgets .action {
+  html body #root main .page.page-profile .widgets .action {
     font-size: 24px;
   }
-  body #root footer {
+  html body #root footer {
     padding: 56px 70px;
   }
-  body #root footer .nav {
+  html body #root footer .nav {
     gap: 21px;
   }
-  body #root footer .nav .nav-item a {
+  html body #root footer .nav .nav-item a {
     font-size: 24px;
   }
-  body #root footer .sep {
+  html body #root footer .sep {
     border-bottom: 2px solid rgb(255, 255, 255);
     margin-top: 23px;
     margin-bottom: 23px;
   }
-  body #root footer .logo {
+  html body #root footer .logo {
     height: 50px;
   }
-  body #root footer .faq {
+  html body #root footer .faq {
     margin-top: 23px;
     gap: 21px;
   }
-  body #root footer .faq .faq-item a {
+  html body #root footer .faq .faq-item a {
     font-size: 24px;
   }
 }
 @media (min-width: 1024px) {
-  body #root .module-documents .module-body {
-    gap: 7px;
-  }
-  body #root .module-documents .module-body .document {
+  html body #root .module-documents .module-body .document {
     align-items: center;
     flex-direction: row;
     overflow: hidden;
     gap: 15px;
     padding: 17px 22px;
   }
-  body #root .module-documents .module-body .document .info {
+  html body #root .module-documents .module-body .document .info {
     margin-left: auto;
     justify-content: unset;
     gap: 12px;
   }
-  body #root .module-documents .module-body .document .info .document-status {
+  html body #root .module-documents .module-body .document .info .document-status {
     padding: 5px 0;
     font-size: 18px;
     width: 120px;
   }
-  body #root .module-documents .module-body .document:hover {
+  html body #root .module-documents .module-body .document:hover {
     background-color: var(--background-color);
   }
-  body #root .module-documents .module-body .document span,
-  body #root .module-documents .module-body .document div {
+  html body #root .module-documents .module-body .document span,
+  html body #root .module-documents .module-body .document div {
     font-size: 22px;
   }
-  body #root .header-wrapper {
-    padding: 0 50px;
+  html body #root .header-wrapper {
+    height: 80px;
   }
-  body #root .header-wrapper header {
-    padding: 37px 0;
-    justify-content: space-between;
+  html body #root .header-wrapper::before, html body #root .header-wrapper::after {
+    top: 23px;
   }
-  body #root .header-wrapper header #burger {
+  html body #root .header-wrapper header {
+    padding: 15px 0;
+  }
+  html body #root .header-wrapper header #burger {
     display: none;
   }
-  body #root .header-wrapper header #logo {
-    margin-left: 0;
+  html body #root .header-wrapper header nav {
+    display: flex;
   }
-  body #root .header-wrapper header #logo img {
-    height: 30px;
-  }
-  body #root .header-wrapper header nav {
+  html body #root .header-wrapper header nav ul li {
     display: flex;
     align-items: center;
   }
-  body #root .header-wrapper header nav ul li .nav-item {
-    font-size: 14px;
-    font-weight: 400;
+  html body #root .header-wrapper header nav ul li .nav-item {
+    font-size: 16px;
   }
-  body #root .header-wrapper header .profile-container {
+  html body #root .header-wrapper header .profile-container {
+    display: flex;
     flex-grow: unset;
     gap: 8px;
+    margin-left: auto;
   }
-  body #root .header-wrapper header .profile-container .profile-wrapper .logo-container img,
-  body #root .header-wrapper header .profile-container .notifications-wrapper .logo-container img {
+  html body #root .header-wrapper header .profile-container .profile-wrapper .logo-container img,
+  html body #root .header-wrapper header .profile-container .notifications-wrapper .logo-container img {
     height: 20px;
   }
-  body #root .header-wrapper header .profile-container .profile-wrapper {
+  html body #root .header-wrapper header .profile-container .profile-wrapper {
     padding: 5px 6px;
   }
-  body #root .header-wrapper header .profile-container .notifications-wrapper {
+  html body #root .header-wrapper header .profile-container .notifications-wrapper {
     padding: 4px 12px;
   }
-  body #root main .page .page-header .page-title {
+  html body #root main .page {
+    padding: 25px 0;
+  }
+  html body #root main .page .page-header .page-title {
     font-size: 30px;
   }
-  body #root main .page.page-landing .landing-module__preview .photo-container h1 {
+  html body #root main .page.page-landing .landing-module-wide {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background: var(--secondary-color);
+  }
+  html body #root main .page.page-landing .landing-module-wide .image-container {
+    margin-top: 30px;
+    width: 100%;
+    max-width: 860px;
+  }
+  html body #root main .page.page-landing .landing-module-wide .image-container img {
+    user-select: none;
+    width: 100%;
+    object-fit: cover;
+  }
+  html body #root main .page.page-landing .landing-module__preview {
+    display: none;
+  }
+  html body #root main .page.page-landing .landing-module__preview .photo-container h1 {
     margin-top: 80px;
     font-size: 75px;
     line-height: 92px;
   }
-  body #root main .page.page-landing .landing-module__preview .photo-container .image-container {
+  html body #root main .page.page-landing .landing-module__preview .photo-container .image-container {
     height: 707px;
   }
-  body #root main .page.page-landing .content section {
+  html body #root main .page.page-landing .content section {
     margin: 60px auto 0 auto;
     padding: 0 43px;
   }
-  body #root main .page.page-landing .content h2 {
+  html body #root main .page.page-landing .content .section-year {
+    display: none;
+  }
+  html body #root main .page.page-landing .content h2 {
     font-size: 66px;
   }
-  body #root main .page.page-landing .content h2 .end {
+  html body #root main .page.page-landing .content h2 .end {
     font-size: 55px;
   }
-  body #root main .page.page-landing .content .section-map {
+  html body #root main .page.page-landing .content .section-map {
     display: block;
     position: relative;
   }
-  body #root main .page.page-landing .content .section-map .info {
+  html body #root main .page.page-landing .content .section-map .info {
     position: absolute;
     top: 0;
     left: 67px;
     width: 45%;
   }
-  body #root main .page.page-landing .content .section-map .info p {
+  html body #root main .page.page-landing .content .section-map .info p {
     font-size: 28px;
     line-height: 34px;
   }
-  body #root main .page.page-landing .content .section-map .info .gray {
+  html body #root main .page.page-landing .content .section-map .info .gray {
     font-size: 18px;
     line-height: 22px;
     color: rgba(0, 0, 0, 0.55);
   }
-  body #root main .page.page-landing .content .section-map .values-container {
+  html body #root main .page.page-landing .content .section-map .values-container {
     position: absolute;
     background: rgba(255, 255, 255, 0.7);
     top: 0;
@@ -1353,124 +1453,124 @@ body #root main .page.page-admin .content {
     width: 40%;
     padding: 18px;
   }
-  body #root main .page.page-landing .content .section-map .values-container .container-title {
+  html body #root main .page.page-landing .content .section-map .values-container .container-title {
     font-size: 19px;
   }
-  body #root main .page.page-landing .content .section-map .values-container .values {
+  html body #root main .page.page-landing .content .section-map .values-container .values {
     margin-top: 6px;
     gap: 10px;
   }
-  body #root main .page.page-landing .content .section-map .values-container .values .value span {
+  html body #root main .page.page-landing .content .section-map .values-container .values .value span {
     line-height: 13px;
     font-size: 11px;
   }
-  body #root main .page.page-landing .content .section-map img {
+  html body #root main .page.page-landing .content .section-map img {
     margin-top: 68px;
     width: 100%;
   }
-  body #root main .page.page-landing .content .dynamica-today {
+  html body #root main .page.page-landing .content .dynamica-today {
     display: none;
   }
-  body #root main .page.page-landing .content .section-values {
+  html body #root main .page.page-landing .content .section-values {
     display: none;
   }
-  body #root main .page.page-landing .content .section-achievements h2 {
+  html body #root main .page.page-landing .content .section-achievements h2 {
     font-size: 45px;
   }
-  body #root main .page.page-landing .content .section-achievements .swiper {
+  html body #root main .page.page-landing .content .section-achievements .swiper {
     margin-top: 37px;
   }
-  body #root main .page.page-landing .content .section-achievements .swiper .swiper-wrapper .swiper-slide .content .image-wrapper {
+  html body #root main .page.page-landing .content .section-achievements .swiper .swiper-wrapper .swiper-slide .content .image-wrapper {
     border-radius: 48px;
   }
-  body #root main .page.page-landing .content .section-achievements .swiper .swiper-wrapper .swiper-slide .content .label {
+  html body #root main .page.page-landing .content .section-achievements .swiper .swiper-wrapper .swiper-slide .content .label {
     margin-top: 23px;
     font-size: 28px;
   }
-  body #root main .page.page-landing .content .section-form {
+  html body #root main .page.page-landing .content .section-form {
     margin-bottom: 92px;
   }
-  body #root main .page.page-landing .content .section-form form {
+  html body #root main .page.page-landing .content .section-form form {
     padding: 42px 30px;
     display: flex;
     gap: 25px;
   }
-  body #root main .page.page-landing .content .section-form form .form-picture {
+  html body #root main .page.page-landing .content .section-form form .form-picture {
     width: 40%;
     display: flex;
     align-items: center;
     justify-content: center;
   }
-  body #root main .page.page-landing .content .section-form form .form-picture img {
+  html body #root main .page.page-landing .content .section-form form .form-picture img {
     width: 65%;
     object-fit: contain;
   }
-  body #root main .page.page-landing .content .section-form form .form-body__wrapper {
+  html body #root main .page.page-landing .content .section-form form .form-body__wrapper {
     flex-grow: 1;
   }
-  body #root main .page.page-landing .content .section-form form .form-body__wrapper .form-header .primary {
+  html body #root main .page.page-landing .content .section-form form .form-body__wrapper .form-header .primary {
     font-size: 40px;
   }
-  body #root main .page.page-landing .content .section-form form .form-body__wrapper .form-header .secondary {
+  html body #root main .page.page-landing .content .section-form form .form-body__wrapper .form-header .secondary {
     font-size: 24px;
   }
-  body #root main .page.page-landing .content .section-form form .form-body__wrapper .form-body {
+  html body #root main .page.page-landing .content .section-form form .form-body__wrapper .form-body {
     margin-top: 20px;
   }
-  body #root main .page.page-landing .content .section-form form .form-body__wrapper .form-body .form-elem__text {
+  html body #root main .page.page-landing .content .section-form form .form-body__wrapper .form-body .form-elem__text {
     font-size: 24px;
     padding: 9px 14px;
     border-radius: 10px;
   }
-  body #root main .page.page-landing .content .section-form form .form-body__wrapper .form-body .form-elem__text.form-input__description {
+  html body #root main .page.page-landing .content .section-form form .form-body__wrapper .form-body .form-elem__text.form-input__description {
     margin-top: 15px;
     height: 130px;
   }
-  body #root main .page.page-landing .content .section-form form .form-body__wrapper .form-body .submit-container {
+  html body #root main .page.page-landing .content .section-form form .form-body__wrapper .form-body .submit-container {
     margin-top: 14px;
   }
-  body #root main .page.page-landing .content .section-form form .form-body__wrapper .form-body .submit-container .form-input__submit {
+  html body #root main .page.page-landing .content .section-form form .form-body__wrapper .form-body .submit-container .form-input__submit {
     padding: 8px 16px;
     border-radius: 16px;
     font-size: 27px;
   }
-  body #root main .page.page-profile .page-header .page-title__district {
+  html body #root main .page.page-profile .page-header .page-title__district {
     font-size: 18px;
   }
-  body #root main .page.page-profile .widgets {
+  html body #root main .page.page-profile .widgets {
     gap: 18px;
     margin-top: 30px;
   }
-  body #root main .page.page-profile .widgets .widgets-head {
+  html body #root main .page.page-profile .widgets .widgets-head {
     align-items: stretch;
     flex-direction: row;
     gap: 18px;
   }
-  body #root main .page.page-profile .widgets .widgets-head .widget-notifications {
+  html body #root main .page.page-profile .widgets .widgets-head .widget-notifications {
     max-height: none;
     width: 40%;
   }
-  body #root main .page.page-profile .widgets .widgets-head .right-widgets {
+  html body #root main .page.page-profile .widgets .widgets-head .right-widgets {
     width: 60%;
     gap: 18px;
   }
-  body #root main .page.page-profile .widgets .widget {
+  html body #root main .page.page-profile .widgets .widget {
     padding: 12px;
     max-height: 480px;
   }
-  body #root main .page.page-profile .widgets .widget .widget-header .widget-title {
+  html body #root main .page.page-profile .widgets .widget .widget-header .widget-title {
     font-size: 24px;
   }
-  body #root main .page.page-profile .widgets .widget .widget-body {
+  html body #root main .page.page-profile .widgets .widget .widget-body {
     margin-top: 18px;
   }
-  body #root main .page.page-profile .widgets .action {
+  html body #root main .page.page-profile .widgets .action {
     font-size: 24px;
   }
-  body #root footer {
+  html body #root footer {
     padding: 64px 57px;
   }
-  body #root footer .nav {
+  html body #root footer .nav {
     display: grid;
     grid-auto-flow: column;
     grid-template-rows: repeat(3, auto);
@@ -1478,196 +1578,259 @@ body #root main .page.page-admin .content {
     justify-content: start;
     grid-auto-columns: min-content;
   }
-  body #root footer .nav .nav-item a {
+  html body #root footer .nav .nav-item a {
     text-wrap: nowrap;
     font-size: 20px;
   }
-  body #root footer .sep {
+  html body #root footer .sep {
     border-bottom: 3px solid rgb(255, 255, 255);
     margin-top: 52px;
     margin-bottom: 30px;
   }
-  body #root footer .logo {
+  html body #root footer .logo {
     height: 63px;
   }
-  body #root footer .faq {
+  html body #root footer .faq {
     margin-top: 26px;
     gap: 28px;
   }
-  body #root footer .faq .faq-item a {
+  html body #root footer .faq .faq-item a {
     font-size: 20px;
   }
 }
 @media (min-width: 1440px) {
-  body #root .header-wrapper {
-    padding: 0 134px;
+  html body #root .header-wrapper {
+    height: 90px;
   }
-  body #root .header-wrapper header {
-    padding: 36px 0;
+  html body #root .header-wrapper::before, html body #root .header-wrapper::after {
+    top: 33px;
   }
-  body #root .header-wrapper header #logo img {
-    height: 43px;
+  html body #root .header-wrapper header nav ul {
+    gap: 20px;
   }
-  body #root .header-wrapper header nav ul li .nav-item {
-    font-size: 24px;
+  html body #root .header-wrapper header nav ul li .nav-item {
+    font-size: 20px;
   }
-  body #root .header-wrapper header .profile-container .profile-wrapper .logo-container img,
-  body #root .header-wrapper header .profile-container .notifications-wrapper .logo-container img {
+  html body #root .header-wrapper header .profile-container {
+    padding: 5px 0;
+  }
+  html body #root .header-wrapper header .profile-container .profile-wrapper .logo-container img,
+  html body #root .header-wrapper header .profile-container .notifications-wrapper .logo-container img {
     height: 30px;
   }
-  body #root .header-wrapper header .profile-container .profile-wrapper {
-    padding: 7px 8px;
+  html body #root .header-wrapper header .profile-container .profile-wrapper {
+    padding: 7px 14px;
   }
-  body #root .header-wrapper header .profile-container .notifications-wrapper {
+  html body #root .header-wrapper header .profile-container .notifications-wrapper {
     padding: 6px 18px;
   }
-  body #root main .page .page-header .page-title {
+  html body #root main .page {
+    padding: 37px 0;
+  }
+  html body #root main .page .page-header .page-title {
     font-size: 38px;
   }
-  body #root main .page.page-landing .landing-module__preview .photo-container h1 {
+  html body #root main .page.page-landing .landing-module-wide .image-container {
+    margin-top: 50px;
+    max-width: 1250px;
+  }
+  html body #root main .page.page-landing .landing-module__preview .photo-container h1 {
     margin-top: 80px;
     font-size: 75px;
     line-height: 92px;
   }
-  body #root main .page.page-landing .landing-module__preview .photo-container .image-container {
+  html body #root main .page.page-landing .landing-module__preview .photo-container .image-container {
     height: 707px;
   }
-  body #root main .page.page-landing .content section {
+  html body #root main .page.page-landing .content section {
     margin: 134px auto 0 auto;
   }
-  body #root main .page.page-landing .content h2 {
+  html body #root main .page.page-landing .content h2 {
     font-size: 66px;
   }
-  body #root main .page.page-landing .content h2 .end {
+  html body #root main .page.page-landing .content h2 .end {
     font-size: 55px;
   }
-  body #root main .page.page-landing .content .section-map .info {
+  html body #root main .page.page-landing .content .section-map .info {
     width: 45%;
   }
-  body #root main .page.page-landing .content .section-map .info p {
+  html body #root main .page.page-landing .content .section-map .info p {
     font-size: 36px;
     line-height: 44px;
   }
-  body #root main .page.page-landing .content .section-map .info .gray {
+  html body #root main .page.page-landing .content .section-map .info .gray {
     margin-top: 5px;
     font-size: 24px;
     line-height: 29px;
   }
-  body #root main .page.page-landing .content .section-map .values-container {
+  html body #root main .page.page-landing .content .section-map .values-container {
     border-radius: 39px;
   }
-  body #root main .page.page-landing .content .section-map .values-container .container-title {
+  html body #root main .page.page-landing .content .section-map .values-container .container-title {
     font-size: 24px;
   }
-  body #root main .page.page-landing .content .section-map .values-container .values {
+  html body #root main .page.page-landing .content .section-map .values-container .values {
     margin-top: 15px;
   }
-  body #root main .page.page-landing .content .section-map .values-container .values .value span {
+  html body #root main .page.page-landing .content .section-map .values-container .values .value span {
     line-height: 17px;
     font-size: 14px;
   }
-  body #root main .page.page-landing .content .section-map img {
+  html body #root main .page.page-landing .content .section-map img {
     width: 100%;
   }
-  body #root main .page.page-landing .content .section-achievements {
+  html body #root main .page.page-landing .content .section-achievements {
     max-width: none;
   }
-  body #root main .page.page-landing .content .section-achievements h2 {
+  html body #root main .page.page-landing .content .section-achievements h2 {
     font-size: 64px;
   }
-  body #root main .page.page-landing .content .section-achievements .swiper {
+  html body #root main .page.page-landing .content .section-achievements .swiper {
     margin-top: 43px;
   }
-  body #root main .page.page-landing .content .section-achievements .swiper .swiper-wrapper .swiper-slide .content .image-wrapper {
+  html body #root main .page.page-landing .content .section-achievements .swiper .swiper-wrapper .swiper-slide .content .image-wrapper {
     border-radius: 64px;
   }
-  body #root main .page.page-landing .content .section-achievements .swiper .swiper-wrapper .swiper-slide .content .label {
+  html body #root main .page.page-landing .content .section-achievements .swiper .swiper-wrapper .swiper-slide .content .label {
     margin-top: 31px;
     font-size: 40px;
     opacity: 0;
   }
-  body #root main .page.page-landing .content .section-achievements .swiper .swiper-wrapper .swiper-slide-active .content .label {
+  html body #root main .page.page-landing .content .section-achievements .swiper .swiper-wrapper .swiper-slide-active .content .label {
     opacity: 1;
   }
-  body #root main .page.page-landing .content .section-form {
+  html body #root main .page.page-landing .content .section-form {
     margin-bottom: 134px;
   }
-  body #root main .page.page-landing .content .section-form form {
+  html body #root main .page.page-landing .content .section-form form {
     padding: 56px 44px;
+    gap: 60px;
   }
-  body #root main .page.page-landing .content .section-form form .form-body__wrapper .form-header .primary {
-    font-size: 53px;
+  html body #root main .page.page-landing .content .section-form form .form-body__wrapper .form-header .primary {
+    font-size: 48px;
   }
-  body #root main .page.page-landing .content .section-form form .form-body__wrapper .form-header .secondary {
-    font-size: 32px;
-  }
-  body #root main .page.page-landing .content .section-form form .form-body__wrapper .form-body {
-    margin-top: 28px;
-  }
-  body #root main .page.page-landing .content .section-form form .form-body__wrapper .form-body .form-elem__text {
-    font-size: 40px;
-    padding: 10px 20px;
-  }
-  body #root main .page.page-landing .content .section-form form .form-body__wrapper .form-body .form-elem__text.form-input__description {
-    margin-top: 19px;
-    height: 169px;
-  }
-  body #root main .page.page-landing .content .section-form form .form-body__wrapper .form-body .submit-container {
-    margin-top: 19px;
-  }
-  body #root main .page.page-landing .content .section-form form .form-body__wrapper .form-body .submit-container .form-input__submit {
-    border-radius: 18px;
-    padding: 11px 48px;
-    font-size: 36px;
-  }
-  body #root main .page.page-profile .page-header .page-title__district {
+  html body #root main .page.page-landing .content .section-form form .form-body__wrapper .form-header .secondary {
     font-size: 24px;
   }
-  body #root main .page.page-profile .widgets {
+  html body #root main .page.page-landing .content .section-form form .form-body__wrapper .form-body {
+    margin-top: 15px;
+  }
+  html body #root main .page.page-landing .content .section-form form .form-body__wrapper .form-body .form-elem__text {
+    font-size: 24px;
+    padding: 19px;
+  }
+  html body #root main .page.page-landing .content .section-form form .form-body__wrapper .form-body .form-elem__text.form-input__description {
+    margin-top: 13px;
+    height: 204px;
+  }
+  html body #root main .page.page-landing .content .section-form form .form-body__wrapper .form-body .submit-container {
+    margin-top: 19px;
+  }
+  html body #root main .page.page-landing .content .section-form form .form-body__wrapper .form-body .submit-container .form-input__submit {
+    border-radius: 18px;
+    padding: 11px 48px;
+    font-size: 32px;
+  }
+  html body #root main .page.page-feed {
+    padding: 0;
+    position: relative;
+  }
+  html body #root main .page.page-feed .rectangle {
+    position: absolute;
+    background: var(--secondary-color);
+    width: 100%;
+    height: 400px;
+  }
+  html body #root main .page.page-feed h1 {
+    color: #ffffff;
+    text-align: center;
+    margin-top: 41px;
+    z-index: 2;
+  }
+  html body #root main .page.page-feed .feed-tiles {
+    grid-template-columns: repeat(3, calc(33.3333333333% - 26.6666666667px));
+    gap: 40px;
+  }
+  html body #root main .page.page-feed .feed-tiles .feed-tile__container:first-child .feed-tile {
+    gap: 56px;
+  }
+  html body #root main .page.page-feed .feed-tiles .feed-tile__container:first-child .feed-tile .feed-tile__header {
+    padding: 27px 47px 36px 0;
+    height: 100%;
+    flex: 6;
+  }
+  html body #root main .page.page-feed .feed-tiles .feed-tile__container:first-child .feed-tile .feed-tile__header .feed-tile__title {
+    font-size: 36px;
+  }
+  html body #root main .page.page-feed .feed-tiles .feed-tile__container:first-child .feed-tile .feed-tile__header .feed-tile__description {
+    margin-top: 12px;
+    font-size: 24px;
+  }
+  html body #root main .page.page-feed .feed-tiles .feed-tile__container:first-child .feed-tile .feed-tile__header .feed-tile__date {
+    font-size: 20px;
+    margin-top: 63px;
+  }
+  html body #root main .page.page-feed .feed-tiles .feed-tile__container .feed-tile .feed-tile__header {
+    padding: 28px 18px;
+  }
+  html body #root main .page.page-feed .feed-tiles .feed-tile__container .feed-tile .feed-tile__header .feed-tile__title {
+    font-size: 26px;
+  }
+  html body #root main .page.page-feed .feed-tiles .feed-tile__container .feed-tile .feed-tile__header .feed-tile__date {
+    margin-top: 27px;
+    font-size: 22px;
+  }
+  html body #root main .page.page-feed .feed-tiles .feed-tile__container .feed-tile .feed-tile__image {
+    margin-top: 0;
+  }
+  html body #root main .page.page-profile .page-header .page-title__district {
+    font-size: 24px;
+  }
+  html body #root main .page.page-profile .widgets {
     gap: 24px;
     margin-top: 50px;
   }
-  body #root main .page.page-profile .widgets .widgets-head {
+  html body #root main .page.page-profile .widgets .widgets-head {
     flex-direction: row;
     gap: 24px;
   }
-  body #root main .page.page-profile .widgets .widgets-head .right-widgets {
+  html body #root main .page.page-profile .widgets .widgets-head .right-widgets {
     gap: 24px;
   }
-  body #root main .page.page-profile .widgets .widget {
+  html body #root main .page.page-profile .widgets .widget {
     padding: 17px;
   }
-  body #root main .page.page-profile .widgets .widget .widget-header .widget-title {
+  html body #root main .page.page-profile .widgets .widget .widget-header .widget-title {
     font-size: 26px;
   }
-  body #root main .page.page-profile .widgets .widget .widget-body {
+  html body #root main .page.page-profile .widgets .widget .widget-body {
     margin-top: 25px;
   }
-  body #root main .page.page-profile .widgets .action {
+  html body #root main .page.page-profile .widgets .action {
     font-size: 26px;
   }
-  body #root footer {
+  html body #root footer {
     padding: 71px 140px;
   }
-  body #root footer .nav {
+  html body #root footer .nav {
     grid-template-rows: repeat(2, auto);
     gap: 37px 120px;
   }
-  body #root footer .sep {
+  html body #root footer .sep {
     margin-top: 28px;
     margin-bottom: 35px;
   }
-  body #root footer .logo-faq {
+  html body #root footer .logo-faq {
     display: flex;
     align-items: center;
     flex-direction: row;
     justify-content: space-between;
   }
-  body #root footer .logo-faq .logo {
+  html body #root footer .logo-faq .logo {
     display: flex;
     height: 72px;
   }
-  body #root footer .logo-faq .faq {
+  html body #root footer .logo-faq .faq {
     margin-top: 0;
     align-items: center;
     display: flex;
@@ -1676,10 +1839,10 @@ body #root main .page.page-admin .content {
     gap: 80px;
     margin-left: 150px;
   }
-  body #root footer .logo {
+  html body #root footer .logo {
     display: none;
   }
-  body #root footer .faq {
+  html body #root footer .faq {
     display: none;
   }
 }

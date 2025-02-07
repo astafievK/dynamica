@@ -21,6 +21,7 @@ import {ModalLoading} from "./components/ModalLoading/ModalLoading.tsx";
 import {PageProfile} from "./components/PageProfile/PageProfile.tsx";
 import {TextEditor} from "./components/TextEdit/TextEditor.tsx";
 import {PageAdmin} from "./components/PageAdmin/PageAdmin.tsx";
+import {PageContacts} from "./components/PageContacts/PageContacts.tsx";
 
 const Root = () => {
     const modalLogin = useTypedSelector(state => state.modalLoginReducer);
@@ -53,6 +54,7 @@ const router = createBrowserRouter(
             <Route path="feed" element={<PageFeed />} />
             <Route path="editor" element={<TextEditor />} />
             <Route path="profile" element={<PageProfile />} />
+            <Route path="contacts" element={<PageContacts />} />
             <Route path="admin" element={<PageAdmin />}>
                 <Route path="feed" />
                 <Route path="contacts"/>

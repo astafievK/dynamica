@@ -20,6 +20,11 @@ export const PageLanding: FC = () => {
                     </div>
                 </div>
             </div>
+            <div className="landing-module-wide">
+                <div className="image-container">
+                    <img src="landing photo wide.svg" alt={""}/>
+                </div>
+            </div>
             <div className="content">
                 <section className="section-year">
                     <h2>

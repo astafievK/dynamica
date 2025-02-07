@@ -23,13 +23,6 @@ export const Header: FC = () => {
     return (
         <div className={"header-wrapper"}>
             <header>
-                <div className="burger" id="burger" onClick={handleBurgerClick}>
-                    <div className="body">
-                        <span className="line line-1"></span>
-                        <span className="line line-2"></span>
-                        <span className="line line-3"></span>
-                    </div>
-                </div>
                 <NavLink
                     to="/"
                     id={"logo"}>
@@ -92,6 +85,13 @@ export const Header: FC = () => {
                         <div className="notifications-logo__container logo-container">
                             <img className="notifications-logo" src={"notifications-icon.svg"} alt={""}/>
                         </div>
+                    </div>
+                </div>
+
+                <div className="burger" id="burger" onClick={handleBurgerClick}>
+                    <div className="body">
+                        <span className="line line-1"></span>
+                        <span className="line line-2"></span>
                     </div>
                 </div>
             </header>
