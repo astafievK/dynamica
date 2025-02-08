@@ -22,7 +22,7 @@ export const MobileMenu: FC = () => {
         if (isOpen) {
             setTimeout(() => {
                 setShowBody(true);
-            }, 250);
+            }, 280);
         }
     }, [isOpen]);
 
@@ -41,57 +41,35 @@ export const MobileMenu: FC = () => {
                         </svg>
                     </div>
                 </div>
+
                 <div className={`body ${showBody ? "visible" : ""}`}>
-                    <ul className="nav">
-                        <li className="nav-item">
-                            <NavLink
-                                to="/"
-                                className={({ isActive }) => (isActive ? "active-nav-item" : "")}
-                                onClick={handleClose}
-                            >
-                                Главная
-                            </NavLink>
-                        </li>
-                        <li className="nav-item">
-                            <NavLink
-                                to="/feed"
-                                className={({ isActive }) => (isActive ? "active-nav-item" : "")}
-                                onClick={handleClose}
-                            >
-                                Новости
-                            </NavLink>
-                        </li>
-                        <li className="nav-item">
-                            <NavLink
-                                to="/"
-                                className={({ isActive }) => (isActive ? "active-nav-item" : "")}
-                                onClick={handleClose}
-                            >
-                                Адресная книга
-                            </NavLink>
-                        </li>
-                        <li className="nav-item">
-                            <NavLink
-                                to="/"
-                                className={({ isActive }) => (isActive ? "active-nav-item" : "")}
-                                onClick={handleClose}
-                            >
-                                Документы
-                            </NavLink>
-                        </li>
-                        <li className="nav-item">
-                            <NavLink
-                                to="/"
-                                className={({ isActive }) => (isActive ? "active-nav-item" : "")}
-                                onClick={handleClose}
-                            >
-                                Адаптация
-                            </NavLink>
-                        </li>
-                    </ul>
+                    <nav>
+                        <ul className="nav">
+                            {[
+                                {path: "/", title: "Главная"},
+                                {path: "/feed", title: "Новости"},
+                                {path: "/contacts", title: "Адресная книга"},
+                                {path: "/documents", title: "Документы"},
+                                {path: "/adaptation", title: "Адаптация"},
+                                {path: "/profile", title: "Профиль"}
+                            ].map(({path, title}) => (
+                                <li key={path} className="nav-item">
+                                    <NavLink to={path}
+                                             className={({isActive}) => (isActive ? "active-nav-item" : "")}
+                                             onClick={handleClose}>
+                                        {title}
+                                    </NavLink>
+                                </li>
+                            ))}
+                        </ul>
+                    </nav>
+                    <button className="logout-btn">
+                        Выйти из аккаунта
+                    </button>
                 </div>
             </div>
             <div className={`spoiler ${isClosing ? "hidden" : ""}`} onClick={handleClose}></div>
         </div>
     );
+
 };

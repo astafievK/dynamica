@@ -144,7 +144,7 @@ textarea {
 }
 
 ::-webkit-scrollbar {
-  width: 0;
+  display: none;
 }
 
 h1 {
@@ -162,6 +162,57 @@ html body #root {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+}
+html body #root .custom-dropdown {
+  position: relative;
+  display: inline-block;
+  min-width: 150px;
+}
+html body #root .custom-dropdown__toggle {
+  background-color: #0C1729;
+  color: rgba(255, 255, 255, 0.9);
+  padding: 8px 11px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+html body #root .custom-dropdown__toggle .arrow {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-left: 3px solid rgba(255, 255, 255, 0.9);
+  border-bottom: 3px solid rgba(255, 255, 255, 0.9);
+  transform: rotate(-45deg);
+  margin-left: 10px;
+}
+html body #root .custom-dropdown__menu {
+  position: absolute;
+  z-index: 10;
+  left: 0;
+  right: 0;
+  background-color: #0C1729;
+  border-radius: 10px;
+  margin-top: 5px;
+  display: none;
+  list-style: none;
+  padding: 0;
+}
+html body #root .custom-dropdown__menu.open {
+  display: block;
+}
+html body #root .custom-dropdown__item {
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+html body #root .custom-dropdown__item:hover {
+  background-color: var(--primary-color);
 }
 html body #root .module-documents {
   width: 100%;
@@ -223,8 +274,8 @@ html body #root #mobileMenu {
   flex-direction: column;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   z-index: 10002;
 }
 html body #root #mobileMenu.hidden .modal-content {
@@ -232,13 +283,17 @@ html body #root #mobileMenu.hidden .modal-content {
 }
 html body #root #mobileMenu .content {
   background: var(--secondary-color);
+  display: flex;
+  flex-direction: column;
   height: 100%;
   width: 100%;
   animation: moveSlideDown 0.25s forwards;
+  animation-timing-function: cubic-bezier(0.36, 0.67, 0.43, 0.99);
   z-index: 2;
 }
 html body #root #mobileMenu .content.hidden {
   animation: moveSlideUp 0.25s forwards;
+  animation-timing-function: cubic-bezier(0.36, 0.67, 0.43, 0.99);
 }
 html body #root #mobileMenu .content .header {
   display: flex;
@@ -259,38 +314,57 @@ html body #root #mobileMenu .content .header .cross {
   width: 35px;
 }
 html body #root #mobileMenu .content .body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   opacity: 0;
-  padding: 10px 0;
   transform: translateY(100%);
+  overflow-y: scroll;
   background: #FFFFFF;
-  height: calc(100vh - 56px);
+  flex-grow: 1;
   border-top-left-radius: 28px;
   border-top-right-radius: 28px;
   animation: modalMenuDown 0.25s forwards;
+  animation-timing-function: cubic-bezier(0.36, 0.67, 0.43, 0.99);
 }
 html body #root #mobileMenu .content .body.visible {
   opacity: 1;
   transform: translateY(0);
   animation: modalMenuUp 0.25s forwards;
+  animation-timing-function: cubic-bezier(0.36, 0.67, 0.43, 0.99);
 }
-html body #root #mobileMenu .content .body .nav {
+html body #root #mobileMenu .content .body nav {
   width: 100%;
   display: flex;
   flex-direction: column;
   list-style: none;
-  padding: 0 15px;
+  padding: 5px 15px;
 }
-html body #root #mobileMenu .content .body .nav .nav-item {
+html body #root #mobileMenu .content .body nav .nav-item {
   display: flex;
   border-bottom: 0.6px solid var(--additional-color);
 }
-html body #root #mobileMenu .content .body .nav .nav-item a {
+html body #root #mobileMenu .content .body nav .nav-item a {
   width: 100%;
   padding: 14px 10px;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 21px;
   font-family: "GrtskTera", sans-serif;
   color: var(--font-color);
+}
+html body #root #mobileMenu .content .body nav .nav-item a.active-nav-item {
+  color: var(--primary-color);
+}
+html body #root #mobileMenu .content .body .logout-btn {
+  width: 100%;
+  padding: 20px 10px;
+  text-decoration: none;
+  font-size: 21px;
+  cursor: pointer;
+  flex-shrink: 0;
+  font-family: "GrtskTera", sans-serif;
+  color: rgba(255, 0, 0, 0.45);
+  background-color: transparent;
 }
 html body #root #mobileMenu .spoiler {
   position: fixed;
@@ -300,10 +374,10 @@ html body #root #mobileMenu .spoiler {
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
   cursor: pointer;
-  animation: fadeIn 0.35s ease-in-out forwards;
+  animation: fadeIn 0.35s ease-out forwards;
 }
 html body #root #mobileMenu .spoiler.hidden {
-  animation: fadeOut 0.35s ease-in-out forwards;
+  animation: fadeOut 0.35s ease-out forwards;
 }
 html body #root .modal {
   position: fixed;
@@ -654,7 +728,7 @@ html body #root main .page {
   flex-direction: column;
   max-width: 1400px;
   margin: 0 auto;
-  padding: 30px 5px;
+  padding: 7px 12px;
 }
 html body #root main .page.page-landing, html body #root main .page.page-feed, html body #root main .page.page-admin {
   max-width: unset;
@@ -666,6 +740,7 @@ html body #root main .page .page-header {
   flex-direction: column;
 }
 html body #root main .page .page-header .page-title {
+  font-family: "GrtskTera", sans-serif;
   font-weight: 700;
   font-style: italic;
   font-size: 22px;
@@ -959,7 +1034,7 @@ html body #root main .page.page-profile .widgets .widget {
   max-height: 350px;
   border-radius: 36px;
   border: 1px solid var(--background-color);
-  padding: 9px;
+  padding: 15px;
 }
 html body #root main .page.page-profile .widgets .widget .widget-header .widget-title {
   user-select: none;
@@ -969,7 +1044,7 @@ html body #root main .page.page-profile .widgets .widget .widget-header .widget-
 }
 html body #root main .page.page-profile .widgets .widget .widget-body {
   overflow: auto;
-  margin-top: 10px;
+  margin-top: 15px;
 }
 html body #root main .page.page-profile .widgets .action {
   width: 100%;
@@ -1023,21 +1098,96 @@ html body #root main .page.page-admin .content {
 }
 html body #root main .page.page-contacts .filters-container {
   display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 html body #root main .page.page-contacts .filters-container .filters-select {
   width: 100%;
   display: flex;
+  border-radius: 10px;
   gap: 5px;
   overflow-x: scroll;
 }
-html body #root main .page.page-contacts .filters-container .filters-select .filter-select {
-  display: inline-block;
-  zoom: 1;
-  background: #0C1729;
-  color: #fff;
-  font-size: 14px;
+html body #root main .page.page-contacts .filters-container .filters-select .custom-dropdown {
+  flex: 1;
+}
+html body #root main .page.page-contacts .filters-container .filters-search {
+  display: flex;
+  gap: 5px;
+  width: 100%;
+  max-width: 100%;
+}
+html body #root main .page.page-contacts .filters-container .filters-search .filters-search__text {
+  padding: 8px 11px;
   border-radius: 10px;
-  padding: 7px 10px;
+  border: 1px solid #A7A9AB;
+  font-weight: 500;
+  font-size: 16px;
+  flex: 1;
+}
+html body #root main .page.page-contacts .filters-container .filters-search .filters-search__text::placeholder {
+  font-style: italic;
+}
+html body #root main .page.page-contacts .filters-container .filters-search .filters-search__submit {
+  background-color: rgba(90, 176, 88, 0.5);
+  border-radius: 10px;
+  font-style: italic;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 8px 11px;
+}
+html body #root main .page.page-contacts .employees-container {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(1, calc(100% - 0px));
+  gap: 7px;
+}
+html body #root main .page.page-contacts .employees-container .employee-card {
+  display: flex;
+  gap: 15px;
+  padding: 10px;
+  border-radius: 20px;
+  background-color: #FFFFFF;
+}
+html body #root main .page.page-contacts .employees-container .employee-card .employee-image {
+  height: 100%;
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  border-radius: 7px;
+  background-color: gray;
+  max-width: 110px;
+  width: 100%;
+}
+html body #root main .page.page-contacts .employees-container .employee-card .employee-image img {
+  width: 100%;
+  object-fit: cover;
+}
+html body #root main .page.page-contacts .employees-container .employee-card .employee-info {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-between;
+}
+html body #root main .page.page-contacts .employees-container .employee-card .employee-info span {
+  font-size: 14px;
+}
+html body #root main .page.page-contacts .employees-container .employee-card .employee-info .employee-info__general {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+html body #root main .page.page-contacts .employees-container .employee-card .employee-info .employee-info__general .employee-name {
+  font-weight: bold;
+}
+html body #root main .page.page-contacts .employees-container .employee-card .employee-info .sep {
+  margin: 6px 0;
+  width: 100%;
+  border-top: 1px solid #A7A9AB;
+}
+html body #root main .page.page-contacts .employees-container .employee-card .employee-info .employee-info__contacts {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 @media (min-width: 768px) {
   html body #root .module-documents .module-body {
@@ -1101,7 +1251,7 @@ html body #root main .page.page-contacts .filters-container .filters-select .fil
     display: block;
   }
   html body #root main .page {
-    padding: 18px 0;
+    padding: 30px 15px;
   }
   html body #root main .page .page-header .page-title {
     font-size: 28px;
@@ -1291,6 +1441,41 @@ html body #root main .page.page-contacts .filters-container .filters-select .fil
   html body #root main .page.page-profile .widgets .action {
     font-size: 24px;
   }
+  html body #root main .page.page-contacts .filters-container {
+    gap: 10px;
+  }
+  html body #root main .page.page-contacts .filters-container .filters-select {
+    gap: 10px;
+  }
+  html body #root main .page.page-contacts .filters-container .filters-search {
+    gap: 10px;
+  }
+  html body #root main .page.page-contacts .filters-container .filters-search .filters-search__text {
+    padding: 15px 18px;
+    font-size: 18px;
+  }
+  html body #root main .page.page-contacts .filters-container .filters-search .filters-search__submit {
+    padding: 15px 18px;
+    font-size: 18px;
+  }
+  html body #root main .page.page-contacts .employees-container {
+    grid-template-columns: repeat(2, calc(50% - 3.5px));
+  }
+  html body #root main .page.page-contacts .employees-container .employee-card .employee-image {
+    max-width: 125px;
+  }
+  html body #root main .page.page-contacts .employees-container .employee-card .employee-info .employee-info__general {
+    gap: 4px;
+  }
+  html body #root main .page.page-contacts .employees-container .employee-card .employee-info .employee-info__general .employee-city {
+    margin-bottom: 3px;
+  }
+  html body #root main .page.page-contacts .employees-container .employee-card .employee-info .sep {
+    margin: 4px 0;
+  }
+  html body #root main .page.page-contacts .employees-container .employee-card .employee-info .employee-info__contacts {
+    gap: 4px;
+  }
   html body #root footer {
     padding: 56px 70px;
   }
@@ -1378,9 +1563,6 @@ html body #root main .page.page-contacts .filters-container .filters-select .fil
   }
   html body #root .header-wrapper header .profile-container .notifications-wrapper {
     padding: 4px 12px;
-  }
-  html body #root main .page {
-    padding: 25px 0;
   }
   html body #root main .page .page-header .page-title {
     font-size: 30px;
@@ -1566,6 +1748,28 @@ html body #root main .page.page-contacts .filters-container .filters-select .fil
   }
   html body #root main .page.page-profile .widgets .action {
     font-size: 24px;
+  }
+  html body #root main .page.page-contacts .filters-container {
+    flex-direction: row;
+    gap: 10px;
+  }
+  html body #root main .page.page-contacts .filters-container .filters-select {
+    display: flex;
+    align-items: stretch;
+    gap: 10px;
+  }
+  html body #root main .page.page-contacts .filters-container .filters-select .custom-dropdown .custom-dropdown__toggle {
+    height: 100%;
+  }
+  html body #root main .page.page-contacts .filters-container .filters-search .filters-search__text {
+    padding: 12px 27px;
+  }
+  html body #root main .page.page-contacts .filters-container .filters-search .filters-search__submit {
+    padding: 12px 27px;
+  }
+  html body #root main .page.page-contacts .employees-container {
+    margin-top: 35px;
+    grid-template-columns: repeat(2, calc(50% - 3.5px));
   }
   html body #root footer {
     padding: 64px 57px;
@@ -1808,6 +2012,20 @@ html body #root main .page.page-contacts .filters-container .filters-select .fil
   }
   html body #root main .page.page-profile .widgets .action {
     font-size: 26px;
+  }
+  html body #root main .page.page-contacts .employees-container {
+    margin-top: 79px;
+    grid-template-columns: repeat(3, calc(33.3333333333% - 6px));
+    gap: 9px;
+  }
+  html body #root main .page.page-contacts .employees-container .employee-card {
+    padding: 22px 14px;
+  }
+  html body #root main .page.page-contacts .employees-container .employee-card .employee-image {
+    max-width: 140px;
+  }
+  html body #root main .page.page-contacts .employees-container .employee-card .employee-info .employee-info__general .employee-name {
+    font-size: 16px;
   }
   html body #root footer {
     padding: 71px 140px;
