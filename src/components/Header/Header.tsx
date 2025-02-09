@@ -75,16 +75,18 @@ export const Header: FC = () => {
 
                 <div className="profile-container">
                     <div className="profile-wrapper" onClick={handleProfileClick}>
-                        <div className="user-logo__container logo-container">
-                            <img className="user-logo" src="user-icon.png" alt="" />
-                        </div>
-                        <span>{user ? `${user.first_name} ${user.last_name}` : "Войти"}</span>
+                        <span>{user ? `${user.first_name} ${user.last_name}` : "Вход"}</span>
                     </div>
 
-                    <div className="notifications-wrapper" onClick={handleNotificationsClick}>
-                        <div className="notifications-logo__container logo-container">
-                            <img className="notifications-logo" src={"notifications-icon.svg"} alt={""}/>
+                    {
+                        user &&
+                        <div className="notifications-wrapper" onClick={handleNotificationsClick}>
+                            <span>Уведомления</span>
                         </div>
+                    }
+
+                    <div className="notifications-wrapper" onClick={handleNotificationsClick}>
+                        <span>Уведомления</span>
                     </div>
                 </div>
 

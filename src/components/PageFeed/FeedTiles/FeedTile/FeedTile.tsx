@@ -1,4 +1,4 @@
-import {FC, useEffect} from "react";
+import {FC} from "react";
 
 interface IFeedTileProps {
     isPinned?: boolean;
@@ -8,10 +8,6 @@ interface IFeedTileProps {
 }
 
 export const FeedTile: FC<IFeedTileProps> = (props) => {
-    useEffect(() => {
-        document.title = "Лента";
-    })
-
     return(
         <div className={"feed-tile__container"}>
             <div className={"feed-tile" + (props.isPinned ? " pinned" : "")}>

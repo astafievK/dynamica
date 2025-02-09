@@ -1,7 +1,11 @@
-import { FC } from "react";
+import {FC, useEffect} from "react";
 import {NavLink, Outlet} from "react-router-dom";
 
 export const PageAdmin: FC = () => {
+    useEffect(() => {
+        document.title = "Панель управления";
+    })
+
     return (
         <>
             <div className="page page-admin">

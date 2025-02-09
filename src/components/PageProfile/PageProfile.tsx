@@ -1,9 +1,13 @@
-import {FC} from "react";
+import {FC, useEffect} from "react";
 import {pageAnimation} from "../../motionSettins.ts";
 import { motion } from "framer-motion";
 import {ModuleDocuments} from "./ModuleDocuments/ModuleDocuments.tsx";
 
 export const PageProfile: FC = () => {
+    useEffect(() => {
+        document.title = "Профиль";
+    })
+
     return(
         <motion.div
             initial={pageAnimation.initial}

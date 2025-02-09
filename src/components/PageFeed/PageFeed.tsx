@@ -1,9 +1,13 @@
-import {FC} from "react";
+import {FC, useEffect} from "react";
 import {FeedTiles} from "./FeedTiles/FeedTiles.tsx";
 import {pageAnimation} from "../../motionSettins.ts";
 import { motion } from "framer-motion";
 
 export const PageFeed: FC = () => {
+    useEffect(() => {
+        document.title = "Лента";
+    })
+
     return(
         <motion.div
             initial={pageAnimation.initial}

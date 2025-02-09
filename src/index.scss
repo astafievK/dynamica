@@ -169,74 +169,71 @@ h1 {
 
 html {
     body {
-        background: var(--background-color);
+        background: var(--secondary-color);
 
         &.scroll-locked {
             overflow: hidden;
         }
 
-        #root {
+        #dynamica {
             display: flex;
             min-height: 100vh;
             flex-direction: column;
+            background-color: var(--background-color);
 
             .custom-dropdown {
+                padding: 13px;
                 position: relative;
-                display: inline-block;
-                min-width: 150px;
+                border-radius: 25px;
+                width: 240px;
+                background: #FFFFFF;
 
-                &__toggle {
-                    background-color: #0C1729;
-                    color: rgba(#ffffff, 0.9);
-                    padding: 8px 11px;
-                    border-radius: 10px;
-                    font-size: 16px;
-                    font-weight: 600;
+                &.expanded {
+                    border-radius: 25px 25px 0 0;
+                }
+
+                &__search {
                     width: 100%;
-                    text-align: left;
-                    cursor: pointer;
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-
-                    .arrow {
-                        display: inline-block;
-                        width: 12px;
-                        height: 12px;
-                        border-left: 3px solid rgba(#ffffff, 0.9);
-                        border-bottom: 3px solid rgba(#ffffff, 0.9);
-                        transform: rotate(-45deg);
-                        margin-left: 10px;
-                    }
+                    background-color: rgba(0, 0, 0, 0.05);
+                    border-radius: 12px;
+                    height: 100%;
+                    padding: 12px;
+                    font-weight: 600;
+                    font-size: 16px;
+                    box-sizing: border-box;
+                    outline: none;
                 }
 
                 &__menu {
                     position: absolute;
-                    z-index: 10;
+                    top: 100%;
                     left: 0;
-                    right: 0;
-                    background-color: #0C1729;
-                    border-radius: 10px;
-                    margin-top: 5px;
-                    display: none;
+                    width: 100%;
+                    background-color: white;
+                    border-top: 1px solid rgba(0, 0, 0, 0.1);
+                    border-radius: 0 0 25px 25px;
+                    z-index: 10;
                     list-style: none;
-                    padding: 0;
-
-                    &.open {
-                        display: block;
-                    }
-                }
-
-                &__item {
                     padding: 10px 15px;
-                    cursor: pointer;
-                    transition: background-color 0.2s;
 
-                    &:hover {
-                        background-color: var(--primary-color);
+                    .custom-dropdown__item {
+                        padding: 15px 20px;
+                        cursor: pointer;
+                        font-size: 16px;
+                        border-radius: 12px;
+                        font-weight: 500;
+                        color: #333;
+                        display: flex;
+                        align-items: center;
+                        transition: background-color 0.3s ease;
+
+                        &:hover {
+                            background-color: rgba(0, 0, 0, 0.05);
+                        }
                     }
                 }
             }
+
 
             .module-documents {
                 width: 100%;
@@ -675,6 +672,11 @@ html {
                                     font-size: 20px;
                                     color: #FFFFFF;
                                     font-weight: 400;
+                                    transition: color 150ms ease;
+
+                                    &:hover {
+                                        color: var(--primary-color);
+                                    }
                                 }
                             }
                         }
@@ -683,17 +685,19 @@ html {
                     .profile-container {
                         display: none;
                         flex-grow: 1;
-                        flex-direction: row-reverse;
+                        flex-direction: row;
                         gap: 10px;
 
                         .profile-wrapper,
                         .notifications-wrapper {
                             display: flex;
+                            cursor: pointer;
                             justify-content: center;
                             align-items: center;
-                            aspect-ratio: 1/1;
-                            padding: 5px;
-                            border-radius: 10px;
+                            padding: 0 20px !important;
+                            border: 1px solid white;
+                            border-radius: 28px;
+                            transition: border-color 150ms ease;
 
                             .logo-container {
                                 display: flex;
@@ -706,32 +710,15 @@ html {
                             }
 
                             span {
+                                font-weight: bold;
                                 display: none;
+                                font-size: 16px;
+                                color: white;
                             }
-                        }
 
-                        .profile-wrapper {
-                            display: flex;
-                            user-select: none;
-                            height: 100%;
-                            align-items: center;
-                            gap: 7px;
-                            background: var(--primary-color);
-                            cursor: pointer;
-                            transition: background-color 200ms;
-
-                            span {
-                                font-size: 14px;
-                                color: #ffffff;
-                                font-weight: 400;
+                            &:hover {
+                                border-color: var(--primary-color);
                             }
-                        }
-
-                        .notifications-wrapper {
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            background: var(--primary-color);
                         }
                     }
 
@@ -833,11 +820,10 @@ html {
                 overflow: unset !important;
                 width: 100%;
                 flex-grow: 1;
-                background: var(--background-color);
                 flex-direction: column;
 
                 .page {
-                    display: flex;
+                    background: var(--background-color);
                     width: 100%;
                     flex-direction: column;
                     max-width: 1400px;
@@ -1318,7 +1304,8 @@ html {
                                 display: flex;
                                 border-radius: 10px;
                                 gap: 5px;
-                                overflow-x: scroll;
+                                flex-wrap: wrap;
+                                position: relative;
 
                                 .custom-dropdown {
                                     flex: 1;
@@ -1425,18 +1412,18 @@ html {
 
     @media (min-width: 768px) {
         body {
-            #root {
+            #dynamica {
                 .module-documents {
                     .module-body {
                         gap: 5px;
-        
+
                         .document {
                             align-items: center;
                             flex-direction: row;
                             overflow: hidden;
                             gap: 15px;
                             padding: 15px 10px;
-        
+
                             .document-title {
                                 flex-grow: 1;
                                 max-width: 70%;
@@ -1444,23 +1431,23 @@ html {
                                 text-overflow: ellipsis;
                                 white-space: nowrap;
                             }
-        
+
                             .info {
                                 margin-left: auto;
                                 justify-content: unset;
                                 padding: 0;
                                 gap: 7px;
-        
+
                                 .document-status {
                                     padding: 5px 0;
                                     width: 115px;
                                 }
                             }
-        
+
                             &:hover {
                                 background-color: var(--background-color);
                             }
-        
+
                             span,
                             div {
                                 text-wrap: nowrap;
@@ -1470,7 +1457,7 @@ html {
                         }
                     }
                 }
-        
+
                 .header-wrapper {
                     height: 70px;
                     padding: 0 35px;
@@ -1483,19 +1470,18 @@ html {
                     header {
                         .profile-container {
                             justify-content: flex-end;
-                            flex-direction: row;
                             gap: 8px;
-        
+
                             .profile-wrapper,
                             .notifications-wrapper {
                                 aspect-ratio: unset;
-        
+
                                 .logo-container {
                                     img {
                                         height: 30px;
                                     }
                                 }
-        
+
                                 span {
                                     display: block;
                                 }
@@ -1503,7 +1489,7 @@ html {
                         }
                     }
                 }
-        
+
                 main {
                     .page {
                         padding: 30px 15px;
@@ -1513,7 +1499,7 @@ html {
                                 font-size: 28px;
                             }
                         }
-        
+
                         &.page-landing {
                             .landing-module__preview {
                                 .photo-container {
@@ -1522,48 +1508,48 @@ html {
                                         font-size: 56px;
                                         line-height: 68px;
                                     }
-        
+
                                     .image-container {
                                         height: 530px;
                                     }
                                 }
                             }
-        
+
                             .content {
                                 section {
                                     padding: 0 80px;
                                 }
-        
+
                                 h2 {
                                     font-size: 40px;
-        
+
                                     .end {
                                         font-size: 36px;
                                     }
                                 }
-        
+
                                 .dynamica-today {
                                     p {
                                         font-size: 32px;
-        
+
                                         &.gray {
                                             margin-top: 10px;
                                             font-size: 20px;
                                         }
                                     }
                                 }
-        
+
                                 .values-container {
                                     padding: 26px 42px;
-        
+
                                     .container-title {
                                         font-size: 24px;
                                     }
-        
+
                                     .values {
                                         gap: 20px;
                                         margin-top: 18px;
-        
+
                                         .value {
                                             span {
                                                 line-height: 24px;
@@ -1572,18 +1558,18 @@ html {
                                         }
                                     }
                                 }
-        
+
                                 .section-achievements {
                                     .swiper {
                                         margin-top: 17px;
-        
+
                                         .swiper-wrapper {
                                             .swiper-slide {
                                                 .content {
                                                     .image-wrapper {
                                                         border-radius: 42px;
                                                     }
-        
+
                                                     .label {
                                                         margin-top: 11px;
                                                         font-size: 36px;
@@ -1593,39 +1579,39 @@ html {
                                         }
                                     }
                                 }
-        
+
                                 .section-form {
                                     form {
                                         padding: 32px 43px;
                                         border-radius: 43px;
-        
+
                                         .form-body__wrapper {
                                             .form-header {
                                                 .primary {
                                                     font-size: 40px;
                                                 }
-        
+
                                                 .secondary {
                                                     font-size: 26px;
                                                 }
                                             }
-        
+
                                             .form-body {
                                                 margin-top: 43px;
-        
+
                                                 .form-elem__text {
                                                     font-size: 30px;
                                                     padding: 20px 17px;
-        
+
                                                     &.form-input__description {
                                                         margin-top: 26px;
                                                         height: 315px;
                                                     }
                                                 }
-        
+
                                                 .submit-container {
                                                     margin-top: 43px;
-        
+
                                                     .form-input__submit {
                                                         padding: 11px 57px;
                                                         font-size: 40px;
@@ -1637,7 +1623,7 @@ html {
                                 }
                             }
                         }
-        
+
                         &.page-feed {
                             padding: 0;
                             position: relative;
@@ -1739,40 +1725,40 @@ html {
                                 }
                             }
                         }
-        
+
                         &.page-profile {
                             .page-header {
                                 .page-title__district {
                                     font-size: 20px;
                                 }
                             }
-        
+
                             .widgets {
                                 gap: 8px;
                                 margin-top: 30px;
-        
+
                                 .widgets-head {
                                     gap: 8px;
-        
+
                                     .right-widgets {
                                         gap: 8px;
                                     }
                                 }
-        
+
                                 .widget {
                                     padding: 12px;
-        
+
                                     .widget-header {
                                         .widget-title {
                                             font-size: 24px;
                                         }
                                     }
-        
+
                                     .widget-body {
                                         margin-top: 12px;
                                     }
                                 }
-        
+
                                 .action {
                                     font-size: 24px;
                                 }
@@ -1831,34 +1817,34 @@ html {
                         }
                     }
                 }
-        
+
                 footer {
                     padding: 56px 70px;
-        
+
                     .nav {
                         gap: 21px;
-        
+
                         .nav-item {
                             a {
                                 font-size: 24px;
                             }
                         }
                     }
-        
+
                     .sep {
                         border-bottom: 2px solid rgba(255, 255, 255, 1);
                         margin-top: 23px;
                         margin-bottom: 23px;
                     }
-        
+
                     .logo {
                         height: 50px;
                     }
-        
+
                     .faq {
                         margin-top: 23px;
                         gap: 21px;
-        
+
                         .faq-item {
                             a {
                                 font-size: 24px;
@@ -1867,12 +1853,12 @@ html {
                     }
                 }
             }
-        } 
+        }
     }
 
     @media (min-width: 1024px) {
         body {
-            #root {
+            #dynamica {
                 .module-documents {
                     .module-body {
                         .document {
@@ -1881,23 +1867,23 @@ html {
                             overflow: hidden;
                             gap: 15px;
                             padding: 17px 22px;
-        
+
                             .info {
                                 margin-left: auto;
                                 justify-content: unset;
                                 gap: 12px;
-        
+
                                 .document-status {
                                     padding: 5px 0;
                                     font-size: 18px;
                                     width: 120px;
                                 }
                             }
-        
+
                             &:hover {
                                 background-color: var(--background-color);
                             }
-        
+
                             span,
                             div {
                                 font-size: 22px;
@@ -1905,7 +1891,7 @@ html {
                         }
                     }
                 }
-        
+
                 .header-wrapper {
                     height: 80px;
 
@@ -1913,17 +1899,17 @@ html {
                     &::after {
                         top: 23px;
                     }
-        
+
                     header {
                         padding: 15px 0;
 
                         #burger {
                             display: none;
                         }
-        
+
                         nav {
                             display: flex;
-        
+
                             ul {
                                 li {
                                     display: flex;
@@ -1935,13 +1921,13 @@ html {
                                 }
                             }
                         }
-        
+
                         .profile-container {
                             display: flex;
                             flex-grow: unset;
                             gap: 8px;
                             margin-left: auto;
-        
+
                             .profile-wrapper,
                             .notifications-wrapper {
                                 .logo-container {
@@ -1950,18 +1936,18 @@ html {
                                     }
                                 }
                             }
-        
+
                             .profile-wrapper {
                                 padding: 5px 6px;
                             }
-        
+
                             .notifications-wrapper {
                                 padding: 4px 12px;
                             }
                         }
                     }
                 }
-        
+
                 main {
                     .page {
                         .page-header {
@@ -1969,7 +1955,7 @@ html {
                                 font-size: 30px;
                             }
                         }
-        
+
                         &.page-landing {
                             .landing-module-wide {
                                 width: 100%;
@@ -1999,13 +1985,13 @@ html {
                                         font-size: 75px;
                                         line-height: 92px;
                                     }
-        
+
                                     .image-container {
                                         height: 707px;
                                     }
                                 }
                             }
-        
+
                             .content {
                                 section {
                                     margin: 60px auto 0 auto;
@@ -2015,37 +2001,37 @@ html {
                                 .section-year {
                                     display: none;
                                 }
-        
+
                                 h2 {
                                     font-size: 66px;
-        
+
                                     .end {
                                         font-size: 55px;
                                     }
                                 }
-        
+
                                 .section-map {
                                     display: block;
                                     position: relative;
-        
+
                                     .info {
                                         position: absolute;
                                         top: 0;
                                         left: 67px;
                                         width: 45%;
-        
+
                                         p {
                                             font-size: 28px;
                                             line-height: 34px;
                                         }
-        
+
                                         .gray {
                                             font-size: 18px;
                                             line-height: 22px;
                                             color: rgba(0, 0, 0, 0.55);
                                         }
                                     }
-        
+
                                     .values-container {
                                         position: absolute;
                                         background: rgba(255, 255, 255, 0.7);
@@ -2054,16 +2040,16 @@ html {
                                         right: 43px;
                                         width: 40%;
                                         padding: 18px;
-        
-        
+
+
                                         .container-title {
                                             font-size: 19px;
                                         }
-        
+
                                         .values {
                                             margin-top: 6px;
                                             gap: 10px;
-        
+
                                             .value {
                                                 span {
                                                     line-height: 13px;
@@ -2072,36 +2058,36 @@ html {
                                             }
                                         }
                                     }
-        
+
                                     img {
                                         margin-top: 68px;
                                         width: 100%;
                                     }
                                 }
-        
+
                                 .dynamica-today {
                                     display: none;
                                 }
-        
+
                                 .section-values {
                                     display: none;
                                 }
-        
+
                                 .section-achievements {
                                     h2 {
                                         font-size: 45px;
                                     }
-        
+
                                     .swiper {
                                         margin-top: 37px;
-        
+
                                         .swiper-wrapper {
                                             .swiper-slide {
                                                 .content {
                                                     .image-wrapper {
                                                         border-radius: 48px;
                                                     }
-        
+
                                                     .label {
                                                         margin-top: 23px;
                                                         font-size: 28px;
@@ -2111,57 +2097,57 @@ html {
                                         }
                                     }
                                 }
-        
+
                                 .section-form {
                                     margin-bottom: 92px;
-        
+
                                     form {
                                         padding: 42px 30px;
                                         display: flex;
                                         gap: 25px;
-        
+
                                         .form-picture {
                                             width: 40%;
                                             display: flex;
                                             align-items: center;
                                             justify-content: center;
-        
+
                                             img {
                                                 width: 65%;
                                                 object-fit: contain;
                                             }
                                         }
-        
+
                                         .form-body__wrapper {
                                             flex-grow: 1;
-        
+
                                             .form-header {
                                                 .primary {
                                                     font-size: 40px;
                                                 }
-        
+
                                                 .secondary {
                                                     font-size: 24px;
                                                 }
                                             }
-        
+
                                             .form-body {
                                                 margin-top: 20px;
-        
+
                                                 .form-elem__text {
                                                     font-size: 24px;
                                                     padding: 9px 14px;
                                                     border-radius: 10px;
-        
+
                                                     &.form-input__description {
                                                         margin-top: 15px;
                                                         height: 130px;
                                                     }
                                                 }
-        
+
                                                 .submit-container {
                                                     margin-top: 14px;
-        
+
                                                     .form-input__submit {
                                                         padding: 8px 16px;
                                                         border-radius: 16px;
@@ -2174,49 +2160,49 @@ html {
                                 }
                             }
                         }
-        
+
                         &.page-profile {
                             .page-header {
                                 .page-title__district {
                                     font-size: 18px;
                                 }
                             }
-        
+
                             .widgets {
                                 gap: 18px;
                                 margin-top: 30px;
-        
+
                                 .widgets-head {
                                     align-items: stretch;
                                     flex-direction: row;
                                     gap: 18px;
-        
+
                                     .widget-notifications {
                                         max-height: none;
                                         width: 40%;
                                     }
-        
+
                                     .right-widgets {
                                         width: 60%;
                                         gap: 18px;
                                     }
                                 }
-        
+
                                 .widget {
                                     padding: 12px;
                                     max-height: 480px;
-        
+
                                     .widget-header {
                                         .widget-title {
                                             font-size: 24px;
                                         }
                                     }
-        
+
                                     .widget-body {
                                         margin-top: 18px;
                                     }
                                 }
-        
+
                                 .action {
                                     font-size: 24px;
                                 }
@@ -2258,10 +2244,10 @@ html {
                         }
                     }
                 }
-        
+
                 footer {
                     padding: 64px 57px;
-        
+
                     .nav {
                         display: grid;
                         grid-auto-flow: column;
@@ -2269,7 +2255,7 @@ html {
                         gap: 21px 100px;
                         justify-content: start;
                         grid-auto-columns: min-content;
-        
+
                         .nav-item {
                             a {
                                 text-wrap: nowrap;
@@ -2277,21 +2263,21 @@ html {
                             }
                         }
                     }
-        
+
                     .sep {
                         border-bottom: 3px solid rgba(255, 255, 255, 1);
                         margin-top: 52px;
                         margin-bottom: 30px;
                     }
-        
+
                     .logo {
                         height: 63px;
                     }
-        
+
                     .faq {
                         margin-top: 26px;
                         gap: 28px;
-        
+
                         .faq-item {
                             a {
                                 font-size: 20px;
@@ -2305,7 +2291,7 @@ html {
 
     @media (min-width: 1440px) {
         body {
-            #root {
+            #dynamica {
                 .header-wrapper {
                     height: 90px;
 
