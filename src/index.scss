@@ -612,11 +612,11 @@ html {
                     position: relative;
                     border-radius: 25px;
                     width: 240px;
-                    background-color: var(--background-color);
+                    background-color: #FFFFFF;
 
                     &__search {
                         width: 100%;
-                        background-color: #FFFFFF;
+                        background-color: var(--background-color);
                         border-radius: 12px;
                         height: 100%;
                         padding: 12px;
@@ -840,7 +840,7 @@ html {
                                     a {
                                         text-decoration: none;
                                         font-size: 20px;
-                                        color: var(--font-color);
+                                        color: #d5d5d5;
                                         font-weight: 600;
                                         transition: color 150ms ease;
 
@@ -1531,7 +1531,7 @@ html {
                                     gap: 15px;
                                     padding: 10px;
                                     border-radius: 20px;
-                                    background-color: var(--background-color);
+                                    background-color: #FFFFFF;
 
                                     .employee-image {
                                         height: 100%;
@@ -2824,7 +2824,7 @@ html {
 
                             &.page-contacts {
                                 .employees-container {
-                                    margin-top: 79px;
+                                    margin-top: 30px;
                                     grid-template-columns: repeat(3, calc(100% / 3 - 9px / 3 * (3 - 1)));
                                     gap: 9px;
 

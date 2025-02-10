@@ -518,11 +518,11 @@ html body #dynamica .layout .custom-dropdown {
   position: relative;
   border-radius: 25px;
   width: 240px;
-  background-color: var(--background-color);
+  background-color: #FFFFFF;
 }
 html body #dynamica .layout .custom-dropdown__search {
   width: 100%;
-  background-color: #FFFFFF;
+  background-color: var(--background-color);
   border-radius: 12px;
   height: 100%;
   padding: 12px;
@@ -714,7 +714,7 @@ html body #dynamica .layout .header-wrapper header nav ul {
 html body #dynamica .layout .header-wrapper header nav ul li a {
   text-decoration: none;
   font-size: 20px;
-  color: var(--font-color);
+  color: #d5d5d5;
   font-weight: 600;
   transition: color 150ms ease;
 }
@@ -1274,7 +1274,7 @@ html body #dynamica .layout main .page.page-contacts .employees-container .emplo
   gap: 15px;
   padding: 10px;
   border-radius: 20px;
-  background-color: var(--background-color);
+  background-color: #FFFFFF;
 }
 html body #dynamica .layout main .page.page-contacts .employees-container .employee-card .employee-image {
   height: 100%;
@@ -2162,7 +2162,7 @@ html body #dynamica .layout main .page.page-not-found .content {
     font-size: 26px;
   }
   html body #dynamica .layout main .page.page-contacts .employees-container {
-    margin-top: 79px;
+    margin-top: 30px;
     grid-template-columns: repeat(3, calc(33.3333333333% - 6px));
     gap: 9px;
   }
