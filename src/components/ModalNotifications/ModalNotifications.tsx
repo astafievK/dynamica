@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from "react";
 import {useAppDispatch, useTypedSelector} from "../../store/hooks/redux.ts";
 import { setIsOpen } from "../../api/slices/modalNotificationsSlice.ts";
-import {Notifications} from "./Notifications.tsx";
+import {ModuleNotifications} from "../ModuleNotifications/ModuleNotifications.tsx";
 
 export const ModalNotifications: FC = () => {
     const dispatch = useAppDispatch();
@@ -35,7 +35,7 @@ export const ModalNotifications: FC = () => {
         <div className={`modal ${isClosing ? "hidden" : ""}`}>
             <div className={`modal-content modal-notifications ${isClosing ? "hidden" : ""}`}>
                 <h1>Уведомления</h1>
-                <Notifications/>
+                <ModuleNotifications/>
             </div>
             <div className={`spoiler ${isClosing ? "hidden" : ""}`} onClick={handleClose}></div>
         </div>

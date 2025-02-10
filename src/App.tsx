@@ -6,7 +6,6 @@ import {
     createBrowserRouter,
     createRoutesFromElements,
 } from 'react-router-dom';
-import {Header} from "./components/Header/Header.tsx";
 import {ModalLogin} from "./components/ModalLogin/ModalLogin.tsx";
 import {persistor, store} from "./store/store.ts";
 import {useTypedSelector} from "./store/hooks/redux.ts";
@@ -22,6 +21,8 @@ import {PageProfile} from "./components/PageProfile/PageProfile.tsx";
 import {TextEditor} from "./components/TextEdit/TextEditor.tsx";
 import {PageAdmin} from "./components/PageAdmin/PageAdmin.tsx";
 import {PageContacts} from "./components/PageContacts/PageContacts.tsx";
+import {PageNotFound} from "./components/PageNotFound/PageNotFound.tsx";
+import {Header} from "./components/Header/Header.tsx";
 
 const Root = () => {
     const modalLogin = useTypedSelector(state => state.modalLoginReducer);
@@ -30,11 +31,16 @@ const Root = () => {
 
     return (
         <>
-            <Header/>
-            <main>
-                <Outlet/>
-            </main>
-            <Footer/>
+            {
+                // <LeftMenu />
+            }
+            <div className="layout">
+                <Header/>
+                <main>
+                    <Outlet/>
+                </main>
+                <Footer/>
+            </div>
             {mobileMenu.mobileMenuIsOpen && <MobileMenu/>}
             {modalLogin.modalLoginIsOpen && <ModalLogin/>}
             {modalNotifications.modalNotificationsIsOpen && <ModalNotifications/>}
@@ -61,7 +67,7 @@ const router = createBrowserRouter(
                 <Route path="docs"/>
                 <Route path="tests"/>
             </Route>
-            <Route path="*" element={<span>Страница не найдена</span>} />
+            <Route path="*" element={<PageNotFound/>} />
         </Route>
     ),
 );

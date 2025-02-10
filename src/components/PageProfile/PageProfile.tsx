@@ -1,7 +1,8 @@
 import {FC, useEffect} from "react";
 import {pageAnimation} from "../../motionSettins.ts";
 import { motion } from "framer-motion";
-import {ModuleDocuments} from "./ModuleDocuments/ModuleDocuments.tsx";
+import {ModuleDocuments} from "../ModuleDocuments/ModuleDocuments.tsx";
+import {ModuleNotifications} from "../ModuleNotifications/ModuleNotifications.tsx";
 
 export const PageProfile: FC = () => {
     useEffect(() => {
@@ -14,8 +15,7 @@ export const PageProfile: FC = () => {
             animate={pageAnimation.animate}
             exit={pageAnimation.exit}
             transition={pageAnimation.transition}
-            className={"page page-profile"}
-        >
+            className={"page page-profile"}>
             <div className="page-header">
                 <span className="page-title page-title__name">Астафьев Кирилл</span>
                 <span className="page-title__district">Группа BI-разработки • Разработчик</span>
@@ -27,7 +27,7 @@ export const PageProfile: FC = () => {
                             <span className="widget-title">Уведомления</span>
                         </div>
                         <div className="widget-body">
-
+                            <ModuleNotifications/>
                         </div>
                     </div>
                     <div className="right-widgets">

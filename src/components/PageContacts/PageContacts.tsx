@@ -26,6 +26,8 @@ export const PageContacts: FC = () => {
     const [selectedOrganization, setSelectedOrganization] = useState<string>("");
     const [selectedDivision, setSelectedDivision] = useState<string>("");
 
+    console.log(selectedCity + selectedOrganization + selectedDivision);
+
     useEffect(() => {
         document.title = "Адресная книга";
     }, []);

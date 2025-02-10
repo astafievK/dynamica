@@ -8,7 +8,6 @@ export default defineConfig({
     viteStaticCopy({
       targets: [
         { src: 'Dockerfile', dest: '' },
-        { src: 'default.conf', dest: '' },
       ],
     }),
   ]
