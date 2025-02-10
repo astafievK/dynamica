@@ -1,8 +1,8 @@
-import { useState } from "react";
+import {FC, useState} from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
-export const TextEditor = () => {
+export const TextEditor: FC = () => {
     const [content, setContent] = useState("");
 
     const handleSave = async () => {

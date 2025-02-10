@@ -23,6 +23,7 @@ import {PageAdmin} from "./components/PageAdmin/PageAdmin.tsx";
 import {PageContacts} from "./components/PageContacts/PageContacts.tsx";
 import {PageNotFound} from "./components/PageNotFound/PageNotFound.tsx";
 import {Header} from "./components/Header/Header.tsx";
+import {PageDocument} from "./components/PageDocument/PageDocument.tsx";
 
 const Root = () => {
     const modalLogin = useTypedSelector(state => state.modalLoginReducer);
@@ -51,7 +52,7 @@ const Root = () => {
             }
         </>
     );
-};
+}
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -59,6 +60,7 @@ const router = createBrowserRouter(
             <Route path="" element={<PageLanding />} />
             <Route path="feed" element={<PageFeed />} />
             <Route path="editor" element={<TextEditor />} />
+            <Route path="document" element={<PageDocument />} />
             <Route path="profile" element={<PageProfile />} />
             <Route path="contacts" element={<PageContacts />} />
             <Route path="admin" element={<PageAdmin />}>
@@ -75,8 +77,8 @@ const router = createBrowserRouter(
 function App() {
     return (
         <Provider store={store}>
-            <PersistGate loading={<ModalLoading />} persistor={persistor}>
-                <RouterProvider router={router} />
+            <PersistGate loading={<ModalLoading/>} persistor={persistor}>
+                <RouterProvider router={router}/>
             </PersistGate>
         </Provider>
     );

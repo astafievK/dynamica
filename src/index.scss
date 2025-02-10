@@ -121,6 +121,23 @@
     }
 }
 
+@keyframes pulse {
+    0% {
+        opacity: 0.5;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0;
+        transform: scale(3);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(3);
+    }
+}
+
 :root {
     --background-color: #F1F2F2;
     --background-element: rgba(0, 0, 0, 0.1);
@@ -1578,6 +1595,117 @@ html {
                                             display: flex;
                                             flex-direction: column;
                                             gap: 6px;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        &.page-document {
+                            .progress-bar-container {
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                margin-top: 20px;
+
+                                .progress-item {
+                                    display: flex;
+                                    align-items: center;
+
+                                    .progress-point-wrapper {
+                                        position: relative;
+                                        display: flex;
+                                        flex-direction: column;
+                                        align-items: center;
+
+                                        .progress-point {
+                                            position: relative;
+                                            width: 30px;
+                                            height: 30px;
+                                            border-radius: 50%;
+                                            border: 4px solid transparent;
+                                            transition: background-color 0.3s;
+
+                                            &:before {
+                                                content: "";
+                                                position: absolute;
+                                                top: 50%;
+                                                left: 50%;
+                                                transform: translate(-50%, -50%);
+                                                width: 70%;
+                                                height: 70%;
+                                                border-radius: 50%;
+                                                background-color: rgba(0, 0, 0, 0.3);
+                                                z-index: 2;
+                                            }
+
+                                            &.lime {
+                                                background-color: #8dc63f;
+                                            }
+
+                                            &.orange {
+                                                background-color: #ff8c00;
+                                            }
+
+                                            &.gray {
+                                                background-color: #808080;
+                                            }
+
+                                            .pulse {
+                                                position: absolute;
+                                                top: 0;
+                                                left: 0;
+                                                width: 100%;
+                                                height: 100%;
+                                                border-radius: 50%;
+                                                background: rgba(#ff8c00, 0.6);
+                                                opacity: 0;
+                                                animation: pulse 2s infinite;
+                                            }
+                                        }
+
+                                        .progress-label {
+                                            position: absolute;
+                                            top: 45px;
+                                            display: flex;
+                                            flex-direction: column;
+                                            gap: 4px;
+                                            text-align: center;
+                                            text-wrap: nowrap;
+
+                                            .progress-label__division {
+                                                font-weight: bold;
+                                                font-family: "GrtskTera", sans-serif;
+                                                font-size: 16px;
+                                            }
+
+                                            .progress-label__person {
+                                                opacity: .7;
+                                                font-weight: bold;
+                                                font-size: 14px;
+                                            }
+                                        }
+                                    }
+
+                                    .progress-line {
+                                        height: 5px;
+                                        background-color: gray;
+                                        transition: all 0.3s;
+
+                                        &.lime {
+                                            background-color: #a4e057;
+                                        }
+
+                                        &.orange {
+                                            background-color: #ffa500;
+                                        }
+
+                                        &.gray {
+                                            background-color: #b0b0b0;
+                                        }
+
+                                        &.lime-orange-gradient {
+                                            background: linear-gradient(-45deg, #ffa500 50%, #a4e057 50%);
                                         }
                                     }
                                 }

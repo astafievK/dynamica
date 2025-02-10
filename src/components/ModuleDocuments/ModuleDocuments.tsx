@@ -1,5 +1,5 @@
 import {FC} from "react";
-import {ButtonDocument} from "./ButtonDocuments/ButtonDocument.tsx";
+import {ButtonDocument} from "./ButtonDocument/ButtonDocument.tsx";
 
 export const ModuleDocuments: FC = () => {
     const currentDate = new Date();
