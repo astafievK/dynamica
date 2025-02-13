@@ -31,8 +31,6 @@ export const DocumentProgressConsistently: FC = () => {
                 const status = statuses.find((s) => s.label === point.status);
                 const nextStatus = adjustedData[index + 1]?.status;
                 const nextColor = statuses.find((s) => s.label === nextStatus)?.color || "gray";
-
-                // Условие для линии с градиентом
                 const isLimeToOrange = status?.label === "Выполнено" && nextStatus === "В процессе";
 
                 return (
@@ -41,27 +39,20 @@ export const DocumentProgressConsistently: FC = () => {
                             <motion.div
                                 initial={{ scale: 0 }}
                                 animate={{ scale: 1 }}
-                                transition={{ duration: 0.5 }}
+                                transition={{ duration: 0.5}}
                                 className={`progress-point ${status?.color}`}
                             >
                                 {point.status === "В процессе" && <div className="pulse"></div>}
                             </motion.div>
-                            <motion.div
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                transition={{ delay: 0.7, duration: 0.5 }}
+                            <div
                                 className="progress-label"
                             >
                                 <span className="progress-label__division">{point.division}</span>
                                 <span className="progress-label__person">{point.person}</span>
-                            </motion.div>
+                            </div>
                         </div>
                         {index < adjustedData.length - 1 && (
-                            <motion.div
-                                initial={{ width: 0 }}
-                                animate={{ width: "300px" }}
-                                className={`progress-line ${isLimeToOrange ? "lime-orange-gradient" : nextColor}`}
-                            />
+                            <div className={`progress-line ${isLimeToOrange ? "lime-orange-gradient" : nextColor}`}></div>
                         )}
                     </div>
                 );

@@ -24,11 +24,12 @@ import {PageContacts} from "./components/PageContacts/PageContacts.tsx";
 import {PageNotFound} from "./components/PageNotFound/PageNotFound.tsx";
 import {Header} from "./components/Header/Header.tsx";
 import {PageDocument} from "./components/PageDocument/PageDocument.tsx";
+import {PageDocumentParallel} from "./components/PageDocumentParallel.tsx";
 
 const Root = () => {
-    const modalLogin = useTypedSelector(state => state.modalLoginReducer);
-    const modalNotifications = useTypedSelector(state => state.modalNotificationsReducer);
-    const mobileMenu = useTypedSelector(state => state.mobileMenuReducer);
+    const { modalLoginIsOpen } = useTypedSelector(state => state.modalLoginReducer);
+    const { modalNotificationsIsOpen } = useTypedSelector(state => state.modalNotificationsReducer);
+    const { mobileMenuIsOpen } = useTypedSelector(state => state.mobileMenuReducer);
 
     return (
         <>
@@ -42,9 +43,9 @@ const Root = () => {
                 </main>
                 <Footer/>
             </div>
-            {mobileMenu.mobileMenuIsOpen && <MobileMenu/>}
-            {modalLogin.modalLoginIsOpen && <ModalLogin/>}
-            {modalNotifications.modalNotificationsIsOpen && <ModalNotifications/>}
+            {modalLoginIsOpen && <MobileMenu/>}
+            {mobileMenuIsOpen && <ModalLogin/>}
+            {modalNotificationsIsOpen && <ModalNotifications/>}
             {
                 // <AnimatePresence>
                 //     <ModalLoading />
@@ -61,6 +62,7 @@ const router = createBrowserRouter(
             <Route path="feed" element={<PageFeed />} />
             <Route path="editor" element={<TextEditor />} />
             <Route path="document" element={<PageDocument />} />
+            <Route path="document_par" element={<PageDocumentParallel />} />
             <Route path="profile" element={<PageProfile />} />
             <Route path="contacts" element={<PageContacts />} />
             <Route path="admin" element={<PageAdmin />}>

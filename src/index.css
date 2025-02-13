@@ -121,6 +121,14 @@
     transform: scale(3);
   }
 }
+@keyframes appearDocumentProgress {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
 :root {
   --background-color: #F1F2F2;
   --background-element: rgba(0, 0, 0, 0.1);
@@ -415,6 +423,24 @@ html body #dynamica .layout {
   width: 100%;
   height: 100%;
 }
+html body #dynamica .layout .docx-container {
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  overflow-x: auto;
+  overflow-y: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+html body #dynamica .layout .docx-container .docx-wrapper {
+  background: none;
+}
+html body #dynamica .layout .docx-container .docx-wrapper .docx {
+  width: 100%;
+  margin-bottom: 15px;
+}
 html body #dynamica .layout .left-menu__container {
   width: 65px;
   position: fixed;
@@ -432,7 +458,6 @@ html body #dynamica .layout .left-menu__container .profile-container {
   flex-direction: column;
   gap: 10px;
   width: 100%;
-  padding: 0 7px;
 }
 html body #dynamica .layout .left-menu__container .profile-container .profile-icon {
   width: 100%;
@@ -553,9 +578,9 @@ html body #dynamica .layout .custom-dropdown__menu {
   margin-top: 5px;
   background-color: #FFFFFF;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
-  -webkit-box-shadow: 0px 0px 30px -16px rgb(66, 68, 90);
-  -moz-box-shadow: 0px 0px 30px -16px rgb(66, 68, 90);
-  box-shadow: 0px 0px 30px -16px rgb(66, 68, 90);
+  -webkit-box-shadow: 0 0 30px -16px rgb(66, 68, 90);
+  -moz-box-shadow: 0 0 30px -16px rgb(66, 68, 90);
+  box-shadow: 0 0 30px -16px rgb(66, 68, 90);
   border-radius: 25px;
   z-index: 10;
   list-style: none;
@@ -729,6 +754,7 @@ html body #dynamica .layout .header-wrapper header nav ul li a {
   text-decoration: none;
   font-size: 20px;
   color: #d5d5d5;
+  font-family: GrtskTera, sans-serif;
   font-weight: 600;
   transition: color 150ms ease;
 }
@@ -1102,7 +1128,7 @@ html body #dynamica .layout main .page.page-feed .feed-tiles .feed-tile__contain
   border-radius: 20px;
   width: 100%;
   background: var(--secondary-color);
-  box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.1);
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -1330,31 +1356,65 @@ html body #dynamica .layout main .page.page-contacts .employees-container .emplo
   flex-direction: column;
   gap: 6px;
 }
-html body #dynamica .layout main .page.page-document .progress-bar-container {
+html body #dynamica .layout main .page.page-document .content {
+  display: flex;
+  flex-direction: column;
+}
+html body #dynamica .layout main .page.page-document .content:has(.document-status__parallel) {
+  flex-direction: row;
+  gap: 10px;
+  justify-content: center;
+}
+html body #dynamica .layout main .page.page-document .content:has(.document-status__parallel) .docx-container {
+  margin-top: 0;
+  width: auto;
+  padding: 0 10px;
+}
+html body #dynamica .layout main .page.page-document .content .progress-bar-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 20px;
+  max-width: 950px;
+  width: 0;
+  margin: 20px auto 0 auto;
+  animation: appearDocumentProgress 850ms ease-in-out forwards;
+  animation-delay: 100ms;
 }
-html body #dynamica .layout main .page.page-document .progress-bar-container .progress-item {
+html body #dynamica .layout main .page.page-document .content .progress-bar-container .progress-item {
   display: flex;
   align-items: center;
 }
-html body #dynamica .layout main .page.page-document .progress-bar-container .progress-item .progress-point-wrapper {
+html body #dynamica .layout main .page.page-document .content .progress-bar-container .progress-item:not(:last-child) {
+  flex: 1;
+}
+html body #dynamica .layout main .page.page-document .content .progress-bar-container .progress-item:first-child .progress-point-wrapper .progress-label {
+  transform: translateX(45%);
+}
+html body #dynamica .layout main .page.page-document .content .progress-bar-container .progress-item:last-child .progress-point-wrapper .progress-label {
+  transform: translateX(-45%);
+}
+html body #dynamica .layout main .page.page-document .content .progress-bar-container .progress-item .progress-point-wrapper {
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-html body #dynamica .layout main .page.page-document .progress-bar-container .progress-item .progress-point-wrapper .progress-point {
+html body #dynamica .layout main .page.page-document .content .progress-bar-container .progress-item .progress-point-wrapper .progress-point {
   position: relative;
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
   border-radius: 50%;
+  cursor: pointer;
   border: 4px solid transparent;
   transition: background-color 0.3s;
 }
-html body #dynamica .layout main .page.page-document .progress-bar-container .progress-item .progress-point-wrapper .progress-point:before {
+html body #dynamica .layout main .page.page-document .content .progress-bar-container .progress-item .progress-point-wrapper .progress-point:not(.orange):hover {
+  background-color: rgba(0, 0, 0, 0.1) !important;
+}
+html body #dynamica .layout main .page.page-document .content .progress-bar-container .progress-item .progress-point-wrapper .progress-point:not(.orange):hover + .progress-label {
+  opacity: 1;
+}
+html body #dynamica .layout main .page.page-document .content .progress-bar-container .progress-item .progress-point-wrapper .progress-point:before {
   content: "";
   position: absolute;
   top: 50%;
@@ -1366,61 +1426,132 @@ html body #dynamica .layout main .page.page-document .progress-bar-container .pr
   background-color: rgba(0, 0, 0, 0.3);
   z-index: 2;
 }
-html body #dynamica .layout main .page.page-document .progress-bar-container .progress-item .progress-point-wrapper .progress-point.lime {
+html body #dynamica .layout main .page.page-document .content .progress-bar-container .progress-item .progress-point-wrapper .progress-point.lime {
   background-color: #8dc63f;
 }
-html body #dynamica .layout main .page.page-document .progress-bar-container .progress-item .progress-point-wrapper .progress-point.orange {
+html body #dynamica .layout main .page.page-document .content .progress-bar-container .progress-item .progress-point-wrapper .progress-point.orange {
   background-color: #ff8c00;
 }
-html body #dynamica .layout main .page.page-document .progress-bar-container .progress-item .progress-point-wrapper .progress-point.gray {
+html body #dynamica .layout main .page.page-document .content .progress-bar-container .progress-item .progress-point-wrapper .progress-point.orange + .progress-label {
+  opacity: 1;
+}
+html body #dynamica .layout main .page.page-document .content .progress-bar-container .progress-item .progress-point-wrapper .progress-point.gray {
   background-color: #808080;
 }
-html body #dynamica .layout main .page.page-document .progress-bar-container .progress-item .progress-point-wrapper .progress-point .pulse {
+html body #dynamica .layout main .page.page-document .content .progress-bar-container .progress-item .progress-point-wrapper .progress-point .pulse {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  background: rgba(255, 140, 0, 0.6);
+  background: darkorange;
   opacity: 0;
   animation: pulse 2s infinite;
 }
-html body #dynamica .layout main .page.page-document .progress-bar-container .progress-item .progress-point-wrapper .progress-label {
+html body #dynamica .layout main .page.page-document .content .progress-bar-container .progress-item .progress-point-wrapper .progress-label {
   position: absolute;
-  top: 45px;
   display: flex;
+  top: 35px;
+  opacity: 0;
   flex-direction: column;
+  user-select: none;
   gap: 4px;
   text-align: center;
-  text-wrap: nowrap;
+  transition: opacity 0.3s;
 }
-html body #dynamica .layout main .page.page-document .progress-bar-container .progress-item .progress-point-wrapper .progress-label .progress-label__division {
+html body #dynamica .layout main .page.page-document .content .progress-bar-container .progress-item .progress-point-wrapper .progress-label .progress-label__division {
   font-weight: bold;
   font-family: "GrtskTera", sans-serif;
   font-size: 16px;
 }
-html body #dynamica .layout main .page.page-document .progress-bar-container .progress-item .progress-point-wrapper .progress-label .progress-label__person {
+html body #dynamica .layout main .page.page-document .content .progress-bar-container .progress-item .progress-point-wrapper .progress-label .progress-label__person {
   opacity: 0.7;
   font-weight: bold;
   font-size: 14px;
 }
-html body #dynamica .layout main .page.page-document .progress-bar-container .progress-item .progress-line {
+html body #dynamica .layout main .page.page-document .content .progress-bar-container .progress-item .progress-line {
+  width: 100%;
   height: 5px;
   background-color: gray;
   transition: all 0.3s;
 }
-html body #dynamica .layout main .page.page-document .progress-bar-container .progress-item .progress-line.lime {
+html body #dynamica .layout main .page.page-document .content .progress-bar-container .progress-item .progress-line.lime {
   background-color: #a4e057;
 }
-html body #dynamica .layout main .page.page-document .progress-bar-container .progress-item .progress-line.orange {
+html body #dynamica .layout main .page.page-document .content .progress-bar-container .progress-item .progress-line.orange {
   background-color: #ffa500;
 }
-html body #dynamica .layout main .page.page-document .progress-bar-container .progress-item .progress-line.gray {
+html body #dynamica .layout main .page.page-document .content .progress-bar-container .progress-item .progress-line.gray {
   background-color: #b0b0b0;
 }
-html body #dynamica .layout main .page.page-document .progress-bar-container .progress-item .progress-line.lime-orange-gradient {
+html body #dynamica .layout main .page.page-document .content .progress-bar-container .progress-item .progress-line.lime-orange-gradient {
   background: linear-gradient(-45deg, #ffa500 50%, #a4e057 50%);
+}
+html body #dynamica .layout main .page.page-document .content .document-status__parallel {
+  flex-direction: column;
+  width: 100%;
+  max-width: 450px;
+}
+html body #dynamica .layout main .page.page-document .content .document-status__parallel .statuses-container {
+  display: flex;
+  position: sticky;
+  padding: 10px;
+  top: 137px;
+  flex-direction: column;
+  gap: 5px;
+  background: #FFFFFF;
+  border-radius: 21px;
+}
+html body #dynamica .layout main .page.page-document .content .document-status__parallel .statuses-container .status-item {
+  padding: 10px 15px;
+  border-radius: 12px;
+}
+html body #dynamica .layout main .page.page-document .content .document-status__parallel .statuses-container .status-item .status-label {
+  display: flex;
+  top: 35px;
+  flex-direction: column;
+  user-select: none;
+  gap: 4px;
+}
+html body #dynamica .layout main .page.page-document .content .document-status__parallel .statuses-container .status-item .status-label .status-label__division {
+  font-weight: bold;
+  font-family: "GrtskTera", sans-serif;
+  font-size: 16px;
+}
+html body #dynamica .layout main .page.page-document .content .document-status__parallel .statuses-container .status-item .status-label .status-label__person {
+  opacity: 0.7;
+  padding: 0 3px;
+  font-weight: bold;
+  font-size: 14px;
+}
+html body #dynamica .layout main .page.page-document .content .document-status__parallel .statuses-container .status-item.lime {
+  background-color: rgba(141, 198, 63, 0.15);
+}
+html body #dynamica .layout main .page.page-document .content .document-status__parallel .statuses-container .status-item.lime .status-label .status-label__division,
+html body #dynamica .layout main .page.page-document .content .document-status__parallel .statuses-container .status-item.lime .status-label .status-label__person {
+  color: #71a32d;
+}
+html body #dynamica .layout main .page.page-document .content .document-status__parallel .statuses-container .status-item.orange {
+  background-color: rgba(255, 140, 0, 0.15);
+}
+html body #dynamica .layout main .page.page-document .content .document-status__parallel .statuses-container .status-item.orange .status-label .status-label__division,
+html body #dynamica .layout main .page.page-document .content .document-status__parallel .statuses-container .status-item.orange .status-label .status-label__person {
+  color: #bf6900;
+}
+html body #dynamica .layout main .page.page-document .content .docx-container {
+  padding: 0;
+  margin-top: 70px;
+  width: 100%;
+}
+html body #dynamica .layout main .page.page-document .content .docx-container .docx-wrapper {
+  width: 100%;
+  padding: 10px 0;
+}
+html body #dynamica .layout main .page.page-document .content .docx-container .docx-wrapper .docx {
+  width: 100% !important;
+  max-width: 595.4pt;
+  overflow: scroll;
 }
 html body #dynamica .layout main .page.page-not-found .content {
   width: 100%;
@@ -1780,6 +1911,9 @@ html body #dynamica .layout main .page.page-not-found .content {
   html body #dynamica .layout .header-wrapper header {
     padding: 15px 0;
   }
+  html body #dynamica .layout .header-wrapper header #logo {
+    padding: 5px 0;
+  }
   html body #dynamica .layout .header-wrapper header #burger {
     display: none;
   }
@@ -2019,6 +2153,28 @@ html body #dynamica .layout main .page.page-not-found .content {
     margin-top: 35px;
     grid-template-columns: repeat(2, calc(50% - 3.5px));
   }
+  html body #dynamica .layout main .page.page-document .content .progress-bar-container .progress-item .progress-point-wrapper .progress-point {
+    width: 30px;
+    height: 30px;
+  }
+  html body #dynamica .layout main .page.page-document .content .progress-bar-container .progress-item .progress-point-wrapper .progress-point.orange + .progress-label {
+    opacity: 0;
+  }
+  html body #dynamica .layout main .page.page-document .content .progress-bar-container .progress-item .progress-point-wrapper .progress-label {
+    top: 50px;
+    opacity: 0;
+    animation: fadeIn 250ms ease-in-out forwards;
+    animation-delay: 700ms;
+  }
+  html body #dynamica .layout main .page.page-document .content .progress-bar-container .progress-item .progress-point-wrapper .progress-label .progress-label__division {
+    font-size: 18px;
+  }
+  html body #dynamica .layout main .page.page-document .content .progress-bar-container .progress-item .progress-point-wrapper .progress-label .progress-label__person {
+    font-size: 16px;
+  }
+  html body #dynamica .layout main .page.page-document .content .docx-container {
+    margin-top: 120px;
+  }
   html body #dynamica .layout .footer-wrapper {
     padding: 0 35px;
   }
@@ -2061,10 +2217,10 @@ html body #dynamica .layout main .page.page-not-found .content {
     top: 33px;
   }
   html body #dynamica .layout .header-wrapper header nav ul {
-    gap: 20px;
+    gap: 35px;
   }
   html body #dynamica .layout .header-wrapper header nav ul li .nav-item {
-    font-size: 20px;
+    font-size: 17px;
   }
   html body #dynamica .layout .header-wrapper header .profile-container {
     padding: 5px 0;
@@ -2280,6 +2436,31 @@ html body #dynamica .layout main .page.page-not-found .content {
   }
   html body #dynamica .layout main .page.page-contacts .employees-container .employee-card .employee-info .employee-info__general .employee-name {
     font-size: 16px;
+  }
+  html body #dynamica .layout main .page.page-document .content .progress-bar-container .progress-item:first-child .progress-point-wrapper .progress-label {
+    transform: translateX(0);
+  }
+  html body #dynamica .layout main .page.page-document .content .progress-bar-container .progress-item:last-child .progress-point-wrapper .progress-label {
+    transform: translateX(0);
+  }
+  html body #dynamica .layout main .page.page-document .content .progress-bar-container .progress-item .progress-point-wrapper .progress-point {
+    width: 35px;
+    height: 35px;
+  }
+  html body #dynamica .layout main .page.page-document .content .progress-bar-container .progress-item .progress-point-wrapper .progress-point:hover {
+    background-color: unset;
+  }
+  html body #dynamica .layout main .page.page-document .content .progress-bar-container .progress-item .progress-point-wrapper .progress-label {
+    top: 50px;
+  }
+  html body #dynamica .layout main .page.page-document .content .progress-bar-container .progress-item .progress-point-wrapper .progress-label .progress-label__division {
+    font-size: 20px;
+  }
+  html body #dynamica .layout main .page.page-document .content .progress-bar-container .progress-item .progress-point-wrapper .progress-label .progress-label__person {
+    font-size: 18px;
+  }
+  html body #dynamica .layout main .page.page-document .content .docx-container {
+    margin-top: 150px;
   }
   html body #dynamica .layout .footer-wrapper {
     padding: 0 35px;

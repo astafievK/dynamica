@@ -1,10 +1,10 @@
 import {FC, useEffect} from "react";
-import {pageAnimation} from "../../motionSettins.ts";
 import {AnimatePresence, motion} from "framer-motion";
-import DocxViewer from "./DocxViewer/DocxViewer.tsx";
-import {DocumentProgressConsistently} from "../DocumentProgressConsistently/DocumentProgressConsistently.tsx";
+import {pageAnimation} from "../motionSettins.ts";
+import DocxViewer from "./PageDocument/DocxViewer/DocxViewer.tsx";
+import {DocumentProgressParallel} from "./DocumentProgressParallel/DocumentProgressParallel.tsx";
 
-export const PageDocument: FC = () => {
+export const PageDocumentParallel: FC = () => {
     useEffect(() => {
         document.title = "Статус документа";
     })
@@ -19,10 +19,7 @@ export const PageDocument: FC = () => {
                 className={"page page-document"}
             >
                 <div className="content">
-                    {
-                        // <DocumentProgressParallel/>
-                    }
-                    <DocumentProgressConsistently/>
+                    <DocumentProgressParallel/>
                     <DocxViewer fileUrl="/test.docx"/>
                 </div>
             </motion.div>
