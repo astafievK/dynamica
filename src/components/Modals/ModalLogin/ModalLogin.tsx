@@ -26,7 +26,7 @@ export const ModalLogin: FC = () => {
     return (
         <dialog className="modal" open={isOpen}>
             <div className={`modal-content modal-login ${isClosing ? "hidden" : ""}`}>
-                <span className="modal-title">Авторизация</span>
+                <span className="modal-title">Вход</span>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="form-element form-elem__text">
                         <label htmlFor="username">Логин</label>
@@ -36,14 +36,14 @@ export const ModalLogin: FC = () => {
                         <label htmlFor="password">Пароль</label>
                         <input id="password" type="password" {...register("password")} required />
                     </div>
-                    <div className="form-element form-elem__submit">
-                        <button type="submit" disabled={isLoading} aria-busy={isLoading}>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25">
-                                <path d="m17.5 5.999-.707.707 5.293 5.293H1v1h21.086l-5.294 5.295.707.707L24 12.499l-6.5-6.5z" data-name="Right"/>
-                            </svg>
-                            {isLoading && <span className="shimmer"></span>}
-                        </button>
-                    </div>
+                    <button type="submit" className={"form-elem__submit"} disabled={isLoading} aria-busy={isLoading}>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25">
+                            <path
+                                d="m17.5 5.999-.707.707 5.293 5.293H1v1h21.086l-5.294 5.295.707.707L24 12.499l-6.5-6.5z"
+                                data-name="Right"/>
+                        </svg>
+                        {isLoading && <span className="shimmer"></span>}
+                    </button>
                 </form>
             </div>
             <div className={`spoiler ${isClosing ? "hidden" : ""}`} onClick={handleClose}></div>

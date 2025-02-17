@@ -5,7 +5,7 @@ import { useTypedSelector } from "../../store/hooks/redux";
 import {FC} from "react";
 
 export const Modals: FC = () => {
-    const { modalLoginIsOpen } = useTypedSelector(state => state.modalLoginReducer);
+    //const { modalLoginIsOpen } = useTypedSelector(state => state.modalLoginReducer);
     const { modalNotificationsIsOpen } = useTypedSelector(state => state.modalNotificationsReducer);
     const { mobileMenuIsOpen } = useTypedSelector(state => state.mobileMenuReducer);
 
