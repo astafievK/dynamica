@@ -10,7 +10,7 @@ export const Footer: FC = () => {
                         <NavLink
                             to="/"
                             className={({isActive}) =>
-                                isActive ? 'active-nav-item' : ''
+                                isActive ? 'nav-item active-nav-item' : 'nav-item'
                             }
                         >
                             Главная
@@ -18,9 +18,9 @@ export const Footer: FC = () => {
                     </li>
                     <li className={"nav-item"}>
                         <NavLink
-                            to="/"
+                            to="/contacts"
                             className={({isActive}) =>
-                                isActive ? 'active-nav-item' : ''
+                                isActive ? 'nav-item active-nav-item' : 'nav-item'
                             }
                         >
                             Адресная книга
@@ -28,9 +28,9 @@ export const Footer: FC = () => {
                     </li>
                     <li className={"nav-item"}>
                         <NavLink
-                            to="/"
+                            to="/documents"
                             className={({isActive}) =>
-                                isActive ? 'active-nav-item' : ''
+                                isActive ? 'nav-item active-nav-item' : 'nav-item'
                             }
                         >
                             Документы
@@ -38,9 +38,9 @@ export const Footer: FC = () => {
                     </li>
                     <li className={"nav-item"}>
                         <NavLink
-                            to="/feed"
+                            to="/adoptation"
                             className={({isActive}) =>
-                                isActive ? 'active-nav-item' : ''
+                                isActive ? 'nav-item active-nav-item' : 'nav-item'
                             }
                         >
                             Адаптация
@@ -48,9 +48,9 @@ export const Footer: FC = () => {
                     </li>
                     <li className={"nav-item"}>
                         <NavLink
-                            to="/"
+                            to="/profile"
                             className={({isActive}) =>
-                                isActive ? 'active-nav-item' : ''
+                                isActive ? 'nav-item active-nav-item' : 'nav-item'
                             }
                         >
                             Личный кабинет
@@ -65,9 +65,9 @@ export const Footer: FC = () => {
                     <ul className={'faq'}>
                         <li className={"faq-item"}>
                             <NavLink
-                                to="/"
+                                to="/faq1"
                                 className={({isActive}) =>
-                                    isActive ? 'active-faq-item' : ''
+                                    isActive ? 'active-faq-item' : 'faq-item'
                                 }
                             >
                                 Политика 1
@@ -75,9 +75,9 @@ export const Footer: FC = () => {
                         </li>
                         <li className={"faq-item"}>
                             <NavLink
-                                to="/"
+                                to="/faq2"
                                 className={({isActive}) =>
-                                    isActive ? 'active-faq-item' : ''
+                                    isActive ? 'active-faq-item' : 'faq-item'
                                 }
                             >
                                 Политика 2
@@ -91,9 +91,9 @@ export const Footer: FC = () => {
                 <ul className={'faq'}>
                     <li className={"faq-item"}>
                         <NavLink
-                            to="/"
+                            to="/faq1"
                             className={({isActive}) =>
-                                isActive ? 'active-faq-item' : ''
+                                isActive ? 'active-faq-item' : 'faq-item'
                             }
                         >
                             Политика 1
@@ -101,9 +101,9 @@ export const Footer: FC = () => {
                     </li>
                     <li className={"faq-item"}>
                         <NavLink
-                            to="/"
+                            to="/faq2"
                             className={({isActive}) =>
-                                isActive ? 'active-faq-item' : ''
+                                isActive ? 'active-faq-item' : 'faq-item'
                             }
                         >
                             Политика 2

@@ -4,7 +4,7 @@ import {
     Route,
     RouterProvider,
     createBrowserRouter,
-    createRoutesFromElements,
+    createRoutesFromElements, useLocation,
 } from 'react-router-dom';
 import {ModalLogin} from "./components/ModalLogin/ModalLogin.tsx";
 import {persistor, store} from "./store/store.ts";
@@ -25,11 +25,13 @@ import {PageNotFound} from "./components/PageNotFound/PageNotFound.tsx";
 import {Header} from "./components/Header/Header.tsx";
 import {PageDocument} from "./components/PageDocument/PageDocument.tsx";
 import {PageDocumentParallel} from "./components/PageDocumentParallel.tsx";
+import {AnimatePresence} from "framer-motion";
 
 const Root = () => {
     const { modalLoginIsOpen } = useTypedSelector(state => state.modalLoginReducer);
     const { modalNotificationsIsOpen } = useTypedSelector(state => state.modalNotificationsReducer);
     const { mobileMenuIsOpen } = useTypedSelector(state => state.mobileMenuReducer);
+    const location = useLocation();
 
     return (
         <>
@@ -37,14 +39,16 @@ const Root = () => {
                 // <LeftMenu />
             }
             <div className="layout">
-                <Header/>
+                <Header />
                 <main>
-                    <Outlet/>
+                    <AnimatePresence mode={"wait"}>
+                        <Outlet key={location.pathname}/>
+                    </AnimatePresence>
                 </main>
-                <Footer/>
+                <Footer />
             </div>
-            {modalLoginIsOpen && <MobileMenu/>}
-            {mobileMenuIsOpen && <ModalLogin/>}
+            {mobileMenuIsOpen && <MobileMenu/>}
+            {modalLoginIsOpen && <ModalLogin/>}
             {modalNotificationsIsOpen && <ModalNotifications/>}
             {
                 // <AnimatePresence>
@@ -58,20 +62,20 @@ const Root = () => {
 const router = createBrowserRouter(
     createRoutesFromElements(
         <Route path="/" element={<Root />}>
-            <Route path="" element={<PageLanding />} />
-            <Route path="feed" element={<PageFeed />} />
-            <Route path="editor" element={<TextEditor />} />
-            <Route path="document" element={<PageDocument />} />
-            <Route path="document_par" element={<PageDocumentParallel />} />
-            <Route path="profile" element={<PageProfile />} />
-            <Route path="contacts" element={<PageContacts />} />
-            <Route path="admin" element={<PageAdmin />}>
+            <Route index element={<PageLanding key={"landing"} />} />
+            <Route path="feed" element={<PageFeed key={"feed"} />} />
+            <Route path="editor" element={<TextEditor key={"editor"} />} />
+            <Route path="document" element={<PageDocument key={"document"} />} />
+            <Route path="document_par" element={<PageDocumentParallel key={"document-par"} />} />
+            <Route path="profile" element={<PageProfile key={"profile"} />} />
+            <Route path="contacts" element={<PageContacts key={"contacts"} />} />
+            <Route path="admin" element={<PageAdmin key={"admin"} />}>
                 <Route path="feed" />
                 <Route path="contacts"/>
                 <Route path="docs"/>
                 <Route path="tests"/>
             </Route>
-            <Route path="*" element={<PageNotFound/>} />
+            <Route path="*" element={<PageNotFound key={"not-fount"}/>} />
         </Route>
     ),
 );

@@ -1,8 +1,7 @@
 import {FC, useEffect} from "react";
 import "swiper/css";
 import {SwiperSliderAchievements} from "../SwiperSliderAchievements/SwiperSliderAchievements.tsx";
-import {pageAnimation} from "../../motionSettins.ts";
-import { motion } from "framer-motion";
+import {motion} from "framer-motion";
 import {AnimatedSection} from "./AnimatedSection.tsx";
 
 export const PageLanding: FC = () => {
@@ -10,12 +9,16 @@ export const PageLanding: FC = () => {
         document.title = "Динамика";
     })
 
-    return(
+    return (
         <motion.div
-            initial={pageAnimation.initial}
-            animate={pageAnimation.animate}
-            exit={pageAnimation.exit}
-            transition={pageAnimation.transition}
+            key={"landing"}
+            initial={{opacity: 0}}
+            animate={{opacity: 1}}
+            exit={{opacity: 0}}
+            transition={{
+                duration: 0.6,
+                ease: "easeOut",
+            }}
             className="page page-landing">
             <div className="landing-module__preview">
                 <div className="photo-container">
@@ -54,50 +57,6 @@ export const PageLanding: FC = () => {
                             <h3 className="container-title">Наши ценности:</h3>
                             <div className="values">
                                 <div className="value">
-                            <span>
-                                <span className="title">Движение. </span>
-                                Мы обеспечиваем доступность автомобилей и услуг сервиса для наших клиентов. Профессиональный и личностный рост, возможность карьерных изменений - для наших сотрудников.
-                            </span>
-                                </div>
-                                <div className="value">
-                            <span>
-                                <span className="title">Амбиции. </span>
-                                Мы уже добились многого. Мы имеем опыт, знания, компетенции. Поэтому мы ставим амбициозные цели и претендуем на лидерство.
-                            </span>
-                                </div>
-                                <div className="value">
-                            <span>
-                                <span className="title">Скорость. </span>
-                                Мы ценим время. Мы лаконичны в коммуникациях. Соответствуем современному темпу жизни и четко транслируем свою позицию.
-                            </span>
-                                </div>
-                                <div className="value">
-                            <span>
-                                <span className="title">Импульс. </span>
-                                Движение на вершину невозможно без тщательной подготовки, поэтому мы инвестируем в экспертное развитие своих сотрудников, автоматизируем процессы, отслеживаем технологические новшества.
-                            </span>
-                                </div>
-                            </div>
-                        </div>
-                        <img src={"russia 1.svg"} alt={""}/>
-                    </section>
-                </AnimatedSection>
-                <AnimatedSection>
-                    <section className="dynamica-today">
-                        <p>
-                            <strong>Динамика сегодня — </strong><br/>это 22 бренда в 7 городах России
-                        </p>
-                        <p className="gray">
-                            Большой и слаженный механизм работы 800+ сотрудников нашей компании.
-                        </p>
-                    </section>
-                </AnimatedSection>
-                <AnimatedSection>
-                    <section className="section-values">
-                        <div className="values-container">
-                            <h3 className="container-title">Наши ценности:</h3>
-                            <div className="values">
-                                <div className="value">
                                 <span>
                                     <span className="title">Движение. </span>
                                     Мы обеспечиваем доступность автомобилей и услуг сервиса для наших клиентов. Профессиональный и личностный рост, возможность карьерных изменений - для наших сотрудников.
@@ -120,6 +79,50 @@ export const PageLanding: FC = () => {
                                     <span className="title">Импульс. </span>
                                     Движение на вершину невозможно без тщательной подготовки, поэтому мы инвестируем в экспертное развитие своих сотрудников, автоматизируем процессы, отслеживаем технологические новшества.
                                 </span>
+                                </div>
+                            </div>
+                        </div>
+                        <img src={"russia 1.svg"} alt={""}/>
+                    </section>
+                </AnimatedSection>
+                <AnimatedSection>
+                    <section className="dynamica-today">
+                        <p>
+                            <strong>Динамика сегодня — </strong><br/>это 22 бренда в 7 городах России
+                        </p>
+                        <p className="gray">
+                            Большой и слаженный механизм работы 800+ сотрудников нашей компании.
+                        </p>
+                    </section>
+                </AnimatedSection>
+                <AnimatedSection>
+                    <section className="section-values">
+                        <div className="values-container">
+                            <h3 className="container-title">Наши ценности:</h3>
+                            <div className="values">
+                                <div className="value">
+                                    <span>
+                                        <span className="title">Движение. </span>
+                                        Мы обеспечиваем доступность автомобилей и услуг сервиса для наших клиентов. Профессиональный и личностный рост, возможность карьерных изменений - для наших сотрудников.
+                                    </span>
+                                </div>
+                                <div className="value">
+                                    <span>
+                                        <span className="title">Амбиции. </span>
+                                        Мы уже добились многого. Мы имеем опыт, знания, компетенции. Поэтому мы ставим амбициозные цели и претендуем на лидерство.
+                                    </span>
+                                </div>
+                                <div className="value">
+                                    <span>
+                                        <span className="title">Скорость. </span>
+                                        Мы ценим время. Мы лаконичны в коммуникациях. Соответствуем современному темпу жизни и четко транслируем свою позицию.
+                                    </span>
+                                </div>
+                                <div className="value">
+                                    <span>
+                                        <span className="title">Импульс. </span>
+                                        Движение на вершину невозможно без тщательной подготовки, поэтому мы инвестируем в экспертное развитие своих сотрудников, автоматизируем процессы, отслеживаем технологические новшества.
+                                    </span>
                                 </div>
                             </div>
                         </div>

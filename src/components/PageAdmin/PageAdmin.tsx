@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import {FC, useEffect} from "react";
 import {NavLink, Outlet} from "react-router-dom";
 
@@ -8,7 +9,7 @@ export const PageAdmin: FC = () => {
 
     return (
         <>
-            <div className="page page-admin">
+            <motion.div className="page page-admin">
                 <div className="menu">
                     <nav>
                         <NavLink
@@ -47,10 +48,10 @@ export const PageAdmin: FC = () => {
                 </div>
                 <div className="content">
                     {
-                        <Outlet />
+                        <Outlet/>
                     }
                 </div>
-            </div>
+            </motion.div>
         </>
     );
-};
+}

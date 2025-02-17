@@ -26,26 +26,6 @@ export const NavGeneral: FC = () => {
                             Адресная книга
                         </NavLink>
                     </li>
-                    <li>
-                        <NavLink
-                            to="/documents"
-                            className={({isActive}) =>
-                                isActive ? 'nav-item active-nav-item' : 'nav-item'
-                            }
-                        >
-                            Документы
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink
-                            to="/adaptation"
-                            className={({isActive}) =>
-                                isActive ? 'nav-item active-nav-item' : 'nav-item'
-                            }
-                        >
-                            Адаптация
-                        </NavLink>
-                    </li>
                 </ul>
             </nav>
         </>
