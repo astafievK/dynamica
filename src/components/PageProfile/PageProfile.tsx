@@ -1,6 +1,6 @@
 import {FC, useEffect} from "react";
 import {pageAnimation} from "../../motionSettins.ts";
-import { motion } from "framer-motion";
+import {motion} from "framer-motion";
 import {ModuleDocuments} from "../ModuleDocuments/ModuleDocuments.tsx";
 import {ModuleNotifications} from "../ModuleNotifications/ModuleNotifications.tsx";
 
@@ -9,8 +9,9 @@ export const PageProfile: FC = () => {
         document.title = "Профиль";
     })
 
-    return(
+    return (
         <motion.div
+            key={"profile"}
             initial={pageAnimation.initial}
             animate={pageAnimation.animate}
             exit={pageAnimation.exit}

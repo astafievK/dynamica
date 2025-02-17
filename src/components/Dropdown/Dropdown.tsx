@@ -1,5 +1,6 @@
 import {AnimatePresence, motion} from "framer-motion";
 import { FC, useState, ChangeEvent, useRef, useEffect } from "react";
+import "./dropdown.css";
 
 interface DropdownProps {
     options: string[];

@@ -196,153 +196,11 @@ html body {
 html body.scroll-locked {
   overflow: hidden;
 }
-html body .custom-dropdown {
-  padding: 10px;
-  position: relative;
-  border-radius: 25px;
-  width: 240px;
-  background-color: #FFFFFF;
-}
-html body .custom-dropdown__search {
-  width: 100%;
-  background-color: var(--background-color);
-  border-radius: 12px;
-  height: 100%;
-  padding: 12px;
-  font-weight: 600;
-  font-size: 16px;
-  box-sizing: border-box;
-  outline: none;
-}
-html body .custom-dropdown__menu {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  margin-top: 5px;
-  background-color: #FFFFFF;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
-  -webkit-box-shadow: 0 0 30px -16px rgb(66, 68, 90);
-  -moz-box-shadow: 0 0 30px -16px rgb(66, 68, 90);
-  box-shadow: 0 0 30px -16px rgb(66, 68, 90);
-  border-radius: 25px;
-  z-index: 10;
-  list-style: none;
-  padding: 10px;
-}
-html body .custom-dropdown__menu .custom-dropdown__item {
-  padding: 15px 20px;
-  cursor: pointer;
-  font-size: 16px;
-  border-radius: 12px;
-  font-weight: 500;
-  color: #333;
+html body #dynamica {
   display: flex;
-  align-items: center;
-  transition: background-color 0.3s ease;
+  min-height: 100vh;
 }
-html body .custom-dropdown__menu .custom-dropdown__item:hover {
-  background-color: rgba(0, 0, 0, 0.05);
-}
-html body .module-documents {
-  width: 100%;
-  overflow: scroll;
-}
-html body .module-documents .module-body {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-}
-html body .module-documents .module-body .document {
-  display: flex;
-  overflow: hidden;
-  flex-direction: column;
-  border: 1px solid var(--background-color);
-  border-radius: 10px;
-  gap: 10px;
-  background-color: #ffffff;
-  padding: 10px 15px;
-  cursor: pointer;
-  transition: transform 150ms ease, background-color 150ms ease;
-}
-html body .module-documents .module-body .document .info {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-}
-html body .module-documents .module-body .document .info .document-status {
-  border-radius: 35px;
-  padding: 4px 0;
-  width: 100px;
-  text-align: center;
-  font-weight: 600;
-  align-items: center;
-}
-html body .module-documents .module-body .document .info .document-status.status-end {
-  background-color: rgba(255, 0, 0, 0.15);
-}
-html body .module-documents .module-body .document .info .document-status.status-soon {
-  background-color: rgba(255, 255, 0, 0.15);
-}
-html body .module-documents .module-body .document .info .document-status.status-active {
-  background-color: rgba(0, 255, 0, 0.15);
-}
-html body .module-documents .module-body .document span,
-html body .module-documents .module-body .document div {
-  font-size: 14px;
-  user-select: none;
-}
-html body .module-documents .module-body .document:hover {
-  background-color: rgba(0, 0, 0, 0.05);
-  transform: translateY(-2px);
-}
-html body .module-notifications {
-  overflow: scroll;
-}
-html body .module-notifications .module-body {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  overflow: scroll;
-}
-html body .module-notifications .module-body .notification {
-  border-radius: 10px;
-  padding: 10px 15px;
-  cursor: pointer;
-  background-color: rgba(0, 0, 0, 0);
-  border: 1px solid var(--background-color);
-  transition: transform 150ms ease, background-color 150ms ease;
-}
-html body .module-notifications .module-body .notification .title {
-  font-size: 18px;
-  font-weight: bold;
-}
-html body .module-notifications .module-body .notification .date {
-  font-size: 14px;
-  margin-top: 5px;
-  font-weight: 400;
-  opacity: 0.5;
-}
-html body .module-notifications .module-body .notification:hover {
-  background-color: rgba(0, 0, 0, 0.05);
-  transform: translateY(-2px);
-}
-html body .module-notifications .module-body::-webkit-scrollbar {
-  z-index: 10;
-  width: 10px;
-  height: 10px;
-}
-html body .module-notifications .module-body::-webkit-scrollbar-thumb {
-  background-color: rgba(0, 0, 0, 0.1);
-  border-radius: 15px;
-  transition: background-color 150ms ease;
-}
-html body .module-notifications .module-body::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(0, 0, 0, 0.2);
-}
-html body #mobileMenu {
+html body #dynamica #mobileMenu {
   position: fixed;
   display: flex;
   flex-direction: column;
@@ -352,10 +210,10 @@ html body #mobileMenu {
   height: 100%;
   z-index: 10002;
 }
-html body #mobileMenu.hidden .modal-content {
+html body #dynamica #mobileMenu.hidden .modal-content {
   animation-name: moveSlideUp;
 }
-html body #mobileMenu .content {
+html body #dynamica #mobileMenu .content {
   background: var(--secondary-color);
   display: flex;
   flex-direction: column;
@@ -365,29 +223,29 @@ html body #mobileMenu .content {
   animation-timing-function: cubic-bezier(0.36, 0.67, 0.43, 0.99);
   z-index: 2;
 }
-html body #mobileMenu .content.hidden {
+html body #dynamica #mobileMenu .content.hidden {
   animation: moveSlideUp 0.25s forwards;
   animation-timing-function: cubic-bezier(0.36, 0.67, 0.43, 0.99);
 }
-html body #mobileMenu .content .header {
+html body #dynamica #mobileMenu .content .header {
   display: flex;
   align-items: center;
   padding: 12px 20px;
   height: 56px;
   justify-content: space-between;
 }
-html body #mobileMenu .content .header .logo {
+html body #dynamica #mobileMenu .content .header .logo {
   display: flex;
   align-items: center;
   height: 100%;
 }
-html body #mobileMenu .content .header .logo img {
+html body #dynamica #mobileMenu .content .header .logo img {
   height: 100%;
 }
-html body #mobileMenu .content .header .cross {
+html body #dynamica #mobileMenu .content .header .cross {
   width: 35px;
 }
-html body #mobileMenu .content .body {
+html body #dynamica #mobileMenu .content .body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -401,24 +259,25 @@ html body #mobileMenu .content .body {
   animation: modalMenuDown 0.25s forwards;
   animation-timing-function: cubic-bezier(0.36, 0.67, 0.43, 0.99);
 }
-html body #mobileMenu .content .body.visible {
+html body #dynamica #mobileMenu .content .body.visible {
   opacity: 1;
   transform: translateY(0);
   animation: modalMenuUp 0.25s forwards;
   animation-timing-function: cubic-bezier(0.36, 0.67, 0.43, 0.99);
 }
-html body #mobileMenu .content .body nav {
+html body #dynamica #mobileMenu .content .body nav {
   width: 100%;
   display: flex;
   flex-direction: column;
   list-style: none;
   padding: 5px 15px;
 }
-html body #mobileMenu .content .body nav .nav-item {
+html body #dynamica #mobileMenu .content .body nav .nav-item {
+  list-style: none;
+}
+html body #dynamica #mobileMenu .content .body nav .nav-item a {
   display: flex;
   border-bottom: 0.6px solid var(--additional-color);
-}
-html body #mobileMenu .content .body nav .nav-item a {
   width: 100%;
   padding: 14px 10px;
   text-decoration: none;
@@ -426,10 +285,7 @@ html body #mobileMenu .content .body nav .nav-item a {
   font-family: "GrtskTera", sans-serif;
   color: var(--font-color);
 }
-html body #mobileMenu .content .body nav .nav-item a.active-nav-item {
-  color: var(--primary-color);
-}
-html body #mobileMenu .content .body .logout-btn {
+html body #dynamica #mobileMenu .content .body .logout-btn {
   width: 100%;
   padding: 20px 10px;
   text-decoration: none;
@@ -440,7 +296,7 @@ html body #mobileMenu .content .body .logout-btn {
   color: rgba(255, 0, 0, 0.45);
   background-color: transparent;
 }
-html body #mobileMenu .spoiler {
+html body #dynamica #mobileMenu .spoiler {
   position: fixed;
   top: 0;
   left: 0;
@@ -450,10 +306,10 @@ html body #mobileMenu .spoiler {
   cursor: pointer;
   animation: fadeIn 0.35s ease-out forwards;
 }
-html body #mobileMenu .spoiler.hidden {
+html body #dynamica #mobileMenu .spoiler.hidden {
   animation: fadeOut 0.35s ease-out forwards;
 }
-html body .modal {
+html body #dynamica .modal {
   position: fixed;
   top: 0;
   left: 0;
@@ -468,94 +324,96 @@ html body .modal {
   z-index: 10001;
   animation: fadeIn 0.2s ease-in-out forwards;
 }
-html body .modal.hidden {
+html body #dynamica .modal.hidden {
   animation: fadeOut 0.2s ease-in-out forwards;
 }
-html body .modal.hidden .modal-content {
+html body #dynamica .modal.hidden .modal-content {
   animation-name: slideDown;
 }
-html body .modal .modal-content {
+html body #dynamica .modal .modal-content {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  width: 100%;
-  height: 100%;
+  border-radius: 25px;
+  width: 95vw;
+  height: 95vh;
   z-index: 2;
-  padding: 20px;
+  padding: 40px;
   background-color: #ffffff;
   animation: modalSlideUp 0.3s forwards;
 }
-html body .modal .modal-content.hidden {
+html body #dynamica .modal .modal-content.hidden {
   animation: modalSlideDown 0.3s forwards;
 }
-html body .modal .modal-content .modal-title {
-  font-family: "GrtskTera", sans-serif;
+html body #dynamica .modal .modal-content h1 {
   text-align: center;
-  font-size: 24px;
 }
-html body .modal .modal-content.modal-login {
-  height: 100%;
-  width: 100%;
+html body #dynamica .modal .modal-content.modal-login {
+  max-width: 400px;
+  max-height: 550px;
 }
-html body .modal .modal-content.modal-login form {
+html body #dynamica .modal .modal-content.modal-login form {
   display: flex;
+  flex-grow: 1;
   flex-direction: column;
   width: 100%;
   height: 100%;
+  margin-top: 45px;
+  gap: 15px;
 }
-html body .modal .modal-content.modal-login form .form-element {
+html body #dynamica .modal .modal-content.modal-login form .form-element {
   display: flex;
-  flex-direction: column;
-  gap: 7px;
   width: 100%;
 }
-html body .modal .modal-content.modal-login form .form-element:not(:first-child) {
-  margin-top: 15px;
-}
-html body .modal .modal-content.modal-login form .form-element.form-elem__submit {
-  align-items: flex-end;
-}
-html body .modal .modal-content.modal-login form .form-element label {
-  padding: 0 5px;
-  font-weight: 600;
-  font-size: 16px;
-}
-html body .modal .modal-content.modal-login form .form-element input[type=text],
-html body .modal .modal-content.modal-login form .form-element input[type=password] {
-  font-size: 21px;
+html body #dynamica .modal .modal-content.modal-login form .form-element input[type=text] {
+  font-size: 28px;
   width: 100%;
-  padding: 15px 20px;
-  border-radius: 32px;
-  background: var(--background-color);
+  padding: 10px 20px;
+  background: transparent;
+  border-bottom: 3px solid var(--primary-color);
 }
-html body .modal .modal-content.modal-login form .form-element button[type=submit] {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 50px;
-  padding: 10px;
-  aspect-ratio: 1/1;
-  border-radius: 50%;
-  overflow: hidden;
-  background: var(--secondary-color);
+html body #dynamica .modal .modal-content.modal-login form .form-element #authButton {
+  position: relative;
+  font-size: 28px;
+  width: 100%;
+  font-weight: 700;
+  border-radius: 7px;
+  padding: 10px 20px;
+  background: transparent;
+  background: var(--primary-color);
   cursor: pointer;
+  overflow: hidden;
 }
-html body .modal .modal-content.modal-login form .form-element button[type=submit] svg {
-  fill: white;
+html body #dynamica .modal .modal-content.modal-login form .form-element #authButton span {
+  color: black;
+  z-index: 1;
 }
-html body .modal .modal-content.modal-login form .form-element:has(#authButton) {
+html body #dynamica .modal .modal-content.modal-login form .form-element:has(#authButton) {
   margin-top: auto;
 }
-html body #modalLoading {
+html body #dynamica .modal .modal-content.modal-notifications {
+  padding: 25px 5px 10px;
+  max-width: 580px;
+  max-height: 750px;
+}
+html body #dynamica .modal .spoiler {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: transparent;
+  cursor: pointer;
+  animation: fadeIn 0.2s ease-in-out forwards;
+}
+html body #dynamica .modal .spoiler.hidden {
+  animation: fadeOut 0.2s ease-in-out forwards;
+}
+html body #dynamica #modalLoading {
   animation: none;
 }
-html body #modalLoading img {
+html body #dynamica #modalLoading img {
   height: 70px;
   animation: rotate 1.5s linear infinite;
-}
-html body #dynamica {
-  display: flex;
-  min-height: 100vh;
 }
 html body #dynamica .layout {
   display: flex;
@@ -673,6 +531,10 @@ html body #dynamica .layout .left-menu__container .general-navigation__container
 html body #dynamica .layout .left-menu__container .user-navigation__container nav ul li .nav-item:hover {
   background-color: rgba(0, 0, 0, 0.07);
 }
+html body #dynamica .layout .left-menu__container .general-navigation__container nav ul li .nav-item.active-nav-item,
+html body #dynamica .layout .left-menu__container .user-navigation__container nav ul li .nav-item.active-nav-item {
+  color: var(--primary-color);
+}
 html body #dynamica .layout .left-menu__container .general-navigation__container nav ul li .message,
 html body #dynamica .layout .left-menu__container .user-navigation__container nav ul li .message {
   top: 50%;
@@ -692,6 +554,101 @@ html body #dynamica .layout .left-menu__container .user-navigation__container na
   left: 70px;
   opacity: 1;
 }
+html body #dynamica .layout .module-documents {
+  width: 100%;
+}
+html body #dynamica .layout .module-documents .module-body {
+  width: 100%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+html body #dynamica .layout .module-documents .module-body .document {
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+  border: 1px solid var(--background-color);
+  border-radius: 10px;
+  gap: 10px;
+  background-color: #ffffff;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: transform 150ms ease, background-color 150ms ease;
+}
+html body #dynamica .layout .module-documents .module-body .document .info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+html body #dynamica .layout .module-documents .module-body .document .info .document-status {
+  border-radius: 35px;
+  padding: 4px 0;
+  width: 100px;
+  text-align: center;
+  font-weight: 600;
+  align-items: center;
+}
+html body #dynamica .layout .module-documents .module-body .document .info .document-status.status-end {
+  background-color: rgba(255, 0, 0, 0.15);
+}
+html body #dynamica .layout .module-documents .module-body .document .info .document-status.status-soon {
+  background-color: rgba(255, 255, 0, 0.15);
+}
+html body #dynamica .layout .module-documents .module-body .document .info .document-status.status-active {
+  background-color: rgba(0, 255, 0, 0.15);
+}
+html body #dynamica .layout .module-documents .module-body .document span,
+html body #dynamica .layout .module-documents .module-body .document div {
+  font-size: 14px;
+  user-select: none;
+}
+html body #dynamica .layout .module-documents .module-body .document:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  transform: translateY(-2px);
+}
+html body #dynamica .layout .module-notifications .module-body {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  overflow: scroll;
+}
+html body #dynamica .layout .module-notifications .module-body .notification {
+  border-radius: 10px;
+  padding: 10px 15px;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0);
+  border: 1px solid var(--background-color);
+  transition: transform 150ms ease, background-color 150ms ease;
+}
+html body #dynamica .layout .module-notifications .module-body .notification .title {
+  font-size: 18px;
+  font-weight: bold;
+}
+html body #dynamica .layout .module-notifications .module-body .notification .date {
+  font-size: 14px;
+  margin-top: 5px;
+  font-weight: 400;
+  opacity: 0.5;
+}
+html body #dynamica .layout .module-notifications .module-body .notification:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  transform: translateY(-2px);
+}
+html body #dynamica .layout .module-notifications .module-body::-webkit-scrollbar {
+  z-index: 10;
+  width: 10px;
+  height: 10px;
+}
+html body #dynamica .layout .module-notifications .module-body::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  transition: background-color 150ms ease;
+}
+html body #dynamica .layout .module-notifications .module-body::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+}
 html body #dynamica .layout .header-wrapper {
   display: flex;
   flex-direction: column;
@@ -708,7 +665,7 @@ html body #dynamica .layout .header-wrapper::before, html body #dynamica .layout
   height: 95px;
   background: var(--secondary-color);
   position: absolute;
-  top: -2px;
+  top: -0.7px;
   width: 35.75px;
 }
 html body #dynamica .layout .header-wrapper::before {
@@ -750,12 +707,14 @@ html body #dynamica .layout .header-wrapper header nav ul {
 html body #dynamica .layout .header-wrapper header nav ul li a {
   text-decoration: none;
   font-size: 20px;
-  color: #d5d5d5;
+  color: var(--background-color);
   font-family: GrtskTera, sans-serif;
-  font-weight: 600;
   transition: color 150ms ease;
 }
 html body #dynamica .layout .header-wrapper header nav ul li a:hover {
+  color: var(--primary-color);
+}
+html body #dynamica .layout .header-wrapper header nav ul li a.active-nav-item {
   color: var(--primary-color);
 }
 html body #dynamica .layout .header-wrapper header .profile-container {
@@ -845,6 +804,9 @@ html body #dynamica .layout .footer-wrapper footer .nav .nav-item a {
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);
   font-weight: 400;
 }
+html body #dynamica .layout .footer-wrapper footer .nav .nav-item.active-nav-item {
+  color: var(--primary-color);
+}
 html body #dynamica .layout .footer-wrapper footer .sep {
   border-bottom: 1px solid rgb(255, 255, 255);
   margin-top: 11px;
@@ -891,9 +853,9 @@ html body #dynamica .layout main .page {
   flex-direction: column;
   max-width: 1600px;
   margin: 0 auto;
-  padding: 7px 12px;
+  padding: 20px 5px;
 }
-html body #dynamica .layout main .page.page-landing, html body #dynamica .layout main .page.page-feed, html body #dynamica .layout main .page.page-admin {
+html body #dynamica .layout main .page.page-landing, html body #dynamica .layout main .page.page-admin {
   max-width: unset;
   padding: 0;
   margin: 0;
@@ -901,11 +863,13 @@ html body #dynamica .layout main .page.page-landing, html body #dynamica .layout
 html body #dynamica .layout main .page .page-header {
   display: flex;
   flex-direction: column;
+  padding: 0 15px;
 }
 html body #dynamica .layout main .page .page-header .page-title {
   font-family: "GrtskTera", sans-serif;
   font-weight: 700;
   font-style: italic;
+  text-align: left;
   font-size: 22px;
 }
 html body #dynamica .layout main .page.page-landing .landing-module-wide {
@@ -1104,15 +1068,15 @@ html body #dynamica .layout main .page.page-landing .content .section-form form 
 }
 html body #dynamica .layout main .page.page-feed {
   display: flex;
-  align-items: center;
-  padding: 5px;
 }
 html body #dynamica .layout main .page.page-feed .feed-tiles {
   display: flex;
   flex-direction: column;
-  margin-top: 15px;
+  padding: 15px;
+  background: #FFFFFF;
+  border-radius: 32px;
+  margin-top: 20px;
   gap: 13px;
-  max-width: 520px;
   width: 100%;
 }
 html body #dynamica .layout main .page.page-feed .feed-tiles .feed-tile__container {
@@ -1121,22 +1085,34 @@ html body #dynamica .layout main .page.page-feed .feed-tiles .feed-tile__contain
   justify-content: center;
 }
 html body #dynamica .layout main .page.page-feed .feed-tiles .feed-tile__container .feed-tile {
-  background: #ffffff;
+  background: var(--background-color);
   border-radius: 20px;
   width: 100%;
-  background: var(--secondary-color);
-  box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.1);
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
 }
 html body #dynamica .layout main .page.page-feed .feed-tiles .feed-tile__container .feed-tile:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  background: #FFFFFF;
+  filter: drop-shadow(0px 2px 10px rgba(106, 82, 117, 0.25));
 }
 html body #dynamica .layout main .page.page-feed .feed-tiles .feed-tile__container .feed-tile.pinned {
   background: var(--primary-color);
+}
+html body #dynamica .layout main .page.page-feed .feed-tiles .feed-tile__container .feed-tile .feed-tile__image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  margin-top: 12px;
+  padding: 10px;
+}
+html body #dynamica .layout main .page.page-feed .feed-tiles .feed-tile__container .feed-tile .feed-tile__image img {
+  width: 100%;
+  border-radius: 15px;
+  object-fit: cover;
 }
 html body #dynamica .layout main .page.page-feed .feed-tiles .feed-tile__container .feed-tile .feed-tile__header {
   display: flex;
@@ -1144,7 +1120,7 @@ html body #dynamica .layout main .page.page-feed .feed-tiles .feed-tile__contain
   padding: 9px 13px 0 13px;
 }
 html body #dynamica .layout main .page.page-feed .feed-tiles .feed-tile__container .feed-tile .feed-tile__header span {
-  color: #F1F2F2;
+  color: var(--secondary-color);
   font-size: 15px;
 }
 html body #dynamica .layout main .page.page-feed .feed-tiles .feed-tile__container .feed-tile .feed-tile__header .feed-tile__title {
@@ -1154,16 +1130,6 @@ html body #dynamica .layout main .page.page-feed .feed-tiles .feed-tile__contain
   margin-top: 11px;
   font-weight: 300;
   font-size: 12px;
-}
-html body #dynamica .layout main .page.page-feed .feed-tiles .feed-tile__container .feed-tile .feed-tile__image {
-  overflow: hidden;
-  margin-top: 12px;
-  border-radius: 15px;
-}
-html body #dynamica .layout main .page.page-feed .feed-tiles .feed-tile__container .feed-tile .feed-tile__image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 }
 html body #dynamica .layout main .page.page-profile .page-header .page-title__district {
   opacity: 0.65;
@@ -1262,7 +1228,9 @@ html body #dynamica .layout main .page.page-admin .content {
 html body #dynamica .layout main .page.page-contacts .filters-container {
   display: flex;
   flex-direction: column;
+  padding: 0 5px;
   gap: 5px;
+  margin-top: 20px;
 }
 html body #dynamica .layout main .page.page-contacts .filters-container .filters-select {
   width: 100%;
@@ -1273,28 +1241,45 @@ html body #dynamica .layout main .page.page-contacts .filters-container .filters
   position: relative;
 }
 html body #dynamica .layout main .page.page-contacts .filters-container .filters-select .custom-dropdown {
-  flex: 1;
+  width: 100%;
+  filter: drop-shadow(0px 2px 10px rgba(106, 82, 117, 0.1));
+}
+html body #dynamica .layout main .page.page-contacts .filters-container .filters-select .custom-dropdown:nth-child(1) {
+  z-index: 4;
+}
+html body #dynamica .layout main .page.page-contacts .filters-container .filters-select .custom-dropdown:nth-child(2) {
+  z-index: 3;
+}
+html body #dynamica .layout main .page.page-contacts .filters-container .filters-select .custom-dropdown:nth-child(3) {
+  z-index: 2;
 }
 html body #dynamica .layout main .page.page-contacts .filters-container .filters-search {
   display: flex;
+  position: relative;
   gap: 5px;
   width: 100%;
   max-width: 100%;
+  filter: drop-shadow(0px 2px 10px rgba(106, 82, 117, 0.25));
 }
 html body #dynamica .layout main .page.page-contacts .filters-container .filters-search .filters-search__text {
-  padding: 8px 11px;
-  border-radius: 10px;
-  border: 1px solid #A7A9AB;
-  font-weight: 500;
+  width: 100%;
+  padding: 15px 115px 15px 15px;
+  border-radius: 32px;
+  background: #FFFFFF;
+  font-weight: 600;
   font-size: 16px;
   flex: 1;
+  filter: drop-shadow(0px 2px 10px rgba(106, 82, 117, 0.1));
 }
 html body #dynamica .layout main .page.page-contacts .filters-container .filters-search .filters-search__text::placeholder {
   font-style: italic;
 }
 html body #dynamica .layout main .page.page-contacts .filters-container .filters-search .filters-search__submit {
-  background-color: rgba(90, 176, 88, 0.5);
-  border-radius: 10px;
+  background-color: #acd6ad;
+  position: absolute;
+  height: 100%;
+  right: 0;
+  border-radius: 32px;
   font-style: italic;
   font-size: 16px;
   font-weight: 700;
@@ -1302,6 +1287,9 @@ html body #dynamica .layout main .page.page-contacts .filters-container .filters
 }
 html body #dynamica .layout main .page.page-contacts .employees-container {
   margin-top: 20px;
+  padding: 10px;
+  border-radius: 32px;
+  background: #FFFFFF;
   display: grid;
   grid-template-columns: repeat(1, calc(100% - 0px));
   gap: 7px;
@@ -1311,7 +1299,7 @@ html body #dynamica .layout main .page.page-contacts .employees-container .emplo
   gap: 15px;
   padding: 10px;
   border-radius: 20px;
-  background-color: #FFFFFF;
+  background-color: var(--background-color);
 }
 html body #dynamica .layout main .page.page-contacts .employees-container .employee-card .employee-image {
   height: 100%;
@@ -1558,38 +1546,38 @@ html body #dynamica .layout main .page.page-not-found .content {
   justify-content: center;
 }
 @media (min-width: 768px) {
-  html body .module-documents .module-body {
+  html body #dynamica .layout .module-documents .module-body {
     gap: 5px;
   }
-  html body .module-documents .module-body .document {
+  html body #dynamica .layout .module-documents .module-body .document {
     align-items: center;
     flex-direction: row;
     overflow: hidden;
     gap: 15px;
     padding: 15px 10px;
   }
-  html body .module-documents .module-body .document .document-title {
+  html body #dynamica .layout .module-documents .module-body .document .document-title {
     flex-grow: 1;
     max-width: 70%;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
-  html body .module-documents .module-body .document .info {
+  html body #dynamica .layout .module-documents .module-body .document .info {
     margin-left: auto;
     justify-content: unset;
     padding: 0;
     gap: 7px;
   }
-  html body .module-documents .module-body .document .info .document-status {
+  html body #dynamica .layout .module-documents .module-body .document .info .document-status {
     padding: 5px 0;
     width: 115px;
   }
-  html body .module-documents .module-body .document:hover {
+  html body #dynamica .layout .module-documents .module-body .document:hover {
     background-color: var(--background-color);
   }
-  html body .module-documents .module-body .document span,
-  html body .module-documents .module-body .document div {
+  html body #dynamica .layout .module-documents .module-body .document span,
+  html body #dynamica .layout .module-documents .module-body .document div {
     text-wrap: nowrap;
     font-size: 18px;
     user-select: none;
@@ -1702,10 +1690,6 @@ html body #dynamica .layout main .page.page-not-found .content {
     padding: 11px 57px;
     font-size: 40px;
   }
-  html body #dynamica .layout main .page.page-feed {
-    padding: 0;
-    position: relative;
-  }
   html body #dynamica .layout main .page.page-feed .rectangle {
     position: absolute;
     background: var(--secondary-color);
@@ -1719,9 +1703,7 @@ html body #dynamica .layout main .page.page-not-found .content {
     z-index: 2;
   }
   html body #dynamica .layout main .page.page-feed .feed-tiles {
-    max-width: 1350px;
-    margin-top: 82px;
-    padding: 0 15px 10px 15px;
+    margin-top: 30px;
     display: grid;
     grid-template-columns: repeat(2, calc(50% - 10px));
     gap: 20px;
@@ -1730,44 +1712,6 @@ html body #dynamica .layout main .page.page-not-found .content {
   html body #dynamica .layout main .page.page-feed .feed-tiles .feed-tile__container {
     margin-top: 0;
     max-width: none;
-  }
-  html body #dynamica .layout main .page.page-feed .feed-tiles .feed-tile__container:first-child {
-    grid-column: 1/-1;
-    width: 100%;
-    transform: translateY(0);
-  }
-  html body #dynamica .layout main .page.page-feed .feed-tiles .feed-tile__container:first-child .feed-tile {
-    width: 100%;
-    display: flex;
-    flex-direction: row-reverse;
-    gap: 25px;
-    border-radius: 33px;
-    background: var(--primary-color) !important;
-    align-items: center;
-  }
-  html body #dynamica .layout main .page.page-feed .feed-tiles .feed-tile__container:first-child .feed-tile .feed-tile__header {
-    padding: 14px 43px 13px 0;
-    height: 100%;
-    flex: 6;
-  }
-  html body #dynamica .layout main .page.page-feed .feed-tiles .feed-tile__container:first-child .feed-tile .feed-tile__header .feed-tile__title {
-    font-size: 24px;
-  }
-  html body #dynamica .layout main .page.page-feed .feed-tiles .feed-tile__container:first-child .feed-tile .feed-tile__header .feed-tile__description {
-    font-size: 18px;
-  }
-  html body #dynamica .layout main .page.page-feed .feed-tiles .feed-tile__container:first-child .feed-tile .feed-tile__header .feed-tile__date {
-    font-size: 16px;
-    margin-top: 21px;
-  }
-  html body #dynamica .layout main .page.page-feed .feed-tiles .feed-tile__container:first-child .feed-tile .feed-tile__image {
-    height: 100%;
-    border-radius: 33px;
-    display: flex;
-    flex: 5;
-  }
-  html body #dynamica .layout main .page.page-feed .feed-tiles .feed-tile__container .feed-tile {
-    flex-direction: column-reverse;
   }
   html body #dynamica .layout main .page.page-feed .feed-tiles .feed-tile__container .feed-tile.pinned {
     background: var(--secondary-color);
@@ -1814,14 +1758,18 @@ html body #dynamica .layout main .page.page-not-found .content {
   html body #dynamica .layout main .page.page-contacts .filters-container {
     gap: 10px;
   }
-  html body #dynamica .layout main .page.page-contacts .filters-container .filters-select {
-    gap: 10px;
+  html body #dynamica .layout main .page.page-contacts .filters-container .filters-select .custom-dropdown {
+    flex: 1;
+    z-index: 1;
+  }
+  html body #dynamica .layout main .page.page-contacts .filters-container .filters-select .custom-dropdown .custom-dropdown__toggle {
+    height: 100%;
   }
   html body #dynamica .layout main .page.page-contacts .filters-container .filters-search {
     gap: 10px;
   }
   html body #dynamica .layout main .page.page-contacts .filters-container .filters-search .filters-search__text {
-    padding: 15px 18px;
+    padding: 17px 22px;
     font-size: 18px;
   }
   html body #dynamica .layout main .page.page-contacts .filters-container .filters-search .filters-search__submit {
@@ -1875,28 +1823,28 @@ html body #dynamica .layout main .page.page-not-found .content {
   }
 }
 @media (min-width: 1024px) {
-  html body .module-documents .module-body .document {
+  html body #dynamica .layout .module-documents .module-body .document {
     align-items: center;
     flex-direction: row;
     overflow: hidden;
     gap: 15px;
     padding: 17px 22px;
   }
-  html body .module-documents .module-body .document .info {
+  html body #dynamica .layout .module-documents .module-body .document .info {
     margin-left: auto;
     justify-content: unset;
     gap: 12px;
   }
-  html body .module-documents .module-body .document .info .document-status {
+  html body #dynamica .layout .module-documents .module-body .document .info .document-status {
     padding: 5px 0;
     font-size: 18px;
     width: 120px;
   }
-  html body .module-documents .module-body .document:hover {
+  html body #dynamica .layout .module-documents .module-body .document:hover {
     background-color: var(--background-color);
   }
-  html body .module-documents .module-body .document span,
-  html body .module-documents .module-body .document div {
+  html body #dynamica .layout .module-documents .module-body .document span,
+  html body #dynamica .layout .module-documents .module-body .document div {
     font-size: 22px;
   }
   html body #dynamica .layout .header-wrapper {
@@ -1908,21 +1856,19 @@ html body #dynamica .layout main .page.page-not-found .content {
   html body #dynamica .layout .header-wrapper header {
     padding: 15px 0;
   }
-  html body #dynamica .layout .header-wrapper header #logo {
-    padding: 5px 0;
-  }
   html body #dynamica .layout .header-wrapper header #burger {
     display: none;
   }
   html body #dynamica .layout .header-wrapper header nav {
     display: flex;
+    margin-left: 20px;
   }
   html body #dynamica .layout .header-wrapper header nav ul li {
     display: flex;
     align-items: center;
   }
   html body #dynamica .layout .header-wrapper header nav ul li .nav-item {
-    font-size: 16px;
+    font-size: 14px;
   }
   html body #dynamica .layout .header-wrapper header .profile-container {
     display: flex;
@@ -2095,6 +2041,10 @@ html body #dynamica .layout main .page.page-not-found .content {
     border-radius: 16px;
     font-size: 27px;
   }
+  html body #dynamica .layout main .page.page-feed .feed-tiles {
+    grid-template-columns: repeat(3, calc(33.3333333333% - 13.3333333333px));
+    gap: 20px;
+  }
   html body #dynamica .layout main .page.page-profile .page-header .page-title__district {
     font-size: 18px;
   }
@@ -2129,7 +2079,7 @@ html body #dynamica .layout main .page.page-not-found .content {
     font-size: 24px;
   }
   html body #dynamica .layout main .page.page-contacts .filters-container {
-    flex-direction: row;
+    margin-top: 35px;
     gap: 10px;
   }
   html body #dynamica .layout main .page.page-contacts .filters-container .filters-select {
@@ -2141,10 +2091,7 @@ html body #dynamica .layout main .page.page-not-found .content {
     height: 100%;
   }
   html body #dynamica .layout main .page.page-contacts .filters-container .filters-search .filters-search__text {
-    padding: 12px 27px;
-  }
-  html body #dynamica .layout main .page.page-contacts .filters-container .filters-search .filters-search__submit {
-    padding: 12px 27px;
+    padding: 22px 25px;
   }
   html body #dynamica .layout main .page.page-contacts .employees-container {
     margin-top: 35px;
@@ -2213,11 +2160,14 @@ html body #dynamica .layout main .page.page-not-found .content {
   html body #dynamica .layout .header-wrapper::before, html body #dynamica .layout .header-wrapper::after {
     top: 33px;
   }
+  html body #dynamica .layout .header-wrapper header nav {
+    margin-left: 50px;
+  }
   html body #dynamica .layout .header-wrapper header nav ul {
-    gap: 35px;
+    gap: 30px;
   }
   html body #dynamica .layout .header-wrapper header nav ul li .nav-item {
-    font-size: 17px;
+    font-size: 16px;
   }
   html body #dynamica .layout .header-wrapper header .profile-container {
     padding: 5px 0;
@@ -2239,7 +2189,7 @@ html body #dynamica .layout main .page.page-not-found .content {
     padding: 37px 0;
   }
   html body #dynamica .layout main .page .page-header .page-title {
-    font-size: 38px;
+    font-size: 42px;
   }
   html body #dynamica .layout main .page.page-landing .landing-module-wide .image-container {
     margin-top: 50px;
@@ -2342,10 +2292,6 @@ html body #dynamica .layout main .page.page-not-found .content {
     padding: 11px 48px;
     font-size: 32px;
   }
-  html body #dynamica .layout main .page.page-feed {
-    padding: 0;
-    position: relative;
-  }
   html body #dynamica .layout main .page.page-feed .rectangle {
     position: absolute;
     background: var(--secondary-color);
@@ -2359,27 +2305,8 @@ html body #dynamica .layout main .page.page-not-found .content {
     z-index: 2;
   }
   html body #dynamica .layout main .page.page-feed .feed-tiles {
-    grid-template-columns: repeat(3, calc(33.3333333333% - 26.6666666667px));
-    gap: 40px;
-  }
-  html body #dynamica .layout main .page.page-feed .feed-tiles .feed-tile__container:first-child .feed-tile {
-    gap: 56px;
-  }
-  html body #dynamica .layout main .page.page-feed .feed-tiles .feed-tile__container:first-child .feed-tile .feed-tile__header {
-    padding: 27px 47px 36px 0;
-    height: 100%;
-    flex: 6;
-  }
-  html body #dynamica .layout main .page.page-feed .feed-tiles .feed-tile__container:first-child .feed-tile .feed-tile__header .feed-tile__title {
-    font-size: 36px;
-  }
-  html body #dynamica .layout main .page.page-feed .feed-tiles .feed-tile__container:first-child .feed-tile .feed-tile__header .feed-tile__description {
-    margin-top: 12px;
-    font-size: 24px;
-  }
-  html body #dynamica .layout main .page.page-feed .feed-tiles .feed-tile__container:first-child .feed-tile .feed-tile__header .feed-tile__date {
-    font-size: 20px;
-    margin-top: 63px;
+    grid-template-columns: repeat(4, calc(25% - 18.75px));
+    gap: 25px;
   }
   html body #dynamica .layout main .page.page-feed .feed-tiles .feed-tile__container .feed-tile .feed-tile__header {
     padding: 28px 18px;
@@ -2419,6 +2346,15 @@ html body #dynamica .layout main .page.page-not-found .content {
   }
   html body #dynamica .layout main .page.page-profile .widgets .action {
     font-size: 26px;
+  }
+  html body #dynamica .layout main .page.page-contacts .filters-container {
+    flex-direction: row;
+  }
+  html body #dynamica .layout main .page.page-contacts .filters-container .filters-select .custom-dropdown .custom-dropdown__toggle {
+    height: 100%;
+  }
+  html body #dynamica .layout main .page.page-contacts .filters-container .filters-search .filters-search__text {
+    padding: 22px 25px;
   }
   html body #dynamica .layout main .page.page-contacts .employees-container {
     margin-top: 30px;

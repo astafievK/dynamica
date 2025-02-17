@@ -1,4 +1,6 @@
 import {FC, useEffect} from "react";
+import {motion} from "framer-motion";
+import {pageAnimation} from "../../motionSettins.ts";
 
 export const PageNotFound: FC = () => {
     useEffect(() => {
@@ -7,11 +9,16 @@ export const PageNotFound: FC = () => {
 
     return (
         <>
-            <div className="page page-not-found">
-                <div className="content">
-                    <span>Страница не найдена :(</span>
+            <motion.div
+                key={"not-found"}
+                initial={{opacity: 0}}
+                animate={{opacity: 1}}
+                transition={pageAnimation.transition}
+                className="page page-not-found">
+                <div className="page-header">
+                    <span className="page-title page-title__name">Страницы не существует :(</span>
                 </div>
-            </div>
+            </motion.div>
         </>
     );
-};
+}
