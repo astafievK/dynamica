@@ -44,9 +44,7 @@ export const DocumentProgressConsistently: FC = () => {
                             >
                                 {point.status === "В процессе" && <div className="pulse"></div>}
                             </motion.div>
-                            <div
-                                className="progress-label"
-                            >
+                            <div className="progress-label">
                                 <span className="progress-label__division">{point.division}</span>
                                 <span className="progress-label__person">{point.person}</span>
                             </div>

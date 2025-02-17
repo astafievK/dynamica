@@ -196,11 +196,153 @@ html body {
 html body.scroll-locked {
   overflow: hidden;
 }
-html body #dynamica {
-  display: flex;
-  min-height: 100vh;
+html body .custom-dropdown {
+  padding: 10px;
+  position: relative;
+  border-radius: 25px;
+  width: 240px;
+  background-color: #FFFFFF;
 }
-html body #dynamica #mobileMenu {
+html body .custom-dropdown__search {
+  width: 100%;
+  background-color: var(--background-color);
+  border-radius: 12px;
+  height: 100%;
+  padding: 12px;
+  font-weight: 600;
+  font-size: 16px;
+  box-sizing: border-box;
+  outline: none;
+}
+html body .custom-dropdown__menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  margin-top: 5px;
+  background-color: #FFFFFF;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0 0 30px -16px rgb(66, 68, 90);
+  -moz-box-shadow: 0 0 30px -16px rgb(66, 68, 90);
+  box-shadow: 0 0 30px -16px rgb(66, 68, 90);
+  border-radius: 25px;
+  z-index: 10;
+  list-style: none;
+  padding: 10px;
+}
+html body .custom-dropdown__menu .custom-dropdown__item {
+  padding: 15px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 12px;
+  font-weight: 500;
+  color: #333;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.3s ease;
+}
+html body .custom-dropdown__menu .custom-dropdown__item:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+html body .module-documents {
+  width: 100%;
+  overflow: scroll;
+}
+html body .module-documents .module-body {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+html body .module-documents .module-body .document {
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+  border: 1px solid var(--background-color);
+  border-radius: 10px;
+  gap: 10px;
+  background-color: #ffffff;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: transform 150ms ease, background-color 150ms ease;
+}
+html body .module-documents .module-body .document .info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+html body .module-documents .module-body .document .info .document-status {
+  border-radius: 35px;
+  padding: 4px 0;
+  width: 100px;
+  text-align: center;
+  font-weight: 600;
+  align-items: center;
+}
+html body .module-documents .module-body .document .info .document-status.status-end {
+  background-color: rgba(255, 0, 0, 0.15);
+}
+html body .module-documents .module-body .document .info .document-status.status-soon {
+  background-color: rgba(255, 255, 0, 0.15);
+}
+html body .module-documents .module-body .document .info .document-status.status-active {
+  background-color: rgba(0, 255, 0, 0.15);
+}
+html body .module-documents .module-body .document span,
+html body .module-documents .module-body .document div {
+  font-size: 14px;
+  user-select: none;
+}
+html body .module-documents .module-body .document:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  transform: translateY(-2px);
+}
+html body .module-notifications {
+  overflow: scroll;
+}
+html body .module-notifications .module-body {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  overflow: scroll;
+}
+html body .module-notifications .module-body .notification {
+  border-radius: 10px;
+  padding: 10px 15px;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0);
+  border: 1px solid var(--background-color);
+  transition: transform 150ms ease, background-color 150ms ease;
+}
+html body .module-notifications .module-body .notification .title {
+  font-size: 18px;
+  font-weight: bold;
+}
+html body .module-notifications .module-body .notification .date {
+  font-size: 14px;
+  margin-top: 5px;
+  font-weight: 400;
+  opacity: 0.5;
+}
+html body .module-notifications .module-body .notification:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  transform: translateY(-2px);
+}
+html body .module-notifications .module-body::-webkit-scrollbar {
+  z-index: 10;
+  width: 10px;
+  height: 10px;
+}
+html body .module-notifications .module-body::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  transition: background-color 150ms ease;
+}
+html body .module-notifications .module-body::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+html body #mobileMenu {
   position: fixed;
   display: flex;
   flex-direction: column;
@@ -210,10 +352,10 @@ html body #dynamica #mobileMenu {
   height: 100%;
   z-index: 10002;
 }
-html body #dynamica #mobileMenu.hidden .modal-content {
+html body #mobileMenu.hidden .modal-content {
   animation-name: moveSlideUp;
 }
-html body #dynamica #mobileMenu .content {
+html body #mobileMenu .content {
   background: var(--secondary-color);
   display: flex;
   flex-direction: column;
@@ -223,29 +365,29 @@ html body #dynamica #mobileMenu .content {
   animation-timing-function: cubic-bezier(0.36, 0.67, 0.43, 0.99);
   z-index: 2;
 }
-html body #dynamica #mobileMenu .content.hidden {
+html body #mobileMenu .content.hidden {
   animation: moveSlideUp 0.25s forwards;
   animation-timing-function: cubic-bezier(0.36, 0.67, 0.43, 0.99);
 }
-html body #dynamica #mobileMenu .content .header {
+html body #mobileMenu .content .header {
   display: flex;
   align-items: center;
   padding: 12px 20px;
   height: 56px;
   justify-content: space-between;
 }
-html body #dynamica #mobileMenu .content .header .logo {
+html body #mobileMenu .content .header .logo {
   display: flex;
   align-items: center;
   height: 100%;
 }
-html body #dynamica #mobileMenu .content .header .logo img {
+html body #mobileMenu .content .header .logo img {
   height: 100%;
 }
-html body #dynamica #mobileMenu .content .header .cross {
+html body #mobileMenu .content .header .cross {
   width: 35px;
 }
-html body #dynamica #mobileMenu .content .body {
+html body #mobileMenu .content .body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -259,24 +401,24 @@ html body #dynamica #mobileMenu .content .body {
   animation: modalMenuDown 0.25s forwards;
   animation-timing-function: cubic-bezier(0.36, 0.67, 0.43, 0.99);
 }
-html body #dynamica #mobileMenu .content .body.visible {
+html body #mobileMenu .content .body.visible {
   opacity: 1;
   transform: translateY(0);
   animation: modalMenuUp 0.25s forwards;
   animation-timing-function: cubic-bezier(0.36, 0.67, 0.43, 0.99);
 }
-html body #dynamica #mobileMenu .content .body nav {
+html body #mobileMenu .content .body nav {
   width: 100%;
   display: flex;
   flex-direction: column;
   list-style: none;
   padding: 5px 15px;
 }
-html body #dynamica #mobileMenu .content .body nav .nav-item {
+html body #mobileMenu .content .body nav .nav-item {
   display: flex;
   border-bottom: 0.6px solid var(--additional-color);
 }
-html body #dynamica #mobileMenu .content .body nav .nav-item a {
+html body #mobileMenu .content .body nav .nav-item a {
   width: 100%;
   padding: 14px 10px;
   text-decoration: none;
@@ -284,10 +426,10 @@ html body #dynamica #mobileMenu .content .body nav .nav-item a {
   font-family: "GrtskTera", sans-serif;
   color: var(--font-color);
 }
-html body #dynamica #mobileMenu .content .body nav .nav-item a.active-nav-item {
+html body #mobileMenu .content .body nav .nav-item a.active-nav-item {
   color: var(--primary-color);
 }
-html body #dynamica #mobileMenu .content .body .logout-btn {
+html body #mobileMenu .content .body .logout-btn {
   width: 100%;
   padding: 20px 10px;
   text-decoration: none;
@@ -298,7 +440,7 @@ html body #dynamica #mobileMenu .content .body .logout-btn {
   color: rgba(255, 0, 0, 0.45);
   background-color: transparent;
 }
-html body #dynamica #mobileMenu .spoiler {
+html body #mobileMenu .spoiler {
   position: fixed;
   top: 0;
   left: 0;
@@ -308,10 +450,10 @@ html body #dynamica #mobileMenu .spoiler {
   cursor: pointer;
   animation: fadeIn 0.35s ease-out forwards;
 }
-html body #dynamica #mobileMenu .spoiler.hidden {
+html body #mobileMenu .spoiler.hidden {
   animation: fadeOut 0.35s ease-out forwards;
 }
-html body #dynamica .modal {
+html body .modal {
   position: fixed;
   top: 0;
   left: 0;
@@ -326,96 +468,94 @@ html body #dynamica .modal {
   z-index: 10001;
   animation: fadeIn 0.2s ease-in-out forwards;
 }
-html body #dynamica .modal.hidden {
+html body .modal.hidden {
   animation: fadeOut 0.2s ease-in-out forwards;
 }
-html body #dynamica .modal.hidden .modal-content {
+html body .modal.hidden .modal-content {
   animation-name: slideDown;
 }
-html body #dynamica .modal .modal-content {
+html body .modal .modal-content {
   display: flex;
   flex-direction: column;
-  border-radius: 25px;
-  width: 95vw;
-  height: 95vh;
+  gap: 20px;
+  width: 100%;
+  height: 100%;
   z-index: 2;
-  padding: 40px;
+  padding: 20px;
   background-color: #ffffff;
   animation: modalSlideUp 0.3s forwards;
 }
-html body #dynamica .modal .modal-content.hidden {
+html body .modal .modal-content.hidden {
   animation: modalSlideDown 0.3s forwards;
 }
-html body #dynamica .modal .modal-content h1 {
+html body .modal .modal-content .modal-title {
+  font-family: "GrtskTera", sans-serif;
   text-align: center;
+  font-size: 24px;
 }
-html body #dynamica .modal .modal-content.modal-login {
-  max-width: 400px;
-  max-height: 550px;
+html body .modal .modal-content.modal-login {
+  height: 100%;
+  width: 100%;
 }
-html body #dynamica .modal .modal-content.modal-login form {
+html body .modal .modal-content.modal-login form {
   display: flex;
-  flex-grow: 1;
   flex-direction: column;
   width: 100%;
   height: 100%;
-  margin-top: 45px;
-  gap: 15px;
 }
-html body #dynamica .modal .modal-content.modal-login form .form-element {
+html body .modal .modal-content.modal-login form .form-element {
   display: flex;
+  flex-direction: column;
+  gap: 7px;
   width: 100%;
 }
-html body #dynamica .modal .modal-content.modal-login form .form-element input[type=text] {
-  font-size: 28px;
-  width: 100%;
-  padding: 10px 20px;
-  background: transparent;
-  border-bottom: 3px solid var(--primary-color);
+html body .modal .modal-content.modal-login form .form-element:not(:first-child) {
+  margin-top: 15px;
 }
-html body #dynamica .modal .modal-content.modal-login form .form-element #authButton {
-  position: relative;
-  font-size: 28px;
+html body .modal .modal-content.modal-login form .form-element.form-elem__submit {
+  align-items: flex-end;
+}
+html body .modal .modal-content.modal-login form .form-element label {
+  padding: 0 5px;
+  font-weight: 600;
+  font-size: 16px;
+}
+html body .modal .modal-content.modal-login form .form-element input[type=text],
+html body .modal .modal-content.modal-login form .form-element input[type=password] {
+  font-size: 21px;
   width: 100%;
-  font-weight: 700;
-  border-radius: 7px;
-  padding: 10px 20px;
-  background: transparent;
-  background: var(--primary-color);
-  cursor: pointer;
+  padding: 15px 20px;
+  border-radius: 32px;
+  background: var(--background-color);
+}
+html body .modal .modal-content.modal-login form .form-element button[type=submit] {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  padding: 10px;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
   overflow: hidden;
+  background: var(--secondary-color);
+  cursor: pointer;
 }
-html body #dynamica .modal .modal-content.modal-login form .form-element #authButton span {
-  color: black;
-  z-index: 1;
+html body .modal .modal-content.modal-login form .form-element button[type=submit] svg {
+  fill: white;
 }
-html body #dynamica .modal .modal-content.modal-login form .form-element:has(#authButton) {
+html body .modal .modal-content.modal-login form .form-element:has(#authButton) {
   margin-top: auto;
 }
-html body #dynamica .modal .modal-content.modal-notifications {
-  padding: 25px 5px 10px;
-  max-width: 580px;
-  max-height: 750px;
-}
-html body #dynamica .modal .spoiler {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: transparent;
-  cursor: pointer;
-  animation: fadeIn 0.2s ease-in-out forwards;
-}
-html body #dynamica .modal .spoiler.hidden {
-  animation: fadeOut 0.2s ease-in-out forwards;
-}
-html body #dynamica #modalLoading {
+html body #modalLoading {
   animation: none;
 }
-html body #dynamica #modalLoading img {
+html body #modalLoading img {
   height: 70px;
   animation: rotate 1.5s linear infinite;
+}
+html body #dynamica {
+  display: flex;
+  min-height: 100vh;
 }
 html body #dynamica .layout {
   display: flex;
@@ -551,149 +691,6 @@ html body #dynamica .layout .left-menu__container .general-navigation__container
 html body #dynamica .layout .left-menu__container .user-navigation__container nav ul li:hover .message {
   left: 70px;
   opacity: 1;
-}
-html body #dynamica .layout .custom-dropdown {
-  padding: 10px;
-  position: relative;
-  border-radius: 25px;
-  width: 240px;
-  background-color: #FFFFFF;
-}
-html body #dynamica .layout .custom-dropdown__search {
-  width: 100%;
-  background-color: var(--background-color);
-  border-radius: 12px;
-  height: 100%;
-  padding: 12px;
-  font-weight: 600;
-  font-size: 16px;
-  box-sizing: border-box;
-  outline: none;
-}
-html body #dynamica .layout .custom-dropdown__menu {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  margin-top: 5px;
-  background-color: #FFFFFF;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
-  -webkit-box-shadow: 0 0 30px -16px rgb(66, 68, 90);
-  -moz-box-shadow: 0 0 30px -16px rgb(66, 68, 90);
-  box-shadow: 0 0 30px -16px rgb(66, 68, 90);
-  border-radius: 25px;
-  z-index: 10;
-  list-style: none;
-  padding: 10px;
-}
-html body #dynamica .layout .custom-dropdown__menu .custom-dropdown__item {
-  padding: 15px 20px;
-  cursor: pointer;
-  font-size: 16px;
-  border-radius: 12px;
-  font-weight: 500;
-  color: #333;
-  display: flex;
-  align-items: center;
-  transition: background-color 0.3s ease;
-}
-html body #dynamica .layout .custom-dropdown__menu .custom-dropdown__item:hover {
-  background-color: rgba(0, 0, 0, 0.05);
-}
-html body #dynamica .layout .module-documents {
-  width: 100%;
-}
-html body #dynamica .layout .module-documents .module-body {
-  width: 100%;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-}
-html body #dynamica .layout .module-documents .module-body .document {
-  display: flex;
-  overflow: hidden;
-  flex-direction: column;
-  border: 1px solid var(--background-color);
-  border-radius: 10px;
-  gap: 10px;
-  background-color: #ffffff;
-  padding: 10px 15px;
-  cursor: pointer;
-  transition: transform 150ms ease, background-color 150ms ease;
-}
-html body #dynamica .layout .module-documents .module-body .document .info {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-}
-html body #dynamica .layout .module-documents .module-body .document .info .document-status {
-  border-radius: 35px;
-  padding: 4px 0;
-  width: 100px;
-  text-align: center;
-  font-weight: 600;
-  align-items: center;
-}
-html body #dynamica .layout .module-documents .module-body .document .info .document-status.status-end {
-  background-color: rgba(255, 0, 0, 0.15);
-}
-html body #dynamica .layout .module-documents .module-body .document .info .document-status.status-soon {
-  background-color: rgba(255, 255, 0, 0.15);
-}
-html body #dynamica .layout .module-documents .module-body .document .info .document-status.status-active {
-  background-color: rgba(0, 255, 0, 0.15);
-}
-html body #dynamica .layout .module-documents .module-body .document span,
-html body #dynamica .layout .module-documents .module-body .document div {
-  font-size: 14px;
-  user-select: none;
-}
-html body #dynamica .layout .module-documents .module-body .document:hover {
-  background-color: rgba(0, 0, 0, 0.05);
-  transform: translateY(-2px);
-}
-html body #dynamica .layout .module-notifications .module-body {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  overflow: scroll;
-}
-html body #dynamica .layout .module-notifications .module-body .notification {
-  border-radius: 10px;
-  padding: 10px 15px;
-  cursor: pointer;
-  background-color: rgba(0, 0, 0, 0);
-  border: 1px solid var(--background-color);
-  transition: transform 150ms ease, background-color 150ms ease;
-}
-html body #dynamica .layout .module-notifications .module-body .notification .title {
-  font-size: 18px;
-  font-weight: bold;
-}
-html body #dynamica .layout .module-notifications .module-body .notification .date {
-  font-size: 14px;
-  margin-top: 5px;
-  font-weight: 400;
-  opacity: 0.5;
-}
-html body #dynamica .layout .module-notifications .module-body .notification:hover {
-  background-color: rgba(0, 0, 0, 0.05);
-  transform: translateY(-2px);
-}
-html body #dynamica .layout .module-notifications .module-body::-webkit-scrollbar {
-  z-index: 10;
-  width: 10px;
-  height: 10px;
-}
-html body #dynamica .layout .module-notifications .module-body::-webkit-scrollbar-thumb {
-  background-color: rgba(0, 0, 0, 0.1);
-  border-radius: 15px;
-  transition: background-color 150ms ease;
-}
-html body #dynamica .layout .module-notifications .module-body::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(0, 0, 0, 0.2);
 }
 html body #dynamica .layout .header-wrapper {
   display: flex;
@@ -1561,38 +1558,38 @@ html body #dynamica .layout main .page.page-not-found .content {
   justify-content: center;
 }
 @media (min-width: 768px) {
-  html body #dynamica .layout .module-documents .module-body {
+  html body .module-documents .module-body {
     gap: 5px;
   }
-  html body #dynamica .layout .module-documents .module-body .document {
+  html body .module-documents .module-body .document {
     align-items: center;
     flex-direction: row;
     overflow: hidden;
     gap: 15px;
     padding: 15px 10px;
   }
-  html body #dynamica .layout .module-documents .module-body .document .document-title {
+  html body .module-documents .module-body .document .document-title {
     flex-grow: 1;
     max-width: 70%;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
-  html body #dynamica .layout .module-documents .module-body .document .info {
+  html body .module-documents .module-body .document .info {
     margin-left: auto;
     justify-content: unset;
     padding: 0;
     gap: 7px;
   }
-  html body #dynamica .layout .module-documents .module-body .document .info .document-status {
+  html body .module-documents .module-body .document .info .document-status {
     padding: 5px 0;
     width: 115px;
   }
-  html body #dynamica .layout .module-documents .module-body .document:hover {
+  html body .module-documents .module-body .document:hover {
     background-color: var(--background-color);
   }
-  html body #dynamica .layout .module-documents .module-body .document span,
-  html body #dynamica .layout .module-documents .module-body .document div {
+  html body .module-documents .module-body .document span,
+  html body .module-documents .module-body .document div {
     text-wrap: nowrap;
     font-size: 18px;
     user-select: none;
@@ -1878,28 +1875,28 @@ html body #dynamica .layout main .page.page-not-found .content {
   }
 }
 @media (min-width: 1024px) {
-  html body #dynamica .layout .module-documents .module-body .document {
+  html body .module-documents .module-body .document {
     align-items: center;
     flex-direction: row;
     overflow: hidden;
     gap: 15px;
     padding: 17px 22px;
   }
-  html body #dynamica .layout .module-documents .module-body .document .info {
+  html body .module-documents .module-body .document .info {
     margin-left: auto;
     justify-content: unset;
     gap: 12px;
   }
-  html body #dynamica .layout .module-documents .module-body .document .info .document-status {
+  html body .module-documents .module-body .document .info .document-status {
     padding: 5px 0;
     font-size: 18px;
     width: 120px;
   }
-  html body #dynamica .layout .module-documents .module-body .document:hover {
+  html body .module-documents .module-body .document:hover {
     background-color: var(--background-color);
   }
-  html body #dynamica .layout .module-documents .module-body .document span,
-  html body #dynamica .layout .module-documents .module-body .document div {
+  html body .module-documents .module-body .document span,
+  html body .module-documents .module-body .document div {
     font-size: 22px;
   }
   html body #dynamica .layout .header-wrapper {

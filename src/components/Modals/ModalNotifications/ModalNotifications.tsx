@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from "react";
-import {useAppDispatch, useTypedSelector} from "../../store/hooks/redux.ts";
-import { setIsOpen } from "../../api/slices/modalNotificationsSlice.ts";
-import {ModuleNotifications} from "../ModuleNotifications/ModuleNotifications.tsx";
+import {useAppDispatch, useTypedSelector} from "../../../store/hooks/redux.ts";
+import { setIsOpen } from "../../../api/slices/modalNotificationsSlice.ts";
+import {ModuleNotifications} from "../../ModuleNotifications/ModuleNotifications.tsx";
 
 export const ModalNotifications: FC = () => {
     const dispatch = useAppDispatch();
