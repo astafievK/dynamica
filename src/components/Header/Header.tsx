@@ -1,7 +1,7 @@
 import { FC } from "react";
 import {useAppDispatch, useTypedSelector} from "../../store/hooks/redux";
 import { setIsOpen as setLoginModalOpen } from "../../api/slices/modalLoginSlice.ts";
-import { setIsOpen as setNotificationsModalOpen } from "../../api/slices/modalNotificationsSlice.ts";
+import { setModalNotificationsIsOpen as setNotificationsModalOpen } from "../../api/slices/modalNotificationsSlice.ts";
 import { setIsOpen as setMobileMenuOpen } from "../../api/slices/mobileMenuSlice.ts";
 
 import {NavLink, useNavigate} from "react-router-dom";
@@ -27,10 +27,10 @@ export const Header: FC = () => {
                 <NavLink
                     to="/"
                     id={"logo"}>
-                    <img src="logo.png" alt="динамика"/>
+                    <img loading={"lazy"} src="/logo.png" alt="динамика"/>
                 </NavLink>
 
-                <NavGeneral />
+                <NavGeneral/>
 
                 <div className="profile-container">
                     <div className="profile-wrapper" onClick={handleProfileClick}>

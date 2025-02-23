@@ -1,4 +1,5 @@
 import {FC} from "react";
+import {useRippleEffect} from "../../../../store/hooks/useRippleEffect.ts";
 
 interface IFeedTileProps {
     isPinned?: boolean;
@@ -7,18 +8,22 @@ interface IFeedTileProps {
     date: string;
 }
 
-export const FeedTile: FC<IFeedTileProps> = (props) => {
-    return(
-        <div className={"feed-tile__container"}>
-            <div className={"feed-tile" + (props.isPinned ? " pinned" : "")}>
-                <div className="feed-tile__image">
-                    <img src={"test pic.jpg"} alt={""}/>
-                </div>
-                <div className="feed-tile__header">
-                    <span className="feed-tile__title">{props.title}</span>
-                    <span className="feed-tile__date">{props.date}</span>
-                </div>
+export const FeedTile: FC<IFeedTileProps> = ({ isPinned, title, description, date }) => {
+    const createRipple = useRippleEffect();
+
+    return (
+        <button
+            className={`feed-tile${isPinned ? " pinned" : ""}`}
+            onClick={createRipple}
+        >
+            <div className="feed-tile__image">
+                <img loading="lazy" src="/test pic.jpg" alt="Превью новости" />
             </div>
-        </div>
-    )
-}
+            <div className="feed-tile__info">
+                <span className="feed-tile__title">{title}</span>
+                <span className="feed-tile__date">{date}</span>
+                {description && <span className="feed-tile__description">{description}</span>}
+            </div>
+        </button>
+    );
+};

@@ -7,6 +7,7 @@ import authSlice from "../api/slices/authSlice.ts";
 import modalLoginSlice from "../api/slices/modalLoginSlice.ts";
 import modalNotificationsSlice from "../api/slices/modalNotificationsSlice.ts";
 import mobileMenuSlice from "../api/slices/mobileMenuSlice.ts";
+import scrollLockSlice from "../api/slices/scrollLockSlice.ts";
 
 const persistConfig = {
     key: 'root',
@@ -25,6 +26,7 @@ const rootReducer = combineReducers({
     modalNotificationsReducer: modalNotificationsSlice,
     mobileMenuReducer: mobileMenuSlice,
     auth: authSlice,
+    scrollLock: scrollLockSlice,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -44,6 +46,8 @@ export const setupStore = () => {
 
     return { store, persistor };
 };
+
+export type RootState = ReturnType<typeof store.getState>;
 
 export const { store, persistor } = setupStore();
 export type AppState = ReturnType<typeof rootReducer>;

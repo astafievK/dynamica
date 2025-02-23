@@ -11,7 +11,7 @@ export const ModalLoading: FC= () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
         >
-            <img src="logo-single.svg" className="spinner" alt={""}></img>
+            <img loading={"lazy"} src="/logo-single.svg" className="spinner" alt={""}></img>
         </motion.div>
     );
 };

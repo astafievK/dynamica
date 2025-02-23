@@ -1,18 +1,18 @@
 import { FC, useEffect, useState } from "react";
 import {useAppDispatch, useTypedSelector} from "../../../store/hooks/redux.ts";
-import { setIsOpen } from "../../../api/slices/modalNotificationsSlice.ts";
+import { setModalNotificationsIsOpen } from "../../../api/slices/modalNotificationsSlice.ts";
 import {ModuleNotifications} from "../../ModuleNotifications/ModuleNotifications.tsx";
+import {CrossClose} from "../../CrossClose/CrossClose.tsx";
 
 export const ModalNotifications: FC = () => {
     const dispatch = useAppDispatch();
     const isOpen = useTypedSelector((state) => state.modalNotificationsReducer.modalNotificationsIsOpen);
     const [isClosing, setIsClosing] = useState(false);
-    dispatch(setIsOpen(true));
 
     const handleClose = () => {
         setIsClosing(true);
         setTimeout(() => {
-            dispatch(setIsOpen(false));
+            dispatch(setModalNotificationsIsOpen(false));
             setIsClosing(false);
         }, 400);
     };
@@ -34,8 +34,13 @@ export const ModalNotifications: FC = () => {
     return (
         <div className={`modal ${isClosing ? "hidden" : ""}`}>
             <div className={`modal-content modal-notifications ${isClosing ? "hidden" : ""}`}>
-                <h1>Уведомления</h1>
-                <ModuleNotifications/>
+                <div className="modal-content__header">
+                    <span className={"modal-title"}>Уведомления</span>
+                    <CrossClose onClick={() => handleClose()} color={"#000000"} />
+                </div>
+                <div className="modal-content__body">
+                    <ModuleNotifications/>
+                </div>
             </div>
             <div className={`spoiler ${isClosing ? "hidden" : ""}`} onClick={handleClose}></div>
         </div>

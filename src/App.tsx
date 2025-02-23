@@ -4,10 +4,10 @@ import {
     Route,
     RouterProvider,
     createBrowserRouter,
-    createRoutesFromElements, useLocation,
+    createRoutesFromElements,
 } from 'react-router-dom';
-import {persistor, store} from "./store/store.ts";
-import {Provider} from "react-redux";
+import {persistor, RootState, store} from "./store/store.ts";
+import {Provider, useDispatch, useSelector} from "react-redux";
 import {PersistGate} from "redux-persist/integration/react";
 import {PageFeed} from "./components/PageFeed/PageFeed.tsx";
 import {Footer} from "./components/Footer/Footer.tsx";
@@ -23,10 +23,14 @@ import {PageDocumentParallel} from "./components/PageDocumentParallel.tsx";
 import {AnimatePresence} from "framer-motion";
 import {ModalLoading} from "./components/Modals/ModalLoading/ModalLoading.tsx";
 import {Modals} from "./components/Modals/Modals.tsx";
+import {AdminTabFeed} from "./components/PageAdmin/AdminTabFeed/AdminTabFeed.tsx";
+import {AdminTabContacts} from "./components/PageAdmin/AdminTabContacts/AdminTabContacts.tsx";
+import {AdminTabDocuments} from "./components/PageAdmin/AdminTabDocuments/AdminTabDocuments.tsx";
+import {AdminTabAdaptation} from "./components/PageAdmin/AdminTabAdaptation/AdminTabAdaptation.tsx";
+import {useEffect} from "react";
+import {updateScrollLock} from "./api/slices/scrollLockSlice.ts";
 
 const Root = () => {
-    const location = useLocation();
-
     return (
         <>
             {
@@ -35,8 +39,8 @@ const Root = () => {
             <div className="layout">
                 <Header />
                 <main>
-                    <AnimatePresence mode={"wait"}>
-                        <Outlet key={location.pathname}/>
+                    <AnimatePresence>
+                        <Outlet/>
                     </AnimatePresence>
                 </main>
                 <Footer />
@@ -62,24 +66,31 @@ const router = createBrowserRouter(
             <Route path="profile" element={<PageProfile key={"profile"} />} />
             <Route path="contacts" element={<PageContacts key={"contacts"} />} />
             <Route path="admin" element={<PageAdmin key={"admin"} />}>
-                <Route path="feed" />
-                <Route path="contacts"/>
-                <Route path="docs"/>
-                <Route path="tests"/>
+                <Route path="feed" element={<AdminTabFeed/>}/>
+                <Route path="contacts" element={<AdminTabContacts/>}/>
+                <Route path="documents" element={<AdminTabDocuments/>}/>
+                <Route path="adaptation" element={<AdminTabAdaptation/>}/>
             </Route>
-            <Route path="*" element={<PageNotFound key={"not-fount"}/>} />
+            <Route path="*" element={<PageNotFound key={"not-found"}/>} />
         </Route>
     ),
 );
 
 function App() {
+    const dispatch = useDispatch();
+    const mobileMenuIsOpen = useSelector((state: RootState) => state.mobileMenuReducer.mobileMenuIsOpen);
+    const modalNotificationsIsOpen = useSelector((state: RootState) => state.modalNotificationsReducer.modalNotificationsIsOpen);
+
+    useEffect(() => {
+        dispatch(updateScrollLock(mobileMenuIsOpen || modalNotificationsIsOpen));
+    }, [mobileMenuIsOpen, modalNotificationsIsOpen, dispatch]);
+
     return (
         <Provider store={store}>
-            <PersistGate loading={<ModalLoading/>} persistor={persistor}>
-                <RouterProvider router={router}/>
+            <PersistGate loading={<ModalLoading />} persistor={persistor}>
+                <RouterProvider router={router} />
             </PersistGate>
         </Provider>
     );
 }
-
 export default App

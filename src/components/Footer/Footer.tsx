@@ -1,7 +1,10 @@
 import { FC } from "react";
 import {NavLink} from "react-router-dom";
+import {useTypedSelector} from "../../store/hooks/redux.ts";
 
 export const Footer: FC = () => {
+    const {user} = useTypedSelector(state => state.auth)
+
     return (
         <div className="footer-wrapper">
             <footer>
@@ -46,21 +49,24 @@ export const Footer: FC = () => {
                             Адаптация
                         </NavLink>
                     </li>
-                    <li className={"nav-item"}>
-                        <NavLink
-                            to="/profile"
-                            className={({isActive}) =>
-                                isActive ? 'nav-item active-nav-item' : 'nav-item'
-                            }
-                        >
-                            Личный кабинет
-                        </NavLink>
-                    </li>
+                    {
+                        user &&
+                        <li className={"nav-item"}>
+                            <NavLink
+                                to="/profile"
+                                className={({isActive}) =>
+                                    isActive ? 'nav-item active-nav-item' : 'nav-item'
+                                }
+                            >
+                                Личный кабинет
+                            </NavLink>
+                        </li>
+                    }
                 </ul>
                 <div className="sep"></div>
                 <div className="logo-faq">
                     <div className="logo">
-                        <img src="logo.png" alt="динамика"/>
+                        <img loading={"lazy"} src="/logo.png" alt="динамика"/>
                     </div>
                     <ul className={'faq'}>
                         <li className={"faq-item"}>
@@ -86,7 +92,7 @@ export const Footer: FC = () => {
                     </ul>
                 </div>
                 <div className="logo">
-                    <img src="logo.png" alt="динамика"/>
+                    <img loading={"lazy"} src="/logo.png" alt="динамика"/>
                 </div>
                 <ul className={'faq'}>
                     <li className={"faq-item"}>

@@ -12,7 +12,7 @@ export const useScrollAnimation = () => {
                 }
             },
             {
-                threshold: 0.4, // Процент видимости элемента для срабатывания
+                threshold: 0.4,
             }
         );
 

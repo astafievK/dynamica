@@ -5,6 +5,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { ILoginCommand } from "../../../api/interfaces/ILoginCommand.ts";
 import { useLoginMutation } from "../../../api/methods/authApi.ts";
 import { useModal } from "../../../store/hooks/useModal.ts";
+import {CrossClose} from "../../CrossClose/CrossClose.tsx";
 
 export const ModalLogin: FC = () => {
     const dispatch = useAppDispatch();
@@ -26,21 +27,22 @@ export const ModalLogin: FC = () => {
     return (
         <dialog className="modal" open={isOpen}>
             <div className={`modal-content modal-login ${isClosing ? "hidden" : ""}`}>
-                <span className="modal-title">Вход</span>
+                <div className="modal-content__header">
+                    <span className={"modal-title"}>Вход</span>
+                    <CrossClose onClick={() => handleClose()} color={"#000000"} />
+                </div>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="form-element form-elem__text">
-                        <label htmlFor="username">Логин</label>
-                        <input id="username" type="text" {...register("username")} required />
+                        <label htmlFor="loginUsername">Логин</label>
+                        <input id="loginUsername" type="text" placeholder={"name.surname"} {...register("username")} required />
                     </div>
                     <div className="form-element form-elem__text">
-                        <label htmlFor="password">Пароль</label>
-                        <input id="password" type="password" {...register("password")} required />
+                        <label htmlFor="loginPassword">Пароль</label>
+                        <input id="loginPassword" type="password" placeholder={"••••••"} {...register("password")} required />
                     </div>
                     <button type="submit" className={"form-elem__submit"} disabled={isLoading} aria-busy={isLoading}>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25">
-                            <path
-                                d="m17.5 5.999-.707.707 5.293 5.293H1v1h21.086l-5.294 5.295.707.707L24 12.499l-6.5-6.5z"
-                                data-name="Right"/>
+                            <path d="m17.5 5.999-.707.707 5.293 5.293H1v1h21.086l-5.294 5.295.707.707L24 12.499l-6.5-6.5z" data-name="Right"/>
                         </svg>
                         {isLoading && <span className="shimmer"></span>}
                     </button>

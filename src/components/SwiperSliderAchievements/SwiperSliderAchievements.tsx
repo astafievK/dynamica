@@ -39,7 +39,7 @@ export const SwiperSliderAchievements: FC<ISwiperSliderAchievementsProps> = () =
             <SwiperSlide>
                 <div className="content">
                     <div className="image-wrapper">
-                        <img src={"landing-preview-photo.png"} alt={""} />
+                        <img loading={"lazy"} src={"/landing-preview-photo.png"} alt={""} />
                     </div>
                     <div className={"label"}>Мы молодцы</div>
                 </div>
@@ -47,7 +47,7 @@ export const SwiperSliderAchievements: FC<ISwiperSliderAchievementsProps> = () =
             <SwiperSlide>
                 <div className="content">
                     <div className="image-wrapper">
-                        <img src={"landing-preview-photo.png"} alt={""} />
+                        <img loading={"lazy"} src={"/landing-preview-photo.png"} alt={""} />
                     </div>
                     <div className={"label"}>Мы молодцы</div>
                 </div>
@@ -55,7 +55,7 @@ export const SwiperSliderAchievements: FC<ISwiperSliderAchievementsProps> = () =
             <SwiperSlide>
                 <div className="content">
                     <div className="image-wrapper">
-                        <img src={"landing-preview-photo.png"} alt={""} />
+                        <img loading={"lazy"} src={"/landing-preview-photo.png"} alt={""} />
                     </div>
                     <div className={"label"}>Мы молодцы</div>
                 </div>
@@ -63,7 +63,7 @@ export const SwiperSliderAchievements: FC<ISwiperSliderAchievementsProps> = () =
             <SwiperSlide>
                 <div className="content">
                     <div className="image-wrapper">
-                        <img src={"landing-preview-photo.png"} alt={""} />
+                        <img loading={"lazy"} src={"/landing-preview-photo.png"} alt={""} />
                     </div>
                     <div className={"label"}>Мы молодцы</div>
                 </div>
@@ -71,7 +71,7 @@ export const SwiperSliderAchievements: FC<ISwiperSliderAchievementsProps> = () =
             <SwiperSlide>
                 <div className="content">
                     <div className="image-wrapper">
-                        <img src={"landing-preview-photo.png"} alt={""} />
+                        <img loading={"lazy"} src={"/landing-preview-photo.png"} alt={""} />
                     </div>
                     <div className={"label"}>Мы молодцы</div>
                 </div>
@@ -79,7 +79,7 @@ export const SwiperSliderAchievements: FC<ISwiperSliderAchievementsProps> = () =
             <SwiperSlide>
                 <div className="content">
                     <div className="image-wrapper">
-                        <img src={"landing-preview-photo.png"} alt={""} />
+                        <img loading={"lazy"} src={"/landing-preview-photo.png"} alt={""} />
                     </div>
                     <div className={"label"}>Мы молодцы</div>
                 </div>
@@ -87,7 +87,7 @@ export const SwiperSliderAchievements: FC<ISwiperSliderAchievementsProps> = () =
             <SwiperSlide>
                 <div className="content">
                     <div className="image-wrapper">
-                        <img src={"landing-preview-photo.png"} alt={""} />
+                        <img loading={"lazy"} src={"/landing-preview-photo.png"} alt={""} />
                     </div>
                     <div className={"label"}>Мы молодцы</div>
                 </div>
@@ -95,7 +95,7 @@ export const SwiperSliderAchievements: FC<ISwiperSliderAchievementsProps> = () =
             <SwiperSlide>
                 <div className="content">
                     <div className="image-wrapper">
-                        <img src={"landing-preview-photo.png"} alt={""} />
+                        <img loading={"lazy"} src={"/landing-preview-photo.png"} alt={""} />
                     </div>
                     <div className={"label"}>Мы молодцы</div>
                 </div>
@@ -103,7 +103,7 @@ export const SwiperSliderAchievements: FC<ISwiperSliderAchievementsProps> = () =
             <SwiperSlide>
                 <div className="content">
                     <div className="image-wrapper">
-                        <img src={"landing-preview-photo.png"} alt={""} />
+                        <img loading={"lazy"} src={"/landing-preview-photo.png"} alt={""} />
                     </div>
                     <div className={"label"}>Мы молодцы</div>
                 </div>
@@ -111,7 +111,7 @@ export const SwiperSliderAchievements: FC<ISwiperSliderAchievementsProps> = () =
             <SwiperSlide>
                 <div className="content">
                     <div className="image-wrapper">
-                        <img src={"landing-preview-photo.png"} alt={""} />
+                        <img loading={"lazy"} src={"/landing-preview-photo.png"} alt={""} />
                     </div>
                     <div className={"label"}>Мы молодцы</div>
                 </div>
@@ -119,7 +119,7 @@ export const SwiperSliderAchievements: FC<ISwiperSliderAchievementsProps> = () =
             <SwiperSlide>
                 <div className="content">
                     <div className="image-wrapper">
-                        <img src={"landing-preview-photo.png"} alt={""} />
+                        <img loading={"lazy"} src={"/landing-preview-photo.png"} alt={""} />
                     </div>
                     <div className={"label"}>Мы молодцы</div>
                 </div>

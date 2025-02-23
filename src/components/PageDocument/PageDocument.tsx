@@ -11,9 +11,9 @@ export const PageDocument: FC = () => {
 
     return(
         <motion.div
-            initial={pageAnimation.initial}
-            animate={pageAnimation.animate}
-            exit={pageAnimation.exit}
+            initial={{opacity: 0}}
+            animate={{opacity: 1}}
+            exit={{opacity: 0}}
             transition={pageAnimation.transition}
             className={"page page-document"}
         >

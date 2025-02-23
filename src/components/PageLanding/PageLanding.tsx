@@ -24,13 +24,13 @@ export const PageLanding: FC = () => {
                 <div className="photo-container">
                     <h1>Автохолдинг<br/>«Динамика»</h1>
                     <div className="photo-container__item image-container">
-                        <img src="landing-preview-photo.png" alt={""}/>
+                        <img loading={"lazy"} src="/landing-preview-photo.png" alt={""}/>
                     </div>
                 </div>
             </div>
             <div className="landing-module-wide">
                 <div className="image-container">
-                    <img src="landing photo wide.svg" alt={""}/>
+                    <img loading={"lazy"} src="/landing photo wide.svg" alt={""}/>
                 </div>
             </div>
             <div className="content">
@@ -39,8 +39,8 @@ export const PageLanding: FC = () => {
                         <h2>
                             Работаем<br/>
                             с <span className="year">2009</span> года,<br/>
-                            <span className="end">год за годом обретая<br/>доверие тысяч<br/>автовладельцев</span>
                         </h2>
+                        <span className="end">год за годом обретая<br/>доверие тысяч<br/>автовладельцев</span>
                     </section>
                 </AnimatedSection>
                 <AnimatedSection>
@@ -82,7 +82,7 @@ export const PageLanding: FC = () => {
                                 </div>
                             </div>
                         </div>
-                        <img src={"russia 1.svg"} alt={""}/>
+                        <img loading={"lazy"} src={"/russia 1.svg"} alt={""}/>
                     </section>
                 </AnimatedSection>
                 <AnimatedSection>
@@ -98,7 +98,7 @@ export const PageLanding: FC = () => {
                 <AnimatedSection>
                     <section className="section-values">
                         <div className="values-container">
-                            <h3 className="container-title">Наши ценности:</h3>
+                            <span className="container-title">Наши ценности:</span>
                             <div className="values">
                                 <div className="value">
                                     <span>
@@ -138,7 +138,7 @@ export const PageLanding: FC = () => {
                     <section className="section-form">
                         <form id="formReview" action="">
                             <div className="form-picture">
-                                <img src="logo-single.svg" alt=""/>
+                                <img loading={"lazy"} src="/logo-single.svg" alt=""/>
                             </div>
                             <div className="form-body__wrapper">
                                 <div className="form-header">

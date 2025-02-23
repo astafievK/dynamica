@@ -1,4 +1,5 @@
 import { FC } from "react";
+import {useRippleEffect} from "../../../store/hooks/useRippleEffect.ts";
 
 interface IButtonDocumentProps {
     title: string;
@@ -8,6 +9,8 @@ interface IButtonDocumentProps {
 }
 
 export const ButtonDocument: FC<IButtonDocumentProps> = (props) => {
+    const createRipple = useRippleEffect();
+
     const [day, month] = props.deadline.split(".").map(Number);
     const deadlineDate = new Date(props.currentDate.getFullYear(), month - 1, day);
 
@@ -31,12 +34,12 @@ export const ButtonDocument: FC<IButtonDocumentProps> = (props) => {
     };
 
     return (
-        <div className="document">
+        <button className="document" onClick={createRipple}>
             <div className="document-title">{props.title}</div>
             <div className="info">
                 <span className="document-deadline">до {props.deadline}</span>
                 <div className={`document-status ${getStatusClass()}`}>{props.status}</div>
             </div>
-        </div>
+        </button>
     );
 };

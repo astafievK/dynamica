@@ -12,15 +12,6 @@ const modalLoginSlice = createSlice({
     reducers: {
         setIsOpen: (state, action) => {
             state.modalLoginIsOpen = action.payload;
-
-            const bodyElement = document.getElementsByTagName('body')[0];
-            if (bodyElement) {
-                if (action.payload) {
-                    bodyElement.classList.add('scroll-locked');
-                } else {
-                    bodyElement.classList.remove('scroll-locked');
-                }
-            }
         },
     }
 })

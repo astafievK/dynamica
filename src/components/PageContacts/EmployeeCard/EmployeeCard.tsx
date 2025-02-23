@@ -13,7 +13,7 @@ export const EmployeeCard: FC<IEmployeeCardProps> = (props) => {
     return (
         <div className="employee-card">
             <div className="employee-image">
-                <img alt=""/>
+                <img loading={"lazy"} alt=""/>
             </div>
             <div className="employee-info">
                 <div className="employee-info__general">
