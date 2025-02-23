@@ -1391,6 +1391,15 @@ html {
                                 }
 
                                 .section-form {
+                                    height: 100vh;
+                                    background: var(--secondary-color);
+                                    margin-left: 0 !important;
+                                    margin-right: 0 !important;
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                    max-width: unset;
+                                    width: 100%;
                                     margin-bottom: 30px;
 
                                     form {
@@ -1764,7 +1773,11 @@ html {
 
                                     .custom-dropdown {
                                         width: 100%;
-                                        filter: drop-shadow(0px 2px 10px rgba(106, 82, 117, 0.1));
+                                        box-shadow: 0 2px 5px 1px rgba(106, 82, 117, 0.25);
+
+                                        .cross {
+                                            animation: fadeIn 200ms;
+                                        }
 
                                         &:nth-child(1) {
                                             z-index: 4;
@@ -1786,33 +1799,46 @@ html {
                                     gap: 5px;
                                     width: 100%;
                                     max-width: 100%;
-                                    filter: drop-shadow(0px 2px 10px rgba(106, 82, 117, 0.25));
 
                                     .filters-search__text {
                                         width: 100%;
-                                        padding: 15px 115px 15px 15px;
+                                        padding: 10px 115px 10px 10px;
                                         border-radius: 32px;
-                                        background: #FFFFFF;
+                                        background: var(--background-color);
                                         font-weight: 600;
                                         font-size: 16px;
+                                        box-shadow: 0 2px 10px rgba(106, 82, 117, 0.25);
                                         flex: 1;
                                         filter: drop-shadow(0px 2px 10px rgba(106, 82, 117, 0.1));
+                                        transition: 200ms;
 
                                         &::placeholder {
                                             font-style: italic;
                                         }
+
+                                        &:focus {
+                                            background: #FFFFFF;
+                                        }
                                     }
 
                                     .filters-search__submit {
-                                        background-color: #acd6ad;
+                                        background-color: var(--background-action-button-primary);
                                         position: absolute;
-                                        height: 100%;
-                                        right: 0;
+                                        height: 90%;
+                                        top: 50%;
+                                        transform: translateY(-50%);
+                                        right: 5px;
                                         border-radius: 32px;
                                         font-style: italic;
-                                        font-size: 16px;
+                                        font-size: 14px;
                                         font-weight: 700;
                                         padding: 8px 11px;
+                                        transition: 200ms;
+
+                                        &:hover {
+                                            background-color: #85a686;
+                                            transition-duration: 70ms;
+                                        }
                                     }
                                 }
                             }
@@ -2468,7 +2494,7 @@ html {
                                         gap: 10px;
 
                                         .filters-search__text {
-                                            padding: 17px 22px;
+                                            padding: 15px 22px;
                                             font-size: 18px;
                                         }
 
@@ -2945,10 +2971,27 @@ html {
                                                 .progress-point {
                                                     width: 30px;
                                                     height: 30px;
+                                                    cursor: unset;
+
+                                                    &.lime {
+                                                        &:hover {
+                                                            background-color: #8dc63f !important;
+                                                        }
+                                                    }
 
                                                     &.orange {
+                                                        &:hover {
+                                                            background-color: #ff8c00 !important;
+                                                        }
+
                                                         + .progress-label {
                                                             opacity: 0;
+                                                        }
+                                                    }
+
+                                                    &.gray {
+                                                        &:hover {
+                                                            background-color: #808080 !important;
                                                         }
                                                     }
                                                 }
@@ -3326,7 +3369,11 @@ html {
 
                             &.page-contacts {
                                 .filters-container {
+                                    background-color: var(--background-color);
+                                    padding: 10px;
                                     flex-direction: row;
+                                    position: sticky;
+                                    top: 90px;
 
                                     .filters-select {
                                         .custom-dropdown {

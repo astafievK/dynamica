@@ -1,6 +1,7 @@
-import {AnimatePresence, motion} from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { FC, useState, ChangeEvent, useRef, useEffect } from "react";
 import "./dropdown.css";
+import { Cross } from "../Cross/Cross.tsx";
 
 interface DropdownProps {
     options: string[];
@@ -59,6 +60,10 @@ export const Dropdown: FC<DropdownProps> = ({ options, label, onSelect }) => {
                 onChange={handleSearchChange}
                 onClick={() => setIsOpen(true)}
             />
+
+            {searchValue.length >= 1 && (
+                <Cross onClick={() => setSearchValue("")} color={"#000000"} />
+            )}
             <AnimatePresence>
                 {isOpen && (
                     <motion.ul

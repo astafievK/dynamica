@@ -5,7 +5,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { ILoginCommand } from "../../../api/interfaces/ILoginCommand.ts";
 import { useLoginMutation } from "../../../api/methods/authApi.ts";
 import { useModal } from "../../../store/hooks/useModal.ts";
-import {CrossClose} from "../../CrossClose/CrossClose.tsx";
+import {Cross} from "../../Cross/Cross.tsx";
 
 export const ModalLogin: FC = () => {
     const dispatch = useAppDispatch();
@@ -29,7 +29,7 @@ export const ModalLogin: FC = () => {
             <div className={`modal-content modal-login ${isClosing ? "hidden" : ""}`}>
                 <div className="modal-content__header">
                     <span className={"modal-title"}>Вход</span>
-                    <CrossClose onClick={() => handleClose()} color={"#000000"} />
+                    <Cross onClick={() => handleClose()} color={"#000000"} />
                 </div>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="form-element form-elem__text">

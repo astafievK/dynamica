@@ -9,45 +9,73 @@
     background-color: var(--background-color);
     border-radius: 32px;
     height: 100%;
-    padding: 12px;
+    padding: 10px 40px 10px 10px;
     font-weight: 600;
-    border: 5px solid #FFFFFF;
     font-size: 16px;
-    box-sizing: border-box;
     outline: none;
-    transition: background-color 0.3s ease;
+    transition: background-color 200ms;
 
     &:focus {
       background-color: #FFFFFF;
+      transition-duration: 70ms;
     }
   }
 
+  .cross {
+    position: absolute;
+    height: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+    aspect-ratio: 1/1;
+    right: 15px;
+  }
+
   &__menu {
-    position: fixed;
+    position: absolute;
     top: 100%;
     left: 0;
     width: 100%;
+    max-height: 350px;
+    overflow: auto;
     margin-top: 5px;
     background-color: #FFFFFF;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 25px;
+    border-radius: 32px;
     z-index: 53;
     list-style: none;
-    padding: 5px 10px;
+    padding: 8px;
 
     .custom-dropdown__item {
-      padding: 15px 20px;
+      padding: 5px 10px;
       cursor: pointer;
-      font-size: 16px;
-      border-radius: 12px;
+      font-size: 14px;
+      border-radius: 32px;
       font-weight: 500;
       color: #333;
       display: flex;
       align-items: center;
-      transition: background-color 0.3s ease;
+      transition: background-color 200ms;
 
       &:hover {
         background-color: rgba(0, 0, 0, 0.05);
+        transition-duration: 70ms;
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .custom-dropdown {
+    &__search {
+      padding: 15px 50px 15px 15px;
+      font-size: 17px;
+    }
+
+    &__menu {
+      padding: 10px;
+
+      .custom-dropdown__item {
+        padding: 10px 15px;
+        font-size: 16px;
       }
     }
   }
@@ -56,8 +84,15 @@
 @media (min-width: 1024px) {
   .custom-dropdown {
     &__search {
-      border: 10px solid #FFFFFF;
       font-size: 18px;
+    }
+
+    &__menu {
+      padding: 12px;
+
+      .custom-dropdown__item {
+        padding: 15px 18px;
+      }
     }
   }
 }

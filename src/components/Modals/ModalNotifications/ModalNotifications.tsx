@@ -2,7 +2,7 @@ import { FC, useEffect, useState } from "react";
 import {useAppDispatch, useTypedSelector} from "../../../store/hooks/redux.ts";
 import { setModalNotificationsIsOpen } from "../../../api/slices/modalNotificationsSlice.ts";
 import {ModuleNotifications} from "../../ModuleNotifications/ModuleNotifications.tsx";
-import {CrossClose} from "../../CrossClose/CrossClose.tsx";
+import {Cross} from "../../Cross/Cross.tsx";
 
 export const ModalNotifications: FC = () => {
     const dispatch = useAppDispatch();
@@ -36,7 +36,7 @@ export const ModalNotifications: FC = () => {
             <div className={`modal-content modal-notifications ${isClosing ? "hidden" : ""}`}>
                 <div className="modal-content__header">
                     <span className={"modal-title"}>Уведомления</span>
-                    <CrossClose onClick={() => handleClose()} color={"#000000"} />
+                    <Cross onClick={() => handleClose()} color={"#000000"} />
                 </div>
                 <div className="modal-content__body">
                     <ModuleNotifications/>

@@ -4,7 +4,7 @@ import { useAppDispatch, useTypedSelector } from "../../store/hooks/redux.ts";
 import { NavLink } from "react-router-dom";
 import { logout } from "../../api/slices/authSlice.ts";
 import { setIsOpen as setLoginModalOpen } from "../../api/slices/modalLoginSlice.ts";
-import {CrossClose} from "../CrossClose/CrossClose.tsx";
+import {Cross} from "../Cross/Cross.tsx";
 import { setModalNotificationsIsOpen } from "../../api/slices/modalNotificationsSlice.ts";
 
 export const MobileMenu: FC = () => {
@@ -60,7 +60,7 @@ export const MobileMenu: FC = () => {
                             </button>
                         )
                     }
-                    <CrossClose onClick={() => handleClose()} color={"#FFFFFF"} />
+                    <Cross onClick={() => handleClose()} color={"#FFFFFF"} />
                 </div>
 
                 <div className={`body ${showBody ? "visible" : ""}`}>

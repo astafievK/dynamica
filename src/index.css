@@ -1150,6 +1150,15 @@ html body #dynamica .layout main .page.page-landing .content .section-achievemen
   display: none;
 }
 html body #dynamica .layout main .page.page-landing .content .section-form {
+  height: 100vh;
+  background: var(--secondary-color);
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: unset;
+  width: 100%;
   margin-bottom: 30px;
 }
 html body #dynamica .layout main .page.page-landing .content .section-form form {
@@ -1449,7 +1458,10 @@ html body #dynamica .layout main .page.page-contacts .filters-container .filters
 }
 html body #dynamica .layout main .page.page-contacts .filters-container .filters-select .custom-dropdown {
   width: 100%;
-  filter: drop-shadow(0px 2px 10px rgba(106, 82, 117, 0.1));
+  box-shadow: 0 2px 5px 1px rgba(106, 82, 117, 0.25);
+}
+html body #dynamica .layout main .page.page-contacts .filters-container .filters-select .custom-dropdown .cross {
+  animation: fadeIn 200ms;
 }
 html body #dynamica .layout main .page.page-contacts .filters-container .filters-select .custom-dropdown:nth-child(1) {
   z-index: 4;
@@ -1466,31 +1478,42 @@ html body #dynamica .layout main .page.page-contacts .filters-container .filters
   gap: 5px;
   width: 100%;
   max-width: 100%;
-  filter: drop-shadow(0px 2px 10px rgba(106, 82, 117, 0.25));
 }
 html body #dynamica .layout main .page.page-contacts .filters-container .filters-search .filters-search__text {
   width: 100%;
-  padding: 15px 115px 15px 15px;
+  padding: 10px 115px 10px 10px;
   border-radius: 32px;
-  background: #FFFFFF;
+  background: var(--background-color);
   font-weight: 600;
   font-size: 16px;
+  box-shadow: 0 2px 10px rgba(106, 82, 117, 0.25);
   flex: 1;
   filter: drop-shadow(0px 2px 10px rgba(106, 82, 117, 0.1));
+  transition: 200ms;
 }
 html body #dynamica .layout main .page.page-contacts .filters-container .filters-search .filters-search__text::placeholder {
   font-style: italic;
 }
+html body #dynamica .layout main .page.page-contacts .filters-container .filters-search .filters-search__text:focus {
+  background: #FFFFFF;
+}
 html body #dynamica .layout main .page.page-contacts .filters-container .filters-search .filters-search__submit {
-  background-color: #acd6ad;
+  background-color: var(--background-action-button-primary);
   position: absolute;
-  height: 100%;
-  right: 0;
+  height: 90%;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 5px;
   border-radius: 32px;
   font-style: italic;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 700;
   padding: 8px 11px;
+  transition: 200ms;
+}
+html body #dynamica .layout main .page.page-contacts .filters-container .filters-search .filters-search__submit:hover {
+  background-color: #85a686;
+  transition-duration: 70ms;
 }
 html body #dynamica .layout main .page.page-contacts .employees-container {
   margin-top: 20px;
@@ -1962,7 +1985,7 @@ html body #dynamica .layout main .page.page-not-found .content {
     gap: 10px;
   }
   html body #dynamica .layout main .page.page-contacts .filters-container .filters-search .filters-search__text {
-    padding: 17px 22px;
+    padding: 15px 22px;
     font-size: 18px;
   }
   html body #dynamica .layout main .page.page-contacts .filters-container .filters-search .filters-search__submit {
@@ -2284,9 +2307,19 @@ html body #dynamica .layout main .page.page-not-found .content {
   html body #dynamica .layout main .page.page-document .content .progress-bar-container .progress-item .progress-point-wrapper .progress-point {
     width: 30px;
     height: 30px;
+    cursor: unset;
+  }
+  html body #dynamica .layout main .page.page-document .content .progress-bar-container .progress-item .progress-point-wrapper .progress-point.lime:hover {
+    background-color: #8dc63f !important;
+  }
+  html body #dynamica .layout main .page.page-document .content .progress-bar-container .progress-item .progress-point-wrapper .progress-point.orange:hover {
+    background-color: #ff8c00 !important;
   }
   html body #dynamica .layout main .page.page-document .content .progress-bar-container .progress-item .progress-point-wrapper .progress-point.orange + .progress-label {
     opacity: 0;
+  }
+  html body #dynamica .layout main .page.page-document .content .progress-bar-container .progress-item .progress-point-wrapper .progress-point.gray:hover {
+    background-color: #808080 !important;
   }
   html body #dynamica .layout main .page.page-document .content .progress-bar-container .progress-item .progress-point-wrapper .progress-label {
     top: 50px;
@@ -2528,7 +2561,11 @@ html body #dynamica .layout main .page.page-not-found .content {
     font-size: 26px;
   }
   html body #dynamica .layout main .page.page-contacts .filters-container {
+    background-color: var(--background-color);
+    padding: 10px;
     flex-direction: row;
+    position: sticky;
+    top: 90px;
   }
   html body #dynamica .layout main .page.page-contacts .filters-container .filters-select .custom-dropdown .custom-dropdown__toggle {
     height: 100%;

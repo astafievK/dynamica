@@ -5,7 +5,7 @@ interface ICrossCloseProps {
     color: string;
 }
 
-export const CrossClose: React.FC<ICrossCloseProps> = ({ onClick, color }) => {
+export const Cross: React.FC<ICrossCloseProps> = ({ onClick, color }) => {
     return (
         <button className="cross" onClick={onClick}>
             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

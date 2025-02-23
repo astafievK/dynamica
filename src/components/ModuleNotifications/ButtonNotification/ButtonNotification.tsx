@@ -1,5 +1,4 @@
 import { FC } from "react";
-import {useRippleEffect} from "../../../store/hooks/useRippleEffect.ts";
 
 interface IButtonNotificationProps {
     title: string;
@@ -7,10 +6,8 @@ interface IButtonNotificationProps {
 }
 
 export const ButtonNotification: FC<IButtonNotificationProps> = (props) => {
-    const createRipple = useRippleEffect();
-
     return (
-        <button className="notification" onClick={createRipple}>
+        <button className="notification">
             <span className="title">{props.title}</span>
             <span className="date">{props.date}</span>
         </button>
