@@ -481,7 +481,7 @@ html {
                         opacity: 0;
                         transform: translateY(100%);
                         overflow-y: scroll;
-                        background: #FFFFFF;
+                        background: var(--background-color);
                         flex-grow: 1;
                         border-top-left-radius: 28px;
                         border-top-right-radius: 28px;
@@ -750,7 +750,13 @@ html {
             }
 
             #modalLoading {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
                 animation: none;
+                z-index: 5;
 
                 img {
                     height: 70px;
@@ -945,7 +951,6 @@ html {
                     width: 100vw;
                     height: 56px;
                     background: var(--secondary-color);
-                    padding: 0 20px;
                     z-index: 10;
 
                     &::before,
@@ -968,6 +973,37 @@ html {
                         right: 0;
                     }
 
+                    .user-panel {
+                        display: none;
+                        width: 100%;
+                        height: 33px;
+                        background: black;
+
+                        nav {
+                            display: flex;
+                            align-items: stretch;
+                            height: 100%;
+
+                            a {
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                padding: 0 10px;
+                                height: 100%;
+                                text-decoration: none;
+                                font-weight: 600;
+                                background: none;
+                                font-size: 14px;
+                                color: rgba(255, 255, 255, 0.7);
+                                transition: color 150ms;
+
+                                &:hover {
+                                    color: rgba(255, 255, 255, 1);
+                                }
+                            }
+                        }
+                    }
+
                     header {
                         display: flex;
                         flex-direction: row;
@@ -975,7 +1011,7 @@ html {
                         height: 100%;
                         width: 100%;
                         margin: 0 auto;
-                        padding: 12px 0;
+                        padding: 12px 20px;
                         z-index: 2;
 
                         #logo {
@@ -1156,6 +1192,7 @@ html {
                 main {
                     min-height: calc(100vh - 56px);
                     background-color: var(--background-color);
+                    position: relative;
                     display: flex;
                     overflow: unset !important;
                     width: 100%;
@@ -1210,6 +1247,7 @@ html {
                                         transform: translateX(-50%);
                                         margin-top: 24px;
                                         color: #FFFFFF;
+                                        opacity: 0.95;
                                         text-align: center;
                                         font-style: italic;
                                         font-weight: 600;
@@ -1655,7 +1693,7 @@ html {
                                     flex-grow: 1;
                                     text-align: center;
                                     user-select: none;
-                                    font-size: 16px;
+                                    font-size: 14px;
                                     padding: 12px 33px;
                                     background: var(--background-color);
                                     border-radius: 32px;
@@ -1689,6 +1727,7 @@ html {
                                 .content-tab {
                                     .content-tab__title {
                                         font-weight: 700;
+                                        font-size: 16px;
                                         font-style: italic;
                                     }
 
@@ -1728,6 +1767,8 @@ html {
                                             }
 
                                             .content-tab__input {
+                                                font-size: 14px;
+
                                                 &--title {
 
                                                 }
@@ -1756,6 +1797,7 @@ html {
                                                     flex: 1;
                                                     padding: 12px 5px;
                                                     border-radius: 32px;
+                                                    font-size: 14px;
                                                     font-weight: 700;
                                                     font-style: italic;
                                                     text-align: center;
@@ -2273,7 +2315,6 @@ html {
 
                     .header-wrapper {
                         height: 70px;
-                        padding: 0 35px;
 
                         &::before,
                         &::after {
@@ -2281,6 +2322,8 @@ html {
                         }
 
                         header {
+                            padding: 12px 35px;
+
                             .profile-container {
                                 justify-content: flex-end;
                                 gap: 8px;
@@ -2663,84 +2706,32 @@ html {
                                     .content-tab {
                                         .content-tab__title {
                                             font-weight: 700;
+                                            font-size: 20px;
                                             font-style: italic;
                                         }
 
                                         &--feed {
                                             .content-tab__form {
-                                                display: flex;
-                                                flex-direction: column;
-                                                margin-top: 10px;
-                                                gap: 5px;
+                                                gap: 7px;
 
                                                 .quill {
-                                                    position: relative;
-                                                    z-index: 2;
-                                                    filter: drop-shadow(0px 2px 10px rgba(106, 82, 117, 0.1));
-
-                                                    .ql-toolbar {
-                                                        border-left: 5px solid #FFFFFF;
-                                                        border-top: 5px solid #FFFFFF;
-                                                        border-right: 5px solid #FFFFFF;
-                                                        border-bottom: 0;
-                                                        border-radius: 32px 32px 0 0;
-                                                    }
-
                                                     .ql-container {
-                                                        border-left: 5px solid #FFFFFF;
-                                                        border-bottom: 5px solid #FFFFFF;
-                                                        border-right: 5px solid #FFFFFF;
-
-                                                        border-radius: 0 0 32px 32px;
-                                                        overflow: hidden;
-
                                                         .ql-editor {
-                                                            background-color: var(--background-color);
-                                                            min-height: 200px;
+                                                            p {
+                                                                font-size: 18px;
+                                                            }
                                                         }
                                                     }
                                                 }
 
                                                 .content-tab__input {
-                                                    &--title {
-
-                                                    }
-
-                                                    &--content {
-                                                        min-height: 180px;
-                                                    }
-
-                                                    &--description {
-                                                        min-height: 100px;
-                                                    }
+                                                    font-size: 18px;
                                                 }
 
                                                 .content-tab__actions {
-                                                    border-radius: 32px;
-                                                    background: #FFFFFF;
-                                                    padding: 4px;
-                                                    display: flex;
-                                                    flex-direction: row;
-                                                    box-shadow: 0 2px 10px 0 rgba(106, 82, 117, 0.3);
-                                                    justify-content: space-between;
-                                                    gap: 7px;
-
                                                     .action-file,
                                                     .action-save {
-                                                        flex: 1;
-                                                        padding: 12px 5px;
-                                                        border-radius: 32px;
-                                                        font-weight: 700;
-                                                        font-style: italic;
-                                                        text-align: center;
-                                                    }
-
-                                                    .action-file {
-                                                        background: var(--background-action-button-primary);
-                                                    }
-
-                                                    .action-save {
-                                                        background: var(--background-action-button-secondary);
+                                                        font-size: 20px;
                                                     }
                                                 }
                                             }
@@ -2824,15 +2815,28 @@ html {
                     }
 
                     .header-wrapper {
-                        height: 80px;
+                        height: unset;
+                        min-height: 110px;
+                        top: -33px;
 
                         &::before,
                         &::after {
-                            top: 23px;
+                            top: 62px;
+                        }
+
+                        .user-panel {
+                            padding: 0 35px;
+                            display: flex;
                         }
 
                         header {
-                            padding: 15px 0;
+                            padding: 15px 35px;
+
+                            #logo {
+                                img {
+                                    max-height: 56px;
+                                }
+                            }
 
                             #burger {
                                 display: none;
@@ -3260,6 +3264,38 @@ html {
                                     }
                                 }
                             }
+
+                            &.page-admin {
+                                .page-admin__content {
+                                    margin-top: 20px;
+
+                                    .content-tab {
+                                        .content-tab__title {
+                                            font-size: 24px;
+                                        }
+
+                                        &--feed {
+                                            .content-tab__form {
+                                                gap: 12px;
+
+                                                .quill {
+                                                    .ql-container {
+                                                        .ql-editor {
+                                                            p {
+                                                                font-size: 20px;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+
+                                                .content-tab__input {
+                                                    font-size: 20px;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
 
@@ -3317,11 +3353,16 @@ html {
             #dynamica {
                 .layout {
                     .header-wrapper {
-                        height: 90px;
+                        min-height: 120px;
+                        top: -37px;
 
                         &::before,
                         &::after {
-                            top: 33px;
+                            top: 66px;
+                        }
+
+                        .user-panel {
+                            height: 37px;
                         }
 
                         header {
@@ -3611,8 +3652,6 @@ html {
                                     background-color: var(--background-color);
                                     padding: 10px;
                                     flex-direction: row;
-                                    position: sticky;
-                                    top: 90px;
 
                                     .filters-select {
                                         .custom-dropdown {

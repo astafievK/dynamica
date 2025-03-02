@@ -97,7 +97,7 @@ export const PageContacts: FC = () => {
     }, []);
 
     const filterOptions: FilterOption[] = [
-        {label: "Город", options: ["Архангельск", "Москва", "Санкт-Петербург"], onSelect: setSelectedCity},
+        {label: "Город", options: ["Архангельск", "Москва", "Санкт-Петербург", "Санкт-Петербург", "Санкт-Петербург", "Санкт-Петербург", "Санкт-Петербург", "Санкт-Петербург", "Санкт-Петербург", "Санкт-Петербург"], onSelect: setSelectedCity},
         {label: "Организация", options: ["Организация 1", "Организация 2"], onSelect: setSelectedOrganization},
         {label: "Подразделение", options: ["Подразделение 1", "Подразделение 2"], onSelect: setSelectedDivision},
     ];

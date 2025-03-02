@@ -409,7 +409,7 @@ html body #dynamica #mobileMenu .content .body {
   opacity: 0;
   transform: translateY(100%);
   overflow-y: scroll;
-  background: #FFFFFF;
+  background: var(--background-color);
   flex-grow: 1;
   border-top-left-radius: 28px;
   border-top-right-radius: 28px;
@@ -636,7 +636,13 @@ html body #dynamica .modal .spoiler.hidden {
   animation: fadeOut 0.2s ease-in-out forwards;
 }
 html body #dynamica #modalLoading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   animation: none;
+  z-index: 5;
 }
 html body #dynamica #modalLoading img {
   height: 70px;
@@ -789,7 +795,6 @@ html body #dynamica .layout .header-wrapper {
   width: 100vw;
   height: 56px;
   background: var(--secondary-color);
-  padding: 0 20px;
   z-index: 10;
 }
 html body #dynamica .layout .header-wrapper::before, html body #dynamica .layout .header-wrapper::after {
@@ -808,6 +813,33 @@ html body #dynamica .layout .header-wrapper::after {
   clip-path: path("M35.75,0V87h-.09c0-9-7.49-30-35.66-30.32V0H35.75Z");
   right: 0;
 }
+html body #dynamica .layout .header-wrapper .user-panel {
+  display: none;
+  width: 100%;
+  height: 33px;
+  background: black;
+}
+html body #dynamica .layout .header-wrapper .user-panel nav {
+  display: flex;
+  align-items: stretch;
+  height: 100%;
+}
+html body #dynamica .layout .header-wrapper .user-panel nav a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10px;
+  height: 100%;
+  text-decoration: none;
+  font-weight: 600;
+  background: none;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+  transition: color 150ms;
+}
+html body #dynamica .layout .header-wrapper .user-panel nav a:hover {
+  color: rgb(255, 255, 255);
+}
 html body #dynamica .layout .header-wrapper header {
   display: flex;
   flex-direction: row;
@@ -815,7 +847,7 @@ html body #dynamica .layout .header-wrapper header {
   height: 100%;
   width: 100%;
   margin: 0 auto;
-  padding: 12px 0;
+  padding: 12px 20px;
   z-index: 2;
 }
 html body #dynamica .layout .header-wrapper header #logo {
@@ -963,6 +995,7 @@ html body #dynamica .layout .footer-wrapper footer .faq .faq-item a {
 html body #dynamica .layout main {
   min-height: calc(100vh - 56px);
   background-color: var(--background-color);
+  position: relative;
   display: flex;
   overflow: unset !important;
   width: 100%;
@@ -1011,6 +1044,7 @@ html body #dynamica .layout main .page.page-landing .landing-module__preview .ph
   transform: translateX(-50%);
   margin-top: 24px;
   color: #FFFFFF;
+  opacity: 0.95;
   text-align: center;
   font-style: italic;
   font-weight: 600;
@@ -1368,7 +1402,7 @@ html body #dynamica .layout main .page.page-admin .page-admin__filters .admin-ta
   flex-grow: 1;
   text-align: center;
   user-select: none;
-  font-size: 16px;
+  font-size: 14px;
   padding: 12px 33px;
   background: var(--background-color);
   border-radius: 32px;
@@ -1396,6 +1430,7 @@ html body #dynamica .layout main .page.page-admin .page-admin__content {
 }
 html body #dynamica .layout main .page.page-admin .page-admin__content .content-tab .content-tab__title {
   font-weight: 700;
+  font-size: 16px;
   font-style: italic;
 }
 html body #dynamica .layout main .page.page-admin .page-admin__content .content-tab--feed .content-tab__form {
@@ -1427,6 +1462,9 @@ html body #dynamica .layout main .page.page-admin .page-admin__content .content-
   background-color: var(--background-color);
   min-height: 200px;
 }
+html body #dynamica .layout main .page.page-admin .page-admin__content .content-tab--feed .content-tab__form .content-tab__input {
+  font-size: 14px;
+}
 html body #dynamica .layout main .page.page-admin .page-admin__content .content-tab--feed .content-tab__form .content-tab__input--content {
   min-height: 180px;
 }
@@ -1448,6 +1486,7 @@ html body #dynamica .layout main .page.page-admin .page-admin__content .content-
   flex: 1;
   padding: 12px 5px;
   border-radius: 32px;
+  font-size: 14px;
   font-weight: 700;
   font-style: italic;
   text-align: center;
@@ -1844,10 +1883,12 @@ html body #dynamica .layout main .page.page-not-found .content {
   }
   html body #dynamica .layout .header-wrapper {
     height: 70px;
-    padding: 0 35px;
   }
   html body #dynamica .layout .header-wrapper::before, html body #dynamica .layout .header-wrapper::after {
     top: 13px;
+  }
+  html body #dynamica .layout .header-wrapper header {
+    padding: 12px 35px;
   }
   html body #dynamica .layout .header-wrapper header .profile-container {
     justify-content: flex-end;
@@ -2111,67 +2152,21 @@ html body #dynamica .layout main .page.page-not-found .content {
   }
   html body #dynamica .layout main .page.page-admin .page-admin__content .content-tab .content-tab__title {
     font-weight: 700;
+    font-size: 20px;
     font-style: italic;
   }
   html body #dynamica .layout main .page.page-admin .page-admin__content .content-tab--feed .content-tab__form {
-    display: flex;
-    flex-direction: column;
-    margin-top: 10px;
-    gap: 5px;
-  }
-  html body #dynamica .layout main .page.page-admin .page-admin__content .content-tab--feed .content-tab__form .quill {
-    position: relative;
-    z-index: 2;
-    filter: drop-shadow(0px 2px 10px rgba(106, 82, 117, 0.1));
-  }
-  html body #dynamica .layout main .page.page-admin .page-admin__content .content-tab--feed .content-tab__form .quill .ql-toolbar {
-    border-left: 5px solid #FFFFFF;
-    border-top: 5px solid #FFFFFF;
-    border-right: 5px solid #FFFFFF;
-    border-bottom: 0;
-    border-radius: 32px 32px 0 0;
-  }
-  html body #dynamica .layout main .page.page-admin .page-admin__content .content-tab--feed .content-tab__form .quill .ql-container {
-    border-left: 5px solid #FFFFFF;
-    border-bottom: 5px solid #FFFFFF;
-    border-right: 5px solid #FFFFFF;
-    border-radius: 0 0 32px 32px;
-    overflow: hidden;
-  }
-  html body #dynamica .layout main .page.page-admin .page-admin__content .content-tab--feed .content-tab__form .quill .ql-container .ql-editor {
-    background-color: var(--background-color);
-    min-height: 200px;
-  }
-  html body #dynamica .layout main .page.page-admin .page-admin__content .content-tab--feed .content-tab__form .content-tab__input--content {
-    min-height: 180px;
-  }
-  html body #dynamica .layout main .page.page-admin .page-admin__content .content-tab--feed .content-tab__form .content-tab__input--description {
-    min-height: 100px;
-  }
-  html body #dynamica .layout main .page.page-admin .page-admin__content .content-tab--feed .content-tab__form .content-tab__actions {
-    border-radius: 32px;
-    background: #FFFFFF;
-    padding: 4px;
-    display: flex;
-    flex-direction: row;
-    box-shadow: 0 2px 10px 0 rgba(106, 82, 117, 0.3);
-    justify-content: space-between;
     gap: 7px;
+  }
+  html body #dynamica .layout main .page.page-admin .page-admin__content .content-tab--feed .content-tab__form .quill .ql-container .ql-editor p {
+    font-size: 18px;
+  }
+  html body #dynamica .layout main .page.page-admin .page-admin__content .content-tab--feed .content-tab__form .content-tab__input {
+    font-size: 18px;
   }
   html body #dynamica .layout main .page.page-admin .page-admin__content .content-tab--feed .content-tab__form .content-tab__actions .action-file,
   html body #dynamica .layout main .page.page-admin .page-admin__content .content-tab--feed .content-tab__form .content-tab__actions .action-save {
-    flex: 1;
-    padding: 12px 5px;
-    border-radius: 32px;
-    font-weight: 700;
-    font-style: italic;
-    text-align: center;
-  }
-  html body #dynamica .layout main .page.page-admin .page-admin__content .content-tab--feed .content-tab__form .content-tab__actions .action-file {
-    background: var(--background-action-button-primary);
-  }
-  html body #dynamica .layout main .page.page-admin .page-admin__content .content-tab--feed .content-tab__form .content-tab__actions .action-save {
-    background: var(--background-action-button-secondary);
+    font-size: 20px;
   }
   html body #dynamica .layout .footer-wrapper {
     padding: 0 35px;
@@ -2220,13 +2215,22 @@ html body #dynamica .layout main .page.page-not-found .content {
     font-size: 22px;
   }
   html body #dynamica .layout .header-wrapper {
-    height: 80px;
+    height: unset;
+    min-height: 110px;
+    top: -33px;
   }
   html body #dynamica .layout .header-wrapper::before, html body #dynamica .layout .header-wrapper::after {
-    top: 23px;
+    top: 62px;
+  }
+  html body #dynamica .layout .header-wrapper .user-panel {
+    padding: 0 35px;
+    display: flex;
   }
   html body #dynamica .layout .header-wrapper header {
-    padding: 15px 0;
+    padding: 15px 35px;
+  }
+  html body #dynamica .layout .header-wrapper header #logo img {
+    max-height: 56px;
   }
   html body #dynamica .layout .header-wrapper header #burger {
     display: none;
@@ -2516,6 +2520,21 @@ html body #dynamica .layout main .page.page-not-found .content {
   html body #dynamica .layout main .page.page-post .content .content-files {
     margin-top: 20px;
   }
+  html body #dynamica .layout main .page.page-admin .page-admin__content {
+    margin-top: 20px;
+  }
+  html body #dynamica .layout main .page.page-admin .page-admin__content .content-tab .content-tab__title {
+    font-size: 24px;
+  }
+  html body #dynamica .layout main .page.page-admin .page-admin__content .content-tab--feed .content-tab__form {
+    gap: 12px;
+  }
+  html body #dynamica .layout main .page.page-admin .page-admin__content .content-tab--feed .content-tab__form .quill .ql-container .ql-editor p {
+    font-size: 20px;
+  }
+  html body #dynamica .layout main .page.page-admin .page-admin__content .content-tab--feed .content-tab__form .content-tab__input {
+    font-size: 20px;
+  }
   html body #dynamica .layout .footer-wrapper {
     padding: 0 35px;
   }
@@ -2552,10 +2571,14 @@ html body #dynamica .layout main .page.page-not-found .content {
 }
 @media (min-width: 1440px) {
   html body #dynamica .layout .header-wrapper {
-    height: 90px;
+    min-height: 120px;
+    top: -37px;
   }
   html body #dynamica .layout .header-wrapper::before, html body #dynamica .layout .header-wrapper::after {
-    top: 33px;
+    top: 66px;
+  }
+  html body #dynamica .layout .header-wrapper .user-panel {
+    height: 37px;
   }
   html body #dynamica .layout .header-wrapper header nav {
     margin-left: 50px;
@@ -2742,8 +2765,6 @@ html body #dynamica .layout main .page.page-not-found .content {
     background-color: var(--background-color);
     padding: 10px;
     flex-direction: row;
-    position: sticky;
-    top: 90px;
   }
   html body #dynamica .layout main .page.page-contacts .filters-container .filters-select .custom-dropdown .custom-dropdown__toggle {
     height: 100%;

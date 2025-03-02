@@ -22,36 +22,54 @@ export const Header: FC = () => {
     const handleBurgerClick = () => dispatch(setMobileMenuOpen(true))
 
     return (
-        <div className={"header-wrapper"}>
-            <header>
-                <NavLink
-                    to="/"
-                    id={"logo"}>
-                    <img loading={"lazy"} src="/logo.png" alt="динамика"/>
-                </NavLink>
+        <>
+            <div className={"header-wrapper"}>
+                <div className="user-panel">
+                    <nav>
+                        <NavLink
+                            to="/profile">
+                            Профиль
+                        </NavLink>
+                        <NavLink
+                            to="/my-profile">
+                            Документы
+                        </NavLink>
+                        <NavLink
+                            to="/my-notifications">
+                            Уведомления
+                        </NavLink>
+                    </nav>
+                </div>
+                <header>
+                    <NavLink
+                        to="/"
+                        id={"logo"}>
+                        <img loading={"lazy"} src="/logo.png" alt="динамика"/>
+                    </NavLink>
 
-                <NavGeneral/>
+                    <NavGeneral/>
 
-                <div className="profile-container">
-                    <div className="profile-wrapper" onClick={handleProfileClick}>
-                        <span>{user ? `${user.first_name} ${user.last_name}` : "Авторизация"}</span>
-                    </div>
-
-                    {
-                        user &&
-                        <div className="notifications-wrapper" onClick={handleNotificationsClick}>
-                            <span>Уведомления</span>
+                    <div className="profile-container">
+                        <div className="profile-wrapper" onClick={handleProfileClick}>
+                            <span>{user ? `${user.first_name} ${user.last_name}` : "Авторизация"}</span>
                         </div>
-                    }
-                </div>
 
-                <div className="burger" id="burger" onClick={handleBurgerClick}>
-                    <div className="body">
-                        <span className="line line-1"></span>
-                        <span className="line line-2"></span>
+                        {
+                            user &&
+                            <div className="notifications-wrapper" onClick={handleNotificationsClick}>
+                                <span>Уведомления</span>
+                            </div>
+                        }
                     </div>
-                </div>
-            </header>
-        </div>
+
+                    <div className="burger" id="burger" onClick={handleBurgerClick}>
+                        <div className="body">
+                            <span className="line line-1"></span>
+                            <span className="line line-2"></span>
+                        </div>
+                    </div>
+                </header>
+            </div>
+        </>
     );
 };
