@@ -1,11 +1,11 @@
 import {baseApi} from "../api.ts";
 import {login} from "../slices/authSlice.ts";
-import {ILoginCommand} from "../interfaces/ILoginCommand.ts";
-import {ILoginResult} from "../interfaces/ILoginResult.ts";
+import {ILoginCommand} from "../commands/ILoginCommand.ts";
+import {ILoginResponse} from "../responses/ILoginResponse.ts";
 
 export const authApi = baseApi.injectEndpoints({
     endpoints: builder => ({
-        login: builder.mutation<ILoginResult, ILoginCommand>({
+        login: builder.mutation<ILoginResponse, ILoginCommand>({
             query: (data) => ({
                 url: `/Users/login_user.php`,
                 method: "POST",

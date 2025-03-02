@@ -1,8 +1,8 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import { IUser } from "../interfaces/IUser";
+import { User } from "../interfaces/IUser";
 
 interface AuthSlice {
-    user: IUser | null
+    user: User | null
 }
 
 const authSlice = createSlice({

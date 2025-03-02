@@ -74,14 +74,6 @@ export const MobileMenu: FC = () => {
                                 </li>
                             ))}
 
-                            <li key="/profile" className="nav-item nav-item-profile">
-                                <NavLink to="/profile" className={({ isActive }) => (isActive ? "active-nav-item" : "")} onClick={handleClose}>
-                                    Профиль
-                                    <span className="username">Кирилл Астафьев</span>
-                                </NavLink>
-                            </li>
-
-
                             {/* Пункт /profile при выполненной авторизации */}
                             {user && (
                                 <li key="/profile" className="nav-item nav-item-profile">

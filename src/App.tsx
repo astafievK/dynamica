@@ -4,7 +4,7 @@ import {
     Route,
     RouterProvider,
     createBrowserRouter,
-    createRoutesFromElements,
+    createRoutesFromElements, Navigate,
 } from 'react-router-dom';
 import {persistor, RootState, store} from "./store/store.ts";
 import {Provider, useDispatch, useSelector} from "react-redux";
@@ -13,7 +13,7 @@ import {PageFeed} from "./components/PageFeed/PageFeed.tsx";
 import {Footer} from "./components/Footer/Footer.tsx";
 import {PageLanding} from "./components/PageLanding/PageLanding.tsx";
 import {PageProfile} from "./components/PageProfile/PageProfile.tsx";
-import {TextEditor} from "./components/TextEdit/TextEditor.tsx";
+import {TextEditor} from "./components/TextEditor/TextEditor.tsx";
 import {PageAdmin} from "./components/PageAdmin/PageAdmin.tsx";
 import {PageContacts} from "./components/PageContacts/PageContacts.tsx";
 import {PageNotFound} from "./components/PageNotFound/PageNotFound.tsx";
@@ -29,6 +29,7 @@ import {AdminTabDocuments} from "./components/PageAdmin/AdminTabDocuments/AdminT
 import {AdminTabAdaptation} from "./components/PageAdmin/AdminTabAdaptation/AdminTabAdaptation.tsx";
 import {useEffect} from "react";
 import {updateScrollLock} from "./api/slices/scrollLockSlice.ts";
+import {PagePost} from "./components/PagePost/PagePost.tsx";
 
 const Root = () => {
     return (
@@ -60,6 +61,7 @@ const router = createBrowserRouter(
         <Route path="/" element={<Root />}>
             <Route index element={<PageLanding key={"landing"} />} />
             <Route path="feed" element={<PageFeed key={"feed"} />} />
+            <Route path="feed/:idPost" element={<PagePost key={"feed-post"} />} />
             <Route path="editor" element={<TextEditor key={"editor"} />} />
             <Route path="document" element={<PageDocument key={"document"} />} />
             <Route path="document_par" element={<PageDocumentParallel key={"document-par"} />} />
@@ -71,7 +73,8 @@ const router = createBrowserRouter(
                 <Route path="documents" element={<AdminTabDocuments/>}/>
                 <Route path="adaptation" element={<AdminTabAdaptation/>}/>
             </Route>
-            <Route path="*" element={<PageNotFound key={"not-found"}/>} />
+            <Route path="not_found" element={<PageNotFound key={"not-found"} />} />
+            <Route path="*" element={<Navigate to="/not_found" replace />} />
         </Route>
     ),
 );

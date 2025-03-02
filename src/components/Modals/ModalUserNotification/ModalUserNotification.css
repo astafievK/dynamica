@@ -1,0 +1,62 @@
+.modal-notification {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  left: 50%;
+  width: 95%;
+  max-width: 500px;
+  border-radius: 32px;
+  background-color: #fff;
+  box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.15);
+  top: 10vh;
+  padding: 15px;
+  z-index: 10001;
+}
+.modal-notification .modal-notification__title {
+  font-weight: bold;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+.modal-notification .modal-notification__description {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  .modal-notification {
+    padding: 20px;
+    top: 12vh;
+  }
+  .modal-notification .modal-notification__title {
+    font-size: 18px;
+  }
+  .modal-notification .modal-notification__description {
+    font-size: 16px;
+    margin-top: 10px;
+  }
+}
+@media (min-width: 1024px) {
+  .modal-notification {
+    padding: 25px;
+    top: 15vh;
+  }
+  .modal-notification .modal-notification__title {
+    font-size: 22px;
+  }
+  .modal-notification .modal-notification__description {
+    font-size: 16px;
+    margin-top: 10px;
+  }
+}
+@media (min-width: 1440px) {
+  .modal-notification {
+    top: 10vh;
+  }
+  .modal-notification .modal-notification__title {
+    font-size: 24px;
+  }
+  .modal-notification .modal-notification__description {
+    font-size: 20px;
+  }
+}
+
+/*# sourceMappingURL=ModalUserNotification.css.map */

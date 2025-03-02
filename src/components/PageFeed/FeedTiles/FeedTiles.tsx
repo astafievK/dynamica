@@ -1,37 +1,22 @@
-import {FC} from "react";
-import {FeedTile} from "./FeedTile/FeedTile.tsx";
+import { FC } from "react";
+import { FeedTile } from "./FeedTile/FeedTile.tsx";
+import { useGetPostsQuery } from "../../../api/methods/postApi.ts";
+import { ModalLoading } from "../../Modals/ModalLoading/ModalLoading.tsx";
 
 export const FeedTiles: FC = () => {
-    return(
-        <div className={"feed-tiles"}>
-            <FeedTile
-                title={"Противоположная точка зрения подразумевает"}
-                date={"01.01.1999"}
-            />
-            <FeedTile
-                title={"Противоположная точка зрения подразумевает"}
-                date={"01.01.1999"}
-            />
-            <FeedTile
-                title={"Противоположная точка зрения подразумевает"}
-                date={"01.01.1999"}
-            />
-            <FeedTile
-                title={"Противоположная точка зрения подразумевает"}
-                date={"01.01.1999"}
-            />
-            <FeedTile
-                title={"Противоположная точка зрения подразумевает"}
-                date={"01.01.1999"}
-            />
-            <FeedTile
-                title={"Противоположная точка зрения подразумевает"}
-                date={"01.01.1999"}
-            />
-            <FeedTile
-                title={"Противоположная точка зрения подразумевает"}
-                date={"01.01.1999"}
-            />
-        </div>
-    )
+        const { data, isLoading } = useGetPostsQuery();
+
+        if (isLoading) return <ModalLoading />;
+
+        if (!data?.posts?.length) {
+                return <div className="feed-tiles__empty">Нет доступных постов</div>;
+        }
+
+        return (
+            <div className="feed-tiles">
+                    {data.posts.map((post) => (
+                        <FeedTile key={post.id_post} id={post.id_post} title={post.title} date={post.date_create.date}/>
+                    ))}
+            </div>
+        );
 }
