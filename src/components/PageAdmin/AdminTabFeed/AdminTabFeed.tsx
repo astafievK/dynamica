@@ -12,16 +12,23 @@ export const AdminTabFeed: FC = () => {
     const [notification, setNotification] = useState<{ title?: string; message: string } | null>(null);
 
     useEffect(() => {
-        setValue("content_full", textEditorContent);
+        setValue("description", textEditorContent);
     }, [textEditorContent, setValue]);
 
     const onSubmit: SubmitHandler<CreatePostCommand> = async (data) => {
+        data.user_id = 1;
+        data.isPinned = false;
+        console.log(data)
         try {
             const response = await createPost(data).unwrap();
+            console.log(response)
+            if(response.status !== 'failed') {
+                reset();
+                setTextEditorContent('');
+            }
             setNotification({ title: "Создание новости", message: response.message });
-            reset();
-            setTextEditorContent('');
         } catch (error) {
+            console.log(error)
             setNotification({ title: "Ошибка", message: "Неизвестная ошибка" });
         }
     };
@@ -40,13 +47,12 @@ export const AdminTabFeed: FC = () => {
                 <span className="content-tab__title">Добавить новость</span>
                 <form className="content-tab__form" onSubmit={handleSubmit(onSubmit)}>
                     <input className="content-tab__input content-tab__input--title styled" type="text" placeholder="Заголовок новости" {...register("title")} required/>
-                    <textarea className="content-tab__input content-tab__input--description styled" placeholder="Краткое описание" {...register("content_short")} required/>
 
                     <TextEditor value={textEditorContent} onChange={setTextEditorContent} />
-                    <textarea {...register("content_full")} hidden/>
+                    <textarea {...register("description")} hidden/>
 
                     <div className="content-tab__actions">
-                        <button className="action-file">Прикрепить файл</button>
+                        <button className="action-file" disabled={true}>Прикрепить файл</button>
                         <button type="submit" className="action-save">
                             Опубликовать
                             {isLoading && <span className="shimmer"></span>}

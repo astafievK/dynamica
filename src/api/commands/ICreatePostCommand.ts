@@ -1,5 +1,6 @@
 export interface CreatePostCommand {
     title: string
-    content_short: string
-    content_full: string
+    description: string
+    isPinned: boolean | false
+    user_id: number
 }

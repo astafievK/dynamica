@@ -36,10 +36,10 @@ export const PagePost: FC = () => {
         >
             <div className="page-header">
                 <span className="page-title">{data.post.title}</span>
-                <span className="date">{data.post.date_create?.date ? formatDate(data.post.date_create.date) : ""}</span>
+                <span className="date">{data.post.date.date ? formatDate(data.post.date.date) : ""}</span>
             </div>
             <div className="content">
-                <div className="content-text" dangerouslySetInnerHTML={{ __html: data.post.content_full || "" }} />
+                <div className="content-text" dangerouslySetInnerHTML={{ __html: data.post.description || "" }} />
                 <div className="content-files">
                     {/* рендер файлов */}
                 </div>

@@ -15,7 +15,7 @@ export const FeedTiles: FC = () => {
         return (
             <div className="feed-tiles">
                     {data.posts.map((post) => (
-                        <FeedTile key={post.id_post} id={post.id_post} title={post.title} date={post.date_create.date}/>
+                        <FeedTile key={post.id_post} id={post.id_post} title={post.title} date={post.date.date}/>
                     ))}
             </div>
         );
