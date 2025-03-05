@@ -30,21 +30,22 @@ import {AdminTabAdaptation} from "./components/PageAdmin/AdminTabAdaptation/Admi
 import {useEffect} from "react";
 import {updateScrollLock} from "./api/slices/scrollLockSlice.ts";
 import {PagePost} from "./components/PagePost/PagePost.tsx";
+import { LeftMenu } from './components/LeftMenu/LeftMenu.tsx';
 
 const Root = () => {
     return (
         <>
-            {
-                // <LeftMenu />
-            }
             <div className="layout">
                 <Header />
-                <main>
-                    <AnimatePresence>
-                        <Outlet/>
-                    </AnimatePresence>
-                </main>
-                <Footer />
+                <LeftMenu />
+                <div className="main-container">
+                    <main>
+                        <AnimatePresence>
+                            <Outlet/>
+                        </AnimatePresence>
+                    </main>
+                    <Footer/>
+                </div>
             </div>
             <Modals/>
             {
