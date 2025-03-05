@@ -1,4 +1,4 @@
-import { FC } from "react";
+import {FC, useEffect, useState} from "react";
 import {useAppDispatch, useTypedSelector} from "../../store/hooks/redux";
 import { setIsOpen as setLoginModalOpen } from "../../api/slices/modalLoginSlice.ts";
 import { setModalNotificationsIsOpen as setNotificationsModalOpen } from "../../api/slices/modalNotificationsSlice.ts";
@@ -8,38 +8,45 @@ import {NavLink, useNavigate} from "react-router-dom";
 import {NavGeneral} from "../NavGeneral/NavGeneral.tsx";
 
 export const Header: FC = () => {
-    const {user} = useTypedSelector(state => state.auth)
+    const { user } = useTypedSelector((state) => state.auth);
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
+
+    const [prevScrollY, setPrevScrollY] = useState(0);
+    const [isVisible, setIsVisible] = useState(true);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const currentScrollY = window.scrollY;
+
+            if (currentScrollY === 0) {
+                setIsVisible(true);
+            } else if (currentScrollY > prevScrollY) {
+                setIsVisible(false);
+            } else {
+                setIsVisible(true);
+            }
+
+            setPrevScrollY(currentScrollY);
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, [prevScrollY]);
+
     const handleProfileClick = () => {
-        if(user) {
+        if (user) {
             navigate("/profile");
         } else {
             dispatch(setLoginModalOpen(true));
         }
-    }
-    const handleNotificationsClick = () => dispatch(setNotificationsModalOpen(true))
-    const handleBurgerClick = () => dispatch(setMobileMenuOpen(true))
+    };
+    const handleNotificationsClick = () => dispatch(setNotificationsModalOpen(true));
+    const handleBurgerClick = () => dispatch(setMobileMenuOpen(true));
 
     return (
         <>
-            <div className={"header-wrapper"}>
-                <div className="user-panel">
-                    <nav>
-                        <NavLink
-                            to="/profile">
-                            Профиль
-                        </NavLink>
-                        <NavLink
-                            to="/my-profile">
-                            Документы
-                        </NavLink>
-                        <NavLink
-                            to="/my-notifications">
-                            Уведомления
-                        </NavLink>
-                    </nav>
-                </div>
+            <div className={`header-wrapper ${isVisible ? "visible" : "hidden"}`}>
                 <header>
                     <NavLink
                         to="/"
@@ -69,6 +76,22 @@ export const Header: FC = () => {
                         </div>
                     </div>
                 </header>
+                <div className="user-panel">
+                    <nav>
+                        <NavLink
+                            to="/profile">
+                            Профиль
+                        </NavLink>
+                        <NavLink
+                            to="/my-profile">
+                            Документы
+                        </NavLink>
+                        <NavLink
+                            to="/my-notifications">
+                            Уведомления
+                        </NavLink>
+                    </nav>
+                </div>
             </div>
         </>
     );
