@@ -1,4 +1,4 @@
-import {FC, useEffect, useState} from "react";
+import {FC} from "react";
 import {useAppDispatch, useTypedSelector} from "../../store/hooks/redux";
 import { setIsOpen as setLoginModalOpen } from "../../api/slices/modalLoginSlice.ts";
 import { setModalNotificationsIsOpen as setNotificationsModalOpen } from "../../api/slices/modalNotificationsSlice.ts";
@@ -12,28 +12,6 @@ export const Header: FC = () => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
-    const [prevScrollY, setPrevScrollY] = useState(0);
-    const [isVisible, setIsVisible] = useState(true);
-
-    useEffect(() => {
-        const handleScroll = () => {
-            const currentScrollY = window.scrollY;
-
-            if (currentScrollY === 0) {
-                setIsVisible(true);
-            } else if (currentScrollY > prevScrollY) {
-                setIsVisible(false);
-            } else {
-                setIsVisible(true);
-            }
-
-            setPrevScrollY(currentScrollY);
-        };
-
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, [prevScrollY]);
-
     const handleProfileClick = () => {
         if (user) {
             navigate("/profile");
@@ -46,7 +24,7 @@ export const Header: FC = () => {
 
     return (
         <>
-            <div className={`header-wrapper ${isVisible ? "visible" : "hidden"}`}>
+            <div className={`header-wrapper`}>
                 <header>
                     <NavLink
                         to="/"

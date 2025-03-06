@@ -7,7 +7,7 @@
 .custom-dropdown__search {
   width: 100%;
   background-color: var(--background-color);
-  border-radius: 32px;
+  border-radius: 7px;
   height: 100%;
   padding: 10px 40px 10px 10px;
   font-weight: 600;
@@ -59,7 +59,7 @@
 
 @media (min-width: 768px) {
   .custom-dropdown__search {
-    padding: 15px 50px 15px 15px;
+    padding: 10px 50px 10px 15px;
     font-size: 17px;
   }
   .custom-dropdown__menu {
