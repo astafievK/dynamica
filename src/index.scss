@@ -827,14 +827,17 @@ html {
                     bottom: 0;
                     left: 0;
                     flex-direction: column;
-                    background: #ffffff;
+                    background: var(--background-color);
                     overflow-y: auto;
                     border-right: 1px solid var(--background-color);
                     z-index: 1000;
 
                     .left-menu-item {
                         display: flex;
-                        align-items: center;
+                        align-items: flex-start;
+                        justify-content: center;
+                        flex-direction: column;
+                        position: relative;
                         gap: 5px;
                         background: transparent;
                         padding: 8px 9px;
@@ -850,8 +853,17 @@ html {
                         text-overflow: ellipsis;
                         transition: all 200ms ease;
 
+                        &.item-contacts {
+                            .contacts-navigation {
+                                position: absolute;
+                                top: 0;
+                                right: 0;
+                                z-index: 2;
+                            }
+                        }
+
                         &.active-nav-item {
-                            background: rgba(90, 176, 88, 0.5);
+                            background: rgba(90, 176, 88, 0.4);
                         }
 
                         &:not(.active-nav-item):hover {
@@ -869,6 +881,11 @@ html {
                         }
                     }
 
+                    .submenu-container {
+                        margin-left: 10px;
+                        margin-top: 5px;
+                    }
+
                     .profile-container {
                         margin-top: 5px;
                     }
@@ -879,9 +896,6 @@ html {
                         flex-direction: column;
 
                         .admin-navigation {
-                            margin-left: 10px;
-                            margin-top: 5px;
-                            
                             ul {
                                 li{
                                     display: flex;
@@ -909,6 +923,10 @@ html {
 
                     .general-navigation {
                         margin-top: 15px;
+
+                        .contacts-navigation {
+
+                        }
                     }
 
                     .recent-navigation {
@@ -1130,6 +1148,7 @@ html {
                         background-color: #FFFFFF;
                         position: relative;
                         display: flex;
+                        min-height: 100vh;
                         overflow: unset !important;
                         width: 100%;
                         flex-grow: 1;
@@ -1139,7 +1158,7 @@ html {
                             width: 100%;
                             flex-grow: 1;
                             flex-direction: column;
-                            max-width: 1600px;
+                            max-width: 1920px;
                             margin: 0 auto;
                             padding: 20px 5px;
 
@@ -1816,35 +1835,6 @@ html {
                                     gap: 5px;
                                     margin-top: 20px;
 
-                                    .filters-select {
-                                        width: 100%;
-                                        display: flex;
-                                        border-radius: 10px;
-                                        gap: 5px;
-                                        flex-wrap: wrap;
-                                        position: relative;
-
-                                        .custom-dropdown {
-                                            width: 100%;
-
-                                            .cross {
-                                                animation: fadeIn 200ms;
-                                            }
-
-                                            &:nth-child(1) {
-                                                z-index: 4;
-                                            }
-
-                                            &:nth-child(2) {
-                                                z-index: 3;
-                                            }
-
-                                            &:nth-child(3) {
-                                                z-index: 2;
-                                            }
-                                        }
-                                    }
-
                                     .filters-search {
                                         display: flex;
                                         position: relative;
@@ -1856,11 +1846,11 @@ html {
                                             width: 100%;
                                             padding: 10px 115px 10px 10px;
                                             border-radius: 32px;
-                                            background: var(--background-color);
+                                            background: #FFFFFF;
                                             font-weight: 600;
                                             font-size: 16px;
                                             flex: 1;
-                                            filter: drop-shadow(0px 2px 10px rgba(106, 82, 117, 0.1));
+                                            filter: drop-shadow(0px 2px 5px rgba(106, 82, 117, 0.5));
                                             transition: 200ms;
 
                                             &::placeholder {
@@ -1908,7 +1898,8 @@ html {
                                         gap: 15px;
                                         padding: 10px;
                                         border-radius: 20px;
-                                        background-color: var(--background-color);
+                                        background-color: #FFFFFF;
+                                        filter: drop-shadow(0px 2px 3px rgba(106, 82, 117, 0.5));
 
                                         .employee-image {
                                             height: 100%;
@@ -3271,7 +3262,7 @@ html {
                                     }
 
                                     .employees-container {
-                                        margin-top: 35px;
+                                        margin-top: 20px;
                                     }
                                 }
 
@@ -3497,7 +3488,7 @@ html {
                         padding: 20px 5px;
 
                         .left-menu-item {
-                            padding: 12px;
+                            padding: 9px 12px;
                             font-size: 17px;
                         }
 
@@ -3778,7 +3769,6 @@ html {
                                     }
 
                                     .employees-container {
-                                        margin-top: 30px;
                                         grid-template-columns: repeat(3, calc(100% / 3 - 9px / 3 * (3 - 1)));
                                         gap: 9px;
 

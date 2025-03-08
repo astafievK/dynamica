@@ -18,7 +18,7 @@ export const LeftMenu: FC = () => {
                     <AnimatePresence>
                         {isAdminPageOpened && (
                             <motion.nav
-                                className="admin-navigation"
+                                className="admin-navigation submenu-container"
                                 initial={{ opacity: 0, height: 0 }}
                                 animate={{ opacity: 1, height: "auto" }}
                                 exit={{ opacity: 0, height: 0 }}
@@ -39,7 +39,7 @@ export const LeftMenu: FC = () => {
                     <ul>
                         <li><NavLink to="/" className={({ isActive }) => `left-menu-item ${isActive ? "active-nav-item" : ""}`}>Главная</NavLink></li>
                         <li><NavLink to="/feed" className={({ isActive }) => `left-menu-item ${isActive ? "active-nav-item" : ""}`}>Новости</NavLink></li>
-                        <li><NavLink to="/contacts" className={({ isActive })=> `left-menu-item ${isActive ? "active-nav-item" : ""}`}>Адресная книга</NavLink></li>
+                        <li><NavLink to="/contacts" className={({ isActive }) => `left-menu-item ${isActive ? "active-nav-item item-contacts" : ""}`}>Адресная книга</NavLink></li>
                         <li><NavLink to="/adaptation" className={({ isActive }) => `left-menu-item ${isActive ? "active-nav-item" : ""}`}>Адаптация</NavLink></li>
                     </ul>
                 </nav>

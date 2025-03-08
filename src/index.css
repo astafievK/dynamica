@@ -705,14 +705,17 @@ html body #dynamica .layout .left-menu {
   bottom: 0;
   left: 0;
   flex-direction: column;
-  background: #ffffff;
+  background: var(--background-color);
   overflow-y: auto;
   border-right: 1px solid var(--background-color);
   z-index: 1000;
 }
 html body #dynamica .layout .left-menu .left-menu-item {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
   gap: 5px;
   background: transparent;
   padding: 8px 9px;
@@ -728,8 +731,14 @@ html body #dynamica .layout .left-menu .left-menu-item {
   text-overflow: ellipsis;
   transition: all 200ms ease;
 }
+html body #dynamica .layout .left-menu .left-menu-item.item-contacts .contacts-navigation {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 2;
+}
 html body #dynamica .layout .left-menu .left-menu-item.active-nav-item {
-  background: rgba(90, 176, 88, 0.5);
+  background: rgba(90, 176, 88, 0.4);
 }
 html body #dynamica .layout .left-menu .left-menu-item:not(.active-nav-item):hover {
   background-color: rgba(0, 0, 0, 0.05);
@@ -742,6 +751,10 @@ html body #dynamica .layout .left-menu .logo-container {
 html body #dynamica .layout .left-menu .logo-container img {
   width: 100%;
 }
+html body #dynamica .layout .left-menu .submenu-container {
+  margin-left: 10px;
+  margin-top: 5px;
+}
 html body #dynamica .layout .left-menu .profile-container {
   margin-top: 5px;
 }
@@ -749,10 +762,6 @@ html body #dynamica .layout .left-menu .admin-container {
   display: flex;
   margin-top: 5px;
   flex-direction: column;
-}
-html body #dynamica .layout .left-menu .admin-container .admin-navigation {
-  margin-left: 10px;
-  margin-top: 5px;
 }
 html body #dynamica .layout .left-menu .admin-container .admin-navigation ul li {
   display: flex;
@@ -956,6 +965,7 @@ html body #dynamica .layout .main-container main {
   background-color: #FFFFFF;
   position: relative;
   display: flex;
+  min-height: 100vh;
   overflow: unset !important;
   width: 100%;
   flex-grow: 1;
@@ -965,7 +975,7 @@ html body #dynamica .layout .main-container main .page {
   width: 100%;
   flex-grow: 1;
   flex-direction: column;
-  max-width: 1600px;
+  max-width: 1920px;
   margin: 0 auto;
   padding: 20px 5px;
 }
@@ -1512,29 +1522,6 @@ html body #dynamica .layout .main-container main .page.page-contacts .filters-co
   gap: 5px;
   margin-top: 20px;
 }
-html body #dynamica .layout .main-container main .page.page-contacts .filters-container .filters-select {
-  width: 100%;
-  display: flex;
-  border-radius: 10px;
-  gap: 5px;
-  flex-wrap: wrap;
-  position: relative;
-}
-html body #dynamica .layout .main-container main .page.page-contacts .filters-container .filters-select .custom-dropdown {
-  width: 100%;
-}
-html body #dynamica .layout .main-container main .page.page-contacts .filters-container .filters-select .custom-dropdown .cross {
-  animation: fadeIn 200ms;
-}
-html body #dynamica .layout .main-container main .page.page-contacts .filters-container .filters-select .custom-dropdown:nth-child(1) {
-  z-index: 4;
-}
-html body #dynamica .layout .main-container main .page.page-contacts .filters-container .filters-select .custom-dropdown:nth-child(2) {
-  z-index: 3;
-}
-html body #dynamica .layout .main-container main .page.page-contacts .filters-container .filters-select .custom-dropdown:nth-child(3) {
-  z-index: 2;
-}
 html body #dynamica .layout .main-container main .page.page-contacts .filters-container .filters-search {
   display: flex;
   position: relative;
@@ -1546,11 +1533,11 @@ html body #dynamica .layout .main-container main .page.page-contacts .filters-co
   width: 100%;
   padding: 10px 115px 10px 10px;
   border-radius: 32px;
-  background: var(--background-color);
+  background: #FFFFFF;
   font-weight: 600;
   font-size: 16px;
   flex: 1;
-  filter: drop-shadow(0px 2px 10px rgba(106, 82, 117, 0.1));
+  filter: drop-shadow(0px 2px 5px rgba(106, 82, 117, 0.5));
   transition: 200ms;
 }
 html body #dynamica .layout .main-container main .page.page-contacts .filters-container .filters-search .filters-search__text::placeholder {
@@ -1591,7 +1578,8 @@ html body #dynamica .layout .main-container main .page.page-contacts .employees-
   gap: 15px;
   padding: 10px;
   border-radius: 20px;
-  background-color: var(--background-color);
+  background-color: #FFFFFF;
+  filter: drop-shadow(0px 2px 3px rgba(106, 82, 117, 0.5));
 }
 html body #dynamica .layout .main-container main .page.page-contacts .employees-container .employee-card .employee-image {
   height: 100%;
@@ -2547,7 +2535,7 @@ html body #dynamica .layout .main-container .footer-wrapper footer .faq .faq-ite
     padding: 22px 25px;
   }
   html body #dynamica .layout .main-container main .page.page-contacts .employees-container {
-    margin-top: 35px;
+    margin-top: 20px;
   }
   html body #dynamica .layout .main-container main .page.page-document .content .progress-bar-container .progress-item .progress-point-wrapper .progress-point {
     width: 30px;
@@ -2678,7 +2666,7 @@ html body #dynamica .layout .main-container .footer-wrapper footer .faq .faq-ite
     padding: 20px 5px;
   }
   html body #dynamica .layout .left-menu .left-menu-item {
-    padding: 12px;
+    padding: 9px 12px;
     font-size: 17px;
   }
   html body #dynamica .layout .left-menu .profile-container {
@@ -2857,7 +2845,6 @@ html body #dynamica .layout .main-container .footer-wrapper footer .faq .faq-ite
     padding: 22px 25px;
   }
   html body #dynamica .layout .main-container main .page.page-contacts .employees-container {
-    margin-top: 30px;
     grid-template-columns: repeat(3, calc(33.3333333333% - 6px));
     gap: 9px;
   }
