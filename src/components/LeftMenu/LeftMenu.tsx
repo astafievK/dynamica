@@ -9,8 +9,8 @@ export const LeftMenu: FC = () => {
     return (
         <>
             <aside className="left-menu">
-                <NavLink to="/" className="logo-container"><img src={"/logo.png"} alt={"Динамика"}/></NavLink>
-                <NavLink to="/profile" className="profile-container left-menu-item">Кирилл Астафьев</NavLink>
+                <NavLink to="/" className="logo-container"><img src={"/logo.svg"} alt={"Динамика"}/></NavLink>
+                <NavLink to="/profile" className={({ isActive }) => `profile-container left-menu-item ${isActive ? "active-nav-item" : ""}`}>Кирилл Астафьев</NavLink>
                 <div className="admin-container">
                     <NavLink to="/admin" className={({ isActive }) => `left-menu-item ${isActive ? "active-nav-item" : ""}`}>
                         Панель администрирования

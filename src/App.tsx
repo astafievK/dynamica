@@ -36,18 +36,20 @@ const Root = () => {
     return (
         <>
             <div className="layout">
-                <Header />
-                <LeftMenu />
-                <div className="main-container">
-                    <main>
-                        <AnimatePresence>
-                            <Outlet/>
-                        </AnimatePresence>
-                    </main>
-                    <Footer/>
+                <Header/>
+                <LeftMenu/>
+                <div className="layout-content">
+                    <div className="main-container">
+                        <main>
+                            <AnimatePresence>
+                                <Outlet/>
+                            </AnimatePresence>
+                        </main>
+                        <Footer/>
+                    </div>
                 </div>
+                <Modals/>
             </div>
-            <Modals/>
             {
                 // <AnimatePresence>
                 //     <ModalLoading />

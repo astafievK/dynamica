@@ -16,7 +16,6 @@ export const PageProfile: FC = () => {
     useEffect(() => {
         if (!user) {
             dispatch(setLoginModalOpen(true));
-            navigate("/");
         } else {
             document.title = "Профиль";
         }
@@ -50,7 +49,6 @@ export const PageProfile: FC = () => {
         return () => clearInterval(interval);
     }, []);
 
-    if (!user) return null;
 
     return (
         <motion.div
@@ -61,7 +59,7 @@ export const PageProfile: FC = () => {
             transition={pageAnimation.transition}
             className={"page page-profile"}>
             <div className="page-header">
-                <span className="page-title page-title__name">{user.last_name} {user.first_name}</span>
+                <span className="page-title page-title__name">123 </span>
                 <span className="page-title__district">Группа BI-разработки • Разработчик</span>
                 <div className="clocks"><span>{currentTime}</span></div>
             </div>

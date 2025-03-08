@@ -54,22 +54,6 @@ export const Header: FC = () => {
                         </div>
                     </div>
                 </header>
-                <div className="user-panel">
-                    <nav>
-                        <NavLink
-                            to="/profile">
-                            Профиль
-                        </NavLink>
-                        <NavLink
-                            to="/my-profile">
-                            Документы
-                        </NavLink>
-                        <NavLink
-                            to="/my-notifications">
-                            Уведомления
-                        </NavLink>
-                    </nav>
-                </div>
             </div>
         </>
     );
