@@ -251,15 +251,8 @@ html {
         &.styled {
             padding: 15px;
             border-radius: 32px;
-            background: var(--background-color);
-            border: 5px solid #FFFFFF;
-            filter: drop-shadow(0px 2px 10px rgba(106, 82, 117, 0.1));
+            border: 1px solid var(--background-color);
             transition: background 0.2s;
-
-            &:focus {
-                background: #FFFFFF;
-                transition: 100ms;
-            }
         }
     }
 
@@ -845,7 +838,7 @@ html {
                         font-weight: 600;
                         text-decoration: none;
                         width: 100%;
-                        border-radius: 7px;
+                        border-radius: 12px;
                         color: var(--secondary-color);
                         flex-shrink: 0;
                         overflow: hidden;
@@ -1751,28 +1744,21 @@ html {
 
                                                     .quill {
                                                         position: relative;
+                                                        border-radius: 32px;
                                                         z-index: 2;
-                                                        filter: drop-shadow(0px 2px 10px rgba(106, 82, 117, 0.1));
+                                                        overflow: hidden;
+                                                        border: 1px solid var(--background-color);
 
                                                         .ql-toolbar {
-                                                            border-left: 5px solid #FFFFFF;
-                                                            border-top: 5px solid #FFFFFF;
-                                                            border-right: 5px solid #FFFFFF;
-                                                            border-bottom: 0;
-                                                            border-radius: 32px 32px 0 0;
+                                                            border: none;
                                                         }
 
                                                         .ql-container {
-                                                            border-left: 5px solid #FFFFFF;
-                                                            border-bottom: 5px solid #FFFFFF;
-                                                            border-right: 5px solid #FFFFFF;
-
-                                                            border-radius: 0 0 32px 32px;
+                                                            border: none;
                                                             overflow: hidden;
 
                                                             .ql-editor {
                                                                 white-space: pre-wrap;
-                                                                background-color: var(--background-color);
                                                                 min-height: 200px;
                                                             }
                                                         }
@@ -1834,8 +1820,34 @@ html {
                                         display: flex;
                                         flex-direction: column;
                                         padding: 0 5px;
-                                        gap: 5px;
+                                        gap: 10px;
                                         margin-top: 20px;
+
+                                        .filters-departments {
+                                            display: flex;
+                                            flex-wrap: nowrap;
+                                            overflow-x: auto;
+
+                                            .filters-departments__item {
+                                                background: transparent;
+                                                border-radius: 7px;
+                                                font-weight: 600;
+                                                font-size: 14px;
+                                                padding: 8px;
+                                                flex-shrink: 0;
+                                                transition-duration: 200ms;
+
+                                                &:hover {
+                                                    background-color: rgba(0, 0, 0, 0.05);
+                                                    transition-duration: 200ms;
+                                                }
+
+                                                &.selected {
+                                                    background: rgba(#5AB058, 0.4);
+                                                    transition-duration: 70ms;
+                                                }
+                                            }
+                                        }
 
                                         .filters-search {
                                             display: flex;
@@ -1854,10 +1866,6 @@ html {
                                                 flex: 1;
                                                 border: 1px solid var(--background-color);
                                                 transition: 200ms;
-
-                                                &::placeholder {
-                                                    font-style: italic;
-                                                }
 
                                                 &:focus {
                                                     background: #FFFFFF;
@@ -2656,6 +2664,12 @@ html {
                                             padding: 0 20px;
                                             gap: 10px;
 
+                                            .filters-departments {
+                                                .filters-departments__item {
+                                                    font-size: 16px;
+                                                }
+                                            }
+
                                             .filters-select {
                                                 .custom-dropdown {
                                                     flex: 1;
@@ -3252,6 +3266,15 @@ html {
                                             margin-top: 35px;
                                             gap: 10px;
 
+                                            .filters-departments {
+                                                justify-content: center;
+                                                flex-wrap: wrap;
+
+                                                .filters-departments__item {
+                                                    font-size: 16px;
+                                                }
+                                            }
+
                                             .filters-select {
                                                 display: flex;
                                                 align-items: stretch;
@@ -3757,7 +3780,6 @@ html {
                                     &.page-contacts {
                                         .filters-container {
                                             padding: 0 10px;
-                                            flex-direction: row;
 
                                             .filters-select {
                                                 .custom-dropdown {

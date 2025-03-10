@@ -2,6 +2,7 @@ import { FC, useEffect } from "react";
 import { motion} from "framer-motion";
 import { pageAnimation } from "../../motionSettins.ts";
 import { EmployeeCard } from "./EmployeeCard/EmployeeCard.tsx";
+import {FilterDepartments} from "./FilterDepartments/FilterDepartments.tsx";
 
 const employeeList = [
     {
@@ -95,6 +96,7 @@ export const PageContacts: FC = () => {
                 <span className="page-title page-title__name">Адресная книга</span>
             </div>
             <div className="filters-container">
+                <FilterDepartments/>
                 <div className="filters-search">
                     <input type="text" className="filters-search__text" placeholder="ФИО"/>
                     <button type="submit" className="filters-search__submit">Применить</button>

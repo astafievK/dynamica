@@ -1,118 +1,37 @@
-import { FC, useEffect } from "react";
-import { motion} from "framer-motion";
-import { pageAnimation } from "../../motionSettins.ts";
-import { EmployeeCard } from "./EmployeeCard/EmployeeCard.tsx";
+import {FC, useState} from "react";
 
-const employeeList = [
-    {
-        name: "Гледенов Максим Александрович",
-        position: "Руководитель группы BI-аналитики",
-        division: "Администрация Архангельск",
-        city: "Архангельск",
-        email: "maks.gledenov@hahaha.ru",
-        phone: "+79210106565",
-    },
-    {
-        name: "Гледенов Максим Александрович",
-        position: "Руководитель группы BI-аналитики",
-        division: "Администрация Архангельск",
-        city: "Архангельск",
-        email: "maks.gledenov@hahaha.ru",
-        phone: "+79210106565",
-    },{
-        name: "Гледенов Максим Александрович",
-        position: "Руководитель группы BI-аналитики",
-        division: "Администрация Архангельск",
-        city: "Архангельск",
-        email: "maks.gledenov@hahaha.ru",
-        phone: "+79210106565",
-    },{
-        name: "Гледенов Максим Александрович",
-        position: "Руководитель группы BI-аналитики",
-        division: "Администрация Архангельск",
-        city: "Архангельск",
-        email: "maks.gledenov@hahaha.ru",
-        phone: "+79210106565",
-    },{
-        name: "Гледенов Максим Александрович",
-        position: "Руководитель группы BI-аналитики",
-        division: "Администрация Архангельск",
-        city: "Архангельск",
-        email: "maks.gledenov@hahaha.ru",
-        phone: "+79210106565",
-    },{
-        name: "Гледенов Максим Александрович",
-        position: "Руководитель группы BI-аналитики",
-        division: "Администрация Архангельск",
-        city: "Архангельск",
-        email: "maks.gledenov@hahaha.ru",
-        phone: "+79210106565",
-    },{
-        name: "Гледенов Максим Александрович",
-        position: "Руководитель группы BI-аналитики",
-        division: "Администрация Архангельск",
-        city: "Архангельск",
-        email: "maks.gledenov@hahaha.ru",
-        phone: "+79210106565",
-    },{
-        name: "Гледенов Максим Александрович",
-        position: "Руководитель группы BI-аналитики",
-        division: "Администрация Архангельск",
-        city: "Архангельск",
-        email: "maks.gledenov@hahaha.ru",
-        phone: "+79210106565",
-    },{
-        name: "Гледенов Максим Александрович",
-        position: "Руководитель группы BI-аналитики",
-        division: "Администрация Архангельск",
-        city: "Архангельск",
-        email: "maks.gledenov@hahaha.ru",
-        phone: "+79210106565",
-    },{
-        name: "Гледенов Максим Александрович",
-        position: "Руководитель группы BI-аналитики",
-        division: "Администрация Архангельск",
-        city: "Архангельск",
-        email: "maks.gledenov@hahaha.ru",
-        phone: "+79210106565",
-    },
-];
+const filters = [
+    "Подразделение 1",
+    "Подразделение 2",
+    "Подразделение 3",
+    "Подразделение 4",
+    "Подразделение 5",
+    "Подразделение 6",
+    "Подразделение 7",
+    "Подразделение 8",
+    "Подразделение 9",
+    "Подразделение 10",
+    "Подразделение 11",
+    "Подразделение 12",
+    "Подразделение 13",
+    "Подразделение 14",
+    "Подразделение 15",
+    "Подразделение 16",
+    "Подразделение 17", ];
 
-export const PageContacts: FC = () => {
-    useEffect(() => {
-        document.title = "Адресная книга";
-    }, []);
+export const FilterDepartments: FC = () => {
+    const [activeFilter, setActiveFilter] = useState(filters[0]);
 
     return (
-        <motion.div
-            initial={pageAnimation.initial}
-            animate={pageAnimation.animate}
-            exit={pageAnimation.exit}
-            transition={pageAnimation.transition}
-            className="page page-contacts"
-        >
-            <div className="page-header">
-                <span className="page-title page-title__name">Адресная книга</span>
-            </div>
-            <div className="filters-container">
-                <div className="filters-search">
-                    <input type="text" className="filters-search__text" placeholder="ФИО"/>
-                    <button type="submit" className="filters-search__submit">Применить</button>
-                </div>
-            </div>
-            <div className="employees-container">
-                {employeeList.map((employee, index) => (
-                    <EmployeeCard
-                        key={index}
-                        name={employee.name}
-                        position={employee.position}
-                        division={employee.division}
-                        city={employee.city}
-                        email={employee.email}
-                        phone={employee.phone}
-                    />
-                ))}
-            </div>
-        </motion.div>
+        <div className={"filters-departments"}>
+            {filters.map((filter) => (
+                <button
+                    className={`filters-departments__item ${activeFilter === filter ? "selected" : ""}`}
+                    key={filter}
+                    onClick={() => setActiveFilter(filter)}>
+                    {filter}
+                </button>
+            ))}
+        </div>
     );
 }
