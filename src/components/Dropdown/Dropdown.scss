@@ -20,20 +20,22 @@
     width: 100%;
     background-color: var(--background-color);
     position: relative;
+    text-align: left;
     border-radius: 32px;
     height: 100%;
-    padding: 10px;
+    padding: 10px 15px;
     font-weight: 600;
     font-size: 14px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: space-between;
     outline: none;
     transition: all 200ms;
 
     .arrow {
-      position: absolute;
       width: 20px;
-      top: 50%;
-      transform: translateX(-50%);
-      right: 20px;
       rotate: 90deg;
       aspect-ratio: 1/1;
     }

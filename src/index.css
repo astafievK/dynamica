@@ -1419,7 +1419,7 @@ html body #dynamica .layout .layout-content .main-container main .page.page-admi
 html body #dynamica .layout .layout-content .main-container main .page.page-admin .page-admin__content {
   width: 100%;
   margin-top: 10px;
-  padding: 15px 10px;
+  padding: 15px 0;
   border-radius: 32px;
 }
 html body #dynamica .layout .layout-content .main-container main .page.page-admin .page-admin__content .content-tab .content-tab__title {
@@ -1490,6 +1490,7 @@ html body #dynamica .layout .layout-content .main-container main .page.page-admi
   width: 100%;
   display: grid;
   grid-template-columns: 1fr;
+  overflow-y: auto;
 }
 html body #dynamica .layout .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association {
   width: 100%;
@@ -1505,7 +1506,7 @@ html body #dynamica .layout .layout-content .main-container main .page.page-admi
   gap: 4px;
 }
 html body #dynamica .layout .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association .variants .custom-dropdown {
-  flex: 1;
+  min-width: 150px;
 }
 html body #dynamica .layout .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association .arrow-container {
   display: flex;
@@ -2247,7 +2248,6 @@ html body #dynamica .layout .layout-content .main-container .footer-wrapper foot
   html body #dynamica .layout .layout-content .main-container main .page.page-admin .page-admin__content {
     width: 100%;
     margin-top: 10px;
-    padding: 15px 10px;
     border-radius: 32px;
   }
   html body #dynamica .layout .layout-content .main-container main .page.page-admin .page-admin__content .content-tab .content-tab__title {

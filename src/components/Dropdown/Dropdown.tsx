@@ -1,6 +1,6 @@
-import { AnimatePresence, motion } from "framer-motion";
-import { FC, useState, useRef, useEffect } from "react";
+import { FC, useState, useEffect } from "react";
 import "./Dropdown.css";
+import {Cross} from "../Cross/Cross.tsx";
 
 interface DropdownProps {
     options: string[];
@@ -10,53 +10,64 @@ interface DropdownProps {
 
 export const Dropdown: FC<DropdownProps> = ({ options, label, onSelect }) => {
     const [isOpen, setIsOpen] = useState(false);
-    const [selectedValue, setSelectedValue] = useState<string>("");
-    const dropdownRef = useRef<HTMLDivElement>(null);
+    const [isClosing, setIsClosing] = useState(false);
+    const [selectedValue, setSelectedValue] = useState<string | null>(null);
 
     const toggleDropdown = () => setIsOpen((prev) => !prev);
 
     const handleSelect = (option: string) => {
         setSelectedValue(option);
-        setIsOpen(false);
         onSelect(option);
+        setIsClosing(true);
+        setTimeout(() => {
+            setIsOpen(false);
+            setIsClosing(false);
+        }, 400);
     };
 
-    const handleClickOutside = (event: MouseEvent) => {
-        if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-            setIsOpen(false);
-        }
-    };
 
     useEffect(() => {
-        document.addEventListener("mousedown", handleClickOutside);
-        return () => {
-            document.removeEventListener("mousedown", handleClickOutside);
-        };
-    }, []);
+        if (isClosing) {
+            setTimeout(() => {
+                setIsOpen(false);
+                setIsClosing(false);
+            }, 400);
+        }
+    }, [isClosing]);
 
     return (
-        <div ref={dropdownRef} className={`custom-dropdown ${isOpen ? 'expanded' : ''}`}>
-            <button className="custom-dropdown__button" onClick={toggleDropdown}>
-                {selectedValue || label}
-                <img className={"arrow"} src={"/arrow.svg"} alt={""}/>
-            </button>
-            <AnimatePresence>
-                {isOpen && (
-                    <motion.ul
-                        initial={{ opacity: 0, translateY: -5 }}
-                        animate={{ opacity: 1, translateY: 0 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.1 }}
-                        className="custom-dropdown__menu"
-                    >
-                        {options.map((option) => (
-                            <li key={option} className="custom-dropdown__item" onClick={() => handleSelect(option)}>
-                                {option}
-                            </li>
-                        ))}
-                    </motion.ul>
-                )}
-            </AnimatePresence>
-        </div>
+        <>
+            <div className="custom-dropdown">
+                <button className="custom-dropdown__button" onClick={toggleDropdown}>
+                    {selectedValue || label}
+                    <img className="arrow" src="/arrow.svg" alt=""/>
+                </button>
+            </div>
+            {
+                isOpen && (
+                    <div className={`modal modal-dropdown ${isClosing ? "hidden" : ""}`}>
+                        <div className={`modal-content modal-notifications ${isClosing ? "hidden" : ""}`}>
+                            <div className="modal-content__header">
+                                <span className={"modal-title"}>{label}</span>
+                                <Cross onClick={() => setIsClosing(true)} color={"#000000"} />
+                            </div>
+                            <div className="modal-content__body">
+                                <ul className="items">
+                                    {options.map((option) => (
+                                        <li className="item" key={option}>
+                                            <button className="item-button" onClick={() => handleSelect(option)}>
+                                                {option}
+                                            </button>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        </div>
+                        <div className={`spoiler ${isClosing ? "hidden" : ""}`}
+                             onClick={() => setIsClosing(true)}></div>
+                    </div>
+                )
+            }
+        </>
     );
 };
