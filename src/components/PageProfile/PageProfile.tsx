@@ -16,6 +16,7 @@ export const PageProfile: FC = () => {
     useEffect(() => {
         if (!user) {
             dispatch(setLoginModalOpen(true));
+            navigate("/");
         } else {
             document.title = "Профиль";
         }
@@ -49,6 +50,7 @@ export const PageProfile: FC = () => {
         return () => clearInterval(interval);
     }, []);
 
+    if (!user) return null;
 
     return (
         <motion.div
