@@ -5,7 +5,7 @@ interface IEmployeeCardProps {
     position: string;
     division: string;
     city: string;
-    email: string;
+    email: string | null;
     phone: string;
 }
 

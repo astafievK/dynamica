@@ -19,6 +19,7 @@ export const Header: FC = () => {
             dispatch(setLoginModalOpen(true));
         }
     };
+
     const handleNotificationsClick = () => dispatch(setNotificationsModalOpen(true));
     const handleBurgerClick = () => dispatch(setMobileMenuOpen(true));
 

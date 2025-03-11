@@ -1,84 +1,12 @@
-import { FC, useEffect } from "react";
-import { motion} from "framer-motion";
-import { pageAnimation } from "../../motionSettins.ts";
-import { EmployeeCard } from "./EmployeeCard/EmployeeCard.tsx";
-
-const employeeList = [
-    {
-        name: "Гледенов Максим Александрович",
-        position: "Руководитель группы BI-аналитики",
-        division: "Администрация Архангельск",
-        city: "Архангельск",
-        email: "maks.gledenov@hahaha.ru",
-        phone: "+79210106565",
-    },
-    {
-        name: "Гледенов Максим Александрович",
-        position: "Руководитель группы BI-аналитики",
-        division: "Администрация Архангельск",
-        city: "Архангельск",
-        email: "maks.gledenov@hahaha.ru",
-        phone: "+79210106565",
-    },{
-        name: "Гледенов Максим Александрович",
-        position: "Руководитель группы BI-аналитики",
-        division: "Администрация Архангельск",
-        city: "Архангельск",
-        email: "maks.gledenov@hahaha.ru",
-        phone: "+79210106565",
-    },{
-        name: "Гледенов Максим Александрович",
-        position: "Руководитель группы BI-аналитики",
-        division: "Администрация Архангельск",
-        city: "Архангельск",
-        email: "maks.gledenov@hahaha.ru",
-        phone: "+79210106565",
-    },{
-        name: "Гледенов Максим Александрович",
-        position: "Руководитель группы BI-аналитики",
-        division: "Администрация Архангельск",
-        city: "Архангельск",
-        email: "maks.gledenov@hahaha.ru",
-        phone: "+79210106565",
-    },{
-        name: "Гледенов Максим Александрович",
-        position: "Руководитель группы BI-аналитики",
-        division: "Администрация Архангельск",
-        city: "Архангельск",
-        email: "maks.gledenov@hahaha.ru",
-        phone: "+79210106565",
-    },{
-        name: "Гледенов Максим Александрович",
-        position: "Руководитель группы BI-аналитики",
-        division: "Администрация Архангельск",
-        city: "Архангельск",
-        email: "maks.gledenov@hahaha.ru",
-        phone: "+79210106565",
-    },{
-        name: "Гледенов Максим Александрович",
-        position: "Руководитель группы BI-аналитики",
-        division: "Администрация Архангельск",
-        city: "Архангельск",
-        email: "maks.gledenov@hahaha.ru",
-        phone: "+79210106565",
-    },{
-        name: "Гледенов Максим Александрович",
-        position: "Руководитель группы BI-аналитики",
-        division: "Администрация Архангельск",
-        city: "Архангельск",
-        email: "maks.gledenov@hahaha.ru",
-        phone: "+79210106565",
-    },{
-        name: "Гледенов Максим Александрович",
-        position: "Руководитель группы BI-аналитики",
-        division: "Администрация Архангельск",
-        city: "Архангельск",
-        email: "maks.gledenov@hahaha.ru",
-        phone: "+79210106565",
-    },
-];
+import { motion } from "framer-motion";
+import {useGetUsersNotRetiredQuery} from "../../api/methods/userApi.ts";
+import {FC, useEffect} from "react";
+import {pageAnimation} from "../../motionSettins.ts";
+import {EmployeeCard} from "./EmployeeCard/EmployeeCard.tsx";
 
 export const PageContacts: FC = () => {
+    const { data } = useGetUsersNotRetiredQuery();
+
     useEffect(() => {
         document.title = "Адресная книга";
     }, []);
@@ -101,18 +29,22 @@ export const PageContacts: FC = () => {
                 </div>
             </div>
             <div className="employees-container">
-                {employeeList.map((employee, index) => (
-                    <EmployeeCard
-                        key={index}
-                        name={employee.name}
-                        position={employee.position}
-                        division={employee.division}
-                        city={employee.city}
-                        email={employee.email}
-                        phone={employee.phone}
-                    />
-                ))}
+                {data?.users ? (
+                    data.users.map((employee, index) => (
+                        <EmployeeCard
+                            key={index}
+                            name={`${employee.surname} ${employee.name} ${employee.patronymic}`}
+                            position={employee.position?.title || "Не указана"}
+                            division={" "}
+                            city={" "}
+                            email={employee.email}
+                            phone={employee.phone}
+                        />
+                    ))
+                ) : (
+                    <p>Загрузка...</p>
+                )}
             </div>
         </motion.div>
     );
-}
+};

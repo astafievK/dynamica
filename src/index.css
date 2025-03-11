@@ -1518,6 +1518,25 @@ html body #dynamica .layout .layout-content .main-container main .page.page-admi
 html body #dynamica .layout .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--feed .content-tab__form .content-tab__actions .action-save {
   background: var(--background-action-button-secondary);
 }
+html body #dynamica .layout .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+}
+html body #dynamica .layout .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association {
+  width: 100%;
+  border: 1px solid var(--background-color);
+  border-radius: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  padding: 8px;
+}
+html body #dynamica .layout .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association .variants {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
 html body #dynamica .layout .layout-content .main-container main .page.page-contacts .filters-container {
   display: flex;
   flex-direction: column;

@@ -1,16 +1,34 @@
 import {AnimatePresence, motion} from "framer-motion";
 import { FC } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import {NavLink, useLocation, useNavigate} from "react-router-dom";
+import {useAppDispatch, useTypedSelector} from "../../store/hooks/redux.ts";
+import {setIsOpen as setLoginModalOpen} from "../../api/slices/modalLoginSlice.ts";
 
 export const LeftMenu: FC = () => {
+    const { user } = useTypedSelector((state) => state.auth);
+    const dispatch = useAppDispatch();
     const location = useLocation();
     const isAdminPageOpened = location.pathname.startsWith("/admin");
+    const navigate = useNavigate();
+
+    const handleProfileClick = () => {
+        if (user) {
+            navigate("/profile");
+        } else {
+            dispatch(setLoginModalOpen(true));
+        }
+    };
 
     return (
         <>
             <aside className="left-menu">
                 <NavLink to="/" className="logo-container"><img src={"/logo.svg"} alt={"Динамика"}/></NavLink>
-                <NavLink to="/profile" className={({ isActive }) => `profile-container left-menu-item ${isActive ? "active-nav-item" : ""}`}>Кирилл Астафьев</NavLink>
+                <button
+                    className={`profile-container left-menu-item ${!user ? "not-logged-in" : ""}`}
+                    onClick={handleProfileClick}
+                >
+                    {user ? `${user.first_name} ${user.last_name}` : "Авторизация"}
+                </button>
                 <div className="admin-container">
                     <NavLink to="/admin" className={({ isActive }) => `left-menu-item ${isActive ? "active-nav-item" : ""}`}>
                         Панель администрирования

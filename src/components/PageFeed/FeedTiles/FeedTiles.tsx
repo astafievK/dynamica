@@ -12,7 +12,11 @@ export const FeedTiles: FC = () => {
                         ? Array.from({ length: 4 }).map((_, index) => <FeedTileSkeleton key={index} />)
                         : data?.posts?.length
                             ? data.posts.map((post) => (
-                                <FeedTile key={post.id_post} id={post.id_post} title={post.title} date={post.date.date} />
+                                <FeedTile
+                                    key={post.id_post}
+                                    id={post.id_post}
+                                    title={post.title}
+                                    date={post.date.date} />
                             ))
                             : <div className="feed-tiles__empty">Нет доступных постов</div>
                     }
