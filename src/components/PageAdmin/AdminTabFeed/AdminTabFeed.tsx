@@ -16,12 +16,11 @@ export const AdminTabFeed: FC = () => {
     }, [textEditorContent, setValue]);
 
     const onSubmit: SubmitHandler<CreatePostCommand> = async (data) => {
-        data.user_id = 1;
+        data.user_id = 2936;
         data.isPinned = false;
         console.log(data)
         try {
             const response = await createPost(data).unwrap();
-            console.log(response)
             if(response.status !== 'failed') {
                 reset();
                 setTextEditorContent('');

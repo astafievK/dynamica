@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { useGetPostQuery } from "../../api/methods/postApi.ts";
 import { ModalLoading } from "../Modals/ModalLoading/ModalLoading.tsx";
 import { useParams } from "react-router-dom";
-import { formatDate } from "../../functions.ts";
+import { formatDatetime } from "../../functions.ts";
 import { PageNotFound } from "../PageNotFound/PageNotFound.tsx";
 
 export const PagePost: FC = () => {
@@ -36,7 +36,7 @@ export const PagePost: FC = () => {
         >
             <div className="page-header">
                 <span className="page-title">{data.post.title}</span>
-                <span className="date">{data.post.date.date ? formatDate(data.post.date.date) : ""}</span>
+                <span className="date">{data.post.date.date ? formatDatetime(data.post.date.date) : ""}</span>
             </div>
             <div className="content">
                 <div className="content-text" dangerouslySetInnerHTML={{ __html: data.post.description || "" }} />

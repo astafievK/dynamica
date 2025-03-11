@@ -26,7 +26,7 @@
 }
 .custom-dropdown__button .arrow {
   position: absolute;
-  height: 50%;
+  width: 20px;
   top: 50%;
   transform: translateX(-50%);
   right: 20px;
@@ -64,7 +64,7 @@
   font-size: 14px;
   border-radius: 32px;
   font-weight: 500;
-  color: #333;
+  color: var(--secondary-color);
   display: flex;
   align-items: center;
   transition: background-color 200ms;

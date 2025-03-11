@@ -173,6 +173,9 @@
     --hover-background: rgba(150, 150, 150, 0.2);
     --background-action-button-primary: #acd7aa;
     --background-action-button-secondary: #e6e6e6;
+    --item-static-background: #FFFFFF;
+    --item-hover-background: rgba(0, 0, 0, 0.05);
+    --item-active-background: rgba(0, 0, 0, 0.1);
 }
 
 * {
@@ -251,8 +254,15 @@ html {
         &.styled {
             padding: 15px;
             border-radius: 32px;
-            border: 1px solid var(--background-color);
-            transition: background 0.2s;
+            background: var(--background-color);
+            border: 2px solid var(--background-color);
+            transition: all 0.2s;
+
+            &:hover,
+            &:focus {
+                background: #FFFFFF;
+                border-color: var(--primary-color);
+            }
         }
     }
 
@@ -322,7 +332,6 @@ html {
                         display: flex;
                         overflow: hidden;
                         flex-direction: column;
-                        border: 1px solid var(--background-color);
                         border-radius: 10px;
                         gap: 10px;
                         background-color: #ffffff;
@@ -368,13 +377,11 @@ html {
                         }
 
                         &:hover {
-                            background-color: rgba(0, 0, 0, 0.05);
-                            transition-duration: 200ms;
+                            background: var(--item-hover-background);
                         }
 
                         &:active {
-                            background-color: rgba(0, 0, 0, 0.15);
-                            transition-duration: 70ms;
+                            background: var(--item-active-background);
                         }
                     }
                 }
@@ -394,7 +401,6 @@ html {
                         padding: 10px 15px;
                         cursor: pointer;
                         background-color: rgba(0, 0, 0, 0);
-                        border: 1px solid var(--background-color);
                         user-select: none;
 
                         .title,
@@ -415,13 +421,11 @@ html {
                         }
 
                         &:hover {
-                            background-color: rgba(0, 0, 0, 0.05);
-                            transition-duration: 200ms;
+                            background: var(--item-hover-background);
                         }
 
                         &:active {
-                            background-color: rgba(0, 0, 0, 0.15);
-                            transition-duration: 70ms;
+                            background: var(--item-active-background);
                         }
                     }
                 }
@@ -672,32 +676,6 @@ html {
                                 gap: 6px;
                                 width: 100%;
                                 margin-top: 15px;
-
-                                label {
-                                    font-size: 16px;
-                                    font-weight: 600;
-                                    padding: 0 10px;
-                                }
-
-                                input[type="text"],
-                                input[type="password"] {
-                                    font-size: 22px;
-                                    width: 100%;
-                                    border-radius: 32px;
-                                    padding: 15px 20px;
-                                    background: var(--background-color);
-                                    cursor: pointer;
-                                    transition: box-shadow 0.2s ease-in-out, scale 0.2s ease-in-out, background-color 0.2s ease-in-out;
-
-                                    &:not(:focus):hover {
-                                        background: #dadada;
-                                    }
-
-                                    &:focus {
-                                        box-shadow: 0 0 5px 2px var(--primary-color);
-                                        scale: 1.005;
-                                    }
-                                }
                             }
 
                             .form-elem__submit {
@@ -820,9 +798,8 @@ html {
                     bottom: 0;
                     left: 0;
                     flex-direction: column;
-                    background: var(--background-color);
+                    background: #FFFFFF;
                     overflow-y: auto;
-                    border-right: 1px solid var(--background-color);
                     z-index: 1000;
 
                     .left-menu-item {
@@ -832,19 +809,20 @@ html {
                         flex-direction: column;
                         position: relative;
                         gap: 5px;
-                        background: transparent;
-                        padding: 8px 9px;
+                        background: var(--item-static-background);
+                        height: 48px;
+                        padding: 0 12px;
                         font-size: 14px;
-                        font-weight: 600;
+                        font-weight: 500;
                         text-decoration: none;
                         width: 100%;
-                        border-radius: 12px;
+                        border-radius: 10px;
                         color: var(--secondary-color);
                         flex-shrink: 0;
                         overflow: hidden;
                         white-space: nowrap;
                         text-overflow: ellipsis;
-                        transition: all 200ms ease;
+                        transition: all 150ms ease;
 
                         &.item-contacts {
                             .contacts-navigation {
@@ -855,13 +833,17 @@ html {
                             }
                         }
 
-                        &.active-nav-item {
-                            background: rgba(90, 176, 88, 0.4);
+                        &:active {
+                            background: var(--item-active-background) !important;
                         }
 
-                        &:not(.active-nav-item):hover {
-                            background-color: rgba(0, 0, 0, 0.05);
-                            transition-duration: 200ms;
+                        &.active-nav-item {
+                            color: var(--primary-color);
+                        }
+
+                        &:not(.active-nav-item):hover,
+                        &.active-nav-item {
+                            background: var(--item-hover-background);
                         }
                     }
 
@@ -906,7 +888,7 @@ html {
                         ul {
                             display: flex;
                             flex-direction: column;
-                            gap: 5px;
+                            gap: 0 !important;
 
                             li {
                                 display: flex;
@@ -936,6 +918,7 @@ html {
                     }
 
                     .sep {
+                        display: none;
                         margin: 5px 0;
                         border-bottom: 1px solid var(--background-color);
                     }
@@ -1133,6 +1116,8 @@ html {
                 }
 
                 .layout-content {
+                    background: #FFFFFF;
+
                     .main-container {
                         display: flex;
                         flex-direction: column;
@@ -1469,16 +1454,15 @@ html {
 
                                     .feed-tiles {
                                         display: grid;
-                                        grid-template-columns: repeat(2, calc(100% / 2 - 5px / 2 * (2 - 1)));
+                                        grid-template-columns: repeat(1, calc(100% / 1 - 5px / 1 * (1 - 1)));
                                         gap: 5px;
                                         padding: 10px;
-                                        background: #FFFFFF;
                                         border-radius: 32px;
                                         margin-top: 20px;
                                         width: 100%;
 
                                         .feed-tile {
-                                            background: var(--background-color);
+                                            background: var(--item-static-background);
                                             border-radius: 20px;
                                             text-decoration: none;
                                             width: 100%;
@@ -1487,7 +1471,6 @@ html {
                                             display: flex;
                                             flex-direction: column;
                                             cursor: pointer;
-                                            transition: all 0.2s ease;
 
                                             &.pinned {
                                                 background: var(--primary-color);
@@ -1504,8 +1487,8 @@ html {
                                                 transition: scale 200ms ease;
 
                                                 img {
-                                                    width: 120%;
-                                                    object-fit: cover;
+                                                    height: 100%;
+                                                    object-fit: contain;
                                                 }
                                             }
 
@@ -1513,7 +1496,7 @@ html {
                                                 display: flex;
                                                 flex-direction: column;
                                                 flex-grow: 1;
-                                                padding: 5px 10px 10px 10px;
+                                                padding: 5px;
 
                                                 span {
                                                     color: var(--secondary-color);
@@ -1522,14 +1505,14 @@ html {
                                                 .feed-tile__date {
                                                     text-align: left;
                                                     user-select: none;
-                                                    font-size: 12px;
+                                                    font-size: 13px;
                                                     opacity: 0.7;
                                                 }
 
                                                 .feed-tile__title {
                                                     text-align: left;
                                                     margin-top: 5px;
-                                                    font-size: 14px;
+                                                    font-size: 16px;
                                                     font-weight: 600;
                                                     line-height: 12px;
                                                     flex: 1;
@@ -1537,14 +1520,11 @@ html {
                                             }
 
                                             &:hover {
-                                                background: rgba(0, 0, 0, 0.05);
-                                                box-shadow: 0 2px 10px rgba(106, 82, 117, 0.25);
-                                                transition-duration: 200ms;
+                                                background: var(--item-hover-background);
                                             }
 
                                             &:active {
-                                                background: rgba(0, 0, 0, 0.15);
-                                                transition-duration: 70ms;
+                                                background: var(--item-active-background);
                                             }
                                         }
 
@@ -1726,7 +1706,6 @@ html {
                                         margin-top: 10px;
                                         padding: 15px 10px;
                                         border-radius: 32px;
-                                        background: #FFFFFF;
 
                                         .content-tab {
                                             .content-tab__title {
@@ -1820,21 +1799,39 @@ html {
 
                                                     .association {
                                                         width: 100%;
-                                                        border: 1px solid var(--background-color);
+                                                        background: #FFFFFF;
                                                         border-radius: 32px;
                                                         display: flex;
-                                                        flex-direction: column;
                                                         gap: 7px;
                                                         padding: 8px;
 
                                                         .variants {
                                                             display: flex;
-                                                            flex-direction: column;
+                                                            flex-grow: 1;
                                                             gap: 4px;
+
+                                                            .custom-dropdown {
+                                                                flex: 1;
+                                                            }
+                                                        }
+
+                                                        .arrow-container {
+                                                            display: flex;
+                                                            justify-content: center;
+
+                                                            .arrow {
+                                                                width: 30px;
+                                                                rotate: 90deg;
+                                                            }
                                                         }
 
                                                         .result {
+                                                            display: flex;
+                                                            justify-content: center;
 
+                                                            .result-field {
+                                                                width: 100%;
+                                                            }
                                                         }
                                                     }
                                                 }
@@ -1863,16 +1860,18 @@ html {
                                                 font-size: 14px;
                                                 padding: 8px;
                                                 flex-shrink: 0;
-                                                transition-duration: 200ms;
 
-                                                &:hover {
-                                                    background-color: rgba(0, 0, 0, 0.05);
-                                                    transition-duration: 200ms;
+                                                &:active {
+                                                    background-color: var(--item-active-background) !important;
                                                 }
 
-                                                &.selected {
-                                                    background: rgba(#5AB058, 0.4);
-                                                    transition-duration: 70ms;
+                                                &:hover {
+                                                    background-color: var(--item-hover-background);
+                                                }
+
+                                                &.selected{
+                                                    background-color: var(--item-hover-background);
+                                                    color: var(--primary-color);
                                                 }
                                             }
                                         }
@@ -1888,16 +1887,10 @@ html {
                                                 width: 100%;
                                                 padding: 10px 115px 10px 10px;
                                                 border-radius: 32px;
-                                                background: #FFFFFF;
                                                 font-weight: 600;
                                                 font-size: 16px;
                                                 flex: 1;
-                                                border: 1px solid var(--background-color);
                                                 transition: 200ms;
-
-                                                &:focus {
-                                                    background: #FFFFFF;
-                                                }
                                             }
 
                                             .filters-search__submit {
@@ -1924,24 +1917,25 @@ html {
 
                                     .employees-container {
                                         margin-top: 10px;
-                                        padding: 10px;
                                         border-radius: 32px;
-                                        background: #FFFFFF;
                                         display: grid;
                                         grid-template-columns: repeat(1, calc(100% / 1 - 7px / 1 * (1 - 1)));
-                                        gap: 7px;
+                                        gap: 3px;
 
                                         .employee-card {
                                             display: flex;
                                             gap: 15px;
-                                            padding: 10px;
+                                            padding: 5px;
                                             border-radius: 20px;
                                             background-color: #FFFFFF;
-                                            border: 1px solid var(--background-color);
 
                                             .employee-image {
+                                                display: flex;
+                                                align-items: center;
+                                                justify-content: center;
                                                 height: 100%;
-                                                aspect-ratio: 3/4;
+                                                aspect-ratio: 1/1;
+                                                flex-shrink: 0;
                                                 overflow: hidden;
                                                 border-radius: 7px;
                                                 background-color: gray;
@@ -1949,7 +1943,7 @@ html {
                                                 width: 100%;
 
                                                 img {
-                                                    width: 100%;
+                                                    height: 100%;
                                                     object-fit: cover;
                                                 }
                                             }
@@ -1959,6 +1953,7 @@ html {
                                                 flex: 1;
                                                 flex-direction: column;
                                                 justify-content: space-between;
+                                                min-width: 0;
 
                                                 span {
                                                     font-size: 14px;
@@ -1984,6 +1979,15 @@ html {
                                                     display: flex;
                                                     flex-direction: column;
                                                     gap: 6px;
+                                                    min-width: 0;
+
+                                                    .employee-email {
+                                                        overflow: hidden;
+                                                        text-overflow: ellipsis;
+                                                        white-space: nowrap;
+                                                        max-width: 100%;
+                                                        display: block;
+                                                    }
                                                 }
                                             }
                                         }
@@ -2734,6 +2738,8 @@ html {
                                                 }
 
                                                 .employee-info {
+                                                    padding: 5px 0;
+
                                                     .employee-info__general {
                                                         gap: 4px;
 
@@ -2825,7 +2831,6 @@ html {
                                             margin-top: 10px;
                                             padding: 15px 10px;
                                             border-radius: 32px;
-                                            background: #FFFFFF;
 
                                             .content-tab {
                                                 .content-tab__title {
@@ -3018,7 +3023,6 @@ html {
 
                     .layout-content {
                         padding: 10px;
-                        background: var(--background-color);
                         margin-left: 170px;
 
                         .main-container {
@@ -3296,6 +3300,7 @@ html {
 
                                             .filters-departments {
                                                 justify-content: center;
+                                                gap: 5px;
                                                 flex-wrap: wrap;
 
                                                 .filters-departments__item {
@@ -3546,7 +3551,7 @@ html {
                         padding: 20px 0 20px 12px;
 
                         .left-menu-item {
-                            padding: 9px 12px;
+                            padding: 0 18px;
                             font-size: 17px;
                         }
 
@@ -3829,7 +3834,7 @@ html {
                                             gap: 9px;
 
                                             .employee-card {
-                                                padding: 22px 14px;
+                                                padding: 8px 10px;
 
                                                 .employee-image {
                                                     max-width: 140px;
@@ -3838,7 +3843,7 @@ html {
                                                 .employee-info {
                                                     .employee-info__general {
                                                         .employee-name {
-                                                            font-size: 16px;
+                                                            font-size: 18px;
                                                         }
                                                     }
                                                 }

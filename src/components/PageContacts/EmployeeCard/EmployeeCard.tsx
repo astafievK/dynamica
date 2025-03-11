@@ -7,13 +7,14 @@ interface IEmployeeCardProps {
     city: string;
     email: string | null;
     phone: string;
+    birthday: string;
 }
 
 export const EmployeeCard: FC<IEmployeeCardProps> = (props) => {
     return (
         <div className="employee-card">
             <div className="employee-image">
-                <img loading={"lazy"} alt=""/>
+                <img loading={"lazy"} src={"/default.webp"} alt=""/>
             </div>
             <div className="employee-info">
                 <div className="employee-info__general">
@@ -24,6 +25,7 @@ export const EmployeeCard: FC<IEmployeeCardProps> = (props) => {
                 </div>
                 <div className="sep"></div>
                 <div className="employee-info__contacts">
+                    <span className="employee-birthday">{props.birthday}</span>
                     <span className="employee-email">{props.email}</span>
                     <span className="employee-phone">{props.phone}</span>
                 </div>

@@ -60,6 +60,7 @@ export const ModalLogin: FC = () => {
                             <input
                                 id="loginUsername"
                                 type="text"
+                                className={"styled"}
                                 placeholder={"name.surname"}
                                 {...register("username")}
                                 required
@@ -69,6 +70,7 @@ export const ModalLogin: FC = () => {
                             <label htmlFor="loginPassword">Пароль</label>
                             <input
                                 id="loginPassword"
+                                className={"styled"}
                                 type="password"
                                 placeholder={"••••••"}
                                 {...register("password")}

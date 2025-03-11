@@ -24,7 +24,7 @@ export const LeftMenu: FC = () => {
             <aside className="left-menu">
                 <NavLink to="/" className="logo-container"><img src={"/logo.svg"} alt={"Динамика"}/></NavLink>
                 <button
-                    className={`profile-container left-menu-item ${!user ? "not-logged-in" : ""}`}
+                    className={`profile-container left-menu-item ${!user ? "not-logged-in" : ""} ${location.pathname === "/profile" ? "active-nav-item" : ""}`}
                     onClick={handleProfileClick}
                 >
                     {user ? `${user.first_name} ${user.last_name}` : "Авторизация"}

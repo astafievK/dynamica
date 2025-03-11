@@ -5,9 +5,10 @@ export const AdminTabContacts: FC = () => {
     const [selectedVariant1, setSelectedVariant1] = useState("Вариант 1.1");
     const [selectedVariant2, setSelectedVariant2] = useState("Вариант 2.1");
     const [selectedVariant3, setSelectedVariant3] = useState("Вариант 3.1");
+    console.log(selectedVariant3, selectedVariant2, selectedVariant1)
 
     return (
-        <div className={"content-tab content-tab--contacts"}>
+        <div className="content-tab content-tab--contacts">
             <div className="associations-container">
                 <div className="association">
                     <div className="variants">
@@ -27,8 +28,11 @@ export const AdminTabContacts: FC = () => {
                             onSelect={setSelectedVariant3}
                         />
                     </div>
+                    <div className="arrow-container">
+                        <img className={"arrow"} src={"/arrow.svg"} alt={""}/>
+                    </div>
                     <div className="result">
-
+                        <input type={"text"} className={"result-field styled"} placeholder={"Отдел"}/>
                     </div>
                 </div>
             </div>
