@@ -61,19 +61,22 @@ export const LeftMenu: FC = () => {
                         <li><NavLink to="/adaptation" className={({ isActive }) => `left-menu-item ${isActive ? "active-nav-item" : ""}`}>Адаптация</NavLink></li>
                     </ul>
                 </nav>
+                {
+                    /*
+                    <div className="sep"></div>
 
-                <div className="sep"></div>
-
-                <nav className="recent-navigation">
-                    <span className="navigation-title">Последние страницы</span>
-                    <ul>
-                        <li><NavLink to="/recent-page-1" className={({ isActive }) => `left-menu-item ${isActive ? "active-nav-item" : ""}`}>Последняя вкладка 1</NavLink></li>
-                        <li><NavLink to="/recent-page-2" className={({ isActive }) => `left-menu-item ${isActive ? "active-nav-item" : ""}`}>Последняя вкладка 2</NavLink></li>
-                        <li><NavLink to="/recent-page-3" className={({ isActive }) => `left-menu-item ${isActive ? "active-nav-item" : ""}`}>Последняя вкладка 3</NavLink></li>
-                        <li><NavLink to="/recent-page-4" className={({ isActive }) => `left-menu-item ${isActive ? "active-nav-item" : ""}`}>Последняя вкладка 4</NavLink></li>
-                        <li><NavLink to="/recent-page-5" className={({ isActive }) => `left-menu-item ${isActive ? "active-nav-item" : ""}`}>Последняя вкладка 5</NavLink></li>
-                    </ul>
-                </nav>
+                    <nav className="recent-navigation">
+                        <span className="navigation-title">Последние страницы</span>
+                        <ul>
+                            <li><NavLink to="/recent-page-1" className={({ isActive }) => `left-menu-item ${isActive ? "active-nav-item" : ""}`}>Последняя вкладка 1</NavLink></li>
+                            <li><NavLink to="/recent-page-2" className={({ isActive }) => `left-menu-item ${isActive ? "active-nav-item" : ""}`}>Последняя вкладка 2</NavLink></li>
+                            <li><NavLink to="/recent-page-3" className={({ isActive }) => `left-menu-item ${isActive ? "active-nav-item" : ""}`}>Последняя вкладка 3</NavLink></li>
+                            <li><NavLink to="/recent-page-4" className={({ isActive }) => `left-menu-item ${isActive ? "active-nav-item" : ""}`}>Последняя вкладка 4</NavLink></li>
+                            <li><NavLink to="/recent-page-5" className={({ isActive }) => `left-menu-item ${isActive ? "active-nav-item" : ""}`}>Последняя вкладка 5</NavLink></li>
+                        </ul>
+                    </nav>
+                     */
+                }
             </aside>
         </>
     );

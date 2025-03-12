@@ -1,40 +1,79 @@
-import { FC, useState } from "react";
-import { Dropdown } from "../../Dropdown/Dropdown";
+import {Association} from "./Association/Association.tsx";
+import {ModalLoading} from "../../Modals/ModalLoading/ModalLoading.tsx";
+import {useGetCitiesQuery} from "../../../api/methods/cityApi.ts";
+import {useGetDivisionsQuery} from "../../../api/methods/divisionApi.ts";
+import {useGetOrganizationsQuery} from "../../../api/methods/organizationApi.ts";
+import {useGetDepartmentsQuery} from "../../../api/methods/departmentApi.ts";
+import {FC} from "react";
 
 export const AdminTabContacts: FC = () => {
-    const [selectedVariant1, setSelectedVariant1] = useState("Вариант 1.1");
-    const [selectedVariant2, setSelectedVariant2] = useState("Вариант 2.1");
-    const [selectedVariant3, setSelectedVariant3] = useState("Вариант 3.1");
-    console.log(selectedVariant3, selectedVariant2, selectedVariant1)
+    const { data: citiesData, isLoading: isCitiesLoading } = useGetCitiesQuery();
+    const { data: divisionsData, isLoading: isDivisionsLoading } = useGetDivisionsQuery();
+    const { data: organizationsData, isLoading: isOrganizationsLoading } = useGetOrganizationsQuery();
+    const { data: departmentsData, isLoading: isDepartmentsLoading } = useGetDepartmentsQuery();
+
+    const cities = citiesData?.cities ?? [];
+    const divisions = divisionsData?.divisions ?? [];
+    const organizations = organizationsData?.organizations ?? [];
+
+    if(isCitiesLoading || isDivisionsLoading || isOrganizationsLoading || isDepartmentsLoading) {
+        return <ModalLoading />;
+    }
 
     return (
         <div className="content-tab content-tab--contacts">
             <div className="associations-container">
-                <div className="association">
-                    <div className="variants">
-                        <Dropdown
-                            options={["Вариант 1.1", "Вариант 1.2", "Вариант 1.3", "Вариант 1.4"]}
-                            label="Город"
-                            onSelect={setSelectedVariant1}
-                        />
-                        <Dropdown
-                            options={["Вариант 2.1", "Вариант 2.2", "Вариант 2.3", "Вариант 2.4"]}
-                            label="Подразделение"
-                            onSelect={setSelectedVariant2}
-                        />
-                        <Dropdown
-                            options={["Вариант 3.1", "Вариант 3.2", "Вариант 3.3", "Вариант 3.4"]}
-                            label="Организация"
-                            onSelect={setSelectedVariant3}
-                        />
-                    </div>
-                    <div className="arrow-container">
-                        <img className={"arrow"} src={"/arrow.svg"} alt={""}/>
-                    </div>
-                    <div className="result">
-                        <input type={"text"} className={"result-field styled"} placeholder={"Отдел"}/>
-                    </div>
-                </div>
+                <Association
+                    optionsCity={cities}
+                    optionsDivision={divisions}
+                    optionsOrganization={organizations}
+                    department="Отдел 1"
+                    isCreatForm={true}
+                />
+                <Association
+                    optionsCity={cities}
+                    optionsDivision={divisions}
+                    optionsOrganization={organizations}
+                    department="Отдел 1"
+                    isCreatForm={false}
+                />
+                <Association
+                    optionsCity={cities}
+                    optionsDivision={divisions}
+                    optionsOrganization={organizations}
+                    department="Отдел 1"
+                    isCreatForm={false}
+                />
+                <Association
+                    optionsCity={cities}
+                    optionsDivision={divisions}
+                    optionsOrganization={organizations}
+                    department="Отдел 1"
+                    isCreatForm={false}
+                />
+                <Association
+                    optionsCity={cities}
+                    optionsDivision={divisions}
+                    optionsOrganization={organizations}
+                    department="Отдел 1"
+                    isCreatForm={false}
+                />
+                {
+                    departmentsData!.departments.length > 0 ? (
+                        departmentsData?.departments.map((item) => (
+                            <Association
+                                key={item.id_department}
+                                optionsCity={cities}
+                                optionsDivision={divisions}
+                                optionsOrganization={organizations}
+                                department="Отдел 1"
+                                isCreatForm={false}
+                            />
+                        ))
+                    ) : (
+                        <p className={"no-data"}>Данные отсутствуют</p>
+                    )
+                }
             </div>
         </div>
     );

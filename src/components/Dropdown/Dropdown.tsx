@@ -1,21 +1,20 @@
 import { FC, useState, useEffect } from "react";
 import "./Dropdown.css";
-import {Cross} from "../Cross/Cross.tsx";
 
 interface DropdownProps {
-    options: string[];
+    options: {id: number, title: string}[];
     label: string;
-    onSelect: (value: string) => void;
+    onSelect: (value: {id: number | null, title: string | null}) => void;
 }
 
 export const Dropdown: FC<DropdownProps> = ({ options, label, onSelect }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [isClosing, setIsClosing] = useState(false);
-    const [selectedValue, setSelectedValue] = useState<string | null>(null);
+    const [selectedValue, setSelectedValue] = useState<{id: number | null, title: string | null}>({id: null, title: null});
 
     const toggleDropdown = () => setIsOpen((prev) => !prev);
 
-    const handleSelect = (option: string) => {
+    const handleSelect = (option: {id: number, title: string}) => {
         setSelectedValue(option);
         onSelect(option);
         setIsClosing(true);
@@ -25,6 +24,17 @@ export const Dropdown: FC<DropdownProps> = ({ options, label, onSelect }) => {
         }, 400);
     };
 
+    useEffect(() => {
+        if (isOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+
+        return () => {
+            document.body.style.overflow = '';
+        };
+    }, [isOpen]);
 
     useEffect(() => {
         if (isClosing) {
@@ -37,37 +47,35 @@ export const Dropdown: FC<DropdownProps> = ({ options, label, onSelect }) => {
 
     return (
         <>
-            <div className="custom-dropdown">
+            <div className={`custom-dropdown ${isOpen && 'active'}`}>
                 <button className="custom-dropdown__button" onClick={toggleDropdown}>
-                    {selectedValue || label}
+                    {selectedValue.title || label}
                     <img className="arrow" src="/arrow.svg" alt=""/>
                 </button>
             </div>
             {
                 isOpen && (
-                    <div className={`modal modal-dropdown ${isClosing ? "hidden" : ""}`}>
-                        <div className={`modal-content modal-notifications ${isClosing ? "hidden" : ""}`}>
+                    <div className={`modal ${isClosing ? "hidden" : ""}`} id="modalDropdown">
+                        <div className={`modal-content modal-dropdown ${isClosing ? "hidden" : ""}`}>
                             <div className="modal-content__header">
                                 <span className={"modal-title"}>{label}</span>
-                                <Cross onClick={() => setIsClosing(true)} color={"#000000"} />
                             </div>
                             <div className="modal-content__body">
                                 <ul className="items">
                                     {options.map((option) => (
-                                        <li className="item" key={option}>
+                                        <li className="item" key={option.id}>
                                             <button className="item-button" onClick={() => handleSelect(option)}>
-                                                {option}
+                                                {option.title}
                                             </button>
                                         </li>
                                     ))}
                                 </ul>
                             </div>
                         </div>
-                        <div className={`spoiler ${isClosing ? "hidden" : ""}`}
-                             onClick={() => setIsClosing(true)}></div>
+                        <div className={`spoiler ${isClosing ? "hidden" : ""}`} onClick={() => setIsClosing(true)}></div>
                     </div>
                 )
             }
         </>
     );
-};
+}

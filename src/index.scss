@@ -217,6 +217,15 @@ html {
         height: 8px;
     }
 
+    .no-data {
+        margin-top: 50px;
+        font-weight: 700;
+        font-size: 24px;
+        user-select: none;
+        opacity: 0.7;
+        text-align: center;
+    }
+
     h1 {
         font-size: 32px;
         font-weight: 800;
@@ -252,7 +261,7 @@ html {
     input[type="password"],
     textarea {
         &.styled {
-            padding: 15px;
+            padding: 10px 15px;
             border-radius: 32px;
             background: var(--background-color);
             border: 2px solid var(--background-color);
@@ -649,7 +658,7 @@ html {
                     .modal-content__body {
                         margin-top: 7px;
                         overflow-y: auto;
-                        padding: 5px;
+                        padding: 15px 5px;
                         flex-grow: 1;
                         border-radius: 32px;
                         box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.15);
@@ -721,6 +730,35 @@ html {
                                     .notification {
                                         border-radius: 0;
                                         border: none;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    &.modal-dropdown {
+                        max-width: 580px;
+                        max-height: 650px;
+                        height: 90%;
+
+                        .modal-content__body {
+                            .items {
+                                .item {
+                                    .item-button {
+                                        width: 100%;
+                                        text-align: left;
+                                        height: 48px;
+                                        padding: 0 12px;
+                                        border-radius: 10px;
+                                        background-color: var(--item-static-background);
+
+                                        &:hover {
+                                            background-color: var(--item-hover-background);
+                                        }
+
+                                        &:active {
+                                            background-color: var(--item-active-background);
+                                        }
                                     }
                                 }
                             }
@@ -874,10 +912,6 @@ html {
                             ul {
                                 li{
                                     display: flex;
-
-                                    .left-menu-item {
-                                        padding: 6px 7px;
-                                    }
                                 }
                             }
                         }
@@ -1144,7 +1178,7 @@ html {
                                 .page-header {
                                     display: flex;
                                     flex-direction: column;
-                                    padding: 0 15px;
+                                    padding: 0 10px;
 
                                     .page-title {
                                         font-family: "GrtskTera", sans-serif;
@@ -1152,7 +1186,7 @@ html {
                                         line-height: 17px;
                                         font-style: italic;
                                         text-align: left;
-                                        font-size: 17px;
+                                        font-size: 14px;
                                     }
                                 }
 
@@ -1704,7 +1738,7 @@ html {
                                     .page-admin__content {
                                         width: 100%;
                                         margin-top: 10px;
-                                        padding: 15px 0;
+                                        padding: 9px 0;
                                         border-radius: 32px;
 
                                         .content-tab {
@@ -1795,25 +1829,19 @@ html {
                                                 .associations-container {
                                                     width: 100%;
                                                     display: grid;
-                                                    grid-template-columns: 1fr;
+                                                    grid-template-columns: repeat(1, calc(100% / 1 - 7px / 1 * (1 - 1)));
+                                                    gap: 7px;
                                                     overflow-y: auto;
 
                                                     .association {
-                                                        width: 100%;
                                                         background: #FFFFFF;
                                                         border-radius: 32px;
                                                         display: flex;
                                                         gap: 7px;
-                                                        padding: 8px;
 
                                                         .variants {
                                                             display: flex;
-                                                            flex-grow: 1;
-                                                            gap: 4px;
-
-                                                            .custom-dropdown {
-                                                                min-width: 150px;
-                                                            }
+                                                            gap: 10px;
                                                         }
 
                                                         .arrow-container {
@@ -1822,7 +1850,7 @@ html {
 
                                                             .arrow {
                                                                 width: 30px;
-                                                                rotate: 90deg;
+                                                                fill: var(--primary-color);
                                                             }
                                                         }
 
@@ -1831,8 +1859,42 @@ html {
                                                             justify-content: center;
 
                                                             .result-field {
-                                                                width: 100%;
+                                                                height: 48px;
+                                                                width: 220px;
                                                             }
+                                                        }
+
+                                                        .actions-container {
+                                                            display: flex;
+                                                            gap: 5px;
+
+                                                            .action {
+                                                                height: 100%;
+                                                                aspect-ratio: 1/1;
+                                                                border-radius: 10px;
+                                                                background: var(--item-static-background);
+
+                                                                img {
+                                                                    height: 65%;
+                                                                    aspect-ratio: 1/1;
+                                                                }
+
+                                                                &:hover {
+                                                                    background: var(--item-hover-background);
+                                                                }
+
+                                                                &:active {
+                                                                    background: var(--item-active-background);
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+
+                                                    .association-add {
+                                                        margin-bottom: 20px;
+
+                                                        .arrow-container {
+                                                            flex-grow: unset;
                                                         }
                                                     }
                                                 }
@@ -1939,7 +2001,6 @@ html {
                                                 flex-shrink: 0;
                                                 overflow: hidden;
                                                 border-radius: 7px;
-                                                background-color: gray;
                                                 max-width: 110px;
                                                 width: 100%;
 
@@ -2917,6 +2978,10 @@ html {
     }
 
     @media (min-width: 1024px) {
+        .styled {
+            font-size: 16px;
+        }
+
         body {
             #dynamica {
                 .layout {

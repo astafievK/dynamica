@@ -18,7 +18,7 @@ export const FeedTiles: FC = () => {
                                     title={post.title}
                                     date={post.date.date} />
                             ))
-                            : <div className="feed-tiles__empty">Нет доступных постов</div>
+                            : <p className={"no-data"}>Данные отсутствуют</p>
                     }
             </div>
         );

@@ -1,37 +1,24 @@
-import {FC, useState} from "react";
-
-const filters = [
-    "Подразделение 1",
-    "Подразделение 2",
-    "Подразделение 3",
-    "Подразделение 4",
-    "Подразделение 5",
-    "Подразделение 6",
-    "Подразделение 7",
-    "Подразделение 8",
-    "Подразделение 9",
-    "Подразделение 10",
-    "Подразделение 11",
-    "Подразделение 12",
-    "Подразделение 13",
-    "Подразделение 14",
-    "Подразделение 15",
-    "Подразделение 16",
-    "Подразделение 17", ];
+import { FC, useState } from "react";
+import { useGetDepartmentsQuery } from "../../../api/methods/departmentApi.ts";
 
 export const FilterDepartments: FC = () => {
-    const [activeFilter, setActiveFilter] = useState(filters[0]);
+    const { data: departmentsData } = useGetDepartmentsQuery();
+
+    const [activeFilter, setActiveFilter] = useState<number | null>(
+        departmentsData?.departments[0]?.id_department ?? null
+    );
 
     return (
-        <div className={"filters-departments"}>
-            {filters.map((filter) => (
+        <div className="filters-departments">
+            {departmentsData?.departments.map((department) => (
                 <button
-                    className={`filters-departments__item ${activeFilter === filter ? "selected" : ""}`}
-                    key={filter}
-                    onClick={() => setActiveFilter(filter)}>
-                    {filter}
+                    className={`filters-departments__item ${activeFilter === department.id_department ? "selected" : ""}`}
+                    key={department.id_department}
+                    onClick={() => setActiveFilter(department.id_department)}
+                >
+                    {department.title}
                 </button>
             ))}
         </div>
     );
-}
+};

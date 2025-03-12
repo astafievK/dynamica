@@ -1,25 +1,17 @@
 .custom-dropdown {
   position: relative;
   border-radius: 32px;
-  width: 100%;
+  min-width: 170px;
   background-color: #FFFFFF;
-}
-.custom-dropdown.expanded .custom-dropdown__button {
-  background-color: var(--primary-color);
-  color: #FFFFFF;
-  transition-duration: 70ms;
-}
-.custom-dropdown.expanded .custom-dropdown__button .arrow {
-  fill: #FFFFFF;
 }
 .custom-dropdown__button {
   width: 100%;
-  background-color: var(--background-color);
+  background-color: var(--item-hover-background);
   position: relative;
   text-align: left;
   border-radius: 32px;
-  height: 100%;
-  padding: 10px 15px;
+  padding: 0 15px;
+  height: 48px;
   font-weight: 600;
   font-size: 14px;
   display: flex;
@@ -35,69 +27,16 @@
   rotate: 90deg;
   aspect-ratio: 1/1;
 }
-.custom-dropdown .cross {
-  position: absolute;
-  height: 50%;
-  top: 50%;
-  transform: translateY(-50%);
-  aspect-ratio: 1/1;
-  right: 15px;
+.custom-dropdown__button:hover {
+  background-color: var(--item-active-background);
 }
-.custom-dropdown__menu {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  max-height: 350px;
-  overflow: auto;
-  margin-top: 5px;
-  background-color: #FFFFFF;
-  -webkit-box-shadow: 4px 4px 42px -8px rgba(0, 0, 0, 0.18);
-  -moz-box-shadow: 4px 4px 42px -8px rgba(0, 0, 0, 0.18);
-  box-shadow: 4px 4px 42px -8px rgba(0, 0, 0, 0.18);
-  border-radius: 32px;
-  z-index: 53;
-  list-style: none;
-  padding: 8px;
-}
-.custom-dropdown__menu .custom-dropdown__item {
-  padding: 5px 10px;
-  cursor: pointer;
-  font-size: 14px;
-  border-radius: 32px;
-  font-weight: 500;
-  color: var(--secondary-color);
-  display: flex;
-  align-items: center;
-  transition: background-color 200ms;
-}
-.custom-dropdown__menu .custom-dropdown__item:hover {
-  background-color: rgba(0, 0, 0, 0.05);
-  transition-duration: 70ms;
+.custom-dropdown.active .custom-dropdown__button {
+  background-color: var(--primary-color);
 }
 
-@media (min-width: 768px) {
-  .custom-dropdown__search {
-    padding: 10px 50px 10px 15px;
-    font-size: 17px;
-  }
-  .custom-dropdown__menu {
-    padding: 10px;
-  }
-  .custom-dropdown__menu .custom-dropdown__item {
-    padding: 10px 15px;
-    font-size: 16px;
-  }
-}
 @media (min-width: 1024px) {
-  .custom-dropdown__search {
-    font-size: 18px;
-  }
-  .custom-dropdown__menu {
-    padding: 12px;
-  }
-  .custom-dropdown__menu .custom-dropdown__item {
-    padding: 15px 18px;
+  .custom-dropdown__button {
+    font-size: 16px;
   }
 }
 
