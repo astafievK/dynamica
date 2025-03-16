@@ -1,25 +1,28 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import { useGetDepartmentsNotNullQuery } from "../../../api/methods/departmentApi.ts";
 
-export const FilterDepartments: FC = () => {
-    const { data: departmentsData } = useGetDepartmentsNotNullQuery();
+interface FilterDepartmentsProps {
+    filter: string | null;
+    setFilter: (filter: string | null) => void;
+}
 
-    const [activeFilter, setActiveFilter] = useState<string | null>("''");
+export const FilterDepartments: FC<FilterDepartmentsProps> = ({ filter, setFilter }) => {
+    const { data: departmentsData } = useGetDepartmentsNotNullQuery();
 
     return (
         <div className="filters-departments">
             <button
-                className={`filters-departments__item ${activeFilter === '' ? "selected" : ""}`}
+                className={`filters-departments__item ${filter === '' ? "selected" : ""}`}
                 key={0}
-                onClick={() => setActiveFilter("''")}
+                onClick={() => setFilter('')}
             >
                 Все
             </button>
             {departmentsData?.departments.map((department) => (
                 <button
-                    className={`filters-departments__item ${activeFilter === department.title ? "selected" : ""}`}
+                    className={`filters-departments__item ${filter === department.title ? "selected" : ""}`}
                     key={department.id_department}
-                    onClick={() => setActiveFilter(department.title)}
+                    onClick={() => setFilter(department.title)}
                 >
                     {department.title}
                 </button>
