@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useGetUsersNotRetiredQuery } from "../../api/methods/userApi.ts";
-import { FC, useEffect } from "react";
+import { FC, useEffect, useState, Dispatch, SetStateAction } from "react";
 import { pageAnimation } from "../../motionSettins.ts";
 import { EmployeeCard } from "./EmployeeCard/EmployeeCard.tsx";
 import { FilterDepartments } from "./FilterDepartments/FilterDepartments.tsx";
@@ -9,6 +9,7 @@ import {ModalLoading} from "../Modals/ModalLoading/ModalLoading.tsx";
 
 export const PageContacts: FC = () => {
     const { data, isLoading } = useGetUsersNotRetiredQuery();
+    const [filter, setFilter] = useState<string>("");
 
     useEffect(() => {
         document.title = "Адресная книга";
@@ -26,7 +27,7 @@ export const PageContacts: FC = () => {
                 <span className="page-title page-title__name">Адресная книга</span>
             </div>
             <div className="filters-container">
-                <FilterDepartments />
+                <FilterDepartments filter={filter} setFilter={setFilter as Dispatch<SetStateAction<string | null>>} />
                 <div className="filters-search">
                     <input type="text" className="filters-search__text styled" placeholder="ФИО"/>
                     <button type="submit" className="filters-search__submit">Применить</button>

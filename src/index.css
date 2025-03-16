@@ -1509,8 +1509,9 @@ html body #dynamica .layout .layout-content .main-container main .page.page-admi
   gap: 10px;
   flex-grow: 1;
 }
-html body #dynamica .layout .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association .variants .custom-dropdown {
+html body #dynamica .layout .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association .variants .variant {
   flex: 1;
+  height: 48px;
 }
 html body #dynamica .layout .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association .arrow-container {
   display: flex;
@@ -1548,11 +1549,55 @@ html body #dynamica .layout .layout-content .main-container main .page.page-admi
 html body #dynamica .layout .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association .actions-container .action:active {
   background: var(--item-active-background);
 }
-html body #dynamica .layout .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association-add {
-  margin-bottom: 20px;
+html body #dynamica .layout .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association-skeleton {
+  border-radius: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 7px;
 }
-html body #dynamica .layout .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association-add .arrow-container {
-  flex-grow: unset;
+html body #dynamica .layout .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association-skeleton .variants {
+  display: flex;
+  flex-grow: 1;
+  gap: 10px;
+}
+html body #dynamica .layout .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association-skeleton .variants .skeleton-variant {
+  flex: 1;
+  min-width: 100px;
+  height: 48px;
+  border-radius: 32px;
+  overflow: hidden;
+}
+html body #dynamica .layout .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association-skeleton .variants .skeleton-variant span {
+  height: 100%;
+}
+html body #dynamica .layout .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association-skeleton .arrow-container {
+  display: flex;
+  justify-content: center;
+}
+html body #dynamica .layout .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association-skeleton .arrow-container .arrow {
+  user-select: none;
+  width: 20px;
+}
+html body #dynamica .layout .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association-skeleton .skeleton-result {
+  height: 48px;
+  width: 220px;
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: 32px;
+}
+html body #dynamica .layout .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association-skeleton .skeleton-result span {
+  height: 100%;
+}
+html body #dynamica .layout .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association-skeleton .skeleton-action {
+  border-radius: 10px;
+  height: 48px;
+  flex-shrink: 0;
+  aspect-ratio: 1/1;
+  overflow: hidden;
+}
+html body #dynamica .layout .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association-skeleton .skeleton-action span {
+  height: 100%;
 }
 html body #dynamica .layout .layout-content .main-container main .page.page-contacts .filters-container {
   display: flex;

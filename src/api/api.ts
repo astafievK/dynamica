@@ -13,7 +13,7 @@ export const baseApi = createApi({
         },
     }),
     tagTypes: ['Post', 'Department'],
-    keepUnusedDataFor: 30,
+    keepUnusedDataFor: 10,
     refetchOnFocus: true,
     refetchOnReconnect: true,
     endpoints: () => ({})
