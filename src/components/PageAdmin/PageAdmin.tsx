@@ -5,14 +5,14 @@ import {FC, useEffect} from "react";
 
 export const PageAdmin: FC = () => {
     useEffect(() => {
-        document.title = "Панель управления";
+        document.title = "Администрирование";
     });
 
     return (
         <>
             <div className="page page-admin">
                 <div className="page-header">
-                    <span className="page-title page-title__name">Панель управления</span>
+                    <span className="page-title page-title__name">Администрирование</span>
                 </div>
                 <motion.div
                     initial={{opacity: 0, y: -10}}

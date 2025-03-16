@@ -1,5 +1,4 @@
 import {Association} from "./Association/Association.tsx";
-import {ModalLoading} from "../../Modals/ModalLoading/ModalLoading.tsx";
 import {useGetCitiesQuery} from "../../../api/methods/cityApi.ts";
 import {useGetDivisionsQuery} from "../../../api/methods/divisionApi.ts";
 import {useGetOrganizationsQuery} from "../../../api/methods/organizationApi.ts";
@@ -17,47 +16,12 @@ export const AdminTabContacts: FC = () => {
     const organizations = organizationsData?.organizations ?? [];
 
     if(isCitiesLoading || isDivisionsLoading || isOrganizationsLoading || isDepartmentsLoading) {
-        return <ModalLoading />;
+        return;
     }
 
     return (
         <div className="content-tab content-tab--contacts">
             <div className="associations-container">
-                <Association
-                    optionsCity={cities}
-                    optionsDivision={divisions}
-                    optionsOrganization={organizations}
-                    department="Отдел 1"
-                    isCreatForm={true}
-                />
-                <Association
-                    optionsCity={cities}
-                    optionsDivision={divisions}
-                    optionsOrganization={organizations}
-                    department="Отдел 1"
-                    isCreatForm={false}
-                />
-                <Association
-                    optionsCity={cities}
-                    optionsDivision={divisions}
-                    optionsOrganization={organizations}
-                    department="Отдел 1"
-                    isCreatForm={false}
-                />
-                <Association
-                    optionsCity={cities}
-                    optionsDivision={divisions}
-                    optionsOrganization={organizations}
-                    department="Отдел 1"
-                    isCreatForm={false}
-                />
-                <Association
-                    optionsCity={cities}
-                    optionsDivision={divisions}
-                    optionsOrganization={organizations}
-                    department="Отдел 1"
-                    isCreatForm={false}
-                />
                 {
                     departmentsData!.departments.length > 0 ? (
                         departmentsData?.departments.map((item) => (
@@ -66,8 +30,7 @@ export const AdminTabContacts: FC = () => {
                                 optionsCity={cities}
                                 optionsDivision={divisions}
                                 optionsOrganization={organizations}
-                                department="Отдел 1"
-                                isCreatForm={false}
+                                department={item}
                             />
                         ))
                     ) : (

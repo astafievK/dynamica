@@ -1,6 +1,7 @@
 import {Date} from "./IDate.ts";
 import {Image} from "./IImage.ts";
 import {Position} from "./IPosition.ts";
+import {Department} from "./IDepartment.ts";
 
 export interface Employee {
     id: number,
@@ -12,7 +13,7 @@ export interface Employee {
     email: string | null,
     birthday: Date,
     is_retired: boolean,
-    department_id: number | null,
+    department: Department,
     position: Position,
     image: Image
 }

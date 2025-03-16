@@ -558,7 +558,7 @@ html body #dynamica .modal .modal-content .modal-content__header {
 html body #dynamica .modal .modal-content .modal-content__header .modal-title {
   text-align: left;
   font-family: "GrtskTera", sans-serif;
-  font-size: 20px;
+  font-size: 22px;
 }
 html body #dynamica .modal .modal-content .modal-content__body {
   margin-top: 7px;
@@ -625,25 +625,6 @@ html body #dynamica .modal .modal-content.modal-notifications .modal-content__bo
 html body #dynamica .modal .modal-content.modal-notifications .modal-content__body .module-notifications .module-body .notification {
   border-radius: 0;
   border: none;
-}
-html body #dynamica .modal .modal-content.modal-dropdown {
-  max-width: 580px;
-  max-height: 650px;
-  height: 90%;
-}
-html body #dynamica .modal .modal-content.modal-dropdown .modal-content__body .items .item .item-button {
-  width: 100%;
-  text-align: left;
-  height: 48px;
-  padding: 0 12px;
-  border-radius: 10px;
-  background-color: var(--item-static-background);
-}
-html body #dynamica .modal .modal-content.modal-dropdown .modal-content__body .items .item .item-button:hover {
-  background-color: var(--item-hover-background);
-}
-html body #dynamica .modal .modal-content.modal-dropdown .modal-content__body .items .item .item-button:active {
-  background-color: var(--item-active-background);
 }
 html body #dynamica .modal .modal-content .cross {
   height: 32px;
@@ -1526,14 +1507,18 @@ html body #dynamica .layout .layout-content .main-container main .page.page-admi
 html body #dynamica .layout .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association .variants {
   display: flex;
   gap: 10px;
+  flex-grow: 1;
+}
+html body #dynamica .layout .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association .variants .custom-dropdown {
+  flex: 1;
 }
 html body #dynamica .layout .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association .arrow-container {
   display: flex;
   justify-content: center;
 }
 html body #dynamica .layout .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association .arrow-container .arrow {
-  width: 30px;
-  fill: var(--primary-color);
+  user-select: none;
+  width: 20px;
 }
 html body #dynamica .layout .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association .result {
   display: flex;
@@ -1998,6 +1983,41 @@ html body #dynamica .layout .layout-content .main-container .footer-wrapper foot
     height: 70px;
     padding: 10px 35px;
   }
+  html body #dynamica .modal .modal-content .modal-content__header {
+    padding: 0 15px;
+  }
+  html body #dynamica .modal .modal-content .modal-content__header .cross {
+    height: 36px;
+  }
+  html body #dynamica .modal .modal-content .modal-content__body {
+    margin-top: 10px;
+    padding: 15px 8px;
+  }
+  html body #dynamica .modal .modal-content.modal-login form {
+    padding: 0 15px 30px 15px;
+  }
+  html body #dynamica .modal .modal-content.modal-login form .form-elem__text label,
+  html body #dynamica .modal .modal-content.modal-login form .form-elem__text input {
+    font-size: 18px;
+  }
+  html body #dynamica .modal .modal-content.modal-login form .form-elem__text input {
+    padding: 15px;
+  }
+  html body #dynamica .modal .modal-content.modal-notifications {
+    max-width: 580px;
+    max-height: 650px;
+  }
+  html body #dynamica .modal .modal-content.modal-notifications .modal-content__body {
+    padding: 0;
+  }
+  html body #dynamica .modal .modal-content.modal-notifications .modal-content__body .module-notifications .module-body {
+    gap: 0;
+    padding: 10px 0;
+  }
+  html body #dynamica .modal .modal-content.modal-notifications .modal-content__body .module-notifications .module-body .notification {
+    border-radius: 0;
+    border: none;
+  }
   html body #dynamica .layout .module-documents .module-body {
     gap: 5px;
   }
@@ -2344,6 +2364,9 @@ html body #dynamica .layout .layout-content .main-container .footer-wrapper foot
 @media (min-width: 1024px) {
   html .styled {
     font-size: 16px;
+  }
+  html body #dynamica .layout {
+    width: calc(100vw - 12px);
   }
   html body #dynamica .layout .module-documents .module-body .document {
     align-items: center;

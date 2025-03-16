@@ -8,8 +8,8 @@ export const LeftMenu: FC = () => {
     const { user } = useTypedSelector((state) => state.auth);
     const dispatch = useAppDispatch();
     const location = useLocation();
-    const isAdminPageOpened = location.pathname.startsWith("/admin");
     const navigate = useNavigate();
+    const isAdminPageOpened = location.pathname.startsWith("/admin");
 
     const handleProfileClick = () => {
         if (user) {
@@ -31,7 +31,7 @@ export const LeftMenu: FC = () => {
                 </button>
                 <div className="admin-container">
                     <NavLink to="/admin" className={({ isActive }) => `left-menu-item ${isActive ? "active-nav-item" : ""}`}>
-                        Панель администрирования
+                        Администрирование
                     </NavLink>
                     <AnimatePresence>
                         {isAdminPageOpened && (

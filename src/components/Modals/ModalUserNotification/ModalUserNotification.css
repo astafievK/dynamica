@@ -8,7 +8,7 @@
   border-radius: 32px;
   background-color: #fff;
   box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.15);
-  top: 10vh;
+  top: 5vh;
   padding: 15px;
   z-index: 10001;
 }
@@ -24,7 +24,6 @@
 @media (min-width: 768px) {
   .modal-notification {
     padding: 20px;
-    top: 12vh;
   }
   .modal-notification .modal-notification__title {
     font-size: 18px;
@@ -37,7 +36,6 @@
 @media (min-width: 1024px) {
   .modal-notification {
     padding: 25px;
-    top: 15vh;
   }
   .modal-notification .modal-notification__title {
     font-size: 22px;
@@ -48,9 +46,6 @@
   }
 }
 @media (min-width: 1440px) {
-  .modal-notification {
-    top: 10vh;
-  }
   .modal-notification .modal-notification__title {
     font-size: 24px;
   }

@@ -651,7 +651,7 @@ html {
                         .modal-title {
                             text-align: left;
                             font-family: 'GrtskTera', sans-serif;
-                            font-size: 20px;
+                            font-size: 22px;
                         }
                     }
 
@@ -730,35 +730,6 @@ html {
                                     .notification {
                                         border-radius: 0;
                                         border: none;
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    &.modal-dropdown {
-                        max-width: 580px;
-                        max-height: 650px;
-                        height: 90%;
-
-                        .modal-content__body {
-                            .items {
-                                .item {
-                                    .item-button {
-                                        width: 100%;
-                                        text-align: left;
-                                        height: 48px;
-                                        padding: 0 12px;
-                                        border-radius: 10px;
-                                        background-color: var(--item-static-background);
-
-                                        &:hover {
-                                            background-color: var(--item-hover-background);
-                                        }
-
-                                        &:active {
-                                            background-color: var(--item-active-background);
-                                        }
                                     }
                                 }
                             }
@@ -1842,6 +1813,11 @@ html {
                                                         .variants {
                                                             display: flex;
                                                             gap: 10px;
+                                                            flex-grow: 1;
+
+                                                            .custom-dropdown {
+                                                                flex: 1;
+                                                            }
                                                         }
 
                                                         .arrow-container {
@@ -1849,8 +1825,8 @@ html {
                                                             justify-content: center;
 
                                                             .arrow {
-                                                                width: 30px;
-                                                                fill: var(--primary-color);
+                                                                user-select: none;
+                                                                width: 20px;
                                                             }
                                                         }
 
@@ -2458,6 +2434,61 @@ html {
                     }
                 }
 
+                .modal {
+                    .modal-content {
+                        .modal-content__header {
+                            padding: 0 15px;
+
+                            .cross {
+                                height: 36px;
+                            }
+                        }
+
+                        .modal-content__body {
+                            margin-top: 10px;
+                            padding: 15px 8px;
+                        }
+
+                        &.modal-login {
+                            form {
+                                padding: 0 15px 30px 15px;
+
+                                .form-elem__text {
+                                    label,
+                                    input {
+                                        font-size: 18px;
+                                    }
+
+                                    input {
+                                        padding: 15px;
+                                    }
+                                }
+                            }
+                        }
+
+                        &.modal-notifications {
+                            max-width: 580px;
+                            max-height: 650px;
+
+                            .modal-content__body {
+                                padding: 0;
+
+                                .module-notifications {
+                                    .module-body {
+                                        gap: 0;
+                                        padding: 10px 0;
+
+                                        .notification {
+                                            border-radius: 0;
+                                            border: none;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
                 .layout {
                     .module-documents {
                         .module-body {
@@ -2985,6 +3016,8 @@ html {
         body {
             #dynamica {
                 .layout {
+                    width: calc(100vw - 12px);
+
                     .module-documents {
                         .module-body {
                             .document {

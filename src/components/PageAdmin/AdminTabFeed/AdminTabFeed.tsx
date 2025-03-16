@@ -18,14 +18,14 @@ export const AdminTabFeed: FC = () => {
     const onSubmit: SubmitHandler<CreatePostCommand> = async (data) => {
         data.user_id = 2936;
         data.isPinned = false;
-        console.log(data)
+
         try {
             const response = await createPost(data).unwrap();
             if(response.status !== 'failed') {
                 reset();
                 setTextEditorContent('');
             }
-            setNotification({ title: "Создание новости", message: response.message });
+            setNotification({ title: "Обновление отдела", message: response.message || "Название отдела успешно обновлено" });
         } catch (error) {
             console.log(error)
             setNotification({ title: "Ошибка", message: "Неизвестная ошибка" });

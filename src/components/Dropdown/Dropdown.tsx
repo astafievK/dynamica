@@ -1,22 +1,31 @@
 import { FC, useState, useEffect } from "react";
 import "./Dropdown.css";
+import { Cross } from "../Cross/Cross.tsx";
 
 interface DropdownProps {
-    options: {id: number, title: string}[];
+    options: { id: number, title: string }[];
     label: string;
-    onSelect: (value: {id: number | null, title: string | null}) => void;
+    value: { id: number | null, title: string | null };
+    onSelect?: (value: { id: number | null, title: string | null }) => void; // Сделано необязательным
+    isDisabled?: boolean;
 }
 
-export const Dropdown: FC<DropdownProps> = ({ options, label, onSelect }) => {
+export const Dropdown: FC<DropdownProps> = ({ options, label, value, onSelect, isDisabled }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [isClosing, setIsClosing] = useState(false);
-    const [selectedValue, setSelectedValue] = useState<{id: number | null, title: string | null}>({id: null, title: null});
+    const [selectedValue, setSelectedValue] = useState<{ id: number | null, title: string | null }>(value);
 
-    const toggleDropdown = () => setIsOpen((prev) => !prev);
+    const toggleDropdown = () => {
+        if (!isDisabled) {
+            setIsOpen((prev) => !prev);
+        }
+    };
 
-    const handleSelect = (option: {id: number, title: string}) => {
+    const handleSelect = (option: { id: number, title: string }) => {
         setSelectedValue(option);
-        onSelect(option);
+        if (onSelect) {
+            onSelect(option);
+        }
         setIsClosing(true);
         setTimeout(() => {
             setIsOpen(false);
@@ -25,16 +34,20 @@ export const Dropdown: FC<DropdownProps> = ({ options, label, onSelect }) => {
     };
 
     useEffect(() => {
-        if (isOpen) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = '';
+        if (!isDisabled) {
+            if (isOpen) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
         }
 
         return () => {
-            document.body.style.overflow = '';
+            if (!isDisabled) {
+                document.body.style.overflow = '';
+            }
         };
-    }, [isOpen]);
+    }, [isOpen, isDisabled]);
 
     useEffect(() => {
         if (isClosing) {
@@ -47,18 +60,21 @@ export const Dropdown: FC<DropdownProps> = ({ options, label, onSelect }) => {
 
     return (
         <>
-            <div className={`custom-dropdown ${isOpen && 'active'}`}>
+            <div className={`custom-dropdown ${(isOpen && !isDisabled) ? 'active' : ''}`}>
                 <button className="custom-dropdown__button" onClick={toggleDropdown}>
                     {selectedValue.title || label}
-                    <img className="arrow" src="/arrow.svg" alt=""/>
+                    {!isDisabled && <img className="arrow" src="/arrow.svg" alt=""/>}
                 </button>
             </div>
             {
-                isOpen && (
+                isOpen && !isDisabled && (
                     <div className={`modal ${isClosing ? "hidden" : ""}`} id="modalDropdown">
                         <div className={`modal-content modal-dropdown ${isClosing ? "hidden" : ""}`}>
                             <div className="modal-content__header">
                                 <span className={"modal-title"}>{label}</span>
+                                {
+                                    !isDisabled && <Cross color={"#000000"} onClick={() => setIsClosing(true)} />
+                                }
                             </div>
                             <div className="modal-content__body">
                                 <ul className="items">

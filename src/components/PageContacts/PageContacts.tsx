@@ -47,9 +47,9 @@ export const PageContacts: FC = () => {
                         <EmployeeCard
                             key={index}
                             name={`${employee.surname} ${employee.name} ${employee.patronymic}`}
-                            position={employee.position?.title || "Не указана"}
-                            division={" "}
-                            city={" "}
+                            position={employee.position.title}
+                            division={employee.department.division.title}
+                            city={employee.department.city.title}
                             email={employee.email}
                             phone={employee.phone}
                             birthday={formatDate(employee.birthday.date)}
