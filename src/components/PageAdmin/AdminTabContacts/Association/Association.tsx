@@ -61,6 +61,7 @@ export const Association: FC<AssociationProps> = (props) => {
                         type="text"
                         className="result-field styled"
                         placeholder="Отдел"
+                        name={"department_name"}
                         value={departmentTitle ?? ""}
                         disabled={isLoading}
                         onChange={(e) => {

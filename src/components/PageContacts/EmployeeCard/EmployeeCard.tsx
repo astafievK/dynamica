@@ -1,4 +1,6 @@
 import { FC } from "react";
+import {pageAnimation} from "../../../motionSettins.ts";
+import { motion } from "framer-motion";
 
 interface IEmployeeCardProps {
     name: string;
@@ -13,10 +15,16 @@ interface IEmployeeCardProps {
 
 export const EmployeeCard: FC<IEmployeeCardProps> = (props) => {
     return (
-        <div className="employee-card">
-            <div className="employee-image">
-                <img loading={"lazy"} src={`/${props.image}`} alt=""/>
-            </div>
+        <motion.div
+            initial={pageAnimation.initial}
+            animate={pageAnimation.animate}
+            exit={pageAnimation.exit}
+            transition={pageAnimation.transition}
+            className="employee-card">
+            <div
+                className="employee-image"
+                style={{ backgroundImage: `url(/${props.image})` }}
+            />
             <div className="employee-info">
                 <div className="employee-info__general">
                     <span className="employee-name">{props.name}</span>
@@ -31,6 +39,6 @@ export const EmployeeCard: FC<IEmployeeCardProps> = (props) => {
                     <span className="employee-phone">{props.phone}</span>
                 </div>
             </div>
-        </div>
+        </motion.div>
     );
 };

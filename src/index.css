@@ -729,7 +729,7 @@ html body #dynamica .layout .left-menu .left-menu-item:not(.active-nav-item):hov
   background: var(--item-hover-background);
 }
 html body #dynamica .layout .left-menu .logo-container {
-  width: 65%;
+  width: 85%;
   padding: 0 5px;
 }
 html body #dynamica .layout .left-menu .logo-container img {
@@ -740,7 +740,7 @@ html body #dynamica .layout .left-menu .submenu-container {
   margin-top: 5px;
 }
 html body #dynamica .layout .left-menu .profile-container {
-  margin-top: 5px;
+  margin-top: auto !important;
 }
 html body #dynamica .layout .left-menu .admin-container {
   display: flex;
@@ -1359,11 +1359,30 @@ html body #dynamica .layout .layout-content .main-container main .page.page-prof
   border: 1px solid var(--background-color);
   padding: 15px;
 }
+html body #dynamica .layout .layout-content .main-container main .page.page-profile .widgets .widget .widget-header {
+  text-decoration: none;
+  padding: 5px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 html body #dynamica .layout .layout-content .main-container main .page.page-profile .widgets .widget .widget-header .widget-title {
   user-select: none;
   font-weight: 700;
   opacity: 0.8;
   font-size: 18px;
+}
+html body #dynamica .layout .layout-content .main-container main .page.page-profile .widgets .widget .widget-header .arrow {
+  height: 80%;
+  aspect-ratio: 1/1;
+  margin-right: 10px;
+  background-image: url("public/arrow.svg");
+  background-size: cover;
+  background-position: center;
+  transition: all 200ms;
+}
+html body #dynamica .layout .layout-content .main-container main .page.page-profile .widgets .widget .widget-header:hover .arrow {
+  margin-right: 0;
 }
 html body #dynamica .layout .layout-content .main-container main .page.page-profile .widgets .widget .widget-body {
   overflow: auto;
@@ -1511,6 +1530,9 @@ html body #dynamica .layout .layout-content .main-container main .page.page-admi
 }
 html body #dynamica .layout .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association .variants .variant {
   flex: 1;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
   height: 48px;
 }
 html body #dynamica .layout .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association .arrow-container {
@@ -1611,23 +1633,29 @@ html body #dynamica .layout .layout-content .main-container main .page.page-cont
   flex-wrap: nowrap;
   overflow-x: auto;
 }
-html body #dynamica .layout .layout-content .main-container main .page.page-contacts .filters-container .filters-departments .filters-departments__item {
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .filters-container .filters-departments .department {
   background: transparent;
   border-radius: 7px;
   font-weight: 600;
   font-size: 14px;
   padding: 8px;
   flex-shrink: 0;
+  transition: all 200ms;
 }
-html body #dynamica .layout .layout-content .main-container main .page.page-contacts .filters-container .filters-departments .filters-departments__item:active {
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .filters-container .filters-departments .department:active {
   background-color: var(--item-active-background) !important;
 }
-html body #dynamica .layout .layout-content .main-container main .page.page-contacts .filters-container .filters-departments .filters-departments__item:hover {
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .filters-container .filters-departments .department:hover {
   background-color: var(--item-hover-background);
 }
-html body #dynamica .layout .layout-content .main-container main .page.page-contacts .filters-container .filters-departments .filters-departments__item.selected {
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .filters-container .filters-departments .department.selected {
   background-color: var(--item-hover-background);
   color: var(--primary-color);
+}
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .filters-container .filters-departments .department-skeleton {
+  width: 100px;
+  border-radius: 10px;
+  height: 35px;
 }
 html body #dynamica .layout .layout-content .main-container main .page.page-contacts .filters-container .filters-search {
   display: flex;
@@ -1663,6 +1691,30 @@ html body #dynamica .layout .layout-content .main-container main .page.page-cont
   background-color: #85a686;
   transition-duration: 70ms;
 }
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .filters-container .pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .filters-container .pagination-container .pagination {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .filters-container .pagination-container .pagination button {
+  font-size: 18px;
+  font-weight: 600;
+  padding: 12px 16px;
+  border-radius: 10px;
+  transition: all 200ms;
+}
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .filters-container .pagination-container .pagination button.active, html body #dynamica .layout .layout-content .main-container main .page.page-contacts .filters-container .pagination-container .pagination button:hover:not(:disabled) {
+  background: rgba(90, 176, 88, 0.35);
+}
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .filters-container .pagination-container .pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container {
   margin-top: 10px;
   border-radius: 32px;
@@ -1674,24 +1726,14 @@ html body #dynamica .layout .layout-content .main-container main .page.page-cont
   display: flex;
   gap: 15px;
   padding: 5px;
-  border-radius: 20px;
   background-color: #FFFFFF;
 }
 html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card .employee-image {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   height: 100%;
   aspect-ratio: 1/1;
-  flex-shrink: 0;
-  overflow: hidden;
-  border-radius: 7px;
-  max-width: 110px;
-  width: 100%;
-}
-html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card .employee-image img {
-  height: 100%;
-  object-fit: cover;
+  border-radius: 10px;
+  background-size: cover;
+  background-position: center;
 }
 html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card .employee-info {
   display: flex;
@@ -1728,6 +1770,35 @@ html body #dynamica .layout .layout-content .main-container main .page.page-cont
   white-space: nowrap;
   max-width: 100%;
   display: block;
+}
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card-skeleton {
+  display: flex;
+  padding: 5px;
+  gap: 15px;
+}
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card-skeleton .employee-image {
+  height: 100%;
+  aspect-ratio: 1/1;
+  border-radius: 10px;
+}
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card-skeleton .employee-image span {
+  height: 100%;
+}
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card-skeleton .employee-info {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+}
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card-skeleton .employee-info .employee-info__general .employee-name span,
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card-skeleton .employee-info .employee-info__general .employee-position span,
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card-skeleton .employee-info .employee-info__general .employee-division span,
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card-skeleton .employee-info .employee-info__general .employee-city span {
+  height: 20px;
+}
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card-skeleton .employee-info .sep {
+  margin: 6px 0;
+  width: 100%;
+  border-top: 1px solid #A7A9AB;
 }
 html body #dynamica .layout .layout-content .main-container main .page.page-document .content {
   display: flex;
@@ -1956,6 +2027,70 @@ html body #dynamica .layout .layout-content .main-container main .page.page-post
   border-radius: 32px;
   padding: 60px 40px;
   background: #FFFFFF;
+}
+html body #dynamica .layout .layout-content .main-container main .page.page-documents .documents {
+  overflow: auto;
+  margin-top: 10px;
+}
+html body #dynamica .layout .layout-content .main-container main .page.page-documents .documents::-webkit-scrollbar {
+  width: 5px;
+}
+html body #dynamica .layout .layout-content .main-container main .page.page-documents .documents .documents__block {
+  margin-top: 15px;
+}
+html body #dynamica .layout .layout-content .main-container main .page.page-documents .documents .documents__block .documents__block-title {
+  font-weight: bold;
+  padding: 0 5px;
+  opacity: 0.6;
+  font-size: 14px;
+}
+html body #dynamica .layout .layout-content .main-container main .page.page-documents .documents .documents__block .documents__table {
+  width: 100%;
+  margin-top: 5px;
+  border-collapse: collapse;
+  overflow-x: auto;
+}
+html body #dynamica .layout .layout-content .main-container main .page.page-documents .documents .documents__block .documents__table::-webkit-scrollbar {
+  width: 5px;
+}
+html body #dynamica .layout .layout-content .main-container main .page.page-documents .documents .documents__block .documents__table th,
+html body #dynamica .layout .layout-content .main-container main .page.page-documents .documents .documents__block .documents__table td {
+  border: none;
+}
+html body #dynamica .layout .layout-content .main-container main .page.page-documents .documents .documents__block .documents__table thead tr th {
+  padding: 7px 3px;
+  text-wrap: nowrap;
+  font-size: 15px;
+}
+html body #dynamica .layout .layout-content .main-container main .page.page-documents .documents .documents__block .documents__table tbody tr {
+  cursor: pointer;
+  background: var(--item-static-background);
+  transition: background-color 0.2s;
+}
+html body #dynamica .layout .layout-content .main-container main .page.page-documents .documents .documents__block .documents__table tbody tr td {
+  font-size: 13px;
+  padding: 10px;
+}
+html body #dynamica .layout .layout-content .main-container main .page.page-documents .documents .documents__block .documents__table tbody tr td:first-child, html body #dynamica .layout .layout-content .main-container main .page.page-documents .documents .documents__block .documents__table tbody tr td:nth-child(2), html body #dynamica .layout .layout-content .main-container main .page.page-documents .documents .documents__block .documents__table tbody tr td:nth-child(4), html body #dynamica .layout .layout-content .main-container main .page.page-documents .documents .documents__block .documents__table tbody tr td:nth-child(5), html body #dynamica .layout .layout-content .main-container main .page.page-documents .documents .documents__block .documents__table tbody tr td:nth-child(6), html body #dynamica .layout .layout-content .main-container main .page.page-documents .documents .documents__block .documents__table tbody tr td:nth-child(7) {
+  text-align: center;
+}
+html body #dynamica .layout .layout-content .main-container main .page.page-documents .documents .documents__block .documents__table tbody tr td:nth-child(4), html body #dynamica .layout .layout-content .main-container main .page.page-documents .documents .documents__block .documents__table tbody tr td:nth-child(5) {
+  text-wrap: nowrap;
+}
+html body #dynamica .layout .layout-content .main-container main .page.page-documents .documents .documents__block .documents__table tbody tr td:first-child {
+  border-radius: 24px 0 0 24px;
+}
+html body #dynamica .layout .layout-content .main-container main .page.page-documents .documents .documents__block .documents__table tbody tr td:last-child {
+  border-radius: 0 24px 24px 0;
+}
+html body #dynamica .layout .layout-content .main-container main .page.page-documents .documents .documents__block .documents__table tbody tr:hover {
+  background: var(--item-hover-background);
+}
+html body #dynamica .layout .layout-content .main-container main .page.page-documents .documents .documents__block .documents__table tbody tr:active {
+  background: var(--item-active-background);
+}
+html body #dynamica .layout .layout-content .main-container main .page.page-documents .documents .documents__block--archive {
+  margin-top: 30px;
 }
 html body #dynamica .layout .layout-content .main-container main .page.page-not-found .content {
   width: 100%;
@@ -2263,7 +2398,7 @@ html body #dynamica .layout .layout-content .main-container .footer-wrapper foot
     padding: 0 20px;
     gap: 10px;
   }
-  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .filters-container .filters-departments .filters-departments__item {
+  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .filters-container .filters-departments .department {
     font-size: 16px;
   }
   html body #dynamica .layout .layout-content .main-container main .page.page-contacts .filters-container .filters-select .custom-dropdown {
@@ -2684,7 +2819,7 @@ html body #dynamica .layout .layout-content .main-container .footer-wrapper foot
     gap: 5px;
     flex-wrap: wrap;
   }
-  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .filters-container .filters-departments .filters-departments__item {
+  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .filters-container .filters-departments .department {
     font-size: 16px;
   }
   html body #dynamica .layout .layout-content .main-container main .page.page-contacts .filters-container .filters-select {
@@ -2761,6 +2896,30 @@ html body #dynamica .layout .layout-content .main-container .footer-wrapper foot
   html body #dynamica .layout .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--feed .content-tab__form .content-tab__input {
     font-size: 20px;
   }
+  html body #dynamica .layout .layout-content .main-container main .page.page-documents .documents {
+    margin-top: 25px;
+  }
+  html body #dynamica .layout .layout-content .main-container main .page.page-documents .documents .documents__block {
+    margin-top: 20px;
+  }
+  html body #dynamica .layout .layout-content .main-container main .page.page-documents .documents .documents__block .documents__block-title {
+    padding: 0 15px;
+    font-size: 16px;
+  }
+  html body #dynamica .layout .layout-content .main-container main .page.page-documents .documents .documents__block .documents__table {
+    margin-top: 10px;
+  }
+  html body #dynamica .layout .layout-content .main-container main .page.page-documents .documents .documents__block .documents__table thead tr th {
+    padding: 15px 10px;
+    font-size: 18px;
+  }
+  html body #dynamica .layout .layout-content .main-container main .page.page-documents .documents .documents__block .documents__table tbody tr td {
+    font-size: 16px;
+    padding: 25px 10px;
+  }
+  html body #dynamica .layout .layout-content .main-container main .page.page-documents .documents .documents__block--archive {
+    margin-top: 50px;
+  }
   html body #dynamica .layout .layout-content .main-container .footer-wrapper {
     padding: 0 35px;
   }
@@ -2828,10 +2987,7 @@ html body #dynamica .layout .layout-content .main-container .footer-wrapper foot
   }
   html body #dynamica .layout .left-menu .left-menu-item {
     padding: 0 18px;
-    font-size: 17px;
-  }
-  html body #dynamica .layout .left-menu .profile-container {
-    margin-top: 10px;
+    font-size: 19px;
   }
   html body #dynamica .layout .left-menu .general-navigation {
     margin-top: 25px;

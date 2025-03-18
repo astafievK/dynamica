@@ -2,20 +2,20 @@ import {Association} from "./Association/Association.tsx";
 import {useGetDepartmentsQuery} from "../../../api/methods/departmentApi.ts";
 import {FC} from "react";
 import {AssociationSkeleton} from "../../Skeletons/AssociationSkeleton.tsx";
+import {pageAnimation} from "../../../motionSettins.ts";
+import { motion } from "framer-motion";
 
 export const AdminTabContacts: FC = () => {
-    const { data: departmentsData, isLoading: isDepartmentsLoading, isFetching: isDepartmentsFetching } = useGetDepartmentsQuery();
+    const { data: departmentsData, isLoading: isDepartmentsLoading } = useGetDepartmentsQuery();
 
     const departments = departmentsData?.departments ?? [];
 
-    if (isDepartmentsLoading || isDepartmentsFetching) {
+    if (isDepartmentsLoading) {
         return (
             <div className="content-tab content-tab--contacts">
                 <div className="associations-container">
                     {[...Array(3)].map((_, index) => (
-                        <div key={index} className="association-skeleton">
-                            <AssociationSkeleton/>
-                        </div>
+                        <AssociationSkeleton key={index}/>
                     ))}
                 </div>
             </div>
@@ -24,7 +24,12 @@ export const AdminTabContacts: FC = () => {
 
     return (
         <div className="content-tab content-tab--contacts">
-            <div className="associations-container">
+            <motion.div
+                initial={pageAnimation.initial}
+                animate={pageAnimation.animate}
+                exit={pageAnimation.exit}
+                transition={pageAnimation.transition}
+                className="associations-container">
                 {departments.length > 0 ? (
                     departments.map((item) => (
                         <Association
@@ -35,7 +40,7 @@ export const AdminTabContacts: FC = () => {
                 ) : (
                     <p className="no-data">Данные отсутствуют</p>
                 )}
-            </div>
+            </motion.div>
         </div>
     );
 };

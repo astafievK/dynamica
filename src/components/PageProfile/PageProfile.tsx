@@ -5,7 +5,7 @@ import { ModuleDocuments } from "../ModuleDocuments/ModuleDocuments.tsx";
 import { ModuleNotifications } from "../ModuleNotifications/ModuleNotifications.tsx";
 import { setIsOpen as setLoginModalOpen } from "../../api/slices/modalLoginSlice.ts";
 import { useAppDispatch, useTypedSelector } from "../../store/hooks/redux.ts";
-import { useNavigate } from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 export const PageProfile: FC = () => {
     const { user } = useTypedSelector(state => state.auth);
@@ -77,9 +77,10 @@ export const PageProfile: FC = () => {
                     </div>
                     <div className="right-widgets">
                         <div className="widget widget-documents">
-                            <div className="widget-header">
+                            <Link to={"/documents"} className="widget-header">
                                 <span className="widget-title">Документы</span>
-                            </div>
+                                <div className="arrow"></div>
+                            </Link>
                             <div className="widget-body">
                                 <ModuleDocuments />
                             </div>

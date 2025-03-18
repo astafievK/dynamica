@@ -15,10 +15,17 @@ export const userApi = baseApi.injectEndpoints({
                 method: "GET",
             }),
         }),
+        getUsersFiltered: builder.query<GetUsersResponse, { department: string; search?: string }>({
+            query: ({ department, search = "" }) => ({
+                url: `/Users/getUsersFiltered.php?department=${encodeURIComponent(department)}&search=${encodeURIComponent(search)}`,
+                method: "GET",
+            }),
+        }),
     }),
 })
 
 export const {
     useGetUsersQuery,
-    useGetUsersNotRetiredQuery
+    useGetUsersNotRetiredQuery,
+    useGetUsersFilteredQuery,
 } = userApi;

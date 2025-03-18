@@ -31,6 +31,7 @@ import {useEffect} from "react";
 import {updateScrollLock} from "./api/slices/scrollLockSlice.ts";
 import {PagePost} from "./components/PagePost/PagePost.tsx";
 import { LeftMenu } from './components/LeftMenu/LeftMenu.tsx';
+import {PageDocuments} from "./components/PageDocuments/PageDocuments.tsx";
 
 const Root = () => {
     return (
@@ -69,6 +70,7 @@ const router = createBrowserRouter(
             <Route path="document" element={<PageDocument key={"document"} />} />
             <Route path="document_par" element={<PageDocumentParallel key={"document-par"} />} />
             <Route path="profile" element={<PageProfile key={"profile"} />} />
+            <Route path="documents" element={<PageDocuments key={"documents"} />} />
             <Route path="contacts" element={<PageContacts key={"contacts"} />} />
             <Route path="admin" element={<PageAdmin key={"admin"} />}>
                 <Route path="feed" element={<AdminTabFeed/>}/>
