@@ -24,7 +24,7 @@ export const LeftMenu: FC = () => {
             <aside className="left-menu">
                 <NavLink to="/" className="logo-container"><img src={"/logo.svg"} alt={"Динамика"}/></NavLink>
                 <div className="admin-container">
-                    <NavLink to="/admin" className={({ isActive }) => `left-menu-item ${isActive ? "active-nav-item" : ""}`}>
+                    <NavLink to="/admin/feed" className={({ isActive }) => `left-menu-item ${isActive ? "active-nav-item" : ""}`}>
                         Администрирование
                     </NavLink>
                     <AnimatePresence>
