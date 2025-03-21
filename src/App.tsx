@@ -73,7 +73,7 @@ const router = createBrowserRouter(
             <Route path="documents" element={<PageDocuments key={"documents"} />} />
             <Route path="contacts" element={<PageContacts key={"contacts"} />} />
             <Route path="admin" element={<PageAdmin key={"admin"} />}>
-                <Route path="feed" element={<AdminTabFeed/>}/>
+                <Route path="feed" element={<AdminTabFeed/>} />
                 <Route path="contacts" element={<AdminTabContacts/>}/>
                 <Route path="documents" element={<AdminTabDocuments/>}/>
                 <Route path="adaptation" element={<AdminTabAdaptation/>}/>

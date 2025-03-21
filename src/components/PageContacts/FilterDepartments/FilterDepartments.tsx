@@ -1,5 +1,7 @@
 import { FC } from "react";
-import { useGetDepartmentsNotNullQuery } from "../../../api/methods/departmentApi.ts";
+import {
+    useGetDepartmentsTitlesNotNullQuery
+} from "../../../api/methods/departmentApi.ts";
 import {FilterDepartmentSkeleton} from "../../Skeletons/FilterDepartmentSkeleton.tsx";
 
 interface FilterDepartmentsProps {
@@ -8,7 +10,7 @@ interface FilterDepartmentsProps {
 }
 
 export const FilterDepartments: FC<FilterDepartmentsProps> = ({ filter, setFilter }) => {
-    const { data: departmentsData, isLoading } = useGetDepartmentsNotNullQuery();
+    const { data: departmentsData, isLoading } = useGetDepartmentsTitlesNotNullQuery();
 
     return (
         <div className="filters-departments">
@@ -19,19 +21,19 @@ export const FilterDepartments: FC<FilterDepartmentsProps> = ({ filter, setFilte
             ) : (
                 <>
                     <button
-                        className={`department ${filter === "" ? "selected" : ""}`}
+                        className={`department filter-elem ${filter === "" ? "selected" : ""}`}
                         key={0}
                         onClick={() => setFilter("")}
                     >
                         Все
                     </button>
-                    {departmentsData?.departments.map((department) => (
+                    {departmentsData?.titles.map((title, index) => (
                         <button
-                            className={`department ${filter === department.title ? "selected" : ""}`}
-                            key={department.id_department}
-                            onClick={() => setFilter(department.title ?? '')}
+                            className={`department filter-elem ${filter === title ? "selected" : ""}`}
+                            key={index}
+                            onClick={() => setFilter(title ?? '')}
                         >
-                            {department.title}
+                            {title}
                         </button>
                     ))}
                 </>

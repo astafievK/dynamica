@@ -1,9 +1,12 @@
-import { FC, useEffect } from "react";
+import {FC, useEffect, useState} from "react";
 import { pageAnimation } from "../../motionSettins.ts";
 import { motion } from "framer-motion";
 import {DocumentRow} from "./DocumentRow/DocumentRow.tsx";
+import {FilterDocumentsStatuses} from "./FilterDocuments/FilterDocumentsStatuses.tsx";
 
 export const PageDocuments: FC = () => {
+    const [documentStatusValue, setDocumentStatusValue] = useState<string>("Все");
+
     useEffect(() => {
         document.title = "Договора";
     });
@@ -14,14 +17,13 @@ export const PageDocuments: FC = () => {
             animate={pageAnimation.animate}
             exit={pageAnimation.exit}
             transition={pageAnimation.transition}
-            className="page page-documents"
-        >
+            className="page page-documents">
             <div className="page-header">
                 <span className="page-title">Договора</span>
             </div>
-            <div className="page__actions">
-                <div className="page__filters"></div>
-                <div className="page__create"></div>
+            <div className="page-actions">
+                <FilterDocumentsStatuses filter={documentStatusValue} setFilter={setDocumentStatusValue}/>
+                <button className="create">Создать договор</button>
             </div>
             <div className="documents">
                 <div className="documents__block documents__block--active">

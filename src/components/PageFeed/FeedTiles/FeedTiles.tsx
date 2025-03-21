@@ -14,7 +14,7 @@ export const FeedTiles: FC = () => {
         <div className="feed-tiles">
             {isLoading
                 ? Array.from({ length: 4 }).map((_, index) => <FeedTileSkeleton key={index} />)
-                : data?.posts.map((post) => (
+                : data?.posts?.map((post) => (
                     <FeedTile
                         key={post.id_post}
                         id={post.id_post}

@@ -1,23 +1,15 @@
 import {AnimatePresence, motion} from "framer-motion";
 import { FC } from "react";
-import {NavLink, useLocation, useNavigate} from "react-router-dom";
+import {NavLink, useLocation} from "react-router-dom";
 import {useAppDispatch, useTypedSelector} from "../../store/hooks/redux.ts";
 import {setIsOpen as setLoginModalOpen} from "../../api/slices/modalLoginSlice.ts";
+import {logout} from "../../api/slices/authSlice.ts";
 
 export const LeftMenu: FC = () => {
     const { user } = useTypedSelector((state) => state.auth);
     const dispatch = useAppDispatch();
     const location = useLocation();
-    const navigate = useNavigate();
     const isAdminPageOpened = location.pathname.startsWith("/admin");
-
-    const handleProfileClick = () => {
-        if (user) {
-            navigate("/profile");
-        } else {
-            dispatch(setLoginModalOpen(true));
-        }
-    };
 
     return (
         <>
@@ -55,12 +47,47 @@ export const LeftMenu: FC = () => {
                         <li><NavLink to="/adaptation" className={({ isActive }) => `left-menu-item ${isActive ? "active-nav-item" : ""}`}>Адаптация</NavLink></li>
                     </ul>
                 </nav>
-                <button
-                    className={`profile-container left-menu-item ${!user ? "not-logged-in" : ""} ${location.pathname === "/profile" ? "active-nav-item" : ""}`}
-                    onClick={handleProfileClick}
-                >
-                    {user ? `${user.first_name} ${user.last_name}` : "Авторизация"}
-                </button>
+                <div className="profile-container">
+                    {user && (
+                        <motion.div
+                            initial={{ opacity: 0}}
+                            animate={{ opacity: 1}}
+                            exit={{ opacity: 0}}
+                            transition={{ duration: 0.4 }}
+                            className="user-actions">
+                            <NavLink to="/profile" className={({ isActive }) => `user-action user-action-profile ${isActive ? "active" : ""}`}>
+                                <img src={"/user-icon.svg"} alt={""}/>
+                                <div className="banner">
+                                    <span>{user.first_name} {user.last_name}</span>
+                                </div>
+                            </NavLink>
+                            <button className="user-action user-action-notifications">
+                                <img src={"/notifications-icon.svg"} alt={""}/>
+                                <div className="banner">
+                                    <span>Уведомления</span>
+                                </div>
+                            </button>
+                            <button className="user-action user-action-logout" onClick={() => dispatch(logout())}>
+                                <img src={"/logout-icon.svg"} alt={""}/>
+                                <div className="banner">
+                                    <span>Выход</span>
+                                </div>
+                            </button>
+                        </motion.div>
+                    )}
+                    {
+                        !user &&
+                        <motion.button
+                            initial={{ opacity: 0}}
+                            animate={{ opacity: 1}}
+                            exit={{ opacity: 0}}
+                            transition={{ duration: 0.4 }}
+                            className={`left-menu-item`}
+                            onClick={() => dispatch(setLoginModalOpen(true))}>
+                            Авторизация
+                        </motion.button>
+                    }
+                </div>
                 {
                     /*
                     <div className="sep"></div>

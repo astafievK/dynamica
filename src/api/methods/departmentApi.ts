@@ -12,9 +12,9 @@ export const departmentApi = baseApi.injectEndpoints({
             }),
             providesTags: ['Department'],
         }),
-        getDepartmentsNotNull: builder.query<{status: string, departments: Department[]}, void>({
+        getDepartmentsTitlesNotNull: builder.query<{status: string, titles: string[]}, void>({
             query: () => ({
-                url: `/Department/getDepartmentsNotNull.php`,
+                url: `/Department/getDepartmentsTitlesNotNull.php`,
                 method: "GET",
             }),
             providesTags: ['Department'],
@@ -40,7 +40,7 @@ export const departmentApi = baseApi.injectEndpoints({
 
 export const {
     useGetDepartmentsQuery,
-    useGetDepartmentsNotNullQuery,
+    useGetDepartmentsTitlesNotNullQuery,
     useCreateDepartmentMutation,
     useEditDepartmentTitleMutation,
 } = departmentApi;

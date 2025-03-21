@@ -15,30 +15,32 @@ interface IEmployeeCardProps {
 
 export const EmployeeCard: FC<IEmployeeCardProps> = (props) => {
     return (
-        <motion.div
+        <motion.tr
             initial={pageAnimation.initial}
             animate={pageAnimation.animate}
             exit={pageAnimation.exit}
-            transition={pageAnimation.transition}
-            className="employee-card">
-            <div
-                className="employee-image"
-                style={{ backgroundImage: `url(/${props.image})` }}
-            />
-            <div className="employee-info">
-                <div className="employee-info__general">
-                    <span className="employee-name">{props.name}</span>
-                    <span className="employee-position">{props.position}</span>
-                    <span className="employee-division">{props.division}</span>
-                    <span className="employee-city">{props.city}</span>
+            transition={pageAnimation.transition}>
+            <td className="person">
+                <div className="person-image-container">
+                    <div className="person-image" style={{ backgroundImage: `url(/${props.image})` }}/>
                 </div>
-                <div className="sep"></div>
-                <div className="employee-info__contacts">
-                    <span className="employee-birthday">{props.birthday}</span>
-                    <span className="employee-email">{props.email}</span>
-                    <span className="employee-phone">{props.phone}</span>
+                <div className="person-general">
+                    <span className={"person-general__name"}>{props.name}</span>
+                    <span className={"person-general__phone"}>{props.phone} {props.phone && props.email && "•"} {props.email}</span>
                 </div>
-            </div>
-        </motion.div>
+            </td>
+            <td>
+                <span>{props.division}</span>
+            </td>
+            <td>
+                <span>{props.position}</span>
+            </td>
+            <td>
+                <span>{props.city}</span>
+            </td>
+            <td>
+                <span>{props.birthday}</span>
+            </td>
+        </motion.tr>
     );
 };

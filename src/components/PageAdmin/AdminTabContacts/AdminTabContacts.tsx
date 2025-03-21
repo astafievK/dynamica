@@ -3,7 +3,7 @@ import {useGetDepartmentsQuery} from "../../../api/methods/departmentApi.ts";
 import {FC} from "react";
 import {AssociationSkeleton} from "../../Skeletons/AssociationSkeleton.tsx";
 import {pageAnimation} from "../../../motionSettins.ts";
-import { motion } from "framer-motion";
+import {motion} from "framer-motion";
 
 export const AdminTabContacts: FC = () => {
     const { data: departmentsData, isLoading: isDepartmentsLoading } = useGetDepartmentsQuery();

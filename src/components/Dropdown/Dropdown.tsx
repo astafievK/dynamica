@@ -6,7 +6,7 @@ interface DropdownProps {
     options: { id: number, title: string }[];
     label: string;
     value: { id: number | null, title: string | null };
-    onSelect?: (value: { id: number | null, title: string | null }) => void; // Сделано необязательным
+    onSelect?: (value: { id: number | null, title: string | null }) => void;
     isDisabled?: boolean;
 }
 
@@ -72,9 +72,7 @@ export const Dropdown: FC<DropdownProps> = ({ options, label, value, onSelect, i
                         <div className={`modal-content modal-dropdown ${isClosing ? "hidden" : ""}`}>
                             <div className="modal-content__header">
                                 <span className={"modal-title"}>{label}</span>
-                                {
-                                    !isDisabled && <Cross color={"#000000"} onClick={() => setIsClosing(true)} />
-                                }
+                                <Cross color={"#000000"} onClick={() => setIsClosing(true)} />
                             </div>
                             <div className="modal-content__body">
                                 <ul className="items">

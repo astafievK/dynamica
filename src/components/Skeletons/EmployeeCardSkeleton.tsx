@@ -1,10 +1,17 @@
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { FC } from "react";
+import {pageAnimation} from "../../motionSettins.ts";
+import { motion } from "framer-motion";
 
 export const EmployeeCardSkeleton: FC = () => {
     return (
-        <div className="employee-card-skeleton">
+        <motion.div
+            initial={pageAnimation.initial}
+            animate={pageAnimation.animate}
+            exit={pageAnimation.exit}
+            transition={pageAnimation.transition}
+            className="employee-card-skeleton">
             <Skeleton containerClassName="employee-image" />
             <div className="employee-info">
                 <div className="employee-info__general">
@@ -20,6 +27,6 @@ export const EmployeeCardSkeleton: FC = () => {
                     <Skeleton containerClassName="employee-phone" width="25%" />
                 </div>
             </div>
-        </div>
+        </motion.div>
     );
 };
