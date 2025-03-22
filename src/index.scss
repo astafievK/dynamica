@@ -907,11 +907,9 @@ html {
                     }
 
                     .logo-container {
-                        display: flex;
                         height: 50px;
 
                         .logo-link {
-                            display: flex;
                             height: 100%;
 
                             .logo {
@@ -1307,7 +1305,6 @@ html {
                                         display: none;
                                         align-items: center;
                                         justify-content: center;
-                                        border-radius: 32px 32px 0 0;
                                         height: 100vh;
                                     }
 
@@ -2176,7 +2173,7 @@ html {
                                     .employees__table-container {
                                         overflow-x: auto;
                                         margin-top: 10px;
-                                        width: 100vw;
+                                        width: 100%;
 
                                         .employees__table {
                                             thead {
@@ -3545,15 +3542,11 @@ html {
                         margin-left: 170px;
 
                         .main-container {
-                            padding: 5px;
                             min-height: unset;
                             background: transparent;
-                            border-radius: 32px;
 
                             main {
-                                border-radius: 32px;
                                 background: white;
-                                filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.3));
 
                                 .page {
                                     .page-header {

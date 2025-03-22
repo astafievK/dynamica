@@ -23,7 +23,6 @@ export const PageDocuments: FC = () => {
             </div>
             <div className="page-actions">
                 <FilterDocumentsStatuses filter={documentStatusValue} setFilter={setDocumentStatusValue}/>
-                <button className="create">Создать договор</button>
             </div>
             <div className="documents">
                 <div className="documents__block documents__block--active">

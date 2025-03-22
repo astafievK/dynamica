@@ -765,11 +765,9 @@ html body #dynamica .layout .left-menu .left-menu-item:not(.active-nav-item):hov
   background: var(--item-hover-background);
 }
 html body #dynamica .layout .left-menu .logo-container {
-  display: flex;
   height: 50px;
 }
 html body #dynamica .layout .left-menu .logo-container .logo-link {
-  display: flex;
   height: 100%;
 }
 html body #dynamica .layout .left-menu .logo-container .logo-link .logo {
@@ -1095,7 +1093,6 @@ html body #dynamica .layout .layout-content .main-container main .page.page-land
   display: none;
   align-items: center;
   justify-content: center;
-  border-radius: 32px 32px 0 0;
   height: 100vh;
 }
 html body #dynamica .layout .layout-content .main-container main .page.page-landing .landing-module__preview .photo-container {
@@ -1799,7 +1796,7 @@ html body #dynamica .layout .layout-content .main-container main .page.page-cont
 html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees__table-container {
   overflow-x: auto;
   margin-top: 10px;
-  width: 100vw;
+  width: 100%;
 }
 html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees__table-container .employees__table tbody tr td {
   padding: 5px;
@@ -2732,15 +2729,11 @@ html body #dynamica .layout .layout-content .main-container .footer-wrapper foot
     margin-left: 170px;
   }
   html body #dynamica .layout .layout-content .main-container {
-    padding: 5px;
     min-height: unset;
     background: transparent;
-    border-radius: 32px;
   }
   html body #dynamica .layout .layout-content .main-container main {
-    border-radius: 32px;
     background: white;
-    filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.3));
   }
   html body #dynamica .layout .layout-content .main-container main .page .page-header .page-title {
     font-size: 26px;
