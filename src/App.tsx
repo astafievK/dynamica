@@ -10,7 +10,6 @@ import {persistor, RootState, store} from "./store/store.ts";
 import {Provider, useDispatch, useSelector} from "react-redux";
 import {PersistGate} from "redux-persist/integration/react";
 import {PageFeed} from "./components/PageFeed/PageFeed.tsx";
-import {Footer} from "./components/Footer/Footer.tsx";
 import {PageLanding} from "./components/PageLanding/PageLanding.tsx";
 import {PageProfile} from "./components/PageProfile/PageProfile.tsx";
 import {TextEditor} from "./components/TextEditor/TextEditor.tsx";
@@ -32,21 +31,22 @@ import {updateScrollLock} from "./api/slices/scrollLockSlice.ts";
 import {PagePost} from "./components/PagePost/PagePost.tsx";
 import { LeftMenu } from './components/LeftMenu/LeftMenu.tsx';
 import {PageDocuments} from "./components/PageDocuments/PageDocuments.tsx";
+import {ScrollToTop} from "./components/ScrollToTop/ScrollToTop.tsx";
 
 const Root = () => {
     return (
         <>
+            <ScrollToTop />
             <div className="layout">
-                <Header/>
                 <LeftMenu/>
                 <div className="layout-content">
+                    <Header/>
                     <div className="main-container">
                         <main>
                             <AnimatePresence>
                                 <Outlet/>
                             </AnimatePresence>
                         </main>
-                        <Footer/>
                     </div>
                 </div>
                 <Modals/>
@@ -88,9 +88,10 @@ function App() {
     const dispatch = useDispatch();
     const mobileMenuIsOpen = useSelector((state: RootState) => state.mobileMenuReducer.mobileMenuIsOpen);
     const modalNotificationsIsOpen = useSelector((state: RootState) => state.modalNotificationsReducer.modalNotificationsIsOpen);
+    const modalLoginIsOpen = useSelector((state: RootState) => state.modalLoginReducer.modalLoginIsOpen);
 
     useEffect(() => {
-        dispatch(updateScrollLock(mobileMenuIsOpen || modalNotificationsIsOpen));
+        dispatch(updateScrollLock(mobileMenuIsOpen || modalNotificationsIsOpen || modalLoginIsOpen));
     }, [mobileMenuIsOpen, modalNotificationsIsOpen, dispatch]);
 
     return (

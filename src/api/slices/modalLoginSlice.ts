@@ -16,7 +16,5 @@ const modalLoginSlice = createSlice({
     }
 })
 
-export const {
-    setIsOpen,
-} = modalLoginSlice.actions
+export const { setIsOpen } = modalLoginSlice.actions
 export default modalLoginSlice.reducer

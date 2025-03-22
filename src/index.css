@@ -154,7 +154,7 @@
   --hover-background: rgba(150, 150, 150, 0.2);
   --background-action-button-primary: #acd7aa;
   --background-action-button-secondary: #e6e6e6;
-  --item-static-background: #FFFFFF;
+  --item-static-background: transparent;
   --item-hover-background: rgba(0, 0, 0, 0.05);
   --item-active-background: rgba(0, 0, 0, 0.1);
 }
@@ -723,7 +723,7 @@ html body #dynamica .layout .left-menu {
   bottom: 0;
   left: 0;
   flex-direction: column;
-  background: #FFFFFF;
+  background: var(--background-color);
   overflow-y: auto;
   z-index: 1000;
 }
@@ -736,7 +736,7 @@ html body #dynamica .layout .left-menu .left-menu-item {
   gap: 5px;
   background: var(--item-static-background);
   height: 40px;
-  padding: 0 12px;
+  padding: 0 10px;
   font-size: 14px;
   font-weight: 500;
   text-decoration: none;
@@ -765,11 +765,18 @@ html body #dynamica .layout .left-menu .left-menu-item:not(.active-nav-item):hov
   background: var(--item-hover-background);
 }
 html body #dynamica .layout .left-menu .logo-container {
-  width: 85%;
-  padding: 0 5px;
+  display: flex;
+  height: 50px;
 }
-html body #dynamica .layout .left-menu .logo-container img {
-  width: 100%;
+html body #dynamica .layout .left-menu .logo-container .logo-link {
+  display: flex;
+  height: 100%;
+}
+html body #dynamica .layout .left-menu .logo-container .logo-link .logo {
+  height: 100%;
+  aspect-ratio: 1/1;
+  background: url("/logo-single.svg");
+  background-size: cover;
 }
 html body #dynamica .layout .left-menu .submenu-container {
   margin-left: 10px;
@@ -914,71 +921,78 @@ html body #dynamica .layout .header-wrapper header {
   display: flex;
   flex: 1;
   flex-direction: row;
-  max-width: 1600px;
-  height: 100%;
   width: 100%;
-  margin: 0 auto;
+  height: 100%;
+  justify-content: space-between;
   padding: 12px 0;
   z-index: 2;
-}
-html body #dynamica .layout .header-wrapper header #logo {
-  display: flex;
-  align-items: center;
 }
 html body #dynamica .layout .header-wrapper header #logo img {
   height: 100%;
 }
-html body #dynamica .layout .header-wrapper header nav {
+html body #dynamica .layout .header-wrapper header .page-title {
   display: none;
   align-items: center;
-  margin-left: 50px;
 }
-html body #dynamica .layout .header-wrapper header nav ul {
-  display: flex;
-  flex-direction: row;
-  list-style: none;
-}
-html body #dynamica .layout .header-wrapper header nav ul li a {
-  text-decoration: none;
-  font-size: 20px;
-  padding: 4px 7px;
-  color: var(--background-color);
-  font-family: GrtskTera, sans-serif;
-  transition: color 150ms ease;
-}
-html body #dynamica .layout .header-wrapper header nav ul li a:hover {
-  color: var(--primary-color);
-}
-html body #dynamica .layout .header-wrapper header nav ul li a.active-nav-item {
-  color: var(--primary-color);
+html body #dynamica .layout .header-wrapper header .page-title span {
+  font-size: 24px;
+  font-family: "GrtskTera", sans-serif;
 }
 html body #dynamica .layout .header-wrapper header .profile-container {
   display: none;
   flex-grow: 1;
   flex-direction: row;
-  gap: 10px;
+  padding: 0 20px;
 }
-html body #dynamica .layout .header-wrapper header .profile-container .profile-wrapper,
-html body #dynamica .layout .header-wrapper header .profile-container .notifications-wrapper {
+html body #dynamica .layout .header-wrapper header .profile-container .header-item {
+  border-radius: 32px;
+  background-color: #FFFFFF;
+  padding: 0 20px;
   display: flex;
   cursor: pointer;
   justify-content: center;
   align-items: center;
-  padding: 0 20px !important;
-  border-radius: 8px;
-  transition: border-color 150ms ease;
-}
-html body #dynamica .layout .header-wrapper header .profile-container .profile-wrapper span,
-html body #dynamica .layout .header-wrapper header .profile-container .notifications-wrapper span {
+  font-size: 14px;
   font-weight: bold;
-  display: none;
-  font-size: 16px;
-  color: var(--background-color);
-  transition: color 150ms ease;
+  color: var(--secondary-color);
+  transition: all 150ms;
 }
-html body #dynamica .layout .header-wrapper header .profile-container .profile-wrapper:hover span,
-html body #dynamica .layout .header-wrapper header .profile-container .notifications-wrapper:hover span {
-  color: var(--primary-color);
+html body #dynamica .layout .header-wrapper header .profile-container .header-item:hover {
+  background-color: var(--item-hover-background);
+}
+html body #dynamica .layout .header-wrapper header .profile-container .header-item:active {
+  background-color: var(--item-active-background);
+}
+html body #dynamica .layout .header-wrapper header .profile-container .create-doc {
+  text-decoration: none;
+  background: var(--secondary-color);
+  color: var(--background-color);
+}
+html body #dynamica .layout .header-wrapper header .profile-container .notifications-wrapper {
+  height: 100%;
+  padding: 0;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  overflow: hidden;
+}
+html body #dynamica .layout .header-wrapper header .profile-container .notifications-wrapper .notifications-image {
+  width: 100%;
+  height: 100%;
+  background: url("/notifications-icon.svg") no-repeat center;
+  background-size: 55%;
+}
+html body #dynamica .layout .header-wrapper header .profile-container .user-wrapper {
+  padding: 0;
+  height: 100%;
+  aspect-ratio: 1/1;
+  overflow: hidden;
+}
+html body #dynamica .layout .header-wrapper header .profile-container .user-wrapper .user-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: url("/default.webp") center;
+  background-size: cover;
 }
 html body #dynamica .layout .header-wrapper header #burger {
   margin-left: auto;
@@ -1034,7 +1048,7 @@ html body #dynamica .layout .header-wrapper .user-panel nav a:hover {
   color: var(--primary-color);
 }
 html body #dynamica .layout .layout-content {
-  background: #FFFFFF;
+  background: var(--background-color);
 }
 html body #dynamica .layout .layout-content .main-container {
   display: flex;
@@ -1060,7 +1074,7 @@ html body #dynamica .layout .layout-content .main-container main .page {
   padding: 20px 5px;
 }
 html body #dynamica .layout .layout-content .main-container main .page .page-header {
-  display: flex;
+  display: none;
   flex-direction: column;
   padding: 0 10px;
 }
@@ -1472,7 +1486,7 @@ html body #dynamica .layout .layout-content .main-container main .page.page-prof
   height: 80%;
   aspect-ratio: 1/1;
   margin-right: 10px;
-  background-image: url("public/arrow.svg");
+  background-image: url("/arrow.svg");
   background-size: cover;
   background-position: center;
   transition: all 200ms;
@@ -2345,22 +2359,6 @@ html body #dynamica .layout .layout-content .main-container .footer-wrapper foot
   html body #dynamica .layout .header-wrapper header {
     padding: 12px 0;
   }
-  html body #dynamica .layout .header-wrapper header .profile-container {
-    justify-content: flex-end;
-    gap: 8px;
-  }
-  html body #dynamica .layout .header-wrapper header .profile-container .profile-wrapper,
-  html body #dynamica .layout .header-wrapper header .profile-container .notifications-wrapper {
-    aspect-ratio: unset;
-  }
-  html body #dynamica .layout .header-wrapper header .profile-container .profile-wrapper .logo-container img,
-  html body #dynamica .layout .header-wrapper header .profile-container .notifications-wrapper .logo-container img {
-    height: 30px;
-  }
-  html body #dynamica .layout .header-wrapper header .profile-container .profile-wrapper span,
-  html body #dynamica .layout .header-wrapper header .profile-container .notifications-wrapper span {
-    display: block;
-  }
   html body #dynamica .layout .layout-content .main-container main .page {
     padding: 30px 15px;
   }
@@ -2680,22 +2678,27 @@ html body #dynamica .layout .layout-content .main-container .footer-wrapper foot
     font-size: 22px;
   }
   html body #dynamica .layout .header-wrapper {
-    height: unset;
-    display: none;
-    min-height: 90px;
-    padding: 0 35px;
+    padding: 0;
+    background: var(--background-color);
+    height: 65px;
   }
   html body #dynamica .layout .header-wrapper::before, html body #dynamica .layout .header-wrapper::after {
-    top: 33px;
+    display: none;
   }
   html body #dynamica .layout .header-wrapper .user-panel {
     display: flex;
   }
   html body #dynamica .layout .header-wrapper header {
-    padding: 15px 0;
+    padding: 10px;
   }
-  html body #dynamica .layout .header-wrapper header #logo img {
-    max-height: 56px;
+  html body #dynamica .layout .header-wrapper header .page-title {
+    display: flex;
+  }
+  html body #dynamica .layout .header-wrapper header .page-title span {
+    font-size: 18px;
+  }
+  html body #dynamica .layout .header-wrapper header #logo {
+    display: none;
   }
   html body #dynamica .layout .header-wrapper header #burger {
     display: none;
@@ -2714,32 +2717,30 @@ html body #dynamica .layout .layout-content .main-container .footer-wrapper foot
   html body #dynamica .layout .header-wrapper header .profile-container {
     display: flex;
     flex-grow: unset;
-    gap: 8px;
-    margin-left: auto;
-  }
-  html body #dynamica .layout .header-wrapper header .profile-container .profile-wrapper .logo-container img,
-  html body #dynamica .layout .header-wrapper header .profile-container .notifications-wrapper .logo-container img {
-    height: 20px;
-  }
-  html body #dynamica .layout .header-wrapper header .profile-container .profile-wrapper {
-    padding: 5px 6px;
-  }
-  html body #dynamica .layout .header-wrapper header .profile-container .notifications-wrapper {
-    padding: 4px 12px;
+    gap: 5px;
+    padding: 3px 0;
   }
   html body #dynamica .layout .left-menu {
     display: flex;
     width: 170px;
-    padding: 8px 0 8px 8px;
+    padding: 0 10px 10px 10px;
+  }
+  html body #dynamica .layout .left-menu .logo-container {
+    padding: 10px 0;
   }
   html body #dynamica .layout .layout-content {
-    padding: 10px;
     margin-left: 170px;
   }
   html body #dynamica .layout .layout-content .main-container {
-    filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.3));
+    padding: 5px;
     min-height: unset;
+    background: transparent;
     border-radius: 32px;
+  }
+  html body #dynamica .layout .layout-content .main-container main {
+    border-radius: 32px;
+    background: white;
+    filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.3));
   }
   html body #dynamica .layout .layout-content .main-container main .page .page-header .page-title {
     font-size: 26px;
@@ -3071,35 +3072,26 @@ html body #dynamica .layout .layout-content .main-container .footer-wrapper foot
   }
 }
 @media (min-width: 1440px) {
-  html body #dynamica .layout .header-wrapper::before, html body #dynamica .layout .header-wrapper::after {
-    top: 33px;
+  html body #dynamica .layout .header-wrapper {
+    height: 75px;
   }
-  html body #dynamica .layout .header-wrapper .user-panel {
-    height: 37px;
-  }
-  html body #dynamica .layout .header-wrapper header nav {
-    margin-left: 50px;
-  }
-  html body #dynamica .layout .header-wrapper header nav ul li .nav-item {
-    padding: 5px 15px;
-    font-size: 16px;
+  html body #dynamica .layout .header-wrapper header .page-title span {
+    font-size: 28px;
   }
   html body #dynamica .layout .header-wrapper header .profile-container {
     padding: 5px 0;
+    gap: 7px;
   }
-  html body #dynamica .layout .header-wrapper header .profile-container .profile-wrapper .logo-container img,
-  html body #dynamica .layout .header-wrapper header .profile-container .notifications-wrapper .logo-container img {
-    height: 30px;
-  }
-  html body #dynamica .layout .header-wrapper header .profile-container .profile-wrapper {
-    padding: 7px 14px;
-  }
-  html body #dynamica .layout .header-wrapper header .profile-container .notifications-wrapper {
-    padding: 6px 18px;
+  html body #dynamica .layout .header-wrapper header .profile-container .header-item {
+    font-size: 16px;
   }
   html body #dynamica .layout .left-menu {
     width: 270px;
-    padding: 20px 0 20px 12px;
+    padding: 0 13px 13px 13px;
+  }
+  html body #dynamica .layout .left-menu .logo-container {
+    padding: 13px 0;
+    height: 75px;
   }
   html body #dynamica .layout .left-menu .left-menu-item {
     padding: 0 18px;

@@ -166,16 +166,16 @@ export const PageContacts: FC = () => {
                     className="employees__table"
                 >
                     <thead>
-                        <tr>
-                            <th>Сотрудник</th>
-                            <th>Подразделение</th>
-                            <th>Должность</th>
-                            <th>Город</th>
-                            <th>День рождения</th>
-                        </tr>
+                    <tr>
+                        <th>Сотрудник</th>
+                        <th>Подразделение</th>
+                        <th>Должность</th>
+                        <th>Город</th>
+                        <th>День рождения</th>
+                    </tr>
                     </thead>
                     <tbody>
-                        {renderUsers()}
+                    {renderUsers()}
                     </tbody>
                 </motion.table>
             </div>

@@ -1,21 +1,41 @@
-import {FC, useState} from "react";
+import {FC, useEffect, useState} from "react";
 import { useAppDispatch, useTypedSelector } from "../../../store/hooks/redux.ts";
-import { setIsOpen } from "../../../api/slices/modalLoginSlice.ts";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { ILoginCommand } from "../../../api/commands/ILoginCommand.ts";
 import { useLoginMutation } from "../../../api/methods/authApi.ts";
-import { useModal } from "../../../store/hooks/useModal.ts";
 import { Cross } from "../../Cross/Cross.tsx";
 import {ModalUserNotification} from "../ModalUserNotification/ModalUserNotification.tsx";
+import { setIsOpen } from "../../../api/slices/modalLoginSlice.ts";
 
 export const ModalLogin: FC = () => {
     const dispatch = useAppDispatch();
     const isOpen = useTypedSelector((state) => state.modalLoginReducer.modalLoginIsOpen);
+    const [isClosing, setIsClosing] = useState(false);
     const { handleSubmit, register } = useForm<ILoginCommand>();
     const [login, { isLoading }] = useLoginMutation();
     const [notification, setNotification] = useState<{ title?: string; message: string } | null>(null);
 
-    const { isClosing, handleClose } = useModal(isOpen, (isOpen) => dispatch(setIsOpen(isOpen)));
+    const handleClose = () => {
+        setIsClosing(true);
+        setTimeout(() => {
+            dispatch(setIsOpen(false));
+            setIsClosing(false);
+        }, 400);
+    };
+
+    useEffect(() => {
+        const handleEscape = (e: KeyboardEvent) => {
+            if (e.key === "Escape" && isOpen) {
+                handleClose();
+            }
+        };
+        window.addEventListener("keydown", handleEscape);
+        return () => {
+            window.removeEventListener("keydown", handleEscape);
+        };
+    }, [isOpen]);
+
+    if (!isOpen && !isClosing) return null;
 
     const onSubmit: SubmitHandler<ILoginCommand> = async (data) => {
         try {
@@ -48,7 +68,7 @@ export const ModalLogin: FC = () => {
                 />
             )}
 
-            <dialog className="modal" open={isOpen}>
+            <dialog className={`modal ${isClosing ? "hidden" : ""}`} open={isOpen}>
                 <div className={`modal-content modal-login ${isClosing ? "hidden" : ""}`}>
                     <div className="modal-content__header">
                         <span className={"modal-title"}>Вход</span>

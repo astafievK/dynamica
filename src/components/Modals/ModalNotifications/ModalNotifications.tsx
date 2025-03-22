@@ -32,7 +32,7 @@ export const ModalNotifications: FC = () => {
     if (!isOpen && !isClosing) return null;
 
     return (
-        <div className={`modal ${isClosing ? "hidden" : ""}`}>
+        <dialog className={`modal ${isClosing ? "hidden" : ""}`} open={isOpen}>
             <div className={`modal-content modal-notifications ${isClosing ? "hidden" : ""}`}>
                 <div className="modal-content__header">
                     <span className={"modal-title"}>Уведомления</span>
@@ -43,6 +43,6 @@ export const ModalNotifications: FC = () => {
                 </div>
             </div>
             <div className={`spoiler ${isClosing ? "hidden" : ""}`} onClick={handleClose}></div>
-        </div>
+        </dialog>
     );
 };

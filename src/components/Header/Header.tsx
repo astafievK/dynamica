@@ -4,8 +4,7 @@ import { setIsOpen as setLoginModalOpen } from "../../api/slices/modalLoginSlice
 import { setModalNotificationsIsOpen as setNotificationsModalOpen } from "../../api/slices/modalNotificationsSlice.ts";
 import { setIsOpen as setMobileMenuOpen } from "../../api/slices/mobileMenuSlice.ts";
 
-import {NavLink, useNavigate} from "react-router-dom";
-import {NavGeneral} from "../NavGeneral/NavGeneral.tsx";
+import {Link, NavLink, useNavigate} from "react-router-dom";
 
 export const Header: FC = () => {
     const { user } = useTypedSelector((state) => state.auth);
@@ -33,18 +32,35 @@ export const Header: FC = () => {
                         <img loading={"lazy"} src="/logo.png" alt="динамика"/>
                     </NavLink>
 
-                    <NavGeneral/>
+                    <div className="page-title">
+                        <span>Адресная книга</span>
+                    </div>
 
                     <div className="profile-container">
-                        <div className="profile-wrapper" onClick={handleProfileClick}>
-                            <span>{user ? `${user.first_name} ${user.last_name}` : "Авторизация"}</span>
-                        </div>
-
+                        <Link to={"documents"} className={"create-doc header-item"}>
+                            Создать договор
+                        </Link>
+                        <button className="login header-item" onClick={() => dispatch(setLoginModalOpen(true))}>
+                            Авторизация
+                        </button>
+                        <>
+                            <button className="notifications-wrapper header-item" onClick={handleNotificationsClick}>
+                                <div className="notifications-image"></div>
+                            </button>
+                            <Link to={"profile"} className="user-wrapper header-item">
+                                <div className="user-image"></div>
+                            </Link>
+                        </>
                         {
                             user &&
-                            <div className="notifications-wrapper" onClick={handleNotificationsClick}>
-                                <span>Уведомления</span>
-                            </div>
+                            <>
+                                <div className="notifications-wrapper" onClick={handleNotificationsClick}>
+                                    <span>Уведомления</span>
+                                </div>
+                                <div className="user-wrapper" onClick={handleProfileClick}>
+                                    <div className="user-image"></div>
+                                </div>
+                            </>
                         }
                     </div>
 

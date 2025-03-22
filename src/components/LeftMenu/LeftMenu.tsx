@@ -1,6 +1,6 @@
 import {AnimatePresence, motion} from "framer-motion";
 import { FC } from "react";
-import {NavLink, useLocation} from "react-router-dom";
+import {Link, NavLink, useLocation} from "react-router-dom";
 import {useAppDispatch, useTypedSelector} from "../../store/hooks/redux.ts";
 import {setIsOpen as setLoginModalOpen} from "../../api/slices/modalLoginSlice.ts";
 import {logout} from "../../api/slices/authSlice.ts";
@@ -14,7 +14,11 @@ export const LeftMenu: FC = () => {
     return (
         <>
             <aside className="left-menu">
-                <NavLink to="/" className="logo-container"><img src={"/logo.svg"} alt={"Динамика"}/></NavLink>
+                <div className="logo-container">
+                    <Link className={"logo-link"} to="/">
+                        <div className="logo"></div>
+                    </Link>
+                </div>
                 <div className="admin-container">
                     <NavLink to="/admin/feed" className={({ isActive }) => `left-menu-item ${isActive ? "active-nav-item" : ""}`}>
                         Администрирование
