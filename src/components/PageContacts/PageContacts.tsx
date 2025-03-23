@@ -1,10 +1,10 @@
 import { motion } from "framer-motion";
 import { useGetUsersFilteredQuery } from "../../api/methods/userApi.ts";
 import { FC, useEffect, useMemo, useState } from "react";
-import { pageAnimation } from "../../motionSettins.ts";
+import { pageAnimation } from "../../constants/motionSettins.ts";
 import { EmployeeCard } from "./EmployeeCard/EmployeeCard.tsx";
 import { FilterDepartments } from "./FilterDepartments/FilterDepartments.tsx";
-import { formatDate } from "../../functions.ts";
+import { formatDate } from "../../constants/functions.ts";
 import { EmployeeCardSkeleton } from "../Skeletons/EmployeeCardSkeleton.tsx";
 import { useDebounce } from "../../store/hooks/useDebounce.ts";
 

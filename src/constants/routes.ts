@@ -1,0 +1,33 @@
+export const ROUTES = {
+    HOME: "/",
+    FEED: "/feed",
+    EDITOR: "/editor",
+    DOCUMENT: "/document",
+    DOCUMENT_PARALLEL: "/document_par",
+    PROFILE: "/profile",
+    DOCUMENTS: "/documents",
+    CONTACTS: "/contacts",
+    ADMIN: "/admin",
+    ADMIN_FEED: "/admin/feed",
+    ADMIN_CONTACTS: "/admin/contacts",
+    ADMIN_DOCUMENTS: "/admin/documents",
+    ADMIN_ADAPTATION: "/admin/adaptation",
+    NOT_FOUND: "/not_found",
+};
+
+export const PAGE_TITLES: Record<string, string> = {
+    [ROUTES.HOME]: "Главная",
+    [ROUTES.FEED]: "Лента",
+    [ROUTES.EDITOR]: "Редактор",
+    [ROUTES.DOCUMENT]: "Документ",
+    [ROUTES.DOCUMENT_PARALLEL]: "Документ (параллельный)",
+    [ROUTES.PROFILE]: "Профиль",
+    [ROUTES.DOCUMENTS]: "Документы",
+    [ROUTES.CONTACTS]: "Адресная книга",
+    [ROUTES.ADMIN]: "Админ-панель",
+    [ROUTES.ADMIN_FEED]: "Админ-панель • Лента",
+    [ROUTES.ADMIN_CONTACTS]: "Админ-панель • Адресная книга",
+    [ROUTES.ADMIN_DOCUMENTS]: "Админ-панель • Документы",
+    [ROUTES.ADMIN_ADAPTATION]: "Админ-панель • Адаптация",
+    [ROUTES.NOT_FOUND]: "Страница не найдена",
+};

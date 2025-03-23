@@ -33,6 +33,7 @@ import { LeftMenu } from './components/LeftMenu/LeftMenu.tsx';
 import {PageDocuments} from "./components/PageDocuments/PageDocuments.tsx";
 import {ScrollToTop} from "./components/ScrollToTop/ScrollToTop.tsx";
 import {HistoryTracker} from "./components/HistoryTracker/HistoryTracker.tsx";
+import {ROUTES} from "./constants/routes.ts";
 
 const Root = () => {
     return (
@@ -53,37 +54,32 @@ const Root = () => {
                 </div>
                 <Modals/>
             </div>
-            {
-                // <AnimatePresence>
-                //     <ModalLoading />
-                // </AnimatePresence>
-            }
         </>
     );
 }
 
 const router = createBrowserRouter(
     createRoutesFromElements(
-        <Route path="/" element={<Root />}>
-            <Route index element={<PageLanding key={"landing"} />} />
-            <Route path="feed" element={<PageFeed key={"feed"} />} />
-            <Route path="feed/:idPost" element={<PagePost key={"feed-post"} />} />
-            <Route path="editor" element={<TextEditor key={"editor"} />} />
-            <Route path="document" element={<PageDocument key={"document"} />} />
-            <Route path="document_par" element={<PageDocumentParallel key={"document-par"} />} />
-            <Route path="profile" element={<PageProfile key={"profile"} />} />
-            <Route path="documents" element={<PageDocuments key={"documents"} />} />
-            <Route path="contacts" element={<PageContacts key={"contacts"} />} />
-            <Route path="admin" element={<PageAdmin key={"admin"} />}>
-                <Route path="feed" element={<AdminTabFeed/>} />
-                <Route path="contacts" element={<AdminTabContacts/>}/>
-                <Route path="documents" element={<AdminTabDocuments/>}/>
-                <Route path="adaptation" element={<AdminTabAdaptation/>}/>
+        <Route path={ROUTES.HOME} element={<Root />}>
+            <Route index element={<PageLanding />} />
+            <Route path={ROUTES.FEED} element={<PageFeed />} />
+            <Route path={`${ROUTES.FEED}/:idPost`} element={<PagePost />} />
+            <Route path={ROUTES.EDITOR} element={<TextEditor />} />
+            <Route path={ROUTES.DOCUMENT} element={<PageDocument />} />
+            <Route path={ROUTES.DOCUMENT_PARALLEL} element={<PageDocumentParallel />} />
+            <Route path={ROUTES.PROFILE} element={<PageProfile />} />
+            <Route path={ROUTES.DOCUMENTS} element={<PageDocuments />} />
+            <Route path={ROUTES.CONTACTS} element={<PageContacts />} />
+            <Route path={ROUTES.ADMIN} element={<PageAdmin />}>
+                <Route path={ROUTES.ADMIN_FEED} element={<AdminTabFeed />} />
+                <Route path={ROUTES.ADMIN_CONTACTS} element={<AdminTabContacts />} />
+                <Route path={ROUTES.ADMIN_DOCUMENTS} element={<AdminTabDocuments />} />
+                <Route path={ROUTES.ADMIN_ADAPTATION} element={<AdminTabAdaptation />} />
             </Route>
-            <Route path="not_found" element={<PageNotFound key={"not-found"} />} />
-            <Route path="*" element={<Navigate to="/not_found" replace />} />
+            <Route path={ROUTES.NOT_FOUND} element={<PageNotFound />} />
+            <Route path="*" element={<Navigate to={ROUTES.NOT_FOUND} replace />} />
         </Route>
-    ),
+    )
 );
 
 function App() {

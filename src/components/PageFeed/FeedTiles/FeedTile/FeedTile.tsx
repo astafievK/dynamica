@@ -1,7 +1,7 @@
 import {FC} from "react";
-import {formatDatetime} from "../../../../functions.ts";
+import {formatDatetime} from "../../../../constants/functions.ts";
 import { motion } from "framer-motion";
-import {pageAnimation} from "../../../../motionSettins.ts";
+import {pageAnimation} from "../../../../constants/motionSettins.ts";
 
 interface IFeedTileProps {
     id: number;

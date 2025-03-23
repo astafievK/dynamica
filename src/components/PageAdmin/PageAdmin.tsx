@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import {Outlet} from "react-router-dom";
-import {pageAnimation} from "../../motionSettins.ts";
+import {pageAnimation} from "../../constants/motionSettins.ts";
 import {FC, useEffect} from "react";
 
 export const PageAdmin: FC = () => {

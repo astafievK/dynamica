@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from "react";
-import { pageAnimation } from "../../motionSettins.ts";
+import { pageAnimation } from "../../constants/motionSettins.ts";
 import { motion } from "framer-motion";
 import { ModuleDocuments } from "../ModuleDocuments/ModuleDocuments.tsx";
 import { ModuleNotifications } from "../ModuleNotifications/ModuleNotifications.tsx";

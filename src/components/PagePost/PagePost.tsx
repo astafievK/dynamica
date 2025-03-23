@@ -1,10 +1,10 @@
 import { FC, useEffect } from "react";
-import { pageAnimation } from "../../motionSettins.ts";
+import { pageAnimation } from "../../constants/motionSettins.ts";
 import { motion } from "framer-motion";
 import { useGetPostQuery } from "../../api/methods/postApi.ts";
 import { ModalLoading } from "../Modals/ModalLoading/ModalLoading.tsx";
 import { useParams } from "react-router-dom";
-import { formatDatetime } from "../../functions.ts";
+import { formatDatetime } from "../../constants/functions.ts";
 import { PageNotFound } from "../PageNotFound/PageNotFound.tsx";
 
 export const PagePost: FC = () => {

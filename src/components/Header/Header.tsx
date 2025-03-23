@@ -3,32 +3,15 @@ import {useAppDispatch, useTypedSelector} from "../../store/hooks/redux";
 import { setIsOpen as setLoginModalOpen } from "../../api/slices/modalLoginSlice.ts";
 import { setModalNotificationsIsOpen as setNotificationsModalOpen } from "../../api/slices/modalNotificationsSlice.ts";
 import { setIsOpen as setMobileMenuOpen } from "../../api/slices/mobileMenuSlice.ts";
-
 import {Link, NavLink, useLocation} from "react-router-dom";
 import {AnimatePresence, motion} from "framer-motion";
-
-const pageTitles: Record<string, string> = {
-    "/": "Главная",
-    "/feed": "Лента",
-    "/editor": "Редактор",
-    "/document": "Документ",
-    "/document_par": "Документ (параллельный)",
-    "/profile": "Профиль",
-    "/documents": "Документы",
-    "/contacts": "Адресная книга",
-    "/admin": "Админ-панель",
-    "/admin/feed": "Админ-панель • Лента",
-    "/admin/contacts": "Админ-панель • Адресная книга",
-    "/admin/documents": "Админ-панель • Документы",
-    "/admin/adaptation": "Админ-панель • Адаптация",
-    "/not_found": "Страница не найдена"
-};
+import {PAGE_TITLES} from "../../constants/routes.ts";
 
 export const Header: FC = () => {
     const { user } = useTypedSelector((state) => state.auth);
     const dispatch = useAppDispatch();
     const location = useLocation();
-    const currentTitle = pageTitles[location.pathname]
+    const currentTitle = PAGE_TITLES[location.pathname] || "Неизвестная страница";
 
     const handleNotificationsClick = () => dispatch(setNotificationsModalOpen(true));
     const handleBurgerClick = () => dispatch(setMobileMenuOpen(true));

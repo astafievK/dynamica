@@ -1,5 +1,5 @@
 import {FC, useEffect} from "react";
-import {pageAnimation} from "../../motionSettins.ts";
+import {pageAnimation} from "../../constants/motionSettins.ts";
 import {motion} from "framer-motion";
 import DocxViewer from "./DocxViewer/DocxViewer.tsx";
 import {DocumentProgressConsistently} from "../DocumentProgressConsistently/DocumentProgressConsistently.tsx";

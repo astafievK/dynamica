@@ -1,6 +1,6 @@
 import {FC, useEffect} from "react";
 import {motion} from "framer-motion";
-import {pageAnimation} from "../../motionSettins.ts";
+import {pageAnimation} from "../../constants/motionSettins.ts";
 
 export const PageNotFound: FC = () => {
     useEffect(() => {

@@ -1,5 +1,5 @@
 import { FC } from "react";
-import {pageAnimation} from "../../../motionSettins.ts";
+import {pageAnimation} from "../../../constants/motionSettins.ts";
 import { motion } from "framer-motion";
 
 interface IEmployeeCardProps {
