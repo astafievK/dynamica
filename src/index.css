@@ -890,15 +890,6 @@ html body #dynamica .layout .header-wrapper {
   z-index: 10;
   transition: transform 0.3s ease-in-out;
 }
-html body #dynamica .layout .header-wrapper.hidden {
-  transform: translateY(-100%);
-}
-html body #dynamica .layout .header-wrapper.hidden::before, html body #dynamica .layout .header-wrapper.hidden::after {
-  display: none;
-}
-html body #dynamica .layout .header-wrapper.visible {
-  transform: translateY(0);
-}
 html body #dynamica .layout .header-wrapper::before, html body #dynamica .layout .header-wrapper::after {
   content: " ";
   height: 95px;
@@ -2680,7 +2671,8 @@ html body #dynamica .layout .layout-content .main-container .footer-wrapper foot
     height: 65px;
   }
   html body #dynamica .layout .header-wrapper::before, html body #dynamica .layout .header-wrapper::after {
-    display: none;
+    top: 8px;
+    background: var(--background-color);
   }
   html body #dynamica .layout .header-wrapper .user-panel {
     display: flex;
@@ -3067,6 +3059,9 @@ html body #dynamica .layout .layout-content .main-container .footer-wrapper foot
 @media (min-width: 1440px) {
   html body #dynamica .layout .header-wrapper {
     height: 75px;
+  }
+  html body #dynamica .layout .header-wrapper::before, html body #dynamica .layout .header-wrapper::after {
+    top: 18px;
   }
   html body #dynamica .layout .header-wrapper header .page-title span {
     font-size: 28px;

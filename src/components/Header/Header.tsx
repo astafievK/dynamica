@@ -15,7 +15,7 @@ const pageTitles: Record<string, string> = {
     "/document_par": "Документ (параллельный)",
     "/profile": "Профиль",
     "/documents": "Документы",
-    "/contacts": "Контакты",
+    "/contacts": "Адресная книга",
     "/admin": "Админ-панель",
     "/admin/feed": "Админ-панель • Лента",
     "/admin/contacts": "Админ-панель • Адресная книга",

@@ -1068,19 +1068,6 @@ html {
                     z-index: 10;
                     transition: transform 0.3s ease-in-out;
 
-                    &.hidden {
-                        transform: translateY(-100%);
-
-                        &::before,
-                        &::after {
-                            display: none;
-                        }
-                    }
-
-                    &.visible {
-                        transform: translateY(0);
-                    }
-
                     &::before,
                     &::after {
                         content: ' ';
@@ -3477,7 +3464,8 @@ html {
 
                         &::before,
                         &::after {
-                            display: none;
+                            top: 8px;
+                            background: var(--background-color);
                         }
 
                         .user-panel {
@@ -4067,6 +4055,11 @@ html {
                 .layout {
                     .header-wrapper {
                         height: 75px;
+
+                        &::before,
+                        &::after {
+                            top: 18px;
+                        }
 
                         header {
                             .page-title {
