@@ -1019,7 +1019,7 @@ html {
                         ul {
                             display: flex;
                             flex-direction: column;
-                            gap: 0 !important;
+                            gap: 3px;
 
                             li {
                                 display: flex;
@@ -1029,10 +1029,10 @@ html {
 
                     .general-navigation {
                         margin-top: 15px;
+                    }
 
-                        .contacts-navigation {
-
-                        }
+                    .recent-navigation {
+                        margin-top: 25px;
                     }
 
                     .recent-navigation {

@@ -32,10 +32,12 @@ import {PagePost} from "./components/PagePost/PagePost.tsx";
 import { LeftMenu } from './components/LeftMenu/LeftMenu.tsx';
 import {PageDocuments} from "./components/PageDocuments/PageDocuments.tsx";
 import {ScrollToTop} from "./components/ScrollToTop/ScrollToTop.tsx";
+import {HistoryTracker} from "./components/HistoryTracker/HistoryTracker.tsx";
 
 const Root = () => {
     return (
         <>
+            <HistoryTracker/>
             <ScrollToTop />
             <div className="layout">
                 <LeftMenu/>

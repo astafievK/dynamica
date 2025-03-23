@@ -7,6 +7,7 @@ import {logout} from "../../api/slices/authSlice.ts";
 
 export const LeftMenu: FC = () => {
     const { user } = useTypedSelector((state) => state.auth);
+    const {history} = useTypedSelector((state) => state.history)
     const dispatch = useAppDispatch();
     const location = useLocation();
     const isAdminPageOpened = location.pathname.startsWith("/admin");
@@ -46,9 +47,21 @@ export const LeftMenu: FC = () => {
                 <nav className="general-navigation">
                     <ul>
                         <li><NavLink to="/" className={({ isActive }) => `left-menu-item ${isActive ? "active-nav-item" : ""}`}>Главная</NavLink></li>
-                        <li><NavLink to="/feed" className={({ isActive }) => `left-menu-item ${isActive ? "active-nav-item" : ""}`}>Новости</NavLink></li>
+                        <li><NavLink to="/feed" className={({ isActive }) => `left-menu-item ${isActive ? "active-nav-item" : ""}`}>Лента</NavLink></li>
                         <li><NavLink to="/contacts" className={({ isActive }) => `left-menu-item ${isActive ? "active-nav-item item-contacts" : ""}`}>Адресная книга</NavLink></li>
                         <li><NavLink to="/adaptation" className={({ isActive }) => `left-menu-item ${isActive ? "active-nav-item" : ""}`}>Адаптация</NavLink></li>
+                    </ul>
+                </nav>
+                <nav className="recent-navigation">
+                    <span className="navigation-title">Последние страницы</span>
+                    <ul>
+                        {history.map((item) => (
+                            <li key={item.path}>
+                                <NavLink to={item.path} className={`left-menu-item`}>
+                                    {item.title}
+                                </NavLink>
+                            </li>
+                        ))}
                     </ul>
                 </nav>
                 <div className="profile-container">
@@ -96,16 +109,7 @@ export const LeftMenu: FC = () => {
                     /*
                     <div className="sep"></div>
 
-                    <nav className="recent-navigation">
-                        <span className="navigation-title">Последние страницы</span>
-                        <ul>
-                            <li><NavLink to="/recent-page-1" className={({ isActive }) => `left-menu-item ${isActive ? "active-nav-item" : ""}`}>Последняя вкладка 1</NavLink></li>
-                            <li><NavLink to="/recent-page-2" className={({ isActive }) => `left-menu-item ${isActive ? "active-nav-item" : ""}`}>Последняя вкладка 2</NavLink></li>
-                            <li><NavLink to="/recent-page-3" className={({ isActive }) => `left-menu-item ${isActive ? "active-nav-item" : ""}`}>Последняя вкладка 3</NavLink></li>
-                            <li><NavLink to="/recent-page-4" className={({ isActive }) => `left-menu-item ${isActive ? "active-nav-item" : ""}`}>Последняя вкладка 4</NavLink></li>
-                            <li><NavLink to="/recent-page-5" className={({ isActive }) => `left-menu-item ${isActive ? "active-nav-item" : ""}`}>Последняя вкладка 5</NavLink></li>
-                        </ul>
-                    </nav>
+
                      */
                 }
             </aside>

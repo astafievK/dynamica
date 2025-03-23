@@ -854,7 +854,7 @@ html body #dynamica .layout .left-menu .general-navigation ul,
 html body #dynamica .layout .left-menu .recent-navigation ul {
   display: flex;
   flex-direction: column;
-  gap: 0 !important;
+  gap: 3px;
 }
 html body #dynamica .layout .left-menu .general-navigation ul li,
 html body #dynamica .layout .left-menu .recent-navigation ul li {
@@ -862,6 +862,9 @@ html body #dynamica .layout .left-menu .recent-navigation ul li {
 }
 html body #dynamica .layout .left-menu .general-navigation {
   margin-top: 15px;
+}
+html body #dynamica .layout .left-menu .recent-navigation {
+  margin-top: 25px;
 }
 html body #dynamica .layout .left-menu .recent-navigation .navigation-title {
   padding: 0 5px;
