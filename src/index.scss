@@ -2164,8 +2164,87 @@ html {
                                     }
 
                                     .employees-container {
+                                        margin-top: 20px;
                                         display: grid;
-                                        grid-template-columns: 1fr 1fr;
+                                        grid-template-columns: repeat(1, calc(100% / 1 - 8px / 1 * (1 - 1)));
+                                        gap: 8px;
+
+                                        .employee-card {
+                                            padding: 15px 20px;
+                                            border-radius: 10px;
+                                            display: flex;
+                                            flex-direction: column;
+                                            gap: 10px;
+
+                                            .employee-card__preview {
+                                                display: flex;
+                                                gap: 10px;
+
+                                                .employee-card__photo {
+                                                    height: 125px;
+                                                    aspect-ratio: 1/1;
+                                                    background-size: cover;
+                                                    background-position: center;
+                                                    border-radius: 50%;
+                                                }
+
+                                                .employee-card__general {
+                                                    display: flex;
+                                                    justify-content: center;
+                                                    flex-direction: column;
+                                                    gap: 10px;
+                                                    padding: 0 10px;
+
+                                                    .employee-card__name {
+                                                        display: flex;
+                                                        flex-direction: column;
+                                                        font-weight: 600;
+                                                        font-size: 22px;
+
+                                                        .employee-card__lastname {
+
+                                                        }
+
+                                                        .employee-card__firstname {
+
+                                                        }
+
+                                                        .employee-card__middlename {
+
+                                                        }
+                                                    }
+
+                                                    .employee-card__position {
+                                                        font-size: 18px;
+                                                        opacity: 0.7;
+                                                    }
+                                                }
+                                            }
+
+                                            .employee-card__details {
+                                                display: none;
+
+                                                .employee-card__position {
+
+                                                }
+
+                                                .employee-card__division {
+
+                                                }
+
+                                                .employee-card__phone {
+
+                                                }
+
+                                                .employee-card__email {
+
+                                                }
+                                            }
+
+                                            &:hover {
+                                                box-shadow: 0 3px 15px rgba(0, 0, 0, 0.15);
+                                            }
+                                        }
                                     }
 
                                     .pagination-container {
@@ -3109,31 +3188,7 @@ html {
                                         }
 
                                         .employees-container {
-                                            .employee-card {
-                                                .employee-image {
-                                                    max-width: 125px;
-                                                }
-
-                                                .employee-info {
-                                                    padding: 5px 0;
-
-                                                    .employee-info__general {
-                                                        gap: 4px;
-
-                                                        .employee-city {
-                                                            margin-bottom: 3px;
-                                                        }
-                                                    }
-
-                                                    .sep {
-                                                        margin: 4px 0;
-                                                    }
-
-                                                    .employee-info__contacts {
-                                                        gap: 4px;
-                                                    }
-                                                }
-                                            }
+                                            grid-template-columns: repeat(2, calc(100% / 2 - 8px / 2 * (2 - 1)));
                                         }
                                     }
 
@@ -4273,23 +4328,8 @@ html {
                                         }
 
                                         .employees-container {
-                                            gap: 9px;
-
-                                            .employee-card {
-                                                padding: 8px 10px;
-
-                                                .employee-image {
-                                                    max-width: 140px;
-                                                }
-
-                                                .employee-info {
-                                                    .employee-info__general {
-                                                        .employee-name {
-                                                            font-size: 18px;
-                                                        }
-                                                    }
-                                                }
-                                            }
+                                            grid-template-columns: repeat(4, calc(100% / 4 - 16px / 4 * (4 - 1)));
+                                            gap: 16px;
                                         }
                                     }
 

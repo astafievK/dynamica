@@ -157,25 +157,128 @@ export const PageContacts: FC = () => {
                     <p>Данные отсутствуют</p>
                 </div>
             )}
-            <motion.table
+            <motion.div
                 initial={pageAnimation.initial}
                 animate={pageAnimation.animate}
                 exit={pageAnimation.exit}
                 transition={pageAnimation.transition}
-                className="employees__container"
+                className="employees-container"
             >
-                <thead>
-                <tr>
-                    <th>Сотрудник</th>
-                    <th>Должность/Подразделение</th>
-                    <th>Город</th>
-                    <th>День рождения</th>
-                </tr>
-                </thead>
-                <tbody>
+                <motion.div
+                    initial={pageAnimation.initial}
+                    animate={pageAnimation.animate}
+                    exit={pageAnimation.exit}
+                    transition={pageAnimation.transition}
+                    className="employee-card"
+                >
+                    <div className="employee-card__preview">
+                        <div
+                            className="employee-card__photo"
+                            style={{ backgroundImage: `url(/default.webp)` }}
+                        ></div>
+                        <div className="employee-card__general">
+                            <div className="employee-card__name">
+                                <span className="employee-card__lastname">Астафьев</span>
+                                <span className="employee-card__firstname">Кирилл</span>
+                                <span className="employee-card__middlename">Александрович</span>
+                            </div>
+                            <span className="employee-card__position">Должность</span>
+                        </div>
+                    </div>
+                    <div className="employee-card__details">
+                        <span className="employee-card__position">Должность</span>
+                        <span className="employee-card__division">Подразделение</span>
+                        <span className="employee-card__phone">Телефон</span>
+                        <span className="employee-card__email">Почта</span>
+                    </div>
+                </motion.div>
+                <motion.div
+                    initial={pageAnimation.initial}
+                    animate={pageAnimation.animate}
+                    exit={pageAnimation.exit}
+                    transition={pageAnimation.transition}
+                    className="employee-card"
+                >
+                    <div className="employee-card__preview">
+                        <div
+                            className="employee-card__photo"
+                            style={{ backgroundImage: `url(/default.webp)` }}
+                        ></div>
+                        <div className="employee-card__general">
+                            <div className="employee-card__name">
+                                <span className="employee-card__lastname">Астафьев</span>
+                                <span className="employee-card__firstname">Кирилл</span>
+                                <span className="employee-card__middlename">Александрович</span>
+                            </div>
+                            <span className="employee-card__position">Должность</span>
+                        </div>
+                    </div>
+                    <div className="employee-card__details">
+                        <span className="employee-card__position">Должность</span>
+                        <span className="employee-card__division">Подразделение</span>
+                        <span className="employee-card__phone">Телефон</span>
+                        <span className="employee-card__email">Почта</span>
+                    </div>
+                </motion.div>
+                <motion.div
+                    initial={pageAnimation.initial}
+                    animate={pageAnimation.animate}
+                    exit={pageAnimation.exit}
+                    transition={pageAnimation.transition}
+                    className="employee-card"
+                >
+                    <div className="employee-card__preview">
+                        <div
+                            className="employee-card__photo"
+                            style={{ backgroundImage: `url(/default.webp)` }}
+                        ></div>
+                        <div className="employee-card__general">
+                            <div className="employee-card__name">
+                                <span className="employee-card__lastname">Астафьев</span>
+                                <span className="employee-card__firstname">Кирилл</span>
+                                <span className="employee-card__middlename">Александрович</span>
+                            </div>
+                            <span className="employee-card__position">Должность</span>
+                        </div>
+                    </div>
+                    <div className="employee-card__details">
+                        <span className="employee-card__position">Должность</span>
+                        <span className="employee-card__division">Подразделение</span>
+                        <span className="employee-card__phone">Телефон</span>
+                        <span className="employee-card__email">Почта</span>
+                    </div>
+                </motion.div>
+                <motion.div
+                    initial={pageAnimation.initial}
+                    animate={pageAnimation.animate}
+                    exit={pageAnimation.exit}
+                    transition={pageAnimation.transition}
+                    className="employee-card"
+                >
+                    <div className="employee-card__preview">
+                        <div
+                            className="employee-card__photo"
+                            style={{ backgroundImage: `url(/default.webp)` }}
+                        ></div>
+                        <div className="employee-card__general">
+                            <div className="employee-card__name">
+                                <span className="employee-card__lastname">Астафьев</span>
+                                <span className="employee-card__firstname">Кирилл</span>
+                                <span className="employee-card__middlename">Александрович</span>
+                            </div>
+                            <span className="employee-card__position">Должность</span>
+                        </div>
+                    </div>
+                    <div className="employee-card__details">
+                        <span className="employee-card__position">Должность</span>
+                        <span className="employee-card__division">Подразделение</span>
+                        <span className="employee-card__phone">Телефон</span>
+                        <span className="employee-card__email">Почта</span>
+                    </div>
+                </motion.div>
+
                 {renderUsers()}
-                </tbody>
-            </motion.table>
+            </motion.div>
             {totalPages > 1 && renderPagination()}
         </motion.div>
     );
