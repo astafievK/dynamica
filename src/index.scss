@@ -164,6 +164,7 @@
     --primary-color: #5AB058;
     --secondary-color: #0C1729;
     --font-color: #0C1729;
+    --font-color-secondary: rgba(12, 23, 41, 0.55);
     --additional-color: #A7A9AB;
     --additional-color-active: #8c8e8f;
     --bottom-menu-height-320: 50px;
@@ -1127,12 +1128,22 @@ html {
                                 padding: 0 20px;
                                 display: flex;
                                 cursor: pointer;
+                                text-decoration: none;
                                 justify-content: center;
                                 align-items: center;
                                 font-size: 14px;
                                 font-weight: bold;
                                 color: var(--secondary-color);
                                 transition: all 150ms;
+
+                                &.filled {
+                                    background: var(--secondary-color);
+                                    color: var(--background-color);
+
+                                    &:hover {
+
+                                    }
+                                }
 
                                 &:hover {
                                     background-color: var(--item-hover-background);
@@ -1141,12 +1152,6 @@ html {
                                 &:active {
                                     background-color: var(--item-active-background);
                                 }
-                            }
-
-                            .create-doc {
-                                text-decoration: none;
-                                background: var(--secondary-color);
-                                color: var(--background-color);
                             }
 
                             .notifications-wrapper {
@@ -1165,14 +1170,16 @@ html {
                             }
 
                             .user-wrapper {
-                                padding: 0;
+                                display: flex;
+                                gap: 10px;
+                                padding: 5px 10px 5px 5px;
                                 height: 100%;
-                                aspect-ratio: 1/1;
                                 overflow: hidden;
+                                text-decoration: none;
 
                                 .user-image {
-                                    width: 100%;
                                     height: 100%;
+                                    aspect-ratio: 1/1;
                                     border-radius: 50%;
                                     background: url("/default.webp") center;
                                     background-size: cover;
@@ -1266,7 +1273,7 @@ html {
                                 flex-direction: column;
                                 max-width: 1920px;
                                 margin: 0 auto;
-                                padding: 20px 5px;
+                                padding: 20px 5px 5px 5px;
 
                                 .page-header {
                                     display: none;
@@ -2099,7 +2106,6 @@ html {
                                         flex-direction: column;
                                         padding: 0 5px;
                                         gap: 10px;
-                                        margin-top: 20px;
 
                                         .filters-departments {
                                             display: flex;
@@ -2157,106 +2163,9 @@ html {
                                         }
                                     }
 
-                                    .employees__table-container {
-                                        overflow-x: auto;
-                                        margin-top: 10px;
-                                        width: 100%;
-
-                                        .employees__table {
-                                            thead {
-                                                tr {
-                                                    th {
-
-                                                    }
-                                                }
-                                            }
-
-                                            tbody {
-                                                tr {
-                                                    td {
-                                                        padding: 5px;
-
-                                                        span {
-                                                            text-wrap: nowrap;
-                                                        }
-
-                                                        &.person {
-                                                            display: flex;
-                                                            flex-direction: row;
-                                                            gap: 10px;
-
-                                                            .person-image-container {
-                                                                display: flex;
-                                                                align-items: center;
-                                                                justify-content: center;
-
-                                                                .person-image {
-                                                                    height: 50px;
-                                                                    aspect-ratio: 1/1;
-                                                                    background-position: center;
-                                                                    background-size: cover;
-                                                                    border-radius: 50%;
-                                                                }
-                                                            }
-
-                                                            .person-general {
-                                                                display: flex;
-                                                                flex-direction: column;
-                                                                justify-content: center;
-                                                                gap: 3px;
-
-                                                                &__phone {
-                                                                    font-size: 14px;
-                                                                }
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-
-                                            .employee-card-skeleton {
-                                                display: flex;
-                                                padding: 5px;
-                                                gap: 15px;
-
-                                                .employee-image {
-                                                    height: 100%;
-                                                    aspect-ratio: 1/1;
-                                                    border-radius: 10px;
-
-                                                    span {
-                                                        height: 100%;
-                                                    }
-                                                }
-
-                                                .employee-info {
-                                                    display: flex;
-                                                    flex-grow: 1;
-                                                    flex-direction: column;
-
-                                                    .employee-info__general {
-                                                        .employee-name,
-                                                        .employee-position,
-                                                        .employee-division,
-                                                        .employee-city {
-                                                            span {
-                                                                height: 20px;
-                                                            }
-                                                        }
-                                                    }
-
-                                                    .sep {
-                                                        margin: 6px 0;
-                                                        width: 100%;
-                                                        border-top: 1px solid #A7A9AB;
-                                                    }
-
-                                                    .employee-info__contacts {
-
-                                                    }
-                                                }
-                                            }
-                                        }
+                                    .employees-container {
+                                        display: grid;
+                                        grid-template-columns: 1fr 1fr;
                                     }
 
                                     .pagination-container {
@@ -2267,6 +2176,7 @@ html {
                                         .pagination {
                                             display: flex;
                                             flex-direction: row;
+                                            margin: 0 auto;
                                             gap: 5px;
 
                                             button {
@@ -2288,7 +2198,6 @@ html {
                                             }
                                         }
                                     }
-
                                 }
 
                                 &.page-document {
@@ -2951,7 +2860,7 @@ html {
                         .main-container {
                             main {
                                 .page {
-                                    padding: 30px 15px;
+                                    padding: 10px 8px 8px 8px;
 
                                     .page-header {
                                         .page-title {
@@ -3511,7 +3420,7 @@ html {
                                 display: flex;
                                 flex-grow: unset;
                                 gap: 5px;
-                                padding: 3px 0;
+                                padding: 2px 0;
                             }
                         }
                     }
@@ -3799,7 +3708,6 @@ html {
 
                                     &.page-contacts {
                                         .filters-container {
-                                            margin-top: 35px;
                                             gap: 10px;
 
                                             .filters-departments {
@@ -4069,7 +3977,6 @@ html {
                             }
 
                             .profile-container {
-                                padding: 5px 0;
                                 gap: 7px;
 
                                 .header-item {
@@ -4109,7 +4016,7 @@ html {
                         .main-container {
                             main {
                                 .page {
-                                    padding: 37px 10px;
+                                    padding: 30px 15px 15px 15px;
 
                                     .page-header {
                                         .page-title {

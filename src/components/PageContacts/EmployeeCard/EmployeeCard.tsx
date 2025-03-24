@@ -15,25 +15,23 @@ interface IEmployeeCardProps {
 
 export const EmployeeCard: FC<IEmployeeCardProps> = (props) => {
     return (
-        <motion.tr
+        <motion.div
             initial={pageAnimation.initial}
             animate={pageAnimation.animate}
             exit={pageAnimation.exit}
             transition={pageAnimation.transition}>
-            <td className="person">
+            <td className="cell-person">
                 <div className="person-image-container">
                     <div className="person-image" style={{ backgroundImage: `url(/${props.image})` }}/>
                 </div>
                 <div className="person-general">
                     <span className={"person-general__name"}>{props.name}</span>
-                    <span className={"person-general__phone"}>{props.phone} {props.phone && props.email && "•"} {props.email}</span>
+                    <span className={"person-general__phone"}>{props.phone}</span>
+                    <span className={"person-general__email"}>{props.email}</span>
                 </div>
             </td>
-            <td>
-                <span>{props.division}</span>
-            </td>
-            <td>
-                <span>{props.position}</span>
+            <td className={"cell-position"}>
+                <div><span>{props.position}</span></div>
             </td>
             <td>
                 <span>{props.city}</span>
@@ -41,6 +39,6 @@ export const EmployeeCard: FC<IEmployeeCardProps> = (props) => {
             <td>
                 <span>{props.birthday}</span>
             </td>
-        </motion.tr>
+        </motion.div>
     );
 };

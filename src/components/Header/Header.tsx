@@ -40,13 +40,18 @@ export const Header: FC = () => {
                     </AnimatePresence>
 
                     <div className="profile-container">
-                        <button className="login header-item" onClick={() => dispatch(setLoginModalOpen(true))}>
-                            Авторизация
-                        </button>
+                        {
+                            !user &&
+                            <>
+                                <button className="login header-item" onClick={() => dispatch(setLoginModalOpen(true))}>
+                                    Авторизация
+                                </button>
+                            </>
+                        }
                         {
                             user &&
                             <>
-                                <Link to={"documents"} className={"create-doc header-item"}>
+                                <Link to={"documents"} className={"create-doc header-item filled"}>
                                     Создать договор
                                 </Link>
                                 <button className="notifications-wrapper header-item" onClick={handleNotificationsClick}>
@@ -54,6 +59,7 @@ export const Header: FC = () => {
                                 </button>
                                 <Link to={"profile"} className="user-wrapper header-item">
                                     <div className="user-image"></div>
+                                    {user.first_name} {user.last_name}
                                 </Link>
                             </>
                         }

@@ -157,28 +157,25 @@ export const PageContacts: FC = () => {
                     <p>Данные отсутствуют</p>
                 </div>
             )}
-            <div className="employees__table-container">
-                <motion.table
-                    initial={pageAnimation.initial}
-                    animate={pageAnimation.animate}
-                    exit={pageAnimation.exit}
-                    transition={pageAnimation.transition}
-                    className="employees__table"
-                >
-                    <thead>
-                    <tr>
-                        <th>Сотрудник</th>
-                        <th>Подразделение</th>
-                        <th>Должность</th>
-                        <th>Город</th>
-                        <th>День рождения</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {renderUsers()}
-                    </tbody>
-                </motion.table>
-            </div>
+            <motion.table
+                initial={pageAnimation.initial}
+                animate={pageAnimation.animate}
+                exit={pageAnimation.exit}
+                transition={pageAnimation.transition}
+                className="employees__container"
+            >
+                <thead>
+                <tr>
+                    <th>Сотрудник</th>
+                    <th>Должность/Подразделение</th>
+                    <th>Город</th>
+                    <th>День рождения</th>
+                </tr>
+                </thead>
+                <tbody>
+                {renderUsers()}
+                </tbody>
+            </motion.table>
             {totalPages > 1 && renderPagination()}
         </motion.div>
     );

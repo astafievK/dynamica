@@ -145,6 +145,7 @@
   --primary-color: #5AB058;
   --secondary-color: #0C1729;
   --font-color: #0C1729;
+  --font-color-secondary: rgba(12, 23, 41, 0.55);
   --additional-color: #A7A9AB;
   --additional-color-active: #8c8e8f;
   --bottom-menu-height-320: 50px;
@@ -942,6 +943,7 @@ html body #dynamica .layout .header-wrapper header .profile-container .header-it
   padding: 0 20px;
   display: flex;
   cursor: pointer;
+  text-decoration: none;
   justify-content: center;
   align-items: center;
   font-size: 14px;
@@ -949,16 +951,15 @@ html body #dynamica .layout .header-wrapper header .profile-container .header-it
   color: var(--secondary-color);
   transition: all 150ms;
 }
+html body #dynamica .layout .header-wrapper header .profile-container .header-item.filled {
+  background: var(--secondary-color);
+  color: var(--background-color);
+}
 html body #dynamica .layout .header-wrapper header .profile-container .header-item:hover {
   background-color: var(--item-hover-background);
 }
 html body #dynamica .layout .header-wrapper header .profile-container .header-item:active {
   background-color: var(--item-active-background);
-}
-html body #dynamica .layout .header-wrapper header .profile-container .create-doc {
-  text-decoration: none;
-  background: var(--secondary-color);
-  color: var(--background-color);
 }
 html body #dynamica .layout .header-wrapper header .profile-container .notifications-wrapper {
   height: 100%;
@@ -974,14 +975,16 @@ html body #dynamica .layout .header-wrapper header .profile-container .notificat
   background-size: 55%;
 }
 html body #dynamica .layout .header-wrapper header .profile-container .user-wrapper {
-  padding: 0;
+  display: flex;
+  gap: 10px;
+  padding: 5px 10px 5px 5px;
   height: 100%;
-  aspect-ratio: 1/1;
   overflow: hidden;
+  text-decoration: none;
 }
 html body #dynamica .layout .header-wrapper header .profile-container .user-wrapper .user-image {
-  width: 100%;
   height: 100%;
+  aspect-ratio: 1/1;
   border-radius: 50%;
   background: url("/default.webp") center;
   background-size: cover;
@@ -1063,7 +1066,7 @@ html body #dynamica .layout .layout-content .main-container main .page {
   flex-direction: column;
   max-width: 1920px;
   margin: 0 auto;
-  padding: 20px 5px;
+  padding: 20px 5px 5px 5px;
 }
 html body #dynamica .layout .layout-content .main-container main .page .page-header {
   display: none;
@@ -1737,7 +1740,6 @@ html body #dynamica .layout .layout-content .main-container main .page.page-cont
   flex-direction: column;
   padding: 0 5px;
   gap: 10px;
-  margin-top: 20px;
 }
 html body #dynamica .layout .layout-content .main-container main .page.page-contacts .filters-container .filters-departments {
   display: flex;
@@ -1787,71 +1789,9 @@ html body #dynamica .layout .layout-content .main-container main .page.page-cont
   background-color: #85a686;
   transition-duration: 70ms;
 }
-html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees__table-container {
-  overflow-x: auto;
-  margin-top: 10px;
-  width: 100%;
-}
-html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees__table-container .employees__table tbody tr td {
-  padding: 5px;
-}
-html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees__table-container .employees__table tbody tr td span {
-  text-wrap: nowrap;
-}
-html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees__table-container .employees__table tbody tr td.person {
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-}
-html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees__table-container .employees__table tbody tr td.person .person-image-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees__table-container .employees__table tbody tr td.person .person-image-container .person-image {
-  height: 50px;
-  aspect-ratio: 1/1;
-  background-position: center;
-  background-size: cover;
-  border-radius: 50%;
-}
-html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees__table-container .employees__table tbody tr td.person .person-general {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 3px;
-}
-html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees__table-container .employees__table tbody tr td.person .person-general__phone {
-  font-size: 14px;
-}
-html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees__table-container .employees__table .employee-card-skeleton {
-  display: flex;
-  padding: 5px;
-  gap: 15px;
-}
-html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees__table-container .employees__table .employee-card-skeleton .employee-image {
-  height: 100%;
-  aspect-ratio: 1/1;
-  border-radius: 10px;
-}
-html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees__table-container .employees__table .employee-card-skeleton .employee-image span {
-  height: 100%;
-}
-html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees__table-container .employees__table .employee-card-skeleton .employee-info {
-  display: flex;
-  flex-grow: 1;
-  flex-direction: column;
-}
-html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees__table-container .employees__table .employee-card-skeleton .employee-info .employee-info__general .employee-name span,
-html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees__table-container .employees__table .employee-card-skeleton .employee-info .employee-info__general .employee-position span,
-html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees__table-container .employees__table .employee-card-skeleton .employee-info .employee-info__general .employee-division span,
-html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees__table-container .employees__table .employee-card-skeleton .employee-info .employee-info__general .employee-city span {
-  height: 20px;
-}
-html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees__table-container .employees__table .employee-card-skeleton .employee-info .sep {
-  margin: 6px 0;
-  width: 100%;
-  border-top: 1px solid #A7A9AB;
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 html body #dynamica .layout .layout-content .main-container main .page.page-contacts .pagination-container {
   display: flex;
@@ -1861,6 +1801,7 @@ html body #dynamica .layout .layout-content .main-container main .page.page-cont
 html body #dynamica .layout .layout-content .main-container main .page.page-contacts .pagination-container .pagination {
   display: flex;
   flex-direction: row;
+  margin: 0 auto;
   gap: 5px;
 }
 html body #dynamica .layout .layout-content .main-container main .page.page-contacts .pagination-container .pagination button {
@@ -2351,7 +2292,7 @@ html body #dynamica .layout .layout-content .main-container .footer-wrapper foot
     padding: 12px 0;
   }
   html body #dynamica .layout .layout-content .main-container main .page {
-    padding: 30px 15px;
+    padding: 10px 8px 8px 8px;
   }
   html body #dynamica .layout .layout-content .main-container main .page .page-header .page-title {
     line-height: unset;
@@ -2710,7 +2651,7 @@ html body #dynamica .layout .layout-content .main-container .footer-wrapper foot
     display: flex;
     flex-grow: unset;
     gap: 5px;
-    padding: 3px 0;
+    padding: 2px 0;
   }
   html body #dynamica .layout .left-menu {
     display: flex;
@@ -2913,7 +2854,6 @@ html body #dynamica .layout .layout-content .main-container .footer-wrapper foot
     font-size: 24px;
   }
   html body #dynamica .layout .layout-content .main-container main .page.page-contacts .filters-container {
-    margin-top: 35px;
     gap: 10px;
   }
   html body #dynamica .layout .layout-content .main-container main .page.page-contacts .filters-container .filters-departments {
@@ -3070,7 +3010,6 @@ html body #dynamica .layout .layout-content .main-container .footer-wrapper foot
     font-size: 28px;
   }
   html body #dynamica .layout .header-wrapper header .profile-container {
-    padding: 5px 0;
     gap: 7px;
   }
   html body #dynamica .layout .header-wrapper header .profile-container .header-item {
@@ -3099,7 +3038,7 @@ html body #dynamica .layout .layout-content .main-container .footer-wrapper foot
     margin-left: 270px;
   }
   html body #dynamica .layout .layout-content .main-container main .page {
-    padding: 37px 10px;
+    padding: 30px 15px 15px 15px;
   }
   html body #dynamica .layout .layout-content .main-container main .page .page-header .page-title {
     font-size: 34px;

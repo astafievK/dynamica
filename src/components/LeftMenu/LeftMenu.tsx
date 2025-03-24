@@ -1,14 +1,10 @@
 import {AnimatePresence, motion} from "framer-motion";
 import { FC } from "react";
 import {Link, NavLink, useLocation} from "react-router-dom";
-import {useAppDispatch, useTypedSelector} from "../../store/hooks/redux.ts";
-import {setIsOpen as setLoginModalOpen} from "../../api/slices/modalLoginSlice.ts";
-import {logout} from "../../api/slices/authSlice.ts";
+import {useTypedSelector} from "../../store/hooks/redux.ts";
 
 export const LeftMenu: FC = () => {
-    const { user } = useTypedSelector((state) => state.auth);
     const {history} = useTypedSelector((state) => state.history)
-    const dispatch = useAppDispatch();
     const location = useLocation();
     const isAdminPageOpened = location.pathname.startsWith("/admin");
 
@@ -64,7 +60,9 @@ export const LeftMenu: FC = () => {
                         ))}
                     </ul>
                 </nav>
-                <div className="profile-container">
+                {
+                    /*
+                    <div className="profile-container">
                     {user && (
                         <motion.div
                             initial={{ opacity: 0}}
@@ -105,6 +103,8 @@ export const LeftMenu: FC = () => {
                         </motion.button>
                     }
                 </div>
+                     */
+                }
                 {
                     /*
                     <div className="sep"></div>
