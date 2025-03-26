@@ -52,7 +52,7 @@ export const Header: FC = () => {
                             user &&
                             <>
                                 <Link to={"documents"} className={"create-doc header-item filled"}>
-                                    Создать договор
+                                    Создать / Загрузить договор
                                 </Link>
                                 <button className="notifications-wrapper header-item" onClick={handleNotificationsClick}>
                                     <div className="notifications-image"></div>

@@ -289,7 +289,7 @@ html {
         background: transparent;
         border-radius: 7px;
         font-weight: 600;
-        font-size: 11px;
+        font-size: 14px;
         padding: 8px;
         flex-shrink: 0;
         transition: all 200ms;
@@ -317,6 +317,7 @@ html {
             background: var(--background-color);
             border: 2px solid var(--background-color);
             transition: all 0.2s;
+            font-size: 14px;
 
             &:hover,
             &:focus {
@@ -2131,7 +2132,6 @@ html {
                                                 padding: 10px 115px 10px 10px;
                                                 border-radius: 32px;
                                                 font-weight: 600;
-                                                font-size: 16px;
                                                 flex: 1;
                                                 transition: 200ms;
                                             }
@@ -2164,28 +2164,62 @@ html {
                                     }
 
                                     .employees-container {
-                                        margin-top: 20px;
-                                        display: grid;
+                                        margin: 20px 0 110px 0;
+                                        position: relative;
+                                        width: 100%;
                                         grid-template-columns: repeat(1, calc(100% / 1 - 8px / 1 * (1 - 1)));
                                         gap: 8px;
+                                        display: grid;
 
                                         .employee-card {
-                                            padding: 15px 20px;
+                                            position: relative;
                                             border-radius: 10px;
                                             display: flex;
                                             flex-direction: column;
-                                            gap: 10px;
+                                            width: 100%;
+                                            z-index: 1;
+                                            transition: all 150ms;
 
                                             .employee-card__preview {
                                                 display: flex;
-                                                gap: 10px;
+                                                position: relative;
+                                                border-radius: 10px;
+                                                height: 100%;
+                                                padding: 5px 10px;
+                                                align-items: center;
+                                                gap: 20px;
+                                                z-index: 5;
+                                                transition: background 100ms;
 
                                                 .employee-card__photo {
-                                                    height: 125px;
+                                                    position: relative;
+                                                    height: 90px;
                                                     aspect-ratio: 1/1;
                                                     background-size: cover;
                                                     background-position: center;
                                                     border-radius: 50%;
+                                                    transition: all 50ms;
+
+                                                    .upload-photo {
+                                                        position: absolute;
+                                                        left: 50%;
+                                                        transform: translateX(-50%);
+                                                        padding: 5px;
+                                                        background: rgba(255, 255, 255, 0.05);
+                                                        backdrop-filter: blur(10px);
+                                                        border-radius: 7px;
+                                                        text-align: center;
+                                                        font-size: 14px;
+                                                        font-weight: 600;
+
+                                                        &:hover {
+                                                            background: var(--item-hover-background);
+                                                        }
+
+                                                        &:active {
+                                                            background: var(--item-active-background);
+                                                        }
+                                                    }
                                                 }
 
                                                 .employee-card__general {
@@ -2193,56 +2227,131 @@ html {
                                                     justify-content: center;
                                                     flex-direction: column;
                                                     gap: 10px;
-                                                    padding: 0 10px;
 
                                                     .employee-card__name {
                                                         display: flex;
+                                                        justify-content: center;
                                                         flex-direction: column;
                                                         font-weight: 600;
-                                                        font-size: 22px;
-
-                                                        .employee-card__lastname {
-
-                                                        }
-
-                                                        .employee-card__firstname {
-
-                                                        }
-
-                                                        .employee-card__middlename {
-
-                                                        }
+                                                        line-height: 1.1;
+                                                        font-size: 16px;
                                                     }
 
                                                     .employee-card__position {
-                                                        font-size: 18px;
+                                                        display: flex;
+                                                        align-items: center;
+                                                        font-size: 13px;
+                                                        line-height: 1;
                                                         opacity: 0.7;
                                                     }
                                                 }
                                             }
 
                                             .employee-card__details {
-                                                display: none;
+                                                position: absolute;
+                                                display: flex;
+                                                flex-direction: column;
+                                                padding: 0 5px 5px 5px;
+                                                border-radius: 0 0 10px 10px;
+                                                background: linear-gradient(white, rgba(0, 255, 0, 0.11)) ;
+                                                backdrop-filter: blur(5px);
+                                                gap: 3px;
+                                                bottom: 0;
+                                                left: 0;
+                                                right: 0;
+                                                transform: translateY(100%);
+                                                z-index: 6;
+                                                transition: background 100ms;
 
-                                                .employee-card__position {
+                                                .details-item {
+                                                    display: flex;
+                                                    flex-direction: column;
+                                                    width: 100%;
+                                                    padding: 3px 8px;
+                                                    border-radius: 7px;
+                                                    cursor: pointer;
+                                                    user-select: none;
+                                                    transition: background 100ms;
 
-                                                }
+                                                    .details-title {
+                                                        font-weight: 600;
+                                                        opacity: 0.5;
+                                                        font-size: 12px;
+                                                    }
 
-                                                .employee-card__division {
+                                                    .detail {
+                                                        font-size: 14px;
+                                                    }
 
-                                                }
+                                                    &:hover {
+                                                        background: rgba(#5AB058, 0.17);
+                                                    }
 
-                                                .employee-card__phone {
-
-                                                }
-
-                                                .employee-card__email {
-
+                                                    &:active {
+                                                        background: rgba(#5AB058, 0.3);
+                                                    }
                                                 }
                                             }
 
                                             &:hover {
-                                                box-shadow: 0 3px 15px rgba(0, 0, 0, 0.15);
+                                                z-index: 2;
+
+                                                .employee-card__preview {
+                                                    border-radius: 10px 10px 0 0;
+
+                                                    .employee-card__photo {
+                                                        border-radius: 10px;
+                                                    }
+                                                }
+                                            }
+                                        }
+
+                                        .employee-card-skeleton {
+                                            display: flex;
+                                            border-radius: 10px;
+                                            padding: 5px 10px;
+                                            width: 100%;
+                                            gap: 20px;
+
+                                            .employee-image {
+                                                height: 90px;
+                                                aspect-ratio: 1/1;
+                                                border-radius: 50%;
+                                                overflow: hidden;
+
+                                                span {
+                                                    aspect-ratio: 1/1;
+                                                    height: 100%;
+                                                    border-radius: 50%;
+                                                }
+                                            }
+
+                                            .employee-card__general {
+                                                display: flex;
+                                                justify-content: center;
+                                                flex: 1;
+                                                gap: 10px;
+                                                flex-direction: column;
+
+                                                .employee-card__name {
+                                                    width: 100%;
+
+                                                    .employee-lastname,
+                                                    .employee-firstname,
+                                                    .employee-middlename {
+                                                        span {
+                                                            height: 16px;
+                                                        }
+                                                    }
+                                                }
+
+                                                .employee-position {
+                                                    width: 100%;
+
+                                                    span {
+                                                        height: 14px;
+                                                    }
+                                                }
                                             }
                                         }
                                     }
@@ -3189,6 +3298,64 @@ html {
 
                                         .employees-container {
                                             grid-template-columns: repeat(2, calc(100% / 2 - 8px / 2 * (2 - 1)));
+
+                                            .employee-card {
+                                                .employee-card__preview {
+                                                    padding: 10px;
+
+                                                    .employee-card__photo {
+                                                        height: 100px;
+                                                    }
+
+                                                    .employee-card__general {
+                                                        .employee-card__name {
+                                                            font-size: 18px;
+                                                        }
+
+                                                        .employee-card__position {
+                                                            font-size: 16px;
+                                                        }
+                                                    }
+                                                }
+
+                                                .employee-card__details {
+                                                    .details-item {
+                                                        .details-title {
+                                                            font-size: 12px;
+                                                        }
+
+                                                        .detail {
+                                                            font-size: 14px;
+                                                        }
+                                                    }
+                                                }
+                                            }
+
+                                            .employee-card-skeleton {
+                                                padding: 10px;
+
+                                                .employee-image {
+                                                    height: 100px;
+                                                }
+
+                                                .employee-card__general {
+                                                    .employee-card__name {
+                                                        .employee-lastname,
+                                                        .employee-firstname,
+                                                        .employee-middlename {
+                                                            span {
+                                                                height: 20px;
+                                                            }
+                                                        }
+                                                    }
+
+                                                    .employee-position {
+                                                        span {
+                                                            height: 16px;
+                                                        }
+                                                    }
+                                                }
+                                            }
                                         }
                                     }
 
@@ -3790,6 +3957,62 @@ html {
                                                 }
                                             }
                                         }
+
+                                        .employees-container {
+                                            grid-template-columns: repeat(3, calc(100% / 3 - 8px / 3 * (3 - 1)));
+
+                                            .employee-card {
+                                                .employee-card__preview {
+                                                    padding: 15px;
+
+                                                    .employee-card__photo {
+                                                        height: 115px;
+                                                    }
+
+                                                    .employee-card__general {
+                                                        .employee-card__name {
+                                                            font-size: 20px;
+                                                        }
+
+                                                        .employee-card__position {
+                                                            font-size: 16px;
+                                                        }
+                                                    }
+                                                }
+
+                                                .employee-card__details {
+                                                    .details-item {
+                                                        .details-title {
+                                                            font-size: 14px;
+                                                        }
+
+                                                        .detail {
+                                                            font-size: 16px;
+                                                        }
+                                                    }
+                                                }
+                                            }
+
+                                            .employee-card-skeleton {
+                                                padding: 15px;
+
+                                                .employee-image {
+                                                    height: 115px;
+                                                }
+
+                                                .employee-card__general {
+                                                    .employee-card__name {
+                                                        .employee-lastname,
+                                                        .employee-firstname,
+                                                        .employee-middlename {
+                                                            span {
+                                                                height: 22px;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
                                     }
 
                                     &.page-document {
@@ -4328,8 +4551,51 @@ html {
                                         }
 
                                         .employees-container {
-                                            grid-template-columns: repeat(4, calc(100% / 4 - 16px / 4 * (4 - 1)));
-                                            gap: 16px;
+                                            grid-template-columns: repeat(4, calc(100% / 4 - 8px / 4 * (4 - 1)));
+
+                                            .employee-card {
+                                                .employee-card__preview {
+                                                    .employee-card__photo {
+                                                        height: 120px;
+                                                    }
+                                                }
+
+                                                .employee-card__details {
+                                                    .details-item {
+                                                        .details-title {
+                                                            font-size: 16px;
+                                                        }
+
+                                                        .detail {
+                                                            font-size: 18px;
+                                                        }
+                                                    }
+                                                }
+                                            }
+
+                                            .employee-card-skeleton {
+                                                .employee-image {
+                                                    height: 120px;
+                                                }
+
+                                                .employee-card__general {
+                                                    .employee-card__name {
+                                                        .employee-lastname,
+                                                        .employee-firstname,
+                                                        .employee-middlename {
+                                                            span {
+                                                                height: 22px;
+                                                            }
+                                                        }
+                                                    }
+
+                                                    .employee-position {
+                                                        span {
+                                                            height: 16px;
+                                                        }
+                                                    }
+                                                }
+                                            }
                                         }
                                     }
 

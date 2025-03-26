@@ -13,19 +13,13 @@ export const EmployeeCardSkeleton: FC = () => {
             transition={pageAnimation.transition}
             className="employee-card-skeleton">
             <Skeleton containerClassName="employee-image" />
-            <div className="employee-info">
-                <div className="employee-info__general">
-                    <Skeleton containerClassName="employee-name" width="100%"/>
-                    <Skeleton containerClassName="employee-position" width="80%" />
-                    <Skeleton containerClassName="employee-division" width="70%" />
-                    <Skeleton containerClassName="employee-city" width="50%" />
+            <div className="employee-card__general">
+                <div className="employee-card__name">
+                    <Skeleton containerClassName="employee-lastname" width="65%"/>
+                    <Skeleton containerClassName="employee-firstname" width="60%" />
+                    <Skeleton containerClassName="employee-middlename" width="80%" />
                 </div>
-                <div className="sep"></div>
-                <div className="employee-info__contacts">
-                    <Skeleton containerClassName="employee-birthday" width="25%" />
-                    <Skeleton containerClassName="employee-email" width="25%" />
-                    <Skeleton containerClassName="employee-phone" width="25%" />
-                </div>
+                <Skeleton containerClassName="employee-position" width="50%" />
             </div>
         </motion.div>
     );
