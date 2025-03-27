@@ -4,7 +4,7 @@ import {Position} from "./IPosition.ts";
 import {Department} from "./IDepartment.ts";
 
 export interface Employee {
-    id: number,
+    id_user: number,
     name: string,
     surname: string,
     patronymic: string,

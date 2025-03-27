@@ -4,7 +4,6 @@ import { FC, useEffect, useMemo, useState } from "react";
 import { pageAnimation } from "../../constants/motionSettins.ts";
 import { EmployeeCard } from "./EmployeeCard/EmployeeCard.tsx";
 import { FilterDepartments } from "./FilterDepartments/FilterDepartments.tsx";
-import { formatDate } from "../../constants/functions.ts";
 import { EmployeeCardSkeleton } from "../Skeletons/EmployeeCardSkeleton.tsx";
 import { useDebounce } from "../../store/hooks/useDebounce.ts";
 
@@ -115,17 +114,8 @@ export const PageContacts: FC = () => {
 
         return paginatedUsers.map((employee) => (
             <EmployeeCard
-                key={employee.id}
-                name={employee.name}
-                surname={employee.surname}
-                patronymic={employee.patronymic}
-                position={employee.position.title}
-                division={employee.department.division.title}
-                city={employee.department.city.title}
-                email={employee.email}
-                phone={employee.phone}
-                birthday={formatDate(employee.birthday.date)}
-                image={employee.image.path}
+                key={employee.id_user}
+                employee={employee}
             />
         ));
     };

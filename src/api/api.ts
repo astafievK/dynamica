@@ -8,11 +8,10 @@ export const baseApi = createApi({
         baseUrl,
         prepareHeaders: (headers) => {
             headers.set('Cache-Control', 'no-cache');
-            headers.set('Content-Type', 'application/json');
             return headers;
         },
     }),
-    tagTypes: ['Post', 'Department'],
+    tagTypes: ['Post', 'Department', 'Employee'],
     keepUnusedDataFor: 10,
     refetchOnFocus: true,
     refetchOnReconnect: true,

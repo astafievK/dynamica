@@ -1,22 +1,38 @@
-import {FC, useState} from "react";
-import {pageAnimation} from "../../../constants/motionSettins.ts";
-import {AnimatePresence, motion} from "framer-motion";
+import React, { FC, useState } from "react";
+import { pageAnimation } from "../../../constants/motionSettins.ts";
+import { AnimatePresence, motion } from "framer-motion";
+import { Employee } from "../../../api/interfaces/IEmployee.ts";
+import {useUploadProfileImageMutation} from "../../../api/methods/userApi.ts";
 
 interface IEmployeeCardProps {
-    name: string;
-    surname: string;
-    patronymic: string;
-    position: string;
-    division: string;
-    city: string;
-    email: string | null;
-    phone: string;
-    birthday: string;
-    image: string;
+    employee: Employee;
 }
 
-export const EmployeeCard: FC<IEmployeeCardProps> = (props) => {
+export const EmployeeCard: FC<IEmployeeCardProps> = ({ employee }) => {
     const [isHovering, setIsHovering] = useState(false);
+    const [uploadProfileImage, {isLoading: isImageUploading}] = useUploadProfileImageMutation();
+
+    const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0];
+
+        if (file) {
+            const formData = new FormData();
+            formData.append("image", file);
+            formData.append("id_user", employee.id_user.toString());
+
+            try {
+                const response = await uploadProfileImage(formData).unwrap();
+                console.log("Ответ после загрузки изображения:", response);
+                if (response?.message) {
+                    console.log("Изображение успешно загружено");
+                } else {
+                    console.error("Ошибка при загрузке изображения:", response?.message || "Неизвестная ошибка");
+                }
+            } catch (error) {
+                console.error("Ошибка при загрузке изображения:", error);
+            }
+        }
+    };
 
     return (
         <motion.div
@@ -29,29 +45,39 @@ export const EmployeeCard: FC<IEmployeeCardProps> = (props) => {
             onMouseLeave={() => setIsHovering(false)}
         >
             <div className="employee-card__preview">
-                <div className="employee-card__photo" style={{ backgroundImage: `url(/default.webp)` }}>
+                <div className="employee-card__photo"
+                     style={{backgroundImage: `url(/files/images/${employee.image.path})`}}>
                     <AnimatePresence>
                         {
-                            isHovering &&
-                            <motion.button
-                                initial={{opacity: 0, bottom: 0}}
-                                animate={{opacity: 1, bottom: 10}}
-                                exit={{opacity: 0, bottom: 0}}
-                                transition={{duration: 0.05}}
-                                className="upload-photo"
-                            >
-                                Загрузить
-                            </motion.button>
+                            (isHovering || isImageUploading) && (
+                                <motion.label
+                                    initial={{opacity: 0, bottom: 0}}
+                                    animate={{opacity: 1, bottom: 10}}
+                                    exit={{opacity: 0, bottom: 0}}
+                                    transition={{duration: 0.05}}
+                                    className="upload-photo"
+                                >
+                                    Загрузить
+                                    {isImageUploading && <span className="shimmer"></span>}
+                                    <input
+                                        type="file"
+                                        accept="image/*"
+                                        className="hidden-input"
+                                        onChange={handleFileChange}
+                                        disabled={isImageUploading}
+                                    />
+                                </motion.label>
+                            )
                         }
                     </AnimatePresence>
                 </div>
                 <div className="employee-card__general">
                     <div className="employee-card__name">
-                        <span className="employee-card__lastname">{props.surname}</span>
-                        <span className="employee-card__firstname">{props.name}</span>
-                        <span className="employee-card__middlename">{props.patronymic}</span>
+                        <span className="employee-card__lastname">{employee.surname}</span>
+                        <span className="employee-card__firstname">{employee.name}</span>
+                        <span className="employee-card__middlename">{employee.patronymic}</span>
                     </div>
-                    <span className="employee-card__position">{props.position}</span>
+                    <span className="employee-card__position">{employee.position.title}</span>
                 </div>
             </div>
             <AnimatePresence>
@@ -64,24 +90,24 @@ export const EmployeeCard: FC<IEmployeeCardProps> = (props) => {
                         transition={{duration: 0.1}}
                         className="employee-card__details">
                         {
-                            props.division &&
+                            employee.department.division &&
                             <div className="details-item details-item__division">
-                                <span className="details-title">Группа</span>
-                                <span className="detail">{props.division}</span>
+                                <span className="details-title">Подразделение</span>
+                                <span className="detail">{employee.department.division.title}</span>
                             </div>
                         }
                         {
-                            props.phone &&
+                            employee.phone &&
                             <div className="details-item details-item__phone">
                                 <span className="details-title">Контактный телефон</span>
-                                <span className="detail">{props.phone}</span>
+                                <span className="detail">{employee.phone}</span>
                             </div>
                         }
                         {
-                            props.email &&
+                            employee.email &&
                             <div className="details-item details-item__email">
                                 <span className="details-title">Почта</span>
-                                <span className="detail">{props.email}</span>
+                                <span className="detail">{employee.email}</span>
                             </div>
                         }
                     </motion.div>
@@ -89,4 +115,4 @@ export const EmployeeCard: FC<IEmployeeCardProps> = (props) => {
             </AnimatePresence>
         </motion.div>
     );
-};
+}
