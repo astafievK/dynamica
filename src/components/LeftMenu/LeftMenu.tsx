@@ -41,24 +41,18 @@ export const LeftMenu: FC = () => {
                 </div>
 
                 <nav className="general-navigation">
-                    <ul>
-                        <li><NavLink to="/" className={({ isActive }) => `left-menu-item ${isActive ? "active-nav-item" : ""}`}>Главная</NavLink></li>
-                        <li><NavLink to="/feed" className={({ isActive }) => `left-menu-item ${isActive ? "active-nav-item" : ""}`}>Лента</NavLink></li>
-                        <li><NavLink to="/contacts" className={({ isActive }) => `left-menu-item ${isActive ? "active-nav-item item-contacts" : ""}`}>Адресная книга</NavLink></li>
-                        <li><NavLink to="/adaptation" className={({ isActive }) => `left-menu-item ${isActive ? "active-nav-item" : ""}`}>Адаптация</NavLink></li>
-                    </ul>
+                    <NavLink to="/" className={({ isActive }) => `left-menu-item ${isActive ? "active-nav-item" : ""}`}>Главная</NavLink>
+                    <NavLink to="/feed" className={({ isActive }) => `left-menu-item ${isActive ? "active-nav-item" : ""}`}>Лента</NavLink>
+                    <NavLink to="/contacts" className={({ isActive }) => `left-menu-item ${isActive ? "active-nav-item item-contacts" : ""}`}>Адресная книга</NavLink>
+                    <NavLink to="/adaptation" className={({ isActive }) => `left-menu-item ${isActive ? "active-nav-item" : ""}`}>Адаптация</NavLink>
                 </nav>
                 <nav className="recent-navigation">
                     <span className="navigation-title">Последние страницы</span>
-                    <ul>
-                        {history.map((item) => (
-                            <li key={item.path}>
-                                <NavLink to={item.path} className={`left-menu-item`}>
-                                    {item.title}
-                                </NavLink>
-                            </li>
-                        ))}
-                    </ul>
+                    {history.map((item) => (
+                        <NavLink to={item.path} className={`left-menu-item`}>
+                            {item.title}
+                        </NavLink>
+                    ))}
                 </nav>
                 {
                     /*

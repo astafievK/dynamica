@@ -869,9 +869,8 @@ html {
                         position: relative;
                         gap: 5px;
                         background: var(--item-static-background);
-                        height: 40px;
-                        padding: 0 10px;
-                        font-size: 14px;
+                        padding: 10px;
+                        font-size: 16px;
                         font-weight: 500;
                         text-decoration: none;
                         width: 100%;
@@ -1016,15 +1015,9 @@ html {
 
                     .general-navigation,
                     .recent-navigation {
-                        ul {
-                            display: flex;
-                            flex-direction: column;
-                            gap: 3px;
-
-                            li {
-                                display: flex;
-                            }
-                        }
+                        display: flex;
+                        flex-direction: column;
+                        gap: 4px;
                     }
 
                     .general-navigation {
@@ -3655,11 +3648,6 @@ html {
                         .logo-container {
                             padding: 10px 0;
                         }
-
-                        .left-menu-item {
-                            height: 35px;
-                            font-size: 16px;
-                        }
                     }
 
                     .layout-content {
@@ -4281,9 +4269,7 @@ html {
                         }
 
                         .left-menu-item {
-                            padding: 0 18px;
-                            height: 50px;
-                            font-size: 19px;
+                            font-size: 18px;
                         }
 
                         .general-navigation {
