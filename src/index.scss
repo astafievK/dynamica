@@ -1591,7 +1591,6 @@ html {
                                         gap: 5px;
                                         padding: 10px;
                                         border-radius: 32px;
-                                        margin-top: 20px;
                                         width: 100%;
 
                                         .feed-tile {
@@ -3592,11 +3591,11 @@ html {
                     .header-wrapper {
                         padding: 0;
                         background: var(--background-color);
-                        height: 65px;
+                        height: 50px;
 
                         &::before,
                         &::after {
-                            top: 8px;
+                            top: -7px;
                             background: var(--background-color);
                         }
 
@@ -3605,7 +3604,7 @@ html {
                         }
 
                         header {
-                            padding: 10px;
+                            padding: 4px 10px;
 
                             .page-title {
                                 display: flex;
@@ -3655,6 +3654,11 @@ html {
 
                         .logo-container {
                             padding: 10px 0;
+                        }
+
+                        .left-menu-item {
+                            height: 35px;
+                            font-size: 16px;
                         }
                     }
 
@@ -4241,14 +4245,16 @@ html {
             #dynamica {
                 .layout {
                     .header-wrapper {
-                        height: 75px;
+                        height: 65px;
 
                         &::before,
                         &::after {
-                            top: 18px;
+                            top: 8px;
                         }
 
                         header {
+                            padding: 5px 10px;
+
                             .page-title {
                                 span {
                                     font-size: 28px;
@@ -4266,8 +4272,8 @@ html {
                     }
 
                     .left-menu {
-                        width: 270px;
-                        padding: 0 13px 13px 13px;
+                        width: 240px;
+                        padding: 0 8px 8px 8px;
 
                         .logo-container {
                             padding: 13px 0;
@@ -4290,7 +4296,7 @@ html {
                     }
 
                     .layout-content {
-                        margin-left: 270px;
+                        margin-left: 240px;
 
                         .main-container {
                             main {

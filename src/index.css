@@ -1321,7 +1321,6 @@ html body #dynamica .layout .layout-content .main-container main .page.page-feed
   gap: 5px;
   padding: 10px;
   border-radius: 32px;
-  margin-top: 20px;
   width: 100%;
 }
 html body #dynamica .layout .layout-content .main-container main .page.page-feed .feed-tiles .feed-tile {
@@ -2788,17 +2787,17 @@ html body #dynamica .layout .layout-content .main-container .footer-wrapper foot
   html body #dynamica .layout .header-wrapper {
     padding: 0;
     background: var(--background-color);
-    height: 65px;
+    height: 50px;
   }
   html body #dynamica .layout .header-wrapper::before, html body #dynamica .layout .header-wrapper::after {
-    top: 8px;
+    top: -7px;
     background: var(--background-color);
   }
   html body #dynamica .layout .header-wrapper .user-panel {
     display: flex;
   }
   html body #dynamica .layout .header-wrapper header {
-    padding: 10px;
+    padding: 4px 10px;
   }
   html body #dynamica .layout .header-wrapper header .page-title {
     display: flex;
@@ -2836,6 +2835,10 @@ html body #dynamica .layout .layout-content .main-container .footer-wrapper foot
   }
   html body #dynamica .layout .left-menu .logo-container {
     padding: 10px 0;
+  }
+  html body #dynamica .layout .left-menu .left-menu-item {
+    height: 35px;
+    font-size: 16px;
   }
   html body #dynamica .layout .layout-content {
     margin-left: 170px;
@@ -3209,10 +3212,13 @@ html body #dynamica .layout .layout-content .main-container .footer-wrapper foot
 }
 @media (min-width: 1440px) {
   html body #dynamica .layout .header-wrapper {
-    height: 75px;
+    height: 65px;
   }
   html body #dynamica .layout .header-wrapper::before, html body #dynamica .layout .header-wrapper::after {
-    top: 18px;
+    top: 8px;
+  }
+  html body #dynamica .layout .header-wrapper header {
+    padding: 5px 10px;
   }
   html body #dynamica .layout .header-wrapper header .page-title span {
     font-size: 28px;
@@ -3224,8 +3230,8 @@ html body #dynamica .layout .layout-content .main-container .footer-wrapper foot
     font-size: 16px;
   }
   html body #dynamica .layout .left-menu {
-    width: 270px;
-    padding: 0 13px 13px 13px;
+    width: 240px;
+    padding: 0 8px 8px 8px;
   }
   html body #dynamica .layout .left-menu .logo-container {
     padding: 13px 0;
@@ -3243,7 +3249,7 @@ html body #dynamica .layout .layout-content .main-container .footer-wrapper foot
     margin: 17px 0;
   }
   html body #dynamica .layout .layout-content {
-    margin-left: 270px;
+    margin-left: 240px;
   }
   html body #dynamica .layout .layout-content .main-container main .page {
     padding: 30px 15px 15px 15px;
