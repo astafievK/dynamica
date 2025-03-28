@@ -10,7 +10,7 @@ export const EmployeeCardSkeleton: FC = () => {
             initial={pageAnimation.initial}
             animate={pageAnimation.animate}
             exit={pageAnimation.exit}
-            transition={pageAnimation.transition}
+            transition={{duration: 0.14}}
             className="employee-card-skeleton">
             <Skeleton containerClassName="employee-image" />
             <div className="employee-card__general">

@@ -39,7 +39,7 @@ export const userApi = baseApi.injectEndpoints({
             }),
             providesTags: ["Employee"],
         }),
-        getUsersFiltered: builder.query<GetUsersResponse, { department: string; search?: string }>({
+        getUsersFiltered: builder.query<GetUsersResponse, { department: string; search?: string; }>({
             query: ({ department, search = "" }) => ({
                 url: `/Users/getUsersFiltered.php?department=${encodeURIComponent(department)}&search=${encodeURIComponent(search)}`,
                 method: "GET",

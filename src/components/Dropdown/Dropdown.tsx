@@ -6,7 +6,7 @@ interface DropdownProps {
     options: { id: number, title: string }[];
     label: string;
     value: { id: number | null, title: string | null };
-    onSelect?: (value: { id: number | null, title: string | null }) => void;
+    onSelect?: (value: { id: number, title: string }) => void;
     isDisabled?: boolean;
 }
 
@@ -77,7 +77,7 @@ export const Dropdown: FC<DropdownProps> = ({ options, label, value, onSelect, i
                             <div className="modal-content__body">
                                 <ul className="items">
                                     {options.map((option) => (
-                                        <li className="item" key={option.id}>
+                                        <li className={`item ${selectedValue.id === option.id ? "selected" : ""}`} key={option.id}>
                                             <button className="item-button" onClick={() => handleSelect(option)}>
                                                 {option.title}
                                             </button>

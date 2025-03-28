@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import {AnimatePresence, motion} from "framer-motion";
 import { useGetUsersFilteredQuery } from "../../api/methods/userApi.ts";
 import { FC, useEffect, useMemo, useState } from "react";
 import { pageAnimation } from "../../constants/motionSettins.ts";
@@ -16,7 +16,6 @@ export const PageContacts: FC = () => {
     const [searchValue, setSearchValue] = useState<string | undefined>(undefined);
     const [isFilterChanging, setIsFilterChanging] = useState<boolean>(false);
     const [currentPage, setCurrentPage] = useState<number>(1);
-
     const { data, isLoading } = useGetUsersFilteredQuery({
         department: departmentTitle,
         search: searchValue,
@@ -121,44 +120,47 @@ export const PageContacts: FC = () => {
     };
 
     return (
-        <motion.div
-            initial={pageAnimation.initial}
-            animate={pageAnimation.animate}
-            exit={pageAnimation.exit}
-            transition={pageAnimation.transition}
-            className="page page-contacts"
-        >
-            <div className="page-header">
-                <span className="page-title page-title__name">Адресная книга</span>
-            </div>
-            <div className="filters-container">
-                <FilterDepartments filter={departmentTitle} setFilter={setDepartmentTitle} />
-                <div className="filters-search">
-                    <input
-                        type="text"
-                        className="filters-search__text styled"
-                        placeholder="ФИО"
-                        value={temporarySearchValue}
-                        onChange={(e) => setTemporarySearchValue(e.target.value)}
-                    />
-                </div>
-                {totalPages > 1 && renderPagination()}
-            </div>
-            {paginatedUsers.length === 0 && !isLoading && !isFilterChanging && (
-                <div className="no-data">
-                    <p>Данные отсутствуют</p>
-                </div>
-            )}
+        <AnimatePresence mode={"wait"}>
             <motion.div
                 initial={pageAnimation.initial}
                 animate={pageAnimation.animate}
                 exit={pageAnimation.exit}
                 transition={pageAnimation.transition}
-                className="employees-container"
+                className="page page-contacts"
             >
-                {renderUsers()}
+                <div className="page-header">
+                    <span className="page-title page-title__name">Адресная книга</span>
+                </div>
+                <div className="filters-container">
+                    <FilterDepartments filter={departmentTitle} setFilter={setDepartmentTitle} />
+                    <div className="filters-search">
+                        <input
+                            type="text"
+                            className="filters-search__text styled"
+                            placeholder="ФИО / Должность"
+                            value={temporarySearchValue}
+                            onChange={(e) => setTemporarySearchValue(e.target.value)}
+                        />
+                    </div>
+                </div>
+                {paginatedUsers.length === 0 && !isLoading && !isFilterChanging && (
+                    <div className="no-data">
+                        <p>Данные отсутствуют</p>
+                    </div>
+                )}
+                <motion.div
+                    initial={pageAnimation.initial}
+                    animate={pageAnimation.animate}
+                    exit={pageAnimation.exit}
+                    transition={pageAnimation.transition}
+                    className="employees-container"
+                >
+                    <AnimatePresence mode={"wait"}>
+                        {renderUsers()}
+                    </AnimatePresence>
+                </motion.div>
+                {totalPages > 1 && renderPagination()}
             </motion.div>
-            {totalPages > 1 && renderPagination()}
-        </motion.div>
+        </AnimatePresence>
     );
 };

@@ -3,6 +3,18 @@ import { FC } from "react";
 import {Link, NavLink, useLocation} from "react-router-dom";
 import {useTypedSelector} from "../../store/hooks/redux.ts";
 
+interface NavItem {
+    title: string;
+    path: string;
+}
+
+const navItems: NavItem[] = [
+    { title: "Главная", path: "/" },
+    { title: "Лента", path: "/feed" },
+    { title: "Адресная книга", path: "/contacts" },
+    { title: "Адаптация", path: "/adaptation" }
+];
+
 export const LeftMenu: FC = () => {
     const {history} = useTypedSelector((state) => state.history)
     const location = useLocation();
@@ -41,15 +53,22 @@ export const LeftMenu: FC = () => {
                 </div>
 
                 <nav className="general-navigation">
-                    <NavLink to="/" className={({ isActive }) => `left-menu-item ${isActive ? "active-nav-item" : ""}`}>Главная</NavLink>
-                    <NavLink to="/feed" className={({ isActive }) => `left-menu-item ${isActive ? "active-nav-item" : ""}`}>Лента</NavLink>
-                    <NavLink to="/contacts" className={({ isActive }) => `left-menu-item ${isActive ? "active-nav-item item-contacts" : ""}`}>Адресная книга</NavLink>
-                    <NavLink to="/adaptation" className={({ isActive }) => `left-menu-item ${isActive ? "active-nav-item" : ""}`}>Адаптация</NavLink>
+                    {navItems.map(({ title, path }) => (
+                        <NavLink
+                            key={path}
+                            to={path}
+                            className={({ isActive }) =>
+                                `left-menu-item ${isActive ? "active-nav-item" : ""}`
+                            }
+                        >
+                            {title}
+                        </NavLink>
+                    ))}
                 </nav>
                 <nav className="recent-navigation">
                     <span className="navigation-title">Последние страницы</span>
                     {history.map((item) => (
-                        <NavLink to={item.path} className={`left-menu-item`}>
+                        <NavLink key={item.path} to={item.path} className={`left-menu-item`}>
                             {item.title}
                         </NavLink>
                     ))}

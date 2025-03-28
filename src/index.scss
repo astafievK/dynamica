@@ -294,10 +294,6 @@ html {
         flex-shrink: 0;
         transition: all 200ms;
 
-        &:active {
-            background-color: var(--item-active-background) !important;
-        }
-
         &:hover {
             background-color: var(--item-hover-background);
         }
@@ -891,10 +887,6 @@ html {
                             }
                         }
 
-                        &:active {
-                            background: var(--item-active-background) !important;
-                        }
-
                         &.active-nav-item {
                             color: var(--primary-color);
                         }
@@ -923,80 +915,6 @@ html {
                     .submenu-container {
                         margin-left: 10px;
                         margin-top: 5px;
-                    }
-
-                    .profile-container {
-                        display: flex;
-                        flex-direction: column;
-                        gap: 5px;
-                        margin-top: auto !important;
-
-                        .user-actions {
-                            height: 48px;
-                            display: flex;
-                            gap: 5px;
-
-                            .user-action {
-                                position: relative;
-                                display: flex;
-                                align-items: center;
-                                justify-content: center;
-                                overflow: visible;
-                                height: 100%;
-                                aspect-ratio: 1/1;
-                                border-radius: 10px;
-                                background-color: var(--item-static-background);
-                                transition: all 150ms ease;
-
-                                img {
-                                    object-fit: cover;
-                                    width: 80%;
-                                }
-
-                                .banner {
-                                    display: none;
-                                    position: absolute;
-                                    top: 0;
-                                    left: 0;
-                                    transform: translateY(-125%);
-                                    padding: 10px;
-                                    background-color: #FFFFFF;
-                                    border-radius: 32px;
-                                    box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.15);
-
-                                    span {
-                                        font-size: 16px;
-                                        text-wrap: nowrap;
-                                    }
-                                }
-
-                                &:hover {
-                                    background-color: var(--item-hover-background);
-
-                                    .banner {
-                                        display: flex;
-                                    }
-                                }
-
-                                &:active {
-                                    background-color: var(--item-active-background);
-                                }
-
-                                &-logout {
-                                    margin-left: auto;
-
-                                    img {
-                                        width: 75%;
-                                    }
-
-                                    .banner {
-                                        left: unset;
-                                        right: 0;
-                                        transform: translate(-10%, -125%);
-                                    }
-                                }
-                            }
-                        }
                     }
 
                     .admin-container {
@@ -1039,12 +957,6 @@ html {
                         ul {
                             margin-top: 10px;
                         }
-                    }
-
-                    .sep {
-                        display: none;
-                        margin: 5px 0;
-                        border-bottom: 1px solid var(--background-color);
                     }
                 }
 
@@ -2095,7 +2007,6 @@ html {
                                     .filters-container {
                                         display: flex;
                                         flex-direction: column;
-                                        padding: 0 5px;
                                         gap: 10px;
 
                                         .filters-departments {
@@ -2195,24 +2106,22 @@ html {
                                                         transform: translateX(-50%);
                                                         padding: 5px;
                                                         overflow: hidden;
-                                                        background: rgba(255, 255, 255, 0.05);
+                                                        background: rgba(255, 255, 255, 0.11);
                                                         backdrop-filter: blur(10px);
                                                         border-radius: 7px;
                                                         cursor: pointer;
                                                         text-align: center;
                                                         font-size: 14px;
                                                         font-weight: 600;
+                                                        transition: background 150ms, color 150ms;
                                                         
                                                         input {
                                                             display: none;
                                                         }
 
                                                         &:hover {
-                                                            background: var(--item-hover-background);
-                                                        }
-
-                                                        &:active {
-                                                            background: var(--item-active-background);
+                                                            background: var(--secondary-color);
+                                                            color: #FFFFFF;
                                                         }
                                                     }
                                                 }
@@ -2984,6 +2893,21 @@ html {
                                 }
                             }
                         }
+
+                        &.modal-notification {
+                            max-width: 580px;
+                            max-height: 650px;
+                            bottom: 10%;
+                            left: 10%;
+
+                            .modal-notification__title {
+
+                            }
+
+                            .modal-notification__description {
+
+                             }
+                        }
                     }
                 }
 
@@ -3264,9 +3188,6 @@ html {
 
                                     &.page-contacts {
                                         .filters-container {
-                                            padding: 0 20px;
-                                            gap: 10px;
-
                                             .filters-select {
                                                 .custom-dropdown {
                                                     flex: 1;
@@ -3597,7 +3518,7 @@ html {
                         }
 
                         header {
-                            padding: 4px 10px;
+                            padding: 4px 10px 4px 30px;
 
                             .page-title {
                                 display: flex;
@@ -3923,8 +3844,6 @@ html {
 
                                     &.page-contacts {
                                         .filters-container {
-                                            gap: 10px;
-
                                             .filters-departments {
                                                 justify-content: center;
                                                 gap: 5px;
@@ -3945,8 +3864,8 @@ html {
 
                                             .filters-search {
                                                 .filters-search__text {
-                                                    font-size: 20px;
-                                                    padding: 22px 25px;
+                                                    font-size: 18px;
+                                                    padding: 19px 25px;
                                                 }
                                             }
                                         }
@@ -3956,19 +3875,20 @@ html {
 
                                             .employee-card {
                                                 .employee-card__preview {
-                                                    padding: 15px;
+                                                    padding: 5px;
 
                                                     .employee-card__photo {
-                                                        height: 115px;
+                                                        height: 100px;
                                                     }
+
 
                                                     .employee-card__general {
                                                         .employee-card__name {
-                                                            font-size: 20px;
+                                                            font-size: 18px;
                                                         }
 
                                                         .employee-card__position {
-                                                            font-size: 16px;
+                                                            font-size: 14px;
                                                         }
                                                     }
                                                 }
@@ -4550,6 +4470,16 @@ html {
                                                 .employee-card__preview {
                                                     .employee-card__photo {
                                                         height: 120px;
+                                                    }
+
+                                                    .employee-card__general {
+                                                        .employee-card__name {
+                                                            font-size: 20px;
+                                                        }
+
+                                                        .employee-card__position {
+                                                            font-size: 16px;
+                                                        }
                                                     }
                                                 }
 

@@ -11,12 +11,13 @@
   text-align: left;
   border-radius: 32px;
   padding: 0 15px;
-  height: 48px;
+  height: 55px;
   font-weight: 600;
   font-size: 14px;
   display: flex;
   align-items: center;
   flex-direction: row;
+  border: 2px solid transparent;
   gap: 10px;
   justify-content: space-between;
   outline: none;
@@ -32,13 +33,14 @@
   background-color: var(--item-active-background);
 }
 .custom-dropdown.active .custom-dropdown__button {
-  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  background-color: #FFFFFF;
 }
 
 .modal .modal-dropdown {
   max-width: 580px;
   max-height: 650px;
-  height: 90%;
+  height: auto !important;
 }
 .modal .modal-dropdown .modal-content__body .items .item .item-button {
   width: 100%;
@@ -52,6 +54,9 @@
   background-color: var(--item-hover-background);
 }
 .modal .modal-dropdown .modal-content__body .items .item .item-button:active {
+  background-color: var(--item-active-background);
+}
+.modal .modal-dropdown .modal-content__body .items .item.selected .item-button {
   background-color: var(--item-active-background);
 }
 

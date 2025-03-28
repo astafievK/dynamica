@@ -9,9 +9,16 @@ export const positionApi = baseApi.injectEndpoints({
                 method: "GET",
             }),
         }),
+        getUsedPositions: builder.query<{status: string, positions: Position[]}, void>({
+            query: () => ({
+                url: `/Position/getUsedPositions.php`,
+                method: "GET",
+            }),
+        }),
     }),
 })
 
 export const {
     useGetPositionsQuery,
+    useGetUsedPositionsQuery,
 } = positionApi;
