@@ -3133,7 +3133,7 @@ html body #dynamica .layout .layout-content .main-container .footer-wrapper foot
     top: 8px;
   }
   html body #dynamica .layout .header-wrapper header {
-    padding: 5px 10px;
+    padding: 5px 10px 5px 40px;
   }
   html body #dynamica .layout .header-wrapper header .page-title span {
     font-size: 28px;
