@@ -34,8 +34,11 @@ import {PageDocuments} from "./components/PageDocuments/PageDocuments.tsx";
 import {ScrollToTop} from "./components/ScrollToTop/ScrollToTop.tsx";
 import {HistoryTracker} from "./components/HistoryTracker/HistoryTracker.tsx";
 import {ROUTES} from "./constants/routes.ts";
+import {usePageTitle} from "./store/hooks/usePageTitle.ts";
 
 const Root = () => {
+    usePageTitle();
+
     const location = useLocation();
 
     return (

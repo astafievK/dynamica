@@ -736,15 +736,17 @@ html body #dynamica .layout .left-menu .left-menu-item {
   text-decoration: none;
   width: 100%;
   border-radius: 10px;
-  color: var(--secondary-color);
+  color: rgba(47, 55, 71, 0.85);
   flex-shrink: 0;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  transition: all 150ms ease;
+  transition: all 200ms ease;
 }
 html body #dynamica .layout .left-menu .left-menu-item svg {
+  fill: rgba(47, 55, 71, 0.85);
   flex-shrink: 0;
+  transition: all 200ms ease;
 }
 html body #dynamica .layout .left-menu .left-menu-item.item-contacts .contacts-navigation {
   position: absolute;
@@ -753,12 +755,19 @@ html body #dynamica .layout .left-menu .left-menu-item.item-contacts .contacts-n
   z-index: 2;
 }
 html body #dynamica .layout .left-menu .left-menu-item.active-nav-item {
-  color: var(--primary-color);
+  color: var(--secondary-color);
   background: #FFFFFF;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
+html body #dynamica .layout .left-menu .left-menu-item.active-nav-item svg {
+  fill: var(--secondary-color);
+}
 html body #dynamica .layout .left-menu .left-menu-item:not(.active-nav-item):hover {
   background: var(--item-hover-background);
+  color: var(--secondary-color);
+}
+html body #dynamica .layout .left-menu .left-menu-item:not(.active-nav-item):hover svg {
+  fill: var(--secondary-color);
 }
 html body #dynamica .layout .left-menu .logo-container {
   height: 50px;
