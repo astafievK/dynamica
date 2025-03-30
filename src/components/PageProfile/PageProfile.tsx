@@ -53,13 +53,7 @@ export const PageProfile: FC = () => {
     if (!user) return null;
 
     return (
-        <motion.div
-            key={"profile"}
-            initial={pageAnimation.initial}
-            animate={pageAnimation.animate}
-            exit={pageAnimation.exit}
-            transition={pageAnimation.transition}
-            className={"page page-profile"}>
+        <motion.div {...pageAnimation} className={"page page-profile"}>
             <div className="page-header">
                 <span className="page-title page-title__name">123 </span>
                 <span className="page-title__district">Группа BI-разработки • Разработчик</span>

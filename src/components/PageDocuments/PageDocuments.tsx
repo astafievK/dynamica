@@ -12,12 +12,7 @@ export const PageDocuments: FC = () => {
     });
 
     return (
-        <motion.div
-            initial={pageAnimation.initial}
-            animate={pageAnimation.animate}
-            exit={pageAnimation.exit}
-            transition={pageAnimation.transition}
-            className="page page-documents">
+        <motion.div {...pageAnimation} className="page page-documents">
             <div className="page-header">
                 <span className="page-title">Договора</span>
             </div>

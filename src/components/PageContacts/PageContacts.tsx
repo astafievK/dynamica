@@ -22,12 +22,12 @@ export const PageContacts: FC = () => {
     });
 
     useEffect(() => {
-        setSearchValue(debouncedSearchValue);
-    }, [debouncedSearchValue]);
-
-    useEffect(() => {
         document.title = "Адресная книга";
     }, []);
+
+    useEffect(() => {
+        setSearchValue(debouncedSearchValue);
+    }, [debouncedSearchValue]);
 
     useEffect(() => {
         setCurrentPage(1);
@@ -78,12 +78,7 @@ export const PageContacts: FC = () => {
         }
 
         return (
-            <motion.div
-                initial={pageAnimation.initial}
-                animate={pageAnimation.animate}
-                exit={pageAnimation.exit}
-                transition={pageAnimation.transition}
-                className="pagination-container">
+            <motion.div {...pageAnimation} className="pagination-container">
                 <div className="pagination">
                     <button disabled={currentPage === 1} onClick={prevPage}>&lt;</button>
                     {pages.map((page) => (

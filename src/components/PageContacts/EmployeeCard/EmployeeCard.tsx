@@ -1,9 +1,10 @@
-import React, { FC, useState } from "react";
+import { FC, useState } from "react";
 import { pageAnimation } from "../../../constants/motionSettins.ts";
 import { AnimatePresence, motion } from "framer-motion";
 import { Employee } from "../../../api/interfaces/IEmployee.ts";
-import {useUploadProfileImageMutation} from "../../../api/methods/userApi.ts";
-import {ModalUserNotification} from "../../Modals/ModalUserNotification/ModalUserNotification.tsx";
+import { ModalUserNotification } from "../../Modals/ModalUserNotification/ModalUserNotification.tsx";
+import {useUploadImage} from "../../../store/hooks/useUploadImage.ts";
+import { DetailsItem } from "./DetailsItem/DetailsItem.tsx";
 
 interface IEmployeeCardProps {
     employee: Employee;
@@ -11,26 +12,7 @@ interface IEmployeeCardProps {
 
 export const EmployeeCard: FC<IEmployeeCardProps> = ({ employee }) => {
     const [isHovering, setIsHovering] = useState(false);
-    const [uploadProfileImage, {isLoading: isImageUploading}] = useUploadProfileImageMutation();
-    const [notification, setNotification] = useState<{ title?: string; message: string } | null>(null);
-
-    const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
-        const file = event.target.files?.[0];
-
-        if (file) {
-            const formData = new FormData();
-            formData.append("image", file);
-            formData.append("id_user", employee.id_user.toString());
-
-            try {
-                const response = await uploadProfileImage(formData).unwrap();
-
-                setNotification({ title: "Загрузка фото сотрудника", message: response.message || "Фото сотрудника обновлено" });
-            } catch (error) {
-                setNotification({ title: "Загрузка фото сотрудника", message: "Неизвестная ошибка" });
-            }
-        }
-    };
+    const { handleFileChange, isLoading, notification, setNotification } = useUploadImage(employee);
 
     return (
         <>
@@ -43,39 +25,36 @@ export const EmployeeCard: FC<IEmployeeCardProps> = ({ employee }) => {
             )}
 
             <motion.div
-                initial={pageAnimation.initial}
-                animate={pageAnimation.animate}
-                exit={pageAnimation.exit}
-                transition={{duration: 0.25}}
+                {...pageAnimation}
                 className={`employee-card ${isHovering ? 'hovered' : ''}`}
                 onMouseEnter={() => setIsHovering(true)}
                 onMouseLeave={() => setIsHovering(false)}
             >
                 <div className="employee-card__preview">
-                    <div className="employee-card__photo"
-                         style={{backgroundImage: `url(http://192.168.7.74/files/images/${employee.image.path})`}}>
+                    <div
+                        className="employee-card__photo"
+                        style={{ backgroundImage: `url(http://192.168.7.74/files/images/${employee.image.path})` }}
+                    >
                         <AnimatePresence>
-                            {
-                                (isHovering || isImageUploading) && (
-                                    <motion.label
-                                        initial={{opacity: 0, bottom: 0}}
-                                        animate={{opacity: 1, bottom: 10}}
-                                        exit={{opacity: 0, bottom: 0}}
-                                        transition={{duration: 0.05}}
-                                        className="upload-photo"
-                                    >
-                                        Загрузить
-                                        {isImageUploading && <span className="shimmer"></span>}
-                                        <input
-                                            type="file"
-                                            accept="image/*"
-                                            className="hidden-input"
-                                            onChange={handleFileChange}
-                                            disabled={isImageUploading}
-                                        />
-                                    </motion.label>
-                                )
-                            }
+                            {(isHovering || isLoading) && (
+                                <motion.label
+                                    initial={{ opacity: 0, bottom: 0 }}
+                                    animate={{ opacity: 1, bottom: 10 }}
+                                    exit={{ opacity: 0, bottom: 0 }}
+                                    transition={{ duration: 0.05 }}
+                                    className="upload-photo"
+                                >
+                                    Загрузить
+                                    {isLoading && <span className="shimmer"></span>}
+                                    <input
+                                        type="file"
+                                        accept="image/*"
+                                        className="hidden-input"
+                                        onChange={handleFileChange}
+                                        disabled={isLoading}
+                                    />
+                                </motion.label>
+                            )}
                         </AnimatePresence>
                     </div>
                     <div className="employee-card__general">
@@ -87,40 +66,23 @@ export const EmployeeCard: FC<IEmployeeCardProps> = ({ employee }) => {
                         <span className="employee-card__position">{employee.position.title}</span>
                     </div>
                 </div>
+
                 <AnimatePresence>
-                    {
-                        isHovering &&
+                    {isHovering && (
                         <motion.div
                             initial={pageAnimation.initial}
                             animate={pageAnimation.animate}
                             exit={pageAnimation.exit}
-                            transition={{duration: 0.1}}
-                            className="employee-card__details">
-                            {
-                                employee.department.division &&
-                                <div className="details-item details-item__division">
-                                    <span className="details-title">Подразделение</span>
-                                    <span className="detail">{employee.department.division.title}</span>
-                                </div>
-                            }
-                            {
-                                employee.phone &&
-                                <div className="details-item details-item__phone">
-                                    <span className="details-title">Контактный телефон</span>
-                                    <span className="detail">{employee.phone}</span>
-                                </div>
-                            }
-                            {
-                                employee.email &&
-                                <div className="details-item details-item__email">
-                                    <span className="details-title">Почта</span>
-                                    <span className="detail">{employee.email}</span>
-                                </div>
-                            }
+                            transition={{ duration: 0.1, ease: "easeOut" }}
+                            className="employee-card__details"
+                        >
+                            {employee.department.division && <DetailsItem title="Подразделение" value={employee.department.division.title} /> }
+                            {employee.phone && <DetailsItem title="Контактный телефон" value={employee.phone} />}
+                            {employee.email && <DetailsItem title="Почта" value={employee.email} />}
                         </motion.div>
-                    }
+                    )}
                 </AnimatePresence>
             </motion.div>
         </>
     );
-}
+};

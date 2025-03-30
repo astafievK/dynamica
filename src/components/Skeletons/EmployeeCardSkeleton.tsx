@@ -6,12 +6,7 @@ import { motion } from "framer-motion";
 
 export const EmployeeCardSkeleton: FC = () => {
     return (
-        <motion.div
-            initial={pageAnimation.initial}
-            animate={pageAnimation.animate}
-            exit={pageAnimation.exit}
-            transition={{duration: 0.14}}
-            className="employee-card-skeleton">
+        <motion.div {...pageAnimation} className="employee-card-skeleton">
             <Skeleton containerClassName="employee-image" />
             <div className="employee-card__general">
                 <div className="employee-card__name">

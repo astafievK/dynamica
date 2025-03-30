@@ -9,13 +9,7 @@ export const PageFeed: FC = () => {
     })
 
     return (
-        <motion.div
-            key={"feed"}
-            initial={pageAnimation.initial}
-            animate={pageAnimation.animate}
-            exit={pageAnimation.exit}
-            transition={pageAnimation.transition}
-            className={"page page-feed"}>
+        <motion.div {...pageAnimation} className={"page page-feed"}>
             <div className="page-header">
                 <span className="page-title page-title__name">Новости</span>
             </div>

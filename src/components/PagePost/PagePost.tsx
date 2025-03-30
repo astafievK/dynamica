@@ -26,14 +26,7 @@ export const PagePost: FC = () => {
     }
 
     return (
-        <motion.div
-            key={"feed"}
-            initial={pageAnimation.initial}
-            animate={pageAnimation.animate}
-            exit={pageAnimation.exit}
-            transition={pageAnimation.transition}
-            className={"page page-post"}
-        >
+        <motion.div {...pageAnimation} className={"page page-post"}>
             <div className="page-header">
                 <span className="page-title">{data.post.title}</span>
                 <span className="date">{data.post.date.date ? formatDatetime(data.post.date.date) : ""}</span>

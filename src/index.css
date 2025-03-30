@@ -1814,7 +1814,7 @@ html body #dynamica .layout .layout-content .main-container main .page.page-cont
 }
 html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card .employee-card__details .details-item .details-title {
   font-weight: 600;
-  opacity: 0.5;
+  color: rgba(0, 0, 0, 0.5);
   font-size: 12px;
 }
 html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card .employee-card__details .details-item .detail {

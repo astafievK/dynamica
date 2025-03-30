@@ -10,13 +10,7 @@ export const PageDocument: FC = () => {
     })
 
     return(
-        <motion.div
-            initial={{opacity: 0}}
-            animate={{opacity: 1}}
-            exit={{opacity: 0}}
-            transition={pageAnimation.transition}
-            className={"page page-document"}
-        >
+        <motion.div {...pageAnimation} className={"page page-document"}>
             <div className="content">
                 {
                     // <DocumentProgressParallel/>

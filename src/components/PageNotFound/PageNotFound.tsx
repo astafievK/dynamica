@@ -9,12 +9,7 @@ export const PageNotFound: FC = () => {
 
     return (
         <>
-            <motion.div
-                key={"not-found"}
-                initial={{opacity: 0}}
-                animate={{opacity: 1}}
-                transition={pageAnimation.transition}
-                className="page page-not-found">
+            <motion.div {...pageAnimation} className="page page-not-found">
                 <div className="page-header">
                     <span className="page-title page-title__name">Страницы не существует :(</span>
                 </div>

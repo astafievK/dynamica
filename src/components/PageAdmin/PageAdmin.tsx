@@ -14,12 +14,7 @@ export const PageAdmin: FC = () => {
                 <div className="page-header">
                     <span className="page-title page-title__name">Администрирование</span>
                 </div>
-                <motion.div
-                    initial={{opacity: 0, y: -10}}
-                    animate={{opacity: 1, y: 0}}
-                    transition={pageAnimation.transition}
-                    className="page-admin__content"
-                >
+                <motion.div {...pageAnimation} className="page-admin__content">
                     <Outlet />
                 </motion.div>
             </div>

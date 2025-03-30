@@ -4,7 +4,7 @@ import {
     Route,
     RouterProvider,
     createBrowserRouter,
-    createRoutesFromElements, Navigate,
+    createRoutesFromElements, Navigate, useLocation,
 } from 'react-router-dom';
 import {persistor, RootState, store} from "./store/store.ts";
 import {Provider, useDispatch, useSelector} from "react-redux";
@@ -36,6 +36,8 @@ import {HistoryTracker} from "./components/HistoryTracker/HistoryTracker.tsx";
 import {ROUTES} from "./constants/routes.ts";
 
 const Root = () => {
+    const location = useLocation();
+
     return (
         <>
             <HistoryTracker/>
@@ -46,8 +48,8 @@ const Root = () => {
                     <Header/>
                     <div className="main-container">
                         <main>
-                            <AnimatePresence>
-                                <Outlet/>
+                            <AnimatePresence mode="wait" >
+                                <Outlet key={location.pathname} />
                             </AnimatePresence>
                         </main>
                     </div>
@@ -90,7 +92,7 @@ function App() {
 
     useEffect(() => {
         dispatch(updateScrollLock(mobileMenuIsOpen || modalNotificationsIsOpen || modalLoginIsOpen));
-    }, [mobileMenuIsOpen, modalNotificationsIsOpen, dispatch]);
+    }, [mobileMenuIsOpen, modalNotificationsIsOpen, modalLoginIsOpen, dispatch]);
 
     return (
         <Provider store={store}>

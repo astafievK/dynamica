@@ -12,7 +12,6 @@ const navItems: NavItem[] = [
     { title: "Главная", path: "/" },
     { title: "Лента", path: "/feed" },
     { title: "Адресная книга", path: "/contacts" },
-    { title: "Адаптация", path: "/adaptation" }
 ];
 
 export const LeftMenu: FC = () => {
