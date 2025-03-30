@@ -1,13 +1,9 @@
 import { motion } from "framer-motion";
 import {Outlet} from "react-router-dom";
 import {pageAnimation} from "../../constants/motionSettins.ts";
-import {FC, useEffect} from "react";
+import {FC} from "react";
 
 export const PageAdmin: FC = () => {
-    useEffect(() => {
-        document.title = "Администрирование";
-    });
-
     return (
         <>
             <div className="page page-admin">

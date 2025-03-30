@@ -22,10 +22,6 @@ export const PageContacts: FC = () => {
     });
 
     useEffect(() => {
-        document.title = "Адресная книга";
-    }, []);
-
-    useEffect(() => {
         setSearchValue(debouncedSearchValue);
     }, [debouncedSearchValue]);
 

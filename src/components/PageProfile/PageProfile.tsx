@@ -17,8 +17,6 @@ export const PageProfile: FC = () => {
         if (!user) {
             dispatch(setLoginModalOpen(true));
             navigate("/");
-        } else {
-            document.title = "Профиль";
         }
     }, [user, dispatch, navigate]);
 

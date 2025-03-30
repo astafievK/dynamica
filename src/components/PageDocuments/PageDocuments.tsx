@@ -1,4 +1,4 @@
-import {FC, useEffect, useState} from "react";
+import {FC, useState} from "react";
 import { pageAnimation } from "../../constants/motionSettins.ts";
 import { motion } from "framer-motion";
 import {DocumentRow} from "./DocumentRow/DocumentRow.tsx";
@@ -6,10 +6,6 @@ import {FilterDocumentsStatuses} from "./FilterDocuments/FilterDocumentsStatuses
 
 export const PageDocuments: FC = () => {
     const [documentStatusValue, setDocumentStatusValue] = useState<string>("Все");
-
-    useEffect(() => {
-        document.title = "Договора";
-    });
 
     return (
         <motion.div {...pageAnimation} className="page page-documents">

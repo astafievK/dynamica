@@ -1,14 +1,10 @@
-import {FC, useEffect} from "react";
+import {FC} from "react";
 import "swiper/css";
 import {SwiperSliderAchievements} from "../SwiperSliderAchievements/SwiperSliderAchievements.tsx";
 import {motion} from "framer-motion";
 import {AnimatedSection} from "./AnimatedSection.tsx";
 
 export const PageLanding: FC = () => {
-    useEffect(() => {
-        document.title = "Динамика";
-    })
-
     return (
         <motion.div
             key={"landing"}
