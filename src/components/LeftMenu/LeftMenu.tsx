@@ -2,16 +2,18 @@ import {AnimatePresence, motion} from "framer-motion";
 import { FC } from "react";
 import {Link, NavLink, useLocation} from "react-router-dom";
 import {useTypedSelector} from "../../store/hooks/redux.ts";
+import {MdHome, MdDynamicFeed, MdContacts, MdAdminPanelSettings} from "react-icons/md";
 
 interface NavItem {
     title: string;
     path: string;
+    icon: JSX.Element;
 }
 
 const navItems: NavItem[] = [
-    { title: "Главная", path: "/" },
-    { title: "Лента", path: "/feed" },
-    { title: "Адресная книга", path: "/contacts" },
+    { title: "Главная", path: "/", icon: <MdHome size={25} /> },
+    { title: "Лента", path: "/feed", icon: <MdDynamicFeed size={25} /> },
+    { title: "Адресная книга", path: "/contacts", icon: <MdContacts size={25} /> },
 ];
 
 export const LeftMenu: FC = () => {
@@ -28,8 +30,12 @@ export const LeftMenu: FC = () => {
                     </Link>
                 </div>
                 <div className="admin-container">
-                    <NavLink to="/admin/feed" className={({ isActive }) => `left-menu-item ${isActive ? "active-nav-item" : ""}`}>
-                        Администрирование
+                    <NavLink
+                        key={"/admin"}
+                        to={"/admin"}
+                        className={({ isActive }) => `left-menu-item ${isActive ? "active-nav-item" : ""}`}
+                    >
+                        <MdAdminPanelSettings size={25} /> <span>Администрирование</span>
                     </NavLink>
                     <AnimatePresence>
                         {isAdminPageOpened && (
@@ -52,15 +58,13 @@ export const LeftMenu: FC = () => {
                 </div>
 
                 <nav className="general-navigation">
-                    {navItems.map(({ title, path }) => (
+                    {navItems.map(({ title, path, icon }) => (
                         <NavLink
                             key={path}
                             to={path}
-                            className={({ isActive }) =>
-                                `left-menu-item ${isActive ? "active-nav-item" : ""}`
-                            }
+                            className={({ isActive }) => `left-menu-item ${isActive ? "active-nav-item" : ""}`}
                         >
-                            {title}
+                            {icon} <span>{title}</span>
                         </NavLink>
                     ))}
                 </nav>
@@ -72,58 +76,6 @@ export const LeftMenu: FC = () => {
                         </NavLink>
                     ))}
                 </nav>
-                {
-                    /*
-                    <div className="profile-container">
-                    {user && (
-                        <motion.div
-                            initial={{ opacity: 0}}
-                            animate={{ opacity: 1}}
-                            exit={{ opacity: 0}}
-                            transition={{ duration: 0.4 }}
-                            className="user-actions">
-                            <NavLink to="/profile" className={({ isActive }) => `user-action user-action-profile ${isActive ? "active" : ""}`}>
-                                <img src={"/user-icon.svg"} alt={""}/>
-                                <div className="banner">
-                                    <span>{user.first_name} {user.last_name}</span>
-                                </div>
-                            </NavLink>
-                            <button className="user-action user-action-notifications">
-                                <img src={"/notifications-icon.svg"} alt={""}/>
-                                <div className="banner">
-                                    <span>Уведомления</span>
-                                </div>
-                            </button>
-                            <button className="user-action user-action-logout" onClick={() => dispatch(logout())}>
-                                <img src={"/logout-icon.svg"} alt={""}/>
-                                <div className="banner">
-                                    <span>Выход</span>
-                                </div>
-                            </button>
-                        </motion.div>
-                    )}
-                    {
-                        !user &&
-                        <motion.button
-                            initial={{ opacity: 0}}
-                            animate={{ opacity: 1}}
-                            exit={{ opacity: 0}}
-                            transition={{ duration: 0.4 }}
-                            className={`left-menu-item`}
-                            onClick={() => dispatch(setLoginModalOpen(true))}>
-                            Авторизация
-                        </motion.button>
-                    }
-                </div>
-                     */
-                }
-                {
-                    /*
-                    <div className="sep"></div>
-
-
-                     */
-                }
             </aside>
         </>
     );

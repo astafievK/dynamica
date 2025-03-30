@@ -859,11 +859,9 @@ html {
 
                     .left-menu-item {
                         display: flex;
-                        align-items: flex-start;
-                        justify-content: center;
-                        flex-direction: column;
+                        align-items: center;
                         position: relative;
-                        gap: 5px;
+                        gap: 10px;
                         background: var(--item-static-background);
                         padding: 10px;
                         font-size: 16px;
@@ -878,6 +876,10 @@ html {
                         text-overflow: ellipsis;
                         transition: all 150ms ease;
 
+                        svg {
+                            flex-shrink: 0;
+                        }
+
                         &.item-contacts {
                             .contacts-navigation {
                                 position: absolute;
@@ -889,10 +891,11 @@ html {
 
                         &.active-nav-item {
                             color: var(--primary-color);
+                            background: #FFFFFF;
+                            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
                         }
 
-                        &:not(.active-nav-item):hover,
-                        &.active-nav-item {
+                        &:not(.active-nav-item):hover {
                             background: var(--item-hover-background);
                         }
                     }
@@ -1029,7 +1032,9 @@ html {
                             .header-item {
                                 border-radius: 32px;
                                 background-color: #FFFFFF;
-                                padding: 0 20px;
+                                padding: 0 20px 0 10px;
+                                height: 100%;
+                                gap: 10px;
                                 display: flex;
                                 cursor: pointer;
                                 text-decoration: none;
@@ -1038,14 +1043,28 @@ html {
                                 font-size: 14px;
                                 font-weight: bold;
                                 color: var(--secondary-color);
-                                transition: all 150ms;
+                                transition: background 150ms ease;
 
                                 &.filled {
                                     background: var(--secondary-color);
                                     color: var(--background-color);
 
-                                    &:hover {
+                                    svg, span {
+                                        color: var(--background-color);
+                                        fill: var(--background-color);
+                                    }
 
+                                    &:hover {
+                                        background-color: var(--item-hover-background);
+
+                                        svg, span {
+                                            color: var(--secondary-color);
+                                            fill: var(--secondary-color);
+                                        }
+                                    }
+
+                                    &:active {
+                                        background-color: var(--item-active-background);
                                     }
                                 }
 
@@ -1055,6 +1074,24 @@ html {
 
                                 &:active {
                                     background-color: var(--item-active-background);
+                                }
+                            }
+
+                            .login {
+                                padding: 0;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                aspect-ratio: 1/1;
+
+                                svg {
+                                    transform: translateX(-10%);
+                                    fill: var(--background-color) !important;
+                                    transition: fill 150ms ease;
+                                }
+
+                                &:hover svg {
+                                    fill: var(--primary-color) !important;
                                 }
                             }
 
@@ -1074,10 +1111,7 @@ html {
                             }
 
                             .user-wrapper {
-                                display: flex;
-                                gap: 10px;
                                 padding: 5px 10px 5px 5px;
-                                height: 100%;
                                 overflow: hidden;
                                 text-decoration: none;
 

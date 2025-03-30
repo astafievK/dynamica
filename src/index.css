@@ -726,11 +726,9 @@ html body #dynamica .layout .left-menu {
 }
 html body #dynamica .layout .left-menu .left-menu-item {
   display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  flex-direction: column;
+  align-items: center;
   position: relative;
-  gap: 5px;
+  gap: 10px;
   background: var(--item-static-background);
   padding: 10px;
   font-size: 16px;
@@ -745,6 +743,9 @@ html body #dynamica .layout .left-menu .left-menu-item {
   text-overflow: ellipsis;
   transition: all 150ms ease;
 }
+html body #dynamica .layout .left-menu .left-menu-item svg {
+  flex-shrink: 0;
+}
 html body #dynamica .layout .left-menu .left-menu-item.item-contacts .contacts-navigation {
   position: absolute;
   top: 0;
@@ -753,8 +754,10 @@ html body #dynamica .layout .left-menu .left-menu-item.item-contacts .contacts-n
 }
 html body #dynamica .layout .left-menu .left-menu-item.active-nav-item {
   color: var(--primary-color);
+  background: #FFFFFF;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
-html body #dynamica .layout .left-menu .left-menu-item:not(.active-nav-item):hover, html body #dynamica .layout .left-menu .left-menu-item.active-nav-item {
+html body #dynamica .layout .left-menu .left-menu-item:not(.active-nav-item):hover {
   background: var(--item-hover-background);
 }
 html body #dynamica .layout .left-menu .logo-container {
@@ -861,7 +864,9 @@ html body #dynamica .layout .header-wrapper header .profile-container {
 html body #dynamica .layout .header-wrapper header .profile-container .header-item {
   border-radius: 32px;
   background-color: #FFFFFF;
-  padding: 0 20px;
+  padding: 0 20px 0 10px;
+  height: 100%;
+  gap: 10px;
   display: flex;
   cursor: pointer;
   text-decoration: none;
@@ -870,17 +875,46 @@ html body #dynamica .layout .header-wrapper header .profile-container .header-it
   font-size: 14px;
   font-weight: bold;
   color: var(--secondary-color);
-  transition: all 150ms;
+  transition: background 150ms ease;
 }
 html body #dynamica .layout .header-wrapper header .profile-container .header-item.filled {
   background: var(--secondary-color);
   color: var(--background-color);
+}
+html body #dynamica .layout .header-wrapper header .profile-container .header-item.filled svg, html body #dynamica .layout .header-wrapper header .profile-container .header-item.filled span {
+  color: var(--background-color);
+  fill: var(--background-color);
+}
+html body #dynamica .layout .header-wrapper header .profile-container .header-item.filled:hover {
+  background-color: var(--item-hover-background);
+}
+html body #dynamica .layout .header-wrapper header .profile-container .header-item.filled:hover svg, html body #dynamica .layout .header-wrapper header .profile-container .header-item.filled:hover span {
+  color: var(--secondary-color);
+  fill: var(--secondary-color);
+}
+html body #dynamica .layout .header-wrapper header .profile-container .header-item.filled:active {
+  background-color: var(--item-active-background);
 }
 html body #dynamica .layout .header-wrapper header .profile-container .header-item:hover {
   background-color: var(--item-hover-background);
 }
 html body #dynamica .layout .header-wrapper header .profile-container .header-item:active {
   background-color: var(--item-active-background);
+}
+html body #dynamica .layout .header-wrapper header .profile-container .login {
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1/1;
+}
+html body #dynamica .layout .header-wrapper header .profile-container .login svg {
+  transform: translateX(-10%);
+  fill: var(--background-color) !important;
+  transition: fill 150ms ease;
+}
+html body #dynamica .layout .header-wrapper header .profile-container .login:hover svg {
+  fill: var(--primary-color) !important;
 }
 html body #dynamica .layout .header-wrapper header .profile-container .notifications-wrapper {
   height: 100%;
@@ -896,10 +930,7 @@ html body #dynamica .layout .header-wrapper header .profile-container .notificat
   background-size: 55%;
 }
 html body #dynamica .layout .header-wrapper header .profile-container .user-wrapper {
-  display: flex;
-  gap: 10px;
   padding: 5px 10px 5px 5px;
-  height: 100%;
   overflow: hidden;
   text-decoration: none;
 }

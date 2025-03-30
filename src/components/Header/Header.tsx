@@ -6,6 +6,7 @@ import { setIsOpen as setMobileMenuOpen } from "../../api/slices/mobileMenuSlice
 import {Link, NavLink, useLocation} from "react-router-dom";
 import {AnimatePresence, motion} from "framer-motion";
 import {PAGE_TITLES} from "../../constants/routes.ts";
+import { MdLogin, MdNotificationsNone, MdNoteAdd } from "react-icons/md";
 
 export const Header: FC = () => {
     const { user } = useTypedSelector((state) => state.auth);
@@ -43,8 +44,8 @@ export const Header: FC = () => {
                         {
                             !user &&
                             <>
-                                <button className="login header-item" onClick={() => dispatch(setLoginModalOpen(true))}>
-                                    Авторизация
+                                <button className="login header-item filled" onClick={() => dispatch(setLoginModalOpen(true))}>
+                                    <MdLogin size={30} />
                                 </button>
                             </>
                         }
@@ -52,14 +53,14 @@ export const Header: FC = () => {
                             user &&
                             <>
                                 <Link to={"documents"} className={"create-doc header-item filled"}>
-                                    Создать / Загрузить договор
+                                    <MdNoteAdd size={30} /> <span>Создать / Загрузить договор</span>
                                 </Link>
                                 <button className="notifications-wrapper header-item" onClick={handleNotificationsClick}>
-                                    <div className="notifications-image"></div>
+                                    <MdNotificationsNone  size={30} />
                                 </button>
                                 <Link to={"profile"} className="user-wrapper header-item">
                                     <div className="user-image"></div>
-                                    {user.first_name} {user.last_name}
+                                    <span>{user.first_name} {user.last_name}</span>
                                 </Link>
                             </>
                         }
