@@ -13,7 +13,6 @@ export const ModuleNotifications: FC = () => {
                 <ButtonNotification title={"Тестовое уведомление 1"} date={"01.01.2025"}/>
                 <ButtonNotification title={"Тестовое уведомление 1"} date={"01.01.2025"}/>
                 <ButtonNotification title={"Тестовое уведомление 1"} date={"01.01.2025"}/>
-                <ButtonNotification title={"Тестовое уведомление 1"} date={"01.01.2025"}/>
             </div>
         </div>
     )
