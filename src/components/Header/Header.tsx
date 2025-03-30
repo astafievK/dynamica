@@ -6,7 +6,8 @@ import { setIsOpen as setMobileMenuOpen } from "../../api/slices/mobileMenuSlice
 import {Link, NavLink, useLocation} from "react-router-dom";
 import {AnimatePresence, motion} from "framer-motion";
 import {PAGE_TITLES} from "../../constants/routes.ts";
-import { MdLogin, MdNotificationsNone, MdNoteAdd } from "react-icons/md";
+import { MdNotificationsNone, MdNoteAdd } from "react-icons/md";
+import LoginRoundedIcon from '@mui/icons-material/LoginRounded';
 
 export const Header: FC = () => {
     const { user } = useTypedSelector((state) => state.auth);
@@ -45,7 +46,7 @@ export const Header: FC = () => {
                             !user &&
                             <>
                                 <button className="login header-item filled" onClick={() => dispatch(setLoginModalOpen(true))}>
-                                    <MdLogin size={30} />
+                                    <LoginRoundedIcon fontSize={"large"} />
                                 </button>
                             </>
                         }

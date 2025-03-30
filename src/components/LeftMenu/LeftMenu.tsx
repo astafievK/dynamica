@@ -2,7 +2,9 @@ import {AnimatePresence, motion} from "framer-motion";
 import { FC } from "react";
 import {Link, NavLink, useLocation} from "react-router-dom";
 import {useTypedSelector} from "../../store/hooks/redux.ts";
-import {MdHome, MdDynamicFeed, MdContacts, MdAdminPanelSettings} from "react-icons/md";
+import { MdDynamicFeed, MdContacts } from "react-icons/md";
+import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
+import AdminPanelSettingsRoundedIcon from '@mui/icons-material/AdminPanelSettingsRounded';
 
 interface NavItem {
     title: string;
@@ -11,7 +13,7 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-    { title: "Главная", path: "/", icon: <MdHome size={25} /> },
+    { title: "Главная", path: "/", icon: <HomeRoundedIcon fontSize="large" /> },
     { title: "Лента", path: "/feed", icon: <MdDynamicFeed size={25} /> },
     { title: "Адресная книга", path: "/contacts", icon: <MdContacts size={25} /> },
 ];
@@ -35,7 +37,7 @@ export const LeftMenu: FC = () => {
                         to={"/admin"}
                         className={({ isActive }) => `left-menu-item ${isActive ? "active-nav-item" : ""}`}
                     >
-                        <MdAdminPanelSettings size={25} /> <span>Администрирование</span>
+                        <AdminPanelSettingsRoundedIcon fontSize="large" /> <span>Администрирование</span>
                     </NavLink>
                     <AnimatePresence>
                         {isAdminPageOpened && (
