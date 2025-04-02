@@ -45,7 +45,18 @@ export const Header: FC = () => {
                         {
                             !user &&
                             <>
-                                <button className="login header-item filled" onClick={() => dispatch(setLoginModalOpen(true))}>
+                                <Link to={"documents"} className="create-doc header-item">
+                                    <MdNoteAdd size={30} /> <span>Создать / Загрузить договор</span>
+                                </Link>
+                                <button className="notifications-btn header-item" onClick={handleNotificationsClick}>
+                                    <MdNotificationsNone  size={30} />
+                                </button>
+                                <Link to={"profile"} className="user-wrapper header-item">
+                                    <div className="user-image"></div>
+                                    <span>Астафьев Кирилл</span>
+                                </Link>
+
+                                <button className="login-btn header-item" onClick={() => dispatch(setLoginModalOpen(true))}>
                                     <LoginRoundedIcon fontSize={"large"} />
                                 </button>
                             </>
@@ -53,7 +64,7 @@ export const Header: FC = () => {
                         {
                             user &&
                             <>
-                                <Link to={"documents"} className={"create-doc header-item filled"}>
+                                <Link to={"documents"} className={"create-doc header-item"}>
                                     <MdNoteAdd size={30} /> <span>Создать / Загрузить договор</span>
                                 </Link>
                                 <button className="notifications-wrapper header-item" onClick={handleNotificationsClick}>

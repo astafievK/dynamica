@@ -867,15 +867,15 @@ html body #dynamica .layout .header-wrapper header .page-title span {
 html body #dynamica .layout .header-wrapper header .profile-container {
   display: none;
   flex-grow: 1;
+  gap: 5px;
   flex-direction: row;
   padding: 0 20px;
 }
 html body #dynamica .layout .header-wrapper header .profile-container .header-item {
   border-radius: 32px;
-  background-color: #FFFFFF;
-  padding: 0 20px 0 10px;
+  padding: 5px 12px;
   height: 100%;
-  gap: 10px;
+  gap: 6px;
   display: flex;
   cursor: pointer;
   text-decoration: none;
@@ -883,63 +883,42 @@ html body #dynamica .layout .header-wrapper header .profile-container .header-it
   align-items: center;
   font-size: 14px;
   font-weight: bold;
-  color: var(--secondary-color);
-  transition: background 150ms ease;
+  color: rgba(47, 55, 71, 0.85);
+  transition: all 150ms;
 }
-html body #dynamica .layout .header-wrapper header .profile-container .header-item.filled {
-  background: var(--secondary-color);
-  color: var(--background-color);
-}
-html body #dynamica .layout .header-wrapper header .profile-container .header-item.filled svg, html body #dynamica .layout .header-wrapper header .profile-container .header-item.filled span {
-  color: var(--background-color);
-  fill: var(--background-color);
-}
-html body #dynamica .layout .header-wrapper header .profile-container .header-item.filled:hover {
-  background-color: var(--item-hover-background);
-}
-html body #dynamica .layout .header-wrapper header .profile-container .header-item.filled:hover svg, html body #dynamica .layout .header-wrapper header .profile-container .header-item.filled:hover span {
-  color: var(--secondary-color);
-  fill: var(--secondary-color);
-}
-html body #dynamica .layout .header-wrapper header .profile-container .header-item.filled:active {
-  background-color: var(--item-active-background);
+html body #dynamica .layout .header-wrapper header .profile-container .header-item span,
+html body #dynamica .layout .header-wrapper header .profile-container .header-item svg {
+  color: rgba(47, 55, 71, 0.85);
+  fill: rgba(47, 55, 71, 0.85);
+  transition: all 150ms;
 }
 html body #dynamica .layout .header-wrapper header .profile-container .header-item:hover {
+  color: var(--secondary-color);
+  fill: var(--secondary-color);
   background-color: var(--item-hover-background);
+}
+html body #dynamica .layout .header-wrapper header .profile-container .header-item:hover span,
+html body #dynamica .layout .header-wrapper header .profile-container .header-item:hover svg {
+  color: var(--secondary-color);
+  fill: var(--secondary-color);
 }
 html body #dynamica .layout .header-wrapper header .profile-container .header-item:active {
   background-color: var(--item-active-background);
 }
-html body #dynamica .layout .header-wrapper header .profile-container .login {
-  padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  aspect-ratio: 1/1;
-}
-html body #dynamica .layout .header-wrapper header .profile-container .login svg {
-  transform: translateX(-10%);
-  fill: var(--background-color) !important;
-  transition: fill 150ms ease;
-}
-html body #dynamica .layout .header-wrapper header .profile-container .login:hover svg {
-  fill: var(--primary-color) !important;
-}
-html body #dynamica .layout .header-wrapper header .profile-container .notifications-wrapper {
-  height: 100%;
+html body #dynamica .layout .header-wrapper header .profile-container .login-btn,
+html body #dynamica .layout .header-wrapper header .profile-container .notifications-btn {
   padding: 0;
   aspect-ratio: 1/1;
   border-radius: 50%;
-  overflow: hidden;
+  align-items: center;
+  justify-content: center;
 }
-html body #dynamica .layout .header-wrapper header .profile-container .notifications-wrapper .notifications-image {
-  width: 100%;
-  height: 100%;
-  background: url("/notifications-icon.svg") no-repeat center;
-  background-size: 55%;
+html body #dynamica .layout .header-wrapper header .profile-container .login-btn svg {
+  width: 30px;
+  height: 30px;
+  transform: translateX(-10%);
 }
 html body #dynamica .layout .header-wrapper header .profile-container .user-wrapper {
-  padding: 5px 10px 5px 5px;
   overflow: hidden;
   text-decoration: none;
 }
@@ -2787,7 +2766,6 @@ html body #dynamica .layout .layout-content .main-container .footer-wrapper foot
   html body #dynamica .layout .header-wrapper header .profile-container {
     display: flex;
     flex-grow: unset;
-    gap: 5px;
     padding: 2px 0;
   }
   html body #dynamica .layout .left-menu {
@@ -3177,9 +3155,6 @@ html body #dynamica .layout .layout-content .main-container .footer-wrapper foot
   }
   html body #dynamica .layout .header-wrapper header .page-title span {
     font-size: 28px;
-  }
-  html body #dynamica .layout .header-wrapper header .profile-container {
-    gap: 7px;
   }
   html body #dynamica .layout .header-wrapper header .profile-container .header-item {
     font-size: 16px;
