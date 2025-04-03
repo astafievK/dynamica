@@ -299,7 +299,8 @@ html {
         }
 
         &.selected {
-            background-color: var(--item-hover-background);
+            background-color: white;
+            box-shadow: var(--block-shadow);
             color: var(--primary-color);
         }
     }
@@ -990,6 +991,7 @@ html {
 
                     &::before,
                     &::after {
+                        display: none;
                         content: ' ';
                         height: 95px;
                         background: var(--secondary-color);
@@ -2088,6 +2090,7 @@ html {
                                     .employees-container {
                                         margin: 10px 0 110px 0;
                                         position: relative;
+                                        padding: 5px;
                                         width: 100%;
                                         background: white;
                                         border-radius: 14px;

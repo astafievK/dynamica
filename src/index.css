@@ -260,7 +260,8 @@ html .filter-elem:hover {
   background-color: var(--item-hover-background);
 }
 html .filter-elem.selected {
-  background-color: var(--item-hover-background);
+  background-color: white;
+  box-shadow: var(--block-shadow);
   color: var(--primary-color);
 }
 html input[type=text].styled,
@@ -829,6 +830,7 @@ html body #dynamica .layout .header-wrapper {
   transition: transform 0.3s ease-in-out;
 }
 html body #dynamica .layout .header-wrapper::before, html body #dynamica .layout .header-wrapper::after {
+  display: none;
   content: " ";
   height: 95px;
   background: var(--secondary-color);
@@ -1729,6 +1731,7 @@ html body #dynamica .layout .layout-content .main-container main .page.page-cont
 html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container {
   margin: 10px 0 110px 0;
   position: relative;
+  padding: 5px;
   width: 100%;
   background: white;
   border-radius: 14px;
