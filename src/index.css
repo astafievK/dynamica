@@ -1758,31 +1758,48 @@ html body #dynamica .layout .layout-content .main-container main .page.page-cont
   height: 90px;
   aspect-ratio: 1/1;
   background-size: cover;
-  background-position: center;
+  background-position: top;
   border-radius: 50%;
   transition: all 50ms;
 }
-html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card .employee-card__preview .employee-card__photo .upload-photo {
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card .employee-card__preview .employee-card__photo .upload-container {
+  display: flex;
+  gap: 3px;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  padding: 5px;
-  overflow: hidden;
-  background: rgba(255, 255, 255, 0.11);
+}
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card .employee-card__preview .employee-card__photo .upload-container .photo-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(12, 23, 41, 0.6);
   backdrop-filter: blur(10px);
   border-radius: 7px;
-  cursor: pointer;
-  text-align: center;
-  font-size: 14px;
   font-weight: 600;
-  transition: background 150ms, color 150ms;
+  height: 30px;
+  overflow: hidden;
+  padding: 5px;
+  font-size: 14px;
+  text-align: center;
+  cursor: pointer;
+  color: var(--background-color);
+  transition: all 150ms;
 }
-html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card .employee-card__preview .employee-card__photo .upload-photo input {
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card .employee-card__preview .employee-card__photo .upload-container .photo-item svg {
+  fill: var(--background-color);
+}
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card .employee-card__preview .employee-card__photo .upload-container .photo-item:hover {
+  background: var(--secondary-color);
+}
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card .employee-card__preview .employee-card__photo .upload-container .upload-photo input {
   display: none;
 }
-html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card .employee-card__preview .employee-card__photo .upload-photo:hover {
-  background: var(--secondary-color);
-  color: #FFFFFF;
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card .employee-card__preview .employee-card__photo .upload-container .delete-photo {
+  aspect-ratio: 1/1;
+}
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card .employee-card__preview .employee-card__photo .upload-container .delete-photo:hover svg {
+  fill: rgba(255, 0, 0, 0.8);
 }
 html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card .employee-card__preview .employee-card__general {
   display: flex;

@@ -19,6 +19,7 @@ export const useUploadImage = (employee: Employee) => {
                 setNotification({ title: "Загрузка фото сотрудника", message: response.message || "Фото сотрудника обновлено" });
             } catch (error) {
                 setNotification({ title: "Загрузка фото сотрудника", message: "Неизвестная ошибка" });
+                console.log(error);
             }
         }
     };

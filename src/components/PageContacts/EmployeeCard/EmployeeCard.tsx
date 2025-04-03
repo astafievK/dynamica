@@ -5,6 +5,8 @@ import { Employee } from "../../../api/interfaces/IEmployee.ts";
 import { ModalUserNotification } from "../../Modals/ModalUserNotification/ModalUserNotification.tsx";
 import {useUploadImage} from "../../../store/hooks/useUploadImage.ts";
 import { DetailsItem } from "./DetailsItem/DetailsItem.tsx";
+import {MdDeleteForever} from "react-icons/md";
+import {useDeleteProfileImageMutation} from "../../../api/methods/userApi.ts";
 
 interface IEmployeeCardProps {
     employee: Employee;
@@ -13,6 +15,22 @@ interface IEmployeeCardProps {
 export const EmployeeCard: FC<IEmployeeCardProps> = ({ employee }) => {
     const [isHovering, setIsHovering] = useState(false);
     const { handleFileChange, isLoading, notification, setNotification } = useUploadImage(employee);
+    const [deleteProfileImage, { isLoading: deleteImageIsLoading }] = useDeleteProfileImageMutation();
+
+    const handleDeleteImageClick = async () => {
+        try {
+            const response = await deleteProfileImage({ id_user: employee.id_user }).unwrap();
+
+            if (response.status === "success") {
+                setNotification({ title: "Удаление фото", message: "Фото успешно удалено" });
+            } else {
+                setNotification({ title: "Ошибка", message: response.message || "Ошибка удаления фото" });
+            }
+        } catch (error) {
+            console.error("Ошибка при удалении фото:", error);
+            setNotification({ title: "Ошибка", message: "Неизвестная ошибка" });
+        }
+    };
 
     return (
         <>
@@ -36,25 +54,38 @@ export const EmployeeCard: FC<IEmployeeCardProps> = ({ employee }) => {
                         style={{ backgroundImage: `url(http://192.168.7.74/files/images/${employee.image.path})` }}
                     >
                         <AnimatePresence>
-                            {(isHovering || isLoading) && (
-                                <motion.label
-                                    initial={{ opacity: 0, bottom: 0 }}
-                                    animate={{ opacity: 1, bottom: 10 }}
-                                    exit={{ opacity: 0, bottom: 0 }}
-                                    transition={{ duration: 0.05 }}
-                                    className="upload-photo"
-                                >
-                                    Загрузить
-                                    {isLoading && <span className="shimmer"></span>}
-                                    <input
-                                        type="file"
-                                        accept="image/*"
-                                        className="hidden-input"
-                                        onChange={handleFileChange}
-                                        disabled={isLoading}
-                                    />
-                                </motion.label>
-                            )}
+                            {
+                                (isHovering || isLoading) && (
+                                    <motion.div
+                                        initial={{ opacity: 0, bottom: 0 }}
+                                        animate={{ opacity: 1, bottom: 3 }}
+                                        exit={{ opacity: 0, bottom: 0 }}
+                                        transition={{ duration: 0.05 }}
+                                        className="upload-container"
+                                    >
+                                        <label className="upload-photo photo-item">
+                                            Загрузить
+                                            {isLoading && <span className="shimmer"></span>}
+                                            <input
+                                                type="file"
+                                                accept="image/*"
+                                                className="hidden-input"
+                                                onChange={handleFileChange}
+                                                disabled={isLoading}
+                                            />
+
+                                        </label>
+                                        {
+                                            employee.image.path !== 'default.webp' && (
+                                                <button className="delete-photo photo-item" onClick={handleDeleteImageClick} disabled={deleteImageIsLoading}>
+                                                    {deleteImageIsLoading && <span className="shimmer"></span>}
+                                                    <MdDeleteForever size={20} />
+                                                </button>
+                                            )
+                                        }
+                                    </motion.div>
+                                )
+                            }
                         </AnimatePresence>
                     </div>
                     <div className="employee-card__general">

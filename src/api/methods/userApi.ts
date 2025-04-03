@@ -54,6 +54,14 @@ export const userApi = baseApi.injectEndpoints({
             }),
             invalidatesTags: ["Employee"],
         }),
+        deleteProfileImage: builder.mutation<{ status: string; message: string }, { id_user: number }>({
+            query: (query) => ({
+                url: "/Users/deleteProfileImage.php",
+                method: "POST",
+                body: query,
+            }),
+            invalidatesTags: ["Employee"],
+        }),
     }),
 });
 
@@ -65,4 +73,5 @@ export const {
     useGetUsersNotRetiredQuery,
     useGetUsersFilteredQuery,
     useUploadProfileImageMutation,
+    useDeleteProfileImageMutation,
 } = userApi;

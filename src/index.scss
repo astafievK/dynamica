@@ -2117,32 +2117,57 @@ html {
                                                     height: 90px;
                                                     aspect-ratio: 1/1;
                                                     background-size: cover;
-                                                    background-position: center;
+                                                    background-position: top;
                                                     border-radius: 50%;
                                                     transition: all 50ms;
 
-                                                    .upload-photo {
+                                                    .upload-container {
+                                                        display: flex;
+                                                        gap: 3px;
                                                         position: absolute;
                                                         left: 50%;
                                                         transform: translateX(-50%);
-                                                        padding: 5px;
-                                                        overflow: hidden;
-                                                        background: rgba(255, 255, 255, 0.11);
-                                                        backdrop-filter: blur(10px);
-                                                        border-radius: 7px;
-                                                        cursor: pointer;
-                                                        text-align: center;
-                                                        font-size: 14px;
-                                                        font-weight: 600;
-                                                        transition: background 150ms, color 150ms;
-                                                        
-                                                        input {
-                                                            display: none;
+
+                                                        .photo-item {
+                                                            display: flex;
+                                                            align-items: center;
+                                                            justify-content: center;
+                                                            background: rgba(12, 23, 41, 0.6);
+                                                            backdrop-filter: blur(10px);
+                                                            border-radius: 7px;
+                                                            font-weight: 600;
+                                                            height: 30px;
+                                                            overflow: hidden;
+                                                            padding: 5px;
+                                                            font-size: 14px;
+                                                            text-align: center;
+                                                            cursor: pointer;
+                                                            color: var(--background-color);
+                                                            transition: all 150ms;
+
+                                                            svg {
+                                                                fill: var(--background-color);
+                                                            }
+
+                                                            &:hover {
+                                                                background: var(--secondary-color);
+                                                            }
                                                         }
 
-                                                        &:hover {
-                                                            background: var(--secondary-color);
-                                                            color: #FFFFFF;
+                                                        .upload-photo {
+                                                            input {
+                                                                display: none;
+                                                            }
+                                                        }
+
+                                                        .delete-photo {
+                                                            aspect-ratio: 1/1;
+
+                                                            &:hover {
+                                                                svg {
+                                                                    fill: rgba(255, 0, 0, 0.8);
+                                                                }
+                                                            }
                                                         }
                                                     }
                                                 }
