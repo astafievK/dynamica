@@ -49,6 +49,7 @@ export const ModalLogin: FC = () => {
                 handleClose();
             }
         } catch (error) {
+            console.error(error)
             setNotification({
                 title: "Авторизация",
                 message: "Неизвестная ошибка",
@@ -83,6 +84,8 @@ export const ModalLogin: FC = () => {
                                 className={"styled"}
                                 placeholder={"name.surname"}
                                 {...register("username")}
+                                aria-autocomplete="none"
+                                autoComplete="new-password"
                                 required
                             />
                         </div>
@@ -94,6 +97,8 @@ export const ModalLogin: FC = () => {
                                 type="password"
                                 placeholder={"••••••"}
                                 {...register("password")}
+                                aria-autocomplete="none"
+                                autoComplete="new-password"
                                 required
                             />
                         </div>
