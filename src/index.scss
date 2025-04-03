@@ -2032,8 +2032,8 @@ html {
 
                                         .filters-departments {
                                             display: flex;
-                                            flex-wrap: nowrap;
-                                            overflow-x: auto;
+                                            justify-content: center;
+                                            flex-wrap: wrap;
 
                                             .department-skeleton {
                                                 width: 100px;
