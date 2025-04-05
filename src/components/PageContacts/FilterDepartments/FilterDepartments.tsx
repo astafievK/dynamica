@@ -1,8 +1,6 @@
 import { FC } from "react";
-import {
-    useGetDepartmentsTitlesNotNullQuery
-} from "../../../api/methods/departmentApi.ts";
-import {FilterDepartmentSkeleton} from "../../Skeletons/FilterDepartmentSkeleton.tsx";
+import { useGetDepartmentsTitlesNotNullQuery } from "../../../api/methods/departmentApi.ts";
+import { FilterDepartmentSkeleton } from "../../Skeletons/FilterDepartmentSkeleton.tsx";
 
 interface FilterDepartmentsProps {
     filter: string | null;
@@ -30,7 +28,7 @@ export const FilterDepartments: FC<FilterDepartmentsProps> = ({ filter, setFilte
                     {departmentsData?.titles.map((title, index) => (
                         <button
                             className={`department filter-elem ${filter === title ? "selected" : ""}`}
-                            key={index}
+                            key={index+1}
                             onClick={() => setFilter(title ?? '')}
                         >
                             {title}

@@ -146,9 +146,7 @@ export const PageContacts: FC = () => {
                     transition={pageAnimation.transition}
                     className="employees-container"
                 >
-                    <AnimatePresence mode={"wait"}>
-                        {renderUsers()}
-                    </AnimatePresence>
+                    {renderUsers()}
                 </motion.div>
                 {totalPages > 1 && renderPagination()}
             </motion.div>

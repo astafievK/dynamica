@@ -2,6 +2,7 @@ import { FC, useState } from "react";
 import { ModalUserNotification } from "../../../Modals/ModalUserNotification/ModalUserNotification.tsx";
 import { Department } from "../../../../api/interfaces/IDepartment.ts";
 import {useEditDepartmentTitleMutation} from "../../../../api/methods/departmentApi.ts";
+import SaveRoundedIcon from '@mui/icons-material/SaveRounded';
 
 interface AssociationProps {
     department: Department
@@ -72,7 +73,7 @@ export const Association: FC<AssociationProps> = (props) => {
                 </div>
                 <div className="actions-container">
                     <button className="action save" onClick={handleSave} disabled={isLoading || isSaveLocked}>
-                        <img src="/save.svg" alt="Сохранить" />
+                        <SaveRoundedIcon />
                         {isLoading && <span className="shimmer"></span>}
                     </button>
                 </div>

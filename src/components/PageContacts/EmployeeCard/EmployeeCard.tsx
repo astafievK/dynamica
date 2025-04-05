@@ -60,7 +60,7 @@ export const EmployeeCard: FC<IEmployeeCardProps> = ({ employee }) => {
                                         initial={{ opacity: 0, bottom: 0 }}
                                         animate={{ opacity: 1, bottom: 3 }}
                                         exit={{ opacity: 0, bottom: 0 }}
-                                        transition={{ duration: 0.05 }}
+                                        transition={{ duration: 0.1 }}
                                         className="upload-container"
                                     >
                                         <label className="upload-photo photo-item">

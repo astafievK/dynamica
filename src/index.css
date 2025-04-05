@@ -1556,7 +1556,7 @@ html body #dynamica .layout .layout-content .main-container main .page.page-admi
 html body #dynamica .layout .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container {
   width: 100%;
   display: grid;
-  padding: 10px;
+  padding: 5px;
   border-radius: 14px;
   box-shadow: var(--block-shadow);
   background: #FFFFFF;
@@ -1566,21 +1566,25 @@ html body #dynamica .layout .layout-content .main-container main .page.page-admi
 html body #dynamica .layout .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association {
   border-radius: 10px;
   display: flex;
-  padding: 10px;
+  align-items: center;
+  padding: 3px;
+  height: 55px;
   gap: 7px;
   transition: all 150ms;
 }
 html body #dynamica .layout .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association .variants {
   display: flex;
-  gap: 10px;
+  gap: 5px;
   flex-grow: 1;
 }
 html body #dynamica .layout .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association .variants .variant {
   flex: 2;
   display: flex;
   align-items: center;
-  padding: 0 10px;
-  height: 48px;
+  padding: 0 3px;
+}
+html body #dynamica .layout .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association .variants .variant .variant-title {
+  font-size: 14px;
 }
 html body #dynamica .layout .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association .variants .variant:first-child {
   flex: 1;
@@ -1596,24 +1600,29 @@ html body #dynamica .layout .layout-content .main-container main .page.page-admi
 html body #dynamica .layout .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association .result {
   display: flex;
   justify-content: center;
+  width: 30%;
 }
 html body #dynamica .layout .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association .result .result-field {
   height: 48px;
-  width: 220px;
+  width: 100%;
 }
 html body #dynamica .layout .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association .actions-container {
   display: flex;
+  height: 100%;
   gap: 5px;
 }
 html body #dynamica .layout .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association .actions-container .action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 100%;
   aspect-ratio: 1/1;
   border-radius: 10px;
   background: var(--item-static-background);
 }
-html body #dynamica .layout .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association .actions-container .action img {
-  height: 65%;
-  aspect-ratio: 1/1;
+html body #dynamica .layout .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association .actions-container .action svg {
+  height: 70%;
+  width: 70%;
 }
 html body #dynamica .layout .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association .actions-container .action:hover {
   background: var(--item-hover-background);
@@ -2789,10 +2798,14 @@ html body #dynamica .layout .layout-content .main-container .footer-wrapper foot
   html body #dynamica .layout .left-menu {
     display: flex;
     width: 170px;
-    padding: 0 10px 10px 10px;
+    padding: 0 5px 5px 5px;
   }
   html body #dynamica .layout .left-menu .logo-container {
     padding: 10px 0;
+  }
+  html body #dynamica .layout .left-menu .left-menu-item {
+    padding: 6px;
+    font-size: 14px;
   }
   html body #dynamica .layout .layout-content {
     margin-left: 170px;
@@ -2987,6 +3000,7 @@ html body #dynamica .layout .layout-content .main-container .footer-wrapper foot
     font-size: 24px;
   }
   html body #dynamica .layout .layout-content .main-container main .page.page-contacts .filters-container .filters-departments {
+    padding-top: 10px;
     justify-content: center;
     gap: 5px;
     flex-wrap: wrap;
@@ -3094,6 +3108,19 @@ html body #dynamica .layout .layout-content .main-container .footer-wrapper foot
   html body #dynamica .layout .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--feed .content-tab__form .content-tab__input {
     font-size: 20px;
   }
+  html body #dynamica .layout .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association {
+    padding: 5px 10px;
+    height: 60px;
+  }
+  html body #dynamica .layout .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association .variants .variant {
+    height: 48px;
+  }
+  html body #dynamica .layout .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association .variants .variant .variant-title {
+    font-size: 16px;
+  }
+  html body #dynamica .layout .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association .result .result-field {
+    font-size: 16px;
+  }
   html body #dynamica .layout .layout-content .main-container main .page.page-documents .page-actions {
     margin-top: 25px;
   }
@@ -3183,6 +3210,7 @@ html body #dynamica .layout .layout-content .main-container .footer-wrapper foot
   }
   html body #dynamica .layout .left-menu .left-menu-item {
     font-size: 18px;
+    padding: 10px;
   }
   html body #dynamica .layout .left-menu .general-navigation {
     margin-top: 25px;
@@ -3349,6 +3377,7 @@ html body #dynamica .layout .layout-content .main-container .footer-wrapper foot
   }
   html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container {
     grid-template-columns: repeat(4, calc(25% - 6px));
+    padding: 10px;
   }
   html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card .employee-card__preview .employee-card__photo {
     height: 120px;

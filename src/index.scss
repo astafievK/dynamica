@@ -1875,7 +1875,7 @@ html {
                                                 .associations-container {
                                                     width: 100%;
                                                     display: grid;
-                                                    padding: 10px;
+                                                    padding: 5px;
                                                     border-radius: 14px;
                                                     box-shadow: var(--block-shadow);
                                                     background: #FFFFFF;
@@ -1885,21 +1885,26 @@ html {
                                                     .association {
                                                         border-radius: 10px;
                                                         display: flex;
-                                                        padding: 10px;
+                                                        align-items: center;
+                                                        padding: 3px;
+                                                        height: 55px;
                                                         gap: 7px;
                                                         transition: all 150ms;
 
                                                         .variants {
                                                             display: flex;
-                                                            gap: 10px;
+                                                            gap: 5px;
                                                             flex-grow: 1;
 
                                                             .variant {
                                                                 flex: 2;
                                                                 display: flex;
                                                                 align-items: center;
-                                                                padding: 0 10px;
-                                                                height: 48px;
+                                                                padding: 0 3px;
+
+                                                                .variant-title {
+                                                                    font-size: 14px;
+                                                                }
 
                                                                 &:first-child {
                                                                     flex: 1;
@@ -1920,26 +1925,31 @@ html {
                                                         .result {
                                                             display: flex;
                                                             justify-content: center;
+                                                            width: 30%;
 
                                                             .result-field {
                                                                 height: 48px;
-                                                                width: 220px;
+                                                                width: 100%;
                                                             }
                                                         }
 
                                                         .actions-container {
                                                             display: flex;
+                                                            height: 100%;
                                                             gap: 5px;
 
                                                             .action {
+                                                                display: flex;
+                                                                align-items: center;
+                                                                justify-content: center;
                                                                 height: 100%;
                                                                 aspect-ratio: 1/1;
                                                                 border-radius: 10px;
                                                                 background: var(--item-static-background);
 
-                                                                img {
-                                                                    height: 65%;
-                                                                    aspect-ratio: 1/1;
+                                                                svg {
+                                                                    height: 70%;
+                                                                    width: 70%;
                                                                 }
 
                                                                 &:hover {
@@ -3611,10 +3621,15 @@ html {
                     .left-menu {
                         display: flex;
                         width: 170px;
-                        padding: 0 10px 10px 10px;
+                        padding: 0 5px 5px 5px;
 
                         .logo-container {
                             padding: 10px 0;
+                        }
+
+                        .left-menu-item {
+                            padding: 6px;
+                            font-size: 14px;
                         }
                     }
 
@@ -3892,6 +3907,7 @@ html {
                                     &.page-contacts {
                                         .filters-container {
                                             .filters-departments {
+                                                padding-top: 10px;
                                                 justify-content: center;
                                                 gap: 5px;
                                                 flex-wrap: wrap;
@@ -4082,6 +4098,31 @@ html {
                                                         }
                                                     }
                                                 }
+
+                                                &--contacts {
+                                                    .associations-container {
+                                                        .association {
+                                                            padding: 5px 10px;
+                                                            height: 60px;
+
+                                                            .variants {
+                                                                .variant {
+                                                                    height: 48px;
+
+                                                                    .variant-title {
+                                                                        font-size: 16px;
+                                                                    }
+                                                                }
+                                                            }
+
+                                                            .result {
+                                                                .result-field {
+                                                                    font-size: 16px;
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
                                             }
                                         }
                                     }
@@ -4232,6 +4273,7 @@ html {
 
                         .left-menu-item {
                             font-size: 18px;
+                            padding: 10px;
                         }
 
                         .general-navigation {
@@ -4503,6 +4545,7 @@ html {
 
                                         .employees-container {
                                             grid-template-columns: repeat(4, calc(100% / 4 - 8px / 4 * (4 - 1)));
+                                            padding: 10px;
 
                                             .employee-card {
                                                 .employee-card__preview {
