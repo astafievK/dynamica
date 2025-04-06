@@ -84,7 +84,6 @@ export const ModalLogin: FC = () => {
                                 className={"styled"}
                                 placeholder={"name.surname"}
                                 {...register("username")}
-                                aria-autocomplete="none"
                                 autoComplete="new-password"
                                 required
                             />
@@ -97,7 +96,6 @@ export const ModalLogin: FC = () => {
                                 type="password"
                                 placeholder={"••••••"}
                                 {...register("password")}
-                                aria-autocomplete="none"
                                 autoComplete="new-password"
                                 required
                             />

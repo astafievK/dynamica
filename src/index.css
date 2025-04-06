@@ -158,7 +158,8 @@
   --item-static-background: transparent;
   --item-hover-background: rgba(0, 0, 0, 0.05);
   --item-active-background: rgba(0, 0, 0, 0.1);
-  --block-shadow: 0 0 0 1px rgb(228, 232, 238);
+  --block-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  --block-background: rgba(255, 255, 255, 1);
 }
 
 * {
@@ -260,7 +261,7 @@ html .filter-elem:hover {
   background-color: var(--item-hover-background);
 }
 html .filter-elem.selected {
-  background-color: white;
+  background-color: var(--block-background);
   box-shadow: var(--block-shadow);
   color: var(--primary-color);
 }
@@ -756,19 +757,12 @@ html body #dynamica .layout .left-menu .left-menu-item.item-contacts .contacts-n
   right: 0;
   z-index: 2;
 }
-html body #dynamica .layout .left-menu .left-menu-item.active-nav-item {
+html body #dynamica .layout .left-menu .left-menu-item:hover, html body #dynamica .layout .left-menu .left-menu-item.active-nav-item {
   color: var(--secondary-color);
-  background: #FFFFFF;
+  background: var(--block-background);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
-html body #dynamica .layout .left-menu .left-menu-item.active-nav-item svg {
-  fill: var(--secondary-color);
-}
-html body #dynamica .layout .left-menu .left-menu-item:not(.active-nav-item):hover {
-  background: var(--item-hover-background);
-  color: var(--secondary-color);
-}
-html body #dynamica .layout .left-menu .left-menu-item:not(.active-nav-item):hover svg {
+html body #dynamica .layout .left-menu .left-menu-item:hover svg, html body #dynamica .layout .left-menu .left-menu-item.active-nav-item svg {
   fill: var(--secondary-color);
 }
 html body #dynamica .layout .left-menu .logo-container {
@@ -898,6 +892,8 @@ html body #dynamica .layout .header-wrapper header .profile-container .header-it
 html body #dynamica .layout .header-wrapper header .profile-container .header-item:hover {
   color: var(--secondary-color);
   fill: var(--secondary-color);
+  background: var(--block-background) !important;
+  box-shadow: var(--block-shadow) !important;
   background-color: var(--item-hover-background);
 }
 html body #dynamica .layout .header-wrapper header .profile-container .header-item:hover span,
@@ -991,7 +987,6 @@ html body #dynamica .layout .layout-content {
 html body #dynamica .layout .layout-content .main-container {
   display: flex;
   flex-direction: column;
-  background-color: #FFFFFF;
   flex-grow: 1;
 }
 html body #dynamica .layout .layout-content .main-container main {
@@ -1009,7 +1004,7 @@ html body #dynamica .layout .layout-content .main-container main .page {
   flex-direction: column;
   max-width: 1920px;
   margin: 0 auto;
-  padding: 5px;
+  padding: 3px;
 }
 html body #dynamica .layout .layout-content .main-container main .page .page-header {
   display: none;
@@ -1023,6 +1018,57 @@ html body #dynamica .layout .layout-content .main-container main .page .page-hea
   font-style: italic;
   text-align: left;
   font-size: 14px;
+}
+html body #dynamica .layout .layout-content .main-container main .page .page-filters {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+html body #dynamica .layout .layout-content .main-container main .page .page-filters .filters-departments {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+html body #dynamica .layout .layout-content .main-container main .page .page-filters .filters-departments .department-skeleton {
+  width: 100px;
+  border-radius: 10px;
+  height: 35px;
+}
+html body #dynamica .layout .layout-content .main-container main .page .page-filters .filters-search {
+  display: flex;
+  position: relative;
+  gap: 5px;
+  width: 100%;
+  max-width: 100%;
+}
+html body #dynamica .layout .layout-content .main-container main .page .page-filters .filters-search .filters-search__text {
+  width: 100%;
+  padding: 15px;
+  font-weight: 600;
+  flex: 1;
+  transition: 200ms;
+}
+html body #dynamica .layout .layout-content .main-container main .page .page-filters .filters-search .filters-search__submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--background-action-button-primary);
+  position: absolute;
+  height: 90%;
+  aspect-ratio: 1/1;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 5px;
+  border-radius: 50%;
+  transition: 200ms;
+}
+html body #dynamica .layout .layout-content .main-container main .page .page-filters .filters-search .filters-search__submit img {
+  height: 45%;
+  object-fit: cover;
+}
+html body #dynamica .layout .layout-content .main-container main .page .page-filters .filters-search .filters-search__submit:hover {
+  background-color: #85a686;
+  transition-duration: 70ms;
 }
 html body #dynamica .layout .layout-content .main-container main .page.page-landing {
   max-width: unset;
@@ -1686,63 +1732,12 @@ html body #dynamica .layout .layout-content .main-container main .page.page-admi
 html body #dynamica .layout .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association-skeleton .skeleton-action span {
   height: 100%;
 }
-html body #dynamica .layout .layout-content .main-container main .page.page-contacts .filters-container {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-html body #dynamica .layout .layout-content .main-container main .page.page-contacts .filters-container .filters-departments {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-html body #dynamica .layout .layout-content .main-container main .page.page-contacts .filters-container .filters-departments .department-skeleton {
-  width: 100px;
-  border-radius: 10px;
-  height: 35px;
-}
-html body #dynamica .layout .layout-content .main-container main .page.page-contacts .filters-container .filters-search {
-  display: flex;
-  position: relative;
-  gap: 5px;
-  width: 100%;
-  max-width: 100%;
-}
-html body #dynamica .layout .layout-content .main-container main .page.page-contacts .filters-container .filters-search .filters-search__text {
-  width: 100%;
-  padding: 15px;
-  font-weight: 600;
-  flex: 1;
-  transition: 200ms;
-}
-html body #dynamica .layout .layout-content .main-container main .page.page-contacts .filters-container .filters-search .filters-search__submit {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--background-action-button-primary);
-  position: absolute;
-  height: 90%;
-  aspect-ratio: 1/1;
-  top: 50%;
-  transform: translateY(-50%);
-  right: 5px;
-  border-radius: 50%;
-  transition: 200ms;
-}
-html body #dynamica .layout .layout-content .main-container main .page.page-contacts .filters-container .filters-search .filters-search__submit img {
-  height: 45%;
-  object-fit: cover;
-}
-html body #dynamica .layout .layout-content .main-container main .page.page-contacts .filters-container .filters-search .filters-search__submit:hover {
-  background-color: #85a686;
-  transition-duration: 70ms;
-}
 html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container {
-  margin: 10px 0 110px 0;
+  margin: 5px 0 110px 0;
   position: relative;
   padding: 5px;
   width: 100%;
-  background: white;
+  background: var(--block-background);
   border-radius: 14px;
   box-shadow: var(--block-shadow);
   grid-template-columns: repeat(1, calc(100% - 0px));
@@ -2430,6 +2425,13 @@ html body #dynamica .layout .layout-content .main-container .footer-wrapper foot
     line-height: unset;
     font-size: 24px;
   }
+  html body #dynamica .layout .layout-content .main-container main .page .page-filters .filters-search {
+    gap: 10px;
+  }
+  html body #dynamica .layout .layout-content .main-container main .page .page-filters .filters-search .filters-search__text {
+    padding: 15px 20px;
+    font-size: 18px;
+  }
   html body #dynamica .layout .layout-content .main-container main .page.page-landing .landing-module__preview .photo-container h1 {
     margin-top: 61px;
     font-size: 56px;
@@ -2566,20 +2568,6 @@ html body #dynamica .layout .layout-content .main-container .footer-wrapper foot
   }
   html body #dynamica .layout .layout-content .main-container main .page.page-profile .widgets .action {
     font-size: 24px;
-  }
-  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .filters-container .filters-select .custom-dropdown {
-    flex: 1;
-    z-index: 1;
-  }
-  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .filters-container .filters-select .custom-dropdown .custom-dropdown__toggle {
-    height: 100%;
-  }
-  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .filters-container .filters-search {
-    gap: 10px;
-  }
-  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .filters-container .filters-search .filters-search__text {
-    padding: 15px 20px;
-    font-size: 18px;
   }
   html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container {
     grid-template-columns: repeat(2, calc(50% - 4px));
@@ -2820,6 +2808,23 @@ html body #dynamica .layout .layout-content .main-container .footer-wrapper foot
   html body #dynamica .layout .layout-content .main-container main .page .page-header .page-title {
     font-size: 26px;
   }
+  html body #dynamica .layout .layout-content .main-container main .page .page-filters .filters-departments {
+    padding-top: 10px;
+    justify-content: center;
+    gap: 5px;
+    flex-wrap: wrap;
+  }
+  html body #dynamica .layout .layout-content .main-container main .page .page-filters .filters-select {
+    display: flex;
+    align-items: stretch;
+    gap: 10px;
+  }
+  html body #dynamica .layout .layout-content .main-container main .page .page-filters .filters-select .custom-dropdown .custom-dropdown__toggle {
+    height: 100%;
+  }
+  html body #dynamica .layout .layout-content .main-container main .page .page-filters .filters-search .filters-search__text {
+    font-size: 18px;
+  }
   html body #dynamica .layout .layout-content .main-container main .page.page-landing .landing-module-wide {
     width: 100%;
     display: flex;
@@ -2998,23 +3003,6 @@ html body #dynamica .layout .layout-content .main-container .footer-wrapper foot
   }
   html body #dynamica .layout .layout-content .main-container main .page.page-profile .widgets .action {
     font-size: 24px;
-  }
-  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .filters-container .filters-departments {
-    padding-top: 10px;
-    justify-content: center;
-    gap: 5px;
-    flex-wrap: wrap;
-  }
-  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .filters-container .filters-select {
-    display: flex;
-    align-items: stretch;
-    gap: 10px;
-  }
-  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .filters-container .filters-select .custom-dropdown .custom-dropdown__toggle {
-    height: 100%;
-  }
-  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .filters-container .filters-search .filters-search__text {
-    font-size: 18px;
   }
   html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container {
     grid-template-columns: repeat(3, calc(33.3333333333% - 5.3333333333px));

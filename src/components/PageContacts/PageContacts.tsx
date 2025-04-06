@@ -122,7 +122,7 @@ export const PageContacts: FC = () => {
                 <div className="page-header">
                     <span className="page-title page-title__name">Адресная книга</span>
                 </div>
-                <div className="filters-container">
+                <div className="page-filters">
                     <FilterDepartments filter={departmentTitle} setFilter={setDepartmentTitle} />
                     <div className="filters-search">
                         <input

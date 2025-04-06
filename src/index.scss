@@ -177,7 +177,8 @@
     --item-static-background: transparent;
     --item-hover-background: rgba(0, 0, 0, 0.05);
     --item-active-background: rgba(0, 0, 0, 0.1);
-    --block-shadow: 0 0 0 1px rgb(228, 232, 238);
+    --block-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    --block-background: rgba(255, 255, 255, 1);
 }
 
 * {
@@ -299,7 +300,7 @@ html {
         }
 
         &.selected {
-            background-color: white;
+            background-color: var(--block-background);
             box-shadow: var(--block-shadow);
             color: var(--primary-color);
         }
@@ -893,19 +894,11 @@ html {
                             }
                         }
 
+                        &:hover,
                         &.active-nav-item {
                             color: var(--secondary-color);
-                            background: #FFFFFF;
+                            background: var(--block-background);
                             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-
-                            svg {
-                                fill: var(--secondary-color);
-                            }
-                        }
-
-                        &:not(.active-nav-item):hover {
-                            background: var(--item-hover-background);
-                            color: var(--secondary-color);
 
                             svg {
                                 fill: var(--secondary-color);
@@ -1069,6 +1062,8 @@ html {
                                 &:hover {
                                     color: var(--secondary-color);
                                     fill: var(--secondary-color);
+                                    background: var(--block-background) !important;
+                                    box-shadow: var(--block-shadow) !important;
 
                                     span,
                                     svg {
@@ -1183,7 +1178,6 @@ html {
                     .main-container {
                         display: flex;
                         flex-direction: column;
-                        background-color: #FFFFFF;
                         flex-grow: 1;
 
                         main {
@@ -1201,7 +1195,7 @@ html {
                                 flex-direction: column;
                                 max-width: 1920px;
                                 margin: 0 auto;
-                                padding: 5px;
+                                padding: 3px;
 
                                 .page-header {
                                     display: none;
@@ -1215,6 +1209,65 @@ html {
                                         font-style: italic;
                                         text-align: left;
                                         font-size: 14px;
+                                    }
+                                }
+
+                                .page-filters {
+                                    display: flex;
+                                    flex-direction: column;
+                                    gap: 5px;
+
+                                    .filters-departments {
+                                        display: flex;
+                                        justify-content: center;
+                                        flex-wrap: wrap;
+
+                                        .department-skeleton {
+                                            width: 100px;
+                                            border-radius: 10px;
+                                            height: 35px;
+                                        }
+                                    }
+
+                                    .filters-search {
+                                        display: flex;
+                                        position: relative;
+                                        gap: 5px;
+                                        width: 100%;
+                                        max-width: 100%;
+
+                                        .filters-search__text {
+                                            width: 100%;
+                                            padding: 15px;
+                                            font-weight: 600;
+                                            flex: 1;
+                                            transition: 200ms;
+                                        }
+
+                                        .filters-search__submit {
+                                            display: flex;
+                                            align-items: center;
+                                            justify-content: center;
+                                            background-color: var(--background-action-button-primary);
+                                            position: absolute;
+                                            height: 90%;
+                                            aspect-ratio: 1/1;
+                                            top: 50%;
+                                            transform: translateY(-50%);
+                                            right: 5px;
+                                            border-radius: 50%;
+                                            transition: 200ms;
+
+                                            img {
+                                                height: 45%;
+                                                object-fit: cover;
+                                            }
+
+                                            &:hover {
+                                                background-color: #85a686;
+                                                transition-duration: 70ms;
+                                            }
+                                        }
                                     }
                                 }
 
@@ -2038,71 +2091,12 @@ html {
                                 }
 
                                 &.page-contacts {
-                                    .filters-container {
-                                        display: flex;
-                                        flex-direction: column;
-                                        gap: 10px;
-
-                                        .filters-departments {
-                                            display: flex;
-                                            justify-content: center;
-                                            flex-wrap: wrap;
-
-                                            .department-skeleton {
-                                                width: 100px;
-                                                border-radius: 10px;
-                                                height: 35px;
-                                            }
-                                        }
-
-                                        .filters-search {
-                                            display: flex;
-                                            position: relative;
-                                            gap: 5px;
-                                            width: 100%;
-                                            max-width: 100%;
-
-                                            .filters-search__text {
-                                                width: 100%;
-                                                padding: 15px;
-                                                font-weight: 600;
-                                                flex: 1;
-                                                transition: 200ms;
-                                            }
-
-                                            .filters-search__submit {
-                                                display: flex;
-                                                align-items: center;
-                                                justify-content: center;
-                                                background-color: var(--background-action-button-primary);
-                                                position: absolute;
-                                                height: 90%;
-                                                aspect-ratio: 1/1;
-                                                top: 50%;
-                                                transform: translateY(-50%);
-                                                right: 5px;
-                                                border-radius: 50%;
-                                                transition: 200ms;
-
-                                                img {
-                                                    height: 45%;
-                                                    object-fit: cover;
-                                                }
-
-                                                &:hover {
-                                                    background-color: #85a686;
-                                                    transition-duration: 70ms;
-                                                }
-                                            }
-                                        }
-                                    }
-
                                     .employees-container {
-                                        margin: 10px 0 110px 0;
+                                        margin: 5px 0 110px 0;
                                         position: relative;
                                         padding: 5px;
                                         width: 100%;
-                                        background: white;
+                                        background: var(--block-background);;
                                         border-radius: 14px;
                                         box-shadow: var(--block-shadow);
                                         grid-template-columns: repeat(1, calc(100% / 1 - 8px / 1 * (1 - 1)));
@@ -3034,6 +3028,17 @@ html {
                                         }
                                     }
 
+                                    .page-filters {
+                                        .filters-search {
+                                            gap: 10px;
+
+                                            .filters-search__text {
+                                                padding: 15px 20px;
+                                                font-size: 18px;
+                                            }
+                                        }
+                                    }
+
                                     &.page-landing {
                                         .landing-module__preview {
                                             .photo-container {
@@ -3247,29 +3252,6 @@ html {
                                     }
 
                                     &.page-contacts {
-                                        .filters-container {
-                                            .filters-select {
-                                                .custom-dropdown {
-                                                    flex: 1;
-                                                    z-index: 1;
-
-                                                    .custom-dropdown__toggle {
-                                                        height: 100%;
-                                                    }
-                                                }
-                                            }
-
-
-                                            .filters-search {
-                                                gap: 10px;
-
-                                                .filters-search__text {
-                                                    padding: 15px 20px;
-                                                    font-size: 18px;
-                                                }
-                                            }
-                                        }
-
                                         .employees-container {
                                             grid-template-columns: repeat(2, calc(100% / 2 - 8px / 2 * (2 - 1)));
 
@@ -3650,6 +3632,33 @@ html {
                                         }
                                     }
 
+                                    .page-filters {
+                                        .filters-departments {
+                                            padding-top: 10px;
+                                            justify-content: center;
+                                            gap: 5px;
+                                            flex-wrap: wrap;
+                                        }
+
+                                        .filters-select {
+                                            display: flex;
+                                            align-items: stretch;
+                                            gap: 10px;
+
+                                            .custom-dropdown {
+                                                .custom-dropdown__toggle {
+                                                    height: 100%;
+                                                }
+                                            }
+                                        }
+
+                                        .filters-search {
+                                            .filters-search__text {
+                                                font-size: 18px;
+                                            }
+                                        }
+                                    }
+
                                     &.page-landing {
                                         .landing-module-wide {
                                             width: 100%;
@@ -3905,33 +3914,6 @@ html {
                                     }
 
                                     &.page-contacts {
-                                        .filters-container {
-                                            .filters-departments {
-                                                padding-top: 10px;
-                                                justify-content: center;
-                                                gap: 5px;
-                                                flex-wrap: wrap;
-                                            }
-
-                                            .filters-select {
-                                                display: flex;
-                                                align-items: stretch;
-                                                gap: 10px;
-
-                                                .custom-dropdown {
-                                                    .custom-dropdown__toggle {
-                                                        height: 100%;
-                                                    }
-                                                }
-                                            }
-
-                                            .filters-search {
-                                                .filters-search__text {
-                                                    font-size: 18px;
-                                                }
-                                            }
-                                        }
-
                                         .employees-container {
                                             grid-template-columns: repeat(3, calc(100% / 3 - 8px / 3 * (3 - 1)));
 
