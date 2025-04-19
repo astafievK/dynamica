@@ -2,7 +2,7 @@ import {Association} from "./Association/Association.tsx";
 import {useGetDepartmentsQuery} from "../../../api/methods/departmentApi.ts";
 import {FC} from "react";
 import {AssociationSkeleton} from "../../Skeletons/AssociationSkeleton.tsx";
-import {pageAnimation} from "../../../constants/motionSettins.ts";
+import {pageAnimation} from "../../../constants/motionSettings.ts";
 import {motion} from "framer-motion";
 
 export const AdminTabContacts: FC = () => {

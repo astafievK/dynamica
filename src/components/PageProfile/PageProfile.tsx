@@ -1,16 +1,24 @@
 import { FC, useEffect, useState } from "react";
-import { pageAnimation } from "../../constants/motionSettins.ts";
+import { pageAnimation } from "../../constants/motionSettings.ts";
 import { motion } from "framer-motion";
-import { ModuleDocuments } from "../ModuleDocuments/ModuleDocuments.tsx";
-import { ModuleNotifications } from "../ModuleNotifications/ModuleNotifications.tsx";
 import { setIsOpen as setLoginModalOpen } from "../../api/slices/modalLoginSlice.ts";
 import { useAppDispatch, useTypedSelector } from "../../store/hooks/redux.ts";
-import {Link, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
+import {FilterButton} from "../FilterButton/FilterDepartments.tsx";
+
+const filtersDocumentsTypes = [
+    "Последние",
+    "Активно",
+    "Завершено",
+    "Прервано",
+    "Отменено"
+];
 
 export const PageProfile: FC = () => {
     const { user } = useTypedSelector(state => state.auth);
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
+    const [documentsType, setDocumentsType] = useState<string>("")
     const [currentTime, setCurrentTime] = useState("");
 
     useEffect(() => {
@@ -53,52 +61,33 @@ export const PageProfile: FC = () => {
     return (
         <motion.div {...pageAnimation} className={"page page-profile"}>
             <div className="page-header">
-                <span className="page-title page-title__name">123 </span>
-                <span className="page-title__district">Группа BI-разработки • Разработчик</span>
+                <span className="page-title page-title__name">{user.name} {user.surname}</span>
+                <span className="page-title__district">{user.department.division.title} • {user.position.title}</span>
                 <div className="clocks"><span>{currentTime}</span></div>
             </div>
-            <div className="widgets">
-                <div className="widgets-head">
-                    <div className="widget widget-notifications">
-                        <div className="widget-header">
-                            <span className="widget-title">Уведомления</span>
-                        </div>
-                        <div className="widget-body">
-                            <ModuleNotifications />
-                        </div>
-                    </div>
-                    <div className="right-widgets">
+            <div className="page-content">
+                <div className="widgets">
+                    <div className="widgets-head">
                         <div className="widget widget-documents">
-                            <Link to={"/documents"} className="widget-header">
-                                <span className="widget-title">Документы</span>
-                                <div className="arrow"></div>
-                            </Link>
-                            <div className="widget-body">
-                                <ModuleDocuments />
-                            </div>
-                        </div>
-                        <div className="widget widget-tickets">
                             <div className="widget-header">
-                                <span className="widget-title">Заявки</span>
+                                <span className="widget-title">Договора</span>
                             </div>
-                            <div className="widget-body"></div>
+                            <div className="widget-filters">
+                                <FilterButton
+                                    filter={documentsType}
+                                    setFilter={setDocumentsType}
+                                    data={filtersDocumentsTypes}
+                                    renderLabel={(item) => item}
+                                />
+                            </div>
+                            <div className="widget-body">
+                                <div className="widget-item document">
+                                    <span className="widget-item-title">Заголовок документа</span>
+                                    <div className="widget-item-status status-success">Согласовано</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <button className="action">Крутая кнопка для открытия чего-либо</button>
-
-                <div className="widget">
-                    <div className="widget-header">
-                        <span className="widget-title">Новости</span>
-                    </div>
-                    <div className="widget-body"></div>
-                </div>
-                <div className="widget">
-                    <div className="widget-header">
-                        <span className="widget-title">График отпусков</span>
-                    </div>
-                    <div className="widget-body"></div>
                 </div>
             </div>
         </motion.div>

@@ -1,6 +1,6 @@
 import {FC} from "react";
 import {motion} from "framer-motion";
-import {pageAnimation} from "../../constants/motionSettins.ts";
+import {pageAnimation} from "../../constants/motionSettings.ts";
 
 export const PageNotFound: FC = () => {
     return (

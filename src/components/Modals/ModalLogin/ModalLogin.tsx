@@ -40,12 +40,14 @@ export const ModalLogin: FC = () => {
     const onSubmit: SubmitHandler<ILoginCommand> = async (data) => {
         try {
             const response = await login(data);
-            if (response.data?.status === 'error') {
+            if (response.data?.status === 'failed') {
                 setNotification({
                     title: "Авторизация",
                     message: response.data.message || "Неизвестная ошибка",
                 });
+                console.log(response.data)
             } else if (response.data?.user) {
+                console.log(response.data)
                 handleClose();
             }
         } catch (error) {

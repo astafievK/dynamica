@@ -1,11 +1,13 @@
 import {AnimatePresence, motion} from "framer-motion";
 import { useGetUsersFilteredQuery } from "../../api/methods/userApi.ts";
 import { FC, useEffect, useMemo, useState } from "react";
-import { pageAnimation } from "../../constants/motionSettins.ts";
+import { pageAnimation } from "../../constants/motionSettings.ts";
 import { EmployeeCard } from "./EmployeeCard/EmployeeCard.tsx";
-import { FilterDepartments } from "./FilterDepartments/FilterDepartments.tsx";
 import { EmployeeCardSkeleton } from "../Skeletons/EmployeeCardSkeleton.tsx";
 import { useDebounce } from "../../store/hooks/useDebounce.ts";
+import {BannerNoData} from "../BannerNoData/BannerNoData.tsx";
+import {FilterButton} from "../FilterButton/FilterDepartments.tsx";
+import {useGetDepartmentsTitlesNotNullQuery} from "../../api/methods/departmentApi.ts";
 
 const ITEMS_PER_PAGE = 100;
 
@@ -16,6 +18,7 @@ export const PageContacts: FC = () => {
     const [searchValue, setSearchValue] = useState<string | undefined>(undefined);
     const [isFilterChanging, setIsFilterChanging] = useState<boolean>(false);
     const [currentPage, setCurrentPage] = useState<number>(1);
+    const { data: departmentsData, isLoading: departmentsLoading } = useGetDepartmentsTitlesNotNullQuery();
     const { data, isLoading } = useGetUsersFilteredQuery({
         department: departmentTitle,
         search: searchValue,
@@ -27,9 +30,6 @@ export const PageContacts: FC = () => {
 
     useEffect(() => {
         setCurrentPage(1);
-    }, [departmentTitle, searchValue]);
-
-    useEffect(() => {
         setIsFilterChanging(true);
     }, [departmentTitle, searchValue]);
 
@@ -95,19 +95,40 @@ export const PageContacts: FC = () => {
 
     const renderUsers = () => {
         if (isLoading || isFilterChanging) {
-            return [...Array(4)].map((_, i) => <EmployeeCardSkeleton key={i} />);
+            return (
+                <motion.div
+                    initial={pageAnimation.initial}
+                    animate={pageAnimation.animate}
+                    exit={pageAnimation.exit}
+                    transition={pageAnimation.transition}
+                    className="employees-container"
+                >
+                    {[...Array(4)].map((_, i) => (
+                        <EmployeeCardSkeleton key={i} />
+                    ))}
+                </motion.div>
+            );
         }
 
         if (!paginatedUsers.length) {
-            return null;
+            return (
+                <BannerNoData content={"Сотрудники не найдены"}/>
+            );
         }
 
-        return paginatedUsers.map((employee) => (
-            <EmployeeCard
-                key={employee.id_user}
-                employee={employee}
-            />
-        ));
+        return (
+            <motion.div
+                initial={pageAnimation.initial}
+                animate={pageAnimation.animate}
+                exit={pageAnimation.exit}
+                transition={pageAnimation.transition}
+                className="employees-container"
+            >
+                {paginatedUsers.map((employee) => (
+                    <EmployeeCard key={employee.id_user} employee={employee} />
+                ))}
+            </motion.div>
+        );
     };
 
     return (
@@ -119,11 +140,14 @@ export const PageContacts: FC = () => {
                 transition={pageAnimation.transition}
                 className="page page-contacts"
             >
-                <div className="page-header">
-                    <span className="page-title page-title__name">Адресная книга</span>
-                </div>
                 <div className="page-filters">
-                    <FilterDepartments filter={departmentTitle} setFilter={setDepartmentTitle} />
+                    <FilterButton
+                        filter={departmentTitle}
+                        setFilter={setDepartmentTitle}
+                        data={departmentsData?.titles}
+                        isLoading={departmentsLoading}
+                        renderLabel={(item) => item}
+                    />
                     <div className="filters-search">
                         <input
                             type="text"
@@ -134,21 +158,10 @@ export const PageContacts: FC = () => {
                         />
                     </div>
                 </div>
-                {paginatedUsers.length === 0 && !isLoading && !isFilterChanging && (
-                    <div className="no-data">
-                        <p>Данные отсутствуют</p>
-                    </div>
-                )}
-                <motion.div
-                    initial={pageAnimation.initial}
-                    animate={pageAnimation.animate}
-                    exit={pageAnimation.exit}
-                    transition={pageAnimation.transition}
-                    className="employees-container"
-                >
+                <div className="page-content">
                     {renderUsers()}
-                </motion.div>
-                {totalPages > 1 && renderPagination()}
+                    {totalPages > 1 && renderPagination()}
+                </div>
             </motion.div>
         </AnimatePresence>
     );

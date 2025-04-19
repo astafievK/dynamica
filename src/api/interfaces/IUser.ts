@@ -1,6 +1,14 @@
+import {Department} from "./IDepartment.ts";
+import {Position} from "./IPosition.ts";
+import {Image} from "./IImage.ts";
+
 export interface User {
-    username: string;
-    first_name: string;
-    last_name: string;
-    email: string;
+    id_user: number;
+    login: string;
+    name: string;
+    surname: string;
+    phoneNumber: string;
+    department: Department;
+    position: Position;
+    image: Image;
 }

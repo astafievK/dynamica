@@ -1,5 +1,5 @@
 import { FC, useState } from "react";
-import { pageAnimation } from "../../../constants/motionSettins.ts";
+import { pageAnimation } from "../../../constants/motionSettings.ts";
 import { AnimatePresence, motion } from "framer-motion";
 import { Employee } from "../../../api/interfaces/IEmployee.ts";
 import { ModalUserNotification } from "../../Modals/ModalUserNotification/ModalUserNotification.tsx";
@@ -7,6 +7,7 @@ import {useUploadImage} from "../../../store/hooks/useUploadImage.ts";
 import { DetailsItem } from "./DetailsItem/DetailsItem.tsx";
 import {MdDeleteForever} from "react-icons/md";
 import {useDeleteProfileImageMutation} from "../../../api/methods/userApi.ts";
+import {useTypedSelector} from "../../../store/hooks/redux.ts";
 
 interface IEmployeeCardProps {
     employee: Employee;
@@ -16,6 +17,7 @@ export const EmployeeCard: FC<IEmployeeCardProps> = ({ employee }) => {
     const [isHovering, setIsHovering] = useState(false);
     const { handleFileChange, isLoading, notification, setNotification } = useUploadImage(employee);
     const [deleteProfileImage, { isLoading: deleteImageIsLoading }] = useDeleteProfileImageMutation();
+    const { user } = useTypedSelector(state => state.auth)
 
     const handleDeleteImageClick = async () => {
         try {
@@ -57,10 +59,10 @@ export const EmployeeCard: FC<IEmployeeCardProps> = ({ employee }) => {
                             {
                                 (isHovering || isLoading) && (
                                     <motion.div
-                                        initial={{ opacity: 0, bottom: 0 }}
-                                        animate={{ opacity: 1, bottom: 3 }}
-                                        exit={{ opacity: 0, bottom: 0 }}
-                                        transition={{ duration: 0.1 }}
+                                        initial={{ opacity: 0, top: 0 }}
+                                        animate={{ opacity: 1, top: 3 }}
+                                        exit={{ opacity: 0, top: 0 }}
+                                        transition={{ duration: 0.15, ease: "easeInOut" }}
                                         className="upload-container"
                                     >
                                         <label className="upload-photo photo-item">
@@ -101,15 +103,15 @@ export const EmployeeCard: FC<IEmployeeCardProps> = ({ employee }) => {
                 <AnimatePresence>
                     {isHovering && (
                         <motion.div
-                            initial={pageAnimation.initial}
-                            animate={pageAnimation.animate}
-                            exit={pageAnimation.exit}
-                            transition={{ duration: 0.1, ease: "easeOut" }}
+                            initial={{ opacity: 0, bottom: 0 }}
+                            animate={{ opacity: 1, bottom: 20 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.15, ease: "easeInOut" }}
                             className="employee-card__details"
                         >
                             {employee.department.division && <DetailsItem title="Подразделение" value={employee.department.division.title} /> }
                             {employee.phone && <DetailsItem title="Контактный телефон" value={employee.phone} />}
-                            {employee.email && <DetailsItem title="Почта" value={employee.email} />}
+                            {(user || employee.email) && <DetailsItem title="Почта" value={employee.email ?? ''} isReadOnly={!user} />}
                         </motion.div>
                     )}
                 </AnimatePresence>

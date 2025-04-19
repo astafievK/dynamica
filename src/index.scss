@@ -247,14 +247,6 @@ html {
         }
     }
 
-    .no-data {
-        font-weight: 700;
-        font-size: 24px;
-        user-select: none;
-        opacity: 0.7;
-        text-align: center;
-    }
-
     h1 {
         font-size: 32px;
         font-weight: 800;
@@ -286,23 +278,29 @@ html {
         animation: shimmer-animation .8s linear infinite;
     }
 
-    .filter-elem {
-        background: transparent;
-        border-radius: 7px;
-        font-weight: 600;
-        font-size: 14px;
-        padding: 8px;
-        flex-shrink: 0;
-        transition: all 200ms;
+    .filters-buttons {
+        display: flex;
+        gap: 2px;
+        overflow: auto;
 
-        &:hover {
-            background-color: var(--item-hover-background);
-        }
+        .filter-elem {
+            background: transparent;
+            border-radius: 7px;
+            font-weight: 600;
+            font-size: 14px;
+            padding: 8px;
+            flex-shrink: 0;
+            transition: all 200ms;
 
-        &.selected {
-            background-color: var(--block-background);
-            box-shadow: var(--block-shadow);
-            color: var(--primary-color);
+            &:hover {
+                background-color: var(--item-hover-background);
+            }
+
+            &.selected {
+                background-color: var(--block-background);
+                box-shadow: var(--block-shadow);
+                color: var(--primary-color);
+            }
         }
     }
 
@@ -362,8 +360,28 @@ html {
         }
     }
 
+    .no-data {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        max-width: 290px;
+        margin: 5vh auto;
+        padding: 20px 10px;
+        background: var(--block-background);
+        box-shadow: var(--block-shadow);
+        border-radius: 10px;
+
+        span {
+            font-weight: 700;
+            font-size: 20px;
+            text-align: center;
+            user-select: none;
+            color: rgba(0, 0, 0, 0.6)
+        }
+    }
+
     body {
-        background: #FFFFFF;
+        background: var(--background-color);
 
         &::-webkit-scrollbar {
             width: 12px;
@@ -524,8 +542,8 @@ html {
                     .header {
                         display: flex;
                         align-items: center;
-                        padding: 10px 20px;
-                        height: 56px;
+                        padding: 9px 12px;
+                        height: 50px;
 
                         .logo {
                             display: flex;
@@ -595,9 +613,9 @@ html {
                                     flex-direction: column;
                                     border-bottom: .6px solid var(--additional-color);
                                     width: 100%;
-                                    padding: 14px 10px;
+                                    padding: 10px 7px;
                                     text-decoration: none;
-                                    font-size: 21px;
+                                    font-size: 18px;
                                     font-family: 'GrtskTera', sans-serif;
                                     color: var(--secondary-color);
 
@@ -617,7 +635,7 @@ html {
                             width: 100%;
                             padding: 30px 10px;
                             text-decoration: none;
-                            font-size: 21px;
+                            font-size: 18px;
                             cursor: pointer;
                             flex-shrink: 0;
                             font-family: 'GrtskTera', sans-serif;
@@ -973,11 +991,11 @@ html {
                     display: flex;
                     flex-direction: column;
                     position: sticky;
-                    padding: 0 20px;
+                    padding: 0 12px;
                     top: 0;
                     left: 0;
                     width: 100%;
-                    height: 56px;
+                    height: 50px;
                     background: var(--secondary-color);
                     z-index: 10;
                     transition: transform 0.3s ease-in-out;
@@ -989,7 +1007,7 @@ html {
                         height: 95px;
                         background: var(--secondary-color);
                         position: absolute;
-                        top: -.7px;
+                        top: -7px;
                         width: 35.75px;
                     }
 
@@ -1010,7 +1028,7 @@ html {
                         width: 100%;
                         height: 100%;
                         justify-content: space-between;
-                        padding: 12px 0;
+                        padding: 9px 0;
                         z-index: 2;
 
                         #logo {
@@ -1080,6 +1098,7 @@ html {
                             }
 
                             .login-btn,
+                            .logout-btn,
                             .notifications-btn {
                                 padding: 0;
                                 aspect-ratio: 1/1;
@@ -1099,12 +1118,12 @@ html {
                             .user-wrapper {
                                 overflow: hidden;
                                 text-decoration: none;
+                                padding-left: 5px;
 
                                 .user-image {
                                     height: 100%;
                                     aspect-ratio: 1/1;
                                     border-radius: 50%;
-                                    background: url("/default.webp") center;
                                     background-size: cover;
                                 }
                             }
@@ -1176,23 +1195,26 @@ html {
                     background: var(--background-color);
 
                     .main-container {
+                        position: relative;
                         display: flex;
                         flex-direction: column;
                         flex-grow: 1;
+                        min-height: calc(100vh - 56px);
 
                         main {
                             position: relative;
                             display: flex;
-                            min-height: 100vh;
                             overflow: unset !important;
                             width: 100%;
                             flex-grow: 1;
                             flex-direction: column;
 
                             .page {
-                                width: 100%;
-                                flex-grow: 1;
+                                display: flex;
                                 flex-direction: column;
+                                flex-grow: 1;
+                                width: 100%;
+                                gap: 10px;
                                 max-width: 1920px;
                                 margin: 0 auto;
                                 padding: 3px;
@@ -1217,7 +1239,7 @@ html {
                                     flex-direction: column;
                                     gap: 5px;
 
-                                    .filters-departments {
+                                    .filters-buttons {
                                         display: flex;
                                         justify-content: center;
                                         flex-wrap: wrap;
@@ -1673,14 +1695,15 @@ html {
 
                                 &.page-profile {
                                     .page-header {
+                                        display: flex !important;
                                         position: relative;
 
-                                        .page-title__name {
-                                            width: 50%;
+                                        .page-title__name,
+                                        .page-title__district{
+                                            width: 100%;
                                         }
 
                                         .page-title__district {
-                                            width: 50%;
                                             opacity: 0.65;
                                             font-size: 14px;
                                         }
@@ -1710,37 +1733,15 @@ html {
                                         flex-direction: column;
                                         width: 100%;
                                         gap: 4px;
-                                        margin-top: 20px;
-
-                                        .widgets-head {
-                                            display: flex;
-                                            flex-direction: column;
-                                            gap: 4px;
-
-                                            .widget-notifications {
-                                                width: 100%;
-                                            }
-
-                                            .right-widgets {
-                                                width: 100%;
-                                                gap: 4px;
-                                                display: flex;
-                                                flex-direction: column;
-                                            }
-                                        }
 
                                         .widget {
                                             display: flex;
                                             flex-direction: column;
-                                            background: #fff;
-                                            max-height: 350px;
-                                            border-radius: 36px;
-                                            border: 1px solid var(--background-color);
-                                            padding: 15px;
+                                            gap: 5px;
 
                                             .widget-header {
                                                 text-decoration: none;
-                                                padding: 5px 0;
+                                                padding: 5px 10px;
                                                 display: flex;
                                                 justify-content: space-between;
                                                 align-items: center;
@@ -1769,25 +1770,52 @@ html {
                                                 }
                                             }
 
-                                            .widget-body {
-                                                overflow: auto;
-                                                margin-top: 15px;
+                                            .widget-filters {
+                                                .filters-buttons {
+                                                    justify-content: flex-start;
+                                                }
                                             }
-                                        }
 
-                                        .action {
-                                            width: 100%;
-                                            padding: 22px 10px;
-                                            border-radius: 20px;
-                                            font-size: 18px;
-                                            font-weight: 700;
-                                            font-style: italic;
-                                            cursor: pointer;
-                                            background-color: rgba(90, 176, 88, 0.35);
-                                            transition: background-color 0.3s ease;
+                                            .widget-body {
+                                                width: 100%;
+                                                display: grid;
+                                                grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+                                                grid-template-rows: 1fr 1fr;
+                                                padding: 5px 10px;
+                                                overflow: auto;
+                                                gap: 5px;
 
-                                            &:hover {
-                                                background-color: rgba(90, 176, 88, 0.6);
+                                                .widget-item {
+                                                    display: flex;
+                                                    width: 100%;
+                                                    aspect-ratio: 2/1;
+                                                    border-radius: 24px;
+                                                    padding: 10px;
+                                                    background: var(--block-background);
+                                                    transition: all 100ms;
+
+                                                    .widget-item-title {
+                                                        width: 100%;
+                                                        text-overflow: ellipsis;
+                                                        text-wrap: nowrap;
+                                                    }
+
+                                                    .widget-item-status {
+                                                        width: auto;
+                                                        padding: 4px;
+                                                        border-radius: 10px;
+                                                        border: 1px solid rgb(0, 100, 0);
+
+                                                        .status-success {
+
+                                                        }
+                                                    }
+
+                                                    &:hover {
+                                                        transform: translateY(-3px);
+                                                        box-shadow: var(--block-shadow);
+                                                    }
+                                                }
                                             }
                                         }
                                     }
@@ -2091,255 +2119,279 @@ html {
                                 }
 
                                 &.page-contacts {
-                                    .employees-container {
-                                        margin: 5px 0 110px 0;
-                                        position: relative;
-                                        padding: 5px;
-                                        width: 100%;
-                                        background: var(--block-background);;
-                                        border-radius: 14px;
-                                        box-shadow: var(--block-shadow);
-                                        grid-template-columns: repeat(1, calc(100% / 1 - 8px / 1 * (1 - 1)));
-                                        gap: 8px;
-                                        display: grid;
+                                    .page-content {
+                                        display: flex;
+                                        flex-direction: column;
+                                        flex-grow: 1;
 
-                                        .employee-card {
+                                        .employees-container {
                                             position: relative;
-                                            border-radius: 10px;
-                                            display: flex;
-                                            flex-direction: column;
+                                            padding: 5px;
                                             width: 100%;
-                                            transition: all 150ms;
+                                            height: 100%;
+                                            background: var(--block-background);
+                                            border-radius: 14px;
+                                            box-shadow: var(--block-shadow);
+                                            grid-template-columns: repeat(1, calc(100% / 1 - 8px / 1 * (1 - 1)));
+                                            gap: 8px;
+                                            display: grid;
 
-                                            .employee-card__preview {
-                                                display: flex;
+                                            .employee-card {
                                                 position: relative;
                                                 border-radius: 10px;
-                                                height: 100%;
-                                                padding: 5px 10px;
-                                                align-items: center;
-                                                gap: 20px;
-                                                z-index: 5;
-                                                transition: background 100ms;
+                                                display: flex;
+                                                flex-direction: column;
+                                                width: 100%;
+                                                transition: all 150ms;
 
-                                                .employee-card__photo {
+                                                .employee-card__preview {
+                                                    display: flex;
                                                     position: relative;
-                                                    height: 90px;
-                                                    aspect-ratio: 1/1;
-                                                    background-size: cover;
-                                                    background-position: top;
-                                                    border-radius: 50%;
-                                                    transition: all 50ms;
+                                                    border-radius: 10px;
+                                                    height: 100%;
+                                                    padding: 5px 10px;
+                                                    align-items: center;
+                                                    gap: 20px;
+                                                    z-index: 5;
+                                                    transition: all 100ms;
 
-                                                    .upload-container {
-                                                        display: flex;
-                                                        gap: 3px;
-                                                        position: absolute;
-                                                        left: 50%;
-                                                        transform: translateX(-50%);
+                                                    .employee-card__photo {
+                                                        position: relative;
+                                                        height: 90px;
+                                                        aspect-ratio: 1/1;
+                                                        background-size: cover;
+                                                        background-position: top;
+                                                        border-radius: 50%;
+                                                        transition: all 50ms;
 
-                                                        .photo-item {
+                                                        .upload-container {
                                                             display: flex;
-                                                            align-items: center;
-                                                            justify-content: center;
-                                                            background: rgba(12, 23, 41, 0.6);
-                                                            backdrop-filter: blur(10px);
-                                                            border-radius: 7px;
-                                                            font-weight: 600;
-                                                            height: 30px;
-                                                            overflow: hidden;
-                                                            padding: 5px;
-                                                            font-size: 14px;
-                                                            text-align: center;
-                                                            cursor: pointer;
-                                                            color: var(--background-color);
-                                                            transition: all 150ms;
+                                                            gap: 3px;
+                                                            position: absolute;
+                                                            left: 50%;
+                                                            transform: translateX(-50%);
 
-                                                            svg {
-                                                                fill: var(--background-color);
-                                                            }
+                                                            .photo-item {
+                                                                display: flex;
+                                                                align-items: center;
+                                                                justify-content: center;
+                                                                background: rgba(12, 23, 41, 0.6);
+                                                                backdrop-filter: blur(10px);
+                                                                border-radius: 7px;
+                                                                font-weight: 600;
+                                                                height: 25px;
+                                                                overflow: hidden;
+                                                                padding: 5px;
+                                                                font-size: 12px;
+                                                                text-align: center;
+                                                                cursor: pointer;
+                                                                color: var(--background-color);
+                                                                transition: all 150ms;
 
-                                                            &:hover {
-                                                                background: var(--secondary-color);
-                                                            }
-                                                        }
-
-                                                        .upload-photo {
-                                                            input {
-                                                                display: none;
-                                                            }
-                                                        }
-
-                                                        .delete-photo {
-                                                            aspect-ratio: 1/1;
-
-                                                            &:hover {
                                                                 svg {
-                                                                    fill: rgba(255, 0, 0, 0.8);
+                                                                    fill: var(--background-color);
+                                                                }
+
+                                                                &:hover {
+                                                                    background: var(--secondary-color);
+                                                                }
+                                                            }
+
+                                                            .upload-photo {
+                                                                input {
+                                                                    display: none;
+                                                                }
+                                                            }
+
+                                                            .delete-photo {
+                                                                aspect-ratio: 1/1;
+
+                                                                &:hover {
+                                                                    svg {
+                                                                        fill: rgba(255, 0, 0, 0.8);
+                                                                    }
                                                                 }
                                                             }
                                                         }
+                                                    }
+
+                                                    .employee-card__general {
+                                                        display: flex;
+                                                        justify-content: center;
+                                                        flex-direction: column;
+                                                        gap: 10px;
+
+                                                        .employee-card__name {
+                                                            display: flex;
+                                                            justify-content: center;
+                                                            flex-direction: column;
+                                                            font-weight: 600;
+                                                            line-height: 1.1;
+                                                            font-size: 16px;
+                                                        }
+
+                                                        .employee-card__position {
+                                                            display: flex;
+                                                            align-items: center;
+                                                            font-size: 13px;
+                                                            line-height: 1;
+                                                            opacity: 0.7;
+                                                        }
+                                                    }
+                                                }
+
+                                                .employee-card__details {
+                                                    position: absolute;
+                                                    width: 95%;
+                                                    display: flex;
+                                                    flex-direction: column;
+                                                    padding: 3px;
+                                                    background: var(--background-color);
+                                                    border-radius: 10px;
+                                                    backdrop-filter: blur(8px);
+                                                    gap: 3px;
+                                                    bottom: 0;
+                                                    left: 50%;
+                                                    right: 0;
+                                                    transform: translate(-50%, 100%);
+                                                    z-index: 6;
+                                                    transition: background 100ms;
+
+                                                    .details-item {
+                                                        display: flex;
+                                                        flex-direction: column;
+                                                        width: 100%;
+                                                        padding: 3px 8px;
+                                                        border-radius: 7px;
+                                                        cursor: pointer;
+                                                        transition: background 100ms;
+
+                                                        .details-title {
+                                                            display: flex;
+                                                            align-items: center;
+                                                            user-select: none;
+                                                            gap: 5px;
+
+                                                            span,
+                                                            svg {
+                                                                font-weight: 600;
+                                                                color: rgba(0, 0, 0, 0.5);
+                                                                fill: rgba(0, 0, 0, 0.5);
+                                                                font-size: 12px;
+                                                            }
+                                                        }
+
+                                                        .detail {
+                                                            font-size: 14px;
+                                                        }
+
+                                                        input[type=text].detail {
+                                                            border-radius: 7px;
+                                                            border: 1px solid var(--background-color);
+                                                            padding: 2px 5px;
+                                                        }
+
+                                                        &:hover {
+                                                            background: var(--block-background);
+                                                            box-shadow: var(--block-shadow);
+                                                        }
+                                                    }
+                                                }
+
+                                                &:hover {
+                                                    .employee-card__preview {
+                                                        box-shadow: var(--block-shadow);
+
+                                                        .employee-card__photo {
+                                                            border-radius: 10px;
+                                                        }
+                                                    }
+                                                }
+                                            }
+
+                                            .employee-card-skeleton {
+                                                display: flex;
+                                                border-radius: 10px;
+                                                padding: 5px 10px;
+                                                width: 100%;
+                                                gap: 20px;
+
+                                                .employee-image {
+                                                    height: 90px;
+                                                    aspect-ratio: 1/1;
+                                                    border-radius: 50%;
+                                                    overflow: hidden;
+
+                                                    span {
+                                                        aspect-ratio: 1/1;
+                                                        height: 100%;
+                                                        border-radius: 50%;
                                                     }
                                                 }
 
                                                 .employee-card__general {
                                                     display: flex;
                                                     justify-content: center;
-                                                    flex-direction: column;
+                                                    flex: 1;
                                                     gap: 10px;
+                                                    flex-direction: column;
 
                                                     .employee-card__name {
-                                                        display: flex;
-                                                        justify-content: center;
-                                                        flex-direction: column;
-                                                        font-weight: 600;
-                                                        line-height: 1.1;
-                                                        font-size: 16px;
+                                                        width: 100%;
+
+                                                        .employee-lastname,
+                                                        .employee-firstname,
+                                                        .employee-middlename {
+                                                            span {
+                                                                height: 16px;
+                                                            }
+                                                        }
                                                     }
 
-                                                    .employee-card__position {
-                                                        display: flex;
-                                                        align-items: center;
-                                                        font-size: 13px;
-                                                        line-height: 1;
-                                                        opacity: 0.7;
-                                                    }
-                                                }
-                                            }
+                                                    .employee-position {
+                                                        width: 100%;
 
-                                            .employee-card__details {
-                                                position: absolute;
-                                                display: flex;
-                                                flex-direction: column;
-                                                padding: 0 5px 5px 5px;
-                                                border-radius: 0 0 10px 10px;
-                                                background: linear-gradient(white, rgba(0, 255, 0, 0.11)) ;
-                                                backdrop-filter: blur(5px);
-                                                gap: 3px;
-                                                bottom: 0;
-                                                left: 0;
-                                                right: 0;
-                                                transform: translateY(100%);
-                                                z-index: 6;
-                                                transition: background 100ms;
-
-                                                .details-item {
-                                                    display: flex;
-                                                    flex-direction: column;
-                                                    width: 100%;
-                                                    padding: 3px 8px;
-                                                    border-radius: 7px;
-                                                    cursor: pointer;
-                                                    user-select: none;
-                                                    transition: background 100ms;
-
-                                                    .details-title {
-                                                        font-weight: 600;
-                                                        color: rgba(0, 0, 0, 0.5);
-                                                        font-size: 12px;
-                                                    }
-
-                                                    .detail {
-                                                        font-size: 14px;
-                                                    }
-
-                                                    &:hover {
-                                                        background: rgba(#5AB058, 0.17);
-                                                    }
-
-                                                    &:active {
-                                                        background: rgba(#5AB058, 0.3);
-                                                    }
-                                                }
-                                            }
-
-                                            &:hover {
-                                                .employee-card__preview {
-                                                    border-radius: 10px 10px 0 0;
-
-                                                    .employee-card__photo {
-                                                        border-radius: 10px;
-                                                    }
-                                                }
-                                            }
-                                        }
-
-                                        .employee-card-skeleton {
-                                            display: flex;
-                                            border-radius: 10px;
-                                            padding: 5px 10px;
-                                            width: 100%;
-                                            gap: 20px;
-
-                                            .employee-image {
-                                                height: 90px;
-                                                aspect-ratio: 1/1;
-                                                border-radius: 50%;
-                                                overflow: hidden;
-
-                                                span {
-                                                    aspect-ratio: 1/1;
-                                                    height: 100%;
-                                                    border-radius: 50%;
-                                                }
-                                            }
-
-                                            .employee-card__general {
-                                                display: flex;
-                                                justify-content: center;
-                                                flex: 1;
-                                                gap: 10px;
-                                                flex-direction: column;
-
-                                                .employee-card__name {
-                                                    width: 100%;
-
-                                                    .employee-lastname,
-                                                    .employee-firstname,
-                                                    .employee-middlename {
                                                         span {
-                                                            height: 16px;
+                                                            height: 14px;
                                                         }
                                                     }
                                                 }
-
-                                                .employee-position {
-                                                    width: 100%;
-
-                                                    span {
-                                                        height: 14px;
-                                                    }
-                                                }
                                             }
                                         }
-                                    }
 
-                                    .pagination-container {
-                                        display: flex;
-                                        justify-content: center;
-                                        align-items: center;
-
-                                        .pagination {
+                                        .pagination-container {
                                             display: flex;
-                                            flex-direction: row;
-                                            margin: 0 auto;
-                                            gap: 5px;
+                                            justify-content: center;
+                                            align-items: center;
+                                            position: sticky;
+                                            bottom: 0;
+                                            padding: 5px 0;
+                                            background: rgba(255, 255, 255, 0.7);
+                                            backdrop-filter: blur(10px);
+                                            z-index: 10;
 
-                                            button {
-                                                font-size: 18px;
-                                                font-weight: 600;
-                                                padding: 12px 16px;
-                                                border-radius: 10px;
-                                                transition: all 200ms;
+                                            .pagination {
+                                                display: flex;
+                                                flex-direction: row;
+                                                margin: 0 auto;
+                                                gap: 5px;
 
-                                                &.active,
-                                                &:hover:not(:disabled) {
-                                                    background: rgba(90, 176, 88, 0.35);
-                                                }
+                                                button {
+                                                    font-size: 18px;
+                                                    font-weight: 600;
+                                                    padding: 12px 16px;
+                                                    border-radius: 10px;
+                                                    transition: all 200ms;
 
-                                                &:disabled {
-                                                    opacity: 0.5;
-                                                    cursor: not-allowed;
+                                                    &.active,
+                                                    &:hover:not(:disabled) {
+                                                        background: rgba(90, 176, 88, 0.35);
+                                                    }
+
+                                                    &:disabled {
+                                                        opacity: 0.5;
+                                                        cursor: not-allowed;
+                                                    }
                                                 }
                                             }
                                         }
@@ -2825,7 +2877,7 @@ html {
                                             font-size: 10px;
                                             text-decoration: none;
                                             text-wrap: nowrap;
-                                            border-bottom: 1px solid rgba(255, 255, 255, 0.5);;
+                                            border-bottom: 1px solid rgba(255, 255, 255, 0.5);
                                             font-weight: 400;
                                         }
 
@@ -2882,8 +2934,19 @@ html {
     }
 
     @media (min-width: 768px) {
-        .filter-elem {
-            font-size: 14px;
+        .filters-buttons {
+            .filter-elem {
+                font-size: 14px;
+            }
+        }
+
+        .no-data {
+            max-width: 450px;
+            padding: 20px;
+
+            span {
+                font-size: 20px;
+            }
         }
 
         body {
@@ -2949,21 +3012,6 @@ html {
                                 }
                             }
                         }
-
-                        &.modal-notification {
-                            max-width: 580px;
-                            max-height: 650px;
-                            bottom: 10%;
-                            left: 10%;
-
-                            .modal-notification__title {
-
-                            }
-
-                            .modal-notification__description {
-
-                             }
-                        }
                     }
                 }
 
@@ -3019,6 +3067,8 @@ html {
 
                     .layout-content {
                         .main-container {
+                            min-height: calc(100vh - 70px);
+
                             main {
                                 .page {
                                     .page-header {
@@ -3221,93 +3271,71 @@ html {
 
                                         .widgets {
                                             gap: 8px;
-                                            margin-top: 30px;
-
-                                            .widgets-head {
-                                                gap: 8px;
-
-                                                .right-widgets {
-                                                    gap: 8px;
-                                                }
-                                            }
-
-                                            .widget {
-                                                padding: 12px;
-
-                                                .widget-header {
-                                                    .widget-title {
-                                                        font-size: 24px;
-                                                    }
-                                                }
-
-                                                .widget-body {
-                                                    margin-top: 12px;
-                                                }
-                                            }
-
-                                            .action {
-                                                font-size: 24px;
-                                            }
                                         }
                                     }
 
                                     &.page-contacts {
-                                        .employees-container {
-                                            grid-template-columns: repeat(2, calc(100% / 2 - 8px / 2 * (2 - 1)));
+                                        .page-content {
+                                            .employees-container {
+                                                grid-template-columns: repeat(2, calc(100% / 2 - 8px / 2 * (2 - 1)));
 
-                                            .employee-card {
-                                                .employee-card__preview {
+                                                .employee-card {
+                                                    .employee-card__preview {
+                                                        padding: 10px;
+
+                                                        .employee-card__photo {
+                                                            height: 100px;
+                                                        }
+
+                                                        .employee-card__general {
+                                                            .employee-card__name {
+                                                                font-size: 18px;
+                                                            }
+
+                                                            .employee-card__position {
+                                                                font-size: 16px;
+                                                            }
+                                                        }
+                                                    }
+
+                                                    .employee-card__details {
+                                                        .details-item {
+                                                            .details-title {
+                                                                span,
+                                                                svg {
+                                                                    font-size: 12px;
+                                                                }
+                                                            }
+
+                                                            .detail {
+                                                                font-size: 14px;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+
+                                                .employee-card-skeleton {
                                                     padding: 10px;
 
-                                                    .employee-card__photo {
+                                                    .employee-image {
                                                         height: 100px;
                                                     }
 
                                                     .employee-card__general {
                                                         .employee-card__name {
-                                                            font-size: 18px;
-                                                        }
-
-                                                        .employee-card__position {
-                                                            font-size: 16px;
-                                                        }
-                                                    }
-                                                }
-
-                                                .employee-card__details {
-                                                    .details-item {
-                                                        .details-title {
-                                                            font-size: 12px;
-                                                        }
-
-                                                        .detail {
-                                                            font-size: 14px;
-                                                        }
-                                                    }
-                                                }
-                                            }
-
-                                            .employee-card-skeleton {
-                                                padding: 10px;
-
-                                                .employee-image {
-                                                    height: 100px;
-                                                }
-
-                                                .employee-card__general {
-                                                    .employee-card__name {
-                                                        .employee-lastname,
-                                                        .employee-firstname,
-                                                        .employee-middlename {
-                                                            span {
-                                                                height: 20px;
+                                                            .employee-lastname,
+                                                            .employee-firstname,
+                                                            .employee-middlename {
+                                                                span {
+                                                                    height: 20px;
+                                                                }
                                                             }
                                                         }
-                                                    }
 
-                                                    .employee-position {
-                                                        span {
-                                                            height: 16px;
+                                                        .employee-position {
+                                                            span {
+                                                                height: 16px;
+                                                            }
                                                         }
                                                     }
                                                 }
@@ -3504,8 +3532,10 @@ html {
     }
 
     @media (min-width: 1024px) {
-        .filter-elem {
-            font-size: 16px;
+        .filters-buttons {
+            gap: 5px;
+            justify-content: center;
+            flex-wrap: wrap;
         }
 
         .styled {
@@ -3612,6 +3642,12 @@ html {
                         .left-menu-item {
                             padding: 6px;
                             font-size: 14px;
+                            gap: 5px;
+
+                            svg {
+                                height: 20px;
+                                width: 20px;
+                            }
                         }
                     }
 
@@ -3619,12 +3655,13 @@ html {
                         margin-left: 170px;
 
                         .main-container {
-                            min-height: unset;
                             background: transparent;
+                            min-height: calc(100vh - 50px);
 
                             main {
                                 .page {
-                                    padding: 0 5px;
+                                    border-radius: 32px;
+                                    padding: 0 5px 10px 5px;
 
                                     .page-header {
                                         .page-title {
@@ -3633,11 +3670,8 @@ html {
                                     }
 
                                     .page-filters {
-                                        .filters-departments {
+                                        .filters-buttons {
                                             padding-top: 10px;
-                                            justify-content: center;
-                                            gap: 5px;
-                                            flex-wrap: wrap;
                                         }
 
                                         .filters-select {
@@ -3876,94 +3910,66 @@ html {
                                         }
 
                                         .widgets {
-                                            margin-top: 30px;
 
-                                            .widgets-head {
-                                                align-items: stretch;
-                                                flex-direction: row;
-
-                                                .widget-notifications {
-                                                    max-height: none;
-                                                    width: 40%;
-                                                }
-
-                                                .right-widgets {
-                                                    width: 60%;
-                                                }
-                                            }
-
-                                            .widget {
-                                                padding: 12px;
-                                                max-height: 480px;
-
-                                                .widget-header {
-                                                    .widget-title {
-                                                        font-size: 24px;
-                                                    }
-                                                }
-
-                                                .widget-body {
-                                                    margin-top: 18px;
-                                                }
-                                            }
-
-                                            .action {
-                                                font-size: 24px;
-                                            }
                                         }
                                     }
 
                                     &.page-contacts {
-                                        .employees-container {
-                                            grid-template-columns: repeat(3, calc(100% / 3 - 8px / 3 * (3 - 1)));
+                                        .page-content {
+                                            .employees-container {
+                                                grid-template-columns: repeat(3, calc(100% / 3 - 8px / 3 * (3 - 1)));
 
-                                            .employee-card {
-                                                .employee-card__preview {
-                                                    padding: 5px;
+                                                .employee-card {
+                                                    .employee-card__preview {
+                                                        padding: 5px;
 
-                                                    .employee-card__photo {
-                                                        height: 100px;
+                                                        .employee-card__photo {
+                                                            height: 100px;
+                                                        }
+
+
+                                                        .employee-card__general {
+                                                            .employee-card__name {
+                                                                font-size: 18px;
+                                                            }
+
+                                                            .employee-card__position {
+                                                                font-size: 14px;
+                                                            }
+                                                        }
                                                     }
 
+                                                    .employee-card__details {
+                                                        .details-item {
+                                                            .details-title {
+                                                                span,
+                                                                svg {
+                                                                    font-size: 14px;
+                                                                }
+                                                            }
+
+                                                            .detail {
+                                                                font-size: 16px;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+
+                                                .employee-card-skeleton {
+                                                    padding: 15px;
+
+                                                    .employee-image {
+                                                        height: 115px;
+                                                    }
 
                                                     .employee-card__general {
                                                         .employee-card__name {
-                                                            font-size: 18px;
-                                                        }
-
-                                                        .employee-card__position {
-                                                            font-size: 14px;
-                                                        }
-                                                    }
-                                                }
-
-                                                .employee-card__details {
-                                                    .details-item {
-                                                        .details-title {
-                                                            font-size: 14px;
-                                                        }
-
-                                                        .detail {
-                                                            font-size: 16px;
-                                                        }
-                                                    }
-                                                }
-                                            }
-
-                                            .employee-card-skeleton {
-                                                padding: 15px;
-
-                                                .employee-image {
-                                                    height: 115px;
-                                                }
-
-                                                .employee-card__general {
-                                                    .employee-card__name {
-                                                        .employee-lastname,
-                                                        .employee-firstname,
-                                                        .employee-middlename {
-                                                            span {
-                                                                height: 22px;
+                                                            .employee-lastname,
+                                                            .employee-firstname,
+                                                            .employee-middlename {
+                                                                span {
+                                                                    height: 22px;
+                                                                }
                                                             }
                                                         }
                                                     }
@@ -4113,10 +4119,6 @@ html {
                                         .page-actions {
                                             margin-top: 25px;
 
-                                            .page-filters {
-
-                                            }
-
                                             .create {
                                                 padding: 15px;
                                                 font-size: 22px;
@@ -4216,6 +4218,12 @@ html {
     }
 
     @media (min-width: 1440px) {
+        .filters-buttons {
+            .filter-elem {
+                font-size: 16px;
+            }
+        }
+
         body {
             #dynamica {
                 .layout {
@@ -4256,6 +4264,12 @@ html {
                         .left-menu-item {
                             font-size: 18px;
                             padding: 10px;
+                            gap: 10px;
+
+                            svg {
+                                height: 25px;
+                                width: 25px;
+                            }
                         }
 
                         .general-navigation {
@@ -4271,12 +4285,18 @@ html {
                         margin-left: 240px;
 
                         .main-container {
+                            min-height: calc(100vh - 65px);
+
                             main {
                                 .page {
                                     .page-header {
                                         .page-title {
                                             font-size: 34px;
                                         }
+                                    }
+
+                                    .page-filters {
+
                                     }
 
                                     &.page-landing {
@@ -4478,106 +4498,69 @@ html {
                                         }
 
                                         .widgets {
-                                            margin-top: 50px;
 
-                                            .widgets-head {
-                                                flex-direction: row;
-
-                                                .right-widgets {
-                                                }
-                                            }
-
-                                            .widget {
-                                                padding: 17px;
-
-                                                .widget-header {
-                                                    .widget-title {
-                                                        font-size: 26px;
-                                                    }
-                                                }
-
-                                                .widget-body {
-                                                    margin-top: 25px;
-                                                }
-                                            }
-
-                                            .action {
-                                                font-size: 26px;
-                                            }
                                         }
                                     }
 
                                     &.page-contacts {
-                                        .filters-container {
-                                            .filters-select {
-                                                .custom-dropdown {
-                                                    .custom-dropdown__toggle {
-                                                        height: 100%;
+                                        .page-content {
+                                            .employees-container {
+                                                grid-template-columns: repeat(4, calc(100% / 4 - 8px / 4 * (4 - 1)));
+                                                padding: 10px;
+
+                                                .employee-card {
+                                                    .employee-card__preview {
+                                                        .employee-card__photo {
+                                                            height: 120px;
+                                                        }
+
+                                                        .employee-card__general {
+                                                            .employee-card__name {
+                                                                font-size: 20px;
+                                                            }
+
+                                                            .employee-card__position {
+                                                                font-size: 16px;
+                                                            }
+                                                        }
+                                                    }
+
+                                                    .employee-card__details {
+                                                        .details-item {
+                                                            .details-title {
+                                                                span,
+                                                                svg {
+                                                                    font-size: 16px;
+                                                                }
+                                                            }
+
+                                                            .detail {
+                                                                font-size: 18px;
+                                                            }
+                                                        }
                                                     }
                                                 }
-                                            }
 
-                                            .filters-search {
-                                                .filters-search__text {
-                                                    font-size: 24px;
-                                                    padding: 22px 25px;
-                                                }
-                                            }
-                                        }
-
-                                        .employees-container {
-                                            grid-template-columns: repeat(4, calc(100% / 4 - 8px / 4 * (4 - 1)));
-                                            padding: 10px;
-
-                                            .employee-card {
-                                                .employee-card__preview {
-                                                    .employee-card__photo {
+                                                .employee-card-skeleton {
+                                                    .employee-image {
                                                         height: 120px;
                                                     }
 
                                                     .employee-card__general {
                                                         .employee-card__name {
-                                                            font-size: 20px;
-                                                        }
-
-                                                        .employee-card__position {
-                                                            font-size: 16px;
-                                                        }
-                                                    }
-                                                }
-
-                                                .employee-card__details {
-                                                    .details-item {
-                                                        .details-title {
-                                                            font-size: 16px;
-                                                        }
-
-                                                        .detail {
-                                                            font-size: 18px;
-                                                        }
-                                                    }
-                                                }
-                                            }
-
-                                            .employee-card-skeleton {
-                                                .employee-image {
-                                                    height: 120px;
-                                                }
-
-                                                .employee-card__general {
-                                                    .employee-card__name {
-                                                        .employee-lastname,
-                                                        .employee-firstname,
-                                                        .employee-middlename {
-                                                            span {
-                                                                height: 22px;
+                                                            .employee-lastname,
+                                                            .employee-firstname,
+                                                            .employee-middlename {
+                                                                span {
+                                                                    height: 22px;
+                                                                }
                                                             }
                                                         }
-                                                    }
 
-                                                    .employee-position {
-                                                        span {
-                                                            height: 16px;
+                                                        .employee-position {
+                                                            span {
+                                                                height: 16px;
+                                                            }
                                                         }
                                                     }
                                                 }

@@ -1,7 +1,7 @@
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { FC } from "react";
-import {pageAnimation} from "../../constants/motionSettins.ts";
+import {pageAnimation} from "../../constants/motionSettings.ts";
 import { motion } from "framer-motion";
 
 export const EmployeeCardSkeleton: FC = () => {

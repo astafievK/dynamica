@@ -79,7 +79,7 @@ export const MobileMenu: FC = () => {
                                 <li key="/profile" className="nav-item nav-item-profile">
                                     <NavLink to="/profile" className={({ isActive }) => (isActive ? "active-nav-item" : "")} onClick={handleClose}>
                                         Профиль
-                                        <span className="username">{user.first_name} {user.last_name}</span>
+                                        <span className="username">{user.name} {user.surname}</span>
                                     </NavLink>
                                 </li>
                             )}

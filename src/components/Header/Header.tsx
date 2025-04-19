@@ -8,9 +8,11 @@ import {AnimatePresence, motion} from "framer-motion";
 import {PAGE_TITLES} from "../../constants/routes.ts";
 import { MdNotificationsNone, MdNoteAdd } from "react-icons/md";
 import LoginRoundedIcon from '@mui/icons-material/LoginRounded';
+import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
+import {logout} from "../../api/slices/authSlice.ts";
 
 export const Header: FC = () => {
-    const { user } = useTypedSelector((state) => state.auth);
+    const {user} = useTypedSelector((state) => state.auth);
     const dispatch = useAppDispatch();
     const location = useLocation();
     const currentTitle = PAGE_TITLES[location.pathname] || "Неизвестная страница";
@@ -31,10 +33,10 @@ export const Header: FC = () => {
                     <AnimatePresence mode="wait">
                         <motion.div
                             key={location.pathname}
-                            initial={{ opacity: 0, y: -10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: 10 }}
-                            transition={{ duration: 0.17, ease: "easeInOut" }}
+                            initial={{opacity: 0, y: -10}}
+                            animate={{opacity: 1, y: 0}}
+                            exit={{opacity: 0, y: 10}}
+                            transition={{duration: 0.17, ease: "easeInOut"}}
                             className="page-title"
                         >
                             <span>{currentTitle}</span>
@@ -45,19 +47,9 @@ export const Header: FC = () => {
                         {
                             !user &&
                             <>
-                                <Link to={"documents"} className="create-doc header-item">
-                                    <MdNoteAdd size={30} /> <span>Создать / Загрузить договор</span>
-                                </Link>
-                                <button className="notifications-btn header-item" onClick={handleNotificationsClick}>
-                                    <MdNotificationsNone  size={30} />
-                                </button>
-                                <Link to={"profile"} className="user-wrapper header-item">
-                                    <div className="user-image"></div>
-                                    <span>Астафьев Кирилл</span>
-                                </Link>
-
-                                <button className="login-btn header-item" onClick={() => dispatch(setLoginModalOpen(true))}>
-                                    <LoginRoundedIcon fontSize={"large"} />
+                                <button className="login-btn header-item"
+                                        onClick={() => dispatch(setLoginModalOpen(true))}>
+                                    <LoginRoundedIcon fontSize={"large"}/>
                                 </button>
                             </>
                         }
@@ -65,15 +57,20 @@ export const Header: FC = () => {
                             user &&
                             <>
                                 <Link to={"documents"} className="create-doc header-item">
-                                    <MdNoteAdd size={30} /> <span>Создать / Загрузить договор</span>
+                                    <MdNoteAdd size={30}/>
+                                    <span>Создать / Загрузить договор</span>
                                 </Link>
                                 <button className="notifications-btn header-item" onClick={handleNotificationsClick}>
-                                    <MdNotificationsNone  size={30} />
+                                    <MdNotificationsNone size={30}/>
                                 </button>
                                 <Link to={"profile"} className="user-wrapper header-item">
-                                    <div className="user-image"></div>
-                                    <span>{user.first_name} {user.last_name}</span>
+                                    <div className="user-image" style={{ backgroundImage: `url(http://192.168.7.74/files/images/${((user.image && user.image.path) ?? 'default.webp')})` }}></div>
+                                    <span>{user.name} {user.surname}</span>
                                 </Link>
+                                <button className="logout-btn header-item"
+                                        onClick={() => dispatch(logout())}>
+                                    <LogoutRoundedIcon fontSize={"large"}/>
+                                </button>
                             </>
                         }
                     </div>
@@ -88,4 +85,4 @@ export const Header: FC = () => {
             </div>
         </>
     );
-};
+}

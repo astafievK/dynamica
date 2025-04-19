@@ -17,17 +17,17 @@ export const ModalUserNotification: FC<ModalUserNotificationProps> = ({ title, m
         }, 3000);
 
         return () => clearTimeout(timer);
-    }, []);
+    }, [title, message]);
 
     return (
         <AnimatePresence onExitComplete={onClose}>
             {visible && (
                 <motion.div
                     className="modal-notification"
-                    initial={{ x: "-120%", y: "0%", opacity: 0 }}
-                    animate={{ x: "-95%", y: "0%", opacity: 1 }}
-                    exit={{ x: "-120%", y: "0%", opacity: 0 }}
-                    transition={{ duration: 0.28, ease: "easeInOut" }}
+                    initial={{ y: "100%" }}
+                    animate={{ y: "-50px" }}
+                    exit={{ y: "100%" }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
                 >
                     {title && <span className="modal-notification__title">{title}</span>}
                     <span className="modal-notification__description">{message}</span>

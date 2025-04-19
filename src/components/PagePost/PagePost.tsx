@@ -1,5 +1,5 @@
 import { FC, useEffect } from "react";
-import { pageAnimation } from "../../constants/motionSettins.ts";
+import { pageAnimation } from "../../constants/motionSettings.ts";
 import { motion } from "framer-motion";
 import { useGetPostQuery } from "../../api/methods/postApi.ts";
 import { ModalLoading } from "../Modals/ModalLoading/ModalLoading.tsx";

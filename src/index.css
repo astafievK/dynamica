@@ -215,13 +215,6 @@ html table thead tr th {
 html table tbody tr td {
   overflow: hidden;
 }
-html .no-data {
-  font-weight: 700;
-  font-size: 24px;
-  user-select: none;
-  opacity: 0.7;
-  text-align: center;
-}
 html h1 {
   font-size: 32px;
   font-weight: 800;
@@ -248,7 +241,12 @@ html .shimmer {
   background: linear-gradient(to left, transparent, rgba(255, 255, 255, 0.4), transparent);
   animation: shimmer-animation 0.8s linear infinite;
 }
-html .filter-elem {
+html .filters-buttons {
+  display: flex;
+  gap: 2px;
+  overflow: auto;
+}
+html .filters-buttons .filter-elem {
   background: transparent;
   border-radius: 7px;
   font-weight: 600;
@@ -257,10 +255,10 @@ html .filter-elem {
   flex-shrink: 0;
   transition: all 200ms;
 }
-html .filter-elem:hover {
+html .filters-buttons .filter-elem:hover {
   background-color: var(--item-hover-background);
 }
-html .filter-elem.selected {
+html .filters-buttons .filter-elem.selected {
   background-color: var(--block-background);
   box-shadow: var(--block-shadow);
   color: var(--primary-color);
@@ -305,8 +303,26 @@ html .cross svg g path {
 html .cross:hover svg g path {
   stroke: var(--primary-color);
 }
+html .no-data {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 290px;
+  margin: 5vh auto;
+  padding: 20px 10px;
+  background: var(--block-background);
+  box-shadow: var(--block-shadow);
+  border-radius: 10px;
+}
+html .no-data span {
+  font-weight: 700;
+  font-size: 20px;
+  text-align: center;
+  user-select: none;
+  color: rgba(0, 0, 0, 0.6);
+}
 html body {
-  background: #FFFFFF;
+  background: var(--background-color);
 }
 html body::-webkit-scrollbar {
   width: 12px;
@@ -441,8 +457,8 @@ html body #dynamica #mobileMenu .content.hidden {
 html body #dynamica #mobileMenu .content .header {
   display: flex;
   align-items: center;
-  padding: 10px 20px;
-  height: 56px;
+  padding: 9px 12px;
+  height: 50px;
 }
 html body #dynamica #mobileMenu .content .header .logo {
   display: flex;
@@ -506,9 +522,9 @@ html body #dynamica #mobileMenu .content .body nav .nav-item a {
   flex-direction: column;
   border-bottom: 0.6px solid var(--additional-color);
   width: 100%;
-  padding: 14px 10px;
+  padding: 10px 7px;
   text-decoration: none;
-  font-size: 21px;
+  font-size: 18px;
   font-family: "GrtskTera", sans-serif;
   color: var(--secondary-color);
 }
@@ -524,7 +540,7 @@ html body #dynamica #mobileMenu .content .body .login-btn {
   width: 100%;
   padding: 30px 10px;
   text-decoration: none;
-  font-size: 21px;
+  font-size: 18px;
   cursor: pointer;
   flex-shrink: 0;
   font-family: "GrtskTera", sans-serif;
@@ -814,11 +830,11 @@ html body #dynamica .layout .header-wrapper {
   display: flex;
   flex-direction: column;
   position: sticky;
-  padding: 0 20px;
+  padding: 0 12px;
   top: 0;
   left: 0;
   width: 100%;
-  height: 56px;
+  height: 50px;
   background: var(--secondary-color);
   z-index: 10;
   transition: transform 0.3s ease-in-out;
@@ -829,7 +845,7 @@ html body #dynamica .layout .header-wrapper::before, html body #dynamica .layout
   height: 95px;
   background: var(--secondary-color);
   position: absolute;
-  top: -0.7px;
+  top: -7px;
   width: 35.75px;
 }
 html body #dynamica .layout .header-wrapper::before {
@@ -847,7 +863,7 @@ html body #dynamica .layout .header-wrapper header {
   width: 100%;
   height: 100%;
   justify-content: space-between;
-  padding: 12px 0;
+  padding: 9px 0;
   z-index: 2;
 }
 html body #dynamica .layout .header-wrapper header #logo img {
@@ -905,6 +921,7 @@ html body #dynamica .layout .header-wrapper header .profile-container .header-it
   background-color: var(--item-active-background);
 }
 html body #dynamica .layout .header-wrapper header .profile-container .login-btn,
+html body #dynamica .layout .header-wrapper header .profile-container .logout-btn,
 html body #dynamica .layout .header-wrapper header .profile-container .notifications-btn {
   padding: 0;
   aspect-ratio: 1/1;
@@ -920,12 +937,12 @@ html body #dynamica .layout .header-wrapper header .profile-container .login-btn
 html body #dynamica .layout .header-wrapper header .profile-container .user-wrapper {
   overflow: hidden;
   text-decoration: none;
+  padding-left: 5px;
 }
 html body #dynamica .layout .header-wrapper header .profile-container .user-wrapper .user-image {
   height: 100%;
   aspect-ratio: 1/1;
   border-radius: 50%;
-  background: url("/default.webp") center;
   background-size: cover;
 }
 html body #dynamica .layout .header-wrapper header #burger {
@@ -985,23 +1002,26 @@ html body #dynamica .layout .layout-content {
   background: var(--background-color);
 }
 html body #dynamica .layout .layout-content .main-container {
+  position: relative;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  min-height: calc(100vh - 56px);
 }
 html body #dynamica .layout .layout-content .main-container main {
   position: relative;
   display: flex;
-  min-height: 100vh;
   overflow: unset !important;
   width: 100%;
   flex-grow: 1;
   flex-direction: column;
 }
 html body #dynamica .layout .layout-content .main-container main .page {
-  width: 100%;
-  flex-grow: 1;
+  display: flex;
   flex-direction: column;
+  flex-grow: 1;
+  width: 100%;
+  gap: 10px;
   max-width: 1920px;
   margin: 0 auto;
   padding: 3px;
@@ -1024,12 +1044,12 @@ html body #dynamica .layout .layout-content .main-container main .page .page-fil
   flex-direction: column;
   gap: 5px;
 }
-html body #dynamica .layout .layout-content .main-container main .page .page-filters .filters-departments {
+html body #dynamica .layout .layout-content .main-container main .page .page-filters .filters-buttons {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
 }
-html body #dynamica .layout .layout-content .main-container main .page .page-filters .filters-departments .department-skeleton {
+html body #dynamica .layout .layout-content .main-container main .page .page-filters .filters-buttons .department-skeleton {
   width: 100px;
   border-radius: 10px;
   height: 35px;
@@ -1394,13 +1414,14 @@ html body #dynamica .layout .layout-content .main-container main .page.page-feed
   opacity: 0.7;
 }
 html body #dynamica .layout .layout-content .main-container main .page.page-profile .page-header {
+  display: flex !important;
   position: relative;
 }
-html body #dynamica .layout .layout-content .main-container main .page.page-profile .page-header .page-title__name {
-  width: 50%;
+html body #dynamica .layout .layout-content .main-container main .page.page-profile .page-header .page-title__name,
+html body #dynamica .layout .layout-content .main-container main .page.page-profile .page-header .page-title__district {
+  width: 100%;
 }
 html body #dynamica .layout .layout-content .main-container main .page.page-profile .page-header .page-title__district {
-  width: 50%;
   opacity: 0.65;
   font-size: 14px;
 }
@@ -1426,34 +1447,15 @@ html body #dynamica .layout .layout-content .main-container main .page.page-prof
   flex-direction: column;
   width: 100%;
   gap: 4px;
-  margin-top: 20px;
-}
-html body #dynamica .layout .layout-content .main-container main .page.page-profile .widgets .widgets-head {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-html body #dynamica .layout .layout-content .main-container main .page.page-profile .widgets .widgets-head .widget-notifications {
-  width: 100%;
-}
-html body #dynamica .layout .layout-content .main-container main .page.page-profile .widgets .widgets-head .right-widgets {
-  width: 100%;
-  gap: 4px;
-  display: flex;
-  flex-direction: column;
 }
 html body #dynamica .layout .layout-content .main-container main .page.page-profile .widgets .widget {
   display: flex;
   flex-direction: column;
-  background: #fff;
-  max-height: 350px;
-  border-radius: 36px;
-  border: 1px solid var(--background-color);
-  padding: 15px;
+  gap: 5px;
 }
 html body #dynamica .layout .layout-content .main-container main .page.page-profile .widgets .widget .widget-header {
   text-decoration: none;
-  padding: 5px 0;
+  padding: 5px 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -1476,23 +1478,41 @@ html body #dynamica .layout .layout-content .main-container main .page.page-prof
 html body #dynamica .layout .layout-content .main-container main .page.page-profile .widgets .widget .widget-header:hover .arrow {
   margin-right: 0;
 }
+html body #dynamica .layout .layout-content .main-container main .page.page-profile .widgets .widget .widget-filters .filters-buttons {
+  justify-content: flex-start;
+}
 html body #dynamica .layout .layout-content .main-container main .page.page-profile .widgets .widget .widget-body {
-  overflow: auto;
-  margin-top: 15px;
-}
-html body #dynamica .layout .layout-content .main-container main .page.page-profile .widgets .action {
   width: 100%;
-  padding: 22px 10px;
-  border-radius: 20px;
-  font-size: 18px;
-  font-weight: 700;
-  font-style: italic;
-  cursor: pointer;
-  background-color: rgba(90, 176, 88, 0.35);
-  transition: background-color 0.3s ease;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  padding: 5px 10px;
+  overflow: auto;
+  gap: 5px;
 }
-html body #dynamica .layout .layout-content .main-container main .page.page-profile .widgets .action:hover {
-  background-color: rgba(90, 176, 88, 0.6);
+html body #dynamica .layout .layout-content .main-container main .page.page-profile .widgets .widget .widget-body .widget-item {
+  display: flex;
+  width: 100%;
+  aspect-ratio: 2/1;
+  border-radius: 24px;
+  padding: 10px;
+  background: var(--block-background);
+  transition: all 100ms;
+}
+html body #dynamica .layout .layout-content .main-container main .page.page-profile .widgets .widget .widget-body .widget-item .widget-item-title {
+  width: 100%;
+  text-overflow: ellipsis;
+  text-wrap: nowrap;
+}
+html body #dynamica .layout .layout-content .main-container main .page.page-profile .widgets .widget .widget-body .widget-item .widget-item-status {
+  width: auto;
+  padding: 4px;
+  border-radius: 10px;
+  border: 1px solid rgb(0, 100, 0);
+}
+html body #dynamica .layout .layout-content .main-container main .page.page-profile .widgets .widget .widget-body .widget-item:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--block-shadow);
 }
 html body #dynamica .layout .layout-content .main-container main .page.page-admin .page-admin__filters {
   display: flex;
@@ -1732,11 +1752,16 @@ html body #dynamica .layout .layout-content .main-container main .page.page-admi
 html body #dynamica .layout .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association-skeleton .skeleton-action span {
   height: 100%;
 }
-html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container {
-  margin: 5px 0 110px 0;
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container {
   position: relative;
   padding: 5px;
   width: 100%;
+  height: 100%;
   background: var(--block-background);
   border-radius: 14px;
   box-shadow: var(--block-shadow);
@@ -1744,7 +1769,7 @@ html body #dynamica .layout .layout-content .main-container main .page.page-cont
   gap: 8px;
   display: grid;
 }
-html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card {
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card {
   position: relative;
   border-radius: 10px;
   display: flex;
@@ -1752,7 +1777,7 @@ html body #dynamica .layout .layout-content .main-container main .page.page-cont
   width: 100%;
   transition: all 150ms;
 }
-html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card .employee-card__preview {
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__preview {
   display: flex;
   position: relative;
   border-radius: 10px;
@@ -1761,9 +1786,9 @@ html body #dynamica .layout .layout-content .main-container main .page.page-cont
   align-items: center;
   gap: 20px;
   z-index: 5;
-  transition: background 100ms;
+  transition: all 100ms;
 }
-html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card .employee-card__preview .employee-card__photo {
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__preview .employee-card__photo {
   position: relative;
   height: 90px;
   aspect-ratio: 1/1;
@@ -1772,14 +1797,14 @@ html body #dynamica .layout .layout-content .main-container main .page.page-cont
   border-radius: 50%;
   transition: all 50ms;
 }
-html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card .employee-card__preview .employee-card__photo .upload-container {
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__preview .employee-card__photo .upload-container {
   display: flex;
   gap: 3px;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
 }
-html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card .employee-card__preview .employee-card__photo .upload-container .photo-item {
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__preview .employee-card__photo .upload-container .photo-item {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1787,37 +1812,37 @@ html body #dynamica .layout .layout-content .main-container main .page.page-cont
   backdrop-filter: blur(10px);
   border-radius: 7px;
   font-weight: 600;
-  height: 30px;
+  height: 25px;
   overflow: hidden;
   padding: 5px;
-  font-size: 14px;
+  font-size: 12px;
   text-align: center;
   cursor: pointer;
   color: var(--background-color);
   transition: all 150ms;
 }
-html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card .employee-card__preview .employee-card__photo .upload-container .photo-item svg {
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__preview .employee-card__photo .upload-container .photo-item svg {
   fill: var(--background-color);
 }
-html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card .employee-card__preview .employee-card__photo .upload-container .photo-item:hover {
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__preview .employee-card__photo .upload-container .photo-item:hover {
   background: var(--secondary-color);
 }
-html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card .employee-card__preview .employee-card__photo .upload-container .upload-photo input {
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__preview .employee-card__photo .upload-container .upload-photo input {
   display: none;
 }
-html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card .employee-card__preview .employee-card__photo .upload-container .delete-photo {
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__preview .employee-card__photo .upload-container .delete-photo {
   aspect-ratio: 1/1;
 }
-html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card .employee-card__preview .employee-card__photo .upload-container .delete-photo:hover svg {
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__preview .employee-card__photo .upload-container .delete-photo:hover svg {
   fill: rgba(255, 0, 0, 0.8);
 }
-html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card .employee-card__preview .employee-card__general {
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__preview .employee-card__general {
   display: flex;
   justify-content: center;
   flex-direction: column;
   gap: 10px;
 }
-html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card .employee-card__preview .employee-card__general .employee-card__name {
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__preview .employee-card__general .employee-card__name {
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -1825,120 +1850,137 @@ html body #dynamica .layout .layout-content .main-container main .page.page-cont
   line-height: 1.1;
   font-size: 16px;
 }
-html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card .employee-card__preview .employee-card__general .employee-card__position {
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__preview .employee-card__general .employee-card__position {
   display: flex;
   align-items: center;
   font-size: 13px;
   line-height: 1;
   opacity: 0.7;
 }
-html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card .employee-card__details {
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__details {
   position: absolute;
+  width: 95%;
   display: flex;
   flex-direction: column;
-  padding: 0 5px 5px 5px;
-  border-radius: 0 0 10px 10px;
-  background: linear-gradient(white, rgba(0, 255, 0, 0.11));
-  backdrop-filter: blur(5px);
+  padding: 3px;
+  background: var(--background-color);
+  border-radius: 10px;
+  backdrop-filter: blur(8px);
   gap: 3px;
   bottom: 0;
-  left: 0;
+  left: 50%;
   right: 0;
-  transform: translateY(100%);
+  transform: translate(-50%, 100%);
   z-index: 6;
   transition: background 100ms;
 }
-html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card .employee-card__details .details-item {
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__details .details-item {
   display: flex;
   flex-direction: column;
   width: 100%;
   padding: 3px 8px;
   border-radius: 7px;
   cursor: pointer;
-  user-select: none;
   transition: background 100ms;
 }
-html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card .employee-card__details .details-item .details-title {
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__details .details-item .details-title {
+  display: flex;
+  align-items: center;
+  user-select: none;
+  gap: 5px;
+}
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__details .details-item .details-title span,
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__details .details-item .details-title svg {
   font-weight: 600;
   color: rgba(0, 0, 0, 0.5);
+  fill: rgba(0, 0, 0, 0.5);
   font-size: 12px;
 }
-html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card .employee-card__details .details-item .detail {
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__details .details-item .detail {
   font-size: 14px;
 }
-html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card .employee-card__details .details-item:hover {
-  background: rgba(90, 176, 88, 0.17);
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__details .details-item input[type=text].detail {
+  border-radius: 7px;
+  border: 1px solid var(--background-color);
+  padding: 2px 5px;
 }
-html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card .employee-card__details .details-item:active {
-  background: rgba(90, 176, 88, 0.3);
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__details .details-item:hover {
+  background: var(--block-background);
+  box-shadow: var(--block-shadow);
 }
-html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card:hover .employee-card__preview {
-  border-radius: 10px 10px 0 0;
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card:hover .employee-card__preview {
+  box-shadow: var(--block-shadow);
 }
-html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card:hover .employee-card__preview .employee-card__photo {
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card:hover .employee-card__preview .employee-card__photo {
   border-radius: 10px;
 }
-html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card-skeleton {
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card-skeleton {
   display: flex;
   border-radius: 10px;
   padding: 5px 10px;
   width: 100%;
   gap: 20px;
 }
-html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card-skeleton .employee-image {
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card-skeleton .employee-image {
   height: 90px;
   aspect-ratio: 1/1;
   border-radius: 50%;
   overflow: hidden;
 }
-html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card-skeleton .employee-image span {
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card-skeleton .employee-image span {
   aspect-ratio: 1/1;
   height: 100%;
   border-radius: 50%;
 }
-html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card-skeleton .employee-card__general {
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card-skeleton .employee-card__general {
   display: flex;
   justify-content: center;
   flex: 1;
   gap: 10px;
   flex-direction: column;
 }
-html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card-skeleton .employee-card__general .employee-card__name {
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card-skeleton .employee-card__general .employee-card__name {
   width: 100%;
 }
-html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card-skeleton .employee-card__general .employee-card__name .employee-lastname span,
-html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card-skeleton .employee-card__general .employee-card__name .employee-firstname span,
-html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card-skeleton .employee-card__general .employee-card__name .employee-middlename span {
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card-skeleton .employee-card__general .employee-card__name .employee-lastname span,
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card-skeleton .employee-card__general .employee-card__name .employee-firstname span,
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card-skeleton .employee-card__general .employee-card__name .employee-middlename span {
   height: 16px;
 }
-html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card-skeleton .employee-card__general .employee-position {
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card-skeleton .employee-card__general .employee-position {
   width: 100%;
 }
-html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card-skeleton .employee-card__general .employee-position span {
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card-skeleton .employee-card__general .employee-position span {
   height: 14px;
 }
-html body #dynamica .layout .layout-content .main-container main .page.page-contacts .pagination-container {
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .pagination-container {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: sticky;
+  bottom: 0;
+  padding: 5px 0;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  z-index: 10;
 }
-html body #dynamica .layout .layout-content .main-container main .page.page-contacts .pagination-container .pagination {
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .pagination-container .pagination {
   display: flex;
   flex-direction: row;
   margin: 0 auto;
   gap: 5px;
 }
-html body #dynamica .layout .layout-content .main-container main .page.page-contacts .pagination-container .pagination button {
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .pagination-container .pagination button {
   font-size: 18px;
   font-weight: 600;
   padding: 12px 16px;
   border-radius: 10px;
   transition: all 200ms;
 }
-html body #dynamica .layout .layout-content .main-container main .page.page-contacts .pagination-container .pagination button.active, html body #dynamica .layout .layout-content .main-container main .page.page-contacts .pagination-container .pagination button:hover:not(:disabled) {
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .pagination-container .pagination button.active, html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .pagination-container .pagination button:hover:not(:disabled) {
   background: rgba(90, 176, 88, 0.35);
 }
-html body #dynamica .layout .layout-content .main-container main .page.page-contacts .pagination-container .pagination button:disabled {
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .pagination-container .pagination button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
@@ -2337,8 +2379,15 @@ html body #dynamica .layout .layout-content .main-container .footer-wrapper foot
   font-weight: 400;
 }
 @media (min-width: 768px) {
-  html .filter-elem {
+  html .filters-buttons .filter-elem {
     font-size: 14px;
+  }
+  html .no-data {
+    max-width: 450px;
+    padding: 20px;
+  }
+  html .no-data span {
+    font-size: 20px;
   }
   html body #dynamica #mobileMenu .content .header {
     height: 70px;
@@ -2379,12 +2428,6 @@ html body #dynamica .layout .layout-content .main-container .footer-wrapper foot
     border-radius: 0;
     border: none;
   }
-  html body #dynamica .modal .modal-content.modal-notification {
-    max-width: 580px;
-    max-height: 650px;
-    bottom: 10%;
-    left: 10%;
-  }
   html body #dynamica .layout .module-documents .module-body {
     gap: 5px;
   }
@@ -2420,6 +2463,9 @@ html body #dynamica .layout .layout-content .main-container .footer-wrapper foot
   }
   html body #dynamica .layout .header-wrapper header {
     padding: 12px 0;
+  }
+  html body #dynamica .layout .layout-content .main-container {
+    min-height: calc(100vh - 70px);
   }
   html body #dynamica .layout .layout-content .main-container main .page .page-header .page-title {
     line-height: unset;
@@ -2549,59 +2595,41 @@ html body #dynamica .layout .layout-content .main-container .footer-wrapper foot
   }
   html body #dynamica .layout .layout-content .main-container main .page.page-profile .widgets {
     gap: 8px;
-    margin-top: 30px;
   }
-  html body #dynamica .layout .layout-content .main-container main .page.page-profile .widgets .widgets-head {
-    gap: 8px;
-  }
-  html body #dynamica .layout .layout-content .main-container main .page.page-profile .widgets .widgets-head .right-widgets {
-    gap: 8px;
-  }
-  html body #dynamica .layout .layout-content .main-container main .page.page-profile .widgets .widget {
-    padding: 12px;
-  }
-  html body #dynamica .layout .layout-content .main-container main .page.page-profile .widgets .widget .widget-header .widget-title {
-    font-size: 24px;
-  }
-  html body #dynamica .layout .layout-content .main-container main .page.page-profile .widgets .widget .widget-body {
-    margin-top: 12px;
-  }
-  html body #dynamica .layout .layout-content .main-container main .page.page-profile .widgets .action {
-    font-size: 24px;
-  }
-  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container {
+  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container {
     grid-template-columns: repeat(2, calc(50% - 4px));
   }
-  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card .employee-card__preview {
+  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__preview {
     padding: 10px;
   }
-  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card .employee-card__preview .employee-card__photo {
+  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__preview .employee-card__photo {
     height: 100px;
   }
-  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card .employee-card__preview .employee-card__general .employee-card__name {
+  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__preview .employee-card__general .employee-card__name {
     font-size: 18px;
   }
-  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card .employee-card__preview .employee-card__general .employee-card__position {
+  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__preview .employee-card__general .employee-card__position {
     font-size: 16px;
   }
-  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card .employee-card__details .details-item .details-title {
+  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__details .details-item .details-title span,
+  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__details .details-item .details-title svg {
     font-size: 12px;
   }
-  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card .employee-card__details .details-item .detail {
+  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__details .details-item .detail {
     font-size: 14px;
   }
-  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card-skeleton {
+  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card-skeleton {
     padding: 10px;
   }
-  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card-skeleton .employee-image {
+  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card-skeleton .employee-image {
     height: 100px;
   }
-  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card-skeleton .employee-card__general .employee-card__name .employee-lastname span,
-  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card-skeleton .employee-card__general .employee-card__name .employee-firstname span,
-  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card-skeleton .employee-card__general .employee-card__name .employee-middlename span {
+  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card-skeleton .employee-card__general .employee-card__name .employee-lastname span,
+  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card-skeleton .employee-card__general .employee-card__name .employee-firstname span,
+  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card-skeleton .employee-card__general .employee-card__name .employee-middlename span {
     height: 20px;
   }
-  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card-skeleton .employee-card__general .employee-position span {
+  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card-skeleton .employee-card__general .employee-position span {
     height: 16px;
   }
   html body #dynamica .layout .layout-content .main-container main .page.page-post .page-header .page-title {
@@ -2714,8 +2742,10 @@ html body #dynamica .layout .layout-content .main-container .footer-wrapper foot
   }
 }
 @media (min-width: 1024px) {
-  html .filter-elem {
-    font-size: 16px;
+  html .filters-buttons {
+    gap: 5px;
+    justify-content: center;
+    flex-wrap: wrap;
   }
   html .styled {
     font-size: 16px;
@@ -2794,25 +2824,28 @@ html body #dynamica .layout .layout-content .main-container .footer-wrapper foot
   html body #dynamica .layout .left-menu .left-menu-item {
     padding: 6px;
     font-size: 14px;
+    gap: 5px;
+  }
+  html body #dynamica .layout .left-menu .left-menu-item svg {
+    height: 20px;
+    width: 20px;
   }
   html body #dynamica .layout .layout-content {
     margin-left: 170px;
   }
   html body #dynamica .layout .layout-content .main-container {
-    min-height: unset;
     background: transparent;
+    min-height: calc(100vh - 50px);
   }
   html body #dynamica .layout .layout-content .main-container main .page {
-    padding: 0 5px;
+    border-radius: 32px;
+    padding: 0 5px 10px 5px;
   }
   html body #dynamica .layout .layout-content .main-container main .page .page-header .page-title {
     font-size: 26px;
   }
-  html body #dynamica .layout .layout-content .main-container main .page .page-filters .filters-departments {
+  html body #dynamica .layout .layout-content .main-container main .page .page-filters .filters-buttons {
     padding-top: 10px;
-    justify-content: center;
-    gap: 5px;
-    flex-wrap: wrap;
   }
   html body #dynamica .layout .layout-content .main-container main .page .page-filters .filters-select {
     display: flex;
@@ -2977,63 +3010,37 @@ html body #dynamica .layout .layout-content .main-container .footer-wrapper foot
   html body #dynamica .layout .layout-content .main-container main .page.page-profile .page-header .page-title__district {
     font-size: 18px;
   }
-  html body #dynamica .layout .layout-content .main-container main .page.page-profile .widgets {
-    margin-top: 30px;
-  }
-  html body #dynamica .layout .layout-content .main-container main .page.page-profile .widgets .widgets-head {
-    align-items: stretch;
-    flex-direction: row;
-  }
-  html body #dynamica .layout .layout-content .main-container main .page.page-profile .widgets .widgets-head .widget-notifications {
-    max-height: none;
-    width: 40%;
-  }
-  html body #dynamica .layout .layout-content .main-container main .page.page-profile .widgets .widgets-head .right-widgets {
-    width: 60%;
-  }
-  html body #dynamica .layout .layout-content .main-container main .page.page-profile .widgets .widget {
-    padding: 12px;
-    max-height: 480px;
-  }
-  html body #dynamica .layout .layout-content .main-container main .page.page-profile .widgets .widget .widget-header .widget-title {
-    font-size: 24px;
-  }
-  html body #dynamica .layout .layout-content .main-container main .page.page-profile .widgets .widget .widget-body {
-    margin-top: 18px;
-  }
-  html body #dynamica .layout .layout-content .main-container main .page.page-profile .widgets .action {
-    font-size: 24px;
-  }
-  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container {
+  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container {
     grid-template-columns: repeat(3, calc(33.3333333333% - 5.3333333333px));
   }
-  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card .employee-card__preview {
+  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__preview {
     padding: 5px;
   }
-  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card .employee-card__preview .employee-card__photo {
+  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__preview .employee-card__photo {
     height: 100px;
   }
-  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card .employee-card__preview .employee-card__general .employee-card__name {
+  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__preview .employee-card__general .employee-card__name {
     font-size: 18px;
   }
-  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card .employee-card__preview .employee-card__general .employee-card__position {
+  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__preview .employee-card__general .employee-card__position {
     font-size: 14px;
   }
-  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card .employee-card__details .details-item .details-title {
+  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__details .details-item .details-title span,
+  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__details .details-item .details-title svg {
     font-size: 14px;
   }
-  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card .employee-card__details .details-item .detail {
+  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__details .details-item .detail {
     font-size: 16px;
   }
-  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card-skeleton {
+  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card-skeleton {
     padding: 15px;
   }
-  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card-skeleton .employee-image {
+  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card-skeleton .employee-image {
     height: 115px;
   }
-  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card-skeleton .employee-card__general .employee-card__name .employee-lastname span,
-  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card-skeleton .employee-card__general .employee-card__name .employee-firstname span,
-  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card-skeleton .employee-card__general .employee-card__name .employee-middlename span {
+  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card-skeleton .employee-card__general .employee-card__name .employee-lastname span,
+  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card-skeleton .employee-card__general .employee-card__name .employee-firstname span,
+  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card-skeleton .employee-card__general .employee-card__name .employee-middlename span {
     height: 22px;
   }
   html body #dynamica .layout .layout-content .main-container main .page.page-document .content .progress-bar-container .progress-item .progress-point-wrapper .progress-point {
@@ -3173,6 +3180,9 @@ html body #dynamica .layout .layout-content .main-container .footer-wrapper foot
   }
 }
 @media (min-width: 1440px) {
+  html .filters-buttons .filter-elem {
+    font-size: 16px;
+  }
   html body #dynamica .layout .header-wrapper {
     height: 65px;
   }
@@ -3199,6 +3209,11 @@ html body #dynamica .layout .layout-content .main-container .footer-wrapper foot
   html body #dynamica .layout .left-menu .left-menu-item {
     font-size: 18px;
     padding: 10px;
+    gap: 10px;
+  }
+  html body #dynamica .layout .left-menu .left-menu-item svg {
+    height: 25px;
+    width: 25px;
   }
   html body #dynamica .layout .left-menu .general-navigation {
     margin-top: 25px;
@@ -3208,6 +3223,9 @@ html body #dynamica .layout .layout-content .main-container .footer-wrapper foot
   }
   html body #dynamica .layout .layout-content {
     margin-left: 240px;
+  }
+  html body #dynamica .layout .layout-content .main-container {
+    min-height: calc(100vh - 65px);
   }
   html body #dynamica .layout .layout-content .main-container main .page .page-header .page-title {
     font-size: 34px;
@@ -3338,59 +3356,35 @@ html body #dynamica .layout .layout-content .main-container .footer-wrapper foot
   html body #dynamica .layout .layout-content .main-container main .page.page-profile .page-header .page-title__district {
     font-size: 24px;
   }
-  html body #dynamica .layout .layout-content .main-container main .page.page-profile .widgets {
-    margin-top: 50px;
-  }
-  html body #dynamica .layout .layout-content .main-container main .page.page-profile .widgets .widgets-head {
-    flex-direction: row;
-  }
-  html body #dynamica .layout .layout-content .main-container main .page.page-profile .widgets .widget {
-    padding: 17px;
-  }
-  html body #dynamica .layout .layout-content .main-container main .page.page-profile .widgets .widget .widget-header .widget-title {
-    font-size: 26px;
-  }
-  html body #dynamica .layout .layout-content .main-container main .page.page-profile .widgets .widget .widget-body {
-    margin-top: 25px;
-  }
-  html body #dynamica .layout .layout-content .main-container main .page.page-profile .widgets .action {
-    font-size: 26px;
-  }
-  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .filters-container .filters-select .custom-dropdown .custom-dropdown__toggle {
-    height: 100%;
-  }
-  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .filters-container .filters-search .filters-search__text {
-    font-size: 24px;
-    padding: 22px 25px;
-  }
-  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container {
+  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container {
     grid-template-columns: repeat(4, calc(25% - 6px));
     padding: 10px;
   }
-  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card .employee-card__preview .employee-card__photo {
+  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__preview .employee-card__photo {
     height: 120px;
   }
-  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card .employee-card__preview .employee-card__general .employee-card__name {
+  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__preview .employee-card__general .employee-card__name {
     font-size: 20px;
   }
-  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card .employee-card__preview .employee-card__general .employee-card__position {
+  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__preview .employee-card__general .employee-card__position {
     font-size: 16px;
   }
-  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card .employee-card__details .details-item .details-title {
+  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__details .details-item .details-title span,
+  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__details .details-item .details-title svg {
     font-size: 16px;
   }
-  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card .employee-card__details .details-item .detail {
+  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__details .details-item .detail {
     font-size: 18px;
   }
-  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card-skeleton .employee-image {
+  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card-skeleton .employee-image {
     height: 120px;
   }
-  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card-skeleton .employee-card__general .employee-card__name .employee-lastname span,
-  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card-skeleton .employee-card__general .employee-card__name .employee-firstname span,
-  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card-skeleton .employee-card__general .employee-card__name .employee-middlename span {
+  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card-skeleton .employee-card__general .employee-card__name .employee-lastname span,
+  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card-skeleton .employee-card__general .employee-card__name .employee-firstname span,
+  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card-skeleton .employee-card__general .employee-card__name .employee-middlename span {
     height: 22px;
   }
-  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .employees-container .employee-card-skeleton .employee-card__general .employee-position span {
+  html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card-skeleton .employee-card__general .employee-position span {
     height: 16px;
   }
   html body #dynamica .layout .layout-content .main-container main .page.page-document .content .progress-bar-container .progress-item:first-child .progress-point-wrapper .progress-label {

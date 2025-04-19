@@ -2,12 +2,15 @@ import { FC } from "react";
 import { FeedTile } from "./FeedTile/FeedTile.tsx";
 import { useGetPostsQuery } from "../../../api/methods/postApi.ts";
 import { FeedTileSkeleton } from "../../Skeletons/FeedTileSkeleton.tsx";
+import {BannerNoData} from "../../BannerNoData/BannerNoData.tsx";
 
 export const FeedTiles: FC = () => {
     const { data, isLoading } = useGetPostsQuery();
 
     if (!isLoading && (!data?.posts || data.posts.length === 0)) {
-        return <p className="no-data">Данные отсутствуют</p>;
+        return (
+            <BannerNoData content={"Скоро тут будут новости"}/>
+        );
     }
 
     return (

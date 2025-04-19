@@ -1,5 +1,5 @@
 import {FC, useState} from "react";
-import { pageAnimation } from "../../constants/motionSettins.ts";
+import { pageAnimation } from "../../constants/motionSettings.ts";
 import { motion } from "framer-motion";
 import {DocumentRow} from "./DocumentRow/DocumentRow.tsx";
 import {FilterDocumentsStatuses} from "./FilterDocuments/FilterDocumentsStatuses.tsx";
