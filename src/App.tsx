@@ -46,9 +46,9 @@ const Root = () => {
             <HistoryTracker/>
             <ScrollToTop />
             <div className="layout">
-                <LeftMenu/>
+                <Header/>
                 <div className="layout-content">
-                    <Header/>
+                    <LeftMenu/>
                     <div className="main-container">
                         <main>
                             <AnimatePresence mode="wait" >
