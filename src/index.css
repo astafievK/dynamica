@@ -269,9 +269,9 @@ html input[type=text].styled,
 html input[type=password].styled,
 html textarea.styled {
   padding: 10px 15px;
-  border-radius: 14px;
-  background: white;
-  border: 2px solid white;
+  border-radius: 10px;
+  background: var(--block-background);
+  border: 2px solid var(--block-background);
   box-shadow: var(--block-shadow);
   transition: all 0.2s;
   font-size: 14px;
@@ -842,6 +842,7 @@ html body #dynamica .layout .header-wrapper {
   transition: transform 0.3s ease-in-out;
 }
 html body #dynamica .layout .header-wrapper::before, html body #dynamica .layout .header-wrapper::after {
+  display: none;
   content: " ";
   height: 95px;
   background: var(--secondary-color);
@@ -1096,7 +1097,7 @@ html body #dynamica .layout .layout-content .main-container main .page .page-con
   width: 100%;
   height: 100%;
   background: var(--block-background);
-  border-radius: 32px;
+  border-radius: 10px;
   box-shadow: var(--block-shadow);
 }
 html body #dynamica .layout .layout-content .main-container main .page.page-landing {
