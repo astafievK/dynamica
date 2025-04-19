@@ -1,177 +1,153 @@
 import {FC, useState} from "react";
 import { pageAnimation } from "../../constants/motionSettings.ts";
 import { motion } from "framer-motion";
-import {DocumentRow} from "./DocumentRow/DocumentRow.tsx";
-import {FilterDocumentsStatuses} from "./FilterDocuments/FilterDocumentsStatuses.tsx";
+import {FilterButtons} from "../FilterButtons/FilterButtons.tsx";
+import {DocumentTile} from "./DocumentTile/DocumentTile.tsx";
+
+const documentsStatuses = [
+    "Новые",
+    "На редактирование",
+    "Отклоненные",
+    "Архив",
+];
 
 export const PageDocuments: FC = () => {
-    const [documentStatusValue, setDocumentStatusValue] = useState<string>("Все");
+    const [documentStatus, setDocumentStatus] = useState<string>("");
 
     return (
         <motion.div {...pageAnimation} className="page page-documents">
-            <div className="page-header">
-                <span className="page-title">Договора</span>
-            </div>
-            <div className="page-actions">
-                <FilterDocumentsStatuses filter={documentStatusValue} setFilter={setDocumentStatusValue}/>
-            </div>
-            <div className="documents">
-                <div className="documents__block documents__block--active">
-                    <span className="documents__block-title">Активные</span>
-                    <table className="documents__table">
-                        <thead>
-                            <tr>
-                                <th>Дата</th>
-                                <th>Срок действия</th>
-                                <th>Наименование</th>
-                                <th>Юр. лицо Автохолдинга</th>
-                                <th>Контрагент</th>
-                                <th>Вид услуги</th>
-                                <th>Статус</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <DocumentRow
-                                id={1}
-                                dateCreated={"01.01.2025"}
-                                dateExpires={"01.01.2026"}
-                                title={"Договор поставки"}
-                                entity={"ООО Автохолдинг"}
-                                counterparty={"ООО Контрагент"}
-                                serviceType={"Поставка"}
-                                status={"Активный"}
-                            />
-                            <DocumentRow
-                                id={1}
-                                dateCreated={"01.01.2025"}
-                                dateExpires={"01.01.2026"}
-                                title={"Договор поставки"}
-                                entity={"ООО Автохолдинг"}
-                                counterparty={"ООО Контрагент"}
-                                serviceType={"Поставка"}
-                                status={"Активный"}
-                            />
-                            <DocumentRow
-                                id={1}
-                                dateCreated={"01.01.2025"}
-                                dateExpires={"01.01.2026"}
-                                title={"Договор поставки"}
-                                entity={"ООО Автохолдинг"}
-                                counterparty={"ООО Контрагент"}
-                                serviceType={"Поставка"}
-                                status={"Активный"}
-                            />
-                            <DocumentRow
-                                id={1}
-                                dateCreated={"01.01.2025"}
-                                dateExpires={"01.01.2026"}
-                                title={"Договор поставки"}
-                                entity={"ООО Автохолдинг"}
-                                counterparty={"ООО Контрагент"}
-                                serviceType={"Поставка"}
-                                status={"Активный"}
-                            />
-                            <DocumentRow
-                                id={1}
-                                dateCreated={"01.01.2025"}
-                                dateExpires={"01.01.2026"}
-                                title={"Договор поставки"}
-                                entity={"ООО Автохолдинг"}
-                                counterparty={"ООО Контрагент"}
-                                serviceType={"Поставка"}
-                                status={"Активный"}
-                            />
-                            <DocumentRow
-                                id={1}
-                                dateCreated={"01.01.2025"}
-                                dateExpires={"01.01.2026"}
-                                title={"Договор поставки"}
-                                entity={"ООО Автохолдинг"}
-                                counterparty={"ООО Контрагент"}
-                                serviceType={"Поставка"}
-                                status={"Активный"}
-                            />
-                        </tbody>
-                    </table>
-                </div>
-
-                <div className="documents__block documents__block--archive">
-                    <span className="documents__block-title">Архив</span>
-                    <table className="documents__table">
-                        <thead>
-                            <tr>
-                                <th>Дата</th>
-                                <th>Срок действия</th>
-                                <th>Наименование</th>
-                                <th>Юр. лицо Автохолдинга</th>
-                                <th>Контрагент</th>
-                                <th>Вид услуги</th>
-                                <th>Статус</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <DocumentRow
-                                id={1}
-                                dateCreated={"01.01.2025"}
-                                dateExpires={"01.01.2026"}
-                                title={"Договор поставки"}
-                                entity={"ООО Автохолдинг"}
-                                counterparty={"ООО Контрагент"}
-                                serviceType={"Поставка"}
-                                status={"Активный"}
-                            />
-                            <DocumentRow
-                                id={1}
-                                dateCreated={"01.01.2025"}
-                                dateExpires={"01.01.2026"}
-                                title={"Договор поставки"}
-                                entity={"ООО Автохолдинг"}
-                                counterparty={"ООО Контрагент"}
-                                serviceType={"Поставка"}
-                                status={"Активный"}
-                            />
-                            <DocumentRow
-                                id={1}
-                                dateCreated={"01.01.2025"}
-                                dateExpires={"01.01.2026"}
-                                title={"Договор поставки"}
-                                entity={"ООО Автохолдинг"}
-                                counterparty={"ООО Контрагент"}
-                                serviceType={"Поставка"}
-                                status={"Активный"}
-                            />
-                            <DocumentRow
-                                id={1}
-                                dateCreated={"01.01.2025"}
-                                dateExpires={"01.01.2026"}
-                                title={"Договор поставки"}
-                                entity={"ООО Автохолдинг"}
-                                counterparty={"ООО Контрагент"}
-                                serviceType={"Поставка"}
-                                status={"Активный"}
-                            />
-                            <DocumentRow
-                                id={1}
-                                dateCreated={"01.01.2025"}
-                                dateExpires={"01.01.2026"}
-                                title={"Договор поставки"}
-                                entity={"ООО Автохолдинг"}
-                                counterparty={"ООО Контрагент"}
-                                serviceType={"Поставка"}
-                                status={"Активный"}
-                            />
-                            <DocumentRow
-                                id={1}
-                                dateCreated={"01.01.2025"}
-                                dateExpires={"01.01.2026"}
-                                title={"Договор поставки"}
-                                entity={"ООО Автохолдинг"}
-                                counterparty={"ООО Контрагент"}
-                                serviceType={"Поставка"}
-                                status={"Активный"}
-                            />
-                        </tbody>
-                    </table>
+            <div className="page-content">
+                <div className="documents-container page-content-item">
+                    <div className="documents-filter">
+                        <FilterButtons
+                            filter={documentStatus}
+                            setFilter={setDocumentStatus}
+                            data={documentsStatuses}
+                            renderLabel={(item) => item}
+                        />
+                    </div>
+                    <div className="documents">
+                        <DocumentTile
+                            id={1}
+                            dateCreated="19.04.2025"
+                            dateExpires="01.01.2026"
+                            title="Договор поставки ООО 'Какая-то хуетень'"
+                            entity="ООО 'Рога и Копыта'"
+                            counterparty="ООО 'Партнёр'"
+                            serviceType="Регулярная услуга"
+                            status="На согласовании"
+                        />
+                        <DocumentTile
+                            id={1}
+                            dateCreated="19.04.2025"
+                            dateExpires="01.01.2026"
+                            title="Договор поставки ООО 'Какая-то хуетень'"
+                            entity="ООО 'Рога и Копыта'"
+                            counterparty="ООО 'Партнёр'"
+                            serviceType="Регулярная услуга"
+                            status="На редактировании"
+                        />
+                        <DocumentTile
+                            id={1}
+                            dateCreated="19.04.2025"
+                            dateExpires="01.01.2026"
+                            title="Договор поставки ООО 'Какая-то хуетень'"
+                            entity="ООО 'Рога и Копыта'"
+                            counterparty="ООО 'Партнёр'"
+                            serviceType="Регулярная услуга"
+                            status="Отклонено"
+                        />
+                        <DocumentTile
+                            id={1}
+                            dateCreated="19.04.2025"
+                            dateExpires="01.01.2026"
+                            title="Договор поставки ООО 'Какая-то хуетень'"
+                            entity="ООО 'Рога и Копыта'"
+                            counterparty="ООО 'Партнёр'"
+                            serviceType="Регулярная услуга"
+                            status="В архиве"
+                        />
+                        <DocumentTile
+                            id={1}
+                            dateCreated="19.04.2025"
+                            dateExpires="01.01.2026"
+                            title="Договор поставки ООО 'Какая-то хуетень'"
+                            entity="ООО 'Рога и Копыта'"
+                            counterparty="ООО 'Партнёр'"
+                            serviceType="Регулярная услуга"
+                            status="На согласовании"
+                        />
+                        <DocumentTile
+                            id={1}
+                            dateCreated="19.04.2025"
+                            dateExpires="01.01.2026"
+                            title="Договор поставки ООО 'Какая-то хуетень'"
+                            entity="ООО 'Рога и Копыта'"
+                            counterparty="ООО 'Партнёр'"
+                            serviceType="Регулярная услуга"
+                            status="На редактировании"
+                        />
+                        <DocumentTile
+                            id={1}
+                            dateCreated="19.04.2025"
+                            dateExpires="01.01.2026"
+                            title="Договор поставки ООО 'Какая-то хуетень'"
+                            entity="ООО 'Рога и Копыта'"
+                            counterparty="ООО 'Партнёр'"
+                            serviceType="Регулярная услуга"
+                            status="Отклонено"
+                        />
+                        <DocumentTile
+                            id={1}
+                            dateCreated="19.04.2025"
+                            dateExpires="01.01.2026"
+                            title="Договор поставки ООО 'Какая-то хуетень'"
+                            entity="ООО 'Рога и Копыта'"
+                            counterparty="ООО 'Партнёр'"
+                            serviceType="Регулярная услуга"
+                            status="В архиве"
+                        />
+                        <DocumentTile
+                            id={1}
+                            dateCreated="19.04.2025"
+                            dateExpires="01.01.2026"
+                            title="Договор поставки ООО 'Какая-то хуетень'"
+                            entity="ООО 'Рога и Копыта'"
+                            counterparty="ООО 'Партнёр'"
+                            serviceType="Регулярная услуга"
+                            status="Отклонено"
+                        />
+                        <DocumentTile
+                            id={1}
+                            dateCreated="19.04.2025"
+                            dateExpires="01.01.2026"
+                            title="Договор поставки ООО 'Какая-то хуетень'"
+                            entity="ООО 'Рога и Копыта'"
+                            counterparty="ООО 'Партнёр'"
+                            serviceType="Регулярная услуга"
+                            status="В архиве"
+                        />
+                        <DocumentTile
+                            id={1}
+                            dateCreated="19.04.2025"
+                            dateExpires="01.01.2026"
+                            title="Договор поставки ООО 'Какая-то хуетень'"
+                            entity="ООО 'Рога и Копыта'"
+                            counterparty="ООО 'Партнёр'"
+                            serviceType="Регулярная услуга"
+                            status="Отклонено"
+                        />
+                        <DocumentTile
+                            id={1}
+                            dateCreated="19.04.2025"
+                            dateExpires="01.01.2026"
+                            title="Договор поставки ООО 'Какая-то хуетень'"
+                            entity="ООО 'Рога и Копыта'"
+                            counterparty="ООО 'Партнёр'"
+                            serviceType="Регулярная услуга"
+                            status="В архиве"
+                        />
+                    </div>
                 </div>
             </div>
         </motion.div>

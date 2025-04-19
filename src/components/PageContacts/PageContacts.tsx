@@ -6,7 +6,7 @@ import { EmployeeCard } from "./EmployeeCard/EmployeeCard.tsx";
 import { EmployeeCardSkeleton } from "../Skeletons/EmployeeCardSkeleton.tsx";
 import { useDebounce } from "../../store/hooks/useDebounce.ts";
 import {BannerNoData} from "../BannerNoData/BannerNoData.tsx";
-import {FilterButton} from "../FilterButton/FilterDepartments.tsx";
+import {FilterButtons} from "../FilterButtons/FilterButtons.tsx";
 import {useGetDepartmentsTitlesNotNullQuery} from "../../api/methods/departmentApi.ts";
 
 const ITEMS_PER_PAGE = 100;
@@ -101,7 +101,7 @@ export const PageContacts: FC = () => {
                     animate={pageAnimation.animate}
                     exit={pageAnimation.exit}
                     transition={pageAnimation.transition}
-                    className="employees-container"
+                    className="employees-container page-content-item"
                 >
                     {[...Array(4)].map((_, i) => (
                         <EmployeeCardSkeleton key={i} />
@@ -141,7 +141,7 @@ export const PageContacts: FC = () => {
                 className="page page-contacts"
             >
                 <div className="page-filters">
-                    <FilterButton
+                    <FilterButtons
                         filter={departmentTitle}
                         setFilter={setDepartmentTitle}
                         data={departmentsData?.titles}

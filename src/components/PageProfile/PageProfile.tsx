@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { setIsOpen as setLoginModalOpen } from "../../api/slices/modalLoginSlice.ts";
 import { useAppDispatch, useTypedSelector } from "../../store/hooks/redux.ts";
 import {useNavigate} from "react-router-dom";
-import {FilterButton} from "../FilterButton/FilterDepartments.tsx";
+import { FilterButtons } from "../FilterButtons/FilterButtons.tsx";
 
 const filtersDocumentsTypes = [
     "Последние",
@@ -73,7 +73,7 @@ export const PageProfile: FC = () => {
                                 <span className="widget-title">Договора</span>
                             </div>
                             <div className="widget-filters">
-                                <FilterButton
+                                <FilterButtons
                                     filter={documentsType}
                                     setFilter={setDocumentsType}
                                     data={filtersDocumentsTypes}

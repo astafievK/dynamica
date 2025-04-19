@@ -179,6 +179,7 @@
     --item-active-background: rgba(0, 0, 0, 0.1);
     --block-shadow: 0 2px 6px rgba(0,0,0,0.05);
     --block-background: rgba(255, 255, 255, 1);
+    --document-shadow: 0px 4px 12px 0px #7090b029;
 }
 
 * {
@@ -1003,7 +1004,6 @@ html {
 
                     &::before,
                     &::after {
-                        display: none;
                         content: ' ';
                         height: 95px;
                         background: var(--secondary-color);
@@ -1291,6 +1291,17 @@ html {
                                                 transition-duration: 70ms;
                                             }
                                         }
+                                    }
+                                }
+
+                                .page-content {
+                                    .page-content-item {
+                                        padding: 5px;
+                                        width: 100%;
+                                        height: 100%;
+                                        background: var(--block-background);
+                                        border-radius: 32px;
+                                        box-shadow: var(--block-shadow);
                                     }
                                 }
 
@@ -2121,18 +2132,8 @@ html {
 
                                 &.page-contacts {
                                     .page-content {
-                                        display: flex;
-                                        flex-direction: column;
-                                        flex-grow: 1;
-
                                         .employees-container {
                                             position: relative;
-                                            padding: 5px;
-                                            width: 100%;
-                                            height: 100%;
-                                            background: var(--block-background);
-                                            border-radius: 14px;
-                                            box-shadow: var(--block-shadow);
                                             grid-template-columns: repeat(1, calc(100% / 1 - 8px / 1 * (1 - 1)));
                                             gap: 8px;
                                             display: grid;
@@ -2699,145 +2700,85 @@ html {
                                 }
 
                                 &.page-documents {
-                                    .page-actions {
-                                        display: flex;
-                                        align-items: center;
-                                        justify-content: space-between;
-                                        margin-top: 5px;
-                                        padding: 10px 0;
-
-                                        .filter-documents-statuses {
-                                            display: flex;
-                                            gap: 5px;
-                                            overflow: auto;
-
-                                            &__button {
-
-                                            }
-                                        }
-
-                                        .create {
-                                            font-weight: 600;
-                                            font-size: 11px;
-                                            background: rgba(90, 176, 88, 0.15);
-                                            border-radius: 10px;
-                                            padding: 5px;
-                                            cursor: pointer;
-                                            transition: all 150ms;
-
-                                            &:hover {
-                                                background: var(--item-hover-background);
-                                            }
-
-                                            &:active {
-                                                background: var(--item-active-background);
-                                            }
-                                        }
-                                    }
-
-                                    .documents {
-                                        overflow: auto;
-
-                                        .documents__block {
-                                            overflow: auto;
-
-                                            .documents__block-title {
-                                                position: sticky;
-                                                left: 0;
-                                                font-weight: bold;
-                                                padding: 0 5px;
-                                                opacity: .6;
-                                                font-size: 14px;
-                                            }
-
-                                            .documents__table {
-                                                width: 100%;
-                                                margin-top: 10px;
-                                                border-collapse: collapse;
-
-                                                th,
-                                                td {
-                                                    border: none;
+                                    .page-content {
+                                        .documents-container {
+                                            .documents-filter {
+                                                .filters-buttons {
+                                                    justify-content: left;
                                                 }
+                                            }
 
-                                                thead {
-                                                    background: var(--item-active-background);
+                                            .documents {
+                                                display: grid;
+                                                overflow-x: auto;
+                                                gap: 7px;
+                                                grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+                                                grid-template-rows: 1fr 1fr;
 
-                                                    tr {
-                                                        th {
-                                                            padding: 7px 3px;
-                                                            text-wrap: nowrap;
-                                                            font-size: 10px;
+                                                .document {
+                                                    display: flex;
+                                                    flex-direction: column;
+                                                    justify-content: space-between;
+                                                    height: 100%;
+                                                    padding: 10px 7px;
+                                                    background: var(--block-background);
+                                                    aspect-ratio: 1/1;
+                                                    cursor: pointer;
+                                                    border-radius: 18px;
+                                                    border: 1px solid var(--background-color);
+                                                    transition: all 150ms;
 
-                                                            &:nth-child(3) {
-                                                                min-width: 160px;
+                                                    &:hover {
+                                                        box-shadow: var(--document-shadow);
+                                                    }
+
+                                                    .document-head {
+                                                        .document-title {
+                                                            display: flex;
+                                                            gap: 5px;
+
+                                                            font-weight: bold;
+                                                            font-size: 16px;
+                                                        }
+                                                    }
+
+                                                    .document-info {
+                                                        display: flex;
+                                                        flex-direction: column;
+                                                        gap: 3px;
+
+                                                        .info-item {
+                                                            display: flex;
+                                                            flex-direction: column;
+                                                            gap: 1px;
+
+                                                            .info-title,
+                                                            .info-value {
+                                                                font-size: 14px;
                                                             }
 
-                                                            &:first-child {
-                                                                border-radius: 10px 0 0 10px
+                                                            .info-title {
+                                                                font-weight: bold;
+                                                                color: rgba(47, 55, 71, 0.85);
                                                             }
 
-                                                            &:last-child {
-                                                                border-radius: 0 10px 10px 0;
+                                                            .info-value {
+                                                                margin-left: 5px;
                                                             }
                                                         }
                                                     }
-                                                }
 
-                                                tbody {
-                                                    tr {
-                                                        cursor: pointer;
-                                                        background: var(--item-static-background);
-                                                        transition: background-color 0.2s;
+                                                    .document-status {
+                                                        width: fit-content;
+                                                        border-radius: 10px;
+                                                        padding: 5px 7px;
 
-                                                        td {
-                                                            font-size: 12px;
-                                                            padding: 10px;
-
-                                                            &:first-child,
-                                                            &:nth-child(2),
-                                                            &:nth-child(4),
-                                                            &:nth-child(5),
-                                                            &:nth-child(6),
-                                                            &:nth-child(7) {
-                                                                text-align: center;
-                                                            }
-
-                                                            &:nth-child(4),
-                                                            &:nth-child(5) {
-                                                                text-wrap: nowrap;
-                                                            }
-
-                                                            &:first-child {
-                                                                border-radius: 10px 0 0 10px;
-                                                            }
-
-                                                            &:last-child {
-                                                                border-radius: 0 10px 10px 0;
-                                                            }
-                                                        }
-
-                                                        &:nth-child(2n) {
-                                                            background: var(--item-hover-background);
-                                                        }
-
-                                                        &:hover {
-                                                            background: rgba(90, 176, 88, 0.15);
-                                                        }
-
-                                                        &:active {
-                                                            background: var(--item-active-background);
+                                                        span {
+                                                            font-size: 14px;
+                                                            font-weight: bold;
                                                         }
                                                     }
                                                 }
-                                            }
-
-                                            &--active {
-
-                                            }
-
-                                            &--archive {
-                                                margin-top: 30px;
                                             }
                                         }
                                     }
@@ -3449,41 +3390,6 @@ html {
                                             }
                                         }
                                     }
-
-                                    &.page-documents {
-                                        .page-actions {
-                                            .create {
-                                                font-size: 15px;
-                                                padding: 10px 15px;
-                                            }
-                                        }
-
-                                        .documents {
-                                            .documents__block {
-                                                .documents__block-title {
-
-                                                }
-
-                                                .documents__table {
-                                                    thead {
-                                                        tr {
-                                                            th {
-                                                                font-size: 14px;
-                                                            }
-                                                        }
-                                                    }
-
-                                                    tbody {
-                                                        tr {
-                                                            td {
-                                                                font-size: 12px;
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
                                 }
                             }
 
@@ -3535,6 +3441,7 @@ html {
     @media (min-width: 1024px) {
         .filters-buttons {
             gap: 5px;
+            padding: 10px 0;
             justify-content: center;
             flex-wrap: wrap;
         }
@@ -3671,10 +3578,6 @@ html {
                                     }
 
                                     .page-filters {
-                                        .filters-buttons {
-                                            padding-top: 10px;
-                                        }
-
                                         .filters-select {
                                             display: flex;
                                             align-items: stretch;
@@ -4115,54 +4018,6 @@ html {
                                             }
                                         }
                                     }
-
-                                    &.page-documents {
-                                        .page-actions {
-                                            margin-top: 25px;
-
-                                            .create {
-                                                padding: 15px;
-                                                font-size: 22px;
-                                            }
-                                        }
-
-                                        .documents {
-                                            margin-top: 25px;
-
-                                            .documents__block {
-                                                .documents__block-title {
-                                                    padding: 0 15px;
-                                                    font-size: 16px;
-                                                }
-
-                                                .documents__table {
-                                                    margin-top: 10px;
-
-                                                    thead {
-                                                        tr {
-                                                            th {
-                                                                padding: 15px 10px;
-                                                                font-size: 16px;
-                                                            }
-                                                        }
-                                                    }
-
-                                                    tbody {
-                                                        tr {
-                                                            td {
-                                                                font-size: 14px;
-                                                                padding: 25px 10px;
-                                                            }
-                                                        }
-                                                    }
-                                                }
-
-                                                &--archive {
-                                                    margin-top: 35px;
-                                                }
-                                            }
-                                        }
-                                    }
                                 }
                             }
 
@@ -4254,7 +4109,7 @@ html {
                     }
 
                     .left-menu {
-                        width: 240px;
+                        width: 255px;
                         padding: 0 8px 8px 8px;
 
                         .logo-container {
@@ -4283,7 +4138,7 @@ html {
                     }
 
                     .layout-content {
-                        margin-left: 240px;
+                        margin-left: 255px;
 
                         .main-container {
                             min-height: calc(100vh - 65px);
@@ -4298,6 +4153,12 @@ html {
 
                                     .page-filters {
 
+                                    }
+
+                                    .page-content {
+                                        .page-content-item {
+                                            padding: 10px;
+                                        }
                                     }
 
                                     &.page-landing {
@@ -4507,7 +4368,6 @@ html {
                                         .page-content {
                                             .employees-container {
                                                 grid-template-columns: repeat(4, calc(100% / 4 - 8px / 4 * (4 - 1)));
-                                                padding: 10px;
 
                                                 .employee-card {
                                                     .employee-card__preview {
@@ -4636,35 +4496,6 @@ html {
 
                                             .content-files {
                                                 margin-top: 25px;
-                                            }
-                                        }
-                                    }
-
-                                    &.page-documents {
-                                        .documents {
-                                            .documents__block {
-                                                .documents__block-title {
-                                                    padding: 0 15px;
-                                                    font-size: 18px;
-                                                }
-
-                                                .documents__table {
-                                                    thead {
-                                                        tr {
-                                                            th {
-                                                                font-size: 18px;
-                                                            }
-                                                        }
-                                                    }
-
-                                                    tbody {
-                                                        tr {
-                                                            td {
-                                                                font-size: 16px;
-                                                            }
-                                                        }
-                                                    }
-                                                }
                                             }
                                         }
                                     }

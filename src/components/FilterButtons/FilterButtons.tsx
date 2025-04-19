@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { FilterDepartmentSkeleton } from "../Skeletons/FilterDepartmentSkeleton.tsx";
 
-interface FilterProps<T> {
+interface FilterButtonsProps<T> {
     filter: T | null;
     setFilter: (filter: T) => void;
     data: T[] | undefined;
@@ -9,7 +9,7 @@ interface FilterProps<T> {
     renderLabel: (item: T) => string;
 }
 
-export const FilterButton: FC<FilterProps<string>> = ({ filter, setFilter, data, isLoading, renderLabel }) => {
+export const FilterButtons: FC<FilterButtonsProps<string>> = ({ filter, setFilter, data, isLoading, renderLabel }) => {
     return (
         <div className="filters-buttons">
             {isLoading ? (

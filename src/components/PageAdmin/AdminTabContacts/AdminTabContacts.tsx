@@ -4,6 +4,7 @@ import {FC} from "react";
 import {AssociationSkeleton} from "../../Skeletons/AssociationSkeleton.tsx";
 import {pageAnimation} from "../../../constants/motionSettings.ts";
 import {motion} from "framer-motion";
+import {BannerNoData} from "../../BannerNoData/BannerNoData.tsx";
 
 export const AdminTabContacts: FC = () => {
     const { data: departmentsData, isLoading: isDepartmentsLoading } = useGetDepartmentsQuery();
@@ -33,7 +34,7 @@ export const AdminTabContacts: FC = () => {
                         />
                     ))
                 ) : (
-                    <p className="no-data">Данные отсутствуют</p>
+                    <BannerNoData content={"Отделы не найдены"}/>
                 )}
             </motion.div>
         </div>
