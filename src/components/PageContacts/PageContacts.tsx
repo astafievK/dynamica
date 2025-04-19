@@ -122,7 +122,7 @@ export const PageContacts: FC = () => {
                 animate={pageAnimation.animate}
                 exit={pageAnimation.exit}
                 transition={pageAnimation.transition}
-                className="employees-container"
+                className="employees-container page-content-item"
             >
                 {paginatedUsers.map((employee) => (
                     <EmployeeCard key={employee.id_user} employee={employee} />
