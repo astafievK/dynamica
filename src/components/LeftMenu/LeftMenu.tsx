@@ -2,7 +2,10 @@ import {AnimatePresence, motion} from "framer-motion";
 import {FC, JSX} from "react";
 import {Link, NavLink, useLocation} from "react-router-dom";
 import {useTypedSelector} from "../../store/hooks/redux.ts";
-import { MdHome, MdDynamicFeed, MdContacts, MdAdminPanelSettings } from "react-icons/md";
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
+import NewspaperOutlinedIcon from '@mui/icons-material/NewspaperOutlined';
+import ContactsOutlinedIcon from '@mui/icons-material/ContactsOutlined';
+import AdminPanelSettingsOutlinedIcon from '@mui/icons-material/AdminPanelSettingsOutlined';
 
 interface NavItem {
     title: string;
@@ -11,9 +14,9 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-    { title: "Главная", path: "/", icon: <MdHome size={25} /> },
-    { title: "Лента", path: "/feed", icon: <MdDynamicFeed size={25} /> },
-    { title: "Адресная книга", path: "/contacts", icon: <MdContacts size={25} /> },
+    { title: "Главная", path: "/", icon: <HomeOutlinedIcon/> },
+    { title: "Лента", path: "/feed", icon: <NewspaperOutlinedIcon/> },
+    { title: "Адресная книга", path: "/contacts", icon: <ContactsOutlinedIcon/> },
 ];
 
 export const LeftMenu: FC = () => {
@@ -35,7 +38,7 @@ export const LeftMenu: FC = () => {
                         to={"/admin"}
                         className={({ isActive }) => `left-menu-item ${isActive ? "active-nav-item" : ""}`}
                     >
-                        <MdAdminPanelSettings size={25} />
+                        <AdminPanelSettingsOutlinedIcon/>
                         Администрирование
                     </NavLink>
                     <AnimatePresence>
