@@ -2216,7 +2216,8 @@ html body #dynamica .layout .layout-content .main-container main .page.page-docu
 }
 html body #dynamica .layout .layout-content .main-container main .page.page-documents .page-content .documents-container .documents {
   display: grid;
-  overflow-x: auto;
+  overflow: auto;
+  padding: 0 10px 10px 10px;
   gap: 7px;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;

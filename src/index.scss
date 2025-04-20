@@ -2711,7 +2711,8 @@ html {
 
                                             .documents {
                                                 display: grid;
-                                                overflow-x: auto;
+                                                overflow: auto;
+                                                padding: 0 10px 10px 10px;
                                                 gap: 7px;
                                                 grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
                                                 grid-template-rows: 1fr 1fr;
