@@ -11,10 +11,11 @@ interface NavItem {
     title: string;
     path: string;
     icon: JSX.Element;
+    isIgnore?: boolean;
 }
 
 const navItems: NavItem[] = [
-    { title: "Главная", path: "/", icon: <HomeOutlinedIcon/> },
+    { title: "Главная", path: "/", icon: <HomeOutlinedIcon/>, isIgnore: true },
     { title: "Лента", path: "/feed", icon: <NewspaperOutlinedIcon/> },
     { title: "Адресная книга", path: "/contacts", icon: <ContactsOutlinedIcon/> },
 ];
@@ -62,16 +63,18 @@ export const LeftMenu: FC = () => {
                 </div>
 
                 <nav className="general-navigation">
-                    {navItems.map(({ title, path, icon }) => (
-                        <NavLink
-                            key={path}
-                            to={path}
-                            className={({ isActive }) => `left-menu-item ${isActive ? "active-nav-item" : ""}`}
-                        >
-                            {icon}
-                            {title}
-                        </NavLink>
-                    ))}
+                    {navItems
+                        .filter(item => !item.isIgnore)
+                        .map(({ title, path, icon }) => (
+                            <NavLink
+                                key={path}
+                                to={path}
+                                className={({ isActive }) => `left-menu-item ${isActive ? "active-nav-item" : ""}`}
+                            >
+                                {icon}
+                                {title}
+                            </NavLink>
+                        ))}
                 </nav>
                 <nav className="recent-navigation">
                     <span className="navigation-title">Последние страницы</span>

@@ -1,7 +1,7 @@
 import { FC, useState } from "react";
 import { ModalUserNotification } from "../../../Modals/ModalUserNotification/ModalUserNotification.tsx";
 import { Department } from "../../../../api/interfaces/IDepartment.ts";
-import {useEditDepartmentTitleMutation} from "../../../../api/methods/departmentApi.ts";
+import {useEditDepartmentTitleByIdMutation} from "../../../../api/methods/departmentApi.ts";
 import SaveRoundedIcon from '@mui/icons-material/SaveRounded';
 
 interface AssociationProps {
@@ -13,7 +13,7 @@ export const Association: FC<AssociationProps> = (props) => {
     const [notification, setNotification] = useState<{ title?: string; message: string } | null>(null);
     const [isSaveLocked, setIsSaveLocked] = useState<boolean>(true);
 
-    const [editDepartmentTitle, { isLoading }] = useEditDepartmentTitleMutation();
+    const [editDepartmentTitle, { isLoading }] = useEditDepartmentTitleByIdMutation();
 
     const handleSave = async () => {
         const newTitle = departmentTitle?.trim() === "" ? null : departmentTitle;

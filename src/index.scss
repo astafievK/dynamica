@@ -387,459 +387,467 @@ html {
 
         &::-webkit-scrollbar {
             width: 12px;
-            height: 12px;
         }
 
         &.scroll-locked {
             overflow: hidden;
         }
 
-        #dynamica {
-            display: flex;
-            min-height: 100vh;
+        .module-documents {
+            width: 100%;
 
-            .module-documents {
+            .module-body {
                 width: 100%;
-
-                .module-body {
-                    width: 100%;
-                    overflow-y: auto;
-                    display: flex;
-                    flex-direction: column;
-                    gap: 3px;
-
-                    .document {
-                        display: flex;
-                        overflow: hidden;
-                        flex-direction: column;
-                        border-radius: 10px;
-                        gap: 10px;
-                        background-color: #ffffff;
-                        padding: 10px 15px;
-                        cursor: pointer;
-
-                        .document-title {
-                            text-align: left;
-                        }
-
-                        .info {
-                            display: flex;
-                            flex-direction: row;
-                            justify-content: space-between;
-                            align-items: center;
-
-                            .document-status {
-                                border-radius: 35px;
-                                padding: 4px 0;
-                                width: 100px;
-                                text-align: center;
-                                font-weight: 600;
-                                align-items: center;
-
-                                &.status-end {
-                                    background-color: rgba(255, 0, 0, 0.15);
-                                }
-
-                                &.status-soon {
-                                    background-color: rgba(255, 255, 0, 0.15);
-                                }
-
-                                &.status-active {
-                                    background-color: rgba(0, 255, 0, 0.15);
-                                }
-                            }
-                        }
-
-                        span,
-                        div {
-                            font-size: 14px;
-                            user-select: none;
-                        }
-
-                        &:hover {
-                            background: var(--item-hover-background);
-                        }
-
-                        &:active {
-                            background: var(--item-active-background);
-                        }
-                    }
-                }
-            }
-
-            .module-notifications {
-                .module-body {
-                    display: flex;
-                    flex-direction: column;
-                    gap: 5px;
-                    overflow: scroll;
-
-                    .notification {
-                        display: flex;
-                        flex-direction: column;
-                        border-radius: 10px;
-                        padding: 10px 15px;
-                        cursor: pointer;
-                        background-color: rgba(0, 0, 0, 0);
-                        user-select: none;
-
-                        .title,
-                        .date {
-                            text-align: left;
-                        }
-
-                        .title {
-                            font-size: 18px;
-                            font-weight: bold;
-                        }
-
-                        .date {
-                            font-size: 14px;
-                            margin-top: 5px;
-                            font-weight: 400;
-                            opacity: 0.5;
-                        }
-
-                        &:hover {
-                            background: var(--item-hover-background);
-                        }
-
-                        &:active {
-                            background: var(--item-active-background);
-                        }
-                    }
-                }
-            }
-
-            #mobileMenu {
-                position: fixed;
+                overflow-y: auto;
                 display: flex;
                 flex-direction: column;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                z-index: 50;
+                gap: 3px;
 
-                &.hidden {
-                    .modal-content {
-                        animation-name: moveSlideUp;
-                    }
-                }
-
-                .content {
-                    background: var(--secondary-color);
+                .document {
                     display: flex;
+                    overflow: hidden;
                     flex-direction: column;
-                    height: 100%;
-                    width: 100%;
-                    animation: moveSlideDown 0.25s forwards;
-                    animation-timing-function: cubic-bezier(.36, .67, .43, .99);
-
-                    &.hidden {
-                        animation: moveSlideUp 0.25s forwards;
-                        animation-timing-function: cubic-bezier(.36, .67, .43, .99);
-                    }
-
-                    .header {
-                        display: flex;
-                        align-items: center;
-                        padding: 9px 12px;
-                        height: 50px;
-
-                        .logo {
-                            display: flex;
-                            align-items: center;
-                            height: 100%;
-                            margin-right: auto;
-
-                            img {
-                                height: 100%;
-                            }
-                        }
-
-                        .notifications,
-                        .cross {
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            height: 100%;
-                            aspect-ratio: 1/1;
-                            padding: 0 3px;
-
-                            svg {
-                                width: 100%;
-                                height: 100%;
-                                object-fit: contain;
-                            }
-                        }
-
-                        .cross {
-                            margin-left: 5px;
-                        }
-                    }
-
-                    .body {
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: space-between;
-                        opacity: 0;
-                        transform: translateY(100%);
-                        background: #FFFFFF;
-                        overflow-y: scroll;
-                        flex-grow: 1;
-                        border-top-left-radius: 28px;
-                        border-top-right-radius: 28px;
-                        animation: modalMenuDown 0.25s forwards;
-                        animation-timing-function: cubic-bezier(.36, .67, .43, .99);
-
-                        &.visible {
-                            opacity: 1;
-                            transform: translateY(0);
-                            animation: modalMenuUp 0.25s forwards;
-                            animation-timing-function: cubic-bezier(.36, .67, .43, .99);
-                        }
-
-                        nav {
-                            width: 100%;
-                            display: flex;
-                            flex-direction: column;
-                            list-style: none;
-                            padding: 5px 15px;
-
-                            .nav-item {
-                                list-style: none;
-
-                                a {
-                                    display: flex;
-                                    flex-direction: column;
-                                    border-bottom: .6px solid var(--additional-color);
-                                    width: 100%;
-                                    padding: 10px 7px;
-                                    text-decoration: none;
-                                    font-size: 18px;
-                                    font-family: 'GrtskTera', sans-serif;
-                                    color: var(--secondary-color);
-
-                                    span {
-                                        margin-top: 2px;
-                                        font-style: italic;
-                                        opacity: 0.6;
-                                        font-size: 18px;
-                                        font-weight: 600;
-                                    }
-                                }
-                            }
-                        }
-
-                        .logout-btn,
-                        .login-btn {
-                            width: 100%;
-                            padding: 30px 10px;
-                            text-decoration: none;
-                            font-size: 18px;
-                            cursor: pointer;
-                            flex-shrink: 0;
-                            font-family: 'GrtskTera', sans-serif;
-                            background-color: transparent;
-                        }
-
-                        .logout-btn {
-                            color: rgba(#ff0000, 0.45);
-                        }
-
-                        .login-btn {
-                            color: var(--primary-color);
-                            opacity: 0.7;
-                        }
-                    }
-
-                    z-index: 2;
-                }
-
-                .spoiler {
-                    position: fixed;
-                    top: 0;
-                    left: 0;
-                    width: 100vw;
-                    height: 100vh;
-                    background-color: rgba(0, 0, 0, 0.5);
+                    border-radius: 10px;
+                    gap: 10px;
+                    background-color: #ffffff;
+                    padding: 10px 15px;
                     cursor: pointer;
-                    animation: fadeIn 0.35s ease-out forwards;
 
-                    &.hidden {
-                        animation: fadeOut 0.35s ease-out forwards;
+                    .document-title {
+                        text-align: left;
+                    }
+
+                    .info {
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-between;
+                        align-items: center;
+
+                        .document-status {
+                            border-radius: 35px;
+                            padding: 4px 0;
+                            width: 100px;
+                            text-align: center;
+                            font-weight: 600;
+                            align-items: center;
+
+                            &.status-end {
+                                background-color: rgba(255, 0, 0, 0.15);
+                            }
+
+                            &.status-soon {
+                                background-color: rgba(255, 255, 0, 0.15);
+                            }
+
+                            &.status-active {
+                                background-color: rgba(0, 255, 0, 0.15);
+                            }
+                        }
+                    }
+
+                    span,
+                    div {
+                        font-size: 14px;
+                        user-select: none;
+                    }
+
+                    &:hover {
+                        background: var(--item-hover-background);
+                    }
+
+                    &:active {
+                        background: var(--item-active-background);
                     }
                 }
             }
+        }
 
-            .modal {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100vh;
+        .module-notifications {
+            .module-body {
                 display: flex;
-                justify-content: center;
-                align-items: center;
-                background: rgba(0, 0, 0, 0.5);
-                z-index: 1001;
-                animation: fadeIn 0.2s ease-in-out forwards;
+                flex-direction: column;
+                gap: 5px;
+                overflow: scroll;
 
-                &.hidden {
-                    animation: fadeOut 0.2s ease-in-out forwards;
-
-                    .modal-content {
-                        animation-name: slideDown;
-                    }
-                }
-
-                .modal-content {
-                    position: relative;
+                .notification {
                     display: flex;
                     flex-direction: column;
-                    border-radius: 32px;
-                    width: 95%;
-                    height: 95%;
-                    z-index: 2;
-                    padding: 15px 8px 8px 8px;
-                    background-color: #ffffff;
-                    animation: modalSlideUp 0.3s forwards;
+                    border-radius: 10px;
+                    padding: 10px 15px;
+                    cursor: pointer;
+                    background-color: rgba(0, 0, 0, 0);
+                    user-select: none;
 
-                    &.hidden {
-                        animation: modalSlideDown 0.3s forwards;
+                    .title,
+                    .date {
+                        text-align: left;
                     }
 
-                    .modal-content__header {
-                        padding: 0 10px;
+                    .title {
+                        font-size: 18px;
+                        font-weight: bold;
+                    }
+
+                    .date {
+                        font-size: 14px;
+                        margin-top: 5px;
+                        font-weight: 400;
+                        opacity: 0.5;
+                    }
+
+                    &:hover {
+                        background: var(--item-hover-background);
+                    }
+
+                    &:active {
+                        background: var(--item-active-background);
+                    }
+                }
+            }
+        }
+
+        #mobileMenu {
+            position: fixed;
+            display: flex;
+            flex-direction: column;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 50;
+
+            &.hidden {
+                .modal-content {
+                    animation-name: moveSlideUp;
+                }
+            }
+
+            .content {
+                background: var(--secondary-color);
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+                width: 100%;
+                animation: moveSlideDown 0.25s forwards;
+                animation-timing-function: cubic-bezier(.36, .67, .43, .99);
+
+                &.hidden {
+                    animation: moveSlideUp 0.25s forwards;
+                    animation-timing-function: cubic-bezier(.36, .67, .43, .99);
+                }
+
+                .header {
+                    display: flex;
+                    align-items: center;
+                    padding: 9px 12px;
+                    height: 50px;
+
+                    .logo {
                         display: flex;
                         align-items: center;
-                        justify-content: space-between;
-                        width: 100%;
+                        height: 100%;
+                        margin-right: auto;
 
-                        .modal-title {
-                            text-align: left;
-                            font-family: 'GrtskTera', sans-serif;
-                            font-size: 22px;
+                        img {
+                            height: 100%;
                         }
                     }
 
-                    .modal-content__body {
-                        margin-top: 7px;
-                        overflow-y: auto;
-                        padding: 15px 5px;
-                        flex-grow: 1;
-                        border-radius: 32px;
-                        box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.15);
-                    }
+                    .notifications,
+                    .cross {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        height: 100%;
+                        aspect-ratio: 1/1;
+                        padding: 0 3px;
 
-                    &.modal-login {
-                        height: unset;
-                        max-width: 500px;
-                        width: 95%;
-                        max-height: 550px;
-
-                        form {
-                            display: flex;
-                            flex-grow: 1;
-                            flex-direction: column;
-                            padding: 0 10px 30px 10px;
+                        svg {
                             width: 100%;
                             height: 100%;
-                            margin-top: 30px;
-
-                            .form-elem__text {
-                                display: flex;
-                                flex-direction: column;
-                                gap: 6px;
-                                width: 100%;
-                                margin-top: 15px;
-                            }
-
-                            .form-elem__submit {
-                                display: flex;
-                                width: 75px;
-                                align-self: center;
-                                aspect-ratio: 1/1;
-                                position: relative;
-                                font-size: 28px;
-                                border-radius: 50%;
-                                padding: 10px;
-                                background: #000000;
-                                cursor: pointer;
-                                overflow: hidden;
-                                margin-top: 60px;
-                                transition: background 0.25s ease;
-
-                                svg {
-                                    fill: var(--background-color);
-                                }
-
-                                &:hover,
-                                &:focus,
-                                &:active {
-                                    background: var(--primary-color);
-                                }
-                            }
-                        }
-                    }
-
-                    &.modal-notifications {
-                        max-width: 580px;
-                        max-height: 650px;
-
-                        .modal-content__body {
-                            padding: 0;
-
-                            .module-notifications {
-                                .module-body {
-                                    gap: 0;
-                                    padding: 10px 0;
-
-                                    .notification {
-                                        border-radius: 0;
-                                        border: none;
-                                    }
-                                }
-                            }
+                            object-fit: contain;
                         }
                     }
 
                     .cross {
-                        height: 32px;
+                        margin-left: 5px;
                     }
                 }
 
-                .spoiler {
-                    position: fixed;
-                    top: 0;
-                    left: 0;
-                    width: 100vw;
-                    height: 100vh;
-                    background-color: transparent;
-                    cursor: pointer;
-                    animation: fadeIn 0.2s ease-in-out forwards;
+                .body {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    opacity: 0;
+                    transform: translateY(100%);
+                    background: #FFFFFF;
+                    overflow-y: scroll;
+                    flex-grow: 1;
+                    border-top-left-radius: 28px;
+                    border-top-right-radius: 28px;
+                    animation: modalMenuDown 0.25s forwards;
+                    animation-timing-function: cubic-bezier(.36, .67, .43, .99);
 
-                    &.hidden {
-                        animation: fadeOut 0.2s ease-in-out forwards;
+                    &.visible {
+                        opacity: 1;
+                        transform: translateY(0);
+                        animation: modalMenuUp 0.25s forwards;
+                        animation-timing-function: cubic-bezier(.36, .67, .43, .99);
+                    }
+
+                    nav {
+                        width: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        list-style: none;
+                        padding: 5px 15px;
+
+                        .nav-item {
+                            list-style: none;
+
+                            a {
+                                display: flex;
+                                flex-direction: column;
+                                border-bottom: .6px solid var(--additional-color);
+                                width: 100%;
+                                padding: 10px 7px;
+                                text-decoration: none;
+                                font-size: 18px;
+                                font-family: 'GrtskTera', sans-serif;
+                                color: var(--secondary-color);
+
+                                span {
+                                    margin-top: 2px;
+                                    font-style: italic;
+                                    opacity: 0.6;
+                                    font-size: 18px;
+                                    font-weight: 600;
+                                }
+                            }
+                        }
+                    }
+
+                    .logout-btn,
+                    .login-btn {
+                        width: 100%;
+                        padding: 30px 10px;
+                        text-decoration: none;
+                        font-size: 18px;
+                        cursor: pointer;
+                        flex-shrink: 0;
+                        font-family: 'GrtskTera', sans-serif;
+                        background-color: transparent;
+                    }
+
+                    .logout-btn {
+                        color: rgba(#ff0000, 0.45);
+                    }
+
+                    .login-btn {
+                        color: var(--primary-color);
+                        opacity: 0.7;
                     }
                 }
+
+                z-index: 2;
             }
 
-            #modalLoading {
-                position: absolute;
+            .spoiler {
+                position: fixed;
                 top: 0;
                 left: 0;
-                width: 100%;
-                height: 100%;
-                animation: none;
-                z-index: 5;
+                width: 100vw;
+                height: 100vh;
+                background-color: rgba(0, 0, 0, 0.5);
+                cursor: pointer;
+                animation: fadeIn 0.35s ease-out forwards;
 
-                img {
-                    height: 70px;
-                    animation: rotate 1.5s linear infinite;
+                &.hidden {
+                    animation: fadeOut 0.35s ease-out forwards;
                 }
             }
+        }
+
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1001;
+            animation: fadeIn 0.2s ease-in-out forwards;
+
+            #createDocument {
+                .modal-content {
+                    width: 95%;
+                    height: 95%;
+                    max-height: unset;
+                    max-width: unset;
+                }
+            }
+
+            &.hidden {
+                animation: fadeOut 0.2s ease-in-out forwards;
+
+                .modal-content {
+                    animation-name: slideDown;
+                }
+            }
+
+            .modal-content {
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                border-radius: 32px;
+                width: 95%;
+                height: 95%;
+                z-index: 2;
+                padding: 15px 8px 8px 8px;
+                background-color: #ffffff;
+                animation: modalSlideUp 0.3s forwards;
+
+                &.hidden {
+                    animation: modalSlideDown 0.3s forwards;
+                }
+
+                .modal-content__header {
+                    padding: 0 10px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    width: 100%;
+
+                    .modal-title {
+                        text-align: left;
+                        font-family: 'GrtskTera', sans-serif;
+                        font-size: 22px;
+                    }
+                }
+
+                .modal-content__body {
+                    margin-top: 7px;
+                    overflow-y: auto;
+                    padding: 15px 5px;
+                    flex-grow: 1;
+                    border-radius: 32px;
+                    box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.15);
+                }
+
+                &.modal-login {
+                    height: unset;
+                    max-width: 500px;
+                    width: 95%;
+                    max-height: 550px;
+
+                    form {
+                        display: flex;
+                        flex-grow: 1;
+                        flex-direction: column;
+                        padding: 0 10px 30px 10px;
+                        width: 100%;
+                        height: 100%;
+                        margin-top: 30px;
+
+                        .form-elem__text {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 6px;
+                            width: 100%;
+                            margin-top: 15px;
+                        }
+
+                        .form-elem__submit {
+                            display: flex;
+                            width: 75px;
+                            align-self: center;
+                            aspect-ratio: 1/1;
+                            position: relative;
+                            font-size: 28px;
+                            border-radius: 50%;
+                            padding: 10px;
+                            background: #000000;
+                            cursor: pointer;
+                            overflow: hidden;
+                            margin-top: 60px;
+                            transition: background 0.25s ease;
+
+                            svg {
+                                fill: var(--background-color);
+                            }
+
+                            &:hover,
+                            &:focus,
+                            &:active {
+                                background: var(--primary-color);
+                            }
+                        }
+                    }
+                }
+
+                &.modal-notifications {
+                    max-width: 580px;
+                    max-height: 650px;
+
+                    .modal-content__body {
+                        padding: 0;
+
+                        .module-notifications {
+                            .module-body {
+                                gap: 0;
+                                padding: 10px 0;
+
+                                .notification {
+                                    border-radius: 0;
+                                    border: none;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .cross {
+                    height: 32px;
+                }
+            }
+
+            .spoiler {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                background-color: transparent;
+                cursor: pointer;
+                animation: fadeIn 0.2s ease-in-out forwards;
+
+                &.hidden {
+                    animation: fadeOut 0.2s ease-in-out forwards;
+                }
+            }
+        }
+
+        #modalLoading {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            animation: none;
+            z-index: 5;
+
+            img {
+                height: 70px;
+                animation: rotate 1.5s linear infinite;
+            }
+        }
+
+        #dynamica {
+            display: flex;
+            min-height: 100vh;
 
             .layout {
                 display: flex;
@@ -2154,9 +2162,70 @@ html {
                                                     height: 100%;
                                                     padding: 5px 10px;
                                                     align-items: center;
+                                                    background: var(--block-background);
                                                     gap: 20px;
                                                     z-index: 5;
                                                     transition: all 100ms;
+
+                                                    &.hidden {
+                                                        opacity: 0.5;
+                                                    }
+
+                                                    .employee-actions {
+                                                        display: flex;
+                                                        flex-direction: column;
+                                                        gap: 3px;
+                                                        position: absolute;
+                                                        top: 5px;
+                                                        right: 5px;
+
+                                                        .employee-action {
+                                                            display: flex;
+                                                            align-items: center;
+                                                            justify-content: center;
+                                                            height: 25px;
+                                                            width: 25px;
+                                                            cursor: pointer;
+                                                            border-radius: 7px;
+                                                            opacity: 0.5;
+                                                            overflow: visible;
+                                                            background: transparent;
+                                                            transition: all 150ms;
+
+                                                            svg {
+                                                                opacity: 0.3;
+                                                                transition: all 150ms;
+                                                            }
+
+                                                            .hidden-input {
+                                                                display: none;
+                                                            }
+
+                                                            &:hover {
+                                                                background: var(--block-background);
+                                                                box-shadow: var(--block-shadow);
+
+                                                                svg {
+                                                                    opacity: 1;
+                                                                }
+                                                            }
+                                                        }
+
+                                                        .employee-actions-item {
+                                                            display: flex;
+                                                            justify-content: right;
+                                                        }
+
+                                                        .employee-actions-photo {
+                                                            display: flex;
+                                                            flex-direction: row;
+                                                            gap: 2px;
+                                                        }
+
+                                                        .employee-actions-hide {
+
+                                                        }
+                                                    }
 
                                                     .employee-card__photo {
                                                         position: relative;
@@ -2245,13 +2314,15 @@ html {
 
                                                 .employee-card__details {
                                                     position: absolute;
+                                                    max-height: 120px;
+                                                    overflow: auto;
                                                     width: 95%;
                                                     display: flex;
                                                     flex-direction: column;
                                                     padding: 3px;
                                                     background: var(--background-color);
+                                                    box-shadow: var(--document-shadow);
                                                     border-radius: 10px;
-                                                    backdrop-filter: blur(8px);
                                                     gap: 3px;
                                                     bottom: 0;
                                                     left: 50%;
@@ -2259,6 +2330,10 @@ html {
                                                     transform: translate(-50%, 100%);
                                                     z-index: 6;
                                                     transition: background 100ms;
+
+                                                    &::-webkit-scrollbar {
+                                                        width: 8px;
+                                                    }
 
                                                     .details-item {
                                                         display: flex;
@@ -2268,6 +2343,11 @@ html {
                                                         border-radius: 7px;
                                                         cursor: pointer;
                                                         transition: background 100ms;
+
+                                                        &.mailto-link {
+                                                            display: block;
+                                                            text-decoration: none;
+                                                        }
 
                                                         .details-title {
                                                             display: flex;
@@ -2286,12 +2366,42 @@ html {
 
                                                         .detail {
                                                             font-size: 14px;
+                                                            text-decoration: none;
+                                                        }
+
+                                                        .detail-container {
+                                                            display: flex;
+                                                            flex-direction: row;
+                                                            gap: 5px;
+
+                                                            .detail {
+                                                                flex-grow: 1;
+                                                            }
+
+                                                            button {
+                                                                background: var(--block-background);
+                                                                border-radius: 7px;
+                                                                transition: all 150ms;
+
+                                                                svg {
+                                                                    opacity: 0.5;
+                                                                    transition: all 150ms;
+                                                                }
+
+                                                                &:hover {
+                                                                    box-shadow: var(--block-shadow);
+
+                                                                    svg {
+                                                                        opacity: 1;
+                                                                    }
+                                                                }
+                                                            }
                                                         }
 
                                                         input[type=text].detail {
                                                             border-radius: 7px;
                                                             border: 1px solid var(--background-color);
-                                                            padding: 2px 5px;
+                                                            padding: 2px;
                                                         }
 
                                                         &:hover {
@@ -2303,7 +2413,8 @@ html {
 
                                                 &:hover {
                                                     .employee-card__preview {
-                                                        box-shadow: var(--block-shadow);
+                                                        opacity: 1;
+                                                        box-shadow: var(--document-shadow);
 
                                                         .employee-card__photo {
                                                             border-radius: 10px;
@@ -2368,7 +2479,7 @@ html {
                                             align-items: center;
                                             position: sticky;
                                             bottom: 0;
-                                            padding: 5px 0;
+                                            padding: 3px 0;
                                             background: rgba(255, 255, 255, 0.7);
                                             backdrop-filter: blur(10px);
                                             z-index: 10;
@@ -2380,7 +2491,7 @@ html {
                                                 gap: 5px;
 
                                                 button {
-                                                    font-size: 18px;
+                                                    font-size: 14px;
                                                     font-weight: 600;
                                                     padding: 12px 16px;
                                                     border-radius: 10px;
@@ -2894,67 +3005,67 @@ html {
         }
 
         body {
+            .modal {
+                .modal-content {
+                    .modal-content__header {
+                        padding: 0 15px;
+
+                        .cross {
+                            height: 36px;
+                        }
+                    }
+
+                    .modal-content__body {
+                        margin-top: 10px;
+                        padding: 15px 8px;
+                    }
+
+                    &.modal-login {
+                        form {
+                            padding: 0 15px 30px 15px;
+
+                            .form-elem__text {
+                                label,
+                                input {
+                                    font-size: 18px;
+                                }
+
+                                input {
+                                    padding: 15px;
+                                }
+                            }
+                        }
+                    }
+
+                    &.modal-notifications {
+                        max-width: 580px;
+                        max-height: 650px;
+
+                        .modal-content__body {
+                            padding: 0;
+
+                            .module-notifications {
+                                .module-body {
+                                    gap: 0;
+                                    padding: 10px 0;
+
+                                    .notification {
+                                        border-radius: 0;
+                                        border: none;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
             #dynamica {
                 #mobileMenu {
                     .content {
                         .header {
                             height: 70px;
                             padding: 10px 35px;
-                        }
-                    }
-                }
-
-                .modal {
-                    .modal-content {
-                        .modal-content__header {
-                            padding: 0 15px;
-
-                            .cross {
-                                height: 36px;
-                            }
-                        }
-
-                        .modal-content__body {
-                            margin-top: 10px;
-                            padding: 15px 8px;
-                        }
-
-                        &.modal-login {
-                            form {
-                                padding: 0 15px 30px 15px;
-
-                                .form-elem__text {
-                                    label,
-                                    input {
-                                        font-size: 18px;
-                                    }
-
-                                    input {
-                                        padding: 15px;
-                                    }
-                                }
-                            }
-                        }
-
-                        &.modal-notifications {
-                            max-width: 580px;
-                            max-height: 650px;
-
-                            .modal-content__body {
-                                padding: 0;
-
-                                .module-notifications {
-                                    .module-body {
-                                        gap: 0;
-                                        padding: 10px 0;
-
-                                        .notification {
-                                            border-radius: 0;
-                                            border: none;
-                                        }
-                                    }
-                                }
-                            }
                         }
                     }
                 }
@@ -3836,7 +3947,7 @@ html {
 
                                                         .employee-card__general {
                                                             .employee-card__name {
-                                                                font-size: 18px;
+                                                                font-size: 16px;
                                                             }
 
                                                             .employee-card__position {
@@ -4379,7 +4490,7 @@ html {
 
                                                         .employee-card__general {
                                                             .employee-card__name {
-                                                                font-size: 20px;
+                                                                font-size: 18px;
                                                             }
 
                                                             .employee-card__position {

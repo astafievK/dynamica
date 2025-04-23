@@ -14,11 +14,6 @@ export const Modals: FC = () => {
             {modalLoginIsOpen && <ModalLogin/>}
             {mobileMenuIsOpen && <MobileMenu/>}
             {modalNotificationsIsOpen && <ModalNotifications/>}
-            {
-                // <AnimatePresence>
-                //     <ModalLoading />
-                // </AnimatePresence>
-            }
         </>
     );
 }

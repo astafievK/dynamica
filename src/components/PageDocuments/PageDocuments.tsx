@@ -31,7 +31,7 @@ export const PageDocuments: FC = () => {
                             id={1}
                             dateCreated="19.04.2025"
                             dateExpires="01.01.2026"
-                            title="Договор поставки ООО 'Какая-то хуетень'"
+                            title="Договор поставки ООО 'Тестовая организация'"
                             entity="ООО 'Рога и Копыта'"
                             counterparty="ООО 'Партнёр'"
                             serviceType="Регулярная услуга"
@@ -41,7 +41,7 @@ export const PageDocuments: FC = () => {
                             id={1}
                             dateCreated="19.04.2025"
                             dateExpires="01.01.2026"
-                            title="Договор поставки ООО 'Какая-то хуетень'"
+                            title="Договор поставки ООО 'Тестовая организация'"
                             entity="ООО 'Рога и Копыта'"
                             counterparty="ООО 'Партнёр'"
                             serviceType="Регулярная услуга"
@@ -51,7 +51,7 @@ export const PageDocuments: FC = () => {
                             id={1}
                             dateCreated="19.04.2025"
                             dateExpires="01.01.2026"
-                            title="Договор поставки ООО 'Какая-то хуетень'"
+                            title="Договор поставки ООО 'Тестовая организация'"
                             entity="ООО 'Рога и Копыта'"
                             counterparty="ООО 'Партнёр'"
                             serviceType="Регулярная услуга"
@@ -61,7 +61,7 @@ export const PageDocuments: FC = () => {
                             id={1}
                             dateCreated="19.04.2025"
                             dateExpires="01.01.2026"
-                            title="Договор поставки ООО 'Какая-то хуетень'"
+                            title="Договор поставки ООО 'Тестовая организация'"
                             entity="ООО 'Рога и Копыта'"
                             counterparty="ООО 'Партнёр'"
                             serviceType="Регулярная услуга"
@@ -71,7 +71,7 @@ export const PageDocuments: FC = () => {
                             id={1}
                             dateCreated="19.04.2025"
                             dateExpires="01.01.2026"
-                            title="Договор поставки ООО 'Какая-то хуетень'"
+                            title="Договор поставки ООО 'Тестовая организация'"
                             entity="ООО 'Рога и Копыта'"
                             counterparty="ООО 'Партнёр'"
                             serviceType="Регулярная услуга"
@@ -81,7 +81,7 @@ export const PageDocuments: FC = () => {
                             id={1}
                             dateCreated="19.04.2025"
                             dateExpires="01.01.2026"
-                            title="Договор поставки ООО 'Какая-то хуетень'"
+                            title="Договор поставки ООО 'Тестовая организация'"
                             entity="ООО 'Рога и Копыта'"
                             counterparty="ООО 'Партнёр'"
                             serviceType="Регулярная услуга"
@@ -91,7 +91,7 @@ export const PageDocuments: FC = () => {
                             id={1}
                             dateCreated="19.04.2025"
                             dateExpires="01.01.2026"
-                            title="Договор поставки ООО 'Какая-то хуетень'"
+                            title="Договор поставки ООО 'Тестовая организация'"
                             entity="ООО 'Рога и Копыта'"
                             counterparty="ООО 'Партнёр'"
                             serviceType="Регулярная услуга"
@@ -101,7 +101,7 @@ export const PageDocuments: FC = () => {
                             id={1}
                             dateCreated="19.04.2025"
                             dateExpires="01.01.2026"
-                            title="Договор поставки ООО 'Какая-то хуетень'"
+                            title="Договор поставки ООО 'Тестовая организация'"
                             entity="ООО 'Рога и Копыта'"
                             counterparty="ООО 'Партнёр'"
                             serviceType="Регулярная услуга"
@@ -111,7 +111,7 @@ export const PageDocuments: FC = () => {
                             id={1}
                             dateCreated="19.04.2025"
                             dateExpires="01.01.2026"
-                            title="Договор поставки ООО 'Какая-то хуетень'"
+                            title="Договор поставки ООО 'Тестовая организация'"
                             entity="ООО 'Рога и Копыта'"
                             counterparty="ООО 'Партнёр'"
                             serviceType="Регулярная услуга"
@@ -121,7 +121,7 @@ export const PageDocuments: FC = () => {
                             id={1}
                             dateCreated="19.04.2025"
                             dateExpires="01.01.2026"
-                            title="Договор поставки ООО 'Какая-то хуетень'"
+                            title="Договор поставки ООО 'Тестовая организация'"
                             entity="ООО 'Рога и Копыта'"
                             counterparty="ООО 'Партнёр'"
                             serviceType="Регулярная услуга"
@@ -131,7 +131,7 @@ export const PageDocuments: FC = () => {
                             id={1}
                             dateCreated="19.04.2025"
                             dateExpires="01.01.2026"
-                            title="Договор поставки ООО 'Какая-то хуетень'"
+                            title="Договор поставки ООО 'Тестовая организация'"
                             entity="ООО 'Рога и Копыта'"
                             counterparty="ООО 'Партнёр'"
                             serviceType="Регулярная услуга"
@@ -141,7 +141,7 @@ export const PageDocuments: FC = () => {
                             id={1}
                             dateCreated="19.04.2025"
                             dateExpires="01.01.2026"
-                            title="Договор поставки ООО 'Какая-то хуетень'"
+                            title="Договор поставки ООО 'Тестовая организация'"
                             entity="ООО 'Рога и Копыта'"
                             counterparty="ООО 'Партнёр'"
                             serviceType="Регулярная услуга"

@@ -62,6 +62,20 @@ export const userApi = baseApi.injectEndpoints({
             }),
             invalidatesTags: ["Employee"],
         }),
+        patchUserVisibility: builder.mutation<{ status: string; message: string }, { id_user: number }>({
+            query: (query) => ({
+                url: `/Users/setIsHidden.php?id_user=${query.id_user}`,
+                method: "PATCH",
+            }),
+            invalidatesTags: ["Employee"],
+        }),
+        patchUserEmail: builder.mutation<{ status: string; message: string }, { id_user: number, email: string }>({
+            query: (query) => ({
+                url: `/Users/setEmail.php?id_user=${query.id_user}&email=${query.email}`,
+                method: "PATCH",
+            }),
+            invalidatesTags: ["Employee"],
+        }),
     }),
 });
 
@@ -74,4 +88,6 @@ export const {
     useGetUsersFilteredQuery,
     useUploadProfileImageMutation,
     useDeleteProfileImageMutation,
+    usePatchUserVisibilityMutation,
+    usePatchUserEmailMutation,
 } = userApi;

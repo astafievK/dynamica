@@ -27,9 +27,9 @@ export const departmentApi = baseApi.injectEndpoints({
             }),
             invalidatesTags: ['Department'],
         }),
-        editDepartmentTitle: builder.mutation<{status: string, message: string}, EditDepartmentTitleCommand>({
+        editDepartmentTitleById: builder.mutation<{status: string, message: string}, EditDepartmentTitleCommand>({
             query: (query) => ({
-                url: `/Department/editDepartmentTitle.php`,
+                url: `/Department/editDepartmentTitleById.php`,
                 method: "POST",
                 body: query
             }),
@@ -42,5 +42,5 @@ export const {
     useGetDepartmentsQuery,
     useGetDepartmentsTitlesNotNullQuery,
     useCreateDepartmentMutation,
-    useEditDepartmentTitleMutation,
+    useEditDepartmentTitleByIdMutation,
 } = departmentApi;

@@ -7,7 +7,9 @@ import { EmployeeCardSkeleton } from "../Skeletons/EmployeeCardSkeleton.tsx";
 import { useDebounce } from "../../store/hooks/useDebounce.ts";
 import {BannerNoData} from "../BannerNoData/BannerNoData.tsx";
 import {FilterButtons} from "../FilterButtons/FilterButtons.tsx";
+import { useSearchParams } from "react-router-dom";
 import {useGetDepartmentsTitlesNotNullQuery} from "../../api/methods/departmentApi.ts";
+import {useTypedSelector} from "../../store/hooks/redux.ts";
 
 const ITEMS_PER_PAGE = 100;
 
@@ -18,11 +20,23 @@ export const PageContacts: FC = () => {
     const [searchValue, setSearchValue] = useState<string | undefined>(undefined);
     const [isFilterChanging, setIsFilterChanging] = useState<boolean>(false);
     const [currentPage, setCurrentPage] = useState<number>(1);
+    const { user } = useTypedSelector(state => state.auth)
     const { data: departmentsData, isLoading: departmentsLoading } = useGetDepartmentsTitlesNotNullQuery();
     const { data, isLoading } = useGetUsersFilteredQuery({
         department: departmentTitle,
         search: searchValue,
     });
+
+    const [searchParams, setSearchParams] = useSearchParams();
+
+    useEffect(() => {
+        const department = searchParams.get("department") || "";
+        const search = searchParams.get("search") || "";
+
+        setDepartmentTitle(department);
+        setTemporarySearchValue(search);
+        setSearchValue(search);
+    }, []);
 
     useEffect(() => {
         setSearchValue(debouncedSearchValue);
@@ -31,6 +45,12 @@ export const PageContacts: FC = () => {
     useEffect(() => {
         setCurrentPage(1);
         setIsFilterChanging(true);
+
+        const params: Record<string, string> = {};
+        if (departmentTitle) params.department = departmentTitle;
+        if (searchValue) params.search = searchValue;
+
+        setSearchParams(params);
     }, [departmentTitle, searchValue]);
 
     useEffect(() => {
@@ -41,8 +61,13 @@ export const PageContacts: FC = () => {
 
     const paginatedUsers = useMemo(() => {
         if (!data?.users) return [];
-        return data.users.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
-    }, [data?.users, currentPage]);
+
+        const visibleUsers = user
+            ? data.users
+            : data.users.filter((u) => !u.is_hidden);
+
+        return visibleUsers.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
+    }, [data?.users, currentPage, user]);
 
     const totalPages = Math.ceil((data?.users?.length || 0) / ITEMS_PER_PAGE);
 
@@ -104,7 +129,7 @@ export const PageContacts: FC = () => {
                     className="employees-container page-content-item"
                 >
                     {[...Array(4)].map((_, i) => (
-                        <EmployeeCardSkeleton key={i} />
+                        <EmployeeCardSkeleton key={i}/>
                     ))}
                 </motion.div>
             );
@@ -124,15 +149,17 @@ export const PageContacts: FC = () => {
                 transition={pageAnimation.transition}
                 className="employees-container page-content-item"
             >
-                {paginatedUsers.map((employee) => (
-                    <EmployeeCard key={employee.id_user} employee={employee} />
-                ))}
+                {
+                    paginatedUsers.map((employee) => (
+                        <EmployeeCard key={employee.id_user} employee={employee}/>
+                    ))
+                }
             </motion.div>
         );
-    };
+    }
 
     return (
-        <AnimatePresence mode={"wait"}>
+        <AnimatePresence>
             <motion.div
                 initial={pageAnimation.initial}
                 animate={pageAnimation.animate}

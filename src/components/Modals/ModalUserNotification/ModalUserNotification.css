@@ -24,7 +24,7 @@
   .modal-notification {
     padding: 20px;
     width: 100%;
-    max-width: 580px;
+    max-width: 350px;
     max-height: 650px;
   }
   .modal-notification .modal-notification__title {
@@ -37,19 +37,22 @@
 }
 @media (min-width: 1024px) {
   .modal-notification {
-    border-radius: 32px;
+    border-radius: 24px;
     left: 50px;
-    padding: 25px;
+    padding: 18px;
   }
   .modal-notification .modal-notification__title {
-    font-size: 22px;
+    font-size: 18px;
   }
   .modal-notification .modal-notification__description {
-    font-size: 16px;
+    font-size: 14px;
     margin-top: 10px;
   }
 }
 @media (min-width: 1440px) {
+  .modal-notification {
+    max-width: 450px;
+  }
   .modal-notification .modal-notification__title {
     font-size: 24px;
   }

@@ -328,26 +328,21 @@ html body {
 }
 html body::-webkit-scrollbar {
   width: 12px;
-  height: 12px;
 }
 html body.scroll-locked {
   overflow: hidden;
 }
-html body #dynamica {
-  display: flex;
-  min-height: 100vh;
-}
-html body #dynamica .module-documents {
+html body .module-documents {
   width: 100%;
 }
-html body #dynamica .module-documents .module-body {
+html body .module-documents .module-body {
   width: 100%;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
   gap: 3px;
 }
-html body #dynamica .module-documents .module-body .document {
+html body .module-documents .module-body .document {
   display: flex;
   overflow: hidden;
   flex-direction: column;
@@ -357,16 +352,16 @@ html body #dynamica .module-documents .module-body .document {
   padding: 10px 15px;
   cursor: pointer;
 }
-html body #dynamica .module-documents .module-body .document .document-title {
+html body .module-documents .module-body .document .document-title {
   text-align: left;
 }
-html body #dynamica .module-documents .module-body .document .info {
+html body .module-documents .module-body .document .info {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
 }
-html body #dynamica .module-documents .module-body .document .info .document-status {
+html body .module-documents .module-body .document .info .document-status {
   border-radius: 35px;
   padding: 4px 0;
   width: 100px;
@@ -374,33 +369,33 @@ html body #dynamica .module-documents .module-body .document .info .document-sta
   font-weight: 600;
   align-items: center;
 }
-html body #dynamica .module-documents .module-body .document .info .document-status.status-end {
+html body .module-documents .module-body .document .info .document-status.status-end {
   background-color: rgba(255, 0, 0, 0.15);
 }
-html body #dynamica .module-documents .module-body .document .info .document-status.status-soon {
+html body .module-documents .module-body .document .info .document-status.status-soon {
   background-color: rgba(255, 255, 0, 0.15);
 }
-html body #dynamica .module-documents .module-body .document .info .document-status.status-active {
+html body .module-documents .module-body .document .info .document-status.status-active {
   background-color: rgba(0, 255, 0, 0.15);
 }
-html body #dynamica .module-documents .module-body .document span,
-html body #dynamica .module-documents .module-body .document div {
+html body .module-documents .module-body .document span,
+html body .module-documents .module-body .document div {
   font-size: 14px;
   user-select: none;
 }
-html body #dynamica .module-documents .module-body .document:hover {
+html body .module-documents .module-body .document:hover {
   background: var(--item-hover-background);
 }
-html body #dynamica .module-documents .module-body .document:active {
+html body .module-documents .module-body .document:active {
   background: var(--item-active-background);
 }
-html body #dynamica .module-notifications .module-body {
+html body .module-notifications .module-body {
   display: flex;
   flex-direction: column;
   gap: 5px;
   overflow: scroll;
 }
-html body #dynamica .module-notifications .module-body .notification {
+html body .module-notifications .module-body .notification {
   display: flex;
   flex-direction: column;
   border-radius: 10px;
@@ -409,27 +404,27 @@ html body #dynamica .module-notifications .module-body .notification {
   background-color: rgba(0, 0, 0, 0);
   user-select: none;
 }
-html body #dynamica .module-notifications .module-body .notification .title,
-html body #dynamica .module-notifications .module-body .notification .date {
+html body .module-notifications .module-body .notification .title,
+html body .module-notifications .module-body .notification .date {
   text-align: left;
 }
-html body #dynamica .module-notifications .module-body .notification .title {
+html body .module-notifications .module-body .notification .title {
   font-size: 18px;
   font-weight: bold;
 }
-html body #dynamica .module-notifications .module-body .notification .date {
+html body .module-notifications .module-body .notification .date {
   font-size: 14px;
   margin-top: 5px;
   font-weight: 400;
   opacity: 0.5;
 }
-html body #dynamica .module-notifications .module-body .notification:hover {
+html body .module-notifications .module-body .notification:hover {
   background: var(--item-hover-background);
 }
-html body #dynamica .module-notifications .module-body .notification:active {
+html body .module-notifications .module-body .notification:active {
   background: var(--item-active-background);
 }
-html body #dynamica #mobileMenu {
+html body #mobileMenu {
   position: fixed;
   display: flex;
   flex-direction: column;
@@ -439,10 +434,10 @@ html body #dynamica #mobileMenu {
   height: 100%;
   z-index: 50;
 }
-html body #dynamica #mobileMenu.hidden .modal-content {
+html body #mobileMenu.hidden .modal-content {
   animation-name: moveSlideUp;
 }
-html body #dynamica #mobileMenu .content {
+html body #mobileMenu .content {
   background: var(--secondary-color);
   display: flex;
   flex-direction: column;
@@ -452,27 +447,27 @@ html body #dynamica #mobileMenu .content {
   animation-timing-function: cubic-bezier(0.36, 0.67, 0.43, 0.99);
   z-index: 2;
 }
-html body #dynamica #mobileMenu .content.hidden {
+html body #mobileMenu .content.hidden {
   animation: moveSlideUp 0.25s forwards;
   animation-timing-function: cubic-bezier(0.36, 0.67, 0.43, 0.99);
 }
-html body #dynamica #mobileMenu .content .header {
+html body #mobileMenu .content .header {
   display: flex;
   align-items: center;
   padding: 9px 12px;
   height: 50px;
 }
-html body #dynamica #mobileMenu .content .header .logo {
+html body #mobileMenu .content .header .logo {
   display: flex;
   align-items: center;
   height: 100%;
   margin-right: auto;
 }
-html body #dynamica #mobileMenu .content .header .logo img {
+html body #mobileMenu .content .header .logo img {
   height: 100%;
 }
-html body #dynamica #mobileMenu .content .header .notifications,
-html body #dynamica #mobileMenu .content .header .cross {
+html body #mobileMenu .content .header .notifications,
+html body #mobileMenu .content .header .cross {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -480,16 +475,16 @@ html body #dynamica #mobileMenu .content .header .cross {
   aspect-ratio: 1/1;
   padding: 0 3px;
 }
-html body #dynamica #mobileMenu .content .header .notifications svg,
-html body #dynamica #mobileMenu .content .header .cross svg {
+html body #mobileMenu .content .header .notifications svg,
+html body #mobileMenu .content .header .cross svg {
   width: 100%;
   height: 100%;
   object-fit: contain;
 }
-html body #dynamica #mobileMenu .content .header .cross {
+html body #mobileMenu .content .header .cross {
   margin-left: 5px;
 }
-html body #dynamica #mobileMenu .content .body {
+html body #mobileMenu .content .body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -503,23 +498,23 @@ html body #dynamica #mobileMenu .content .body {
   animation: modalMenuDown 0.25s forwards;
   animation-timing-function: cubic-bezier(0.36, 0.67, 0.43, 0.99);
 }
-html body #dynamica #mobileMenu .content .body.visible {
+html body #mobileMenu .content .body.visible {
   opacity: 1;
   transform: translateY(0);
   animation: modalMenuUp 0.25s forwards;
   animation-timing-function: cubic-bezier(0.36, 0.67, 0.43, 0.99);
 }
-html body #dynamica #mobileMenu .content .body nav {
+html body #mobileMenu .content .body nav {
   width: 100%;
   display: flex;
   flex-direction: column;
   list-style: none;
   padding: 5px 15px;
 }
-html body #dynamica #mobileMenu .content .body nav .nav-item {
+html body #mobileMenu .content .body nav .nav-item {
   list-style: none;
 }
-html body #dynamica #mobileMenu .content .body nav .nav-item a {
+html body #mobileMenu .content .body nav .nav-item a {
   display: flex;
   flex-direction: column;
   border-bottom: 0.6px solid var(--additional-color);
@@ -530,15 +525,15 @@ html body #dynamica #mobileMenu .content .body nav .nav-item a {
   font-family: "GrtskTera", sans-serif;
   color: var(--secondary-color);
 }
-html body #dynamica #mobileMenu .content .body nav .nav-item a span {
+html body #mobileMenu .content .body nav .nav-item a span {
   margin-top: 2px;
   font-style: italic;
   opacity: 0.6;
   font-size: 18px;
   font-weight: 600;
 }
-html body #dynamica #mobileMenu .content .body .logout-btn,
-html body #dynamica #mobileMenu .content .body .login-btn {
+html body #mobileMenu .content .body .logout-btn,
+html body #mobileMenu .content .body .login-btn {
   width: 100%;
   padding: 30px 10px;
   text-decoration: none;
@@ -548,14 +543,14 @@ html body #dynamica #mobileMenu .content .body .login-btn {
   font-family: "GrtskTera", sans-serif;
   background-color: transparent;
 }
-html body #dynamica #mobileMenu .content .body .logout-btn {
+html body #mobileMenu .content .body .logout-btn {
   color: rgba(255, 0, 0, 0.45);
 }
-html body #dynamica #mobileMenu .content .body .login-btn {
+html body #mobileMenu .content .body .login-btn {
   color: var(--primary-color);
   opacity: 0.7;
 }
-html body #dynamica #mobileMenu .spoiler {
+html body #mobileMenu .spoiler {
   position: fixed;
   top: 0;
   left: 0;
@@ -565,10 +560,10 @@ html body #dynamica #mobileMenu .spoiler {
   cursor: pointer;
   animation: fadeIn 0.35s ease-out forwards;
 }
-html body #dynamica #mobileMenu .spoiler.hidden {
+html body #mobileMenu .spoiler.hidden {
   animation: fadeOut 0.35s ease-out forwards;
 }
-html body #dynamica .modal {
+html body .modal {
   position: fixed;
   top: 0;
   left: 0;
@@ -581,13 +576,19 @@ html body #dynamica .modal {
   z-index: 1001;
   animation: fadeIn 0.2s ease-in-out forwards;
 }
-html body #dynamica .modal.hidden {
+html body .modal #createDocument .modal-content {
+  width: 95%;
+  height: 95%;
+  max-height: unset;
+  max-width: unset;
+}
+html body .modal.hidden {
   animation: fadeOut 0.2s ease-in-out forwards;
 }
-html body #dynamica .modal.hidden .modal-content {
+html body .modal.hidden .modal-content {
   animation-name: slideDown;
 }
-html body #dynamica .modal .modal-content {
+html body .modal .modal-content {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -599,22 +600,22 @@ html body #dynamica .modal .modal-content {
   background-color: #ffffff;
   animation: modalSlideUp 0.3s forwards;
 }
-html body #dynamica .modal .modal-content.hidden {
+html body .modal .modal-content.hidden {
   animation: modalSlideDown 0.3s forwards;
 }
-html body #dynamica .modal .modal-content .modal-content__header {
+html body .modal .modal-content .modal-content__header {
   padding: 0 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
 }
-html body #dynamica .modal .modal-content .modal-content__header .modal-title {
+html body .modal .modal-content .modal-content__header .modal-title {
   text-align: left;
   font-family: "GrtskTera", sans-serif;
   font-size: 22px;
 }
-html body #dynamica .modal .modal-content .modal-content__body {
+html body .modal .modal-content .modal-content__body {
   margin-top: 7px;
   overflow-y: auto;
   padding: 15px 5px;
@@ -622,13 +623,13 @@ html body #dynamica .modal .modal-content .modal-content__body {
   border-radius: 32px;
   box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.15);
 }
-html body #dynamica .modal .modal-content.modal-login {
+html body .modal .modal-content.modal-login {
   height: unset;
   max-width: 500px;
   width: 95%;
   max-height: 550px;
 }
-html body #dynamica .modal .modal-content.modal-login form {
+html body .modal .modal-content.modal-login form {
   display: flex;
   flex-grow: 1;
   flex-direction: column;
@@ -637,14 +638,14 @@ html body #dynamica .modal .modal-content.modal-login form {
   height: 100%;
   margin-top: 30px;
 }
-html body #dynamica .modal .modal-content.modal-login form .form-elem__text {
+html body .modal .modal-content.modal-login form .form-elem__text {
   display: flex;
   flex-direction: column;
   gap: 6px;
   width: 100%;
   margin-top: 15px;
 }
-html body #dynamica .modal .modal-content.modal-login form .form-elem__submit {
+html body .modal .modal-content.modal-login form .form-elem__submit {
   display: flex;
   width: 75px;
   align-self: center;
@@ -659,31 +660,31 @@ html body #dynamica .modal .modal-content.modal-login form .form-elem__submit {
   margin-top: 60px;
   transition: background 0.25s ease;
 }
-html body #dynamica .modal .modal-content.modal-login form .form-elem__submit svg {
+html body .modal .modal-content.modal-login form .form-elem__submit svg {
   fill: var(--background-color);
 }
-html body #dynamica .modal .modal-content.modal-login form .form-elem__submit:hover, html body #dynamica .modal .modal-content.modal-login form .form-elem__submit:focus, html body #dynamica .modal .modal-content.modal-login form .form-elem__submit:active {
+html body .modal .modal-content.modal-login form .form-elem__submit:hover, html body .modal .modal-content.modal-login form .form-elem__submit:focus, html body .modal .modal-content.modal-login form .form-elem__submit:active {
   background: var(--primary-color);
 }
-html body #dynamica .modal .modal-content.modal-notifications {
+html body .modal .modal-content.modal-notifications {
   max-width: 580px;
   max-height: 650px;
 }
-html body #dynamica .modal .modal-content.modal-notifications .modal-content__body {
+html body .modal .modal-content.modal-notifications .modal-content__body {
   padding: 0;
 }
-html body #dynamica .modal .modal-content.modal-notifications .modal-content__body .module-notifications .module-body {
+html body .modal .modal-content.modal-notifications .modal-content__body .module-notifications .module-body {
   gap: 0;
   padding: 10px 0;
 }
-html body #dynamica .modal .modal-content.modal-notifications .modal-content__body .module-notifications .module-body .notification {
+html body .modal .modal-content.modal-notifications .modal-content__body .module-notifications .module-body .notification {
   border-radius: 0;
   border: none;
 }
-html body #dynamica .modal .modal-content .cross {
+html body .modal .modal-content .cross {
   height: 32px;
 }
-html body #dynamica .modal .spoiler {
+html body .modal .spoiler {
   position: fixed;
   top: 0;
   left: 0;
@@ -693,10 +694,10 @@ html body #dynamica .modal .spoiler {
   cursor: pointer;
   animation: fadeIn 0.2s ease-in-out forwards;
 }
-html body #dynamica .modal .spoiler.hidden {
+html body .modal .spoiler.hidden {
   animation: fadeOut 0.2s ease-in-out forwards;
 }
-html body #dynamica #modalLoading {
+html body #modalLoading {
   position: absolute;
   top: 0;
   left: 0;
@@ -705,9 +706,13 @@ html body #dynamica #modalLoading {
   animation: none;
   z-index: 5;
 }
-html body #dynamica #modalLoading img {
+html body #modalLoading img {
   height: 70px;
   animation: rotate 1.5s linear infinite;
+}
+html body #dynamica {
+  display: flex;
+  min-height: 100vh;
 }
 html body #dynamica .layout {
   display: flex;
@@ -1783,9 +1788,57 @@ html body #dynamica .layout .layout-content .main-container main .page.page-cont
   height: 100%;
   padding: 5px 10px;
   align-items: center;
+  background: var(--block-background);
   gap: 20px;
   z-index: 5;
   transition: all 100ms;
+}
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__preview.hidden {
+  opacity: 0.5;
+}
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__preview .employee-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__preview .employee-actions .employee-action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 25px;
+  width: 25px;
+  cursor: pointer;
+  border-radius: 7px;
+  opacity: 0.5;
+  overflow: visible;
+  background: transparent;
+  transition: all 150ms;
+}
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__preview .employee-actions .employee-action svg {
+  opacity: 0.3;
+  transition: all 150ms;
+}
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__preview .employee-actions .employee-action .hidden-input {
+  display: none;
+}
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__preview .employee-actions .employee-action:hover {
+  background: var(--block-background);
+  box-shadow: var(--block-shadow);
+}
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__preview .employee-actions .employee-action:hover svg {
+  opacity: 1;
+}
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__preview .employee-actions .employee-actions-item {
+  display: flex;
+  justify-content: right;
+}
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__preview .employee-actions .employee-actions-photo {
+  display: flex;
+  flex-direction: row;
+  gap: 2px;
 }
 html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__preview .employee-card__photo {
   position: relative;
@@ -1858,13 +1911,15 @@ html body #dynamica .layout .layout-content .main-container main .page.page-cont
 }
 html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__details {
   position: absolute;
+  max-height: 120px;
+  overflow: auto;
   width: 95%;
   display: flex;
   flex-direction: column;
   padding: 3px;
   background: var(--background-color);
+  box-shadow: var(--document-shadow);
   border-radius: 10px;
-  backdrop-filter: blur(8px);
   gap: 3px;
   bottom: 0;
   left: 50%;
@@ -1872,6 +1927,9 @@ html body #dynamica .layout .layout-content .main-container main .page.page-cont
   transform: translate(-50%, 100%);
   z-index: 6;
   transition: background 100ms;
+}
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__details::-webkit-scrollbar {
+  width: 8px;
 }
 html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__details .details-item {
   display: flex;
@@ -1881,6 +1939,10 @@ html body #dynamica .layout .layout-content .main-container main .page.page-cont
   border-radius: 7px;
   cursor: pointer;
   transition: background 100ms;
+}
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__details .details-item.mailto-link {
+  display: block;
+  text-decoration: none;
 }
 html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__details .details-item .details-title {
   display: flex;
@@ -1897,18 +1959,43 @@ html body #dynamica .layout .layout-content .main-container main .page.page-cont
 }
 html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__details .details-item .detail {
   font-size: 14px;
+  text-decoration: none;
+}
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__details .details-item .detail-container {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__details .details-item .detail-container .detail {
+  flex-grow: 1;
+}
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__details .details-item .detail-container button {
+  background: var(--block-background);
+  border-radius: 7px;
+  transition: all 150ms;
+}
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__details .details-item .detail-container button svg {
+  opacity: 0.5;
+  transition: all 150ms;
+}
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__details .details-item .detail-container button:hover {
+  box-shadow: var(--block-shadow);
+}
+html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__details .details-item .detail-container button:hover svg {
+  opacity: 1;
 }
 html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__details .details-item input[type=text].detail {
   border-radius: 7px;
   border: 1px solid var(--background-color);
-  padding: 2px 5px;
+  padding: 2px;
 }
 html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__details .details-item:hover {
   background: var(--block-background);
   box-shadow: var(--block-shadow);
 }
 html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card:hover .employee-card__preview {
-  box-shadow: var(--block-shadow);
+  opacity: 1;
+  box-shadow: var(--document-shadow);
 }
 html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card:hover .employee-card__preview .employee-card__photo {
   border-radius: 10px;
@@ -1958,7 +2045,7 @@ html body #dynamica .layout .layout-content .main-container main .page.page-cont
   align-items: center;
   position: sticky;
   bottom: 0;
-  padding: 5px 0;
+  padding: 3px 0;
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(10px);
   z-index: 10;
@@ -1970,7 +2057,7 @@ html body #dynamica .layout .layout-content .main-container main .page.page-cont
   gap: 5px;
 }
 html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .pagination-container .pagination button {
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 600;
   padding: 12px 16px;
   border-radius: 10px;
@@ -2351,44 +2438,44 @@ html body #dynamica .layout .layout-content .main-container .footer-wrapper foot
   html .no-data span {
     font-size: 20px;
   }
-  html body #dynamica #mobileMenu .content .header {
-    height: 70px;
-    padding: 10px 35px;
-  }
-  html body #dynamica .modal .modal-content .modal-content__header {
+  html body .modal .modal-content .modal-content__header {
     padding: 0 15px;
   }
-  html body #dynamica .modal .modal-content .modal-content__header .cross {
+  html body .modal .modal-content .modal-content__header .cross {
     height: 36px;
   }
-  html body #dynamica .modal .modal-content .modal-content__body {
+  html body .modal .modal-content .modal-content__body {
     margin-top: 10px;
     padding: 15px 8px;
   }
-  html body #dynamica .modal .modal-content.modal-login form {
+  html body .modal .modal-content.modal-login form {
     padding: 0 15px 30px 15px;
   }
-  html body #dynamica .modal .modal-content.modal-login form .form-elem__text label,
-  html body #dynamica .modal .modal-content.modal-login form .form-elem__text input {
+  html body .modal .modal-content.modal-login form .form-elem__text label,
+  html body .modal .modal-content.modal-login form .form-elem__text input {
     font-size: 18px;
   }
-  html body #dynamica .modal .modal-content.modal-login form .form-elem__text input {
+  html body .modal .modal-content.modal-login form .form-elem__text input {
     padding: 15px;
   }
-  html body #dynamica .modal .modal-content.modal-notifications {
+  html body .modal .modal-content.modal-notifications {
     max-width: 580px;
     max-height: 650px;
   }
-  html body #dynamica .modal .modal-content.modal-notifications .modal-content__body {
+  html body .modal .modal-content.modal-notifications .modal-content__body {
     padding: 0;
   }
-  html body #dynamica .modal .modal-content.modal-notifications .modal-content__body .module-notifications .module-body {
+  html body .modal .modal-content.modal-notifications .modal-content__body .module-notifications .module-body {
     gap: 0;
     padding: 10px 0;
   }
-  html body #dynamica .modal .modal-content.modal-notifications .modal-content__body .module-notifications .module-body .notification {
+  html body .modal .modal-content.modal-notifications .modal-content__body .module-notifications .module-body .notification {
     border-radius: 0;
     border: none;
+  }
+  html body #dynamica #mobileMenu .content .header {
+    height: 70px;
+    padding: 10px 35px;
   }
   html body #dynamica .layout .module-documents .module-body {
     gap: 5px;
@@ -2970,7 +3057,7 @@ html body #dynamica .layout .layout-content .main-container .footer-wrapper foot
     height: 100px;
   }
   html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__preview .employee-card__general .employee-card__name {
-    font-size: 18px;
+    font-size: 16px;
   }
   html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__preview .employee-card__general .employee-card__position {
     font-size: 14px;
@@ -3288,7 +3375,7 @@ html body #dynamica .layout .layout-content .main-container .footer-wrapper foot
     height: 120px;
   }
   html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__preview .employee-card__general .employee-card__name {
-    font-size: 20px;
+    font-size: 18px;
   }
   html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__preview .employee-card__general .employee-card__position {
     font-size: 16px;

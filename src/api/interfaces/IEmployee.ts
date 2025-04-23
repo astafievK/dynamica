@@ -13,6 +13,7 @@ export interface Employee {
     email: string | null,
     birthday: Date,
     is_retired: boolean,
+    is_hidden: boolean,
     department: Department,
     position: Position,
     image: Image
