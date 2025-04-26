@@ -298,6 +298,7 @@ html .ripple {
 }
 html .cross {
   aspect-ratio: 1/1;
+  flex-shrink: 0;
 }
 html .cross svg g path {
   transition: stroke 100ms;
@@ -563,6 +564,197 @@ html body #mobileMenu .spoiler {
 html body #mobileMenu .spoiler.hidden {
   animation: fadeOut 0.35s ease-out forwards;
 }
+html body #modal-root #editEmployee .modal-content,
+html body #modal-root #createDocument .modal-content {
+  width: 95%;
+  height: 95%;
+  max-height: unset;
+  max-width: unset;
+}
+html body #modal-root #editEmployee .modal-content {
+  max-width: 950px !important;
+  max-height: unset;
+  height: auto;
+}
+html body #modal-root #editEmployee .modal-content .modal-content__body .fields .fields-main .fields-title,
+html body #modal-root #editEmployee .modal-content .modal-content__body .fields .fields-info .fields-title {
+  font-weight: 600;
+  margin-left: 5px;
+  color: rgba(47, 55, 71, 0.85);
+  user-select: none;
+}
+html body #modal-root #editEmployee .modal-content .modal-content__body .fields .fields-main .fields-content,
+html body #modal-root #editEmployee .modal-content .modal-content__body .fields .fields-info .fields-content {
+  margin-top: 7px;
+}
+html body #modal-root #editEmployee .modal-content .modal-content__body .fields .fields-main .fields-content input,
+html body #modal-root #editEmployee .modal-content .modal-content__body .fields .fields-main .fields-content .input-birthday > label,
+html body #modal-root #editEmployee .modal-content .modal-content__body .fields .fields-info .fields-content input,
+html body #modal-root #editEmployee .modal-content .modal-content__body .fields .fields-info .fields-content .input-birthday > label {
+  flex-grow: 1;
+  box-shadow: none;
+  background: var(--background-color);
+  border: 1px solid var(--background-color);
+}
+html body #modal-root #editEmployee .modal-content .modal-content__body .fields .fields-main .fields-content input:focus,
+html body #modal-root #editEmployee .modal-content .modal-content__body .fields .fields-main .fields-content .input-birthday > label:focus,
+html body #modal-root #editEmployee .modal-content .modal-content__body .fields .fields-info .fields-content input:focus,
+html body #modal-root #editEmployee .modal-content .modal-content__body .fields .fields-info .fields-content .input-birthday > label:focus {
+  background: var(--block-background);
+}
+html body #modal-root #editEmployee .modal-content .modal-content__body .fields .fields-main {
+  padding: 0 5px;
+}
+html body #modal-root #editEmployee .modal-content .modal-content__body .fields .fields-main .fields-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 20px;
+}
+html body #modal-root #editEmployee .modal-content .modal-content__body .fields .fields-main .fields-content .employee-photo {
+  flex-shrink: 0;
+  border-radius: 16px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top;
+  height: 200px;
+  aspect-ratio: 1/1;
+}
+html body #modal-root #editEmployee .modal-content .modal-content__body .fields .fields-main .fields-content .fields-main-fullname {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px 0;
+  gap: 5px;
+  flex-grow: 1;
+}
+html body #modal-root #editEmployee .modal-content .modal-content__body .fields .fields-info {
+  margin-top: 10px;
+}
+html body #modal-root #editEmployee .modal-content .modal-content__body .fields .fields-info .fields-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 5px;
+}
+html body #modal-root #editEmployee .modal-content .modal-content__body .fields .fields-info .fields-content .input-birthday {
+  display: flex;
+}
+html body #modal-root #editEmployee .modal-content .modal-content__body .fields .fields-info .fields-content .input-birthday label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+}
+html body #modal-root #editEmployee .modal-content .modal-content__body .fields .fields-info .fields-content .input-birthday input {
+  display: none;
+}
+html body #modal-root #editEmployee .modal-content .modal-content__body .actions {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+html body #modal-root #editEmployee .modal-content .modal-content__body .actions .action {
+  background: var(--background-color);
+  padding: 10px;
+  border-radius: 10px;
+}
+html body #modal-root #createDocument .modal-content__body {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 5px;
+}
+html body #modal-root #createDocument .modal-content__body .upload-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+html body #modal-root #createDocument .modal-content__body .upload-container label {
+  color: var(--secondary-color);
+  display: flex;
+  aspect-ratio: 1/1;
+  flex-direction: column;
+  width: 100%;
+  max-width: 450px;
+  align-items: center;
+  justify-content: center;
+  border: 6px dashed var(--secondary-color);
+  background: var(--background-color);
+  border-radius: 24px;
+  font-size: 24px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 150ms;
+}
+html body #modal-root #createDocument .modal-content__body .upload-container label svg {
+  font-size: 52px;
+  fill: var(--secondary-color);
+  transition: all 150ms;
+}
+html body #modal-root #createDocument .modal-content__body .upload-container label:hover {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+html body #modal-root #createDocument .modal-content__body .upload-container label:hover svg {
+  fill: var(--primary-color);
+}
+html body #modal-root #createDocument .modal-content__body .upload-container #createDocumentFileUploadInput {
+  display: none;
+}
+html body #modal-root #createDocument .modal-content__body .fields-container {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+html body #modal-root #createDocument .modal-content__body .fields-container .field {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+html body #modal-root #createDocument .modal-content__body .fields-container .field-title {
+  color: rgba(47, 55, 71, 0.85);
+  user-select: none;
+  margin-left: 10px;
+  font-weight: 600;
+}
+html body #modal-root #createDocument .modal-content__body .fields-container .field.task-duration .calendars {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 2px;
+}
+html body #modal-root #createDocument .modal-content__body .fields-container .field.task-duration .calendars .calendar {
+  display: flex;
+  flex: 1;
+}
+html body #modal-root #createDocument .modal-content__body .fields-container .field.task-duration .calendars .calendar label {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  text-align: center;
+  flex: 1;
+  border-radius: 24px;
+  padding: 15px 10px;
+  cursor: pointer;
+  background-color: var(--item-hover-background);
+  transition: all 150ms;
+}
+html body #modal-root #createDocument .modal-content__body .fields-container .field.task-duration .calendars .calendar label:hover {
+  background-color: var(--item-active-background);
+}
+html body #modal-root #createDocument .modal-content__body .fields-container .field.task-duration .calendars .calendar input {
+  display: none;
+}
+html body #modal-root #createDocument .modal-content__body .fields-container .field.field-comment {
+  flex-grow: 1;
+}
+html body #modal-root #createDocument .modal-content__body .fields-container .field.field-comment textarea {
+  text-align: start;
+  flex-grow: 1;
+  height: auto;
+  min-height: unset;
+}
 html body .modal {
   position: fixed;
   top: 0;
@@ -575,12 +767,6 @@ html body .modal {
   background: rgba(0, 0, 0, 0.5);
   z-index: 1001;
   animation: fadeIn 0.2s ease-in-out forwards;
-}
-html body .modal #createDocument .modal-content {
-  width: 95%;
-  height: 95%;
-  max-height: unset;
-  max-width: unset;
 }
 html body .modal.hidden {
   animation: fadeOut 0.2s ease-in-out forwards;
@@ -614,6 +800,9 @@ html body .modal .modal-content .modal-content__header .modal-title {
   text-align: left;
   font-family: "GrtskTera", sans-serif;
   font-size: 22px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 html body .modal .modal-content .modal-content__body {
   margin-top: 7px;
@@ -1075,27 +1264,17 @@ html body #dynamica .layout .layout-content .main-container main .page .page-fil
   flex: 1;
   transition: 200ms;
 }
-html body #dynamica .layout .layout-content .main-container main .page .page-filters .filters-search .filters-search__submit {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--background-action-button-primary);
+html body #dynamica .layout .layout-content .main-container main .page .page-filters .filters-search svg {
   position: absolute;
-  height: 90%;
-  aspect-ratio: 1/1;
   top: 50%;
-  transform: translateY(-50%);
-  right: 5px;
-  border-radius: 50%;
-  transition: 200ms;
+  right: 0;
+  transform: translate(-25%, -50%);
+  cursor: pointer;
+  font-size: 40px;
+  transition: all 150ms;
 }
-html body #dynamica .layout .layout-content .main-container main .page .page-filters .filters-search .filters-search__submit img {
-  height: 45%;
-  object-fit: cover;
-}
-html body #dynamica .layout .layout-content .main-container main .page .page-filters .filters-search .filters-search__submit:hover {
-  background-color: #85a686;
-  transition-duration: 70ms;
+html body #dynamica .layout .layout-content .main-container main .page .page-filters .filters-search svg:hover {
+  fill: var(--primary-color);
 }
 html body #dynamica .layout .layout-content .main-container main .page .page-content .page-content-item {
   padding: 5px;
@@ -1911,8 +2090,6 @@ html body #dynamica .layout .layout-content .main-container main .page.page-cont
 }
 html body #dynamica .layout .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__details {
   position: absolute;
-  max-height: 120px;
-  overflow: auto;
   width: 95%;
   display: flex;
   flex-direction: column;
@@ -2789,6 +2966,19 @@ html body #dynamica .layout .layout-content .main-container .footer-wrapper foot
   }
   html .styled {
     font-size: 16px;
+  }
+  html body #modal-root #createDocument .modal-content__body {
+    grid-template-columns: 1fr 2fr;
+    gap: 20px;
+  }
+  html body #modal-root #createDocument .modal-content__body .fields-container .fields-primary {
+    display: grid;
+    column-gap: 30px;
+    row-gap: 15px;
+    grid-template-columns: 1fr 1fr;
+  }
+  html body #modal-root #createDocument .modal-content__body .fields-container .field-comment {
+    margin-top: 10px;
   }
   html body #dynamica .layout {
     width: calc(100vw - 12px);

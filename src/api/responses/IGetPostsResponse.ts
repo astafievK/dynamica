@@ -1,4 +1,4 @@
-import {Post} from "../interfaces/IPost.ts";
+import {Post} from "../../interfaces/IPost.ts";
 
 export interface GetPostsResponse {
     status: string,

@@ -19,3 +19,8 @@ export const formatDate = (dateString: string): string => {
     }).format(date);
 };
 
+export const formatDateForLabel = (dateStr: string): string => {
+    if (!dateStr) return "День рождения";
+    const date = new Date(dateStr);
+    return new Intl.DateTimeFormat("ru-RU").format(date); // формат ДД.ММ.ГГГГ
+};

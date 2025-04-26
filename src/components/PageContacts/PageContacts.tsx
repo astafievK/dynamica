@@ -10,6 +10,7 @@ import {FilterButtons} from "../FilterButtons/FilterButtons.tsx";
 import { useSearchParams } from "react-router-dom";
 import {useGetDepartmentsTitlesNotNullQuery} from "../../api/methods/departmentApi.ts";
 import {useTypedSelector} from "../../store/hooks/redux.ts";
+import ClearRoundedIcon from '@mui/icons-material/ClearRounded';
 
 const ITEMS_PER_PAGE = 100;
 
@@ -183,6 +184,10 @@ export const PageContacts: FC = () => {
                             value={temporarySearchValue}
                             onChange={(e) => setTemporarySearchValue(e.target.value)}
                         />
+                        {
+                            temporarySearchValue.length > 0 && <ClearRoundedIcon onClick={() => setTemporarySearchValue('')}/>
+
+                        }
                     </div>
                 </div>
                 <div className="page-content">

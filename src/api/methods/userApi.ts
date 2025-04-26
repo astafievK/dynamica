@@ -1,6 +1,6 @@
 import { baseApi } from "../api.ts";
 import { GetUsersResponse } from "../responses/IGetUsersResponse.ts";
-import { Employee } from "../interfaces/IEmployee.ts";
+import { Employee } from "../../interfaces/IEmployee.ts";
 
 export const userApi = baseApi.injectEndpoints({
     endpoints: builder => ({

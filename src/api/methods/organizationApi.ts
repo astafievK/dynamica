@@ -1,5 +1,5 @@
 import {baseApi} from "../api.ts";
-import {Organization} from "../interfaces/IOrganization.ts";
+import {Organization} from "../../interfaces/IOrganization.ts";
 
 export const organizationApi = baseApi.injectEndpoints({
     endpoints: builder => ({

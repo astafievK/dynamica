@@ -5,7 +5,7 @@ import { Cross } from "../Cross/Cross.tsx";
 interface DropdownProps {
     options: { id: number, title: string }[];
     label: string;
-    value: { id: number | null, title: string | null };
+    value: { id: number, title: string } | null;
     onSelect?: (value: { id: number, title: string }) => void;
     isDisabled?: boolean;
 }
@@ -13,7 +13,7 @@ interface DropdownProps {
 export const Dropdown: FC<DropdownProps> = ({ options, label, value, onSelect, isDisabled }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [isClosing, setIsClosing] = useState(false);
-    const [selectedValue, setSelectedValue] = useState<{ id: number | null, title: string | null }>(value);
+    const [selectedValue, setSelectedValue] = useState<{ id: number, title: string } | null>(value);
 
     const toggleDropdown = () => {
         if (!isDisabled) {
@@ -58,11 +58,15 @@ export const Dropdown: FC<DropdownProps> = ({ options, label, value, onSelect, i
         }
     }, [isClosing]);
 
+    useEffect(() => {
+        setSelectedValue(value);
+    }, [value]);
+
     return (
         <>
             <div className={`custom-dropdown ${(isOpen && !isDisabled) ? 'active' : ''}`}>
                 <button className="custom-dropdown__button" onClick={toggleDropdown}>
-                    {selectedValue.title || label}
+                    {(selectedValue?.title) || label}
                     {!isDisabled && <img className="arrow" src="/arrow.svg" alt=""/>}
                 </button>
             </div>
@@ -77,7 +81,10 @@ export const Dropdown: FC<DropdownProps> = ({ options, label, value, onSelect, i
                             <div className="modal-content__body">
                                 <ul className="items">
                                     {options.map((option) => (
-                                        <li className={`item ${selectedValue.id === option.id ? "selected" : ""}`} key={option.id}>
+                                        <li
+                                            className={`item ${selectedValue?.id === option.id ? "selected" : ""}`}
+                                            key={option.id}
+                                        >
                                             <button className="item-button" onClick={() => handleSelect(option)}>
                                                 {option.title}
                                             </button>

@@ -1,4 +1,4 @@
-import {Employee} from "../interfaces/IEmployee.ts";
+import {Employee} from "../../interfaces/IEmployee.ts";
 
 export interface GetUsersResponse {
     status: string,

@@ -1,6 +1,6 @@
 import { FC, useState } from "react";
 import { ModalUserNotification } from "../../../Modals/ModalUserNotification/ModalUserNotification.tsx";
-import { Department } from "../../../../api/interfaces/IDepartment.ts";
+import { Department } from "../../../../interfaces/IDepartment.ts";
 import {useEditDepartmentTitleByIdMutation} from "../../../../api/methods/departmentApi.ts";
 import SaveRoundedIcon from '@mui/icons-material/SaveRounded';
 

@@ -1,5 +1,5 @@
 import {baseApi} from "../api.ts";
-import {Department} from "../interfaces/IDepartment.ts";
+import {Department} from "../../interfaces/IDepartment.ts";
 import { CreateDepartmentCommand } from "../commands/ICreateDepartmentCommand.ts";
 import {EditDepartmentTitleCommand} from "../commands/IEditDepartmentTitleCommand.ts";
 

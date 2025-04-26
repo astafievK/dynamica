@@ -10,12 +10,14 @@ import { MdNotificationsNone, MdNoteAdd } from "react-icons/md";
 import LoginRoundedIcon from '@mui/icons-material/LoginRounded';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 import {logout} from "../../api/slices/authSlice.ts";
+import {useCreateDocument} from "../Contexts/CreateDocumentContext/CreateDocumentContext.tsx";
 
 export const Header: FC = () => {
     const {user} = useTypedSelector((state) => state.auth);
     const dispatch = useAppDispatch();
     const location = useLocation();
     const currentTitle = PAGE_TITLES[location.pathname] || "Неизвестная страница";
+    const { openModal } = useCreateDocument();
 
     const handleNotificationsClick = () => dispatch(setNotificationsModalOpen(true));
     const handleBurgerClick = () => dispatch(setMobileMenuOpen(true));
@@ -56,10 +58,10 @@ export const Header: FC = () => {
                         {
                             user &&
                             <>
-                                <Link to={"documents"} className="create-doc header-item">
+                                <button className="create-doc header-item" onClick={openModal}>
                                     <MdNoteAdd size={30}/>
                                     <span>Создать / Загрузить договор</span>
-                                </Link>
+                                </button>
                                 <button className="notifications-btn header-item" onClick={handleNotificationsClick}>
                                     <MdNotificationsNone size={30}/>
                                 </button>

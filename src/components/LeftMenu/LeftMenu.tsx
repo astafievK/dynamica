@@ -24,6 +24,7 @@ export const LeftMenu: FC = () => {
     const {history} = useTypedSelector((state) => state.history)
     const location = useLocation();
     const isAdminPageOpened = location.pathname.startsWith("/admin");
+    const { user } = useTypedSelector(state => state.auth)
 
     return (
         <>
@@ -33,34 +34,38 @@ export const LeftMenu: FC = () => {
                         <div className="logo"></div>
                     </Link>
                 </div>
-                <div className="admin-container">
-                    <NavLink
-                        key={"/admin"}
-                        to={"/admin"}
-                        className={({ isActive }) => `left-menu-item ${isActive ? "active-nav-item" : ""}`}
-                    >
-                        <AdminPanelSettingsOutlinedIcon/>
-                        Администрирование
-                    </NavLink>
-                    <AnimatePresence>
-                        {isAdminPageOpened && (
-                            <motion.nav
-                                className="admin-navigation submenu-container"
-                                initial={{ opacity: 0, height: 0 }}
-                                animate={{ opacity: 1, height: "auto" }}
-                                exit={{ opacity: 0, height: 0 }}
-                                transition={{ duration: 0.15 }}
+                {
+                    user && (
+                        <div className="admin-container">
+                            <NavLink
+                                key={"/admin"}
+                                to={"/admin"}
+                                className={({ isActive }) => `left-menu-item ${isActive ? "active-nav-item" : ""}`}
                             >
-                                <ul>
-                                    <li><NavLink to="/admin/feed" className={({ isActive }) => `left-menu-item ${isActive ? "active-nav-item" : ""}`}>Новости</NavLink></li>
-                                    <li><NavLink to="/admin/contacts" className={({ isActive }) => `left-menu-item ${isActive ? "active-nav-item" : ""}`}>Адресная книга</NavLink></li>
-                                    <li><NavLink to="/admin/documents" className={({ isActive }) => `left-menu-item ${isActive ? "active-nav-item" : ""}`}>Документы</NavLink></li>
-                                    <li><NavLink to="/admin/adaptation" className={({ isActive }) => `left-menu-item ${isActive ? "active-nav-item" : ""}`}>Адаптация</NavLink></li>
-                                </ul>
-                            </motion.nav>
-                        )}
-                    </AnimatePresence>
-                </div>
+                                <AdminPanelSettingsOutlinedIcon/>
+                                Администрирование
+                            </NavLink>
+                            <AnimatePresence>
+                                {isAdminPageOpened && (
+                                    <motion.nav
+                                        className="admin-navigation submenu-container"
+                                        initial={{ opacity: 0, height: 0 }}
+                                        animate={{ opacity: 1, height: "auto" }}
+                                        exit={{ opacity: 0, height: 0 }}
+                                        transition={{ duration: 0.15 }}
+                                    >
+                                        <ul>
+                                            <li><NavLink to="/admin/feed" className={({ isActive }) => `left-menu-item ${isActive ? "active-nav-item" : ""}`}>Новости</NavLink></li>
+                                            <li><NavLink to="/admin/contacts" className={({ isActive }) => `left-menu-item ${isActive ? "active-nav-item" : ""}`}>Адресная книга</NavLink></li>
+                                            <li><NavLink to="/admin/documents" className={({ isActive }) => `left-menu-item ${isActive ? "active-nav-item" : ""}`}>Документы</NavLink></li>
+                                            <li><NavLink to="/admin/adaptation" className={({ isActive }) => `left-menu-item ${isActive ? "active-nav-item" : ""}`}>Адаптация</NavLink></li>
+                                        </ul>
+                                    </motion.nav>
+                                )}
+                            </AnimatePresence>
+                        </div>
+                    )
+                }
 
                 <nav className="general-navigation">
                     {navItems

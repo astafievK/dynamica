@@ -1,7 +1,7 @@
 import {baseApi} from "../api.ts";
 import { CreatePostCommand } from "../commands/ICreatePostCommand.ts";
 import {GetPostsResponse} from "../responses/IGetPostsResponse.ts";
-import {Post} from "../interfaces/IPost.ts";
+import {Post} from "../../interfaces/IPost.ts";
 
 export const postApi = baseApi.injectEndpoints({
     endpoints: builder => ({

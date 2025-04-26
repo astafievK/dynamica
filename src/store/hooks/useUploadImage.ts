@@ -1,6 +1,6 @@
 import { useState } from "react";
 import {useUploadProfileImageMutation} from "../../api/methods/userApi.ts";
-import {Employee} from "../../api/interfaces/IEmployee.ts";
+import {Employee} from "../../interfaces/IEmployee.ts";
 
 export const useUploadImage = (employee: Employee) => {
     const [uploadProfileImage, { isLoading }] = useUploadProfileImageMutation();

@@ -4,9 +4,10 @@ import GroupRoundedIcon from '@mui/icons-material/GroupRounded';
 import PhoneRoundedIcon from '@mui/icons-material/PhoneRounded';
 import EmailRoundedIcon from '@mui/icons-material/EmailRounded';
 import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined';
+import PlaceIcon from '@mui/icons-material/Place';
 import CakeIcon from '@mui/icons-material/Cake';
 import { usePatchUserEmailMutation } from "../../../../api/methods/userApi.ts";
-import { Employee } from "../../../../api/interfaces/IEmployee.ts";
+import { Employee } from "../../../../interfaces/IEmployee.ts";
 import { useNotification } from "../../../Contexts/NotificationContext/NotificationContext.tsx";
 
 interface DetailsItemProps {
@@ -21,7 +22,8 @@ const iconMap: Record<string, JSX.Element> = {
     "Подразделение": <GroupRoundedIcon />,
     "Контактный телефон": <PhoneRoundedIcon />,
     "Почта": <EmailRoundedIcon />,
-    "День рождения": <CakeIcon />
+    "День рождения": <CakeIcon />,
+    "Населенный пункт": <PlaceIcon/>,
 };
 
 export const DetailsItem: FC<DetailsItemProps> = ({ title, value, isReadOnly = true, employee }) => {

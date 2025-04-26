@@ -1,6 +1,6 @@
 import React, { FC, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Employee } from "../../../api/interfaces/IEmployee.ts";
+import { Employee } from "../../../interfaces/IEmployee.ts";
 import {useUploadImage} from "../../../store/hooks/useUploadImage.ts";
 import { DetailsItem } from "./DetailsItem/DetailsItem.tsx";
 import {useDeleteProfileImageMutation, usePatchUserVisibilityMutation} from "../../../api/methods/userApi.ts";
@@ -11,6 +11,8 @@ import PortraitOutlinedIcon from '@mui/icons-material/PortraitOutlined';
 import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
 import {useNotification} from "../../Contexts/NotificationContext/NotificationContext.tsx";
 import { monthsGenitive } from "../../../constants/months.ts";
+import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
+import { useEditEmployee } from "../../Contexts/EditEmployeeContext/EditEmployeeContext";
 
 interface IEmployeeCardProps {
     employee: Employee;
@@ -24,6 +26,8 @@ export const EmployeeCard: FC<IEmployeeCardProps> = ({ employee }) => {
     const [deleteProfileImage, {isLoading: deleteImageIsLoading}] = useDeleteProfileImageMutation();
     const [changeUserVisibility, {isLoading: changeUserVisibilityIsLoading}] = usePatchUserVisibilityMutation();
     const {user} = useTypedSelector(state => state.auth)
+
+    const { openModal } = useEditEmployee();
 
     const handleDeleteImageClick = async () => {
         try {
@@ -86,6 +90,9 @@ export const EmployeeCard: FC<IEmployeeCardProps> = ({ employee }) => {
                                     transition={{duration: 0.25}}
                                     className="employee-actions">
                                     <div className="employee-actions-photo employee-actions-item">
+                                        <button className="employee-action" onClick={() => openModal(employee)}>
+                                            <ModeEditOutlineOutlinedIcon />
+                                        </button>
                                         <label className="employee-action">
                                             <PortraitOutlinedIcon/>
                                             {isLoading && <span className="shimmer"></span>}
@@ -198,9 +205,11 @@ export const EmployeeCard: FC<IEmployeeCardProps> = ({ employee }) => {
                             {employee.phone && (
                                 <DetailsItem title="Контактный телефон" value={employee.phone} employee={employee}/>
                             )}
-                            {employee.department.division && (
-                                <DetailsItem title="Подразделение" value={employee.department.division.title}
-                                             employee={employee}/>
+                            {employee.department.title && (
+                                <DetailsItem title="Подразделение" value={employee.department.title} employee={employee}/>
+                            )}
+                            {employee.department.city && (
+                                <DetailsItem title="Населенный пункт" value={employee.department.city.title} employee={employee}/>
                             )}
                             {employee.birthday && (
                                 (() => {
@@ -211,7 +220,7 @@ export const EmployeeCard: FC<IEmployeeCardProps> = ({ employee }) => {
                                     return (
                                         <DetailsItem
                                             title="День рождения"
-                                            value={`${birthMonth} ${monthsGenitive[birthMonth].toLowerCase()}`}
+                                            value={`${birthDate.getDate()} ${monthsGenitive[birthMonth].toLowerCase()}`}
                                             employee={employee}
                                         />
                                     );

@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, ReactNode } from "react";
 import ReactDOM from "react-dom";
 import {ModalCreateDocument} from "../../Modals/ModalCreateDocument/ModalCreateDocument.tsx";
+
 interface ModalContextType {
     openModal: () => void;
     closeModal: () => void;
@@ -15,7 +16,7 @@ export const useCreateDocument = () => {
 };
 
 export const CreateDocumentProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-    const [isModalOpen, setIsModalOpen] = useState<boolean>(true);
+    const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
     const openModal = () => {
         setIsModalOpen(true);

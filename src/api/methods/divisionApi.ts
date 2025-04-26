@@ -1,5 +1,5 @@
 import {baseApi} from "../api.ts";
-import {Division} from "../interfaces/IDivision.ts";
+import {Division} from "../../interfaces/IDivision.ts";
 
 export const divisionApi = baseApi.injectEndpoints({
     endpoints: builder => ({

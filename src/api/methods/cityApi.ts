@@ -1,5 +1,5 @@
 import {baseApi} from "../api.ts";
-import {City} from "../interfaces/ICity.ts";
+import {City} from "../../interfaces/ICity.ts";
 
 export const cityApi = baseApi.injectEndpoints({
     endpoints: builder => ({

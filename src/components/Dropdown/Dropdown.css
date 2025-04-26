@@ -21,7 +21,7 @@
   gap: 10px;
   justify-content: space-between;
   outline: none;
-  transition: all 200ms;
+  transition: all 150ms;
 }
 .custom-dropdown__button .arrow {
   width: 15px;
@@ -38,9 +38,12 @@
 }
 
 .modal .modal-dropdown {
-  max-width: 580px;
-  max-height: 650px;
+  max-width: 580px !important;
+  max-height: 650px !important;
   height: auto !important;
+}
+.modal .modal-dropdown .modal-content__body {
+  display: block !important;
 }
 .modal .modal-dropdown .modal-content__body .items .item .item-button {
   width: 100%;
@@ -52,9 +55,6 @@
 }
 .modal .modal-dropdown .modal-content__body .items .item .item-button:hover {
   background-color: var(--item-hover-background);
-}
-.modal .modal-dropdown .modal-content__body .items .item .item-button:active {
-  background-color: var(--item-active-background);
 }
 .modal .modal-dropdown .modal-content__body .items .item.selected .item-button {
   background-color: var(--item-active-background);

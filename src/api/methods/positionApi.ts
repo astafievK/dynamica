@@ -1,5 +1,5 @@
 import {baseApi} from "../api.ts";
-import {Position} from "../interfaces/IPosition.ts";
+import {Position} from "../../interfaces/IPosition.ts";
 
 export const positionApi = baseApi.injectEndpoints({
     endpoints: builder => ({

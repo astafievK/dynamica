@@ -21,7 +21,7 @@
     gap: 10px;
     justify-content: space-between;
     outline: none;
-    transition: all 200ms;
+    transition: all 150ms;
 
     .arrow {
       width: 15px;
@@ -45,11 +45,13 @@
 
 .modal {
   .modal-dropdown {
-    max-width: 580px;
-    max-height: 650px;
+    max-width: 580px !important;
+    max-height: 650px !important;
     height: auto !important;
 
     .modal-content__body {
+      display: block !important;
+
       .items {
         .item {
           .item-button {
@@ -62,10 +64,6 @@
 
             &:hover {
               background-color: var(--item-hover-background);
-            }
-
-            &:active {
-              background-color: var(--item-active-background);
             }
           }
 
