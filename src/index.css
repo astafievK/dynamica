@@ -972,7 +972,7 @@ html body #dynamica .layout .left-menu .left-menu-item.item-contacts .contacts-n
 html body #dynamica .layout .left-menu .left-menu-item:hover, html body #dynamica .layout .left-menu .left-menu-item.active-nav-item {
   color: var(--secondary-color);
   background: var(--block-background);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--block-shadow);
 }
 html body #dynamica .layout .left-menu .left-menu-item:hover svg, html body #dynamica .layout .left-menu .left-menu-item.active-nav-item svg {
   fill: var(--secondary-color);
@@ -1006,9 +1006,6 @@ html body #dynamica .layout .left-menu .recent-navigation {
   display: flex;
   flex-direction: column;
   gap: 4px;
-}
-html body #dynamica .layout .left-menu .general-navigation {
-  margin-top: 15px;
 }
 html body #dynamica .layout .left-menu .recent-navigation {
   margin-top: 25px;
@@ -3413,9 +3410,6 @@ html body #dynamica .layout .layout-content .main-container .footer-wrapper foot
   html body #dynamica .layout .left-menu .left-menu-item svg {
     height: 25px;
     width: 25px;
-  }
-  html body #dynamica .layout .left-menu .general-navigation {
-    margin-top: 25px;
   }
   html body #dynamica .layout .left-menu .sep {
     margin: 17px 0;

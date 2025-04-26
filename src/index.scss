@@ -1158,7 +1158,7 @@ html {
                         &.active-nav-item {
                             color: var(--secondary-color);
                             background: var(--block-background);
-                            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                            box-shadow: var(--block-shadow);
 
                             svg {
                                 fill: var(--secondary-color);
@@ -1205,10 +1205,6 @@ html {
                         display: flex;
                         flex-direction: column;
                         gap: 4px;
-                    }
-
-                    .general-navigation {
-                        margin-top: 15px;
                     }
 
                     .recent-navigation {
@@ -4481,10 +4477,6 @@ html {
                                 height: 25px;
                                 width: 25px;
                             }
-                        }
-
-                        .general-navigation {
-                            margin-top: 25px;
                         }
 
                         .sep {
