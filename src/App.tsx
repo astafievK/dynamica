@@ -10,7 +10,6 @@ import {persistor, RootState, store} from "./store/store.ts";
 import {Provider, useDispatch, useSelector} from "react-redux";
 import {PersistGate} from "redux-persist/integration/react";
 import {PageFeed} from "./components/PageFeed/PageFeed.tsx";
-import {PageLanding} from "./components/PageLanding/PageLanding.tsx";
 import {PageProfile} from "./components/PageProfile/PageProfile.tsx";
 import {TextEditor} from "./components/TextEditor/TextEditor.tsx";
 import {PageAdmin} from "./components/PageAdmin/PageAdmin.tsx";
@@ -66,7 +65,7 @@ const Root = () => {
 const router = createBrowserRouter(
     createRoutesFromElements(
         <Route path={ROUTES.HOME} element={<Root />}>
-            <Route index element={<PageLanding />} />
+            <Route index element={<PageFeed />} />
             <Route path={ROUTES.FEED} element={<PageFeed />} />
             <Route path={`${ROUTES.FEED}/:idPost`} element={<PagePost />} />
             <Route path={ROUTES.EDITOR} element={<TextEditor />} />

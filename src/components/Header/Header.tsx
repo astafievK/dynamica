@@ -66,7 +66,7 @@ export const Header: FC = () => {
                                     <MdNotificationsNone size={30}/>
                                 </button>
                                 <Link to={"profile"} className="user-wrapper header-item">
-                                    <div className="user-image" style={{ backgroundImage: `url(http://192.168.7.74/files/images/${((user.image && user.image.path) ?? 'default.webp')})` }}></div>
+                                    <div className="user-image" style={{ backgroundImage: `url(https://192.168.7.74/files/images/${((user.image && user.image.path) ?? 'default.webp')})` }}></div>
                                     <span>{user.name} {user.surname}</span>
                                 </Link>
                                 <button className="logout-btn header-item"

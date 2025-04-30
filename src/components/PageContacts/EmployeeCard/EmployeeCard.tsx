@@ -13,6 +13,7 @@ import {useNotification} from "../../Contexts/NotificationContext/NotificationCo
 import { monthsGenitive } from "../../../constants/months.ts";
 import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
 import { useEditEmployee } from "../../Contexts/EditEmployeeContext/EditEmployeeContext";
+import { useCopyToClipboard } from "../../../store/hooks/useCopyToClipboard.ts";
 
 interface IEmployeeCardProps {
     employee: Employee;
@@ -20,12 +21,13 @@ interface IEmployeeCardProps {
 
 export const EmployeeCard: FC<IEmployeeCardProps> = ({ employee }) => {
     const [isHovering, setIsHovering] = useState(false);
-    const [isFocusedInside, setIsFocusedInside] = useState(false);
+    const [isPreviewClicked, setIsPreviewClicked] = useState(false);
     const {handleFileChange, isLoading,} = useUploadImage(employee);
     const {notify} = useNotification();
     const [deleteProfileImage, {isLoading: deleteImageIsLoading}] = useDeleteProfileImageMutation();
     const [changeUserVisibility, {isLoading: changeUserVisibilityIsLoading}] = usePatchUserVisibilityMutation();
     const {user} = useTypedSelector(state => state.auth)
+    const { copyToClipboard } = useCopyToClipboard();
 
     const { openModal } = useEditEmployee();
 
@@ -49,7 +51,7 @@ export const EmployeeCard: FC<IEmployeeCardProps> = ({ employee }) => {
             const response = await changeUserVisibility({id_user: employee.id_user}).unwrap();
 
             if (response.status === "success") {
-                notify({title: "Изменение видимости", message: "Видимость сотрудника изменена"});
+                notify({message: "Видимость сотрудника изменена"});
             } else {
                 console.error(response)
                 notify({title: "Ошибка", message: response.message || "Ошибка изменения видимости сотрудника"});
@@ -60,11 +62,18 @@ export const EmployeeCard: FC<IEmployeeCardProps> = ({ employee }) => {
         }
     }
 
-    const handleFocusIn = () => setIsFocusedInside(true);
+    const handlePreviewClick = () => {
+        setIsPreviewClicked(prev => !prev);
+    }
 
-    const handleFocusOut = (e: React.FocusEvent<HTMLDivElement>) => {
-        if (!e.currentTarget.contains(e.relatedTarget)) {
-            setIsFocusedInside(false);
+    const handleCopy = async (text: string, target: string, event: React.MouseEvent) => {
+        event.stopPropagation();
+        try {
+            await copyToClipboard(text);
+            notify({message: `${target} скопировано` });
+        } catch (error) {
+            console.error("Ошибка при копировании:", error);
+            notify({message: `${target} скопировано` });
         }
     };
 
@@ -74,12 +83,15 @@ export const EmployeeCard: FC<IEmployeeCardProps> = ({ employee }) => {
                 initial={{opacity: 0}}
                 animate={{opacity: 1}}
                 exit={{opacity: 0}}
-                transition={{duration: 0.25}}
-                className={`employee-card ${isHovering ? 'hovered' : ''}`}
+                transition={{duration: 0.4}}
+                className={`employee-card ${(isHovering) ? 'hovered' : ''} ${isPreviewClicked ? 'fixed' : ''}`}
                 onMouseEnter={() => setIsHovering(true)}
                 onMouseLeave={() => setIsHovering(false)}
             >
-                <div className={`employee-card__preview ${employee.is_hidden ? 'hidden' : ''}`}>
+                <div
+                    className={`employee-card__preview ${employee.is_hidden ? 'hidden' : ''}`}
+                    onClick={handlePreviewClick}
+                >
                     {
                         user && (
                             <AnimatePresence>
@@ -130,69 +142,33 @@ export const EmployeeCard: FC<IEmployeeCardProps> = ({ employee }) => {
                             </AnimatePresence>
                         )
                     }
-                    <div
+                    <motion.div
+                        initial={{opacity: 0}}
+                        animate={{opacity: 1}}
+                        exit={{opacity: 0}}
+                        transition={{duration: 0.2}}
                         className="employee-card__photo"
-                        style={{backgroundImage: `url(http://192.168.7.74/files/images/${employee.image.path})`}}
+                        style={{backgroundImage: `url(https://192.168.7.74/files/images/${employee.image.path})`}}
                     >
-                        {
-                            /*
-                            <AnimatePresence>
-                            {
-                                (isHovering || isLoading) && (
-                                    <motion.div
-                                        initial={{ opacity: 0, top: 0 }}
-                                        animate={{ opacity: 1, top: 3 }}
-                                        exit={{ opacity: 0, top: 0 }}
-                                        transition={{ duration: 0.15, ease: "easeInOut" }}
-                                        className="upload-container"
-                                    >
-                                        <label className="upload-photo photo-item">
-                                            Загрузить
-                                            {isLoading && <span className="shimmer"></span>}
-                                            <input
-                                                type="file"
-                                                accept="image/*"
-                                                className="hidden-input"
-                                                onChange={handleFileChange}
-                                                disabled={isLoading}
-                                            />
-
-                                        </label>
-                                        {
-                                            employee.image.path !== 'default.webp' && (
-                                                <button className="delete-photo photo-item" onClick={handleDeleteImageClick} disabled={deleteImageIsLoading}>
-                                                    {deleteImageIsLoading && <span className="shimmer"></span>}
-                                                    <MdDeleteForever size={20} />
-                                                </button>
-                                            )
-                                        }
-                                    </motion.div>
-                                )
-                            }
-                        </AnimatePresence>
-                             */
-                        }
-                    </div>
+                    </motion.div>
                     <div className="employee-card__general">
-                        <div className="employee-card__name">
+                        <div className="employee-card__name" onClick={(event) => handleCopy(`${employee.surname} ${employee.name} ${employee.patronymic}`, 'ФИО', event)}>
                             <span className="employee-card__lastname">{employee.surname}</span>
                             <span className="employee-card__firstname">{employee.name}</span>
                             <span className="employee-card__middlename">{employee.patronymic}</span>
                         </div>
-                        <span className="employee-card__position">{employee.position.title}</span>
+                        <span className="employee-card__position" onClick={(event) => handleCopy(employee.position.title, 'Должность', event)}>{employee.position.title}</span>
                     </div>
                 </div>
 
                 <AnimatePresence>
-                    {(isHovering || isFocusedInside) && (
+                    {(isHovering || isPreviewClicked) && (
                         <motion.div
-                            initial={{opacity: 0, bottom: 0}}
-                            animate={{opacity: 1, bottom: 10}}
+                            initial={{opacity: 0, bottom: -5}}
+                            animate={{opacity: 1}}
                             exit={{opacity: 0}}
-                            transition={{duration: 0.15, ease: "easeInOut"}}
+                            transition={{duration: 0.1}}
                             className="employee-card__details"
-                            onFocus={handleFocusIn}
-                            onBlur={handleFocusOut}
                         >
                             {(user || employee.email) && (
                                 <DetailsItem

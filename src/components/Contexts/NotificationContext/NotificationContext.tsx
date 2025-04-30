@@ -4,7 +4,7 @@ import {ModalUserNotification} from "../../Modals/ModalUserNotification/ModalUse
 
 interface Notification {
     title?: string;
-    message: string;
+    message?: string;
 }
 
 interface NotificationContextType {

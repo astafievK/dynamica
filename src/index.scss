@@ -161,7 +161,7 @@
 :root {
     --background-color: #F1F2F2;
     --background-element: rgba(0, 0, 0, 0.1);
-    --primary-color: #5AB058;
+    --primary-color: rgb(90, 176, 88);
     --secondary-color: #0C1729;
     --font-color: #0C1729;
     --font-color-secondary: rgba(12, 23, 41, 0.55);
@@ -380,6 +380,37 @@ html {
             text-align: center;
             user-select: none;
             color: rgba(0, 0, 0, 0.6)
+        }
+    }
+
+    .banner-copy {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translate(-50%, calc(-100% - 6px));
+        padding: 5px 7px;
+        background: var(--secondary-color);
+        border-radius: 10px;
+
+        &:before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            transform: translate(-30%, -30%);
+            left: 0;
+            height: 30px;
+            width: 30px;
+            background: var(--secondary-color);
+            z-index: -1;
+            rotate: 45deg;
+        }
+
+        span {
+            color: var(--background-color);
+            user-select: none;
         }
     }
 
@@ -2366,7 +2397,6 @@ html {
 
                                             .employee-card {
                                                 position: relative;
-                                                border-radius: 10px;
                                                 display: flex;
                                                 flex-direction: column;
                                                 width: 100%;
@@ -2375,14 +2405,14 @@ html {
                                                 .employee-card__preview {
                                                     display: flex;
                                                     position: relative;
-                                                    border-radius: 10px;
+                                                    cursor: pointer;
+                                                    border-radius: 24px;
                                                     height: 100%;
                                                     padding: 5px 10px;
-                                                    align-items: center;
                                                     background: var(--block-background);
-                                                    gap: 20px;
+                                                    gap: 10px;
                                                     z-index: 5;
-                                                    transition: all 100ms;
+                                                    transition: all 200ms;
 
                                                     &.hidden {
                                                         opacity: 0.5;
@@ -2450,7 +2480,7 @@ html {
                                                         aspect-ratio: 1/1;
                                                         background-size: cover;
                                                         background-position: top;
-                                                        border-radius: 50%;
+                                                        border-radius: 24px;
                                                         transition: all 50ms;
 
                                                         .upload-container {
@@ -2506,9 +2536,24 @@ html {
 
                                                     .employee-card__general {
                                                         display: flex;
-                                                        justify-content: center;
+                                                        flex-grow: 1;
                                                         flex-direction: column;
-                                                        gap: 10px;
+
+                                                        .employee-card__name,
+                                                        .employee-card__position {
+                                                            display: flex;
+                                                            padding: 6px 8px;
+                                                            border-radius: 10px;
+                                                            transition: all 90ms;
+
+                                                            &:hover {
+                                                                background: var(--item-hover-background);
+                                                            }
+
+                                                            &:active {
+                                                                background: var(--item-active-background);
+                                                            }
+                                                        }
 
                                                         .employee-card__name {
                                                             display: flex;
@@ -2517,6 +2562,12 @@ html {
                                                             font-weight: 600;
                                                             line-height: 1.1;
                                                             font-size: 16px;
+
+                                                            .employee-card__lastname,
+                                                            .employee-card__firstname,
+                                                            .employee-card__middlename {
+                                                                display: flex;
+                                                            }
                                                         }
 
                                                         .employee-card__position {
@@ -2534,7 +2585,8 @@ html {
                                                     width: 95%;
                                                     display: flex;
                                                     flex-direction: column;
-                                                    padding: 3px;
+                                                    overflow: hidden;
+                                                    padding: 0 3px;
                                                     background: var(--background-color);
                                                     box-shadow: var(--document-shadow);
                                                     border-radius: 10px;
@@ -2544,20 +2596,30 @@ html {
                                                     right: 0;
                                                     transform: translate(-50%, 100%);
                                                     z-index: 6;
-                                                    transition: background 100ms;
+                                                    transition: width 150ms, padding 150ms, bottom 150ms;
 
                                                     &::-webkit-scrollbar {
                                                         width: 8px;
                                                     }
 
                                                     .details-item {
+                                                        position: relative;
                                                         display: flex;
                                                         flex-direction: column;
                                                         width: 100%;
                                                         padding: 3px 8px;
+                                                        gap: 2px;
                                                         border-radius: 7px;
                                                         cursor: pointer;
-                                                        transition: background 100ms;
+                                                        text-align: left;
+                                                        transition: background 150ms;
+
+                                                        .banner-copy {
+                                                            top: 50%;
+                                                            transform: translate(100%, -50%);
+                                                            left: unset;
+                                                            height: 100%;
+                                                        }
 
                                                         &.mailto-link {
                                                             display: block;
@@ -2566,7 +2628,10 @@ html {
 
                                                         .details-title {
                                                             display: flex;
+                                                            width: 100%;
                                                             align-items: center;
+                                                            position: relative;
+                                                            overflow: hidden;
                                                             user-select: none;
                                                             gap: 5px;
 
@@ -2577,46 +2642,28 @@ html {
                                                                 fill: rgba(0, 0, 0, 0.5);
                                                                 font-size: 12px;
                                                             }
+
+                                                            .copy-label {
+                                                                position: absolute;
+                                                                right: 0;
+
+                                                                .copy-label-content {
+                                                                    display: flex;
+                                                                    gap: 2px;
+                                                                    align-items: center;
+                                                                }
+
+                                                                span,
+                                                                svg {
+                                                                    font-size: 14px;
+                                                                }
+                                                            }
                                                         }
 
                                                         .detail {
                                                             font-size: 14px;
+                                                            margin-left: 20px;
                                                             text-decoration: none;
-                                                        }
-
-                                                        .detail-container {
-                                                            display: flex;
-                                                            flex-direction: row;
-                                                            gap: 5px;
-
-                                                            .detail {
-                                                                flex-grow: 1;
-                                                            }
-
-                                                            button {
-                                                                background: var(--block-background);
-                                                                border-radius: 7px;
-                                                                transition: all 150ms;
-
-                                                                svg {
-                                                                    opacity: 0.5;
-                                                                    transition: all 150ms;
-                                                                }
-
-                                                                &:hover {
-                                                                    box-shadow: var(--block-shadow);
-
-                                                                    svg {
-                                                                        opacity: 1;
-                                                                    }
-                                                                }
-                                                            }
-                                                        }
-
-                                                        input[type=text].detail {
-                                                            border-radius: 7px;
-                                                            border: 1px solid var(--background-color);
-                                                            padding: 2px;
                                                         }
 
                                                         &:hover {
@@ -2626,14 +2673,26 @@ html {
                                                     }
                                                 }
 
-                                                &:hover {
+                                                &.hovered,
+                                                &.fixed {
                                                     .employee-card__preview {
                                                         opacity: 1;
                                                         box-shadow: var(--document-shadow);
+                                                    }
+                                                }
 
-                                                        .employee-card__photo {
-                                                            border-radius: 10px;
-                                                        }
+                                                &.fixed {
+                                                    .employee-card__preview {
+                                                        border-radius: 24px 24px 0 0;
+                                                        background: var(--background-color);
+                                                        z-index: 7;
+                                                        box-shadow: none;
+                                                    }
+
+                                                    .employee-card__details {
+                                                        bottom: 0 !important;
+                                                        width: 100% !important;
+                                                        border-radius: 0 0 24px 24px;
                                                     }
                                                 }
                                             }
@@ -2692,29 +2751,32 @@ html {
                                             display: flex;
                                             justify-content: center;
                                             align-items: center;
-                                            position: sticky;
-                                            bottom: 0;
                                             padding: 3px 0;
-                                            background: rgba(255, 255, 255, 0.7);
-                                            backdrop-filter: blur(10px);
-                                            z-index: 10;
+                                            margin-top: 20px;
 
                                             .pagination {
                                                 display: flex;
                                                 flex-direction: row;
                                                 margin: 0 auto;
+                                                overflow: auto;
                                                 gap: 5px;
 
                                                 button {
-                                                    font-size: 14px;
+                                                    font-size: 16px;
                                                     font-weight: 600;
-                                                    padding: 12px 16px;
-                                                    border-radius: 10px;
-                                                    transition: all 200ms;
+                                                    height: 50px;
+                                                    width: 50px;
+                                                    flex-shrink: 0;
+                                                    border-radius: 50%;
+                                                    transition: all 150ms;
 
-                                                    &.active,
                                                     &:hover:not(:disabled) {
-                                                        background: rgba(90, 176, 88, 0.35);
+                                                        background: var(--block-background);
+                                                    }
+
+                                                    &.active {
+                                                        background: var(--block-background);
+                                                        box-shadow: var(--block-shadow);
                                                     }
 
                                                     &:disabled {
@@ -4743,7 +4805,7 @@ html {
                                                             }
 
                                                             .detail {
-                                                                font-size: 18px;
+                                                                font-size: 16px;
                                                             }
                                                         }
                                                     }

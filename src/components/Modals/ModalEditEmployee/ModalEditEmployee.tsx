@@ -60,7 +60,7 @@ export const ModalEditEmployee: FC<ModalEditEmployeeProps> = ({ employee }) => {
                             <div className="fields-content">
                                 <div
                                     className="employee-photo"
-                                    style={{ backgroundImage: `url(http://192.168.7.74/files/images/${employee?.image.path})` }}
+                                    style={{ backgroundImage: `url(https://192.168.7.74/files/images/${employee?.image.path})` }}
                                 ></div>
                                 <div className="fields-main-fullname">
                                     <input

@@ -73,47 +73,22 @@ export const PageContacts: FC = () => {
     const totalPages = Math.ceil((data?.users?.length || 0) / ITEMS_PER_PAGE);
 
     const goToPage = (page: number) => setCurrentPage(page);
-    const prevPage = () => setCurrentPage((p) => Math.max(1, p - 1));
-    const nextPage = () => setCurrentPage((p) => Math.min(totalPages, p + 1));
 
     const renderPagination = () => {
-        const pages = [];
-        const maxPagesToShow = 5;
-
-        if (totalPages <= maxPagesToShow) {
-            for (let i = 1; i <= totalPages; i++) {
-                pages.push(i);
-            }
-        } else {
-            pages.push(1);
-            if (currentPage > 3) pages.push("...");
-
-            const startPage = Math.max(2, currentPage - 1);
-            const endPage = Math.min(totalPages - 1, currentPage + 1);
-
-            for (let i = startPage; i <= endPage; i++) {
-                pages.push(i);
-            }
-
-            if (currentPage < totalPages - 2) pages.push("...");
-            pages.push(totalPages);
-        }
+        const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
 
         return (
             <motion.div {...pageAnimation} className="pagination-container">
                 <div className="pagination">
-                    <button disabled={currentPage === 1} onClick={prevPage}>&lt;</button>
                     {pages.map((page) => (
                         <button
-                            key={typeof page === "number" ? page : `ellipsis-${page}`}
+                            key={page}
                             className={currentPage === page ? "active" : ""}
-                            onClick={() => typeof page === "number" && goToPage(page)}
-                            disabled={typeof page !== "number"}
+                            onClick={() => goToPage(page)}
                         >
                             {page}
                         </button>
                     ))}
-                    <button disabled={currentPage === totalPages} onClick={nextPage}>&gt;</button>
                 </div>
             </motion.div>
         );

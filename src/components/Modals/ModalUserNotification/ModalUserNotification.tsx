@@ -4,7 +4,7 @@ import "./ModalUserNotification.css";
 
 interface ModalUserNotificationProps {
     title?: string;
-    message: string;
+    message?: string;
     onClose: () => void;
 }
 
@@ -30,7 +30,7 @@ export const ModalUserNotification: FC<ModalUserNotificationProps> = ({ title, m
                     transition={{ duration: 0.3, ease: "easeInOut" }}
                 >
                     {title && <span className="modal-notification__title">{title}</span>}
-                    <span className="modal-notification__description">{message}</span>
+                    {message && <span className="modal-notification__description">{message}</span>}
                 </motion.div>
             )}
         </AnimatePresence>

@@ -17,7 +17,7 @@ export const ROUTES = {
 };
 
 export const PAGE_TITLES: Record<string, string> = {
-    [ROUTES.HOME]: "Главная",
+    [ROUTES.HOME]: "Лента",
     [ROUTES.FEED]: "Лента",
     [ROUTES.EDITOR]: "Редактор",
     [ROUTES.DOCUMENT]: "Документ",
