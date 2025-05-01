@@ -2745,6 +2745,59 @@ html {
                                                     }
                                                 }
                                             }
+
+                                            .employees-grid {}
+
+                                            &.old-style {
+                                                grid-template-columns: 1fr;
+                                                overflow: auto;
+                                                gap: 10px;
+
+                                                .employees-header,
+                                                .employee-card {
+                                                    display: grid;
+                                                    grid-template-columns: 175px 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+                                                    gap: 10px;
+
+                                                    &-item {
+                                                        span {
+                                                            text-wrap: nowrap;
+                                                        }
+                                                    }
+                                                }
+
+                                                .employees-header {
+                                                    padding: 10px;
+                                                    background: var(--background-color);
+                                                    border-radius: 7px;
+
+                                                    &-item {
+                                                        flex-grow: 1;
+
+
+                                                        span {
+                                                            text-align: left;
+                                                            font-weight: 600;
+                                                        }
+                                                    }
+                                                }
+
+                                                .employee-card {
+                                                    padding: 10px;
+
+                                                    &-item {
+                                                        &.employee-card__photo {
+                                                            aspect-ratio: 3/4;
+                                                            background: url("./default.webp") top;
+                                                            background-size: cover;
+                                                            flex-shrink: 0;
+                                                        }
+                                                    }
+
+                                                    &:not(:first-child) {
+                                                    }
+                                                }
+                                            }
                                         }
 
                                         .pagination-container {

@@ -1,0 +1,44 @@
+import { FC } from "react";
+import { motion } from "framer-motion";
+import { Employee } from "../../../interfaces/IEmployee.ts";
+
+interface IEmployeeCardLineProps {
+    employee: Employee;
+}
+
+export const EmployeeCardLine: FC<IEmployeeCardLineProps> = ({ employee }) => {
+    return (
+        <>
+            <motion.div
+                initial={{opacity: 0}}
+                animate={{opacity: 1}}
+                exit={{opacity: 0}}
+                transition={{duration: 0.4}}
+                className={`employee-card`}
+            >
+                <div className="employee-card-item employee-card__photo" ></div>
+                <div className="employee-card-item employee-card__surname">
+                    <span className="employee-card-item__content">{employee.surname}</span>
+                </div>
+                <div className="employee-card-item employee-card__name">
+                    <span className="employee-card-item__content">{employee.name}</span>
+                </div>
+                <div className="employee-card-item employee-card__patronymic">
+                    <span className="employee-card-item__content">{employee.patronymic}</span>
+                </div>
+                <div className="employee-card-item employee-card__position">
+                    <span className="employee-card-item__content">{employee.position.title}</span>
+                </div>
+                <div className="employee-card-item employee-card__email">
+                    <span className="employee-card-item__content">{employee.email}</span>
+                </div>
+                <div className="employee-card-item employee-card__phone">
+                    <span className="employee-card-item__content">{employee.phone}</span>
+                </div>
+                <div className="employee-card-item employee-card__birthday">
+                    <span className="employee-card-item__content">{employee.birthday.date}</span>
+                </div>
+            </motion.div>
+        </>
+    );
+}
