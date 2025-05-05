@@ -1,7 +1,6 @@
 import { FC } from "react";
 
 export const EmployeesHeader: FC = () => {
-
     return (
         <>
             <div className="employees-header">
