@@ -19,7 +19,7 @@ interface IEmployeeCardProps {
     employee: Employee;
 }
 
-export const EmployeeCard: FC<IEmployeeCardProps> = ({ employee }) => {
+export const EmployeeCard: FC<IEmployeeCardProps> = React.memo(({ employee }) => {
     const [isHovering, setIsHovering] = useState(false);
     const [isPreviewClicked, setIsPreviewClicked] = useState(false);
     const {handleFileChange, isLoading,} = useUploadImage(employee);
@@ -208,4 +208,4 @@ export const EmployeeCard: FC<IEmployeeCardProps> = ({ employee }) => {
             </motion.div>
         </>
     );
-}
+})

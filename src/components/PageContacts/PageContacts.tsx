@@ -11,31 +11,24 @@ import { useSearchParams } from "react-router-dom";
 import {useGetDepartmentsTitlesNotNullQuery} from "../../api/methods/departmentApi.ts";
 import {useTypedSelector} from "../../store/hooks/redux.ts";
 import ClearRoundedIcon from '@mui/icons-material/ClearRounded';
-import {EmployeeCardLine} from "./EmployeeCardLine/EmployeeCardLine.tsx";
-import {Dropdown} from "../Dropdown/Dropdown.tsx";
-import {EmployeesHeader} from "./EmployeesHeader.tsx";
+import { Pagination } from "../Pagination/Pagination.tsx";
 
 const ITEMS_PER_PAGE = 100;
 
-const contactsStyles = [
-    { id: 0, title: 'Новый' },
-    { id: 1, title: 'Старый' },
-];
+const normalizeSearch = (value: string) =>
+    value.trim().replace(/\s+/g, " ");
 
 export const PageContacts: FC = () => {
     const [departmentTitle, setDepartmentTitle] = useState<string>("");
     const [temporarySearchValue, setTemporarySearchValue] = useState<string>("");
     const debouncedSearchValue = useDebounce(temporarySearchValue, 150);
-    const [searchValue, setSearchValue] = useState<string | undefined>(undefined);
     const [isFilterChanging, setIsFilterChanging] = useState<boolean>(false);
     const [currentPage, setCurrentPage] = useState<number>(1);
-    const [isOldStyleEnabled, setIsOldStyleEnabled] = useState<boolean>(false);
-
     const { user } = useTypedSelector(state => state.auth)
     const { data: departmentsData, isLoading: departmentsLoading } = useGetDepartmentsTitlesNotNullQuery();
     const { data, isLoading } = useGetUsersFilteredQuery({
         department: departmentTitle,
-        search: searchValue,
+        search: normalizeSearch(debouncedSearchValue),
     });
 
     const [searchParams, setSearchParams] = useSearchParams();
@@ -46,23 +39,20 @@ export const PageContacts: FC = () => {
 
         setDepartmentTitle(department);
         setTemporarySearchValue(search);
-        setSearchValue(search);
     }, []);
-
-    useEffect(() => {
-        setSearchValue(debouncedSearchValue);
-    }, [debouncedSearchValue]);
 
     useEffect(() => {
         setCurrentPage(1);
         setIsFilterChanging(true);
-
         const params: Record<string, string> = {};
         if (departmentTitle) params.department = departmentTitle;
-        if (searchValue) params.search = searchValue;
+
+        const normalizedSearch = normalizeSearch(temporarySearchValue);
+        if (normalizedSearch) params.search = normalizedSearch;
 
         setSearchParams(params);
-    }, [departmentTitle, searchValue]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [departmentTitle, temporarySearchValue]);
 
     useEffect(() => {
         if (!isLoading && data) {
@@ -83,26 +73,6 @@ export const PageContacts: FC = () => {
     const totalPages = Math.ceil((data?.users?.length || 0) / ITEMS_PER_PAGE);
 
     const goToPage = (page: number) => setCurrentPage(page);
-
-    const renderPagination = () => {
-        const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
-
-        return (
-            <motion.div {...pageAnimation} className="pagination-container">
-                <div className="pagination">
-                    {pages.map((page) => (
-                        <button
-                            key={page}
-                            className={currentPage === page ? "active" : ""}
-                            onClick={() => goToPage(page)}
-                        >
-                            {page}
-                        </button>
-                    ))}
-                </div>
-            </motion.div>
-        );
-    };
 
     const renderUsers = () => {
         if (isLoading || isFilterChanging) {
@@ -133,17 +103,13 @@ export const PageContacts: FC = () => {
                 animate={pageAnimation.animate}
                 exit={pageAnimation.exit}
                 transition={pageAnimation.transition}
-                className={`employees-container page-content-item ${isOldStyleEnabled ? "old-style" : ""}`}
+                className="employees-container page-content-item"
             >
-                {isOldStyleEnabled && <EmployeesHeader />}
-
-                {paginatedUsers.map((employee) =>
-                    isOldStyleEnabled ? (
-                        <EmployeeCardLine key={employee.id_user} employee={employee} />
-                    ) : (
-                        <EmployeeCard key={employee.id_user} employee={employee} />
-                    )
-                )}
+                {
+                    paginatedUsers.map((employee) => (
+                        <EmployeeCard key={employee.id_user} employee={employee}/>
+                    ))
+                }
             </motion.div>
         );
     }
@@ -178,16 +144,16 @@ export const PageContacts: FC = () => {
 
                         }
                     </div>
-                    <Dropdown
-                        options={contactsStyles}
-                        label="Стиль адресной книги"
-                        value={contactsStyles[isOldStyleEnabled ? 1 : 0]}
-                        onSelect={(option) => setIsOldStyleEnabled(option.id === 1)}
-                    />
                 </div>
                 <div className="page-content">
                     {renderUsers()}
-                    {totalPages > 1 && renderPagination()}
+                    {totalPages > 1 && (
+                        <Pagination
+                            currentPage={currentPage}
+                            totalPages={totalPages}
+                            onPageChange={goToPage}
+                        />
+                    )}
                 </div>
             </motion.div>
         </AnimatePresence>
