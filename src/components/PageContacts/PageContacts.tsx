@@ -11,8 +11,16 @@ import { useSearchParams } from "react-router-dom";
 import {useGetDepartmentsTitlesNotNullQuery} from "../../api/methods/departmentApi.ts";
 import {useTypedSelector} from "../../store/hooks/redux.ts";
 import ClearRoundedIcon from '@mui/icons-material/ClearRounded';
+import {EmployeeCardLine} from "./EmployeeCardLine/EmployeeCardLine.tsx";
+import {Dropdown} from "../Dropdown/Dropdown.tsx";
+import {EmployeesHeader} from "./EmployeesHeader.tsx";
 
 const ITEMS_PER_PAGE = 100;
+
+const contactsStyles = [
+    { id: 0, title: 'Новый' },
+    { id: 1, title: 'Старый' },
+];
 
 export const PageContacts: FC = () => {
     const [departmentTitle, setDepartmentTitle] = useState<string>("");
@@ -21,6 +29,8 @@ export const PageContacts: FC = () => {
     const [searchValue, setSearchValue] = useState<string | undefined>(undefined);
     const [isFilterChanging, setIsFilterChanging] = useState<boolean>(false);
     const [currentPage, setCurrentPage] = useState<number>(1);
+    const [isOldStyleEnabled, setIsOldStyleEnabled] = useState<boolean>(false);
+
     const { user } = useTypedSelector(state => state.auth)
     const { data: departmentsData, isLoading: departmentsLoading } = useGetDepartmentsTitlesNotNullQuery();
     const { data, isLoading } = useGetUsersFilteredQuery({
@@ -123,13 +133,17 @@ export const PageContacts: FC = () => {
                 animate={pageAnimation.animate}
                 exit={pageAnimation.exit}
                 transition={pageAnimation.transition}
-                className="employees-container page-content-item"
+                className={`employees-container page-content-item ${isOldStyleEnabled ? "old-style" : ""}`}
             >
-                {
-                    paginatedUsers.map((employee) => (
-                        <EmployeeCard key={employee.id_user} employee={employee}/>
-                    ))
-                }
+                {isOldStyleEnabled && <EmployeesHeader />}
+
+                {paginatedUsers.map((employee) =>
+                    isOldStyleEnabled ? (
+                        <EmployeeCardLine key={employee.id_user} employee={employee} />
+                    ) : (
+                        <EmployeeCard key={employee.id_user} employee={employee} />
+                    )
+                )}
             </motion.div>
         );
     }
@@ -164,6 +178,12 @@ export const PageContacts: FC = () => {
 
                         }
                     </div>
+                    <Dropdown
+                        options={contactsStyles}
+                        label="Стиль адресной книги"
+                        value={contactsStyles[isOldStyleEnabled ? 1 : 0]}
+                        onSelect={(option) => setIsOldStyleEnabled(option.id === 1)}
+                    />
                 </div>
                 <div className="page-content">
                     {renderUsers()}

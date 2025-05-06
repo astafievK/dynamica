@@ -1,12 +1,22 @@
 import { FC } from "react";
 import { motion } from "framer-motion";
 import { Employee } from "../../../interfaces/IEmployee.ts";
+import {monthsGenitive} from "../../../constants/months.ts";
 
 interface IEmployeeCardLineProps {
     employee: Employee;
 }
 
 export const EmployeeCardLine: FC<IEmployeeCardLineProps> = ({ employee }) => {
+    const getFormattedBirthday = (): string => {
+        if (!employee.birthday?.date) return "";
+        const birthDate = new Date(employee.birthday.date);
+        const birthMonth = birthDate.getMonth() + 1;
+        const day = birthDate.getDate();
+        const monthName = monthsGenitive[birthMonth] || "";
+        return `${day} ${monthName.toLowerCase()}`;
+    };
+
     return (
         <>
             <motion.div
@@ -16,7 +26,7 @@ export const EmployeeCardLine: FC<IEmployeeCardLineProps> = ({ employee }) => {
                 transition={{duration: 0.4}}
                 className={`employee-card`}
             >
-                <div className="employee-card-item employee-card__photo" ></div>
+                <div className="employee-card-item employee-card__photo" style={{backgroundImage: `url(https://192.168.7.74/files/images/${employee.image.path})`}}></div>
                 <div className="employee-card-item employee-card__surname">
                     <span className="employee-card-item__content">{employee.surname}</span>
                 </div>
@@ -36,7 +46,9 @@ export const EmployeeCardLine: FC<IEmployeeCardLineProps> = ({ employee }) => {
                     <span className="employee-card-item__content">{employee.phone}</span>
                 </div>
                 <div className="employee-card-item employee-card__birthday">
-                    <span className="employee-card-item__content">{employee.birthday.date}</span>
+                <span className="employee-card-item__content">
+                    {employee.birthday?.date ? getFormattedBirthday() : "-"}
+                </span>
                 </div>
             </motion.div>
         </>
