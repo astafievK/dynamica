@@ -1547,6 +1547,12 @@ html {
                                             }
                                         }
                                     }
+
+                                    .custom-dropdown {
+                                        &__button {
+                                            width: unset;
+                                        }
+                                    }
                                 }
 
                                 .page-content {

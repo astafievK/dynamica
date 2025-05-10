@@ -1299,6 +1299,9 @@ html body #dynamica .layout .layout-content .main-container main .page .page-fil
 html body #dynamica .layout .layout-content .main-container main .page .page-filters .filters-search svg:hover {
   fill: var(--primary-color);
 }
+html body #dynamica .layout .layout-content .main-container main .page .page-filters .custom-dropdown__button {
+  width: unset;
+}
 html body #dynamica .layout .layout-content .main-container main .page .page-content .page-content-item {
   padding: 5px;
   width: 100%;
