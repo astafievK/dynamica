@@ -164,7 +164,7 @@ export const EmployeeCard: FC<IEmployeeCardProps> = React.memo(({ employee }) =>
                 <AnimatePresence>
                     {(isHovering || isPreviewClicked) && (
                         <motion.div
-                            initial={{opacity: 0, bottom: -5}}
+                            initial={{opacity: 0}}
                             animate={{opacity: 1}}
                             exit={{opacity: 0}}
                             transition={{duration: 0.1}}

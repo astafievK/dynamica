@@ -46,9 +46,9 @@ export const EmployeeCardLine: FC<IEmployeeCardLineProps> = ({ employee }) => {
                     <span className="employee-card-item__content">{employee.phone}</span>
                 </div>
                 <div className="employee-card-item employee-card__birthday">
-                <span className="employee-card-item__content">
-                    {employee.birthday?.date ? getFormattedBirthday() : "-"}
-                </span>
+                    <span className="employee-card-item__content">
+                        {employee.birthday?.date ? getFormattedBirthday() : "-"}
+                    </span>
                 </div>
             </motion.div>
         </>
