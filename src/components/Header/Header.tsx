@@ -3,20 +3,18 @@ import {useAppDispatch, useTypedSelector} from "../../store/hooks/redux";
 import { setIsOpen as setLoginModalOpen } from "../../api/slices/modalLoginSlice.ts";
 import { setModalNotificationsIsOpen as setNotificationsModalOpen } from "../../api/slices/modalNotificationsSlice.ts";
 import { setIsOpen as setMobileMenuOpen } from "../../api/slices/mobileMenuSlice.ts";
-import {Link, NavLink, useLocation} from "react-router-dom";
-import {AnimatePresence, motion} from "framer-motion";
-import {PAGE_TITLES} from "../../constants/routes.ts";
-import { MdNotificationsNone, MdNoteAdd } from "react-icons/md";
+import {Link, NavLink} from "react-router-dom";
+import NoteAddOutlinedIcon from '@mui/icons-material/NoteAddOutlined';
+import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
+import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import LoginRoundedIcon from '@mui/icons-material/LoginRounded';
-import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
+import AdminPanelSettingsOutlinedIcon from '@mui/icons-material/AdminPanelSettingsOutlined';
 import {logout} from "../../api/slices/authSlice.ts";
 import {useCreateDocument} from "../Contexts/CreateDocumentContext/CreateDocumentContext.tsx";
 
 export const Header: FC = () => {
     const {user} = useTypedSelector((state) => state.auth);
     const dispatch = useAppDispatch();
-    const location = useLocation();
-    const currentTitle = PAGE_TITLES[location.pathname] || "Неизвестная страница";
     const { openModal } = useCreateDocument();
 
     const handleNotificationsClick = () => dispatch(setNotificationsModalOpen(true));
@@ -29,10 +27,12 @@ export const Header: FC = () => {
                     <NavLink
                         to="/"
                         id={"logo"}>
-                        <img loading={"lazy"} src="/logo.png" alt="динамика"/>
+                        <img loading={"lazy"} src="/logo.svg" alt="динамика"/>
                     </NavLink>
 
-                    <AnimatePresence mode="wait">
+                    {
+                        /*
+                        <AnimatePresence mode="wait">
                         <motion.div
                             key={location.pathname}
                             initial={{opacity: 0, y: -10}}
@@ -44,6 +44,8 @@ export const Header: FC = () => {
                             <span>{currentTitle}</span>
                         </motion.div>
                     </AnimatePresence>
+                         */
+                    }
 
                     <div className="profile-container">
                         {
@@ -58,12 +60,16 @@ export const Header: FC = () => {
                         {
                             user &&
                             <>
+                                <Link to={"admin/contacts"} className="admin-panel-btn header-item">
+                                    <AdminPanelSettingsOutlinedIcon/>
+                                    <span>Администрирование</span>
+                                </Link>
                                 <button className="create-doc header-item" onClick={openModal}>
-                                    <MdNoteAdd size={30}/>
+                                    <NoteAddOutlinedIcon/>
                                     <span>Создать / Загрузить договор</span>
                                 </button>
                                 <button className="notifications-btn header-item" onClick={handleNotificationsClick}>
-                                    <MdNotificationsNone size={30}/>
+                                    <NotificationsNoneOutlinedIcon/>
                                 </button>
                                 <Link to={"profile"} className="user-wrapper header-item">
                                     <div className="user-image" style={{ backgroundImage: `url(https://192.168.7.74/files/images/${((user.image && user.image.path) ?? 'default.webp')})` }}></div>
@@ -71,7 +77,7 @@ export const Header: FC = () => {
                                 </Link>
                                 <button className="logout-btn header-item"
                                         onClick={() => dispatch(logout())}>
-                                    <LogoutRoundedIcon fontSize={"large"}/>
+                                    <LogoutOutlinedIcon/>
                                 </button>
                             </>
                         }

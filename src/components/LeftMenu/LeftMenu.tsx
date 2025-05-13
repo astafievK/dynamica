@@ -1,11 +1,9 @@
-import {AnimatePresence, motion} from "framer-motion";
 import {FC, JSX} from "react";
-import {Link, NavLink, useLocation} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import {useTypedSelector} from "../../store/hooks/redux.ts";
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import NewspaperOutlinedIcon from '@mui/icons-material/NewspaperOutlined';
 import ContactsOutlinedIcon from '@mui/icons-material/ContactsOutlined';
-import AdminPanelSettingsOutlinedIcon from '@mui/icons-material/AdminPanelSettingsOutlined';
 
 interface NavItem {
     title: string;
@@ -22,19 +20,12 @@ const navItems: NavItem[] = [
 
 export const LeftMenu: FC = () => {
     const {history} = useTypedSelector((state) => state.history)
-    const location = useLocation();
-    const isAdminPageOpened = location.pathname.startsWith("/admin");
-    const { user } = useTypedSelector(state => state.auth)
 
     return (
         <>
             <aside className="left-menu">
-                <div className="logo-container">
-                    <Link className={"logo-link"} to="/">
-                        <div className="logo"></div>
-                    </Link>
-                </div>
                 {
+                    /*
                     user && (
                         <div className="admin-container">
                             <NavLink
@@ -65,6 +56,7 @@ export const LeftMenu: FC = () => {
                             </AnimatePresence>
                         </div>
                     )
+                     */
                 }
 
                 <nav className="general-navigation">
