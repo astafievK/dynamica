@@ -44,20 +44,18 @@ const Root = () => {
         <>
             <HistoryTracker/>
             <ScrollToTop />
-            <div className="layout">
+            <Header/>
+            <div className="layout-content">
                 <LeftMenu/>
-                <div className="layout-content">
-                    <Header/>
-                    <div className="main-container">
-                        <main>
-                            <AnimatePresence mode="wait" >
-                                <Outlet key={location.pathname} />
-                            </AnimatePresence>
-                        </main>
-                    </div>
+                <div className="main-container">
+                    <main>
+                        <AnimatePresence mode={"wait"}>
+                            <Outlet key={location.pathname} />
+                        </AnimatePresence>
+                    </main>
                 </div>
-                <Modals/>
             </div>
+            <Modals/>
         </>
     );
 }
