@@ -11,6 +11,7 @@ import ReportProblemRoundedIcon from '@mui/icons-material/ReportProblemRounded';
 import { Employee } from "../../../../interfaces/IEmployee.ts";
 import { AnimatePresence, motion } from "framer-motion";
 import { useCopyToClipboard } from "../../../../store/hooks/useCopyToClipboard.ts";
+import {useNotification} from "../../../Contexts/NotificationContext/NotificationContext.tsx";
 
 interface DetailsItemProps {
     title: string;
@@ -22,22 +23,24 @@ interface DetailsItemProps {
 const iconMap: Record<string, JSX.Element> = {
     "Должность": <BadgeRoundedIcon />,
     "Подразделение": <GroupRoundedIcon />,
-    "Контактный телефон": <PhoneRoundedIcon />,
+    "Телефон": <PhoneRoundedIcon />,
     "Почта": <EmailRoundedIcon />,
     "День рождения": <CakeIcon />,
-    "Населенный пункт": <PlaceIcon />,
+    "Город": <PlaceIcon />,
 };
 
 export const DetailsItem: FC<DetailsItemProps> = ({ title, value }) => {
     const [isHovered, setIsHovered] = useState(false);
     const { copied, copyError, copyToClipboard } = useCopyToClipboard();
     const containerRef = useRef<HTMLDivElement>(null);
+    const {notify} = useNotification();
 
     const handleClick = async () => {
         if (title === "Почта") {
             window.location.href = `mailto:${value}`;
         } else {
             await copyToClipboard(value);
+            notify({title: title, message: `Скопировано` });
         }
     };
 

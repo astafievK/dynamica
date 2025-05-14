@@ -290,6 +290,15 @@ html textarea.styled:focus {
   border-color: var(--primary-color);
   box-shadow: none;
 }
+html input[type=text].styled:disabled,
+html input[type=password].styled:disabled,
+html textarea.styled:disabled {
+  background: #f0f0f0;
+  border-color: #ccc;
+  color: #999;
+  cursor: not-allowed;
+  box-shadow: none;
+}
 html textarea {
   resize: none;
 }
@@ -959,6 +968,7 @@ html body #dynamica .left-menu {
   display: none;
   align-items: stretch;
   position: fixed;
+  height: 100%;
   width: var(--left-menu-width-default);
   top: var(--header-height-default);
   flex-direction: column;
@@ -1078,8 +1088,11 @@ html body #dynamica .header-wrapper header {
   display: flex;
   flex: 1;
   flex-direction: row;
-  background: rgba(241, 242, 242, 0.4);
+  gap: 15px;
+  background: rgba(241, 242, 242, 0.8);
   backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  will-change: backdrop-filter;
   width: 100%;
   height: 100%;
   justify-content: space-between;
@@ -1097,6 +1110,17 @@ html body #dynamica .header-wrapper header .page-title span {
   font-size: 24px;
   font-family: "GrtskTera", sans-serif;
 }
+html body #dynamica .header-wrapper header .global-search-container {
+  display: none;
+  flex-grow: 1;
+}
+html body #dynamica .header-wrapper header .global-search-container .global-search {
+  border-radius: 32px;
+  width: 100%;
+  height: 100%;
+  font-weight: 600;
+  background: transparent;
+}
 html body #dynamica .header-wrapper header .profile-container {
   display: none;
   flex-grow: 1;
@@ -1106,7 +1130,7 @@ html body #dynamica .header-wrapper header .profile-container {
 }
 html body #dynamica .header-wrapper header .profile-container .header-item {
   border-radius: 32px;
-  padding: 5px 12px;
+  padding: 5px;
   height: 100%;
   gap: 6px;
   display: flex;
@@ -1121,6 +1145,7 @@ html body #dynamica .header-wrapper header .profile-container .header-item {
 }
 html body #dynamica .header-wrapper header .profile-container .header-item span,
 html body #dynamica .header-wrapper header .profile-container .header-item svg {
+  text-wrap: nowrap;
   color: rgba(47, 55, 71, 0.85);
   transition: all 150ms;
 }
@@ -2003,7 +2028,7 @@ html body #dynamica .layout-content .main-container main .page.page-contacts .pa
   cursor: pointer;
   border-radius: 24px;
   height: 100%;
-  padding: 5px 10px;
+  padding: 4px;
   gap: 10px;
   z-index: 5;
   transition: all 200ms;
@@ -2012,7 +2037,7 @@ html body #dynamica .layout-content .main-container main .page.page-contacts .pa
   opacity: 0.5;
 }
 html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__preview .employee-actions {
-  display: flex;
+  display: none;
   flex-direction: column;
   gap: 3px;
   position: absolute;
@@ -2125,8 +2150,9 @@ html body #dynamica .layout-content .main-container main .page.page-contacts .pa
 }
 html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__preview .employee-card__general .employee-card__name {
   display: flex;
-  justify-content: center;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 3px;
   font-weight: 600;
   line-height: 1.1;
   font-size: 16px;
@@ -2147,7 +2173,8 @@ html body #dynamica .layout-content .main-container main .page.page-contacts .pa
   position: absolute;
   width: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-between;
   overflow: hidden;
   padding: 2px;
   box-shadow: var(--document-shadow);
@@ -2160,34 +2187,29 @@ html body #dynamica .layout-content .main-container main .page.page-contacts .pa
   z-index: 6;
   transition: width 150ms, padding 150ms, bottom 150ms;
 }
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__details::-webkit-scrollbar {
-  width: 8px;
-}
 html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__details .details-item {
   position: relative;
   display: flex;
-  flex-direction: column;
-  width: 100%;
+  align-items: center;
+  flex: 1 1;
+  aspect-ratio: 2/1;
   padding: 3px 8px;
   border-radius: 24px;
   cursor: pointer;
   text-align: left;
   transition: background 150ms;
 }
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__details .details-item .banner-copy {
-  top: 50%;
-  transform: translate(100%, -50%);
-  left: unset;
-  height: 100%;
+html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__details .details-item .details-title span,
+html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__details .details-item .details-title .copy-label {
+  display: none;
 }
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__details .details-item.mailto-link {
-  display: block;
-  text-decoration: none;
+html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__details .details-item .detail {
+  display: none;
 }
 html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__details .details-item .details-title {
   display: flex;
   width: 100%;
-  align-items: center;
+  justify-content: center;
   position: relative;
   overflow: hidden;
   user-select: none;
@@ -2198,7 +2220,6 @@ html body #dynamica .layout-content .main-container main .page.page-contacts .pa
   font-weight: 600;
   color: rgba(0, 0, 0, 0.5);
   fill: rgba(0, 0, 0, 0.5);
-  font-size: 12px;
 }
 html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__details .details-item .details-title .copy-label {
   position: absolute;
@@ -2221,10 +2242,6 @@ html body #dynamica .layout-content .main-container main .page.page-contacts .pa
 html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__details .details-item:hover {
   background: var(--block-background);
   box-shadow: var(--block-shadow);
-}
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card.hovered .employee-card__preview, html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card.fixed .employee-card__preview {
-  opacity: 1;
-  box-shadow: var(--document-shadow);
 }
 html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card.fixed .employee-card__preview {
   border-radius: 24px 24px 0 0;
@@ -2790,7 +2807,13 @@ html body #dynamica .layout-content .main-container .footer-wrapper footer .faq 
     top: 13px;
   }
   html body #dynamica .header-wrapper header {
-    padding: 8px 20px;
+    padding: 4px 20px;
+  }
+  html body #dynamica .header-wrapper header #logo {
+    padding: 4px 0;
+  }
+  html body #dynamica .header-wrapper header .global-search-container {
+    display: block;
   }
   html body #dynamica .layout-content .main-container {
     margin-top: var(--header-height-768);
@@ -3351,12 +3374,34 @@ html body #dynamica .layout-content .main-container .footer-wrapper footer .faq 
   html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__preview .employee-card__general .employee-card__position {
     font-size: 14px;
   }
+  html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__details {
+    flex-direction: column;
+    justify-content: unset;
+  }
+  html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__details .details-item {
+    flex: unset;
+    aspect-ratio: unset;
+    flex-direction: column;
+    align-items: unset;
+  }
+  html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__details .details-item .details-title {
+    justify-content: unset;
+  }
   html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__details .details-item .details-title span,
   html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__details .details-item .details-title svg {
     font-size: 14px;
   }
+  html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__details .details-item .details-title span,
+  html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__details .details-item .details-title .copy-label {
+    display: block;
+  }
   html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__details .details-item .detail {
+    display: block;
     font-size: 16px;
+  }
+  html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card.hovered .employee-card__preview, html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card.fixed .employee-card__preview {
+    opacity: 1;
+    box-shadow: var(--document-shadow);
   }
   html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card-skeleton {
     padding: 15px;

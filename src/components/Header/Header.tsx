@@ -24,10 +24,8 @@ export const Header: FC = () => {
         <>
             <div className={`header-wrapper`}>
                 <header>
-                    <NavLink
-                        to="/"
-                        id={"logo"}>
-                        <img loading={"lazy"} src="/logo.svg" alt="динамика"/>
+                    <NavLink to="/" id="logo">
+                        <img src="/logo.svg" alt="динамика"/>
                     </NavLink>
 
                     {
@@ -47,12 +45,15 @@ export const Header: FC = () => {
                          */
                     }
 
+                    <div className="global-search-container">
+                        <input type="text" className="global-search styled" placeholder="Поиск по всему порталу" disabled/>
+                    </div>
+
                     <div className="profile-container">
                         {
                             !user &&
                             <>
-                                <button className="login-btn header-item"
-                                        onClick={() => dispatch(setLoginModalOpen(true))}>
+                                <button className="login-btn header-item" onClick={() => dispatch(setLoginModalOpen(true))}>
                                     <LoginRoundedIcon fontSize={"large"}/>
                                 </button>
                             </>
@@ -62,11 +63,11 @@ export const Header: FC = () => {
                             <>
                                 <Link to={"admin/contacts"} className="admin-panel-btn header-item">
                                     <AdminPanelSettingsOutlinedIcon/>
-                                    <span>Администрирование</span>
+                                    <span>Админ-ие</span>
                                 </Link>
                                 <button className="create-doc header-item" onClick={openModal}>
                                     <NoteAddOutlinedIcon/>
-                                    <span>Создать / Загрузить договор</span>
+                                    <span>Договор</span>
                                 </button>
                                 <button className="notifications-btn header-item" onClick={handleNotificationsClick}>
                                     <NotificationsNoneOutlinedIcon/>
