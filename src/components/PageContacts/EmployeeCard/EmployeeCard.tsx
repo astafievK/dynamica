@@ -39,24 +39,14 @@ export const EmployeeCard: FC<IEmployeeCardProps> = React.memo(({ employee }) =>
                 onMouseEnter={() => setIsHovering(true)}
                 onMouseLeave={() => setIsHovering(false)}
             >
-                <div
-                    className={`employee-card__preview ${employee.is_hidden ? 'hidden' : ''}`}
-                    onClick={handlePreviewClick}
-                >
-                    {
-                        user && (
-                            <AnimatePresence>
-                                <EmployeeActions employee={employee} />
-                            </AnimatePresence>
-                        )
-                    }
+                <div className={`employee-card__preview ${employee.is_hidden ? 'hidden' : ''}`} onClick={handlePreviewClick}>
                     <motion.div
                         initial={{opacity: 0}}
                         animate={{opacity: 1}}
                         exit={{opacity: 0}}
                         transition={{duration: 0.2}}
                         className="employee-card__photo"
-                        style={{backgroundImage: `url(https://192.168.7.74/files/images/${employee.image.path})`}}
+                        style={{backgroundImage: `url(https://newportal/files/images/${employee.image.path})`}}
                     >
                     </motion.div>
                     <div className="employee-card__general">
@@ -65,8 +55,17 @@ export const EmployeeCard: FC<IEmployeeCardProps> = React.memo(({ employee }) =>
                             <span className="employee-card__firstname">{employee.name}</span>
                             <span className="employee-card__middlename">{employee.patronymic}</span>
                         </div>
-                        <span className="employee-card__position" onClick={(event) => handleCopy(employee.position.title, 'Должность', event)}>{employee.position.title}</span>
+                        <div className="employee-card__position" onClick={(event) => handleCopy(employee.position.title, 'Должность', event)}>
+                            <span>{employee.position.title}</span>
+                        </div>
                     </div>
+                    {
+                        user && (
+                            <AnimatePresence>
+                                <EmployeeActions employee={employee} />
+                            </AnimatePresence>
+                        )
+                    }
                 </div>
 
                 <AnimatePresence>

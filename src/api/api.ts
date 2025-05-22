@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-export const baseUrl = 'https://192.168.7.74/api';
+export const baseUrl = 'https://newportal/api';
 
 export const baseApi = createApi({
     reducerPath: 'api',

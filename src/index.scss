@@ -174,7 +174,8 @@
     --header-height-768: 50px;
     --header-height-1024: 50px;
     --header-height-1440: 60px;
-    --left-menu-width-default: 240px;
+    --left-menu-width-default: 180px;
+    --left-menu-width-1440: 240px;
     --hover-background: rgba(150, 150, 150, 0.2);
     --background-action-button-primary: #acd7aa;
     --background-action-button-secondary: #e6e6e6;
@@ -563,7 +564,8 @@ html {
             z-index: 50;
 
             &.hidden {
-                .modal-content {
+                .modal-content,
+                .modal__content {
                     animation-name: moveSlideUp;
                 }
             }
@@ -717,7 +719,8 @@ html {
         #modal-root {
             #editEmployee,
             #createDocument {
-                .modal-content {
+                .modal-content,
+                .modal__content {
                     width: 95%;
                     height: 95%;
                     max-height: unset;
@@ -726,105 +729,106 @@ html {
             }
 
             #editEmployee {
-                .modal-content {
+                .modal__content {
                     max-width: 950px !important;
-                    max-height: unset;
                     height: auto;
 
-                    .modal-content__body {
-                        .fields {
-                            .fields-main,
-                            .fields-info {
-                                .fields-title {
-                                    font-weight: 600;
-                                    margin-left: 5px;
-                                    color: rgba(47, 55, 71, 0.85);
-                                    user-select: none;
-                                }
+                    .modal__header {
 
-                                .fields-content {
-                                    margin-top: 7px;
+                    }
 
-                                    input,
-                                    .input-birthday > label{
-                                        flex-grow: 1;
-                                        box-shadow: none;
-                                        background: var(--background-color);
-                                        border: 1px solid var(--background-color);
+                    .modal__body {
+                        padding: 5px 5px 15px 5px;
 
-                                        &:focus {
-                                            background: var(--block-background);
-                                        }
-                                    }
-                                }
-                            }
-
-                            .fields-main {
-                                padding: 0 5px;
-
-                                .fields-content {
+                        .employee-editor {
+                            &__info {
+                                .employee-editor__fields {
                                     display: flex;
-                                    flex-direction: row;
-                                    justify-content: space-between;
-                                    gap: 20px;
-
-                                    .employee-photo {
-                                        flex-shrink: 0;
-                                        border-radius: 16px;
-                                        background-repeat: no-repeat;
-                                        background-size: cover;
-                                        background-position: top;
-                                        height: 200px;
-                                        aspect-ratio: 1 / 1;
-                                    }
-
-                                    .fields-main-fullname {
-                                        display: flex;
-                                        flex-direction: column;
-                                        justify-content: center;
-                                        padding: 10px 0;
-                                        gap: 5px;
-                                        flex-grow: 1;
-                                    }
-                                }
-                            }
-
-                            .fields-info {
-                                margin-top: 10px;
-
-                                .fields-content {
-                                    display: grid;
-                                    grid-template-columns: 1fr 1fr 1fr;
+                                    flex-direction: column;
                                     gap: 5px;
 
-                                    .input-birthday {
+                                    .employee-editor__main-fields {
                                         display: flex;
+                                        flex-direction: column;
+                                        gap: 10px;
+                                        align-items: center;
+                                        border-radius: 24px;
+                                        background: rgba(90, 176, 88, 0.12);
+                                        padding: 10px;
 
-                                        label {
-                                            display: flex;
-                                            align-items: center;
-                                            justify-content: center;
-                                            border-radius: 10px;
+                                        .employee-editor__photo-container {
+                                            border-radius: 50%;
+                                            overflow: hidden;
+                                            aspect-ratio: 1/1;
+                                            width: 70px;
+
+                                            .employee-editor__photo {
+                                                width: 100%;
+                                                height: 100%;
+                                                background-position: top;
+                                                background-repeat: no-repeat;
+                                                background-size: cover;
+                                            }
                                         }
 
-                                        input {
-                                            display: none;
+                                        .employee-editor__name {
+                                            font-weight: 500;
+                                            font-size: 14px;
+                                            font-family: "GrtskTera", Arial, sans-serif;
+                                        }
+                                    }
+
+                                    .employee-editor__additional-fields {
+                                        display: flex;
+                                        flex-direction: column;
+                                        gap: 5px;
+                                        padding: 0 10px;
+
+                                        .employee-editor__field {
+                                            display: flex;
+                                            flex-direction: column;
+                                            gap: 3px;
+
+                                            .employee-editor__label {
+                                                font-size: 0.8em;
+                                                margin-left: 2px;
+                                            }
+
+                                            .employee-editor__input {
+                                                padding: 12px 10px;
+                                                border-radius: 10px;
+                                                border: 1px solid var(--background-color);
+                                                background: rgba(0, 0, 0, 0.05);
+                                            }
                                         }
                                     }
                                 }
                             }
+
+                            &__functions {
+
+                            }
                         }
+                    }
 
-                        .actions {
-                            width: 100%;
-                            display: flex;
-                            gap: 10px;
-                            margin-top: 10px;
+                    .modal__actions {
+                        display: flex;
+                        padding: 10px 15px 5px 15px;
 
-                            .action {
-                                background: var(--background-color);
-                                padding: 10px;
-                                border-radius: 10px;
+                        .modal__action {
+                            flex-grow: 1;
+                            padding: 15px;
+                            border-radius: 12px;
+                            font-size: 16px;
+                            font-weight: 500;
+                            color: rgba(255, 255, 255, 0.8);
+
+                            &--save {
+                                background: var(--primary-color);
+                            }
+
+                            &:hover {
+                                color: rgba(255, 255, 255, 1);
                             }
                         }
                     }
@@ -832,7 +836,8 @@ html {
             }
 
             #createDocument {
-                .modal-content {
+                .modal-content,
+                .modal__content {
                     &__body {
                         display: grid;
                         grid-template-columns: 1fr;
@@ -964,15 +969,18 @@ html {
             z-index: 1001;
             animation: fadeIn 0.2s ease-in-out forwards;
 
-            &.hidden {
+            &.hidden,
+            &--hidden {
                 animation: fadeOut 0.2s ease-in-out forwards;
 
-                .modal-content {
+                .modal-content,
+                .modal__content {
                     animation-name: slideDown;
                 }
             }
 
-            .modal-content {
+            .modal-content,
+            .modal__content {
                 position: relative;
                 display: flex;
                 flex-direction: column;
@@ -984,30 +992,34 @@ html {
                 background-color: #ffffff;
                 animation: modalSlideUp 0.3s forwards;
 
-                &.hidden {
+                &.hidden,
+                &--hidden {
                     animation: modalSlideDown 0.3s forwards;
                 }
 
-                .modal-content__header {
+                .modal-content__header,
+                .modal__header {
                     padding: 0 10px;
                     display: flex;
                     align-items: center;
                     justify-content: space-between;
                     width: 100%;
 
-                    .modal-title {
+                    .modal-title,
+                    .modal__title {
                         text-align: left;
                         font-family: 'GrtskTera', sans-serif;
-                        font-size: 22px;
+                        font-size: 16px;
                         text-overflow: ellipsis;
                         white-space: nowrap;
                         overflow: hidden;
                     }
                 }
 
-                .modal-content__body {
+                .modal-content__body,
+                .modal__body {
                     margin-top: 7px;
-                    overflow-y: auto;
+                    overflow: hidden;
                     padding: 15px 5px;
                     flex-grow: 1;
                     border-radius: 32px;
@@ -1069,7 +1081,8 @@ html {
                     max-width: 580px;
                     max-height: 650px;
 
-                    .modal-content__body {
+                    .modal-content__body,
+                    .modal__body {
                         padding: 0;
 
                         .module-notifications {
@@ -1087,11 +1100,12 @@ html {
                 }
 
                 .cross {
-                    height: 32px;
+                    height: 28px;
                 }
             }
 
-            .spoiler {
+            .spoiler,
+            .modal__overlay {
                 position: fixed;
                 top: 0;
                 left: 0;
@@ -1101,7 +1115,8 @@ html {
                 cursor: pointer;
                 animation: fadeIn 0.2s ease-in-out forwards;
 
-                &.hidden {
+                &.hidden,
+                &--hidden {
                     animation: fadeOut 0.2s ease-in-out forwards;
                 }
             }
@@ -1298,6 +1313,7 @@ html {
 
                 header {
                     display: flex;
+                    position: relative;
                     flex: 1;
                     flex-direction: row;
                     gap: 15px;
@@ -1534,14 +1550,14 @@ html {
 
                             .page-filters {
                                 display: flex;
+                                position: sticky;
+                                top: var(--header-height-default);
                                 flex-direction: column;
                                 gap: 5px;
                                 padding: 0 3px;
 
                                 .filters-buttons {
                                     display: flex;
-                                    justify-content: center;
-                                    flex-wrap: wrap;
 
                                     .department-skeleton {
                                         width: 100px;
@@ -1594,7 +1610,7 @@ html {
                                     height: 100%;
                                     background: var(--block-background);
                                     box-shadow: var(--block-shadow);
-                                    border-radius: 10px;
+                                    border-radius: 32px;
                                 }
                             }
 
@@ -2428,7 +2444,6 @@ html {
                                     .employees-container {
                                         position: relative;
                                         grid-template-columns: repeat(1, calc(100% / 1 - 8px / 1 * (1 - 1)));
-                                        gap: 8px;
                                         display: grid;
 
                                         .employee-card {
@@ -2442,7 +2457,6 @@ html {
                                             .employee-card__details {
                                                 background: rgba(255, 255, 255, 0.7);
                                                 border: 1px solid rgba(255, 255, 255, 0.8);
-                                                backdrop-filter: blur(24px);
                                             }
 
                                             .employee-card__preview {
@@ -2463,10 +2477,9 @@ html {
                                                 .employee-actions {
                                                     display: none;
                                                     flex-direction: column;
+                                                    padding: 0 5px;
+                                                    background: var(--background-color);
                                                     gap: 3px;
-                                                    position: absolute;
-                                                    top: 5px;
-                                                    right: 5px;
 
                                                     .employee-action {
                                                         display: flex;
@@ -2507,7 +2520,7 @@ html {
 
                                                     .employee-actions-photo {
                                                         display: flex;
-                                                        flex-direction: row;
+                                                        flex-direction: column;
                                                         gap: 2px;
                                                     }
 
@@ -2522,7 +2535,7 @@ html {
                                                     aspect-ratio: 1/1;
                                                     background-size: cover;
                                                     background-position: top;
-                                                    border-radius: 24px;
+                                                    border-radius: 50%;
                                                     transition: all 50ms;
 
                                                     .upload-container {
@@ -2580,11 +2593,13 @@ html {
                                                     display: flex;
                                                     flex-grow: 1;
                                                     flex-direction: column;
+                                                    padding: 3px 0;
 
                                                     .employee-card__name,
                                                     .employee-card__position {
                                                         display: flex;
-                                                        padding: 6px 8px;
+                                                        align-items: flex-start;
+                                                        padding: 2px 3px;
                                                         border-radius: 10px;
                                                         transition: all 90ms;
 
@@ -2601,15 +2616,19 @@ html {
                                                         display: flex;
                                                         flex-direction: row;
                                                         flex-wrap: wrap;
-                                                        gap: 3px;
+                                                        gap: 2px;
                                                         font-weight: 600;
                                                         line-height: 1.1;
                                                         font-size: 16px;
 
                                                         .employee-card__lastname,
-                                                        .employee-card__firstname,
+                                                        .employee-card__firstname {
+                                                            display: inline-flex;
+                                                        }
+
                                                         .employee-card__middlename {
-                                                            display: flex;
+                                                            display: block;
+                                                            width: 100%;
                                                         }
                                                     }
 
@@ -2617,7 +2636,6 @@ html {
                                                         display: flex;
                                                         align-items: center;
                                                         font-size: 13px;
-                                                        line-height: 1;
                                                         opacity: 0.7;
                                                     }
                                                 }
@@ -2633,6 +2651,7 @@ html {
                                                 padding: 2px;
                                                 box-shadow: var(--document-shadow);
                                                 border-radius: 24px;
+                                                backdrop-filter: blur(24px);
                                                 gap: 3px;
                                                 left: 50%;
                                                 bottom: 0;
@@ -3352,6 +3371,9 @@ html {
 
     @media (min-width: 768px) {
         .filters-buttons {
+            justify-content: center;
+            flex-wrap: wrap;
+
             .filter-elem {
                 font-size: 14px;
             }
@@ -3368,7 +3390,8 @@ html {
 
         body {
             .modal {
-                .modal-content {
+                .modal-content,
+                .modal__content {
                     .modal-content__header {
                         padding: 0 15px;
 
@@ -3377,7 +3400,8 @@ html {
                         }
                     }
 
-                    .modal-content__body {
+                    .modal-content__body,
+                .modal__body {
                         margin-top: 10px;
                         padding: 15px 8px;
                     }
@@ -3403,7 +3427,8 @@ html {
                         max-width: 580px;
                         max-height: 650px;
 
-                        .modal-content__body {
+                        .modal-content__body,
+                .modal__body {
                             padding: 0;
 
                             .module-notifications {
@@ -3502,6 +3527,8 @@ html {
                                 }
 
                                 .page-filters {
+                                    top: var(--header-height-768);
+
                                     .filters-search {
                                         gap: 10px;
 
@@ -3701,6 +3728,7 @@ html {
                                     .page-content {
                                         .employees-container {
                                             grid-template-columns: repeat(2, calc(100% / 2 - 8px / 2 * (2 - 1)));
+                                            gap: 4px;
 
                                             .employee-card {
                                                 .employee-card__preview {
@@ -3933,7 +3961,8 @@ html {
         body {
             #modal-root {
                 #createDocument {
-                    .modal-content {
+                    .modal-content,
+                .modal__content {
                         &__body {
                             grid-template-columns: 1fr 2fr;
                             gap: 20px;
@@ -4073,6 +4102,7 @@ html {
                                 }
 
                                 .page-filters {
+                                    top: var(--header-height-1024);
                                     padding: 0 10px;
 
                                     .filters-select {
@@ -4326,7 +4356,12 @@ html {
                                                 .employee-card__preview {
                                                     padding: 5px;
 
+                                                    .employee-actions {
+                                                        display: flex;
+                                                    }
+
                                                     .employee-card__photo {
+                                                        border-radius: 32px;
                                                         height: 100px;
                                                     }
 
@@ -4631,6 +4666,7 @@ html {
 
                 .left-menu {
                     top: var(--header-height-1440);
+                    width: var(--left-menu-width-1440);
                     padding: 0 8px 8px 8px;
 
                     .logo-container {
@@ -4656,6 +4692,7 @@ html {
 
                 .layout-content {
                     .main-container {
+                        margin-left: var(--left-menu-width-1440);
                         margin-top: var(--header-height-1440);
 
                         main {
@@ -4667,7 +4704,7 @@ html {
                                 }
 
                                 .page-filters {
-
+                                    top: var(--header-height-1440);
                                 }
 
                                 .page-content {

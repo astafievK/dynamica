@@ -73,11 +73,10 @@ export const Header: FC = () => {
                                     <NotificationsNoneOutlinedIcon/>
                                 </button>
                                 <Link to={"profile"} className="user-wrapper header-item">
-                                    <div className="user-image" style={{ backgroundImage: `url(https://192.168.7.74/files/images/${((user.image && user.image.path) ?? 'default.webp')})` }}></div>
+                                    <div className="user-image" style={{ backgroundImage: `url(https://newportal/files/images/${((user.image && user.image.path) ?? 'default.webp')})` }}></div>
                                     <span>{user.name} {user.surname}</span>
                                 </Link>
-                                <button className="logout-btn header-item"
-                                        onClick={() => dispatch(logout())}>
+                                <button className="logout-btn header-item" onClick={() => dispatch(logout())}>
                                     <LogoutOutlinedIcon/>
                                 </button>
                             </>

@@ -1,145 +1,146 @@
-import { FC, useRef, useState } from "react";
+import { FC, useState } from "react";
 import { Cross } from "../../Cross/Cross.tsx";
 import { useModal } from "../../../store/hooks/useModal.ts";
 import { Employee } from "../../../interfaces/IEmployee.ts";
-import { formatDateForLabel } from "../../../constants/functions.ts";
 import {useEditEmployee} from "../../Contexts/EditEmployeeContext/EditEmployeeContext.tsx";
+import {UpdateUserCommand} from "../../../api/commands/IUpdateUserCommand.ts";
 
 interface ModalEditEmployeeProps {
-    employee: Employee | null;
+    employee: Employee;
 }
 
 export const ModalEditEmployee: FC<ModalEditEmployeeProps> = ({ employee }) => {
     const { closeModal } = useEditEmployee();
     const { isClosing, handleClose } = useModal(true, () => closeModal());
 
-    const [name, setName] = useState<string>(employee?.name || "");
-    const [surname, setSurname] = useState<string>(employee?.surname || "");
-    const [patronymic, setPatronymic] = useState<string>(employee?.patronymic || "");
-    const [position, setPosition] = useState<string>(employee?.position.title || "");
-    const [city] = useState<string>(employee?.department.city.title || "");
-    const [department, setDepartment] = useState<string>(employee?.department.title || "");
-    const [phone, setPhone] = useState<string>(employee?.phone || "");
-    const [birthday, setBirthday] = useState<string>(employee?.birthday.date || "");
-
-    const birthdayInputRef = useRef<HTMLInputElement>(null);
-
-    const openStartDate = () => {
-        birthdayInputRef.current?.showPicker?.();
-        birthdayInputRef.current?.focus();
-    };
+    const [position] = useState<string>(employee?.position.title || "");
+    const [department] = useState<string>(employee?.department.title || "");
+    const [phone] = useState<string>(employee?.phone || "");
+    const [tempPosition, setTempPosition] = useState<string>(position);
+    const [tempDepartment, setTempDepartment] = useState<string>(department);
+    const [tempPhone, setTempPhone] = useState<string>(phone);
 
     const handleSave = () => {
-        const updatedEmployee = {
-            ...employee,
-            name,
-            surname,
-            patronymic,
-            position: { ...employee!.position, title: position },
-            department: { ...employee!.department, title: department },
-            phone,
-            birthday: { ...employee!.birthday, date: birthday }
+        const payload: UpdateUserCommand = {
+            id_user: employee.id_user,
         };
-        console.log("Сохранение сотрудника:", updatedEmployee);
+
+        if (tempPosition !== position) {
+            payload.position_title = tempPosition.trim() === "" ? null : tempPosition.trim();
+        }
+
+        if (tempDepartment !== department) {
+            payload.department_title = tempDepartment.trim() === "" ? null : tempDepartment.trim();
+        }
+
+        if (tempPhone !== phone) {
+            payload.phone = tempPhone.trim() === "" ? null : tempPhone.trim();
+        }
+
+        const hasChanges = Object.keys(payload).some(key => key !== "id_user");
+
+        if (!hasChanges) {
+            console.log("Нет изменений");
+            closeModal();
+            return;
+        }
+
+        console.log("Изменённые поля:", payload);
+
+        // updateEmployee(payload);
+
         closeModal();
     };
 
     return (
-        <dialog className={`modal ${isClosing ? "hidden" : ""}`} id="editEmployee" open>
-            <div className={`modal-content ${isClosing ? "hidden" : ""}`}>
-                <div className="modal-content__header">
-                    <span className="modal-title">
-                        Редактирование сотрудника • {employee?.surname} {employee?.name} {employee?.patronymic}
-                    </span>
+        <dialog className={`modal ${isClosing ? "modal--hidden" : ""}`} id="editEmployee" open>
+            <div className={`modal__content ${isClosing ? "modal__content--hidden" : ""}`}>
+                <div className="modal__header">
+                    <span className="modal__title">Редактирование сотрудника</span>
                     <Cross onClick={handleClose} color="#000000" />
                 </div>
-                <div className="modal-content__body">
-                    <div className="fields">
-                        <div className="fields-main">
-                            <div className="fields-title">Основная информация</div>
-                            <div className="fields-content">
-                                <div
-                                    className="employee-photo"
-                                    style={{ backgroundImage: `url(https://192.168.7.74/files/images/${employee?.image.path})` }}
-                                ></div>
-                                <div className="fields-main-fullname">
-                                    <input
-                                        className="styled"
-                                        type="text"
-                                        placeholder="Фамилия"
-                                        value={surname}
-                                        onChange={(e) => setSurname(e.target.value)}
-                                    />
-                                    <input
-                                        className="styled"
-                                        type="text"
-                                        placeholder="Имя"
-                                        value={name}
-                                        onChange={(e) => setName(e.target.value)}
-                                    />
-                                    <input
-                                        className="styled"
-                                        type="text"
-                                        placeholder="Отчество"
-                                        value={patronymic}
-                                        onChange={(e) => setPatronymic(e.target.value)}
-                                    />
+                <div className="modal__body">
+                    <div className="employee-editor">
+                        <div className="employee-editor__info">
+                            <div className="employee-editor__fields">
+                                <div className="employee-editor__main-fields">
+                                    <div className="employee-editor__photo-container">
+                                        <div
+                                            className="employee-editor__photo"
+                                            style={{ backgroundImage: `url(https://newportal/files/images/${employee?.image.path})` }}
+                                        ></div>
+                                    </div>
+
+                                    <span className="employee-editor__name">{employee?.surname} {employee?.name} {employee?.patronymic}</span>
+                                </div>
+                                <div className="employee-editor__additional-fields">
+                                    <div className="employee-editor__field">
+                                        <label className="employee-editor__label">Должность</label>
+                                        <input
+                                            className="employee-editor__input"
+                                            type="text"
+                                            placeholder={employee?.position.title}
+                                            onChange={(e) => setTempPosition(e.target.value)}
+                                        />
+                                    </div>
+
+                                    <div className="employee-editor__field">
+                                        <label className="employee-editor__label">Город</label>
+                                        <input
+                                            className="employee-editor__input"
+                                            type="text"
+                                            placeholder={employee?.department.city.title}
+                                            disabled={true}
+                                        />
+                                    </div>
+
+                                    <div className="employee-editor__field">
+                                        <label className="employee-editor__label">Подразделение</label>
+                                        <input
+                                            className="employee-editor__input"
+                                            type="text"
+                                            placeholder={employee!.department.title!}
+                                            onChange={(e) => setTempDepartment(e.target.value)}
+                                        />
+                                    </div>
+
+                                    <div className="employee-editor__field">
+                                        <label className="employee-editor__label">Контактный телефон</label>
+                                        <input
+                                            className="employee-editor__input"
+                                            type="text"
+                                            placeholder={employee?.phone}
+                                            onChange={(e) => setTempPhone(e.target.value)}
+                                        />
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div className="fields-info">
-                            <div className="fields-title">Дополнительная информация</div>
-                            <div className="fields-content">
-                                <input
-                                    className="styled"
-                                    type="text"
-                                    placeholder="Должность"
-                                    value={position}
-                                    onChange={(e) => setPosition(e.target.value)}
-                                />
-                                <input
-                                    className="styled"
-                                    type="text"
-                                    placeholder="Город"
-                                    value={city}
-                                    disabled
-                                />
-                                <input
-                                    className="styled"
-                                    type="text"
-                                    placeholder="Подразделение"
-                                    value={department}
-                                    onChange={(e) => setDepartment(e.target.value)}
-                                />
-                                <input
-                                    className="styled"
-                                    type="text"
-                                    placeholder="Номер телефона"
-                                    value={phone}
-                                    onChange={(e) => setPhone(e.target.value)}
-                                />
-                                <div className="input-birthday">
-                                    <label htmlFor="editEmployeeBirthday" onClick={openStartDate}>
-                                        {formatDateForLabel(birthday)}
-                                    </label>
-                                    <input
-                                        type="date"
-                                        id="editEmployeeBirthday"
-                                        ref={birthdayInputRef}
-                                        value={birthday}
-                                        onChange={(e) => setBirthday(e.target.value)}
-                                    />
-                                </div>
+                        {
+                            /*
+                        <div className="employee-editor__functions">
+                            <div className="employee-editor__functions-title">Возможности</div>
+                            <div className="employee-editor__functions-list">
+                                {[...Array(22)].map((_, index) => (
+                                    <div className="employee-editor__function" key={index}>
+                                        <button className={`employee-editor__function-btn ${index === 1 ? 'employee-editor__function-btn--selected' : ''}`}>
+                                            Название функции сотрудника
+                                        </button>
+                                    </div>
+                                ))}
                             </div>
                         </div>
-                    </div>
-                    <div className="actions">
-                        <button className="action save" onClick={handleSave}>Сохранить</button>
-                        <button className="action cancel" onClick={handleClose}>Отмена</button>
+
+                             */
+                        }
                     </div>
                 </div>
+                <div className="modal__actions">
+                    <button className="modal__action modal__action--save" onClick={handleSave}>Сохранить</button>
+                </div>
             </div>
-            <div className={`spoiler ${isClosing ? "hidden" : ""}`} onClick={handleClose}></div>
+
+            <div className={`modal__overlay ${isClosing ? "modal__overlay--hidden" : ""}`} onClick={handleClose}></div>
         </dialog>
     );
 };

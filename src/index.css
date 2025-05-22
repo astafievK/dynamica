@@ -155,7 +155,8 @@
   --header-height-768: 50px;
   --header-height-1024: 50px;
   --header-height-1440: 60px;
-  --left-menu-width-default: 240px;
+  --left-menu-width-default: 180px;
+  --left-menu-width-1440: 240px;
   --hover-background: rgba(150, 150, 150, 0.2);
   --background-action-button-primary: #acd7aa;
   --background-action-button-secondary: #e6e6e6;
@@ -478,7 +479,8 @@ html body #mobileMenu {
   height: 100%;
   z-index: 50;
 }
-html body #mobileMenu.hidden .modal-content {
+html body #mobileMenu.hidden .modal-content,
+html body #mobileMenu.hidden .modal__content {
   animation-name: moveSlideUp;
 }
 html body #mobileMenu .content {
@@ -608,111 +610,106 @@ html body #mobileMenu .spoiler.hidden {
   animation: fadeOut 0.35s ease-out forwards;
 }
 html body #modal-root #editEmployee .modal-content,
-html body #modal-root #createDocument .modal-content {
+html body #modal-root #editEmployee .modal__content,
+html body #modal-root #createDocument .modal-content,
+html body #modal-root #createDocument .modal__content {
   width: 95%;
   height: 95%;
   max-height: unset;
   max-width: unset;
 }
-html body #modal-root #editEmployee .modal-content {
+html body #modal-root #editEmployee .modal__content {
   max-width: 950px !important;
-  max-height: unset;
   height: auto;
 }
-html body #modal-root #editEmployee .modal-content .modal-content__body .fields .fields-main .fields-title,
-html body #modal-root #editEmployee .modal-content .modal-content__body .fields .fields-info .fields-title {
-  font-weight: 600;
-  margin-left: 5px;
-  color: rgba(47, 55, 71, 0.85);
-  user-select: none;
+html body #modal-root #editEmployee .modal__content .modal__body {
+  padding: 5px 5px 15px 5px;
 }
-html body #modal-root #editEmployee .modal-content .modal-content__body .fields .fields-main .fields-content,
-html body #modal-root #editEmployee .modal-content .modal-content__body .fields .fields-info .fields-content {
-  margin-top: 7px;
-}
-html body #modal-root #editEmployee .modal-content .modal-content__body .fields .fields-main .fields-content input,
-html body #modal-root #editEmployee .modal-content .modal-content__body .fields .fields-main .fields-content .input-birthday > label,
-html body #modal-root #editEmployee .modal-content .modal-content__body .fields .fields-info .fields-content input,
-html body #modal-root #editEmployee .modal-content .modal-content__body .fields .fields-info .fields-content .input-birthday > label {
-  flex-grow: 1;
-  box-shadow: none;
-  background: var(--background-color);
-  border: 1px solid var(--background-color);
-}
-html body #modal-root #editEmployee .modal-content .modal-content__body .fields .fields-main .fields-content input:focus,
-html body #modal-root #editEmployee .modal-content .modal-content__body .fields .fields-main .fields-content .input-birthday > label:focus,
-html body #modal-root #editEmployee .modal-content .modal-content__body .fields .fields-info .fields-content input:focus,
-html body #modal-root #editEmployee .modal-content .modal-content__body .fields .fields-info .fields-content .input-birthday > label:focus {
-  background: var(--block-background);
-}
-html body #modal-root #editEmployee .modal-content .modal-content__body .fields .fields-main {
-  padding: 0 5px;
-}
-html body #modal-root #editEmployee .modal-content .modal-content__body .fields .fields-main .fields-content {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  gap: 20px;
-}
-html body #modal-root #editEmployee .modal-content .modal-content__body .fields .fields-main .fields-content .employee-photo {
-  flex-shrink: 0;
-  border-radius: 16px;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: top;
-  height: 200px;
-  aspect-ratio: 1/1;
-}
-html body #modal-root #editEmployee .modal-content .modal-content__body .fields .fields-main .fields-content .fields-main-fullname {
+html body #modal-root #editEmployee .modal__content .modal__body .employee-editor__info .employee-editor__fields {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  padding: 10px 0;
-  gap: 5px;
-  flex-grow: 1;
-}
-html body #modal-root #editEmployee .modal-content .modal-content__body .fields .fields-info {
-  margin-top: 10px;
-}
-html body #modal-root #editEmployee .modal-content .modal-content__body .fields .fields-info .fields-content {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
   gap: 5px;
 }
-html body #modal-root #editEmployee .modal-content .modal-content__body .fields .fields-info .fields-content .input-birthday {
+html body #modal-root #editEmployee .modal__content .modal__body .employee-editor__info .employee-editor__fields .employee-editor__main-fields {
   display: flex;
-}
-html body #modal-root #editEmployee .modal-content .modal-content__body .fields .fields-info .fields-content .input-birthday label {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 10px;
-}
-html body #modal-root #editEmployee .modal-content .modal-content__body .fields .fields-info .fields-content .input-birthday input {
-  display: none;
-}
-html body #modal-root #editEmployee .modal-content .modal-content__body .actions {
-  width: 100%;
-  display: flex;
+  flex-direction: column;
   gap: 10px;
-  margin-top: 10px;
-}
-html body #modal-root #editEmployee .modal-content .modal-content__body .actions .action {
-  background: var(--background-color);
+  align-items: center;
+  border-radius: 24px;
+  background: rgba(90, 176, 88, 0.12);
   padding: 10px;
-  border-radius: 10px;
 }
-html body #modal-root #createDocument .modal-content__body {
+html body #modal-root #editEmployee .modal__content .modal__body .employee-editor__info .employee-editor__fields .employee-editor__main-fields .employee-editor__photo-container {
+  border-radius: 50%;
+  overflow: hidden;
+  aspect-ratio: 1/1;
+  width: 70px;
+}
+html body #modal-root #editEmployee .modal__content .modal__body .employee-editor__info .employee-editor__fields .employee-editor__main-fields .employee-editor__photo-container .employee-editor__photo {
+  width: 100%;
+  height: 100%;
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+html body #modal-root #editEmployee .modal__content .modal__body .employee-editor__info .employee-editor__fields .employee-editor__main-fields .employee-editor__name {
+  font-weight: 500;
+  font-size: 14px;
+  font-family: "GrtskTera", Arial, sans-serif;
+}
+html body #modal-root #editEmployee .modal__content .modal__body .employee-editor__info .employee-editor__fields .employee-editor__additional-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 0 10px;
+}
+html body #modal-root #editEmployee .modal__content .modal__body .employee-editor__info .employee-editor__fields .employee-editor__additional-fields .employee-editor__field {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+html body #modal-root #editEmployee .modal__content .modal__body .employee-editor__info .employee-editor__fields .employee-editor__additional-fields .employee-editor__field .employee-editor__label {
+  font-size: 0.8em;
+  margin-left: 2px;
+}
+html body #modal-root #editEmployee .modal__content .modal__body .employee-editor__info .employee-editor__fields .employee-editor__additional-fields .employee-editor__field .employee-editor__input {
+  padding: 12px 10px;
+  border-radius: 10px;
+  border: 1px solid var(--background-color);
+  background: rgba(0, 0, 0, 0.05);
+}
+html body #modal-root #editEmployee .modal__content .modal__actions {
+  display: flex;
+  padding: 10px 15px 5px 15px;
+}
+html body #modal-root #editEmployee .modal__content .modal__actions .modal__action {
+  flex-grow: 1;
+  padding: 15px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.8);
+}
+html body #modal-root #editEmployee .modal__content .modal__actions .modal__action--save {
+  background: var(--primary-color);
+}
+html body #modal-root #editEmployee .modal__content .modal__actions .modal__action:hover {
+  color: rgb(255, 255, 255);
+}
+html body #modal-root #createDocument .modal-content__body,
+html body #modal-root #createDocument .modal__content__body {
   display: grid;
   grid-template-columns: 1fr;
   gap: 5px;
 }
-html body #modal-root #createDocument .modal-content__body .upload-container {
+html body #modal-root #createDocument .modal-content__body .upload-container,
+html body #modal-root #createDocument .modal__content__body .upload-container {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-html body #modal-root #createDocument .modal-content__body .upload-container label {
+html body #modal-root #createDocument .modal-content__body .upload-container label,
+html body #modal-root #createDocument .modal__content__body .upload-container label {
   color: var(--secondary-color);
   display: flex;
   aspect-ratio: 1/1;
@@ -729,49 +726,59 @@ html body #modal-root #createDocument .modal-content__body .upload-container lab
   cursor: pointer;
   transition: all 150ms;
 }
-html body #modal-root #createDocument .modal-content__body .upload-container label svg {
+html body #modal-root #createDocument .modal-content__body .upload-container label svg,
+html body #modal-root #createDocument .modal__content__body .upload-container label svg {
   font-size: 52px;
   fill: var(--secondary-color);
   transition: all 150ms;
 }
-html body #modal-root #createDocument .modal-content__body .upload-container label:hover {
+html body #modal-root #createDocument .modal-content__body .upload-container label:hover,
+html body #modal-root #createDocument .modal__content__body .upload-container label:hover {
   border-color: var(--primary-color);
   color: var(--primary-color);
 }
-html body #modal-root #createDocument .modal-content__body .upload-container label:hover svg {
+html body #modal-root #createDocument .modal-content__body .upload-container label:hover svg,
+html body #modal-root #createDocument .modal__content__body .upload-container label:hover svg {
   fill: var(--primary-color);
 }
-html body #modal-root #createDocument .modal-content__body .upload-container #createDocumentFileUploadInput {
+html body #modal-root #createDocument .modal-content__body .upload-container #createDocumentFileUploadInput,
+html body #modal-root #createDocument .modal__content__body .upload-container #createDocumentFileUploadInput {
   display: none;
 }
-html body #modal-root #createDocument .modal-content__body .fields-container {
+html body #modal-root #createDocument .modal-content__body .fields-container,
+html body #modal-root #createDocument .modal__content__body .fields-container {
   display: flex;
   flex-direction: column;
   gap: 3px;
 }
-html body #modal-root #createDocument .modal-content__body .fields-container .field {
+html body #modal-root #createDocument .modal-content__body .fields-container .field,
+html body #modal-root #createDocument .modal__content__body .fields-container .field {
   display: flex;
   flex-direction: column;
   gap: 3px;
 }
-html body #modal-root #createDocument .modal-content__body .fields-container .field-title {
+html body #modal-root #createDocument .modal-content__body .fields-container .field-title,
+html body #modal-root #createDocument .modal__content__body .fields-container .field-title {
   color: rgba(47, 55, 71, 0.85);
   user-select: none;
   margin-left: 10px;
   font-weight: 600;
 }
-html body #modal-root #createDocument .modal-content__body .fields-container .field.task-duration .calendars {
+html body #modal-root #createDocument .modal-content__body .fields-container .field.task-duration .calendars,
+html body #modal-root #createDocument .modal__content__body .fields-container .field.task-duration .calendars {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: row;
   gap: 2px;
 }
-html body #modal-root #createDocument .modal-content__body .fields-container .field.task-duration .calendars .calendar {
+html body #modal-root #createDocument .modal-content__body .fields-container .field.task-duration .calendars .calendar,
+html body #modal-root #createDocument .modal__content__body .fields-container .field.task-duration .calendars .calendar {
   display: flex;
   flex: 1;
 }
-html body #modal-root #createDocument .modal-content__body .fields-container .field.task-duration .calendars .calendar label {
+html body #modal-root #createDocument .modal-content__body .fields-container .field.task-duration .calendars .calendar label,
+html body #modal-root #createDocument .modal__content__body .fields-container .field.task-duration .calendars .calendar label {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -783,16 +790,20 @@ html body #modal-root #createDocument .modal-content__body .fields-container .fi
   background-color: var(--item-hover-background);
   transition: all 150ms;
 }
-html body #modal-root #createDocument .modal-content__body .fields-container .field.task-duration .calendars .calendar label:hover {
+html body #modal-root #createDocument .modal-content__body .fields-container .field.task-duration .calendars .calendar label:hover,
+html body #modal-root #createDocument .modal__content__body .fields-container .field.task-duration .calendars .calendar label:hover {
   background-color: var(--item-active-background);
 }
-html body #modal-root #createDocument .modal-content__body .fields-container .field.task-duration .calendars .calendar input {
+html body #modal-root #createDocument .modal-content__body .fields-container .field.task-duration .calendars .calendar input,
+html body #modal-root #createDocument .modal__content__body .fields-container .field.task-duration .calendars .calendar input {
   display: none;
 }
-html body #modal-root #createDocument .modal-content__body .fields-container .field.field-comment {
+html body #modal-root #createDocument .modal-content__body .fields-container .field.field-comment,
+html body #modal-root #createDocument .modal__content__body .fields-container .field.field-comment {
   flex-grow: 1;
 }
-html body #modal-root #createDocument .modal-content__body .fields-container .field.field-comment textarea {
+html body #modal-root #createDocument .modal-content__body .fields-container .field.field-comment textarea,
+html body #modal-root #createDocument .modal__content__body .fields-container .field.field-comment textarea {
   text-align: start;
   flex-grow: 1;
   height: auto;
@@ -811,13 +822,16 @@ html body .modal {
   z-index: 1001;
   animation: fadeIn 0.2s ease-in-out forwards;
 }
-html body .modal.hidden {
+html body .modal.hidden, html body .modal--hidden {
   animation: fadeOut 0.2s ease-in-out forwards;
 }
-html body .modal.hidden .modal-content {
+html body .modal.hidden .modal-content,
+html body .modal.hidden .modal__content, html body .modal--hidden .modal-content,
+html body .modal--hidden .modal__content {
   animation-name: slideDown;
 }
-html body .modal .modal-content {
+html body .modal .modal-content,
+html body .modal .modal__content {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -829,39 +843,56 @@ html body .modal .modal-content {
   background-color: #ffffff;
   animation: modalSlideUp 0.3s forwards;
 }
-html body .modal .modal-content.hidden {
+html body .modal .modal-content.hidden, html body .modal .modal-content--hidden,
+html body .modal .modal__content.hidden,
+html body .modal .modal__content--hidden {
   animation: modalSlideDown 0.3s forwards;
 }
-html body .modal .modal-content .modal-content__header {
+html body .modal .modal-content .modal-content__header,
+html body .modal .modal-content .modal__header,
+html body .modal .modal__content .modal-content__header,
+html body .modal .modal__content .modal__header {
   padding: 0 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
 }
-html body .modal .modal-content .modal-content__header .modal-title {
+html body .modal .modal-content .modal-content__header .modal-title,
+html body .modal .modal-content .modal-content__header .modal__title,
+html body .modal .modal-content .modal__header .modal-title,
+html body .modal .modal-content .modal__header .modal__title,
+html body .modal .modal__content .modal-content__header .modal-title,
+html body .modal .modal__content .modal-content__header .modal__title,
+html body .modal .modal__content .modal__header .modal-title,
+html body .modal .modal__content .modal__header .modal__title {
   text-align: left;
   font-family: "GrtskTera", sans-serif;
-  font-size: 22px;
+  font-size: 16px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
 }
-html body .modal .modal-content .modal-content__body {
+html body .modal .modal-content .modal-content__body,
+html body .modal .modal-content .modal__body,
+html body .modal .modal__content .modal-content__body,
+html body .modal .modal__content .modal__body {
   margin-top: 7px;
-  overflow-y: auto;
+  overflow: hidden;
   padding: 15px 5px;
   flex-grow: 1;
   border-radius: 32px;
   box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.15);
 }
-html body .modal .modal-content.modal-login {
+html body .modal .modal-content.modal-login,
+html body .modal .modal__content.modal-login {
   height: unset;
   max-width: 500px;
   width: 95%;
   max-height: 550px;
 }
-html body .modal .modal-content.modal-login form {
+html body .modal .modal-content.modal-login form,
+html body .modal .modal__content.modal-login form {
   display: flex;
   flex-grow: 1;
   flex-direction: column;
@@ -870,14 +901,16 @@ html body .modal .modal-content.modal-login form {
   height: 100%;
   margin-top: 30px;
 }
-html body .modal .modal-content.modal-login form .form-elem__text {
+html body .modal .modal-content.modal-login form .form-elem__text,
+html body .modal .modal__content.modal-login form .form-elem__text {
   display: flex;
   flex-direction: column;
   gap: 6px;
   width: 100%;
   margin-top: 15px;
 }
-html body .modal .modal-content.modal-login form .form-elem__submit {
+html body .modal .modal-content.modal-login form .form-elem__submit,
+html body .modal .modal__content.modal-login form .form-elem__submit {
   display: flex;
   width: 75px;
   align-self: center;
@@ -892,31 +925,47 @@ html body .modal .modal-content.modal-login form .form-elem__submit {
   margin-top: 60px;
   transition: background 0.25s ease;
 }
-html body .modal .modal-content.modal-login form .form-elem__submit svg {
+html body .modal .modal-content.modal-login form .form-elem__submit svg,
+html body .modal .modal__content.modal-login form .form-elem__submit svg {
   fill: var(--background-color);
 }
-html body .modal .modal-content.modal-login form .form-elem__submit:hover, html body .modal .modal-content.modal-login form .form-elem__submit:focus, html body .modal .modal-content.modal-login form .form-elem__submit:active {
+html body .modal .modal-content.modal-login form .form-elem__submit:hover, html body .modal .modal-content.modal-login form .form-elem__submit:focus, html body .modal .modal-content.modal-login form .form-elem__submit:active,
+html body .modal .modal__content.modal-login form .form-elem__submit:hover,
+html body .modal .modal__content.modal-login form .form-elem__submit:focus,
+html body .modal .modal__content.modal-login form .form-elem__submit:active {
   background: var(--primary-color);
 }
-html body .modal .modal-content.modal-notifications {
+html body .modal .modal-content.modal-notifications,
+html body .modal .modal__content.modal-notifications {
   max-width: 580px;
   max-height: 650px;
 }
-html body .modal .modal-content.modal-notifications .modal-content__body {
+html body .modal .modal-content.modal-notifications .modal-content__body,
+html body .modal .modal-content.modal-notifications .modal__body,
+html body .modal .modal__content.modal-notifications .modal-content__body,
+html body .modal .modal__content.modal-notifications .modal__body {
   padding: 0;
 }
-html body .modal .modal-content.modal-notifications .modal-content__body .module-notifications .module-body {
+html body .modal .modal-content.modal-notifications .modal-content__body .module-notifications .module-body,
+html body .modal .modal-content.modal-notifications .modal__body .module-notifications .module-body,
+html body .modal .modal__content.modal-notifications .modal-content__body .module-notifications .module-body,
+html body .modal .modal__content.modal-notifications .modal__body .module-notifications .module-body {
   gap: 0;
   padding: 10px 0;
 }
-html body .modal .modal-content.modal-notifications .modal-content__body .module-notifications .module-body .notification {
+html body .modal .modal-content.modal-notifications .modal-content__body .module-notifications .module-body .notification,
+html body .modal .modal-content.modal-notifications .modal__body .module-notifications .module-body .notification,
+html body .modal .modal__content.modal-notifications .modal-content__body .module-notifications .module-body .notification,
+html body .modal .modal__content.modal-notifications .modal__body .module-notifications .module-body .notification {
   border-radius: 0;
   border: none;
 }
-html body .modal .modal-content .cross {
-  height: 32px;
+html body .modal .modal-content .cross,
+html body .modal .modal__content .cross {
+  height: 28px;
 }
-html body .modal .spoiler {
+html body .modal .spoiler,
+html body .modal .modal__overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -926,7 +975,9 @@ html body .modal .spoiler {
   cursor: pointer;
   animation: fadeIn 0.2s ease-in-out forwards;
 }
-html body .modal .spoiler.hidden {
+html body .modal .spoiler.hidden, html body .modal .spoiler--hidden,
+html body .modal .modal__overlay.hidden,
+html body .modal .modal__overlay--hidden {
   animation: fadeOut 0.2s ease-in-out forwards;
 }
 html body #modalLoading {
@@ -1086,6 +1137,7 @@ html body #dynamica .header-wrapper::after {
 }
 html body #dynamica .header-wrapper header {
   display: flex;
+  position: relative;
   flex: 1;
   flex-direction: row;
   gap: 15px;
@@ -1290,14 +1342,14 @@ html body #dynamica .layout-content .main-container main .page .page-header .pag
 }
 html body #dynamica .layout-content .main-container main .page .page-filters {
   display: flex;
+  position: sticky;
+  top: var(--header-height-default);
   flex-direction: column;
   gap: 5px;
   padding: 0 3px;
 }
 html body #dynamica .layout-content .main-container main .page .page-filters .filters-buttons {
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
 }
 html body #dynamica .layout-content .main-container main .page .page-filters .filters-buttons .department-skeleton {
   width: 100px;
@@ -1339,7 +1391,7 @@ html body #dynamica .layout-content .main-container main .page .page-content .pa
   height: 100%;
   background: var(--block-background);
   box-shadow: var(--block-shadow);
-  border-radius: 10px;
+  border-radius: 32px;
 }
 html body #dynamica .layout-content .main-container main .page.page-landing {
   max-width: unset;
@@ -2006,7 +2058,6 @@ html body #dynamica .layout-content .main-container main .page.page-admin .page-
 html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container {
   position: relative;
   grid-template-columns: repeat(1, calc(100% - 0px));
-  gap: 8px;
   display: grid;
 }
 html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card {
@@ -2020,7 +2071,6 @@ html body #dynamica .layout-content .main-container main .page.page-contacts .pa
 html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__details {
   background: rgba(255, 255, 255, 0.7);
   border: 1px solid rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(24px);
 }
 html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__preview {
   display: flex;
@@ -2039,10 +2089,9 @@ html body #dynamica .layout-content .main-container main .page.page-contacts .pa
 html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__preview .employee-actions {
   display: none;
   flex-direction: column;
+  padding: 0 5px;
+  background: var(--background-color);
   gap: 3px;
-  position: absolute;
-  top: 5px;
-  right: 5px;
 }
 html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__preview .employee-actions .employee-action {
   display: flex;
@@ -2077,7 +2126,7 @@ html body #dynamica .layout-content .main-container main .page.page-contacts .pa
 }
 html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__preview .employee-actions .employee-actions-photo {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   gap: 2px;
 }
 html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__preview .employee-card__photo {
@@ -2086,7 +2135,7 @@ html body #dynamica .layout-content .main-container main .page.page-contacts .pa
   aspect-ratio: 1/1;
   background-size: cover;
   background-position: top;
-  border-radius: 24px;
+  border-radius: 50%;
   transition: all 50ms;
 }
 html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__preview .employee-card__photo .upload-container {
@@ -2132,11 +2181,13 @@ html body #dynamica .layout-content .main-container main .page.page-contacts .pa
   display: flex;
   flex-grow: 1;
   flex-direction: column;
+  padding: 3px 0;
 }
 html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__preview .employee-card__general .employee-card__name,
 html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__preview .employee-card__general .employee-card__position {
   display: flex;
-  padding: 6px 8px;
+  align-items: flex-start;
+  padding: 2px 3px;
   border-radius: 10px;
   transition: all 90ms;
 }
@@ -2152,21 +2203,23 @@ html body #dynamica .layout-content .main-container main .page.page-contacts .pa
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 3px;
+  gap: 2px;
   font-weight: 600;
   line-height: 1.1;
   font-size: 16px;
 }
 html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__preview .employee-card__general .employee-card__name .employee-card__lastname,
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__preview .employee-card__general .employee-card__name .employee-card__firstname,
+html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__preview .employee-card__general .employee-card__name .employee-card__firstname {
+  display: inline-flex;
+}
 html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__preview .employee-card__general .employee-card__name .employee-card__middlename {
-  display: flex;
+  display: block;
+  width: 100%;
 }
 html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__preview .employee-card__general .employee-card__position {
   display: flex;
   align-items: center;
   font-size: 13px;
-  line-height: 1;
   opacity: 0.7;
 }
 html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__details {
@@ -2179,6 +2232,7 @@ html body #dynamica .layout-content .main-container main .page.page-contacts .pa
   padding: 2px;
   box-shadow: var(--document-shadow);
   border-radius: 24px;
+  backdrop-filter: blur(24px);
   gap: 3px;
   left: 50%;
   bottom: 0;
@@ -2725,6 +2779,10 @@ html body #dynamica .layout-content .main-container .footer-wrapper footer .faq 
   font-weight: 400;
 }
 @media (min-width: 768px) {
+  html .filters-buttons {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
   html .filters-buttons .filter-elem {
     font-size: 14px;
   }
@@ -2735,38 +2793,57 @@ html body #dynamica .layout-content .main-container .footer-wrapper footer .faq 
   html .no-data span {
     font-size: 20px;
   }
-  html body .modal .modal-content .modal-content__header {
+  html body .modal .modal-content .modal-content__header,
+  html body .modal .modal__content .modal-content__header {
     padding: 0 15px;
   }
-  html body .modal .modal-content .modal-content__header .cross {
+  html body .modal .modal-content .modal-content__header .cross,
+  html body .modal .modal__content .modal-content__header .cross {
     height: 36px;
   }
-  html body .modal .modal-content .modal-content__body {
+  html body .modal .modal-content .modal-content__body,
+  html body .modal .modal-content .modal__body,
+  html body .modal .modal__content .modal-content__body,
+  html body .modal .modal__content .modal__body {
     margin-top: 10px;
     padding: 15px 8px;
   }
-  html body .modal .modal-content.modal-login form {
+  html body .modal .modal-content.modal-login form,
+  html body .modal .modal__content.modal-login form {
     padding: 0 15px 30px 15px;
   }
   html body .modal .modal-content.modal-login form .form-elem__text label,
-  html body .modal .modal-content.modal-login form .form-elem__text input {
+  html body .modal .modal-content.modal-login form .form-elem__text input,
+  html body .modal .modal__content.modal-login form .form-elem__text label,
+  html body .modal .modal__content.modal-login form .form-elem__text input {
     font-size: 18px;
   }
-  html body .modal .modal-content.modal-login form .form-elem__text input {
+  html body .modal .modal-content.modal-login form .form-elem__text input,
+  html body .modal .modal__content.modal-login form .form-elem__text input {
     padding: 15px;
   }
-  html body .modal .modal-content.modal-notifications {
+  html body .modal .modal-content.modal-notifications,
+  html body .modal .modal__content.modal-notifications {
     max-width: 580px;
     max-height: 650px;
   }
-  html body .modal .modal-content.modal-notifications .modal-content__body {
+  html body .modal .modal-content.modal-notifications .modal-content__body,
+  html body .modal .modal-content.modal-notifications .modal__body,
+  html body .modal .modal__content.modal-notifications .modal-content__body,
+  html body .modal .modal__content.modal-notifications .modal__body {
     padding: 0;
   }
-  html body .modal .modal-content.modal-notifications .modal-content__body .module-notifications .module-body {
+  html body .modal .modal-content.modal-notifications .modal-content__body .module-notifications .module-body,
+  html body .modal .modal-content.modal-notifications .modal__body .module-notifications .module-body,
+  html body .modal .modal__content.modal-notifications .modal-content__body .module-notifications .module-body,
+  html body .modal .modal__content.modal-notifications .modal__body .module-notifications .module-body {
     gap: 0;
     padding: 10px 0;
   }
-  html body .modal .modal-content.modal-notifications .modal-content__body .module-notifications .module-body .notification {
+  html body .modal .modal-content.modal-notifications .modal-content__body .module-notifications .module-body .notification,
+  html body .modal .modal-content.modal-notifications .modal__body .module-notifications .module-body .notification,
+  html body .modal .modal__content.modal-notifications .modal-content__body .module-notifications .module-body .notification,
+  html body .modal .modal__content.modal-notifications .modal__body .module-notifications .module-body .notification {
     border-radius: 0;
     border: none;
   }
@@ -2821,6 +2898,9 @@ html body #dynamica .layout-content .main-container .footer-wrapper footer .faq 
   html body #dynamica .layout-content .main-container main .page .page-header .page-title {
     line-height: unset;
     font-size: 24px;
+  }
+  html body #dynamica .layout-content .main-container main .page .page-filters {
+    top: var(--header-height-768);
   }
   html body #dynamica .layout-content .main-container main .page .page-filters .filters-search {
     gap: 10px;
@@ -2949,6 +3029,7 @@ html body #dynamica .layout-content .main-container .footer-wrapper footer .faq 
   }
   html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container {
     grid-template-columns: repeat(2, calc(50% - 4px));
+    gap: 4px;
   }
   html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__preview {
     padding: 10px;
@@ -3092,17 +3173,20 @@ html body #dynamica .layout-content .main-container .footer-wrapper footer .faq 
   html .styled {
     font-size: 16px;
   }
-  html body #modal-root #createDocument .modal-content__body {
+  html body #modal-root #createDocument .modal-content__body,
+  html body #modal-root #createDocument .modal__content__body {
     grid-template-columns: 1fr 2fr;
     gap: 20px;
   }
-  html body #modal-root #createDocument .modal-content__body .fields-container .fields-primary {
+  html body #modal-root #createDocument .modal-content__body .fields-container .fields-primary,
+  html body #modal-root #createDocument .modal__content__body .fields-container .fields-primary {
     display: grid;
     column-gap: 30px;
     row-gap: 15px;
     grid-template-columns: 1fr 1fr;
   }
-  html body #modal-root #createDocument .modal-content__body .fields-container .field-comment {
+  html body #modal-root #createDocument .modal-content__body .fields-container .field-comment,
+  html body #modal-root #createDocument .modal__content__body .fields-container .field-comment {
     margin-top: 10px;
   }
   html body #dynamica .module-documents .module-body .document {
@@ -3191,6 +3275,7 @@ html body #dynamica .layout-content .main-container .footer-wrapper footer .faq 
     font-size: 26px;
   }
   html body #dynamica .layout-content .main-container main .page .page-filters {
+    top: var(--header-height-1024);
     padding: 0 10px;
   }
   html body #dynamica .layout-content .main-container main .page .page-filters .filters-select {
@@ -3365,7 +3450,11 @@ html body #dynamica .layout-content .main-container .footer-wrapper footer .faq 
   html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__preview {
     padding: 5px;
   }
+  html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__preview .employee-actions {
+    display: flex;
+  }
   html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__preview .employee-card__photo {
+    border-radius: 32px;
     height: 100px;
   }
   html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__preview .employee-card__general .employee-card__name {
@@ -3543,6 +3632,7 @@ html body #dynamica .layout-content .main-container .footer-wrapper footer .faq 
   }
   html body #dynamica .left-menu {
     top: var(--header-height-1440);
+    width: var(--left-menu-width-1440);
     padding: 0 8px 8px 8px;
   }
   html body #dynamica .left-menu .logo-container {
@@ -3562,10 +3652,14 @@ html body #dynamica .layout-content .main-container .footer-wrapper footer .faq 
     margin: 17px 0;
   }
   html body #dynamica .layout-content .main-container {
+    margin-left: var(--left-menu-width-1440);
     margin-top: var(--header-height-1440);
   }
   html body #dynamica .layout-content .main-container main .page .page-header .page-title {
     font-size: 34px;
+  }
+  html body #dynamica .layout-content .main-container main .page .page-filters {
+    top: var(--header-height-1440);
   }
   html body #dynamica .layout-content .main-container main .page .page-content .page-content-item {
     padding: 10px;

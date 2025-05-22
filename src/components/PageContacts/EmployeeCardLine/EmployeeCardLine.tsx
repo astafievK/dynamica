@@ -26,7 +26,7 @@ export const EmployeeCardLine: FC<IEmployeeCardLineProps> = ({ employee }) => {
                 transition={{duration: 0.4}}
                 className={`employee-card`}
             >
-                <div className="employee-card-item employee-card__photo" style={{backgroundImage: `url(https://192.168.7.74/files/images/${employee.image.path})`}}></div>
+                <div className="employee-card-item employee-card__photo" style={{backgroundImage: `url(https://newportal/files/images/${employee.image.path})`}}></div>
                 <div className="employee-card-item employee-card__surname">
                     <span className="employee-card-item__content">{employee.surname}</span>
                 </div>

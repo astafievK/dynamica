@@ -26,6 +26,9 @@ export const AdminTabContacts: FC = () => {
     return (
         <div className="content-tab content-tab--contacts">
             <motion.div {...pageAnimation} className="associations-container">
+                <div className="associations-labels">
+
+                </div>
                 {departments.length > 0 ? (
                     departments.map((item) => (
                         <Association

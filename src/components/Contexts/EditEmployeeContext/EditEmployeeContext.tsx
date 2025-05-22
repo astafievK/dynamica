@@ -31,7 +31,7 @@ export const EditEmployeeProvider: React.FC<{ children: ReactNode }> = ({ childr
     return (
         <ModalContext.Provider value={{ openModal, closeModal }}>
             {children}
-            {modalRoot && isModalOpen &&
+            {modalRoot && isModalOpen && employee &&
                 ReactDOM.createPortal(
                     <ModalEditEmployee employee={employee} />,
                     modalRoot

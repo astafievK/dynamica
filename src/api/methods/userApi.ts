@@ -1,6 +1,7 @@
 import { baseApi } from "../api.ts";
 import { GetUsersResponse } from "../responses/IGetUsersResponse.ts";
 import { Employee } from "../../interfaces/IEmployee.ts";
+import {UpdateUserCommand} from "../commands/IUpdateUserCommand.ts";
 
 export const userApi = baseApi.injectEndpoints({
     endpoints: builder => ({
@@ -76,6 +77,13 @@ export const userApi = baseApi.injectEndpoints({
             }),
             invalidatesTags: ["Employee"],
         }),
+        patchUser: builder.mutation<{ status: string; message: string }, UpdateUserCommand>({
+            query: () => ({
+                url: `/Users/updateUser.php`,
+                method: "PATCH",
+            }),
+            invalidatesTags: ["Employee"],
+        }),
     }),
 });
 
@@ -90,4 +98,5 @@ export const {
     useDeleteProfileImageMutation,
     usePatchUserVisibilityMutation,
     usePatchUserEmailMutation,
+    usePatchUserMutation,
 } = userApi;
