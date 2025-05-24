@@ -44,10 +44,14 @@ export const Header: FC = () => {
                     </AnimatePresence>
                          */
                     }
+                    {
+                        /*
+                        <div className="global-search-container">
+                            <input type="text" className="global-search styled" placeholder="Поиск по всему порталу" disabled/>
+                        </div>
+                         */
+                    }
 
-                    <div className="global-search-container">
-                        <input type="text" className="global-search styled" placeholder="Поиск по всему порталу" disabled/>
-                    </div>
 
                     <div className="profile-container">
                         {

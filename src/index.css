@@ -64,6 +64,22 @@
   --document-shadow: 0px 4px 12px 0px #7090b029;
 }
 
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.layout-content {
+  display: flex;
+  position: relative;
+}
+
+.main-container {
+  flex: 1;
+  overflow-y: auto;
+}
+
 @keyframes shimmer-animation {
   0% {
     left: -33%;
@@ -408,7 +424,7 @@ html .banner-copy span {
   user-select: none;
 }
 html body {
-  background: var(--background-color);
+  background: var(--color-gray-50);
 }
 html body::-webkit-scrollbar {
   width: 12px;
@@ -1054,102 +1070,10 @@ html body #dynamica .docx-container .docx-wrapper .docx {
   width: 100%;
   margin-bottom: 15px;
 }
-html body #dynamica .left-menu {
-  display: none;
-  align-items: stretch;
-  position: fixed;
-  height: 100%;
-  width: var(--left-menu-width-default);
-  top: var(--header-height-default);
-  flex-direction: column;
-  background: var(--background-color);
-  overflow-y: auto;
-  z-index: 1000;
-}
-html body #dynamica .left-menu .left-menu-item {
-  display: flex;
-  align-items: center;
-  position: relative;
-  gap: 10px;
-  background: var(--item-static-background);
-  padding: 10px;
-  font-size: 16px;
-  font-weight: 500;
-  text-decoration: none;
-  width: 100%;
-  border-radius: 10px;
-  color: rgba(47, 55, 71, 0.85);
-  flex-shrink: 0;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  transition: all 200ms ease;
-}
-html body #dynamica .left-menu .left-menu-item svg {
-  fill: rgba(47, 55, 71, 0.85);
-  flex-shrink: 0;
-  transition: all 200ms ease;
-}
-html body #dynamica .left-menu .left-menu-item.item-contacts .contacts-navigation {
-  position: absolute;
-  top: 0;
-  right: 0;
-  z-index: 2;
-}
-html body #dynamica .left-menu .left-menu-item:hover, html body #dynamica .left-menu .left-menu-item.active-nav-item {
-  color: var(--secondary-color);
-  background: var(--block-background);
-  box-shadow: var(--block-shadow);
-}
-html body #dynamica .left-menu .left-menu-item:hover svg, html body #dynamica .left-menu .left-menu-item.active-nav-item svg {
-  fill: var(--secondary-color);
-}
-html body #dynamica .left-menu .logo-container {
-  height: 50px;
-}
-html body #dynamica .left-menu .logo-container .logo-link {
-  height: 100%;
-}
-html body #dynamica .left-menu .logo-container .logo-link .logo {
-  height: 100%;
-  aspect-ratio: 1/1;
-  background: url("/logo-single.svg");
-  background-size: cover;
-}
-html body #dynamica .left-menu .submenu-container {
-  margin-left: 10px;
-  margin-top: 5px;
-}
-html body #dynamica .left-menu .admin-container {
-  display: flex;
-  margin-top: 5px;
-  flex-direction: column;
-}
-html body #dynamica .left-menu .admin-container .admin-navigation ul li {
-  display: flex;
-}
-html body #dynamica .left-menu .general-navigation,
-html body #dynamica .left-menu .recent-navigation {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-html body #dynamica .left-menu .recent-navigation {
-  margin-top: 25px;
-}
-html body #dynamica .left-menu .recent-navigation .navigation-title {
-  padding: 0 5px;
-  font-weight: 500;
-  font-size: 14px;
-  opacity: 0.6;
-}
-html body #dynamica .left-menu .recent-navigation ul {
-  margin-top: 10px;
-}
 html body #dynamica .header-wrapper {
   display: flex;
   flex-direction: column;
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   right: 0;
@@ -1339,15 +1263,90 @@ html body #dynamica .header-wrapper .user-panel nav a {
 html body #dynamica .header-wrapper .user-panel nav a:hover {
   color: var(--primary-color);
 }
-html body #dynamica .layout-content {
-  background: var(--background-color);
+html body #dynamica .layout-content .left-menu {
+  display: none;
+  flex-direction: column;
+  overflow-y: auto;
+}
+html body #dynamica .layout-content .left-menu .toggle-btn {
+  margin-top: auto;
+  margin-right: auto;
+  width: auto !important;
+}
+html body #dynamica .layout-content .left-menu.collapsed .left-menu-item {
+  width: 45px;
+  height: 45px;
+  justify-content: center;
+  align-content: center;
+}
+html body #dynamica .layout-content .left-menu .left-menu-item {
+  display: flex;
+  align-items: center;
+  position: relative;
+  gap: 10px;
+  background: var(--item-static-background);
+  padding: 10px;
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration: none;
+  width: 100%;
+  border-radius: 10px;
+  color: rgba(47, 55, 71, 0.85);
+  flex-shrink: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  transition: all 200ms ease;
+}
+html body #dynamica .layout-content .left-menu .left-menu-item svg {
+  fill: rgba(47, 55, 71, 0.85);
+  flex-shrink: 0;
+  height: 25px;
+  width: 25px;
+  transition: all 200ms ease;
+}
+html body #dynamica .layout-content .left-menu .left-menu-item.item-contacts .contacts-navigation {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 2;
+}
+html body #dynamica .layout-content .left-menu .left-menu-item:hover, html body #dynamica .layout-content .left-menu .left-menu-item.active-nav-item {
+  color: var(--secondary-color);
+  background: var(--block-background);
+  box-shadow: var(--block-shadow);
+}
+html body #dynamica .layout-content .left-menu .left-menu-item:hover svg, html body #dynamica .layout-content .left-menu .left-menu-item.active-nav-item svg {
+  fill: var(--secondary-color);
+}
+html body #dynamica .layout-content .left-menu .submenu-container {
+  margin-left: 10px;
+  margin-top: 5px;
+}
+html body #dynamica .layout-content .left-menu .general-navigation,
+html body #dynamica .layout-content .left-menu .recent-navigation {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+html body #dynamica .layout-content .left-menu .recent-navigation {
+  margin-top: 25px;
+}
+html body #dynamica .layout-content .left-menu .recent-navigation .navigation-title {
+  padding: 0 5px;
+  font-weight: 500;
+  font-size: 14px;
+  opacity: 0.6;
+  text-wrap: nowrap;
+}
+html body #dynamica .layout-content .left-menu .recent-navigation ul {
+  margin-top: 10px;
 }
 html body #dynamica .layout-content .main-container {
   position: relative;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  margin-top: var(--header-height-default);
 }
 html body #dynamica .layout-content .main-container main {
   position: relative;
@@ -1381,8 +1380,6 @@ html body #dynamica .layout-content .main-container main .page .page-header .pag
 }
 html body #dynamica .layout-content .main-container main .page .page-filters {
   display: flex;
-  position: sticky;
-  top: var(--header-height-default);
   flex-direction: column;
   gap: 5px;
   padding: 0 3px;
@@ -2931,15 +2928,12 @@ html body #dynamica .layout-content .main-container .footer-wrapper footer .faq 
   html body #dynamica .header-wrapper header .global-search-container {
     display: block;
   }
-  html body #dynamica .layout-content .main-container {
-    margin-top: var(--header-height-768);
+  html body #dynamica .layout-content {
+    height: calc(100vh - var(--header-height-768));
   }
   html body #dynamica .layout-content .main-container main .page .page-header .page-title {
     line-height: unset;
     font-size: 24px;
-  }
-  html body #dynamica .layout-content .main-container main .page .page-filters {
-    top: var(--header-height-768);
   }
   html body #dynamica .layout-content .main-container main .page .page-filters .filters-search {
     gap: 10px;
@@ -3286,25 +3280,13 @@ html body #dynamica .layout-content .main-container .footer-wrapper footer .faq 
     flex-grow: unset;
     padding: 2px 0;
   }
-  html body #dynamica .left-menu {
-    display: flex;
-    top: var(--header-height-1024);
-    padding: 0 5px 5px 5px;
-    z-index: unset;
-  }
-  html body #dynamica .left-menu .logo-container {
-    padding: 10px 0;
-  }
-  html body #dynamica .left-menu .left-menu-item svg {
-    height: 20px;
-    width: 20px;
-  }
   html body #dynamica .layout-content {
     display: flex;
+    height: calc(100vh - var(--header-height-1024));
   }
-  html body #dynamica .layout-content .main-container {
-    margin-top: var(--header-height-1024);
-    margin-left: var(--left-menu-width-default);
+  html body #dynamica .layout-content .left-menu {
+    display: flex;
+    padding: 0 5px 5px 5px;
   }
   html body #dynamica .layout-content .main-container main .page {
     border-radius: 32px;
@@ -3314,7 +3296,6 @@ html body #dynamica .layout-content .main-container .footer-wrapper footer .faq 
     font-size: 26px;
   }
   html body #dynamica .layout-content .main-container main .page .page-filters {
-    top: var(--header-height-1024);
     padding: 0 10px;
   }
   html body #dynamica .layout-content .main-container main .page .page-filters .filters-select {
@@ -3484,7 +3465,7 @@ html body #dynamica .layout-content .main-container .footer-wrapper footer .faq 
     padding-left: 5px;
   }
   html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container {
-    grid-template-columns: repeat(3, calc(33.3333333333% - 5.3333333333px));
+    grid-template-columns: repeat(2, calc(50% - 5.3333333333px));
   }
   html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__preview {
     padding: 5px;
@@ -3669,36 +3650,19 @@ html body #dynamica .layout-content .main-container .footer-wrapper footer .faq 
   html body #dynamica .header-wrapper header .profile-container .header-item {
     font-size: 16px;
   }
-  html body #dynamica .left-menu {
-    top: var(--header-height-1440);
-    width: var(--left-menu-width-1440);
+  html body #dynamica .layout-content {
+    height: calc(100vh - var(--header-height-1440));
+  }
+  html body #dynamica .layout-content .left-menu {
     padding: 0 8px 8px 8px;
   }
-  html body #dynamica .left-menu .logo-container {
-    padding: 13px 10px;
-    height: 65px;
-  }
-  html body #dynamica .left-menu .left-menu-item {
+  html body #dynamica .layout-content .left-menu .left-menu-item {
     font-size: 18px;
     padding: 10px;
     gap: 10px;
   }
-  html body #dynamica .left-menu .left-menu-item svg {
-    height: 25px;
-    width: 25px;
-  }
-  html body #dynamica .left-menu .sep {
-    margin: 17px 0;
-  }
-  html body #dynamica .layout-content .main-container {
-    margin-left: var(--left-menu-width-1440);
-    margin-top: var(--header-height-1440);
-  }
   html body #dynamica .layout-content .main-container main .page .page-header .page-title {
     font-size: 34px;
-  }
-  html body #dynamica .layout-content .main-container main .page .page-filters {
-    top: var(--header-height-1440);
   }
   html body #dynamica .layout-content .main-container main .page .page-content .page-content-item {
     padding: 10px;

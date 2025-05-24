@@ -1,4 +1,4 @@
-@use 'variables' as *;
+@use 'globals' as *;
 @use 'keyframes' as *;
 @import url('https://fonts.googleapis.com/css2?family=Commissioner:wght@100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
@@ -253,7 +253,7 @@ html {
     }
 
     body {
-        background: var(--background-color);
+        background: var(--color-gray-50);
 
         &::-webkit-scrollbar {
             width: 12px;
@@ -985,127 +985,10 @@ html {
                 }
             }
 
-            .left-menu {
-                display: none;
-                align-items: stretch;
-                position: fixed;
-                height: 100%;
-                width: var(--left-menu-width-default);
-                top: var(--header-height-default);
-                flex-direction: column;
-                background: var(--background-color);
-                overflow-y: auto;
-                z-index: 1000;
-
-                .left-menu-item {
-                    display: flex;
-                    align-items: center;
-                    position: relative;
-                    gap: 10px;
-                    background: var(--item-static-background);
-                    padding: 10px;
-                    font-size: 16px;
-                    font-weight: 500;
-                    text-decoration: none;
-                    width: 100%;
-                    border-radius: 10px;
-                    color: rgba(47, 55, 71, 0.85);
-                    flex-shrink: 0;
-                    overflow: hidden;
-                    white-space: nowrap;
-                    text-overflow: ellipsis;
-                    transition: all 200ms ease;
-
-                    svg {
-                        fill: rgba(47, 55, 71, 0.85);
-                        flex-shrink: 0;
-                        transition: all 200ms ease;
-                    }
-
-                    &.item-contacts {
-                        .contacts-navigation {
-                            position: absolute;
-                            top: 0;
-                            right: 0;
-                            z-index: 2;
-                        }
-                    }
-
-                    &:hover,
-                    &.active-nav-item {
-                        color: var(--secondary-color);
-                        background: var(--block-background);
-                        box-shadow: var(--block-shadow);
-
-                        svg {
-                            fill: var(--secondary-color);
-                        }
-                    }
-                }
-
-                .logo-container {
-                    height: 50px;
-
-                    .logo-link {
-                        height: 100%;
-
-                        .logo {
-                            height: 100%;
-                            aspect-ratio: 1/1;
-                            background: url("/logo-single.svg");
-                            background-size: cover;
-                        }
-                    }
-                }
-
-                .submenu-container {
-                    margin-left: 10px;
-                    margin-top: 5px;
-                }
-
-                .admin-container {
-                    display: flex;
-                    margin-top: 5px;
-                    flex-direction: column;
-
-                    .admin-navigation {
-                        ul {
-                            li {
-                                display: flex;
-                            }
-                        }
-                    }
-                }
-
-                .general-navigation,
-                .recent-navigation {
-                    display: flex;
-                    flex-direction: column;
-                    gap: 4px;
-                }
-
-                .recent-navigation {
-                    margin-top: 25px;
-                }
-
-                .recent-navigation {
-                    .navigation-title {
-                        padding: 0 5px;
-                        font-weight: 500;
-                        font-size: 14px;
-                        opacity: 0.6;
-                    }
-
-                    ul {
-                        margin-top: 10px;
-                    }
-                }
-            }
-
             .header-wrapper {
                 display: flex;
                 flex-direction: column;
-                position: fixed;
+                position: sticky;
                 top: 0;
                 left: 0;
                 right: 0;
@@ -1330,14 +1213,110 @@ html {
             }
 
             .layout-content {
-                background: var(--background-color);
+                .left-menu {
+                    display: none;
+                    flex-direction: column;
+                    overflow-y: auto;
+
+                    .toggle-btn {
+                        margin-top: auto;
+                        margin-right: auto;
+                        width: auto !important;
+                    }
+
+                    &.collapsed {
+                        .left-menu-item {
+                            width: 45px;
+                            height: 45px;
+                            justify-content: center;
+                            align-content: center;
+                        }
+                    }
+
+                    .left-menu-item {
+                        display: flex;
+                        align-items: center;
+                        position: relative;
+                        gap: 10px;
+                        background: var(--item-static-background);
+                        padding: 10px;
+                        font-size: 16px;
+                        font-weight: 500;
+                        text-decoration: none;
+                        width: 100%;
+                        border-radius: 10px;
+                        color: rgba(47, 55, 71, 0.85);
+                        flex-shrink: 0;
+                        overflow: hidden;
+                        white-space: nowrap;
+                        text-overflow: ellipsis;
+                        transition: all 200ms ease;
+
+                        svg {
+                            fill: rgba(47, 55, 71, 0.85);
+                            flex-shrink: 0;
+                            height: 25px;
+                            width: 25px;
+                            transition: all 200ms ease;
+                        }
+
+                        &.item-contacts {
+                            .contacts-navigation {
+                                position: absolute;
+                                top: 0;
+                                right: 0;
+                                z-index: 2;
+                            }
+                        }
+
+                        &:hover,
+                        &.active-nav-item {
+                            color: var(--secondary-color);
+                            background: var(--block-background);
+                            box-shadow: var(--block-shadow);
+
+                            svg {
+                                fill: var(--secondary-color);
+                            }
+                        }
+                    }
+
+                    .submenu-container {
+                        margin-left: 10px;
+                        margin-top: 5px;
+                    }
+
+                    .general-navigation,
+                    .recent-navigation {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 4px;
+                    }
+
+                    .recent-navigation {
+                        margin-top: 25px;
+                    }
+
+                    .recent-navigation {
+                        .navigation-title {
+                            padding: 0 5px;
+                            font-weight: 500;
+                            font-size: 14px;
+                            opacity: 0.6;
+                            text-wrap: nowrap;
+                        }
+
+                        ul {
+                            margin-top: 10px;
+                        }
+                    }
+                }
 
                 .main-container {
                     position: relative;
                     display: flex;
                     flex-direction: column;
                     flex-grow: 1;
-                    margin-top: var(--header-height-default);
 
                     main {
                         position: relative;
@@ -1373,8 +1352,6 @@ html {
 
                             .page-filters {
                                 display: flex;
-                                position: sticky;
-                                top: var(--header-height-default);
                                 flex-direction: column;
                                 gap: 5px;
                                 padding: 0 3px;
@@ -3337,9 +3314,9 @@ html {
                 }
 
                 .layout-content {
-                    .main-container {
-                        margin-top: var(--header-height-768);
+                    height: calc(100vh - var(--header-height-768));
 
+                    .main-container {
                         main {
                             .page {
                                 .page-header {
@@ -3350,8 +3327,6 @@ html {
                                 }
 
                                 .page-filters {
-                                    top: var(--header-height-768);
-
                                     .filters-search {
                                         gap: 10px;
 
@@ -3888,31 +3863,16 @@ html {
                     }
                 }
 
-                .left-menu {
-                    display: flex;
-                    top: var(--header-height-1024);
-                    padding: 0 5px 5px 5px;
-                    z-index: unset;
-
-                    .logo-container {
-                        padding: 10px 0;
-                    }
-
-                    .left-menu-item {
-                        svg {
-                            height: 20px;
-                            width: 20px;
-                        }
-                    }
-                }
-
                 .layout-content {
                     display: flex;
+                    height: calc(100vh - var(--header-height-1024));
+
+                    .left-menu {
+                        display: flex;
+                        padding: 0 5px 5px 5px;
+                    }
 
                     .main-container {
-                        margin-top: var(--header-height-1024);
-                        margin-left: var(--left-menu-width-default);
-
                         main {
                             .page {
                                 border-radius: 32px;
@@ -3925,7 +3885,6 @@ html {
                                 }
 
                                 .page-filters {
-                                    top: var(--header-height-1024);
                                     padding: 0 10px;
 
                                     .filters-select {
@@ -4173,7 +4132,7 @@ html {
                                         padding-left: 5px;
 
                                         .employees-container {
-                                            grid-template-columns: repeat(3, calc(100% / 3 - 8px / 3 * (3 - 1)));
+                                            grid-template-columns: repeat(2, calc(100% / 2 - 8px / 3 * (3 - 1)));
 
                                             .employee-card {
                                                 .employee-card__preview {
@@ -4487,47 +4446,26 @@ html {
                     }
                 }
 
-                .left-menu {
-                    top: var(--header-height-1440);
-                    width: var(--left-menu-width-1440);
-                    padding: 0 8px 8px 8px;
+                .layout-content {
+                    height: calc(100vh - var(--header-height-1440));
 
-                    .logo-container {
-                        padding: 13px 10px;
-                        height: 65px;
-                    }
+                    .left-menu {
+                        padding: 0 8px 8px 8px;
 
-                    .left-menu-item {
-                        font-size: 18px;
-                        padding: 10px;
-                        gap: 10px;
-
-                        svg {
-                            height: 25px;
-                            width: 25px;
+                        .left-menu-item {
+                            font-size: 18px;
+                            padding: 10px;
+                            gap: 10px;
                         }
                     }
 
-                    .sep {
-                        margin: 17px 0;
-                    }
-                }
-
-                .layout-content {
                     .main-container {
-                        margin-left: var(--left-menu-width-1440);
-                        margin-top: var(--header-height-1440);
-
                         main {
                             .page {
                                 .page-header {
                                     .page-title {
                                         font-size: 34px;
                                     }
-                                }
-
-                                .page-filters {
-                                    top: var(--header-height-1440);
                                 }
 
                                 .page-content {
