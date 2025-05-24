@@ -1,11 +1,69 @@
+@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Commissioner:wght@100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
-@font-face {
-  font-family: "GrtskTera";
-  src: url(fonts/GrtskTera-Bold-Slant-Italic.woff2);
-  font-style: italic;
-  font-weight: 700;
-  font-display: swap;
+:root {
+  /* PRIMARY (темно-синий #0C1729) */
+  --color-primary-50: #e3e6ea;
+  --color-primary-100: #c2c9d3;
+  --color-primary-200: #9ea9bb;
+  --color-primary-300: #78809f;
+  --color-primary-400: #566181;
+  --color-primary-500: #3b4665;
+  --color-primary-600: #25324b;
+  --color-primary-700: #0c1729;
+  --color-primary-800: #0a1322;
+  --color-primary-900: #070f1b;
+  /* ACCENT / SUCCESS (зеленый #5AB058) */
+  --color-accent-50: #e7f4e7;
+  --color-accent-100: #cce7cb;
+  --color-accent-200: #aad8aa;
+  --color-accent-300: #84c985;
+  --color-accent-400: #65bc67;
+  --color-accent-500: #5ab058;
+  --color-accent-600: #4e9e4d;
+  --color-accent-700: #408740;
+  --color-accent-800: #326f33;
+  --color-accent-900: #215021;
+  /* GRAY / NEUTRAL (серый #A7A9AB и светлый #F1F2F2) */
+  --color-gray-50: #f1f2f2;
+  --color-gray-100: #e2e3e4;
+  --color-gray-200: #d0d1d2;
+  --color-gray-300: #bebfc0;
+  --color-gray-400: #b0b1b3;
+  --color-gray-500: #a7a9ab;
+  --color-gray-600: #8f9193;
+  --color-gray-700: #76787a;
+  --color-gray-800: #5e5f61;
+  --color-gray-900: #454647;
+  /* FEEDBACK (не из брендбука, но часто нужны) */
+  --color-error: #dc3545;
+  --color-warning: #ffc107;
+  --color-info: #17a2b8;
+  --color-success: var(--color-accent-500);
+  --background-color: #F1F2F2;
+  --background-element: rgba(0, 0, 0, 0.1);
+  --primary-color: rgb(90, 176, 88);
+  --secondary-color: #0C1729;
+  --font-color: #0C1729;
+  --font-color-secondary: rgba(12, 23, 41, 0.55);
+  --additional-color: #A7A9AB;
+  --additional-color-active: #8c8e8f;
+  --header-height-default: 50px;
+  --header-height-768: 50px;
+  --header-height-1024: 50px;
+  --header-height-1440: 60px;
+  --left-menu-width-default: 180px;
+  --left-menu-width-1440: 240px;
+  --hover-background: rgba(150, 150, 150, 0.2);
+  --background-action-button-primary: #acd7aa;
+  --background-action-button-secondary: #e6e6e6;
+  --item-static-background: transparent;
+  --item-hover-background: rgba(0, 0, 0, 0.05);
+  --item-active-background: rgba(0, 0, 0, 0.1);
+  --block-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  --block-background: rgba(255, 255, 255, 1);
+  --document-shadow: 0px 4px 12px 0px #7090b029;
 }
+
 @keyframes shimmer-animation {
   0% {
     left: -33%;
@@ -142,32 +200,13 @@
     opacity: 0;
   }
 }
-:root {
-  --background-color: #F1F2F2;
-  --background-element: rgba(0, 0, 0, 0.1);
-  --primary-color: rgb(90, 176, 88);
-  --secondary-color: #0C1729;
-  --font-color: #0C1729;
-  --font-color-secondary: rgba(12, 23, 41, 0.55);
-  --additional-color: #A7A9AB;
-  --additional-color-active: #8c8e8f;
-  --header-height-default: 50px;
-  --header-height-768: 50px;
-  --header-height-1024: 50px;
-  --header-height-1440: 60px;
-  --left-menu-width-default: 180px;
-  --left-menu-width-1440: 240px;
-  --hover-background: rgba(150, 150, 150, 0.2);
-  --background-action-button-primary: #acd7aa;
-  --background-action-button-secondary: #e6e6e6;
-  --item-static-background: transparent;
-  --item-hover-background: rgba(0, 0, 0, 0.05);
-  --item-active-background: rgba(0, 0, 0, 0.1);
-  --block-shadow: 0 2px 6px rgba(0,0,0,0.05);
-  --block-background: rgba(255, 255, 255, 1);
-  --document-shadow: 0px 4px 12px 0px #7090b029;
+@font-face {
+  font-family: "GrtskTera";
+  src: url(fonts/GrtskTera-Bold-Slant-Italic.woff2);
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
 }
-
 * {
   padding: 0;
   margin: 0;
