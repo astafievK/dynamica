@@ -94,6 +94,49 @@ html {
         position: relative;
         background: none;
 
+        &.primary {
+            background-color: var(--color-primary-500);
+            color: white;
+            border: none;
+            outline: none;
+
+            &:hover {
+                background: var(--color-primary-600);
+            }
+
+            &:active {
+                background: var(--color-primary-700);
+            }
+
+            &:focus-visible {
+                outline: 2px solid var(--color-primary-300);
+                outline-offset: 2px;
+            }
+        }
+
+        &.secondary {
+            background-color: var(--color-gray-100);
+            color: var(--color-primary-700);
+            border: 1px solid var(--color-gray-300);
+            outline: none;
+
+            &:hover {
+                background-color: var(--color-gray-200);
+                border-color: var(--color-gray-400);
+            }
+
+            &:active {
+                background-color: var(--color-gray-300);
+                color: var(--color-primary-800);
+                border-color: var(--color-gray-500);
+            }
+
+            &:focus-visible {
+                outline: 2px solid var(--color-primary-300);
+                outline-offset: 2px;
+            }
+        }
+
         &:disabled {
             opacity: 0.5;
         }
@@ -1215,6 +1258,9 @@ html {
             .layout-content {
                 .left-menu {
                     display: none;
+                    position: sticky;
+                    top: var(--header-height-default);
+                    height: calc(100vh - var(--header-height-default));
                     flex-direction: column;
                     overflow-y: auto;
 
@@ -1244,6 +1290,7 @@ html {
                         font-weight: 500;
                         text-decoration: none;
                         width: 100%;
+                        min-width: 45px;
                         border-radius: 10px;
                         color: rgba(47, 55, 71, 0.85);
                         flex-shrink: 0;
@@ -1316,7 +1363,8 @@ html {
                     position: relative;
                     display: flex;
                     flex-direction: column;
-                    flex-grow: 1;
+                    width: 100%;
+                    flex: 1;
 
                     main {
                         position: relative;
@@ -3314,7 +3362,7 @@ html {
                 }
 
                 .layout-content {
-                    height: calc(100vh - var(--header-height-768));
+                    min-height: calc(100vh - var(--header-height-768));
 
                     .main-container {
                         main {
@@ -3865,10 +3913,12 @@ html {
 
                 .layout-content {
                     display: flex;
-                    height: calc(100vh - var(--header-height-1024));
+                    min-height: calc(100vh - var(--header-height-1024));
 
                     .left-menu {
                         display: flex;
+                        top: var(--header-height-1024);
+                        height: calc(100vh - var(--header-height-1024));
                         padding: 0 5px 5px 5px;
                     }
 
@@ -4447,9 +4497,11 @@ html {
                 }
 
                 .layout-content {
-                    height: calc(100vh - var(--header-height-1440));
+                    min-height: calc(100vh - var(--header-height-1440));
 
                     .left-menu {
+                        top: var(--header-height-1440);
+                        height: calc(100vh - var(--header-height-1440));
                         padding: 0 8px 8px 8px;
 
                         .left-menu-item {
