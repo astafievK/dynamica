@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { NavLink } from "react-router-dom";
-import { useTypedSelector } from "../../store/hooks/redux";
+//import { useTypedSelector } from "../../store/hooks/redux";
 import { navItems } from "../../constants/navItems";
 import { AnimatePresence, motion } from "framer-motion";
 
@@ -9,7 +9,7 @@ interface ExpandedLeftMenuProps {
 }
 
 export const ExpandedLeftMenu: FC<ExpandedLeftMenuProps> = ({ isExpanded }) => {
-    const { history } = useTypedSelector(state => state.history);
+    //const { history } = useTypedSelector(state => state.history);
 
     return (
         <>
@@ -40,7 +40,9 @@ export const ExpandedLeftMenu: FC<ExpandedLeftMenuProps> = ({ isExpanded }) => {
                 ))}
             </nav>
 
-            <AnimatePresence mode="wait">
+            {
+                /*
+               <AnimatePresence mode="wait">
                 {isExpanded && (
                     <motion.nav
                         key="recent-nav"
@@ -59,6 +61,10 @@ export const ExpandedLeftMenu: FC<ExpandedLeftMenuProps> = ({ isExpanded }) => {
                     </motion.nav>
                 )}
             </AnimatePresence>
+                 */
+            }
+
+
         </>
     );
 };

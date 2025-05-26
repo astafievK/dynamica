@@ -1,4 +1,4 @@
-import { FC } from "react";
+import React, { FC } from "react";
 import PortraitOutlinedIcon from '@mui/icons-material/PortraitOutlined';
 import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
 import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
@@ -22,7 +22,9 @@ export const EmployeeActions: FC<Props> = ({ employee }) => {
     const [changeUserVisibility, { isLoading: changeVisibilityIsLoading }] = usePatchUserVisibilityMutation();
     const { openModal } = useEditEmployee();
 
-    const handleDeleteImageClick = async () => {
+    const handleDeleteImageClick = async (event: React.MouseEvent) => {
+        event.stopPropagation();
+
         try {
             const response = await deleteProfileImage({ id_user: employee.id_user }).unwrap();
             if (response.status === "success") {
@@ -36,7 +38,9 @@ export const EmployeeActions: FC<Props> = ({ employee }) => {
         }
     };
 
-    const handleChangeVisibilityClick = async () => {
+    const handleChangeVisibilityClick = async (event: React.MouseEvent) => {
+        event.stopPropagation();
+
         try {
             const response = await changeUserVisibility({ id_user: employee.id_user }).unwrap();
             if (response.status === "success") {

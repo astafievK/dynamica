@@ -2,10 +2,7 @@ import {AnimatePresence, motion} from "framer-motion";
 import { useGetUsersFilteredQuery } from "../../api/methods/userApi.ts";
 import { FC, useEffect, useMemo, useState } from "react";
 import { pageAnimation } from "../../constants/motionSettings.ts";
-import { EmployeeCard } from "./EmployeeCard/EmployeeCard.tsx";
-import { EmployeeCardSkeleton } from "../Skeletons/EmployeeCardSkeleton.tsx";
 import { useDebounce } from "../../store/hooks/useDebounce.ts";
-import {BannerNoData} from "../BannerNoData/BannerNoData.tsx";
 import {FilterButtons} from "../FilterButtons/FilterButtons.tsx";
 import { useSearchParams } from "react-router-dom";
 import {useGetDepartmentsTitlesNotNullQuery} from "../../api/methods/departmentApi.ts";
@@ -13,8 +10,7 @@ import {useTypedSelector} from "../../store/hooks/redux.ts";
 import ClearRoundedIcon from '@mui/icons-material/ClearRounded';
 import { Pagination } from "../Pagination/Pagination.tsx";
 import { Dropdown } from "../Dropdown/Dropdown.tsx";
-import { EmployeesHeader } from "./EmployeesHeader.tsx";
-import { EmployeeCardLine } from "./EmployeeCardLine/EmployeeCardLine.tsx";
+import {EmployeesList} from "./EmployeesList.tsx";
 
 const ITEMS_PER_PAGE = 100;
 
@@ -83,50 +79,6 @@ export const PageContacts: FC = () => {
 
     const goToPage = (page: number) => setCurrentPage(page);
 
-    const renderUsers = () => {
-        if (isLoading || isFilterChanging) {
-            return (
-                <motion.div
-                    initial={pageAnimation.initial}
-                    animate={pageAnimation.animate}
-                    exit={pageAnimation.exit}
-                    transition={pageAnimation.transition}
-                    className="employees-container page-content-item"
-                >
-                    {[...Array(4)].map((_, i) => (
-                        <EmployeeCardSkeleton key={i}/>
-                    ))}
-                </motion.div>
-            );
-        }
-
-        if (!paginatedUsers.length) {
-            return (
-                <BannerNoData content={"Сотрудники не найдены"}/>
-            );
-        }
-
-        return (
-            <motion.div
-                initial={pageAnimation.initial}
-                animate={pageAnimation.animate}
-                exit={pageAnimation.exit}
-                transition={pageAnimation.transition}
-                className={`employees-container page-content-item ${isOldStyleEnabled ? "old-style" : ""}`}
-            >
-                {isOldStyleEnabled && <EmployeesHeader />}
-
-                {paginatedUsers.map((employee) =>
-                    isOldStyleEnabled ? (
-                        <EmployeeCardLine key={employee.id_user} employee={employee} />
-                    ) : (
-                        <EmployeeCard key={employee.id_user} employee={employee} />
-                    )
-                )}
-            </motion.div>
-        );
-    }
-
     return (
         <AnimatePresence>
             <motion.div
@@ -165,7 +117,13 @@ export const PageContacts: FC = () => {
                     />
                 </div>
                 <div className="page-content">
-                    {renderUsers()}
+                    <EmployeesList
+                        isLoading={isLoading}
+                        isFilterChanging={isFilterChanging}
+                        users={paginatedUsers}
+                        showHidden={!!user}
+                        isOldStyleEnabled={isOldStyleEnabled}
+                    />
                     {totalPages > 1 && (
                         <Pagination
                             currentPage={currentPage}

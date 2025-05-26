@@ -1,4 +1,4 @@
-import { FC } from "react";
+import React, { FC } from "react";
 import { motion } from "framer-motion";
 import { Employee } from "../../../interfaces/IEmployee.ts";
 import {monthsGenitive} from "../../../constants/months.ts";
@@ -7,7 +7,7 @@ interface IEmployeeCardLineProps {
     employee: Employee;
 }
 
-export const EmployeeCardLine: FC<IEmployeeCardLineProps> = ({ employee }) => {
+export const EmployeeCardLine: FC<IEmployeeCardLineProps> = React.memo(({ employee }) => {
     const getFormattedBirthday = (): string => {
         if (!employee.birthday?.date) return "";
         const birthDate = new Date(employee.birthday.date);
@@ -53,4 +53,4 @@ export const EmployeeCardLine: FC<IEmployeeCardLineProps> = ({ employee }) => {
             </motion.div>
         </>
     );
-}
+})

@@ -75,6 +75,215 @@ html, body, #root {
   position: relative;
 }
 
+table {
+  width: 100%;
+}
+table thead {
+  position: sticky;
+  top: 0;
+}
+table thead tr th {
+  padding: 5px;
+  text-align: left;
+  text-wrap: nowrap;
+  opacity: 0.5;
+  font-size: 14px;
+}
+table tbody tr td {
+  overflow: hidden;
+}
+
+h1 {
+  font-size: 32px;
+  font-weight: 800;
+}
+
+button,
+input[type=submit],
+input[type=button] {
+  cursor: pointer;
+}
+
+button {
+  overflow: hidden;
+  position: relative;
+  background: none;
+  transition: all 0.1s;
+}
+button.primary {
+  background-color: var(--color-primary-400);
+  color: white;
+  border: none;
+  outline: none;
+}
+button.primary:hover {
+  background: var(--color-primary-600);
+}
+button.primary:active {
+  background: var(--color-primary-700);
+}
+button.primary:focus-visible {
+  outline: 2px solid var(--color-primary-300);
+  outline-offset: 2px;
+}
+button.secondary {
+  background-color: var(--color-gray-100);
+  color: var(--color-primary-700);
+  outline: none;
+}
+button.secondary:hover {
+  background-color: var(--color-gray-200);
+}
+button.secondary:active {
+  background-color: var(--color-gray-300);
+  color: var(--color-primary-800);
+}
+button.secondary:focus-visible {
+  outline: 2px solid var(--color-primary-300);
+  outline-offset: 2px;
+}
+button:disabled {
+  opacity: 0.5;
+}
+
+.shimmer {
+  position: absolute !important;
+  top: 0;
+  left: -33.3333333333%;
+  height: 100%;
+  width: 33.3333333333%;
+  background: linear-gradient(to left, transparent, rgba(255, 255, 255, 0.4), transparent);
+  animation: shimmer-animation 0.8s linear infinite;
+}
+
+.filters-buttons {
+  padding: 5px 0;
+  display: flex;
+  gap: 2px;
+  overflow: auto;
+}
+.filters-buttons .filter-elem {
+  background: transparent;
+  border-radius: 7px;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 8px;
+  flex-shrink: 0;
+  transition: all 100ms;
+}
+.filters-buttons .filter-elem:hover {
+  background-color: var(--item-hover-background);
+}
+.filters-buttons .filter-elem.selected {
+  background-color: var(--block-background);
+  color: var(--color-accent-700);
+}
+
+input[type=text],
+input[type=password],
+textarea {
+  transition: all 0.1s;
+}
+input[type=text].styled,
+input[type=password].styled,
+textarea.styled {
+  padding: 15px;
+  border-radius: 32px;
+  background: var(--block-background);
+  border: 1px solid var(--color-gray-100);
+  transition: all 0.1s;
+  font-size: 14px;
+}
+input[type=text].styled:hover, input[type=text].styled:focus,
+input[type=password].styled:hover,
+input[type=password].styled:focus,
+textarea.styled:hover,
+textarea.styled:focus {
+  border-color: var(--color-gray-500);
+}
+input[type=text].styled:disabled,
+input[type=password].styled:disabled,
+textarea.styled:disabled {
+  background: #f0f0f0;
+  border-color: #ccc;
+  color: #999;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+textarea {
+  resize: none;
+}
+
+.ripple {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple-animation 0.6s linear;
+  pointer-events: none;
+  opacity: 1;
+}
+
+.cross {
+  aspect-ratio: 1/1;
+  flex-shrink: 0;
+}
+.cross svg g path {
+  transition: stroke 100ms;
+}
+.cross:hover svg g path {
+  stroke: var(--primary-color);
+}
+
+.no-data {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 290px;
+  margin: 5vh auto;
+  padding: 20px 10px;
+  background: var(--block-background);
+  box-shadow: var(--block-shadow);
+  border-radius: 10px;
+}
+.no-data span {
+  font-weight: 700;
+  font-size: 20px;
+  text-align: center;
+  user-select: none;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.banner-copy {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, calc(-100% - 6px));
+  padding: 5px 7px;
+  background: var(--secondary-color);
+  border-radius: 10px;
+}
+.banner-copy:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translate(-30%, -30%);
+  left: 0;
+  height: 30px;
+  width: 30px;
+  background: var(--secondary-color);
+  z-index: -1;
+  rotate: 45deg;
+}
+.banner-copy span {
+  color: var(--background-color);
+  user-select: none;
+}
+
 @keyframes shimmer-animation {
   0% {
     left: -33%;
@@ -255,203 +464,6 @@ html {
 }
 html::-webkit-scrollbar {
   width: 12px;
-}
-html table {
-  width: 100%;
-}
-html table thead {
-  position: sticky;
-  top: 0;
-}
-html table thead tr th {
-  padding: 5px;
-  text-align: left;
-  text-wrap: nowrap;
-  opacity: 0.5;
-  font-size: 14px;
-}
-html table tbody tr td {
-  overflow: hidden;
-}
-html h1 {
-  font-size: 32px;
-  font-weight: 800;
-}
-html button,
-html input[type=submit],
-html input[type=button] {
-  cursor: pointer;
-}
-html button {
-  overflow: hidden;
-  position: relative;
-  background: none;
-}
-html button.primary {
-  background-color: var(--color-primary-500);
-  color: white;
-  border: none;
-  outline: none;
-}
-html button.primary:hover {
-  background: var(--color-primary-600);
-}
-html button.primary:active {
-  background: var(--color-primary-700);
-}
-html button.primary:focus-visible {
-  outline: 2px solid var(--color-primary-300);
-  outline-offset: 2px;
-}
-html button.secondary {
-  background-color: var(--color-gray-100);
-  color: var(--color-primary-700);
-  border: 1px solid var(--color-gray-300);
-  outline: none;
-}
-html button.secondary:hover {
-  background-color: var(--color-gray-200);
-  border-color: var(--color-gray-400);
-}
-html button.secondary:active {
-  background-color: var(--color-gray-300);
-  color: var(--color-primary-800);
-  border-color: var(--color-gray-500);
-}
-html button.secondary:focus-visible {
-  outline: 2px solid var(--color-primary-300);
-  outline-offset: 2px;
-}
-html button:disabled {
-  opacity: 0.5;
-}
-html .shimmer {
-  position: absolute !important;
-  top: 0;
-  left: -33.3333333333%;
-  height: 100%;
-  width: 33.3333333333%;
-  background: linear-gradient(to left, transparent, rgba(255, 255, 255, 0.4), transparent);
-  animation: shimmer-animation 0.8s linear infinite;
-}
-html .filters-buttons {
-  padding: 5px 0;
-  display: flex;
-  gap: 2px;
-  overflow: auto;
-}
-html .filters-buttons .filter-elem {
-  background: transparent;
-  border-radius: 7px;
-  font-weight: 600;
-  font-size: 14px;
-  padding: 8px;
-  flex-shrink: 0;
-  transition: all 200ms;
-}
-html .filters-buttons .filter-elem:hover {
-  background-color: var(--item-hover-background);
-}
-html .filters-buttons .filter-elem.selected {
-  background-color: var(--block-background);
-  box-shadow: var(--block-shadow);
-  color: var(--primary-color);
-}
-html input[type=text].styled,
-html input[type=password].styled,
-html textarea.styled {
-  padding: 10px 15px;
-  border-radius: 10px;
-  background: var(--block-background);
-  border: 2px solid var(--block-background);
-  box-shadow: var(--block-shadow);
-  transition: all 0.2s;
-  font-size: 14px;
-}
-html input[type=text].styled:hover, html input[type=text].styled:focus,
-html input[type=password].styled:hover,
-html input[type=password].styled:focus,
-html textarea.styled:hover,
-html textarea.styled:focus {
-  border-color: var(--primary-color);
-  box-shadow: none;
-}
-html input[type=text].styled:disabled,
-html input[type=password].styled:disabled,
-html textarea.styled:disabled {
-  background: #f0f0f0;
-  border-color: #ccc;
-  color: #999;
-  cursor: not-allowed;
-  box-shadow: none;
-}
-html textarea {
-  resize: none;
-}
-html .ripple {
-  position: absolute;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 50%;
-  transform: scale(0);
-  animation: ripple-animation 0.6s linear;
-  pointer-events: none;
-  opacity: 1;
-}
-html .cross {
-  aspect-ratio: 1/1;
-  flex-shrink: 0;
-}
-html .cross svg g path {
-  transition: stroke 100ms;
-}
-html .cross:hover svg g path {
-  stroke: var(--primary-color);
-}
-html .no-data {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  max-width: 290px;
-  margin: 5vh auto;
-  padding: 20px 10px;
-  background: var(--block-background);
-  box-shadow: var(--block-shadow);
-  border-radius: 10px;
-}
-html .no-data span {
-  font-weight: 700;
-  font-size: 20px;
-  text-align: center;
-  user-select: none;
-  color: rgba(0, 0, 0, 0.6);
-}
-html .banner-copy {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translate(-50%, calc(-100% - 6px));
-  padding: 5px 7px;
-  background: var(--secondary-color);
-  border-radius: 10px;
-}
-html .banner-copy:before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  transform: translate(-30%, -30%);
-  left: 0;
-  height: 30px;
-  width: 30px;
-  background: var(--secondary-color);
-  z-index: -1;
-  rotate: 45deg;
-}
-html .banner-copy span {
-  color: var(--background-color);
-  user-select: none;
 }
 html body {
   background: var(--color-gray-50);
@@ -721,7 +733,7 @@ html body #modal-root #editEmployee .modal__content .modal__body .employee-edito
   gap: 10px;
   align-items: center;
   border-radius: 24px;
-  background: rgba(90, 176, 88, 0.12);
+  background: var(--color-accent-50);
   padding: 10px;
 }
 html body #modal-root #editEmployee .modal__content .modal__body .employee-editor__info .employee-editor__fields .employee-editor__main-fields .employee-editor__photo-container {
@@ -740,46 +752,34 @@ html body #modal-root #editEmployee .modal__content .modal__body .employee-edito
 html body #modal-root #editEmployee .modal__content .modal__body .employee-editor__info .employee-editor__fields .employee-editor__main-fields .employee-editor__name {
   font-weight: 500;
   font-size: 14px;
+  text-align: center;
   font-family: "GrtskTera", Arial, sans-serif;
 }
 html body #modal-root #editEmployee .modal__content .modal__body .employee-editor__info .employee-editor__fields .employee-editor__additional-fields {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   gap: 5px;
-  padding: 0 10px;
+  padding: 0 3px;
 }
 html body #modal-root #editEmployee .modal__content .modal__body .employee-editor__info .employee-editor__fields .employee-editor__additional-fields .employee-editor__field {
   display: flex;
   flex-direction: column;
+  flex: 1 1 calc(50% - 8px);
   gap: 3px;
 }
 html body #modal-root #editEmployee .modal__content .modal__body .employee-editor__info .employee-editor__fields .employee-editor__additional-fields .employee-editor__field .employee-editor__label {
-  font-size: 0.8em;
-  margin-left: 2px;
-}
-html body #modal-root #editEmployee .modal__content .modal__body .employee-editor__info .employee-editor__fields .employee-editor__additional-fields .employee-editor__field .employee-editor__input {
-  padding: 12px 10px;
-  border-radius: 10px;
-  border: 1px solid var(--background-color);
-  background: rgba(0, 0, 0, 0.05);
+  font-size: 12px;
+  margin-left: 7px;
 }
 html body #modal-root #editEmployee .modal__content .modal__actions {
   display: flex;
   padding: 10px 15px 5px 15px;
+  gap: 5px;
 }
 html body #modal-root #editEmployee .modal__content .modal__actions .modal__action {
-  flex-grow: 1;
+  flex: 1;
+  border-radius: 32px;
   padding: 15px;
-  border-radius: 12px;
-  font-size: 16px;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.8);
-}
-html body #modal-root #editEmployee .modal__content .modal__actions .modal__action--save {
-  background: var(--primary-color);
-}
-html body #modal-root #editEmployee .modal__content .modal__actions .modal__action:hover {
-  color: rgb(255, 255, 255);
 }
 html body #modal-root #createDocument .modal-content__body,
 html body #modal-root #createDocument .modal__content__body {
@@ -963,7 +963,6 @@ html body .modal .modal-content .modal__body,
 html body .modal .modal__content .modal-content__body,
 html body .modal .modal__content .modal__body {
   margin-top: 7px;
-  overflow: hidden;
   padding: 15px 5px;
   flex-grow: 1;
   border-radius: 32px;
@@ -1203,7 +1202,6 @@ html body #dynamica .header-wrapper header .profile-container .header-item:hover
   color: var(--secondary-color);
   fill: var(--secondary-color);
   background: var(--block-background) !important;
-  box-shadow: var(--block-shadow) !important;
   background-color: var(--item-hover-background);
 }
 html body #dynamica .header-wrapper header .profile-container .header-item:hover span,
@@ -1309,6 +1307,7 @@ html body #dynamica .layout-content .left-menu .toggle-btn {
 html body #dynamica .layout-content .left-menu.collapsed .left-menu-item {
   width: 45px;
   height: 45px;
+  border-radius: 50%;
   justify-content: center;
   align-content: center;
 }
@@ -1324,7 +1323,7 @@ html body #dynamica .layout-content .left-menu .left-menu-item {
   text-decoration: none;
   width: 100%;
   min-width: 45px;
-  border-radius: 10px;
+  border-radius: 32px;
   color: rgba(47, 55, 71, 0.85);
   flex-shrink: 0;
   overflow: hidden;
@@ -1348,7 +1347,6 @@ html body #dynamica .layout-content .left-menu .left-menu-item.item-contacts .co
 html body #dynamica .layout-content .left-menu .left-menu-item:hover, html body #dynamica .layout-content .left-menu .left-menu-item.active-nav-item {
   color: var(--secondary-color);
   background: var(--block-background);
-  box-shadow: var(--block-shadow);
 }
 html body #dynamica .layout-content .left-menu .left-menu-item:hover svg, html body #dynamica .layout-content .left-menu .left-menu-item.active-nav-item svg {
   fill: var(--secondary-color);
@@ -2135,7 +2133,6 @@ html body #dynamica .layout-content .main-container main .page.page-contacts .pa
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 100%;
   transition: all 150ms;
 }
 html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__preview,
@@ -2150,7 +2147,7 @@ html body #dynamica .layout-content .main-container main .page.page-contacts .pa
   border-radius: 24px;
   height: 100%;
   padding: 4px;
-  gap: 10px;
+  gap: 5px;
   z-index: 5;
   transition: all 200ms;
 }
@@ -2161,7 +2158,6 @@ html body #dynamica .layout-content .main-container main .page.page-contacts .pa
   display: none;
   flex-direction: column;
   padding: 0 5px;
-  background: var(--background-color);
   gap: 3px;
 }
 html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__preview .employee-actions .employee-action {
@@ -2252,7 +2248,7 @@ html body #dynamica .layout-content .main-container main .page.page-contacts .pa
   display: flex;
   flex-grow: 1;
   flex-direction: column;
-  padding: 3px 0;
+  padding-top: 8px;
 }
 html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__preview .employee-card__general .employee-card__name,
 html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__preview .employee-card__general .employee-card__position {
@@ -2335,6 +2331,7 @@ html body #dynamica .layout-content .main-container main .page.page-contacts .pa
   display: flex;
   width: 100%;
   justify-content: center;
+  align-items: center;
   position: relative;
   overflow: hidden;
   user-select: none;
@@ -3232,6 +3229,24 @@ html body #dynamica .layout-content .main-container .footer-wrapper footer .faq 
   }
 }
 @media (min-width: 1024px) {
+  html #modal-root #editEmployee .modal__content .modal__body .employee-editor .employee-editor__info .employee-editor__fields .employee-editor__main-fields .employee-editor__photo-container {
+    width: 100px;
+  }
+  html #modal-root #editEmployee .modal__content .modal__body .employee-editor .employee-editor__info .employee-editor__fields .employee-editor__main-fields .employee-editor__name {
+    font-size: 18px;
+  }
+  html #modal-root #editEmployee .modal__content .modal__body .employee-editor .employee-editor__info .employee-editor__fields .employee-editor__additional-fields {
+    gap: 10px;
+  }
+  html #modal-root #editEmployee .modal__content .modal__body .employee-editor .employee-editor__info .employee-editor__fields .employee-editor__additional-fields .employee-editor__field .employee-editor__label {
+    font-size: 14px;
+  }
+  html #modal-root #editEmployee .modal__content .modal__body .employee-editor .employee-editor__info .employee-editor__fields .employee-editor__additional-fields .employee-editor__field .employee-editor__input {
+    font-size: 16px;
+  }
+  html #modal-root #editEmployee .modal__content .modal__actions .modal__action {
+    font-size: 19px;
+  }
   html .filters-buttons {
     gap: 5px;
     padding: 10px 0;
@@ -3833,7 +3848,7 @@ html body #dynamica .layout-content .main-container .footer-wrapper footer .faq 
     font-size: 24px;
   }
   html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container {
-    grid-template-columns: repeat(4, calc(25% - 6px));
+    grid-template-columns: repeat(3, calc(33.3333333333% - 5.3333333333px));
   }
   html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card .employee-card__preview .employee-card__photo {
     height: 120px;

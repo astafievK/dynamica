@@ -34,21 +34,17 @@ export const EmployeeCard: FC<IEmployeeCardProps> = React.memo(({ employee }) =>
                 initial={{opacity: 0}}
                 animate={{opacity: 1}}
                 exit={{opacity: 0}}
-                transition={{duration: 0.4}}
+                transition={{duration: 0.15}}
                 className={`employee-card ${(isHovering) ? 'hovered' : ''} ${isPreviewClicked ? 'fixed' : ''}`}
                 onMouseEnter={() => setIsHovering(true)}
                 onMouseLeave={() => setIsHovering(false)}
             >
                 <div className={`employee-card__preview ${employee.is_hidden ? 'hidden' : ''}`} onClick={handlePreviewClick}>
-                    <motion.div
-                        initial={{opacity: 0}}
-                        animate={{opacity: 1}}
-                        exit={{opacity: 0}}
-                        transition={{duration: 0.2}}
+                    <div
                         className="employee-card__photo"
                         style={{backgroundImage: `url(https://newportal/files/images/${employee.image.path})`}}
                     >
-                    </motion.div>
+                    </div>
                     <div className="employee-card__general">
                         <div className="employee-card__name" onClick={(event) => handleCopy(`${employee.surname} ${employee.name} ${employee.patronymic}`, 'ФИО', event)}>
                             <span className="employee-card__lastname">{employee.surname}</span>

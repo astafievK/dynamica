@@ -1,0 +1,96 @@
+@use '../../globals' as *;
+
+.checkbox-dropdown {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  &.expanded {
+    .checkbox-dropdown__toggle {
+      border-radius: 32px 32px 0 0;
+    }
+  }
+
+  &__toggle {
+    width: 100%;
+    padding: 15px;
+    font-size: 14px;
+    border-radius: 32px;
+    background-color: var(--block-background);
+    border: 1px solid var(--color-gray-100);
+    cursor: pointer;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.15s;
+
+    &:hover {
+      border-color: var(--color-gray-500);
+    }
+  }
+
+  &__menu {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    width: 100%;
+    border: 1px solid var(--color-gray-100);
+    border-top: none;
+    border-radius: 0 0 32px 32px;
+    background: var(--block-background);
+    will-change: height, opacity;
+    overflow: hidden;
+    z-index: 1000;
+
+    &-inner {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      padding: 10px;
+
+      .checkbox-dropdown__option {
+        display: flex;
+        align-items: center;
+        flex: 0 0 auto;
+        padding: 15px 10px;
+        border-radius: 32px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: all 0.1s;
+
+        &:hover {
+          background-color: var(--color-gray-50);
+        }
+
+        input {
+          display: none;
+        }
+
+        &--selected {
+          background-color: var(--color-accent-100);
+
+          &:hover {
+            background-color: var(--color-accent-200);
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .checkbox-dropdown {
+    &__toggle {
+      font-size: 16px;
+    }
+
+    &__menu {
+      &-inner {
+        .checkbox-dropdown__option {
+          font-size: 16px;
+        }
+      }
+    }
+  }
+}

@@ -4,10 +4,17 @@ import { useModal } from "../../../store/hooks/useModal.ts";
 import { Employee } from "../../../interfaces/IEmployee.ts";
 import {useEditEmployee} from "../../Contexts/EditEmployeeContext/EditEmployeeContext.tsx";
 import {UpdateUserCommand} from "../../../api/commands/IUpdateUserCommand.ts";
+import {DropdownCheckbox} from "../../DropdownCheckbox/DropdownCheckbox.tsx";
 
-interface ModalEditEmployeeProps {
+type ModalEditEmployeeProps = {
     employee: Employee;
 }
+
+const options = [
+    { label: 'Разработка', value: 'dev' },
+    { label: 'Дизайн', value: 'design' },
+    { label: 'Маркетинг', value: 'marketing' },
+];
 
 export const ModalEditEmployee: FC<ModalEditEmployeeProps> = ({ employee }) => {
     const { closeModal } = useEditEmployee();
@@ -19,6 +26,7 @@ export const ModalEditEmployee: FC<ModalEditEmployeeProps> = ({ employee }) => {
     const [tempPosition, setTempPosition] = useState<string>(position);
     const [tempDepartment, setTempDepartment] = useState<string>(department);
     const [tempPhone, setTempPhone] = useState<string>(phone);
+    const [selected, setSelected] = useState<string[]>([]);
 
     const handleSave = () => {
         const payload: UpdateUserCommand = {
@@ -77,42 +85,45 @@ export const ModalEditEmployee: FC<ModalEditEmployeeProps> = ({ employee }) => {
                                     <div className="employee-editor__field">
                                         <label className="employee-editor__label">Должность</label>
                                         <input
-                                            className="employee-editor__input"
+                                            className="employee-editor__input styled"
                                             type="text"
                                             placeholder={employee?.position.title}
                                             onChange={(e) => setTempPosition(e.target.value)}
                                         />
                                     </div>
-
                                     <div className="employee-editor__field">
                                         <label className="employee-editor__label">Город</label>
                                         <input
-                                            className="employee-editor__input"
+                                            className="employee-editor__input styled"
                                             type="text"
                                             placeholder={employee?.department.city.title}
                                             disabled={true}
                                         />
                                     </div>
-
                                     <div className="employee-editor__field">
                                         <label className="employee-editor__label">Подразделение</label>
                                         <input
-                                            className="employee-editor__input"
+                                            className="employee-editor__input styled"
                                             type="text"
                                             placeholder={employee!.department.title!}
                                             onChange={(e) => setTempDepartment(e.target.value)}
                                         />
                                     </div>
-
                                     <div className="employee-editor__field">
                                         <label className="employee-editor__label">Контактный телефон</label>
                                         <input
-                                            className="employee-editor__input"
+                                            className="employee-editor__input styled"
                                             type="text"
                                             placeholder={employee?.phone}
                                             onChange={(e) => setTempPhone(e.target.value)}
                                         />
                                     </div>
+                                    <DropdownCheckbox
+                                        options={options}
+                                        selectedValues={selected}
+                                        onChange={setSelected}
+                                        placeholder="Права и возможности"
+                                    />
                                 </div>
                             </div>
                         </div>
@@ -136,7 +147,8 @@ export const ModalEditEmployee: FC<ModalEditEmployeeProps> = ({ employee }) => {
                     </div>
                 </div>
                 <div className="modal__actions">
-                    <button className="modal__action modal__action--save" onClick={handleSave}>Сохранить</button>
+                    <button className="modal__action modal__action--save primary" onClick={handleSave}>Сохранить</button>
+                    <button className="modal__action modal__action--cancel secondary" onClick={handleSave}>Отмена</button>
                 </div>
             </div>
 
