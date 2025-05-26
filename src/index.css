@@ -1434,7 +1434,6 @@ html body #dynamica .layout-content .main-container main .page .page-filters .fi
 }
 html body #dynamica .layout-content .main-container main .page .page-filters .filters-search .filters-search__text {
   width: 100%;
-  padding: 10px 15px;
   font-weight: 600;
   flex: 1;
   transition: 200ms;
@@ -1459,7 +1458,6 @@ html body #dynamica .layout-content .main-container main .page .page-content .pa
   width: 100%;
   height: 100%;
   background: var(--block-background);
-  box-shadow: var(--block-shadow);
   border-radius: 32px;
 }
 html body #dynamica .layout-content .main-container main .page.page-landing {

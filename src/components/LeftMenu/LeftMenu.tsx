@@ -11,7 +11,7 @@ export const LeftMenu: FC = () => {
         <motion.aside
             className={`left-menu ${isExpanded ? 'expanded' : 'collapsed'}`}
             animate={{
-                width: isExpanded ? 230 : 60,
+                width: isExpanded ? 230 : 61,
             }}
             initial={false}
             transition={{ duration: 0.15, ease: "easeInOut" }}

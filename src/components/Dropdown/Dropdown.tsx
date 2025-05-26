@@ -66,7 +66,7 @@ export const Dropdown: FC<DropdownProps> = ({ options, label, value, onSelect, i
         <>
             <div className={`custom-dropdown ${(isOpen && !isDisabled) ? 'active' : ''}`}>
                 <button className="custom-dropdown__button" onClick={toggleDropdown}>
-                    {(selectedValue?.title) || label}
+                    {label}
                     {!isDisabled && <img className="arrow" src="/arrow.svg" alt=""/>}
                 </button>
             </div>
