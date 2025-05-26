@@ -15,86 +15,85 @@ import {useCreateDocument} from "../Contexts/CreateDocumentContext/CreateDocumen
 export const Header: FC = () => {
     const {user} = useTypedSelector((state) => state.auth);
     const dispatch = useAppDispatch();
-    const { openModal } = useCreateDocument();
+    const {openModal} = useCreateDocument();
 
     const handleNotificationsClick = () => dispatch(setNotificationsModalOpen(true));
     const handleBurgerClick = () => dispatch(setMobileMenuOpen(true));
 
     return (
-        <>
-            <div className={`header-wrapper`}>
-                <header>
-                    <NavLink to="/" id="logo">
-                        <img src="/logo.svg" alt="динамика"/>
-                    </NavLink>
+        <div className={`header-wrapper`}>
+            <header>
+                <NavLink to="/" id="logo">
+                    <img src="/logo.svg" alt="динамика"/>
+                </NavLink>
 
+                {
+                    /*
+                    <AnimatePresence mode="wait">
+                    <motion.div
+                        key={location.pathname}
+                        initial={{opacity: 0, y: -10}}
+                        animate={{opacity: 1, y: 0}}
+                        exit={{opacity: 0, y: 10}}
+                        transition={{duration: 0.17, ease: "easeInOut"}}
+                        className="page-title"
+                    >
+                        <span>{currentTitle}</span>
+                    </motion.div>
+                </AnimatePresence>
+                     */
+                }
+                {
+                    /*
+                    <div className="global-search-container">
+                        <input type="text" className="global-search styled" placeholder="Поиск по всему порталу" disabled/>
+                    </div>
+                     */
+                }
+
+
+                <div className="profile-container">
                     {
-                        /*
-                        <AnimatePresence mode="wait">
-                        <motion.div
-                            key={location.pathname}
-                            initial={{opacity: 0, y: -10}}
-                            animate={{opacity: 1, y: 0}}
-                            exit={{opacity: 0, y: 10}}
-                            transition={{duration: 0.17, ease: "easeInOut"}}
-                            className="page-title"
-                        >
-                            <span>{currentTitle}</span>
-                        </motion.div>
-                    </AnimatePresence>
-                         */
+                        !user &&
+                        <>
+                            <button className="login-btn header-item" onClick={() => dispatch(setLoginModalOpen(true))}>
+                                <LoginRoundedIcon fontSize={"large"}/>
+                            </button>
+                        </>
                     }
                     {
-                        /*
-                        <div className="global-search-container">
-                            <input type="text" className="global-search styled" placeholder="Поиск по всему порталу" disabled/>
-                        </div>
-                         */
+                        user &&
+                        <>
+                            <Link to={"admin/contacts"} className="admin-panel-btn header-item">
+                                <AdminPanelSettingsOutlinedIcon/>
+                                <span>Админ-ие</span>
+                            </Link>
+                            <button className="create-doc header-item" onClick={openModal}>
+                                <NoteAddOutlinedIcon/>
+                                <span>Договор</span>
+                            </button>
+                            <button className="notifications-btn header-item" onClick={handleNotificationsClick}>
+                                <NotificationsNoneOutlinedIcon/>
+                            </button>
+                            <Link to={"profile"} className="user-wrapper header-item">
+                                <div className="user-image"
+                                     style={{backgroundImage: `${import.meta.env.VITE_BASE_IMAGE_URL}${user.image?.path ?? 'default.webp'}`}}></div>
+                                <span>{user.name} {user.surname}</span>
+                            </Link>
+                            <button className="logout-btn header-item" onClick={() => dispatch(logout())}>
+                                <LogoutOutlinedIcon/>
+                            </button>
+                        </>
                     }
+                </div>
 
-
-                    <div className="profile-container">
-                        {
-                            !user &&
-                            <>
-                                <button className="login-btn header-item" onClick={() => dispatch(setLoginModalOpen(true))}>
-                                    <LoginRoundedIcon fontSize={"large"}/>
-                                </button>
-                            </>
-                        }
-                        {
-                            user &&
-                            <>
-                                <Link to={"admin/contacts"} className="admin-panel-btn header-item">
-                                    <AdminPanelSettingsOutlinedIcon/>
-                                    <span>Админ-ие</span>
-                                </Link>
-                                <button className="create-doc header-item" onClick={openModal}>
-                                    <NoteAddOutlinedIcon/>
-                                    <span>Договор</span>
-                                </button>
-                                <button className="notifications-btn header-item" onClick={handleNotificationsClick}>
-                                    <NotificationsNoneOutlinedIcon/>
-                                </button>
-                                <Link to={"profile"} className="user-wrapper header-item">
-                                    <div className="user-image" style={{ backgroundImage: `url(https://newportal/files/images/${((user.image && user.image.path) ?? 'default.webp')})` }}></div>
-                                    <span>{user.name} {user.surname}</span>
-                                </Link>
-                                <button className="logout-btn header-item" onClick={() => dispatch(logout())}>
-                                    <LogoutOutlinedIcon/>
-                                </button>
-                            </>
-                        }
+                <div className="burger" id="burger" onClick={handleBurgerClick}>
+                    <div className="body">
+                        <span className="line line-1"></span>
+                        <span className="line line-2"></span>
                     </div>
-
-                    <div className="burger" id="burger" onClick={handleBurgerClick}>
-                        <div className="body">
-                            <span className="line line-1"></span>
-                            <span className="line line-2"></span>
-                        </div>
-                    </div>
-                </header>
-            </div>
-        </>
+                </div>
+            </header>
+        </div>
     );
 }
