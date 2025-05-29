@@ -76,8 +76,12 @@ export const Header: FC = () => {
                                 <NotificationsNoneOutlinedIcon/>
                             </button>
                             <Link to={"profile"} className="user-wrapper header-item">
-                                <div className="user-image"
-                                     style={{backgroundImage: `${import.meta.env.VITE_BASE_IMAGE_URL}${user.image?.path ?? 'default.webp'}`}}></div>
+                                <div
+                                    className="user-image"
+                                    style={{
+                                        backgroundImage: `url(${import.meta.env.VITE_BASE_IMAGE_URL}${user.image?.path ?? 'default.webp'})`
+                                    }}
+                                ></div>
                                 <span>{user.name} {user.surname}</span>
                             </Link>
                             <button className="logout-btn header-item" onClick={() => dispatch(logout())}>

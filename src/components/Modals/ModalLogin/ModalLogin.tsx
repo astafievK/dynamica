@@ -40,6 +40,7 @@ export const ModalLogin: FC = () => {
     const onSubmit: SubmitHandler<ILoginCommand> = async (data) => {
         try {
             const response = await login(data);
+            console.log(response)
             if ('error' in response) {
                 console.error(response.error);
                 setNotification({

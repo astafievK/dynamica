@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-export const baseUrl = import.meta.env.VITE_API_URL;
+export const baseUrl = "https://newportal/api";
 
 export const baseApi = createApi({
     reducerPath: 'api',
