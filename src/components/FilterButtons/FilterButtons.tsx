@@ -1,5 +1,6 @@
 import React, { FC } from "react";
 import { FilterDepartmentSkeleton } from "../Skeletons/FilterDepartmentSkeleton.tsx";
+import './FilterButtons.css'
 
 interface FilterButtonsProps<T> {
     filter: T | null;

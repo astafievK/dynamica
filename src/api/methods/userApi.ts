@@ -40,13 +40,15 @@ export const userApi = baseApi.injectEndpoints({
             }),
             providesTags: ["Employee"],
         }),
-        getUsersFiltered: builder.query<GetUsersResponse, { department: string; search?: string; }>({
-            query: ({ department, search = "" }) => ({
-                url: `/Users/getUsersFiltered.php?department=${encodeURIComponent(department)}&search=${encodeURIComponent(search)}`,
-                method: "GET",
-            }),
-            providesTags: ["Employee"],
-        }),
+        getUsersFiltered: builder.query<GetUsersResponse, { department: string; search?: string;}>(
+            {
+                query: ({ department, search = "" }) => ({
+                    url: `/Users/getUsersFiltered.php?department=${encodeURIComponent(department)}&search=${encodeURIComponent(search)}`,
+                    method: "GET",
+                }),
+                providesTags: ["Employee"],
+            }
+        ),
         uploadProfileImage: builder.mutation<{ status: string; message: string; path?: string, user?: string, image?: string }, FormData>({
             query: (formData) => ({
                 url: "/Users/uploadProfileImage.php",
@@ -77,10 +79,11 @@ export const userApi = baseApi.injectEndpoints({
             }),
             invalidatesTags: ["Employee"],
         }),
-        patchUser: builder.mutation<{ status: string; message: string }, UpdateUserCommand>({
-            query: () => ({
+        updateUser: builder.mutation<{ status: string; message: string }, UpdateUserCommand>({
+            query: (body) => ({
                 url: `/Users/updateUser.php`,
-                method: "PATCH",
+                method: "POST",
+                body,
             }),
             invalidatesTags: ["Employee"],
         }),
@@ -98,5 +101,5 @@ export const {
     useDeleteProfileImageMutation,
     usePatchUserVisibilityMutation,
     usePatchUserEmailMutation,
-    usePatchUserMutation,
+    useUpdateUserMutation,
 } = userApi;

@@ -1,4 +1,4 @@
-import {Employee} from "./IEmployee.ts";
+import {Employee} from "./IEmployee";
 
 export interface EditEmployeeModalContextType {
     openModal: (employee: Employee) => void;

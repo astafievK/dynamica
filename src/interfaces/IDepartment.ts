@@ -1,11 +1,11 @@
-import {City} from "./ICity.ts";
-import {Organization} from "./IOrganization.ts";
-import {Division} from "./IDivision.ts";
+import {City} from "./ICity";
+import {IOrganization} from "./IOrganization";
+import {IDivision} from "./IDivision";
 
-export interface Department {
+export interface IDepartment {
     id_department: number;
-    title: string | null;
+    title: string;
     city: City
-    organization: Organization
-    division: Division
+    organization: IOrganization
+    division: IDivision
 }

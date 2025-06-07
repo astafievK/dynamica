@@ -3,61 +3,95 @@ import { useGetUsersFilteredQuery } from "../../api/methods/userApi.ts";
 import { FC, useEffect, useMemo, useState } from "react";
 import { pageAnimation } from "../../constants/motionSettings.ts";
 import { useDebounce } from "../../store/hooks/useDebounce.ts";
-import {FilterButtons} from "../FilterButtons/FilterButtons.tsx";
 import { useSearchParams } from "react-router-dom";
-import {useGetDepartmentsTitlesNotNullQuery} from "../../api/methods/departmentApi.ts";
-import {useTypedSelector} from "../../store/hooks/redux.ts";
+import {useAppDispatch, useTypedSelector} from "../../store/hooks/redux.ts";
 import ClearRoundedIcon from '@mui/icons-material/ClearRounded';
 import { Pagination } from "../Pagination/Pagination.tsx";
 import { Dropdown } from "../Dropdown/Dropdown.tsx";
 import {EmployeesList} from "./EmployeesList.tsx";
+import {setEmployeesContainerStyle} from "../../api/slices/employeesContainerSlice.ts";
+import {useGetDepartmentsTitlesNotNullQuery} from "../../api/methods/departmentApi.ts";
+import {Permissions} from "../../constants/permissions.ts";
+import {useHasPermission} from "../../store/hooks/useHasPermission.ts";
 
 const ITEMS_PER_PAGE = 100;
 
 const contactsStyles = [
-    { id: 0, title: 'Новый' },  // => false
-    { id: 1, title: 'Старый' }, // => true
+    { id: 0, title: "Новый" },  // id=0 => "new"
+    { id: 1, title: "Старый" }, // id=1 => "old"
 ];
 
-const normalizeSearch = (value: string) =>
-    value.trim().replace(/\s+/g, " ");
+const idToStyleMap: Record<number, "new" | "old"> = {
+    0: "new",
+    1: "old",
+};
+
+const styleToIdMap: Record<"new" | "old", number> = {
+    new: 0,
+    old: 1,
+};
+
+const normalizeSearch = (value: string) => value.trim().replace(/\s+/g, " ");
 
 export const PageContacts: FC = () => {
-    const [departmentTitle, setDepartmentTitle] = useState<string>("");
+    const [selectedDepartment, setSelectedDepartment] = useState<{id: number, title: string}>({ id: 0, title: "Все" });
     const [temporarySearchValue, setTemporarySearchValue] = useState<string>("");
     const debouncedSearchValue = useDebounce(temporarySearchValue, 150);
     const [isFilterChanging, setIsFilterChanging] = useState<boolean>(false);
-    const [isOldStyleEnabled, setIsOldStyleEnabled] = useState<boolean>(false);
     const [currentPage, setCurrentPage] = useState<number>(1);
     const { user } = useTypedSelector(state => state.auth)
-    const { data: departmentsData, isLoading: departmentsLoading } = useGetDepartmentsTitlesNotNullQuery();
+    const { data: departmentsTitles, isLoading: departmentsLoading } = useGetDepartmentsTitlesNotNullQuery();
     const { data, isLoading } = useGetUsersFilteredQuery({
-        department: departmentTitle,
-        search: normalizeSearch(debouncedSearchValue),
+        department: selectedDepartment?.title,
+        search: normalizeSearch(debouncedSearchValue)
     });
+
+    const canViewHiddenUsers = useHasPermission(Permissions.Superuser);
+
+    const style = useTypedSelector(state => state.employeesContainerReducer.style);
+    const dispatch = useAppDispatch();
+    const selectedStyle = contactsStyles.find(c => styleToIdMap[style] === c.id) || null;
 
     const [searchParams, setSearchParams] = useSearchParams();
 
     useEffect(() => {
-        const department = searchParams.get("department") || "";
+        if (!departmentsTitles) return;
+
+        const departmentTitle = searchParams.get("department") || "";
         const search = searchParams.get("search") || "";
 
-        setDepartmentTitle(department);
-        setTemporarySearchValue(search);
-    }, []);
+        const matchedDepartment =
+            departmentTitle === "" || departmentTitle === "Все"
+                ? { id: 0, title: "Все" }
+                : departmentsTitles.departments
+                .map((title, index) => ({ id: index + 1, title }))
+                .find((d) => d.title === departmentTitle) || { id: 0, title: "Все" };
+
+        if (matchedDepartment.title !== selectedDepartment.title) {
+            setSelectedDepartment(matchedDepartment);
+        }
+
+        if (search !== temporarySearchValue) {
+            setTemporarySearchValue(search);
+        }
+    }, [departmentsTitles]);
 
     useEffect(() => {
         setCurrentPage(1);
         setIsFilterChanging(true);
         const params: Record<string, string> = {};
-        if (departmentTitle) params.department = departmentTitle;
+
+        if (selectedDepartment.title && selectedDepartment.title !== "Все") {
+            params.department = selectedDepartment.title;
+        }
 
         const normalizedSearch = normalizeSearch(temporarySearchValue);
-        if (normalizedSearch) params.search = normalizedSearch;
+        if (normalizedSearch) {
+            params.search = normalizedSearch;
+        }
 
         setSearchParams(params);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [departmentTitle, temporarySearchValue]);
+    }, [selectedDepartment, temporarySearchValue]);
 
     useEffect(() => {
         if (!isLoading && data) {
@@ -77,7 +111,21 @@ export const PageContacts: FC = () => {
 
     const totalPages = Math.ceil((data?.users?.length || 0) / ITEMS_PER_PAGE);
 
-    const goToPage = (page: number) => setCurrentPage(page);
+    const goToPage = (page: number) => {
+        setCurrentPage(page);
+        scrollTo(0,0)
+    }
+
+    const onSelectStyle = (option: { id: number; title: string }) => {
+        const styleValue = idToStyleMap[option.id];
+        dispatch(setEmployeesContainerStyle(styleValue));
+        scrollTo(0,0)
+    };
+
+    const onSelectDepartment = (option: { id: number; title: string }) => {
+        setSelectedDepartment(option);
+        scrollTo(0, 0);
+    };
 
     return (
         <AnimatePresence>
@@ -89,40 +137,50 @@ export const PageContacts: FC = () => {
                 className="page page-contacts"
             >
                 <div className="page-filters">
-                    <FilterButtons
-                        filter={departmentTitle}
-                        setFilter={setDepartmentTitle}
-                        data={departmentsData?.titles}
-                        isLoading={departmentsLoading}
-                        renderLabel={(item) => item}
+                    <Dropdown
+                        options={contactsStyles}
+                        label="Стиль"
+                        value={selectedStyle}
+                        onSelect={onSelectStyle}
+                        classNames={['page-filters-item']}
                     />
+                    {
+                        departmentsTitles && !departmentsLoading && (
+                            <Dropdown
+                                options={[
+                                    { id: 0, title: "Все" },
+                                    ...departmentsTitles.departments.map((departmentTitle: string, index: number) => ({
+                                        id: index + 1,
+                                        title: departmentTitle,
+                                    }))
+                                ]}
+                                label="Отдел"
+                                value={selectedDepartment}
+                                onSelect={onSelectDepartment}
+                                classNames={['page-filters-item']}
+                            />
+                        )
+                    }
                     <div className="filters-search">
                         <input
                             type="text"
                             className="filters-search__text styled"
-                            placeholder="ФИО / Должность"
+                            placeholder="Поиск по ФИО / Должности"
                             value={temporarySearchValue}
                             onChange={(e) => setTemporarySearchValue(e.target.value)}
                         />
                         {
                             temporarySearchValue.length > 0 && <ClearRoundedIcon onClick={() => setTemporarySearchValue('')}/>
-
                         }
                     </div>
-                    <Dropdown
-                        options={contactsStyles}
-                        label="Стиль адресной книги"
-                        value={contactsStyles[isOldStyleEnabled ? 1 : 0]}
-                        onSelect={(option) => setIsOldStyleEnabled(option.id === 1)}
-                    />
                 </div>
                 <div className="page-content">
                     <EmployeesList
                         isLoading={isLoading}
                         isFilterChanging={isFilterChanging}
                         users={paginatedUsers}
-                        showHidden={!!user}
-                        isOldStyleEnabled={isOldStyleEnabled}
+                        showHidden={canViewHiddenUsers}
+                        isOldStyleEnabled={style === "old"}
                     />
                     {totalPages > 1 && (
                         <Pagination

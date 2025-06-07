@@ -36,12 +36,8 @@ export const DetailsItem: FC<DetailsItemProps> = ({ title, value }) => {
     const {notify} = useNotification();
 
     const handleClick = async () => {
-        if (title === "Почта") {
-            window.location.href = `mailto:${value}`;
-        } else {
-            await copyToClipboard(value);
-            notify({title: title, message: `Скопировано` });
-        }
+        await copyToClipboard(value);
+        notify({title: title, message: `Скопировано` });
     };
 
     return (
@@ -55,46 +51,45 @@ export const DetailsItem: FC<DetailsItemProps> = ({ title, value }) => {
             <div className="details-title">
                 {iconMap[title]}
                 <span>{title}</span>
-
-                <AnimatePresence>
-                    {isHovered && value && (
-                        <motion.div
-                            key="copy-label"
-                            className="copy-label"
-                            initial={{ x: '105%' }}
-                            animate={{ x: '0%' }}
-                            exit={{ x: '105%' }}
-                            transition={{ ease: 'easeOut', type: 'tween', duration: 0.15 }}
-                        >
-                            <AnimatePresence mode="wait">
-                                <motion.div
-                                    key={copyError ? "error" : copied ? "copied" : "default"}
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                    exit={{ opacity: 0 }}
-                                    transition={{ duration: 0.15 }}
-                                    className="copy-label-content"
-                                >
-                                    {copyError ? (
-                                        <>
-                                            <ReportProblemRoundedIcon/>
-                                        </>
-                                    ) : copied ? (
-                                        <>
-                                            <CheckRoundedIcon/>
-                                        </>
-                                    ) : (
-                                        <>
-                                            <ContentCopyRoundedIcon/>
-                                        </>
-                                    )}
-                                </motion.div>
-                            </AnimatePresence>
-                        </motion.div>
-                    )}
-                </AnimatePresence>
             </div>
-            <span className="detail">{value || "Отсутствует"}</span>
+            <span className="detail">{value || "—"}</span>
+            <AnimatePresence>
+                {isHovered && value && (
+                    <motion.div
+                        key="copy-label"
+                        className="copy-label"
+                        initial={{ x: '105%', y: '-50%', opacity: 0 }}
+                        animate={{ x: '-50%', y: '-50%', opacity: 1 }}
+                        exit={{ x: '105%', y: '-50%' }}
+                        transition={{ ease: 'easeOut', type: 'tween', duration: 0.15 }}
+                    >
+                        <AnimatePresence mode="wait">
+                            <motion.div
+                                key={copyError ? "error" : copied ? "copied" : "default"}
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                                transition={{ duration: 0.15 }}
+                                className="copy-label-content"
+                            >
+                                {copyError ? (
+                                    <>
+                                        <ReportProblemRoundedIcon/>
+                                    </>
+                                ) : copied ? (
+                                    <>
+                                        <CheckRoundedIcon/>
+                                    </>
+                                ) : (
+                                    <>
+                                        <ContentCopyRoundedIcon/>
+                                    </>
+                                )}
+                            </motion.div>
+                        </AnimatePresence>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </div>
     );
 };

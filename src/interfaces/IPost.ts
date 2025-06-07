@@ -1,10 +1,10 @@
-import { Date } from './IDate.ts';
+import { IDate } from './IDate';
 
 export interface Post {
     id_post: number;
     title: string;
     description: string;
-    date: Date;
+    date: IDate;
     isPinned: boolean;
     user_id: number;
 }

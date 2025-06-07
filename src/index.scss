@@ -374,8 +374,8 @@ html {
                                         flex-direction: column;
                                         gap: 10px;
                                         align-items: center;
-                                        border-radius: 24px;
-                                        background: var(--color-accent-50);
+                                        border-radius: 32px 32px 14px 14px;
+                                        background: var(--color-gray-50);
                                         padding: 10px;
 
                                         .employee-editor__photo-container {
@@ -809,7 +809,7 @@ html {
                     flex: 1;
                     flex-direction: row;
                     gap: 15px;
-                    background: rgba(241, 242, 242, 0.8);
+                    background: rgba(241, 242, 242, 0.5);
                     backdrop-filter: blur(24px);
                     -webkit-backdrop-filter: blur(24px);
                     will-change: backdrop-filter;
@@ -825,13 +825,39 @@ html {
                         }
                     }
 
-                    .page-title {
-                        display: none;
+                    .header-item {
+                        border-radius: 32px;
+                        padding: 5px;
+                        height: 100%;
+                        gap: 6px;
+                        display: flex;
+                        cursor: pointer;
+                        text-decoration: none;
+                        justify-content: center;
                         align-items: center;
+                        font-size: 14px;
+                        font-weight: 600;
+                        transition: all 150ms;
 
-                        span {
-                            font-size: 24px;
-                            font-family: 'GrtskTera', sans-serif;
+                        &.rounded {
+                            aspect-ratio: 1/1;
+                        }
+
+                        span,
+                        svg {
+                            text-wrap: nowrap;
+                            color: var(--color-primary-700);
+                            fill: var(--color-primary-700);
+                            transition: all 150ms;
+                        }
+
+                        svg {
+                            height: 25px;
+                            width: 25px;
+                        }
+
+                        &:hover {
+                            background: var(--block-background);
                         }
                     }
 
@@ -850,87 +876,64 @@ html {
 
                     .profile-container {
                         display: none;
-                        flex-grow: 1;
-                        gap: 5px;
-                        flex-direction: row;
-                        padding: 0 20px;
 
-                        .header-item {
-                            border-radius: 32px;
-                            padding: 5px;
-                            height: 100%;
-                            gap: 6px;
-                            display: flex;
-                            cursor: pointer;
-                            text-decoration: none;
-                            justify-content: center;
-                            align-items: center;
-                            font-size: 14px;
-                            font-weight: 600;
-                            color: rgba(47, 55, 71, 0.85);
-                            transition: all 150ms;
-
-                            span,
-                            svg {
-                                text-wrap: nowrap;
-                                color: rgba(47, 55, 71, 0.85);
-                                transition: all 150ms;
-                            }
-
-                            svg {
-                                height: 25px;
-                                width: 25px;
-                                fill: rgba(47, 55, 71, 0.85);
-                            }
-
-                            &:hover {
-                                color: var(--secondary-color);
-                                fill: var(--secondary-color);
-                                background: var(--block-background) !important;
-
-                                span,
-                                svg {
-                                    color: var(--secondary-color);
-                                    fill: var(--secondary-color);
-                                }
-
-                                background-color: var(--item-hover-background);
-                            }
-
-                            &:active {
-                                background-color: var(--item-active-background);
-                            }
-                        }
-
-                        .login-btn,
-                        .logout-btn,
                         .notifications-btn {
-                            padding: 0;
-                            aspect-ratio: 1/1;
-                            border-radius: 50%;
-                            align-items: center;
                             justify-content: center;
+                            align-self: center;
+                            aspect-ratio: 1/1;
                         }
 
-                        .login-btn {
-                            svg {
-                                width: 30px;
-                                height: 30px;
-                                transform: translateX(-10%);
-                            }
-                        }
+                        .user-dropdown-wrapper {
+                            position: relative;
+                            padding: 2px;
 
-                        .user-wrapper {
-                            overflow: hidden;
-                            text-decoration: none;
-                            padding-left: 5px;
-                            gap: 8px;
-
-                            .user-image {
+                            .user-wrapper {
+                                display: flex;
+                                align-items: center;
+                                cursor: pointer;
+                                background: none;
+                                border: none;
                                 height: 100%;
                                 aspect-ratio: 1/1;
                                 border-radius: 50%;
-                                background-size: cover;
+                                overflow: hidden;
+
+                                .user-image {
+                                    width: 100%;
+                                    height: 100%;
+                                    background-position: top;
+                                    background-repeat: no-repeat;
+                                    background-size: cover;
+                                }
+                            }
+
+                            .user-dropdown-menu {
+                                position: absolute;
+                                right: 0;
+                                width: 200px;
+                                background: var(--block-background);
+                                overflow: scroll;
+                                border-radius: 12px;
+                                padding: 4px;
+                                box-shadow: var(--block-shadow);
+                                z-index: 999;
+
+                                a, button {
+                                    display: block;
+                                    width: 100%;
+                                    padding: 12px;
+                                    text-align: left;
+                                    background: none;
+                                    border: none;
+                                    cursor: pointer;
+                                    text-decoration: none;
+                                    border-radius: 7px;
+                                    font-size: 14px;
+
+                                    &:hover {
+                                        background-color: var(--color-gray-50);
+                                    }
+                                }
                             }
                         }
                     }
@@ -1035,7 +1038,7 @@ html {
                         width: 100%;
                         min-width: 45px;
                         border-radius: 32px;
-                        color: rgba(47, 55, 71, 0.85);
+                        color: var(--color-primary-700);
                         flex-shrink: 0;
                         overflow: hidden;
                         white-space: nowrap;
@@ -1043,7 +1046,7 @@ html {
                         transition: all 200ms ease;
 
                         svg {
-                            fill: rgba(47, 55, 71, 0.85);
+                            color: var(--color-primary-700);
                             flex-shrink: 0;
                             height: 25px;
                             width: 25px;
@@ -1061,12 +1064,7 @@ html {
 
                         &:hover,
                         &.active-nav-item {
-                            color: var(--secondary-color);
                             background: var(--block-background);
-
-                            svg {
-                                fill: var(--secondary-color);
-                            }
                         }
                     }
 
@@ -1121,7 +1119,7 @@ html {
                             flex-direction: column;
                             flex-grow: 1;
                             width: 100%;
-                            gap: 10px;
+                            gap: 5px;
                             max-width: 1920px;
                             margin: 0 auto;
 
@@ -1142,32 +1140,18 @@ html {
 
                             .page-filters {
                                 display: flex;
-                                flex-direction: column;
-                                gap: 5px;
-                                padding: 0 3px;
-
-                                .filters-buttons {
-                                    display: flex;
-
-                                    .department-skeleton {
-                                        width: 100px;
-                                        border-radius: 10px;
-                                        height: 35px;
-                                    }
-                                }
+                                padding: 0 5px;
+                                gap: 2px;
 
                                 .filters-search {
                                     display: flex;
                                     position: relative;
+                                    flex-grow: 1;
                                     gap: 5px;
-                                    width: 100%;
-                                    max-width: 100%;
 
                                     .filters-search__text {
                                         width: 100%;
-                                        font-weight: 600;
                                         flex: 1;
-                                        transition: 200ms;
                                     }
 
                                     svg {
@@ -1182,12 +1166,6 @@ html {
                                         &:hover {
                                             fill: var(--primary-color)
                                         }
-                                    }
-                                }
-
-                                .custom-dropdown {
-                                    &__button {
-                                        width: unset;
                                     }
                                 }
                             }
@@ -2030,265 +2008,255 @@ html {
                             &.page-contacts {
                                 .page-content {
                                     .employees-container {
-                                        position: relative;
-                                        grid-template-columns: repeat(1, calc(100% / 1 - 8px / 1 * (1 - 1)));
-                                        display: grid;
+                                        display: flex;
+                                        flex-wrap: wrap;
+                                        gap: 5px;
 
-                                        .employee-card {
+                                        .employees-container-item {
                                             position: relative;
-                                            display: flex;
-                                            flex-direction: column;
-                                            transition: all 150ms;
+                                            height: 80px;
+                                            width: 100%;
 
-                                            .employee-card__preview,
-                                            .employee-card__details {
-                                                background: rgba(255, 255, 255, 0.7);
-                                                border: 1px solid rgba(255, 255, 255, 0.8);
-                                            }
-
-                                            .employee-card__preview {
-                                                display: flex;
-                                                position: relative;
-                                                cursor: pointer;
+                                            .employee-card {
+                                                position: absolute;
+                                                overflow: hidden;
                                                 border-radius: 24px;
-                                                height: 100%;
-                                                padding: 4px;
-                                                gap: 5px;
-                                                z-index: 5;
-                                                transition: all 200ms;
+                                                max-height: 80px;
+                                                width: 100%;
+                                                background: rgba(255, 255, 255, 1);
+                                                transition: opacity 1s ease;
 
-                                                &.hidden {
-                                                    opacity: 0.5;
-                                                }
+                                                .employee-card__preview {
+                                                    display: flex;
+                                                    cursor: pointer;
+                                                    height: 80px;
+                                                    padding: 4px;
+                                                    gap: 5px;
 
-                                                .employee-actions {
-                                                    display: none;
-                                                    flex-direction: column;
-                                                    padding: 0 5px;
-                                                    gap: 3px;
-
-                                                    .employee-action {
-                                                        display: flex;
-                                                        align-items: center;
-                                                        justify-content: center;
-                                                        height: 25px;
-                                                        width: 25px;
-                                                        cursor: pointer;
-                                                        border-radius: 7px;
+                                                    &.hidden {
                                                         opacity: 0.5;
-                                                        overflow: visible;
-                                                        background: transparent;
-                                                        transition: all 150ms;
-
-                                                        svg {
-                                                            opacity: 0.3;
-                                                            transition: all 150ms;
-                                                        }
-
-                                                        .hidden-input {
-                                                            display: none;
-                                                        }
-
-                                                        &:hover {
-                                                            background: var(--block-background);
-                                                            box-shadow: var(--block-shadow);
-
-                                                            svg {
-                                                                opacity: 1;
-                                                            }
-                                                        }
                                                     }
 
-                                                    .employee-actions-item {
-                                                        display: flex;
-                                                        justify-content: right;
-                                                    }
+                                                    .employee-card__photo {
+                                                        position: relative;
+                                                        height: 65px;
+                                                        aspect-ratio: 1/1;
+                                                        background-size: cover;
+                                                        background-position: top;
+                                                        border-radius: 50%;
+                                                        transition: all 50ms;
 
-                                                    .employee-actions-photo {
-                                                        display: flex;
-                                                        flex-direction: column;
-                                                        gap: 2px;
-                                                    }
-
-                                                    .employee-actions-hide {
-
-                                                    }
-                                                }
-
-                                                .employee-card__photo {
-                                                    position: relative;
-                                                    height: 90px;
-                                                    aspect-ratio: 1/1;
-                                                    background-size: cover;
-                                                    background-position: top;
-                                                    border-radius: 50%;
-                                                    transition: all 50ms;
-
-                                                    .upload-container {
-                                                        display: flex;
-                                                        gap: 3px;
-                                                        position: absolute;
-                                                        left: 50%;
-                                                        transform: translateX(-50%);
-
-                                                        .photo-item {
+                                                        .upload-container {
                                                             display: flex;
-                                                            align-items: center;
-                                                            justify-content: center;
-                                                            background: rgba(12, 23, 41, 0.6);
-                                                            backdrop-filter: blur(10px);
-                                                            border-radius: 7px;
-                                                            font-weight: 600;
-                                                            height: 25px;
-                                                            overflow: hidden;
-                                                            padding: 5px;
-                                                            font-size: 12px;
-                                                            text-align: center;
-                                                            cursor: pointer;
-                                                            color: var(--background-color);
-                                                            transition: all 150ms;
+                                                            gap: 3px;
+                                                            position: absolute;
+                                                            left: 50%;
+                                                            transform: translateX(-50%);
 
-                                                            svg {
-                                                                fill: var(--background-color);
-                                                            }
+                                                            .photo-item {
+                                                                display: flex;
+                                                                align-items: center;
+                                                                justify-content: center;
+                                                                background: rgba(12, 23, 41, 0.6);
+                                                                backdrop-filter: blur(10px);
+                                                                border-radius: 7px;
+                                                                font-weight: 600;
+                                                                height: 25px;
+                                                                overflow: hidden;
+                                                                padding: 5px;
+                                                                font-size: 12px;
+                                                                text-align: center;
+                                                                cursor: pointer;
+                                                                color: var(--background-color);
+                                                                transition: all 150ms;
 
-                                                            &:hover {
-                                                                background: var(--secondary-color);
-                                                            }
-                                                        }
-
-                                                        .upload-photo {
-                                                            input {
-                                                                display: none;
-                                                            }
-                                                        }
-
-                                                        .delete-photo {
-                                                            aspect-ratio: 1/1;
-
-                                                            &:hover {
                                                                 svg {
-                                                                    fill: rgba(255, 0, 0, 0.8);
+                                                                    fill: var(--background-color);
+                                                                }
+
+                                                                &:hover {
+                                                                    background: var(--secondary-color);
+                                                                }
+                                                            }
+
+                                                            .upload-photo {
+                                                                input {
+                                                                    display: none;
+                                                                }
+                                                            }
+
+                                                            .delete-photo {
+                                                                aspect-ratio: 1/1;
+
+                                                                &:hover {
+                                                                    svg {
+                                                                        fill: rgba(255, 0, 0, 0.8);
+                                                                    }
                                                                 }
                                                             }
                                                         }
                                                     }
-                                                }
 
-                                                .employee-card__general {
-                                                    display: flex;
-                                                    flex-grow: 1;
-                                                    flex-direction: column;
-                                                    padding-top: 8px;
-
-                                                    .employee-card__name,
-                                                    .employee-card__position {
+                                                    .employee-card__general {
                                                         display: flex;
-                                                        align-items: flex-start;
-                                                        padding: 2px 3px;
-                                                        border-radius: 10px;
-                                                        transition: all 90ms;
+                                                        flex-grow: 1;
+                                                        flex-direction: column;
 
-                                                        &:hover {
-                                                            background: var(--item-hover-background);
+                                                        .employee-card__name,
+                                                        .employee-card__position {
+                                                            display: flex;
+                                                            align-items: flex-start;
+                                                            padding: 2px;
+                                                            border-radius: 10px;
+                                                            transition: background 50ms;
+
+                                                            &:hover {
+                                                                background: var(--color-gray-50);
+                                                            }
+
+                                                            &:active {
+                                                                background: var(--color-gray-100);
+                                                            }
                                                         }
 
-                                                        &:active {
-                                                            background: var(--item-active-background);
-                                                        }
-                                                    }
-
-                                                    .employee-card__name {
-                                                        display: flex;
-                                                        flex-direction: row;
-                                                        flex-wrap: wrap;
-                                                        gap: 2px;
-                                                        font-weight: 600;
-                                                        line-height: 1.1;
-                                                        font-size: 16px;
-
-                                                        .employee-card__lastname,
-                                                        .employee-card__firstname {
-                                                            display: inline-flex;
-                                                        }
-
-                                                        .employee-card__middlename {
-                                                            display: block;
-                                                            width: 100%;
-                                                        }
-                                                    }
-
-                                                    .employee-card__position {
-                                                        display: flex;
-                                                        align-items: center;
-                                                        font-size: 13px;
-                                                        opacity: 0.7;
-                                                    }
-                                                }
-                                            }
-
-                                            .employee-card__details {
-                                                position: absolute;
-                                                width: 100%;
-                                                display: flex;
-                                                flex-direction: row;
-                                                justify-content: space-between;
-                                                overflow: hidden;
-                                                padding: 2px;
-                                                box-shadow: var(--document-shadow);
-                                                border-radius: 24px;
-                                                backdrop-filter: blur(24px);
-                                                gap: 3px;
-                                                left: 50%;
-                                                bottom: 0;
-                                                right: 0;
-                                                transform: translate(-50%, 100%);
-                                                z-index: 6;
-                                                transition: width 150ms, padding 150ms, bottom 150ms;
-
-                                                .details-item {
-                                                    position: relative;
-                                                    display: flex;
-                                                    align-items: center;
-                                                    flex: 1 1;
-                                                    aspect-ratio: 2/1;
-                                                    padding: 3px 8px;
-                                                    border-radius: 24px;
-                                                    cursor: pointer;
-                                                    text-align: left;
-                                                    transition: background 150ms;
-
-                                                    .details-title {
-                                                        span,
-                                                        .copy-label {
-                                                            display: none;
-                                                        }
-                                                    }
-
-                                                    .detail {
-                                                        display: none;
-                                                    }
-
-                                                    .details-title {
-                                                        display: flex;
-                                                        width: 100%;
-                                                        justify-content: center;
-                                                        align-items: center;
-                                                        position: relative;
-                                                        overflow: hidden;
-                                                        user-select: none;
-                                                        gap: 5px;
-
-                                                        span,
-                                                        svg {
+                                                        .employee-card__name {
+                                                            display: flex;
+                                                            flex-direction: row;
+                                                            flex-wrap: wrap;
                                                             font-weight: 600;
-                                                            color: rgba(0, 0, 0, 0.5);
-                                                            fill: rgba(0, 0, 0, 0.5);
+                                                            line-height: 1;
+                                                            font-size: 15px;
+
+                                                            .employee-card__lastname,
+                                                            .employee-card__firstname {
+                                                                display: inline-flex;
+                                                            }
+
+                                                            .employee-card__firstname {
+                                                                margin-left: 3px;
+                                                            }
+
+                                                            .employee-card__middlename {
+                                                                display: block;
+                                                                width: 100%;
+                                                            }
+                                                        }
+
+                                                        .employee-card__position {
+                                                            display: flex;
+                                                            align-items: center;
+                                                            font-size: 12px;
+                                                            opacity: 0.7;
+                                                        }
+                                                    }
+
+                                                    .employee-actions {
+                                                        display: flex;
+                                                        flex-direction: column;
+                                                        padding: 0 5px;
+                                                        gap: 3px;
+
+                                                        .employee-action {
+                                                            display: flex;
+                                                            align-items: center;
+                                                            justify-content: center;
+                                                            height: 25px;
+                                                            width: 25px;
+                                                            cursor: pointer;
+                                                            border-radius: 7px;
+                                                            opacity: 0.5;
+                                                            overflow: visible;
+                                                            background: transparent;
+                                                            transition: all 150ms;
+
+                                                            svg {
+                                                                opacity: 0.2;
+                                                                transition: all 150ms;
+                                                            }
+
+                                                            .hidden-input {
+                                                                display: none;
+                                                            }
+
+                                                            &:hover {
+                                                                background: var(--block-background);
+                                                                box-shadow: var(--block-shadow);
+
+                                                                svg {
+                                                                    opacity: 1;
+                                                                }
+                                                            }
+                                                        }
+
+                                                        .employee-actions-item {
+                                                            display: flex;
+                                                            justify-content: right;
+                                                        }
+
+                                                        .employee-actions-photo {
+                                                            display: flex;
+                                                            flex-direction: column;
+                                                            gap: 2px;
+                                                        }
+
+                                                        .employee-actions-hide {
+
+                                                        }
+                                                    }
+
+                                                    .employee-card__photo,
+                                                    .employee-card__general {
+                                                        align-self: center;
+                                                    }
+                                                }
+
+                                                .employee-card__details {
+                                                    width: 100%;
+                                                    display: flex;
+                                                    flex-direction: column;
+                                                    padding: 1px;
+                                                    opacity: 0;
+                                                    gap: 1px;
+                                                    transition: opacity 350ms ease-in-out;
+
+                                                    .details-item {
+                                                        position: relative;
+                                                        display: flex;
+                                                        overflow: hidden;
+                                                        flex-direction: column;
+                                                        padding: 3px 8px;
+                                                        border-radius: 16px;
+                                                        cursor: pointer;
+                                                        text-align: left;
+                                                        transition: background 150ms;
+
+                                                        .details-title {
+                                                            display: flex;
+                                                            width: 100%;
+                                                            align-items: center;
+                                                            user-select: none;
+                                                            gap: 2px;
+
+                                                            span,
+                                                            svg {
+                                                                font-size: 12px;
+                                                                font-weight: 600;
+                                                                color: rgba(0, 0, 0, 0.5);
+                                                                fill: rgba(0, 0, 0, 0.5);
+                                                            }
+                                                        }
+
+                                                        .detail {
+                                                            font-size: 12px;
+                                                            margin-left: 14px;
+                                                            text-decoration: none;
                                                         }
 
                                                         .copy-label {
                                                             position: absolute;
-                                                            right: 0;
+                                                            top: 50%;
+                                                            transform: translateY(-50%);
+                                                            right: 10px;
 
                                                             .copy-label-content {
                                                                 display: flex;
@@ -2296,42 +2264,34 @@ html {
                                                                 align-items: center;
                                                             }
 
-                                                            span,
                                                             svg {
-                                                                font-size: 14px;
+                                                                font-size: 12px;
+                                                                fill: rgba(0, 0, 0, 0.5);
                                                             }
                                                         }
-                                                    }
 
-                                                    .detail {
-                                                        font-size: 14px;
-                                                        margin-left: 20px;
-                                                        text-decoration: none;
-                                                    }
+                                                        &:hover {
+                                                            background: var(--color-accent-50);
+                                                        }
 
-                                                    &:hover {
-                                                        background: var(--block-background);
-                                                        box-shadow: var(--block-shadow);
+                                                        &:active {
+                                                            background: var(--color-gray-100);
+                                                        }
                                                     }
                                                 }
-                                            }
 
-                                            &.fixed {
-                                                .employee-card__preview {
-                                                    border-radius: 24px 24px 0 0;
-                                                    border-left: 1px solid rgba(255, 255, 255, 0.6);
-                                                    border-top: 1px solid rgba(255, 255, 255, 0.6);
-                                                    border-right: 1px solid rgba(255, 255, 255, 0.6);
-                                                }
+                                                &.hovered {
+                                                    max-height: 1000px;
+                                                    z-index: 2;
+                                                    opacity: 1;
+                                                    backdrop-filter: blur(24px);
+                                                    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+                                                    background: rgba(255, 255, 255, 0.8);
+                                                    transition: max-height 350ms ease-in;
 
-                                                .employee-card__details {
-                                                    bottom: 0 !important;
-                                                    width: 100% !important;
-                                                    border-radius: 0 0 24px 24px;
-                                                    border-left: 1px solid rgba(255, 255, 255, 0.6);
-                                                    border-bottom: 1px solid rgba(255, 255, 255, 0.6);
-                                                    border-right: 1px solid rgba(255, 255, 255, 0.6);
-                                                    border-top: unset;
+                                                    .employee-card__details {
+                                                        opacity: 1;
+                                                    }
                                                 }
                                             }
                                         }
@@ -2384,8 +2344,6 @@ html {
                                                 }
                                             }
                                         }
-
-                                        .employees-grid {}
 
                                         &.old-style {
                                             grid-template-columns: 1fr;
@@ -2957,15 +2915,6 @@ html {
     }
 
     @media (min-width: 768px) {
-        .filters-buttons {
-            justify-content: center;
-            flex-wrap: wrap;
-
-            .filter-elem {
-                font-size: 14px;
-            }
-        }
-
         .no-data {
             max-width: 450px;
             padding: 20px;
@@ -3116,11 +3065,6 @@ html {
                                 .page-filters {
                                     .filters-search {
                                         gap: 10px;
-
-                                        .filters-search__text {
-                                            padding: 15px 20px;
-                                            font-size: 18px;
-                                        }
                                     }
                                 }
 
@@ -3312,65 +3256,77 @@ html {
                                 &.page-contacts {
                                     .page-content {
                                         .employees-container {
-                                            grid-template-columns: repeat(2, calc(100% / 2 - 8px / 2 * (2 - 1)));
-                                            gap: 4px;
+                                            gap: 5px;
 
-                                            .employee-card {
-                                                .employee-card__preview {
-                                                    padding: 10px;
+                                            .employees-container-item {
+                                                position: relative;
+                                                height: 100px;
+                                                width: calc(100% / 2 - 5px);
 
-                                                    .employee-card__photo {
+                                                .employee-card {
+                                                    max-height: 100px;
+
+                                                    .employee-card__preview {
                                                         height: 100px;
-                                                    }
 
-                                                    .employee-card__general {
-                                                        .employee-card__name {
-                                                            font-size: 18px;
+                                                        .employee-card__photo {
+                                                            height: 90px;
                                                         }
 
-                                                        .employee-card__position {
-                                                            font-size: 16px;
-                                                        }
-                                                    }
-                                                }
-
-                                                .employee-card__details {
-                                                    .details-item {
-                                                        .details-title {
-                                                            span,
-                                                            svg {
-                                                                font-size: 12px;
+                                                        .employee-card__general {
+                                                            .employee-card__name,
+                                                            .employee-card__position {
+                                                                padding: 4px;
                                                             }
-                                                        }
 
-                                                        .detail {
-                                                            font-size: 14px;
-                                                        }
-                                                    }
-                                                }
-                                            }
+                                                            .employee-card__name {
+                                                                font-size: 17px;
+                                                            }
 
-                                            .employee-card-skeleton {
-                                                padding: 10px;
-
-                                                .employee-image {
-                                                    height: 100px;
-                                                }
-
-                                                .employee-card__general {
-                                                    .employee-card__name {
-                                                        .employee-lastname,
-                                                        .employee-firstname,
-                                                        .employee-middlename {
-                                                            span {
-                                                                height: 20px;
+                                                            .employee-card__position {
+                                                                font-size: 14px;
                                                             }
                                                         }
                                                     }
 
-                                                    .employee-position {
-                                                        span {
-                                                            height: 16px;
+                                                    .employee-card__details {
+                                                        padding: 2px;
+
+                                                        .details-item {
+                                                            padding: 3px 12px;
+
+                                                            .details-title {
+                                                                gap: 4px;
+
+                                                                span,
+                                                                svg {
+                                                                    font-size: 14px;
+                                                                    font-weight: 600;
+                                                                    color: rgba(0, 0, 0, 0.5);
+                                                                    fill: rgba(0, 0, 0, 0.5);
+                                                                }
+                                                            }
+
+                                                            .detail {
+                                                                font-size: 14px;
+                                                                margin-left: 18px;
+                                                            }
+
+                                                            .copy-label {
+                                                                position: absolute;
+                                                                right: 0;
+
+                                                                .copy-label-content {
+                                                                    display: flex;
+                                                                    gap: 2px;
+                                                                    align-items: center;
+                                                                }
+
+                                                                span,
+                                                                svg {
+                                                                    font-size: 14px;
+                                                                }
+                                                            }
                                                         }
                                                     }
                                                 }
@@ -3576,13 +3532,6 @@ html {
             }
         }
 
-        .filters-buttons {
-            gap: 5px;
-            padding: 10px 0;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
         .styled {
             font-size: 16px;
         }
@@ -3689,7 +3638,7 @@ html {
                         .profile-container {
                             display: flex;
                             flex-grow: unset;
-                            padding: 2px 0;
+                            gap: 3px;
                         }
                     }
                 }
@@ -3718,25 +3667,7 @@ html {
                                 }
 
                                 .page-filters {
-                                    padding: 0 10px;
 
-                                    .filters-select {
-                                        display: flex;
-                                        align-items: stretch;
-                                        gap: 10px;
-
-                                        .custom-dropdown {
-                                            .custom-dropdown__toggle {
-                                                height: 100%;
-                                            }
-                                        }
-                                    }
-
-                                    .filters-search {
-                                        .filters-search__text {
-                                            font-size: 18px;
-                                        }
-                                    }
                                 }
 
                                 &.page-landing {
@@ -3964,94 +3895,6 @@ html {
                                     .page-content {
                                         padding-left: 5px;
 
-                                        .employees-container {
-                                            grid-template-columns: repeat(2, calc(100% / 2 - 8px / 3 * (3 - 1)));
-
-                                            .employee-card {
-                                                .employee-card__preview {
-                                                    padding: 5px;
-
-                                                    .employee-actions {
-                                                        display: flex;
-                                                    }
-
-                                                    .employee-card__photo {
-                                                        border-radius: 32px;
-                                                        height: 100px;
-                                                    }
-
-
-                                                    .employee-card__general {
-                                                        .employee-card__name {
-                                                            font-size: 16px;
-                                                        }
-
-                                                        .employee-card__position {
-                                                            font-size: 14px;
-                                                        }
-                                                    }
-                                                }
-
-                                                .employee-card__details {
-                                                    flex-direction: column;
-                                                    justify-content: unset;
-
-                                                    .details-item {
-                                                        flex: unset;
-                                                        aspect-ratio: unset;
-                                                        flex-direction: column;
-                                                        align-items: unset;
-
-                                                        .details-title {
-                                                            justify-content: unset;
-
-                                                            span,
-                                                            svg {
-                                                                font-size: 14px;
-                                                            }
-
-                                                            span,
-                                                            .copy-label {
-                                                                display: block;
-                                                            }
-                                                        }
-
-                                                        .detail {
-                                                            display: block;
-                                                            font-size: 16px;
-                                                        }
-                                                    }
-                                                }
-
-                                                &.hovered,
-                                                &.fixed {
-                                                    .employee-card__preview {
-                                                        opacity: 1;
-                                                        box-shadow: var(--document-shadow);
-                                                    }
-                                                }
-                                            }
-
-                                            .employee-card-skeleton {
-                                                padding: 15px;
-
-                                                .employee-image {
-                                                    height: 115px;
-                                                }
-
-                                                .employee-card__general {
-                                                    .employee-card__name {
-                                                        .employee-lastname,
-                                                        .employee-firstname,
-                                                        .employee-middlename {
-                                                            span {
-                                                                height: 22px;
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
                                     }
                                 }
 
@@ -4246,12 +4089,6 @@ html {
     }
 
     @media (min-width: 1440px) {
-        .filters-buttons {
-            .filter-elem {
-                font-size: 16px;
-            }
-        }
-
         body {
             #dynamica {
                 .header-wrapper {
@@ -4272,8 +4109,15 @@ html {
                         }
 
                         .profile-container {
+                            gap: 5px;
+
                             .header-item {
                                 font-size: 16px;
+
+                                svg {
+                                    height: 27px;
+                                    width: 27px;
+                                }
                             }
                         }
                     }
@@ -4515,60 +4359,82 @@ html {
                                 &.page-contacts {
                                     .page-content {
                                         .employees-container {
-                                            grid-template-columns: repeat(3, calc(100% / 3 - 8px / 3 * (3 - 1)));
+                                            gap: 10px;
 
-                                            .employee-card {
-                                                .employee-card__preview {
-                                                    .employee-card__photo {
-                                                        height: 120px;
-                                                    }
+                                            .employees-container-item {
+                                                position: relative;
+                                                height: 130px;
+                                                width: calc(100% / 3 - 10px);
 
-                                                    .employee-card__general {
-                                                        .employee-card__name {
-                                                            font-size: 18px;
+                                                .employee-card {
+                                                    max-height: 130px;
+
+                                                    .employee-card__preview {
+                                                        height: 130px;
+
+                                                        .employee-card__photo {
+                                                            height: 115px;
                                                         }
 
-                                                        .employee-card__position {
-                                                            font-size: 16px;
-                                                        }
-                                                    }
-                                                }
+                                                        .employee-card__general {
+                                                            .employee-card__name,
+                                                            .employee-card__position {
+                                                                padding: 7px;
+                                                            }
 
-                                                .employee-card__details {
-                                                    .details-item {
-                                                        .details-title {
-                                                            span,
-                                                            svg {
+                                                            .employee-card__name {
+                                                                font-size: 20px;
+                                                            }
+
+                                                            .employee-card__position {
                                                                 font-size: 16px;
                                                             }
                                                         }
-
-                                                        .detail {
-                                                            font-size: 16px;
-                                                        }
                                                     }
-                                                }
-                                            }
 
-                                            .employee-card-skeleton {
-                                                .employee-image {
-                                                    height: 120px;
-                                                }
+                                                    .employee-card__details {
+                                                        flex-wrap: wrap;
+                                                        flex-direction: row;
+                                                        padding: 5px;
+                                                        gap: 3px;
 
-                                                .employee-card__general {
-                                                    .employee-card__name {
-                                                        .employee-lastname,
-                                                        .employee-firstname,
-                                                        .employee-middlename {
-                                                            span {
-                                                                height: 22px;
+                                                        .details-item {
+                                                            padding: 5px 10px;
+                                                            flex: 1 1 calc(50% - 1.5px);
+                                                            max-width: calc(50% - 1.5px);
+
+                                                            .details-title {
+                                                                gap: 4px;
+
+                                                                span,
+                                                                svg {
+                                                                    font-size: 16px;
+                                                                    font-weight: 600;
+                                                                    color: rgba(0, 0, 0, 0.5);
+                                                                    fill: rgba(0, 0, 0, 0.5);
+                                                                }
                                                             }
-                                                        }
-                                                    }
 
-                                                    .employee-position {
-                                                        span {
-                                                            height: 16px;
+                                                            .detail {
+                                                                font-size: 16px;
+                                                                margin-left: 20px;
+                                                            }
+
+                                                            .copy-label {
+                                                                position: absolute;
+                                                                right: 0;
+
+                                                                .copy-label-content {
+                                                                    display: flex;
+                                                                    gap: 2px;
+                                                                    align-items: center;
+                                                                }
+
+                                                                span,
+                                                                svg {
+                                                                    font-size: 16px;
+                                                                }
+                                                            }
                                                         }
                                                     }
                                                 }

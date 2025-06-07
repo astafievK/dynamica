@@ -62,45 +62,39 @@ export const EmployeeActions: FC<Props> = ({ employee }) => {
             transition={{ duration: 0.25 }}
             className="employee-actions"
         >
-            <div className="employee-actions-photo employee-actions-item">
-                <button className="employee-action" onClick={() => openModal(employee)}>
-                    <ModeEditOutlineOutlinedIcon />
-                </button>
-
-                <label className="employee-action">
-                    <PortraitOutlinedIcon />
-                    {isLoading && <span className="shimmer"></span>}
-                    <input
-                        type="file"
-                        accept="image/*"
-                        className="hidden-input"
-                        onChange={handleFileChange}
-                        disabled={isLoading}
-                    />
-                </label>
-
-                {employee.image.path !== "default.webp" && (
-                    <button
-                        className="employee-action"
-                        onClick={handleDeleteImageClick}
-                        disabled={deleteImageIsLoading}
-                    >
-                        {deleteImageIsLoading && <span className="shimmer"></span>}
-                        <DeleteForeverOutlinedIcon />
-                    </button>
-                )}
-            </div>
-
-            <div className="employee-actions-hide employee-actions-item">
+            <button
+                className="employee-action"
+                onClick={handleChangeVisibilityClick}
+                disabled={changeVisibilityIsLoading}
+            >
+                {changeVisibilityIsLoading && <span className="shimmer"></span>}
+                {employee.is_hidden ? <VisibilityOutlinedIcon /> : <VisibilityOffOutlinedIcon />}
+            </button>
+            <button className="employee-action" onClick={() => openModal(employee)}>
+                <ModeEditOutlineOutlinedIcon />
+            </button>
+            <label className="employee-action">
+                <PortraitOutlinedIcon />
+                {isLoading && <span className="shimmer"></span>}
+                <input
+                    type="file"
+                    accept="image/*"
+                    className="hidden-input"
+                    onChange={handleFileChange}
+                    disabled={isLoading}
+                />
+            </label>
+            {employee.image.path !== "default.webp" && (
                 <button
                     className="employee-action"
-                    onClick={handleChangeVisibilityClick}
-                    disabled={changeVisibilityIsLoading}
+                    onClick={handleDeleteImageClick}
+                    disabled={deleteImageIsLoading}
                 >
-                    {changeVisibilityIsLoading && <span className="shimmer"></span>}
-                    {employee.is_hidden ? <VisibilityOutlinedIcon /> : <VisibilityOffOutlinedIcon />}
+                    {deleteImageIsLoading && <span className="shimmer"></span>}
+                    <DeleteForeverOutlinedIcon />
                 </button>
-            </div>
+            )}
+
         </motion.div>
     );
 };

@@ -1,14 +1,16 @@
-import {Department} from "./IDepartment.ts";
-import {Position} from "./IPosition.ts";
-import {Image} from "./IImage.ts";
+import { IDepartment } from "./IDepartment";
+import {IPosition} from "./IPosition";
+import {IImage} from "./IImage";
+import { IPermission } from "./IPermission";
 
-export interface User {
+export interface IUser {
     id_user: number;
     login: string;
     name: string;
     surname: string;
     phoneNumber: string;
-    department: Department;
-    position: Position;
-    image: Image;
+    department: IDepartment;
+    position: IPosition;
+    image: IImage;
+    permissions: IPermission[];
 }

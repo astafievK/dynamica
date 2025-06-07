@@ -1,9 +1,9 @@
 import {baseApi} from "../api.ts";
-import {Organization} from "../../interfaces/IOrganization.ts";
+import {IOrganization} from "../../interfaces/IOrganization.ts";
 
 export const organizationApi = baseApi.injectEndpoints({
     endpoints: builder => ({
-        getOrganizations: builder.query<{status: string, organizations: Organization[]}, void>({
+        getOrganizations: builder.query<{status: string, organizations: IOrganization[]}, void>({
             query: () => ({
                 url: `/Organization/getOrganizations.php`,
                 method: "GET",

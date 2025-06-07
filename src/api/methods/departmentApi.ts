@@ -1,18 +1,18 @@
 import {baseApi} from "../api.ts";
-import {Department} from "../../interfaces/IDepartment.ts";
+import {IDepartment} from "../../interfaces/IDepartment.ts";
 import { CreateDepartmentCommand } from "../commands/ICreateDepartmentCommand.ts";
 import {EditDepartmentTitleCommand} from "../commands/IEditDepartmentTitleCommand.ts";
 
 export const departmentApi = baseApi.injectEndpoints({
     endpoints: builder => ({
-        getDepartments: builder.query<{status: string, departments: Department[]}, void>({
+        getDepartments: builder.query<{status: string, departments: IDepartment[]}, void>({
             query: () => ({
                 url: `/Department/getDepartments.php`,
                 method: "GET",
             }),
             providesTags: ['Department'],
         }),
-        getDepartmentsTitlesNotNull: builder.query<{status: string, titles: string[]}, void>({
+        getDepartmentsTitlesNotNull: builder.query<{status: string, departments: string[]}, void>({
             query: () => ({
                 url: `/Department/getDepartmentsTitlesNotNull.php`,
                 method: "GET",

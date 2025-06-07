@@ -1,7 +1,7 @@
-import {Date} from "./IDate.ts";
-import {Image} from "./IImage.ts";
-import {Position} from "./IPosition.ts";
-import {Department} from "./IDepartment.ts";
+import {IDepartment} from "./IDepartment";
+import {IPosition} from "./IPosition";
+import {IImage} from "./IImage";
+import {IDate} from "./IDate";
 
 export interface Employee {
     id_user: number,
@@ -11,10 +11,10 @@ export interface Employee {
     uid: string,
     phone: string,
     email: string | null,
-    birthday: Date,
+    birthday: IDate,
     is_retired: boolean,
     is_hidden: boolean,
-    department: Department,
-    position: Position,
-    image: Image
+    department: IDepartment,
+    position: IPosition,
+    image: IImage
 }

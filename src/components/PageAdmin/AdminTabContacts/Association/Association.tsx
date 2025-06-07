@@ -1,11 +1,11 @@
 import { FC, useState } from "react";
 import { ModalUserNotification } from "../../../Modals/ModalUserNotification/ModalUserNotification.tsx";
-import { Department } from "../../../../interfaces/IDepartment.ts";
+import { IDepartment } from "../../../../interfaces/IDepartment.ts";
 import {useEditDepartmentTitleByIdMutation} from "../../../../api/methods/departmentApi.ts";
 import SaveRoundedIcon from '@mui/icons-material/SaveRounded';
 
 interface AssociationProps {
-    department: Department
+    department: IDepartment
 }
 
 export const Association: FC<AssociationProps> = (props) => {

@@ -9,6 +9,8 @@ import modalNotificationsSlice from "../api/slices/modalNotificationsSlice.ts";
 import mobileMenuSlice from "../api/slices/mobileMenuSlice.ts";
 import scrollLockSlice from "../api/slices/scrollLockSlice.ts";
 import historySlice from "../api/slices/historySlice.ts";
+import leftMenuSlice from "../api/slices/leftMenuSlice.ts";
+import employeesContainerSlice from "../api/slices/employeesContainerSlice.ts";
 
 const persistConfig = {
     key: 'root',
@@ -29,6 +31,8 @@ const rootReducer = combineReducers({
     auth: authSlice,
     scrollLock: scrollLockSlice,
     history: historySlice,
+    leftMenuReducer: leftMenuSlice,
+    employeesContainerReducer: employeesContainerSlice,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

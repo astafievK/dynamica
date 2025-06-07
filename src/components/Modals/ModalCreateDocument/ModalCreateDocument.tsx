@@ -25,11 +25,36 @@ const reconciliators = [
     { id: 4, title: 'какой-то пункт 4' },
 ]
 
+const approvers = [
+    { id: 1, title: 'какой-то пункт 1' },
+    { id: 2, title: 'какой-то пункт 2' },
+    { id: 3, title: 'какой-то пункт 3' },
+    { id: 4, title: 'какой-то пункт 4' },
+]
+
+const serviceTypes = [
+    { id: 1, title: 'какой-то пункт 1' },
+    { id: 2, title: 'какой-то пункт 2' },
+    { id: 3, title: 'какой-то пункт 3' },
+    { id: 4, title: 'какой-то пункт 4' },
+]
+
 export const ModalCreateDocument: FC = () => {
     const { closeModal } = useCreateDocument();
     const { isClosing, handleClose } = useModal(true, () => closeModal());
     const [startDate, setStartDate] = useState("");
     const [endDate, setEndDate] = useState("");
+    const [documentType, setDocumentType] = useState<{id: number, title: string}>(documentTypes[0])
+    const [dealershipLocation, setDealershipLocation] = useState<{id: number, title: string}>(dealershipLocations[0])
+    const [reconciliator, setReconciliator] = useState<{id: number, title: string}>(reconciliators[0])
+    const [approver, setApprover] = useState<{id: number, title: string}>(approvers[0])
+    const [serviceType, setServiceType] = useState<{id: number, title: string}>(serviceTypes[0])
+
+    console.log(documentType)
+    console.log(dealershipLocation)
+    console.log(reconciliator)
+    console.log(approver)
+    console.log(serviceType)
 
     const startInputRef = useRef<HTMLInputElement>(null);
     const endInputRef = useRef<HTMLInputElement>(null);
@@ -63,19 +88,19 @@ export const ModalCreateDocument: FC = () => {
                         <div className="fields-primary">
                             <div className="field">
                                 <span className="field-title">Вид договора</span>
-                                <Dropdown options={documentTypes} label={'Вид договора'} value={documentTypes[0]}/>
+                                <Dropdown options={documentTypes} label={'Вид договора'} value={documentTypes[0]} onSelect={setDocumentType}/>
                             </div>
                             <div className="field">
                                 <span className="field-title">Город расположение ДЦ</span>
-                                <Dropdown options={dealershipLocations} label={'Город расположение ДЦ'} value={dealershipLocations[0]}/>
+                                <Dropdown options={dealershipLocations} label={'Город расположение ДЦ'} value={dealershipLocations[0]} onSelect={setDealershipLocation}/>
                             </div>
                             <div className="field">
                                 <span className="field-title">Согласующие</span>
-                                <Dropdown options={reconciliators} label={'Согласующие'} value={reconciliators[0]}/>
+                                <Dropdown options={reconciliators} label={'Согласующие'} value={approvers[0]} onSelect={setApprover}/>
                             </div>
                             <div className="field">
                                 <span className="field-title">Юр. лицо Автохолдинга</span>
-                                <Dropdown options={reconciliators} label={'Юр. лицо Автохолдинга'} value={reconciliators[0]}/>
+                                <Dropdown options={reconciliators} label={'Юр. лицо Автохолдинга'} value={reconciliators[0]} onSelect={setReconciliator}/>
                             </div>
                             <div className="field">
                                 <span className="field-title">Сторонний контрагент</span>
@@ -119,7 +144,7 @@ export const ModalCreateDocument: FC = () => {
                             </div>
                             <div className="field">
                                 <span className="field-title">Вид услуги</span>
-                                <Dropdown options={documentTypes} label={'Вид услуги'} value={documentTypes[0]}/>
+                                <Dropdown options={documentTypes} label={'Вид услуги'} value={serviceTypes[0]} onSelect={setServiceType}/>
                             </div>
                         </div>
                         <div className="field field-comment">
