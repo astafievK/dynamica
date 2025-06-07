@@ -2024,56 +2024,6 @@ html {
                                                         background-position: top;
                                                         border-radius: 50%;
                                                         transition: all 50ms;
-
-                                                        .upload-container {
-                                                            display: flex;
-                                                            gap: 3px;
-                                                            position: absolute;
-                                                            left: 50%;
-                                                            transform: translateX(-50%);
-
-                                                            .photo-item {
-                                                                display: flex;
-                                                                align-items: center;
-                                                                justify-content: center;
-                                                                background: rgba(12, 23, 41, 0.6);
-                                                                backdrop-filter: blur(10px);
-                                                                border-radius: 7px;
-                                                                font-weight: 600;
-                                                                height: 25px;
-                                                                overflow: hidden;
-                                                                padding: 5px;
-                                                                font-size: 12px;
-                                                                text-align: center;
-                                                                cursor: pointer;
-                                                                color: var(--background-color);
-                                                                transition: all 150ms;
-
-                                                                svg {
-                                                                    fill: var(--background-color);
-                                                                }
-
-                                                                &:hover {
-                                                                    background: var(--secondary-color);
-                                                                }
-                                                            }
-
-                                                            .upload-photo {
-                                                                input {
-                                                                    display: none;
-                                                                }
-                                                            }
-
-                                                            .delete-photo {
-                                                                aspect-ratio: 1/1;
-
-                                                                &:hover {
-                                                                    svg {
-                                                                        fill: rgba(255, 0, 0, 0.8);
-                                                                    }
-                                                                }
-                                                            }
-                                                        }
                                                     }
 
                                                     .employee-card__general {
@@ -2283,7 +2233,7 @@ html {
                                             gap: 20px;
 
                                             .employee-image {
-                                                height: 90px;
+                                                height: 65px;
                                                 aspect-ratio: 1/1;
                                                 border-radius: 50%;
                                                 overflow: hidden;
@@ -2303,14 +2253,27 @@ html {
                                                 flex-direction: column;
 
                                                 .employee-card__name {
+                                                    display: flex;
+                                                    flex-wrap: wrap; // позволяет перенос на новую строку
+                                                    gap: 4px;
                                                     width: 100%;
 
                                                     .employee-lastname,
                                                     .employee-firstname,
                                                     .employee-middlename {
                                                         span {
-                                                            height: 16px;
+                                                            width: 100% !important;
+                                                            height: 13px;
                                                         }
+                                                    }
+
+                                                    .employee-lastname,
+                                                    .employee-firstname {
+                                                        width: calc(50% - 2px); // два по 50%, с учётом gap: 4px
+                                                    }
+
+                                                    .employee-middlename {
+                                                        width: 60%;
                                                     }
                                                 }
 
@@ -2318,7 +2281,7 @@ html {
                                                     width: 100%;
 
                                                     span {
-                                                        height: 14px;
+                                                        height: 13px;
                                                     }
                                                 }
                                             }
@@ -3308,6 +3271,14 @@ html {
                                                             }
                                                         }
                                                     }
+                                                }
+                                            }
+
+                                            .employee-card-skeleton {
+                                                width: calc(100% / 2 - 5px);
+
+                                                .employee-image {
+                                                    height: 90px;
                                                 }
                                             }
                                         }
@@ -4416,6 +4387,14 @@ html {
                                                             }
                                                         }
                                                     }
+                                                }
+                                            }
+
+                                            .employee-card-skeleton {
+                                                width: calc(100% / 3 - 10px);
+
+                                                .employee-image {
+                                                    height: 115px;
                                                 }
                                             }
                                         }
