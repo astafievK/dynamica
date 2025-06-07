@@ -13,6 +13,7 @@
   --color-primary-900: #070f1b;
   /* ACCENT / SUCCESS (зеленый #5AB058) */
   --color-accent-50: #e7f4e7;
+  --color-accent-75: #daeed9;
   --color-accent-100: #cce7cb;
   --color-accent-200: #aad8aa;
   --color-accent-300: #84c985;
@@ -110,23 +111,22 @@ button {
   transition: all 0.1s;
 }
 button.primary {
-  background-color: var(--color-primary-400);
-  color: white;
+  background-color: var(--color-accent-50);
+  color: var(--color-primary-600);
   border: none;
   outline: none;
 }
 button.primary:hover {
-  background: var(--color-primary-600);
+  background: var(--color-accent-200);
 }
 button.primary:active {
-  background: var(--color-primary-700);
+  background: var(--color-accent-300);
 }
 button.primary:focus-visible {
   outline: 2px solid var(--color-primary-300);
   outline-offset: 2px;
 }
 button.secondary {
-  background-color: var(--color-gray-100);
   color: var(--color-primary-700);
   outline: none;
 }
@@ -155,29 +155,6 @@ button:disabled {
   animation: shimmer-animation 0.8s linear infinite;
 }
 
-.filters-buttons {
-  padding: 5px 0;
-  display: flex;
-  gap: 2px;
-  overflow: auto;
-}
-.filters-buttons .filter-elem {
-  background: transparent;
-  border-radius: 7px;
-  font-weight: 600;
-  font-size: 14px;
-  padding: 8px;
-  flex-shrink: 0;
-  transition: all 100ms;
-}
-.filters-buttons .filter-elem:hover {
-  background-color: var(--item-hover-background);
-}
-.filters-buttons .filter-elem.selected {
-  background-color: var(--block-background);
-  color: var(--color-accent-700);
-}
-
 input[type=text],
 input[type=password],
 textarea {
@@ -186,7 +163,7 @@ textarea {
 input[type=text].styled,
 input[type=password].styled,
 textarea.styled {
-  padding: 15px;
+  padding: 10px 15px;
   border-radius: 32px;
   background: var(--block-background);
   border: 1px solid var(--color-gray-100);
@@ -283,6 +260,22 @@ textarea {
   user-select: none;
 }
 
+@media (min-width: 768px) {
+  input[type=text].styled,
+  input[type=password].styled,
+  textarea.styled {
+    padding: 12px;
+    font-size: 16px;
+  }
+}
+@media (min-width: 1024px) {
+  input[type=text].styled,
+  input[type=password].styled,
+  textarea.styled {
+    font-size: 18px;
+    padding: 15px;
+  }
+}
 .custom-dropdown {
   position: relative;
 }
