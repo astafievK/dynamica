@@ -1,102 +1,115 @@
-import { FC, useState, useEffect } from "react";
+import { FC, useState, useEffect, useRef } from "react";
+import classNames from "classnames";
 import "./Dropdown.css";
-import { Cross } from "../Cross/Cross.tsx";
+import { AnimatePresence, motion } from "framer-motion";
 
 interface DropdownProps {
     options: { id: number, title: string }[];
     label: string;
     value: { id: number, title: string } | null;
-    onSelect?: (value: { id: number, title: string }) => void;
+    onSelect: (value: { id: number, title: string }) => void;
     isDisabled?: boolean;
+    classNames?: string[];
 }
 
-export const Dropdown: FC<DropdownProps> = ({ options, label, value, onSelect, isDisabled }) => {
+export const Dropdown: FC<DropdownProps> = ({
+                                                options,
+                                                label,
+                                                value,
+                                                onSelect,
+                                                isDisabled,
+                                                classNames: externalClasses = []
+                                            }) => {
     const [isOpen, setIsOpen] = useState(false);
-    const [isClosing, setIsClosing] = useState(false);
     const [selectedValue, setSelectedValue] = useState<{ id: number, title: string } | null>(value);
+    const dropdownRef = useRef<HTMLDivElement>(null);
 
     const toggleDropdown = () => {
         if (!isDisabled) {
-            setIsOpen((prev) => !prev);
+            setIsOpen(prev => !prev);
         }
     };
 
     const handleSelect = (option: { id: number, title: string }) => {
         setSelectedValue(option);
-        if (onSelect) {
-            onSelect(option);
-        }
-        setIsClosing(true);
-        setTimeout(() => {
-            setIsOpen(false);
-            setIsClosing(false);
-        }, 400);
+        onSelect(option);
+        setIsOpen(false);
     };
 
     useEffect(() => {
-        if (!isDisabled) {
-            if (isOpen) {
-                document.body.style.overflow = 'hidden';
-            } else {
-                document.body.style.overflow = '';
-            }
-        }
-
-        return () => {
-            if (!isDisabled) {
-                document.body.style.overflow = '';
+        const handleClickOutside = (event: MouseEvent) => {
+            if (
+                isOpen &&
+                dropdownRef.current &&
+                !dropdownRef.current.contains(event.target as Node)
+            ) {
+                setIsOpen(false);
             }
         };
-    }, [isOpen, isDisabled]);
-
-    useEffect(() => {
-        if (isClosing) {
-            setTimeout(() => {
-                setIsOpen(false);
-                setIsClosing(false);
-            }, 400);
-        }
-    }, [isClosing]);
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [isOpen]);
 
     useEffect(() => {
         setSelectedValue(value);
     }, [value]);
 
     return (
-        <>
-            <div className={`custom-dropdown ${(isOpen && !isDisabled) ? 'active' : ''}`}>
-                <button className="custom-dropdown__button" onClick={toggleDropdown}>
-                    {label}
-                    {!isDisabled && <img className="arrow" src="/arrow.svg" alt=""/>}
-                </button>
-            </div>
-            {
-                isOpen && !isDisabled && (
-                    <div className={`modal ${isClosing ? "hidden" : ""}`} id="modalDropdown">
-                        <div className={`modal-content modal-dropdown ${isClosing ? "hidden" : ""}`}>
-                            <div className="modal-content__header">
-                                <span className={"modal-title"}>{label}</span>
-                                <Cross color={"#000000"} onClick={() => setIsClosing(true)} />
-                            </div>
-                            <div className="modal-content__body">
-                                <ul className="items">
-                                    {options.map((option) => (
-                                        <li
-                                            className={`item ${selectedValue?.id === option.id ? "selected" : ""}`}
-                                            key={option.id}
-                                        >
-                                            <button className="item-button" onClick={() => handleSelect(option)}>
-                                                {option.title}
-                                            </button>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        </div>
-                        <div className={`spoiler ${isClosing ? "hidden" : ""}`} onClick={() => setIsClosing(true)}></div>
-                    </div>
-                )
-            }
-        </>
+        <div
+            className={classNames("custom-dropdown", externalClasses, {
+                disabled: isDisabled
+            })}
+            ref={dropdownRef}
+        >
+            <button
+                className={classNames("custom-dropdown__button", {
+                    active: isOpen
+                })}
+                onClick={toggleDropdown}
+                type="button"
+                disabled={isDisabled}
+                aria-haspopup="listbox"
+                aria-expanded={isOpen}
+            >
+                {selectedValue ? selectedValue.title : label}
+                {!isDisabled && <img className="arrow" src="/arrow.svg" alt="arrow" />}
+            </button>
+
+            <AnimatePresence>
+                {isOpen && !isDisabled && (
+                    <motion.ul
+                        className="custom-dropdown__list"
+                        role="listbox"
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 10 }}
+                        transition={{ duration: 0.1 }}
+                    >
+                        {options.map((option) => (
+                            <li
+                                key={option.id}
+                                className={classNames(
+                                    "custom-dropdown__item",
+                                    { selected: selectedValue?.id === option.id},
+
+                                )}
+                                role="option"
+                                aria-selected={selectedValue?.id === option.id}
+                            >
+                                <button
+                                    className="custom-dropdown__item-button"
+                                    type="button"
+                                    onClick={() => handleSelect(option)}
+                                >
+                                    {option.title}
+                                </button>
+                            </li>
+                        ))}
+                    </motion.ul>
+                )}
+            </AnimatePresence>
+        </div>
     );
-}
+};

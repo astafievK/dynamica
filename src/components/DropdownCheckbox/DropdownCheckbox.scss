@@ -50,17 +50,18 @@
       padding: 10px;
 
       .checkbox-dropdown__option {
+        position: relative;
         display: flex;
         align-items: center;
         flex: 0 0 auto;
-        padding: 15px 10px;
+        padding: 15px 12px;
         border-radius: 32px;
         font-size: 14px;
         cursor: pointer;
-        transition: all 0.1s;
+        transition: all 0.25s;
 
         &:hover {
-          background-color: var(--color-gray-50);
+          background-color: var(--color-primary-50);
         }
 
         input {
@@ -68,11 +69,16 @@
         }
 
         &--selected {
-          background-color: var(--color-accent-100);
+          background-color: var(--color-primary-500);
+          color: #FFFFFF;
 
           &:hover {
-            background-color: var(--color-accent-200);
+            background-color: var(--color-primary-600);
           }
+        }
+
+        &.is-disabled {
+          opacity: 0.5;
         }
       }
     }
