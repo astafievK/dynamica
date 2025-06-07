@@ -782,27 +782,6 @@ html {
                 z-index: 10;
                 transition: transform 0.3s ease-in-out;
 
-                &::before,
-                &::after {
-                    display: none;
-                    content: ' ';
-                    height: 95px;
-                    background: var(--secondary-color);
-                    position: absolute;
-                    top: -7px;
-                    width: 35.75px;
-                }
-
-                &::before {
-                    clip-path: path("M35.75,0V56.68C7.58,57,.09,78,.09,87h-.09V0H35.75Z");
-                    left: 0;
-                }
-
-                &::after {
-                    clip-path: path("M35.75,0V87h-.09c0-9-7.49-30-35.66-30.32V0H35.75Z");
-                    right: 0;
-                }
-
                 header {
                     display: flex;
                     position: relative;

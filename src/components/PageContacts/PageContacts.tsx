@@ -74,7 +74,12 @@ export const PageContacts: FC = () => {
         if (search !== temporarySearchValue) {
             setTemporarySearchValue(search);
         }
-    }, [departmentsTitles]);
+    }, [
+        departmentsTitles,
+        searchParams,
+        selectedDepartment.title,
+        temporarySearchValue,
+    ]);
 
     useEffect(() => {
         setCurrentPage(1);
@@ -91,7 +96,7 @@ export const PageContacts: FC = () => {
         }
 
         setSearchParams(params);
-    }, [selectedDepartment, temporarySearchValue]);
+    }, [selectedDepartment, temporarySearchValue, setSearchParams]);
 
     useEffect(() => {
         if (!isLoading && data) {
