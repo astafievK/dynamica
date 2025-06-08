@@ -34,7 +34,7 @@ const styleToIdMap: Record<"new" | "old", number> = {
 const normalizeSearch = (value: string) => value.trim().replace(/\s+/g, " ");
 
 export const PageContacts: FC = () => {
-    const [selectedDepartment, setSelectedDepartment] = useState<{id: number, title: string} | null>(null);
+    const [selectedDepartment, setSelectedDepartment] = useState<{id: number, title: string}>({ id: 0, title: "Все" });
     const [temporarySearchValue, setTemporarySearchValue] = useState<string>("");
     const debouncedSearchValue = useDebounce(temporarySearchValue, 150);
     const [isFilterChanging, setIsFilterChanging] = useState<boolean>(false);
@@ -42,7 +42,7 @@ export const PageContacts: FC = () => {
     const { user } = useTypedSelector(state => state.auth)
     const { data: departmentsTitles, isLoading: departmentsLoading } = useGetDepartmentsTitlesNotNullQuery();
     const { data, isLoading } = useGetUsersFilteredQuery({
-        department: selectedDepartment?.title ?? "",
+        department: selectedDepartment?.title,
         search: normalizeSearch(debouncedSearchValue)
     });
 
@@ -67,21 +67,26 @@ export const PageContacts: FC = () => {
                 .map((title, index) => ({ id: index + 1, title }))
                 .find((d) => d.title === departmentTitle) || { id: 0, title: "Все" };
 
-        if (!selectedDepartment || matchedDepartment.title !== selectedDepartment.title) {
+        if (matchedDepartment.title !== selectedDepartment.title) {
             setSelectedDepartment(matchedDepartment);
         }
 
         if (search !== temporarySearchValue) {
             setTemporarySearchValue(search);
         }
-    }, [selectedDepartment, departmentsTitles, searchParams, temporarySearchValue]);
+    }, [
+        departmentsTitles,
+        searchParams,
+        selectedDepartment.title,
+        temporarySearchValue,
+    ]);
 
     useEffect(() => {
         setCurrentPage(1);
         setIsFilterChanging(true);
         const params: Record<string, string> = {};
 
-        if (selectedDepartment && selectedDepartment.title) {
+        if (selectedDepartment.title && selectedDepartment.title !== "Все") {
             params.department = selectedDepartment.title;
         }
 
@@ -122,7 +127,7 @@ export const PageContacts: FC = () => {
         scrollTo(0,0)
     };
 
-    const onSelectDepartment = (option: { id: number; title: string } | null) => {
+    const onSelectDepartment = (option: { id: number; title: string }) => {
         setSelectedDepartment(option);
         scrollTo(0, 0);
     };
