@@ -9,7 +9,8 @@ interface DropdownProps {
     value: { id: number, title: string } | null;
     onSelect: (value: { id: number, title: string }) => void;
     isDisabled?: boolean;
-    classNames?: string[];
+    externalClasses?: string[];
+    searchEnabled?: boolean;
 }
 
 export const Dropdown: FC<DropdownProps> = ({
@@ -18,22 +19,17 @@ export const Dropdown: FC<DropdownProps> = ({
                                                 value,
                                                 onSelect,
                                                 isDisabled,
-                                                classNames: externalClasses = []
+                                                externalClasses = [],
+                                                searchEnabled = true
                                             }) => {
     const [isOpen, setIsOpen] = useState(false);
-    const [selectedValue, setSelectedValue] = useState<{ id: number, title: string } | null>(value);
+    const [searchValue, setSearchValue] = useState<string>("");
     const dropdownRef = useRef<HTMLDivElement>(null);
 
     const toggleDropdown = () => {
         if (!isDisabled) {
             setIsOpen(prev => !prev);
         }
-    };
-
-    const handleSelect = (option: { id: number, title: string }) => {
-        setSelectedValue(option);
-        onSelect(option);
-        setIsOpen(false);
     };
 
     useEffect(() => {
@@ -52,9 +48,16 @@ export const Dropdown: FC<DropdownProps> = ({
         };
     }, [isOpen]);
 
+    const handleSelect = (option: {id: number, title: string}) => {
+        onSelect(option);
+        setIsOpen(false);
+    };
+
     useEffect(() => {
-        setSelectedValue(value);
-    }, [value]);
+        if (!isOpen) {
+            setSearchValue("");
+        }
+    }, [isOpen]);
 
     return (
         <div
@@ -72,44 +75,55 @@ export const Dropdown: FC<DropdownProps> = ({
                 disabled={isDisabled}
                 aria-haspopup="listbox"
                 aria-expanded={isOpen}
+                style={value ? { color: 'var(--font-color)' } : undefined}
             >
-                {selectedValue ? selectedValue.title : label}
-                {!isDisabled && <img className="arrow" src="/arrow.svg" alt="arrow" />}
+                {value ? value.title : label}
+                {!isDisabled && <img className="arrow" src="/arrow.svg" alt="arrow"/>}
             </button>
 
             <AnimatePresence>
                 {isOpen && !isDisabled && (
-                    <motion.ul
-                        className="custom-dropdown__list"
-                        role="listbox"
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 10 }}
-                        transition={{ duration: 0.1 }}
+                    <motion.div
+                        className="custom-dropdown__menu"
+                        role="menu"
+                        initial={{opacity: 0, y: 10}}
+                        animate={{opacity: 1, y: 0}}
+                        exit={{opacity: 0, y: 10}}
+                        transition={{duration: 0.1}}
                     >
-                        {options.map((option) => (
-                            <li
-                                key={option.id}
-                                className={classNames(
-                                    "custom-dropdown__item",
-                                    { selected: selectedValue?.id === option.id},
-
-                                )}
-                                role="option"
-                                aria-selected={selectedValue?.id === option.id}
-                            >
-                                <button
-                                    className="custom-dropdown__item-button"
-                                    type="button"
-                                    onClick={() => handleSelect(option)}
-                                >
-                                    {option.title}
-                                </button>
-                            </li>
-                        ))}
-                    </motion.ul>
+                        {
+                            searchEnabled && <input type="text" name={"dropdownTitle"} className="custom-dropdown__search"
+                                                    placeholder={"Поиск по названию"} value={searchValue}
+                                                    onChange={(e) => setSearchValue(e.target.value)}></input>
+                        }
+                        <ul className="custom-dropdown__list">
+                            {
+                                options
+                                    .filter(option => option.title.toLowerCase().includes(searchValue.toLowerCase()))
+                                    .map((option) => (
+                                        <li
+                                            key={option.id}
+                                            className={classNames(
+                                                "custom-dropdown__item",
+                                                {selected: value?.id === option.id},
+                                            )}
+                                            role="option"
+                                            aria-selected={value?.id === option.id}
+                                        >
+                                            <button
+                                                className="custom-dropdown__item-button"
+                                                type="button"
+                                                onClick={() => handleSelect(option)}
+                                            >
+                                                {option.title}
+                                            </button>
+                                        </li>
+                                    ))
+                            }
+                        </ul>
+                    </motion.div>
                 )}
             </AnimatePresence>
         </div>
     );
-};
+}

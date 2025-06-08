@@ -17,8 +17,8 @@ import {useHasPermission} from "../../store/hooks/useHasPermission.ts";
 const ITEMS_PER_PAGE = 100;
 
 const contactsStyles = [
-    { id: 0, title: "Новый" },  // id=0 => "new"
-    { id: 1, title: "Старый" }, // id=1 => "old"
+    { id: 0, title: "Новый вид" },  // id=0 => "new"
+    { id: 1, title: "Старый вид" }, // id=1 => "old"
 ];
 
 const idToStyleMap: Record<number, "new" | "old"> = {
@@ -34,7 +34,7 @@ const styleToIdMap: Record<"new" | "old", number> = {
 const normalizeSearch = (value: string) => value.trim().replace(/\s+/g, " ");
 
 export const PageContacts: FC = () => {
-    const [selectedDepartment, setSelectedDepartment] = useState<{id: number, title: string}>({ id: 0, title: "Все" });
+    const [selectedDepartment, setSelectedDepartment] = useState<{id: number, title: string} | null>(null);
     const [temporarySearchValue, setTemporarySearchValue] = useState<string>("");
     const debouncedSearchValue = useDebounce(temporarySearchValue, 150);
     const [isFilterChanging, setIsFilterChanging] = useState<boolean>(false);
@@ -42,7 +42,7 @@ export const PageContacts: FC = () => {
     const { user } = useTypedSelector(state => state.auth)
     const { data: departmentsTitles, isLoading: departmentsLoading } = useGetDepartmentsTitlesNotNullQuery();
     const { data, isLoading } = useGetUsersFilteredQuery({
-        department: selectedDepartment?.title,
+        department: selectedDepartment?.title ?? "",
         search: normalizeSearch(debouncedSearchValue)
     });
 
@@ -67,26 +67,21 @@ export const PageContacts: FC = () => {
                 .map((title, index) => ({ id: index + 1, title }))
                 .find((d) => d.title === departmentTitle) || { id: 0, title: "Все" };
 
-        if (matchedDepartment.title !== selectedDepartment.title) {
+        if (!selectedDepartment || matchedDepartment.title !== selectedDepartment.title) {
             setSelectedDepartment(matchedDepartment);
         }
 
         if (search !== temporarySearchValue) {
             setTemporarySearchValue(search);
         }
-    }, [
-        departmentsTitles,
-        searchParams,
-        selectedDepartment.title,
-        temporarySearchValue,
-    ]);
+    }, [selectedDepartment, departmentsTitles, searchParams, temporarySearchValue]);
 
     useEffect(() => {
         setCurrentPage(1);
         setIsFilterChanging(true);
         const params: Record<string, string> = {};
 
-        if (selectedDepartment.title && selectedDepartment.title !== "Все") {
+        if (selectedDepartment && selectedDepartment.title) {
             params.department = selectedDepartment.title;
         }
 
@@ -127,7 +122,7 @@ export const PageContacts: FC = () => {
         scrollTo(0,0)
     };
 
-    const onSelectDepartment = (option: { id: number; title: string }) => {
+    const onSelectDepartment = (option: { id: number; title: string } | null) => {
         setSelectedDepartment(option);
         scrollTo(0, 0);
     };
@@ -147,7 +142,7 @@ export const PageContacts: FC = () => {
                         label="Стиль"
                         value={selectedStyle}
                         onSelect={onSelectStyle}
-                        classNames={['page-filters-item']}
+                        externalClasses={['page-filters-item']}
                     />
                     {
                         departmentsTitles && !departmentsLoading && (
@@ -162,7 +157,7 @@ export const PageContacts: FC = () => {
                                 label="Отдел"
                                 value={selectedDepartment}
                                 onSelect={onSelectDepartment}
-                                classNames={['page-filters-item']}
+                                externalClasses={['page-filters-item']}
                             />
                         )
                     }
