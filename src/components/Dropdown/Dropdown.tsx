@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 interface DropdownProps {
     options: { id: number, title: string }[];
     label: string;
+    searchPlaceholder?: string;
     value: { id: number, title: string } | null;
     onSelect: (value: { id: number, title: string }) => void;
     isDisabled?: boolean;
@@ -16,6 +17,7 @@ interface DropdownProps {
 export const Dropdown: FC<DropdownProps> = ({
                                                 options,
                                                 label,
+                                                searchPlaceholder = 'Поиск по названию',
                                                 value,
                                                 onSelect,
                                                 isDisabled,
@@ -93,7 +95,7 @@ export const Dropdown: FC<DropdownProps> = ({
                     >
                         {
                             searchEnabled && <input type="text" name={"dropdownTitle"} className="custom-dropdown__search"
-                                                    placeholder={"Поиск по названию"} value={searchValue}
+                                                    placeholder={searchPlaceholder} value={searchValue}
                                                     onChange={(e) => setSearchValue(e.target.value)}></input>
                         }
                         <ul className="custom-dropdown__list">

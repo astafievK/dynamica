@@ -19,7 +19,10 @@ export const EmployeeCard: FC<IEmployeeCardProps> = React.memo(({ employee }) =>
 
     const [isHovered, setIsHovered] = useState(false);
     const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-    const canViewActions = useHasPermission(Permissions.Superuser)
+    const canViewActions = useHasPermission(
+        [Permissions.Superuser, Permissions.UpdateUsers],
+        'any'
+    )
 
     const handleMouseEnter = () => {
         if (!timeoutRef.current) {

@@ -8,9 +8,11 @@ export interface IUser {
     login: string;
     name: string;
     surname: string;
+    email: string | null;
     phoneNumber: string;
     department: IDepartment;
     position: IPosition;
     image: IImage;
     permissions: IPermission[];
+    moodleUserId: number | null;
 }

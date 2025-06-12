@@ -10,7 +10,6 @@ import {Employee} from "../../interfaces/IEmployee.ts";
 
 interface EmployeesListProps {
     isLoading: boolean;
-    isFilterChanging: boolean;
     users: Employee[];
     showHidden: boolean;
     isOldStyleEnabled: boolean;
@@ -18,14 +17,13 @@ interface EmployeesListProps {
 
 export const EmployeesList: FC<EmployeesListProps> = React.memo(({
                                                           isLoading,
-                                                          isFilterChanging,
                                                           users,
                                                           showHidden,
                                                           isOldStyleEnabled,
                                                       }) => {
     const visibleUsers = showHidden ? users : users.filter((u) => !u.is_hidden);
 
-    if (isLoading || isFilterChanging) {
+    if (isLoading) {
         return (
             <motion.div
                 initial={pageAnimation.initial}

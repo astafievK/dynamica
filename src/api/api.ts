@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export const baseUrl = "https://newportal/api";
 
 export const baseApi = createApi({
-    reducerPath: 'api',
+    reducerPath: 'baseApi',
     baseQuery: fetchBaseQuery({
         baseUrl,
         prepareHeaders: (headers) => {

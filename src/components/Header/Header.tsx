@@ -11,6 +11,8 @@ import AdminPanelSettingsOutlinedIcon from '@mui/icons-material/AdminPanelSettin
 import {logout} from "../../api/slices/authSlice.ts";
 import {useCreateDocument} from "../Contexts/CreateDocumentContext/CreateDocumentContext.tsx";
 import {AnimatePresence, motion} from "framer-motion";
+import {useHasPermission} from "../../store/hooks/useHasPermission.ts";
+import {Permissions} from "../../constants/permissions.ts";
 
 export const Header: FC = () => {
     const {user} = useTypedSelector((state) => state.auth);
@@ -22,6 +24,16 @@ export const Header: FC = () => {
 
     const toggleMenu = () => setMenuOpen(prev => !prev);
     const closeMenu = () => setMenuOpen(false);
+
+    const isDeveloper = useHasPermission(Permissions.Developer);
+    const isAbleToUseAdminPanel = useHasPermission([Permissions.Superuser, Permissions.UpdateUsers], 'any')
+
+    // Явно закрываем меню пользователя
+    useEffect(() => {
+        if (!user) {
+            setMenuOpen(false);
+        }
+    }, [user]);
 
     // Закрытие по клику вне
     useEffect(() => {
@@ -66,18 +78,27 @@ export const Header: FC = () => {
 
                     {user && (
                         <>
-                            <Link to="admin/contacts" className="admin-panel-btn header-item rounded">
-                                <AdminPanelSettingsOutlinedIcon/>
-                            </Link>
-
-                            <button className="create-doc header-item rounded" onClick={openModal}>
-                                <NoteAddOutlinedIcon/>
-                            </button>
-
-                            <button className="notifications-btn header-item rounded"
-                                    onClick={() => dispatch(setNotificationsModalOpen(true))}>
-                                <NotificationsNoneOutlinedIcon/>
-                            </button>
+                            {
+                                isAbleToUseAdminPanel && (
+                                    <Link to="admin/contacts" className="admin-panel-btn header-item rounded">
+                                        <AdminPanelSettingsOutlinedIcon/>
+                                    </Link>
+                                )
+                            }
+                            {
+                                isDeveloper && (
+                                    <button className="create-doc header-item rounded" onClick={openModal}>
+                                        <NoteAddOutlinedIcon/>
+                                    </button>
+                                )
+                            }
+                            {
+                                isDeveloper && (
+                                    <button className="notifications-btn header-item rounded" onClick={() => dispatch(setNotificationsModalOpen(true))}>
+                                        <NotificationsNoneOutlinedIcon/>
+                                    </button>
+                                )
+                            }
 
                             <div className="user-dropdown-wrapper header-item rounded" ref={menuRef}
                                  onClick={toggleMenu}>
@@ -93,16 +114,15 @@ export const Header: FC = () => {
                                 <AnimatePresence>
                                     {menuOpen && (
                                         <motion.div
-                                            initial={{ opacity: 0, top: "105%" }}
-                                            animate={{ opacity: 1, top: "100%" }}
-                                            exit={{ opacity: 0 }}
-                                            transition={{ duration: 0.1 }}
+                                            initial={{opacity: 0, top: "calc(100% + 25px)"}}
+                                            animate={{opacity: 1, top: "calc(100% + 8px)"}}
+                                            exit={{opacity: 0, top: "calc(100% + 25px)"}}
+                                            transition={{duration: 0.1}}
                                             className="user-dropdown-menu"
                                         >
-                                            <Link to="/profile" onClick={closeMenu}>Профиль</Link>
                                             <button onClick={() => {
-                                                dispatch(logout());
                                                 closeMenu();
+                                                dispatch(logout());
                                             }}>
                                                 Выйти
                                             </button>

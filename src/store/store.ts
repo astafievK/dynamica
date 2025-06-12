@@ -11,11 +11,13 @@ import scrollLockSlice from "../api/slices/scrollLockSlice.ts";
 import historySlice from "../api/slices/historySlice.ts";
 import leftMenuSlice from "../api/slices/leftMenuSlice.ts";
 import employeesContainerSlice from "../api/slices/employeesContainerSlice.ts";
+import { moodleApi } from '../api/moodleApi.ts';
 
 const persistConfig = {
     key: 'root',
     storage,
     blacklist: [
+        moodleApi.reducerPath,
         baseApi.reducerPath,
         'modalLoginReducer',
         'modalNotificationsReducer',
@@ -25,6 +27,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
     [baseApi.reducerPath]: baseApi.reducer,
+    [moodleApi.reducerPath]: moodleApi.reducer,
     modalLoginReducer: modalLoginSlice,
     modalNotificationsReducer: modalNotificationsSlice,
     mobileMenuReducer: mobileMenuSlice,
@@ -43,7 +46,10 @@ export const setupStore = () => {
         middleware: (getDefaultMiddleware) =>
             getDefaultMiddleware({
                 serializableCheck: false,
-            }).concat(baseApi.middleware),
+            }).concat(
+                baseApi.middleware,
+                moodleApi.middleware
+            ),
     });
 
     const persistor = persistStore(store);

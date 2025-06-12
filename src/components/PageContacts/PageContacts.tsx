@@ -17,8 +17,8 @@ import {useHasPermission} from "../../store/hooks/useHasPermission.ts";
 const ITEMS_PER_PAGE = 100;
 
 const contactsStyles = [
-    { id: 0, title: "Новый вид" },  // id=0 => "new"
-    { id: 1, title: "Старый вид" }, // id=1 => "old"
+    { id: 0, title: "Новый вид" },
+    { id: 1, title: "Старый вид" },
 ];
 
 const idToStyleMap: Record<number, "new" | "old"> = {
@@ -34,17 +34,22 @@ const styleToIdMap: Record<"new" | "old", number> = {
 const normalizeSearch = (value: string) => value.trim().replace(/\s+/g, " ");
 
 export const PageContacts: FC = () => {
+    const [isFiltersReady, setIsFiltersReady] = useState(false);
     const [selectedDepartment, setSelectedDepartment] = useState<{id: number, title: string}>({ id: 0, title: "Все" });
     const [temporarySearchValue, setTemporarySearchValue] = useState<string>("");
     const debouncedSearchValue = useDebounce(temporarySearchValue, 150);
-    const [isFilterChanging, setIsFilterChanging] = useState<boolean>(false);
     const [currentPage, setCurrentPage] = useState<number>(1);
     const { user } = useTypedSelector(state => state.auth)
     const { data: departmentsTitles, isLoading: departmentsLoading } = useGetDepartmentsTitlesNotNullQuery();
-    const { data, isLoading } = useGetUsersFilteredQuery({
-        department: selectedDepartment?.title,
-        search: normalizeSearch(debouncedSearchValue)
-    });
+    const { data, isLoading } = useGetUsersFilteredQuery(
+        {
+            department: selectedDepartment?.title,
+            search: normalizeSearch(debouncedSearchValue)
+        },
+        {
+            skip: !isFiltersReady
+        }
+    );
 
     const canViewHiddenUsers = useHasPermission(Permissions.Superuser);
 
@@ -53,56 +58,46 @@ export const PageContacts: FC = () => {
     const selectedStyle = contactsStyles.find(c => styleToIdMap[style] === c.id) || null;
 
     const [searchParams, setSearchParams] = useSearchParams();
+    const urlDepartment = searchParams.get("department");
+    const urlSearch = searchParams.get("search");
 
     useEffect(() => {
-        if (!departmentsTitles) return;
-
-        const departmentTitle = searchParams.get("department") || "";
-        const search = searchParams.get("search") || "";
-
-        const matchedDepartment =
-            departmentTitle === "" || departmentTitle === "Все"
-                ? { id: 0, title: "Все" }
-                : departmentsTitles.departments
-                .map((title, index) => ({ id: index + 1, title }))
-                .find((d) => d.title === departmentTitle) || { id: 0, title: "Все" };
-
-        if (matchedDepartment.title !== selectedDepartment.title) {
-            setSelectedDepartment(matchedDepartment);
+        if (!departmentsLoading && departmentsTitles) {
+            if (urlDepartment && departmentsTitles.departments.includes(urlDepartment)) {
+                setSelectedDepartment({ id: 0, title: urlDepartment });
+            }
+            setIsFiltersReady(true);
         }
+    }, [departmentsTitles, departmentsLoading]);
 
-        if (search !== temporarySearchValue) {
-            setTemporarySearchValue(search);
-        }
-    }, [
-        departmentsTitles,
-        searchParams,
-        selectedDepartment.title,
-        temporarySearchValue,
-    ]);
-
+    // установка строки поиска один раз при монтировании
     useEffect(() => {
+        if (urlSearch) {
+            setTemporarySearchValue(urlSearch);
+        }
+    }, []);
+
+    // синхронизация URL с фильтрами
+    useEffect(() => {
+        if (!isFiltersReady) return;
         setCurrentPage(1);
-        setIsFilterChanging(true);
-        const params: Record<string, string> = {};
-
-        if (selectedDepartment.title && selectedDepartment.title !== "Все") {
-            params.department = selectedDepartment.title;
-        }
 
         const normalizedSearch = normalizeSearch(temporarySearchValue);
-        if (normalizedSearch) {
-            params.search = normalizedSearch;
+
+        if (selectedDepartment.title === "Все") {
+            searchParams.delete("department");
+        } else {
+            searchParams.set("department", selectedDepartment.title);
         }
 
-        setSearchParams(params);
-    }, [selectedDepartment, temporarySearchValue, setSearchParams]);
-
-    useEffect(() => {
-        if (!isLoading && data) {
-            setIsFilterChanging(false);
+        if (!normalizedSearch) {
+            searchParams.delete("search");
+        } else {
+            searchParams.set("search", normalizedSearch);
         }
-    }, [isLoading, data]);
+
+        setSearchParams(searchParams);
+    }, [selectedDepartment, temporarySearchValue, isFiltersReady]);
 
     const paginatedUsers = useMemo(() => {
         if (!data?.users) return [];
@@ -145,6 +140,7 @@ export const PageContacts: FC = () => {
                     <Dropdown
                         options={contactsStyles}
                         label="Стиль"
+                        searchPlaceholder={"Поиск по стилю"}
                         value={selectedStyle}
                         onSelect={onSelectStyle}
                         externalClasses={['page-filters-item']}
@@ -160,6 +156,7 @@ export const PageContacts: FC = () => {
                                     }))
                                 ]}
                                 label="Отдел"
+                                searchPlaceholder={"Поиск по отделу"}
                                 value={selectedDepartment}
                                 onSelect={onSelectDepartment}
                                 externalClasses={['page-filters-item']}
@@ -182,7 +179,6 @@ export const PageContacts: FC = () => {
                 <div className="page-content">
                     <EmployeesList
                         isLoading={isLoading}
-                        isFilterChanging={isFilterChanging}
                         users={paginatedUsers}
                         showHidden={canViewHiddenUsers}
                         isOldStyleEnabled={style === "old"}
