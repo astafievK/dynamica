@@ -37,8 +37,13 @@ export const WidgetTests: FC<IWidgetTestsProps> = ({ tests }) => {
                             key={test.quiz_id}
                             title={test.quiz_name}
                             status={test.status}
+                            typeTitle={test.quiz_type}
+                            systemTypeTitle={test.quiz_type_system}
                             id={test.quiz_id}
-                            quizEndUnix={test.quiz_close_date}
+                            quizOpenUnix={test.quiz_open_date}
+                            quizFinishUnix={test.quiz_close_date}
+                            userStartUnix={test.quiz_open_date}
+                            userFinishUnix={test.user_start_date}
                             questionsCount={test.questions_count}
                         />
                     })

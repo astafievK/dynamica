@@ -120,7 +120,8 @@ export const Header: FC = () => {
                                             transition={{duration: 0.1}}
                                             className="user-dropdown-menu"
                                         >
-                                            <button onClick={() => {
+                                            <Link className="user-dropdown-menu__item" to={"/profile"}>Профиль</Link>
+                                            <button className="user-dropdown-menu__item" onClick={() => {
                                                 closeMenu();
                                                 dispatch(logout());
                                             }}>
