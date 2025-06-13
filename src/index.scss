@@ -895,7 +895,6 @@ html {
                                 overflow: scroll;
                                 border-radius: 12px;
                                 padding: 4px;
-                                box-shadow: var(--block-shadow);
                                 z-index: 999;
 
                                 a, button {
@@ -997,9 +996,7 @@ html {
 
                     &.collapsed {
                         .left-menu-item {
-                            width: 45px;
-                            height: 45px;
-                            border-radius: 50%;
+                            width: 61px;
                             justify-content: center;
                             align-content: center;
                         }
@@ -1011,13 +1008,12 @@ html {
                         position: relative;
                         gap: 10px;
                         background: var(--item-static-background);
-                        padding: 10px;
+                        border-radius: 0 10px 10px 0;
                         font-size: 16px;
                         font-weight: 500;
                         text-decoration: none;
                         width: 100%;
                         min-width: 45px;
-                        border-radius: 32px;
                         color: var(--color-primary-700);
                         flex-shrink: 0;
                         overflow: hidden;
@@ -1056,8 +1052,8 @@ html {
                     .general-navigation,
                     .recent-navigation {
                         display: flex;
+                        gap: 2px;
                         flex-direction: column;
-                        gap: 4px;
                     }
 
                     .recent-navigation {
@@ -1084,6 +1080,7 @@ html {
                     display: flex;
                     flex-direction: column;
                     width: 100%;
+                    padding: 10px 5px;
                     flex: 1;
 
                     main {
@@ -1574,115 +1571,12 @@ html {
                                         opacity: 0.65;
                                         font-size: 14px;
                                     }
-
-                                    .clocks {
-                                        display: none;
-                                        align-items: center;
-                                        justify-content: center;
-                                        position: absolute;
-                                        right: 0;
-                                        top: 50%;
-                                        transform: translateY(-50%);
-                                        padding: 12px 20px;
-                                        border-radius: 10px;
-                                        border: 1px solid var(--additional-color);
-                                        background: white;
-
-                                        span {
-                                            font-family: "GrtskTera", Arial, sans-serif;
-                                            font-size: 16px;
-                                        }
-                                    }
                                 }
 
-                                .widgets {
-                                    display: flex;
-                                    flex-direction: column;
-                                    width: 100%;
-                                    gap: 4px;
-
-                                    .widget {
-                                        display: flex;
-                                        flex-direction: column;
-                                        gap: 5px;
-
-                                        .widget-header {
-                                            text-decoration: none;
-                                            padding: 5px 10px;
-                                            display: flex;
-                                            justify-content: space-between;
-                                            align-items: center;
-
-                                            .widget-title {
-                                                user-select: none;
-                                                font-weight: 700;
-                                                opacity: 0.8;
-                                                font-size: 18px;
-                                            }
-
-                                            .arrow {
-                                                height: 80%;
-                                                aspect-ratio: 1/1;
-                                                margin-right: 10px;
-                                                background-image: url("/arrow.svg");
-                                                background-size: cover;
-                                                background-position: center;
-                                                transition: all 200ms;
-                                            }
-
-                                            &:hover {
-                                                .arrow {
-                                                    margin-right: 0;
-                                                }
-                                            }
-                                        }
-
-                                        .widget-filters {
-                                            .filters-buttons {
-                                                justify-content: flex-start;
-                                            }
-                                        }
-
-                                        .widget-body {
-                                            width: 100%;
-                                            display: grid;
-                                            grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-                                            grid-template-rows: 1fr 1fr;
-                                            padding: 5px 10px;
-                                            overflow: auto;
-                                            gap: 5px;
-
-                                            .widget-item {
-                                                display: flex;
-                                                width: 100%;
-                                                aspect-ratio: 2/1;
-                                                border-radius: 24px;
-                                                padding: 10px;
-                                                background: var(--block-background);
-                                                transition: all 100ms;
-
-                                                .widget-item-title {
-                                                    width: 100%;
-                                                    text-overflow: ellipsis;
-                                                    text-wrap: nowrap;
-                                                }
-
-                                                .widget-item-status {
-                                                    width: auto;
-                                                    padding: 4px;
-                                                    border-radius: 10px;
-                                                    border: 1px solid rgb(0, 100, 0);
-
-                                                    .status-success {
-
-                                                    }
-                                                }
-
-                                                &:hover {
-                                                    transform: translateY(-3px);
-                                                    box-shadow: var(--block-shadow);
-                                                }
-                                            }
+                                .widget {
+                                    .widget__filters {
+                                        .filters-buttons {
+                                            justify-content: flex-start;
                                         }
                                     }
                                 }
@@ -2907,7 +2801,7 @@ html {
                         max-height: 650px;
 
                         .modal-content__body,
-                .modal__body {
+                        .modal__body {
                             padding: 0;
 
                             .module-notifications {
@@ -3189,10 +3083,6 @@ html {
                                             display: flex;
                                             right: 15px
                                         }
-                                    }
-
-                                    .widgets {
-                                        gap: 8px;
                                     }
                                 }
 
@@ -3602,7 +3492,11 @@ html {
                         display: flex;
                         top: var(--header-height-1024);
                         height: calc(100vh - var(--header-height-1024));
-                        padding: 0 5px 5px 5px;
+                        padding: 10px 0;
+
+                        .left-menu-item {
+                            padding: 11px 18px;
+                        }
                     }
 
                     .main-container {
@@ -3835,10 +3729,6 @@ html {
                                         .page-title__district {
                                             font-size: 18px;
                                         }
-                                    }
-
-                                    .widgets {
-
                                     }
                                 }
 
@@ -4080,11 +3970,9 @@ html {
                     .left-menu {
                         top: var(--header-height-1440);
                         height: calc(100vh - var(--header-height-1440));
-                        padding: 0 8px 8px 8px;
 
                         .left-menu-item {
                             font-size: 18px;
-                            padding: 10px;
                             gap: 10px;
                         }
                     }
@@ -4300,10 +4188,6 @@ html {
                                         .page-title__district {
                                             font-size: 24px;
                                         }
-                                    }
-
-                                    .widgets {
-
                                     }
                                 }
 

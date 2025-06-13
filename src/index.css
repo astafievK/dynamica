@@ -26,6 +26,7 @@
   --color-accent-900: #215021;
   /* GRAY / NEUTRAL (серый #A7A9AB и светлый #F1F2F2) */
   --color-gray-50: #f1f2f2;
+  --color-gray-75: #eaeceb;
   --color-gray-100: #e2e3e4;
   --color-gray-200: #d0d1d2;
   --color-gray-300: #bebfc0;
@@ -60,7 +61,7 @@
   --item-static-background: transparent;
   --item-hover-background: rgba(0, 0, 0, 0.05);
   --item-active-background: rgba(0, 0, 0, 0.1);
-  --block-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  --block-shadow: 0 2px 10px 3px rgba(0,0,0,0.05);
   --block-background: rgba(255, 255, 255, 1);
   --document-shadow: 0px 4px 12px 0px #7090b029;
 }
@@ -1203,7 +1204,6 @@ html body #dynamica .header-wrapper header .profile-container .user-dropdown-wra
   overflow: scroll;
   border-radius: 12px;
   padding: 4px;
-  box-shadow: var(--block-shadow);
   z-index: 999;
 }
 html body #dynamica .header-wrapper header .profile-container .user-dropdown-wrapper .user-dropdown-menu a, html body #dynamica .header-wrapper header .profile-container .user-dropdown-wrapper .user-dropdown-menu button {
@@ -1288,9 +1288,7 @@ html body #dynamica .layout-content .left-menu .toggle-btn {
   width: auto !important;
 }
 html body #dynamica .layout-content .left-menu.collapsed .left-menu-item {
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
+  width: 61px;
   justify-content: center;
   align-content: center;
 }
@@ -1300,13 +1298,12 @@ html body #dynamica .layout-content .left-menu .left-menu-item {
   position: relative;
   gap: 10px;
   background: var(--item-static-background);
-  padding: 10px;
+  border-radius: 0 10px 10px 0;
   font-size: 16px;
   font-weight: 500;
   text-decoration: none;
   width: 100%;
   min-width: 45px;
-  border-radius: 32px;
   color: var(--color-primary-700);
   flex-shrink: 0;
   overflow: hidden;
@@ -1337,8 +1334,8 @@ html body #dynamica .layout-content .left-menu .submenu-container {
 html body #dynamica .layout-content .left-menu .general-navigation,
 html body #dynamica .layout-content .left-menu .recent-navigation {
   display: flex;
+  gap: 2px;
   flex-direction: column;
-  gap: 4px;
 }
 html body #dynamica .layout-content .left-menu .recent-navigation {
   margin-top: 25px;
@@ -1358,6 +1355,7 @@ html body #dynamica .layout-content .main-container {
   display: flex;
   flex-direction: column;
   width: 100%;
+  padding: 10px 5px;
   flex: 1;
 }
 html body #dynamica .layout-content .main-container main {
@@ -1759,94 +1757,8 @@ html body #dynamica .layout-content .main-container main .page.page-profile .pag
   opacity: 0.65;
   font-size: 14px;
 }
-html body #dynamica .layout-content .main-container main .page.page-profile .page-header .clocks {
-  display: none;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  padding: 12px 20px;
-  border-radius: 10px;
-  border: 1px solid var(--additional-color);
-  background: white;
-}
-html body #dynamica .layout-content .main-container main .page.page-profile .page-header .clocks span {
-  font-family: "GrtskTera", Arial, sans-serif;
-  font-size: 16px;
-}
-html body #dynamica .layout-content .main-container main .page.page-profile .widgets {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  gap: 4px;
-}
-html body #dynamica .layout-content .main-container main .page.page-profile .widgets .widget {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-html body #dynamica .layout-content .main-container main .page.page-profile .widgets .widget .widget-header {
-  text-decoration: none;
-  padding: 5px 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-html body #dynamica .layout-content .main-container main .page.page-profile .widgets .widget .widget-header .widget-title {
-  user-select: none;
-  font-weight: 700;
-  opacity: 0.8;
-  font-size: 18px;
-}
-html body #dynamica .layout-content .main-container main .page.page-profile .widgets .widget .widget-header .arrow {
-  height: 80%;
-  aspect-ratio: 1/1;
-  margin-right: 10px;
-  background-image: url("/arrow.svg");
-  background-size: cover;
-  background-position: center;
-  transition: all 200ms;
-}
-html body #dynamica .layout-content .main-container main .page.page-profile .widgets .widget .widget-header:hover .arrow {
-  margin-right: 0;
-}
-html body #dynamica .layout-content .main-container main .page.page-profile .widgets .widget .widget-filters .filters-buttons {
+html body #dynamica .layout-content .main-container main .page.page-profile .widget .widget__filters .filters-buttons {
   justify-content: flex-start;
-}
-html body #dynamica .layout-content .main-container main .page.page-profile .widgets .widget .widget-body {
-  width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  padding: 5px 10px;
-  overflow: auto;
-  gap: 5px;
-}
-html body #dynamica .layout-content .main-container main .page.page-profile .widgets .widget .widget-body .widget-item {
-  display: flex;
-  width: 100%;
-  aspect-ratio: 2/1;
-  border-radius: 24px;
-  padding: 10px;
-  background: var(--block-background);
-  transition: all 100ms;
-}
-html body #dynamica .layout-content .main-container main .page.page-profile .widgets .widget .widget-body .widget-item .widget-item-title {
-  width: 100%;
-  text-overflow: ellipsis;
-  text-wrap: nowrap;
-}
-html body #dynamica .layout-content .main-container main .page.page-profile .widgets .widget .widget-body .widget-item .widget-item-status {
-  width: auto;
-  padding: 4px;
-  border-radius: 10px;
-  border: 1px solid rgb(0, 100, 0);
-}
-html body #dynamica .layout-content .main-container main .page.page-profile .widgets .widget .widget-body .widget-item:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--block-shadow);
 }
 html body #dynamica .layout-content .main-container main .page.page-admin .page-admin__filters {
   display: flex;
@@ -2997,9 +2909,6 @@ html body #dynamica .layout-content .main-container .footer-wrapper footer .faq 
     display: flex;
     right: 15px;
   }
-  html body #dynamica .layout-content .main-container main .page.page-profile .widgets {
-    gap: 8px;
-  }
   html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container {
     gap: 5px;
   }
@@ -3269,7 +3178,10 @@ html body #dynamica .layout-content .main-container .footer-wrapper footer .faq 
     display: flex;
     top: var(--header-height-1024);
     height: calc(100vh - var(--header-height-1024));
-    padding: 0 5px 5px 5px;
+    padding: 10px 0;
+  }
+  html body #dynamica .layout-content .left-menu .left-menu-item {
+    padding: 11px 18px;
   }
   html body #dynamica .layout-content .main-container main .page {
     border-radius: 32px;
@@ -3570,11 +3482,9 @@ html body #dynamica .layout-content .main-container .footer-wrapper footer .faq 
   html body #dynamica .layout-content .left-menu {
     top: var(--header-height-1440);
     height: calc(100vh - var(--header-height-1440));
-    padding: 0 8px 8px 8px;
   }
   html body #dynamica .layout-content .left-menu .left-menu-item {
     font-size: 18px;
-    padding: 10px;
     gap: 10px;
   }
   html body #dynamica .layout-content .main-container main .page .page-header .page-title {

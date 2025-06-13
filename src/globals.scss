@@ -26,6 +26,7 @@
 
   /* GRAY / NEUTRAL (серый #A7A9AB и светлый #F1F2F2) */
   --color-gray-50:  #f1f2f2;
+  --color-gray-75:  #eaeceb;
   --color-gray-100: #e2e3e4;
   --color-gray-200: #d0d1d2;
   --color-gray-300: #bebfc0;
@@ -63,7 +64,7 @@
   --item-static-background: transparent;
   --item-hover-background: rgba(0, 0, 0, 0.05);
   --item-active-background: rgba(0, 0, 0, 0.1);
-  --block-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  --block-shadow: 0 2px 10px 3px rgba(0,0,0,0.05);
   --block-background: rgba(255, 255, 255, 1);
   --document-shadow: 0px 4px 12px 0px #7090b029;
 }

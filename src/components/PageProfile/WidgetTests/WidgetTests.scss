@@ -1,0 +1,93 @@
+@use '../../../globals' as *;
+
+.widget {
+  &__header {
+    .widget__title {
+
+    }
+  }
+
+  &__filters {
+
+  }
+
+  &__body {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 5px;
+  }
+}
+
+@media (min-width: 768px) {
+  .widget {
+    &__header {
+      .widget__title {
+
+      }
+    }
+
+    &__filters {
+
+    }
+
+    &__body {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .widget {
+    &__header {
+      .widget__title {
+
+      }
+    }
+
+    &__filters {
+
+    }
+
+    &__body {
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 7px;
+    }
+  }
+}
+
+@media (min-width: 1440px) {
+  .widget {
+    &__header {
+      .widget__title {
+
+      }
+    }
+
+    &__filters {
+
+    }
+
+    &__body {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 7px;
+    }
+  }
+}
+
+@media (min-width: 1600px) {
+  .widget {
+    &__header {
+      .widget__title {
+
+      }
+    }
+
+    &__filters {
+
+    }
+
+    &__body {
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    }
+  }
+}
