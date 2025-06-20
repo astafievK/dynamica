@@ -1,0 +1,24 @@
+.feed-tiles {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+@media (min-width: 768px) {
+  .feed-tiles {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+@media (min-width: 1024px) {
+  .feed-tiles {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+@media (min-width: 1440px) {
+  .feed-tiles {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    gap: 9px;
+  }
+}
+
+/*# sourceMappingURL=FeedTiles.css.map */

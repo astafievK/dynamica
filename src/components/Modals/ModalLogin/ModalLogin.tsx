@@ -39,30 +39,25 @@ export const ModalLogin: FC = () => {
 
     const onSubmit: SubmitHandler<ILoginCommand> = async (data) => {
         try {
-            const response = await login(data);
+            const response = await login(data).unwrap();
 
-            if ('error' in response) {
-                console.error(response.data!.message);
-
-                setNotification({
-                    title: "Ошибка подключения",
-                    message: "Сервер недоступен. Повторите попытку позже.",
-                });
-            } else if (response.data?.status === 'failed') {
-                console.error(response.data!.message);
-
+            if (response.status === 'failed') {
+                console.error(response.message);
                 setNotification({
                     title: "Авторизация",
-                    message: response.data.message || "Неизвестная ошибка",
+                    message: response.message || "Неизвестная ошибка",
                 });
-            } else if (response.data!.user) {
+            } else if (response.user) {
                 handleClose();
             }
-        } catch (error) {
-            console.error(error);
+        } catch (err: any) {
+            console.error(err);
             setNotification({
-                title: "Авторизация",
-                message: "Неизвестная ошибка",
+                title: "Ошибка подключения",
+                message:
+                    err?.status === 'FETCH_ERROR'
+                        ? "Сервер недоступен. Повторите попытку позже."
+                        : err?.data?.message || "Неизвестная ошибка",
             });
         }
     };

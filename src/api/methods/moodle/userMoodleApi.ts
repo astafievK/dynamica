@@ -1,11 +1,11 @@
-import { moodleApi } from "../../moodleApi.ts";
-import { IMoodleCourse } from "../../../interfaces/moodle/IMoodleCourse.ts";
+import {baseApi} from "../../api.ts";
+import {IMoodleUser} from "../../../interfaces/moodle/IMoodleUser.ts";
 
-export const userMoodleApi = moodleApi.injectEndpoints({
+export const userMoodleApi = baseApi.injectEndpoints({
     endpoints: builder => ({
-        getUserByField: builder.query<IMoodleCourse[], { token: string, field: string, value: string }>({
+        getUserByField: builder.query<IMoodleUser[], { token: string, field: string, value: string }>({
             query: ({ token, field, value }) => ({
-                url: `/webservice/rest/server.php`,
+                url: `moodle/get_user.php`,
                 method: "GET",
                 params: {
                     wstoken: token,

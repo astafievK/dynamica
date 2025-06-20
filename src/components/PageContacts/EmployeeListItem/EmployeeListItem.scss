@@ -1,0 +1,237 @@
+.employees-list-item {
+  position: relative;
+  height: 80px;
+  width: 100%;
+
+  .employee-card {
+    position: absolute;
+    overflow: hidden;
+    border-radius: 24px;
+    max-height: 80px;
+    width: 100%;
+    background: rgba(255, 255, 255, 1);
+    transition: opacity 1s ease;
+
+    .employee-card__preview {
+      display: flex;
+      cursor: pointer;
+      height: 80px;
+      padding: 4px;
+      gap: 5px;
+
+      &.hidden {
+        opacity: 0.5;
+      }
+
+      .employee-card__photo {
+        position: relative;
+        height: 65px;
+        aspect-ratio: 1/1;
+        background-size: cover;
+        background-position: top;
+        border-radius: 50%;
+        transition: all 50ms;
+      }
+
+      .employee-card__general {
+        display: flex;
+        flex-grow: 1;
+        flex-direction: column;
+
+        .employee-card__name,
+        .employee-card__position {
+          display: flex;
+          align-items: flex-start;
+          padding: 2px;
+          border-radius: 10px;
+          transition: background 50ms;
+
+          &:hover {
+            background: var(--color-gray-50);
+          }
+
+          &:active {
+            background: var(--color-gray-100);
+          }
+        }
+
+        .employee-card__name {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          font-weight: 600;
+          line-height: 1;
+          font-size: 15px;
+
+          .employee-card__lastname,
+          .employee-card__firstname {
+            display: inline-flex;
+          }
+
+          .employee-card__firstname {
+            margin-left: 3px;
+          }
+
+          .employee-card__middlename {
+            display: block;
+            width: 100%;
+          }
+        }
+
+        .employee-card__position {
+          display: flex;
+          align-items: center;
+          font-size: 12px;
+          opacity: 0.7;
+        }
+      }
+
+      .employee-actions {
+        display: flex;
+        flex-direction: column;
+        padding: 0 5px;
+        gap: 3px;
+
+        .employee-action {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 25px;
+          width: 25px;
+          cursor: pointer;
+          border-radius: 7px;
+          opacity: 0.5;
+          overflow: visible;
+          background: transparent;
+          transition: all 150ms;
+
+          svg {
+            opacity: 0.2;
+            transition: all 150ms;
+          }
+
+          .hidden-input {
+            display: none;
+          }
+
+          &:hover {
+            background: var(--block-background);
+            box-shadow: var(--block-shadow);
+
+            svg {
+              opacity: 1;
+            }
+          }
+        }
+
+        .employee-actions-item {
+          display: flex;
+          justify-content: right;
+        }
+
+        .employee-actions-photo {
+          display: flex;
+          flex-direction: column;
+          gap: 2px;
+        }
+
+        .employee-actions-hide {
+
+        }
+      }
+
+      .employee-card__photo,
+      .employee-card__general {
+        align-self: center;
+      }
+    }
+
+    &.hovered {
+      max-height: 1000px;
+      z-index: 2;
+      opacity: 1;
+      backdrop-filter: blur(24px);
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+      background: rgba(255, 255, 255, 0.8);
+      transition: max-height 350ms ease-in;
+
+      .employee-card__details {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .employees-list-item {
+    position: relative;
+    height: 100px;
+    width: calc(100% / 2 - 5px);
+
+    .employee-card {
+      max-height: 100px;
+
+      .employee-card__preview {
+        height: 100px;
+
+        .employee-card__photo {
+          height: 90px;
+        }
+
+        .employee-card__general {
+          .employee-card__name,
+          .employee-card__position {
+            padding: 4px;
+          }
+
+          .employee-card__name {
+            font-size: 17px;
+          }
+
+          .employee-card__position {
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+
+}
+
+@media (min-width: 1440px) {
+  .employees-list-item {
+    position: relative;
+    height: 130px;
+    width: calc(100% / 3 - 10px);
+
+    .employee-card {
+      max-height: 130px;
+
+      .employee-card__preview {
+        height: 130px;
+
+        .employee-card__photo {
+          height: 115px;
+        }
+
+        .employee-card__general {
+          .employee-card__name,
+          .employee-card__position {
+            padding: 7px;
+          }
+
+          .employee-card__name {
+            font-size: 20px;
+          }
+
+          .employee-card__position {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+}

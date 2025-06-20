@@ -1,0 +1,150 @@
+.employees-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+
+  .employee-card-skeleton {
+    display: flex;
+    border-radius: 10px;
+    padding: 5px 10px;
+    width: 100%;
+    gap: 20px;
+
+    .employee-image {
+      height: 65px;
+      aspect-ratio: 1/1;
+      border-radius: 50%;
+      overflow: hidden;
+
+      span {
+        aspect-ratio: 1/1;
+        height: 100%;
+        border-radius: 50%;
+      }
+    }
+
+    .employee-card__general {
+      display: flex;
+      justify-content: center;
+      flex: 1;
+      gap: 10px;
+      flex-direction: column;
+
+      .employee-card__name {
+        display: flex;
+        flex-wrap: wrap; // позволяет перенос на новую строку
+        gap: 4px;
+        width: 100%;
+
+        .employee-lastname,
+        .employee-firstname,
+        .employee-middlename {
+          span {
+            width: 100% !important;
+            height: 13px;
+          }
+        }
+
+        .employee-lastname,
+        .employee-firstname {
+          width: calc(50% - 2px); // два по 50%, с учётом gap: 4px
+        }
+
+        .employee-middlename {
+          width: 60%;
+        }
+      }
+
+      .employee-position {
+        width: 100%;
+
+        span {
+          height: 13px;
+        }
+      }
+    }
+  }
+
+  &.old-style {
+    grid-template-columns: 1fr;
+    overflow: auto;
+    gap: 10px;
+
+    .employees-header,
+    .employee-card {
+      display: grid;
+      grid-template-columns: 175px 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+      gap: 10px;
+
+      &-item {
+        span {
+          text-wrap: nowrap;
+        }
+      }
+    }
+
+    .employees-header {
+      padding: 10px;
+      background: var(--background-color);
+      border-radius: 7px;
+
+      &-item {
+        flex-grow: 1;
+
+
+        span {
+          text-align: left;
+          font-weight: 600;
+        }
+      }
+    }
+
+    .employee-card {
+      padding: 10px;
+
+      &-item {
+        &.employee-card__photo {
+          aspect-ratio: 3/4;
+          background: url("./default.webp") top;
+          background-size: cover;
+          flex-shrink: 0;
+        }
+      }
+
+      &:not(:first-child) {
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .employees-list {
+    gap: 5px;
+
+    .employee-card-skeleton {
+      width: calc(100% / 2 - 5px);
+
+      .employee-image {
+        height: 90px;
+      }
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+
+}
+
+@media (min-width: 1440px) {
+  .employees-list {
+    gap: 10px;
+
+    .employee-card-skeleton {
+      width: calc(100% / 3 - 10px);
+
+      .employee-image {
+        height: 115px;
+      }
+    }
+  }
+}

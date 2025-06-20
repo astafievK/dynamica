@@ -1,0 +1,55 @@
+.page-contacts {
+  .page-content {
+    .pagination-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 3px 0;
+      margin-top: 20px;
+
+      .pagination {
+        display: flex;
+        flex-direction: row;
+        margin: 0 auto;
+        overflow: auto;
+        gap: 5px;
+
+        button {
+          font-size: 16px;
+          font-weight: 600;
+          height: 50px;
+          width: 50px;
+          flex-shrink: 0;
+          border-radius: 50%;
+          transition: all 150ms;
+
+          &:hover:not(:disabled) {
+            background: var(--block-background);
+          }
+
+          &.active {
+            background: var(--block-background);
+            box-shadow: var(--block-shadow);
+          }
+
+          &:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+
+}
+
+@media (min-width: 1024px) {
+
+}
+
+@media (min-width: 1440px) {
+
+}

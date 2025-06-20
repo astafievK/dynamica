@@ -1,12 +1,13 @@
 import React, { FC } from "react";
 import { motion } from "framer-motion";
-import { EmployeeCard } from "./EmployeeCard/EmployeeCard";
-import { EmployeeCardSkeleton } from "../Skeletons/EmployeeCardSkeleton";
-import { EmployeeCardLine } from "./EmployeeCardLine/EmployeeCardLine";
-import { EmployeesHeader } from "./EmployeesHeader";
-import { BannerNoData } from "../BannerNoData/BannerNoData";
-import { pageAnimation } from "../../constants/motionSettings";
-import {Employee} from "../../interfaces/IEmployee.ts";
+import { EmployeeListItem } from "../EmployeeListItem/EmployeeListItem.tsx";
+import { EmployeeCardSkeleton } from "../../Skeletons/EmployeeCardSkeleton.tsx";
+import { EmployeeCardLine } from "../EmployeeCardLine/EmployeeCardLine.tsx";
+import { EmployeesHeader } from "../EmployeesHeader/EmployeesHeader.tsx";
+import { BannerNoData } from "../../BannerNoData/BannerNoData.tsx";
+import { pageAnimation } from "../../../constants/motionSettings.ts";
+import {Employee} from "../../../interfaces/IEmployee.ts";
+import "./EmployeesList.css";
 
 interface EmployeesListProps {
     isLoading: boolean;
@@ -30,7 +31,7 @@ export const EmployeesList: FC<EmployeesListProps> = React.memo(({
                 animate={pageAnimation.animate}
                 exit={pageAnimation.exit}
                 transition={pageAnimation.transition}
-                className="employees-container page-content-item"
+                className="employees-list page-content-item"
             >
                 {[...Array(4)].map((_, i) => (
                     <EmployeeCardSkeleton key={i} />
@@ -45,14 +46,14 @@ export const EmployeesList: FC<EmployeesListProps> = React.memo(({
 
     return (
         <div
-            className={`employees-container page-content-item ${isOldStyleEnabled ? "old-style" : ""}`}
+            className={`employees-list page-content-item ${isOldStyleEnabled ? "old-style" : ""}`}
         >
             {isOldStyleEnabled && <EmployeesHeader />}
             {visibleUsers.map((employee) =>
                 isOldStyleEnabled ? (
                     <EmployeeCardLine key={employee.id_user} employee={employee} />
                 ) : (
-                    <EmployeeCard key={employee.id_user} employee={employee} />
+                    <EmployeeListItem key={employee.id_user} employee={employee} />
                 )
             )}
         </div>

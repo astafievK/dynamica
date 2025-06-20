@@ -7,11 +7,12 @@ import PlaceIcon from '@mui/icons-material/Place';
 import CakeIcon from '@mui/icons-material/Cake';
 import ContentCopyRoundedIcon from '@mui/icons-material/ContentCopyRounded';
 import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
-import ReportProblemRoundedIcon from '@mui/icons-material/ReportProblemRounded'; // иконка ошибки
+import ReportProblemRoundedIcon from '@mui/icons-material/ReportProblemRounded';
 import { Employee } from "../../../../interfaces/IEmployee.ts";
 import { AnimatePresence, motion } from "framer-motion";
 import { useCopyToClipboard } from "../../../../store/hooks/useCopyToClipboard.ts";
 import {useNotification} from "../../../Contexts/NotificationContext/NotificationContext.tsx";
+import "./DetailsItem.css";
 
 interface DetailsItemProps {
     title: string;

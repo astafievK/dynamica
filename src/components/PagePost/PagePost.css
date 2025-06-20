@@ -1,0 +1,96 @@
+.page-post .page-header {
+  display: flex !important;
+  gap: 5px !important;
+}
+.page-post .page-header .page-title {
+  line-height: 20px;
+  font-size: 18px !important;
+  text-align: center;
+}
+.page-post .page-header .date {
+  font-weight: 500;
+  font-size: 12px;
+  color: var(--color-gray-700);
+}
+.page-post .page-content {
+  margin-top: 20px;
+}
+.page-post .page-content .page-content-item {
+  border-radius: 10px !important;
+}
+.page-post .page-content .content-text {
+  white-space: pre-wrap;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+.page-post .page-content .content-text ol {
+  margin-left: 10px;
+}
+.page-post .page-content .content-text p img {
+  max-width: 600px;
+  width: 100%;
+}
+.page-post .page-content .content-files {
+  margin-top: 10px;
+  border-radius: 32px;
+}
+
+@media (min-width: 768px) {
+  .page-post .page-header .page-title {
+    line-height: 30px;
+  }
+  .page-post .page-header .date {
+    font-size: 16px;
+  }
+  .page-post .page-content .content-text {
+    padding: 0 15px;
+  }
+  .page-post .page-content .content-files {
+    margin-top: 15px;
+  }
+}
+@media (min-width: 1024px) {
+  .page-post .page-header .page-title {
+    line-height: 34px;
+  }
+  .page-post .page-header .date {
+    font-size: 18px;
+  }
+  .page-post .page-content {
+    margin-top: 20px;
+  }
+  .page-post .page-content .content-text {
+    padding: 0 10px;
+    max-width: 770px;
+  }
+  .page-post .page-content .content-files {
+    margin-top: 20px;
+  }
+}
+@media (min-width: 1440px) {
+  .page-post .page-header .page-title {
+    line-height: 50px;
+  }
+  .page-post .page-content {
+    margin-top: 50px;
+  }
+  .page-post .page-content .content-text {
+    padding: 0 25px;
+    max-width: 1250px;
+  }
+  .page-post .page-content .content-files {
+    margin-top: 25px;
+  }
+}
+@media (min-width: 1600px) {
+  .page-post .page-content .content-text {
+    max-width: 1350px;
+  }
+}
+@media (min-width: 1900px) {
+  .page-post .page-content .content-text {
+    max-width: 1600px;
+  }
+}
+
+/*# sourceMappingURL=PagePost.css.map */

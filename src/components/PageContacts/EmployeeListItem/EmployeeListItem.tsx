@@ -1,21 +1,22 @@
-import React, {FC, useEffect, useRef, useState} from "react";
+import React, { FC, useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Employee } from "../../../interfaces/IEmployee.ts";
-import {useNotification} from "../../Contexts/NotificationContext/NotificationContext.tsx";
+import {useNotification } from "../../Contexts/NotificationContext/NotificationContext.tsx";
 import { useCopyToClipboard } from "../../../store/hooks/useCopyToClipboard.ts";
-import {EmployeeActions} from "./EmployeeActions.tsx";
-import { EmployeeDetails } from "./EmployeeDetails.tsx";
-import {handleCopyUtil} from "../../../utils/handleCopy.ts";
-import {useHasPermission} from "../../../store/hooks/useHasPermission.ts";
-import {Permissions} from "../../../constants/permissions.ts";
+import { EmployeeActions } from "./EmployeeActions/EmployeeActions.tsx";
+import { EmployeeDetails } from "./EmployeeDetails/EmployeeDetails.tsx";
+import { handleCopyUtil } from "../../../utils/handleCopy.ts";
+import { useHasPermission } from "../../../store/hooks/useHasPermission.ts";
+import { Permissions } from "../../../constants/permissions.ts";
+import "./EmployeeListItem.css"
 
 interface IEmployeeCardProps {
     employee: Employee;
 }
 
-export const EmployeeCard: FC<IEmployeeCardProps> = React.memo(({ employee }) => {
+export const EmployeeListItem: FC<IEmployeeCardProps> = React.memo(({ employee }) => {
     const {notify} = useNotification();
-    const { copyToClipboard } = useCopyToClipboard();
+    const {copyToClipboard} = useCopyToClipboard();
 
     const [isHovered, setIsHovered] = useState(false);
     const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -55,12 +56,12 @@ export const EmployeeCard: FC<IEmployeeCardProps> = React.memo(({ employee }) =>
     };
 
     return (
-        <div className="employees-container-item">
+        <div className="employees-list-item">
             <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.17 }}
+                initial={{opacity: 0}}
+                animate={{opacity: 1}}
+                exit={{opacity: 0}}
+                transition={{duration: 0.17}}
                 className={`employee-card ${isHovered ? 'hovered' : ''}`}
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
@@ -68,7 +69,7 @@ export const EmployeeCard: FC<IEmployeeCardProps> = React.memo(({ employee }) =>
                 <div className={`employee-card__preview ${employee.is_hidden ? 'hidden' : ''}`}>
                     <div
                         className="employee-card__photo"
-                        style={{ backgroundImage: `url(https://newportal/files/images/${employee.image.path})` }}
+                        style={{backgroundImage: `url(https://newportal/files/images/${employee.image.path})`}}
                     />
                     <div className="employee-card__general">
                         <div
@@ -90,12 +91,12 @@ export const EmployeeCard: FC<IEmployeeCardProps> = React.memo(({ employee }) =>
                     </div>
                     {canViewActions && (
                         <AnimatePresence>
-                            <EmployeeActions employee={employee} />
+                            <EmployeeActions employee={employee}/>
                         </AnimatePresence>
                     )}
                 </div>
-                <EmployeeDetails employee={employee} />
+                <EmployeeDetails employee={employee}/>
             </motion.div>
         </div>
     );
-});
+})

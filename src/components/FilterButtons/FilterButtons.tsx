@@ -19,12 +19,6 @@ export const FilterButtons: FC<FilterButtonsProps<string>> = React.memo(({ filte
                 ))
             ) : (
                 <>
-                    <button
-                        className={`filter-elem ${filter === "" ? "selected" : ""}`}
-                        onClick={() => setFilter("")}
-                    >
-                        Все
-                    </button>
                     {data?.map((item, index) => (
                         <button
                             className={`filter-elem ${filter === item ? "selected" : ""}`}

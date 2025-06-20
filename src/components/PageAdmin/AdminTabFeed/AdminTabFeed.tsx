@@ -4,33 +4,42 @@ import { useCreatePostMutation } from "../../../api/methods/postApi.ts";
 import { CreatePostCommand } from "../../../api/commands/ICreatePostCommand.ts";
 import { ModalUserNotification } from "../../Modals/ModalUserNotification/ModalUserNotification.tsx";
 import { TextEditor } from "../../TextEditor/TextEditor.tsx";
+import {useTypedSelector} from "../../../store/hooks/redux.ts";
+import {Notification} from "../../../types/Notification.ts";
 
 export const AdminTabFeed: FC = () => {
     const { handleSubmit, register, setValue, reset } = useForm<CreatePostCommand>();
     const [textEditorContent, setTextEditorContent] = useState('');
     const [createPost, { isLoading }] = useCreatePostMutation();
-    const [notification, setNotification] = useState<{ title?: string; message: string } | null>(null);
+    const [notification, setNotification] = useState<Notification | null>(null);
+    const { user } = useTypedSelector((state) => state.auth)
 
     useEffect(() => {
         setValue("description", textEditorContent);
     }, [textEditorContent, setValue]);
 
     const onSubmit: SubmitHandler<CreatePostCommand> = async (data) => {
-        data.user_id = 2936;
-        data.isPinned = false;
-
+        const payload: CreatePostCommand = {
+            ...data,
+            description: textEditorContent,
+            id_user: user!.id_user,
+            isPinned: false
+        };
         try {
-            const response = await createPost(data).unwrap();
-            if(response.status !== 'failed') {
+            const response = await createPost(payload).unwrap();
+            if (response.status !== 'failed') {
                 reset();
                 setTextEditorContent('');
+                setNotification({ message: response.message || "Новость создана" });
+            } else {
+                console.error(response)
             }
-            setNotification({ title: "Обновление отдела", message: response.message || "Название отдела успешно обновлено" });
         } catch (error) {
-            console.log(error)
+            console.error(error)
             setNotification({ title: "Ошибка", message: "Неизвестная ошибка" });
         }
     };
+
 
     return (
         <>
@@ -48,11 +57,9 @@ export const AdminTabFeed: FC = () => {
                     <input className="content-tab__input content-tab__input--title styled" type="text" placeholder="Заголовок новости" {...register("title")} required/>
 
                     <TextEditor value={textEditorContent} onChange={setTextEditorContent} />
-                    <textarea {...register("description")} hidden/>
 
                     <div className="content-tab__actions">
-                        <button className="action-file" disabled={true}>Прикрепить файл</button>
-                        <button type="submit" className="action-save">
+                        <button type="submit" className="action action-save primary">
                             Опубликовать
                             {isLoading && <span className="shimmer"></span>}
                         </button>

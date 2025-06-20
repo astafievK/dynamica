@@ -1,13 +1,17 @@
 import { FC } from "react";
 import { FeedTile } from "./FeedTile/FeedTile.tsx";
 import { useGetPostsQuery } from "../../../api/methods/postApi.ts";
-import { FeedTileSkeleton } from "../../Skeletons/FeedTileSkeleton.tsx";
+import { FeedTileSkeleton } from "./FeedTileSkeleton/FeedTileSkeleton.tsx";
 import {BannerNoData} from "../../BannerNoData/BannerNoData.tsx";
+import "./FeedTiles.css"
+import {useHasPermission} from "../../../store/hooks/useHasPermission.ts";
+import {Permissions} from "../../../constants/permissions.ts";
 
 export const FeedTiles: FC = () => {
     const { data, isLoading } = useGetPostsQuery();
+    const isDeveloper = useHasPermission(Permissions.Developer)
 
-    if (!isLoading && (!data?.posts || data.posts.length === 0)) {
+    if ((!isLoading && (!data?.posts || data.posts.length === 0)) || !isDeveloper) {
         return (
             <BannerNoData content={"Скоро тут будут новости"}/>
         );
@@ -24,7 +28,8 @@ export const FeedTiles: FC = () => {
                         title={post.title}
                         date={post.date.date}
                     />
-                ))}
+                ))
+            }
         </div>
     );
 };

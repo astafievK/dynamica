@@ -6,7 +6,9 @@ import {motion} from "framer-motion";
 export const PageFeed: FC = () => {
     return (
         <motion.div {...pageAnimation} className={"page page-feed"}>
-            <FeedTiles/>
+            <div className="page-content">
+                <FeedTiles/>
+            </div>
         </motion.div>
     )
 }

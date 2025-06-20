@@ -1,3 +1,5 @@
+import {IMoodlePreference} from "./IMoodlePreference";
+
 export interface IMoodleUser {
     id: number;
     username: string;
@@ -19,4 +21,5 @@ export interface IMoodleUser {
     descriptionFormat: number
     profileimageurlsmall: string
     profileimageurl: string
+    preferences: IMoodlePreference[]
 }

@@ -1,0 +1,155 @@
+footer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background: var(--secondary-color);
+  max-width: 1600px;
+  padding: 12px 20px;
+}
+footer .nav {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  list-style: none;
+}
+footer .nav .nav-item a {
+  color: #ffffff;
+  font-size: 10px;
+  text-decoration: none;
+  text-wrap: nowrap;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  font-weight: 400;
+}
+footer .nav .nav-item.active-nav-item {
+  color: var(--primary-color);
+}
+footer .sep {
+  border-bottom: 1px solid rgb(255, 255, 255);
+  margin-top: 11px;
+  margin-bottom: 11px;
+  width: 100%;
+}
+footer .logo-faq {
+  display: none;
+}
+footer .logo {
+  height: 22px;
+}
+footer .logo img {
+  height: 100%;
+  object-fit: contain;
+}
+footer .faq {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  list-style: none;
+}
+footer .faq .faq-item a {
+  color: #ffffff;
+  font-size: 10px;
+  text-decoration: none;
+  text-wrap: nowrap;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  font-weight: 400;
+}
+
+@media (min-width: 768px) {
+  footer {
+    padding: 24px 35px;
+  }
+  footer .nav {
+    gap: 21px;
+  }
+  footer .nav .nav-item a {
+    font-size: 14px;
+  }
+  footer .sep {
+    border-bottom: 2px solid rgb(255, 255, 255);
+    margin-top: 23px;
+    margin-bottom: 23px;
+  }
+  footer .logo {
+    height: 50px;
+  }
+  footer .faq {
+    margin-top: 23px;
+    gap: 21px;
+  }
+  footer .faq .faq-item a {
+    font-size: 14px;
+  }
+}
+@media (min-width: 1024px) {
+  footer {
+    padding: 32px 35px;
+  }
+  footer .nav {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-rows: repeat(3, auto);
+    gap: 21px 100px;
+    justify-content: start;
+    grid-auto-columns: min-content;
+  }
+  footer .nav .nav-item a {
+    text-wrap: nowrap;
+    font-size: 20px;
+  }
+  footer .sep {
+    border-bottom: 3px solid rgb(255, 255, 255);
+    margin-top: 52px;
+    margin-bottom: 30px;
+  }
+  footer .logo {
+    height: 63px;
+  }
+  footer .faq {
+    margin-top: 26px;
+    gap: 28px;
+  }
+  footer .faq .faq-item a {
+    font-size: 20px;
+  }
+}
+@media (min-width: 1440px) {
+  footer {
+    padding: 36px 35px;
+  }
+  footer .nav {
+    grid-template-rows: repeat(2, auto);
+    gap: 37px 120px;
+  }
+  footer .sep {
+    margin-top: 28px;
+    margin-bottom: 35px;
+  }
+  footer .logo-faq {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  footer .logo-faq .logo {
+    display: flex;
+    height: 72px;
+  }
+  footer .logo-faq .faq {
+    margin-top: 0;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    gap: 80px;
+    margin-left: 150px;
+  }
+  footer .logo {
+    display: none;
+  }
+  footer .faq {
+    display: none;
+  }
+}
+
+/*# sourceMappingURL=Footer.css.map */

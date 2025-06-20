@@ -1,10 +1,11 @@
 import { FC } from "react";
 import { motion } from "framer-motion";
-import {ExpandedLeftMenu} from "./ExpandedLeftMenu.tsx";
-import { CollapsedLeftMenu } from "./CollapsedLeftMenu.tsx";
+import {ExpandedLeftMenu} from "./ExpandedLeftMenu/ExpandedLeftMenu.tsx";
+import { CollapsedLeftMenu } from "./CollapsedLeftMenu/CollapsedLeftMenu.tsx";
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 import {useAppDispatch, useTypedSelector} from "../../store/hooks/redux.ts";
 import {setLeftMenuIsExpanded} from "../../api/slices/leftMenuSlice.ts";
+import "./LeftMenu.css";
 
 export const LeftMenu: FC = () => {
     const dispatch = useAppDispatch()

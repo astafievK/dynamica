@@ -1,0 +1,36 @@
+.page-contacts .page-content .pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3px 0;
+  margin-top: 20px;
+}
+.page-contacts .page-content .pagination-container .pagination {
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto;
+  overflow: auto;
+  gap: 5px;
+}
+.page-contacts .page-content .pagination-container .pagination button {
+  font-size: 16px;
+  font-weight: 600;
+  height: 50px;
+  width: 50px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  transition: all 150ms;
+}
+.page-contacts .page-content .pagination-container .pagination button:hover:not(:disabled) {
+  background: var(--block-background);
+}
+.page-contacts .page-content .pagination-container .pagination button.active {
+  background: var(--block-background);
+  box-shadow: var(--block-shadow);
+}
+.page-contacts .page-content .pagination-container .pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/*# sourceMappingURL=PageContacts.css.map */

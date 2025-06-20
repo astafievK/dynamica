@@ -8,11 +8,12 @@ import {useAppDispatch, useTypedSelector} from "../../store/hooks/redux.ts";
 import ClearRoundedIcon from '@mui/icons-material/ClearRounded';
 import { Pagination } from "../Pagination/Pagination.tsx";
 import { Dropdown } from "../Dropdown/Dropdown.tsx";
-import {EmployeesList} from "./EmployeesList.tsx";
+import {EmployeesList} from "./EmployeesList/EmployeesList.tsx";
 import {setEmployeesContainerStyle} from "../../api/slices/employeesContainerSlice.ts";
 import {useGetDepartmentsTitlesNotNullQuery} from "../../api/methods/departmentApi.ts";
 import {Permissions} from "../../constants/permissions.ts";
 import {useHasPermission} from "../../store/hooks/useHasPermission.ts";
+import "./PageContacts.css"
 
 const ITEMS_PER_PAGE = 100;
 
@@ -83,20 +84,23 @@ export const PageContacts: FC = () => {
         setCurrentPage(1);
 
         const normalizedSearch = normalizeSearch(temporarySearchValue);
+        const newParams = new URLSearchParams(searchParams.toString());
 
         if (selectedDepartment.title === "Все") {
-            searchParams.delete("department");
+            newParams.delete("department");
         } else {
-            searchParams.set("department", selectedDepartment.title);
+            newParams.set("department", selectedDepartment.title);
         }
 
         if (!normalizedSearch) {
-            searchParams.delete("search");
+            newParams.delete("search");
         } else {
-            searchParams.set("search", normalizedSearch);
+            newParams.set("search", normalizedSearch);
         }
 
-        setSearchParams(searchParams);
+        if (newParams.toString() !== searchParams.toString()) {
+            setSearchParams(newParams);
+        }
     }, [selectedDepartment, temporarySearchValue, isFiltersReady]);
 
     const paginatedUsers = useMemo(() => {
@@ -130,10 +134,7 @@ export const PageContacts: FC = () => {
     return (
         <AnimatePresence>
             <motion.div
-                initial={pageAnimation.initial}
-                animate={pageAnimation.animate}
-                exit={pageAnimation.exit}
-                transition={pageAnimation.transition}
+                {...pageAnimation}
                 className="page page-contacts"
             >
                 <div className="page-filters">
@@ -144,6 +145,7 @@ export const PageContacts: FC = () => {
                         value={selectedStyle}
                         onSelect={onSelectStyle}
                         externalClasses={['page-filters-item']}
+                        searchEnabled={false}
                     />
                     {
                         departmentsTitles && !departmentsLoading && (

@@ -5,11 +5,11 @@ import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutl
 import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import { motion } from "framer-motion";
-import { Employee } from "../../../interfaces/IEmployee.ts";
-import { useNotification } from "../../Contexts/NotificationContext/NotificationContext.tsx";
-import { useUploadImage } from "../../../store/hooks/useUploadImage.ts";
-import { useEditEmployee } from "../../Contexts/EditEmployeeContext/EditEmployeeContext.tsx";
-import {useDeleteProfileImageMutation, usePatchUserVisibilityMutation} from "../../../api/methods/userApi.ts";
+import { Employee } from "../../../../interfaces/IEmployee.ts";
+import { useNotification } from "../../../Contexts/NotificationContext/NotificationContext.tsx";
+import { useUploadImage } from "../../../../store/hooks/useUploadImage.ts";
+import { useEditEmployee } from "../../../Contexts/EditEmployeeContext/EditEmployeeContext.tsx";
+import {useDeleteProfileImageMutation, usePatchUserVisibilityMutation} from "../../../../api/methods/userApi.ts";
 
 interface Props {
     employee: Employee;

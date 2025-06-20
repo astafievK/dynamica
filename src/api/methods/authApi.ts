@@ -33,7 +33,7 @@ export const authApi = baseApi.injectEndpoints({
                             if (response && response.length > 0 && response[0].id) {
                                 userToDispatch = {
                                     ...data.user,
-                                    moodleUserId: response[0].id,
+                                    moodleUser: response[0],
                                 };
 
                                 console.log(userToDispatch)

@@ -1,0 +1,112 @@
+.left-menu {
+  display: none;
+  position: sticky;
+  top: var(--header-height-default);
+  height: calc(100vh - var(--header-height-default));
+  flex-direction: column;
+  overflow-y: auto;
+
+  .toggle-btn {
+    margin-top: auto;
+    margin-right: auto;
+    width: auto !important;
+  }
+
+  .left-menu-item {
+    display: flex;
+    align-items: center;
+    position: relative;
+    gap: 10px;
+    background: var(--color-gray-75);
+    border-radius: 0 10px 10px 0;
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+    width: 100%;
+    min-width: 45px;
+    flex-shrink: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    transition: all 150ms ease-in-out;
+
+    svg {
+      fill: var(--color-primary-500);
+      flex-shrink: 0;
+      height: 25px;
+      width: 25px;
+      transition: all 200ms ease;
+    }
+
+    span {
+      color: var(--color-primary-700);
+    }
+
+    &.item-contacts {
+      .contacts-navigation {
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 2;
+      }
+    }
+
+    &:hover {
+      background: var(--color-primary-50);
+    }
+
+    &.active-nav-item {
+      background: var(--block-background);
+    }
+  }
+
+  .left-menu-navigation {
+    display: flex;
+    gap: 8px;
+    flex-direction: column;
+
+    &__title {
+      font-weight: 600;
+      font-size: 14px;
+      margin-left: 10px;
+      color: var(--color-gray-800);
+    }
+
+    &__items {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+
+}
+
+@media (min-width: 1024px) {
+  .left-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    top: var(--header-height-1024);
+    height: calc(100vh - var(--header-height-1024));
+    padding: 10px 0;
+
+    .left-menu-item {
+      padding: 11px 18px;
+    }
+  }
+}
+
+@media (min-width: 1440px) {
+  .left-menu {
+    top: var(--header-height-1440);
+    height: calc(100vh - var(--header-height-1440));
+
+    .left-menu-item {
+      font-size: 18px;
+      gap: 10px;
+    }
+  }
+}

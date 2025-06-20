@@ -63,13 +63,54 @@
   --item-active-background: rgba(0, 0, 0, 0.1);
   --block-shadow: 0 2px 10px 3px rgba(0,0,0,0.05);
   --block-background: rgba(255, 255, 255, 1);
-  --document-shadow: 0px 4px 12px 0px #7090b029;
+  --item-shadow: 0px 7px 12px 0px rgba(0, 0, 0, 0.2);
 }
 
-html, body, #root {
-  height: 100%;
+@font-face {
+  font-family: "GrtskTera";
+  src: url(fonts/GrtskTera-Bold-Slant-Italic.woff2);
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+}
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  color: var(--font-color);
+  font-family: "Commissioner", Arial, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+*::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(150, 150, 150, 0.2);
+  transition: background 0.3s;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(150, 150, 150, 0.75);
+}
+
+ul {
+  list-style: none;
+}
+
+html, body {
   margin: 0;
   padding: 0;
+}
+
+#dynamica {
+  height: 100%;
 }
 
 .layout-content {
@@ -113,16 +154,16 @@ button {
   transition: all 0.1s;
 }
 button.primary {
-  background-color: var(--color-accent-50);
-  color: var(--color-primary-600);
+  background-color: var(--color-primary-600);
+  color: var(--color-gray-100);
   border: none;
   outline: none;
 }
 button.primary:hover {
-  background: var(--color-accent-200);
+  background: var(--color-primary-700);
 }
 button.primary:active {
-  background: var(--color-accent-300);
+  background: var(--color-primary-600);
 }
 button.primary:focus-visible {
   outline: 2px solid var(--color-primary-300);
@@ -230,7 +271,7 @@ textarea {
   font-size: 20px;
   text-align: center;
   user-select: none;
-  color: rgba(0, 0, 0, 0.6);
+  color: var(--color-gray-800);
 }
 
 .banner-copy {
@@ -414,44 +455,6 @@ textarea {
     opacity: 0;
   }
 }
-@font-face {
-  font-family: "GrtskTera";
-  src: url(fonts/GrtskTera-Bold-Slant-Italic.woff2);
-  font-style: italic;
-  font-weight: 700;
-  font-display: swap;
-}
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  border: none;
-  outline: none;
-  color: var(--font-color);
-  font-family: "Commissioner", Arial, sans-serif;
-  -webkit-tap-highlight-color: transparent;
-}
-*::-webkit-scrollbar {
-  width: 0;
-  height: 0;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--background-color);
-}
-
-::-webkit-scrollbar-thumb {
-  background: rgba(150, 150, 150, 0.2);
-  transition: background 0.3s;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(150, 150, 150, 0.75);
-}
-
-ul {
-  list-style: none;
-}
-
 html {
   scrollbar-gutter: stable;
   overflow-y: scroll;
@@ -1093,263 +1096,6 @@ html body #dynamica .docx-container .docx-wrapper .docx {
   width: 100%;
   margin-bottom: 15px;
 }
-html body #dynamica .header-wrapper {
-  display: flex;
-  flex-direction: column;
-  position: sticky;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: var(--header-height-default);
-  z-index: 2025;
-  transition: transform 0.3s ease-in-out;
-}
-html body #dynamica .header-wrapper header {
-  display: flex;
-  position: relative;
-  flex: 1;
-  flex-direction: row;
-  gap: 15px;
-  background: rgba(241, 242, 242, 0.5);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  will-change: backdrop-filter;
-  width: 100%;
-  height: 100%;
-  justify-content: space-between;
-  padding: 9px 12px;
-  z-index: 2;
-}
-html body #dynamica .header-wrapper header #logo img {
-  height: 100%;
-}
-html body #dynamica .header-wrapper header .header-item {
-  border-radius: 32px;
-  padding: 5px;
-  height: 100%;
-  gap: 6px;
-  display: flex;
-  cursor: pointer;
-  text-decoration: none;
-  justify-content: center;
-  align-items: center;
-  font-size: 14px;
-  font-weight: 600;
-  transition: all 150ms;
-}
-html body #dynamica .header-wrapper header .header-item.rounded {
-  aspect-ratio: 1/1;
-}
-html body #dynamica .header-wrapper header .header-item span,
-html body #dynamica .header-wrapper header .header-item svg {
-  text-wrap: nowrap;
-  color: var(--color-primary-700);
-  fill: var(--color-primary-700);
-  transition: all 150ms;
-}
-html body #dynamica .header-wrapper header .header-item svg {
-  height: 25px;
-  width: 25px;
-}
-html body #dynamica .header-wrapper header .header-item:hover {
-  background: var(--block-background);
-}
-html body #dynamica .header-wrapper header .global-search-container {
-  display: none;
-  flex-grow: 1;
-}
-html body #dynamica .header-wrapper header .global-search-container .global-search {
-  border-radius: 32px;
-  width: 100%;
-  height: 100%;
-  font-weight: 600;
-  background: transparent;
-}
-html body #dynamica .header-wrapper header .profile-container {
-  display: none;
-}
-html body #dynamica .header-wrapper header .profile-container .notifications-btn {
-  justify-content: center;
-  align-self: center;
-  aspect-ratio: 1/1;
-}
-html body #dynamica .header-wrapper header .profile-container .user-dropdown-wrapper {
-  position: relative;
-  padding: 2px;
-}
-html body #dynamica .header-wrapper header .profile-container .user-dropdown-wrapper .user-wrapper {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  background: none;
-  border: none;
-  height: 100%;
-  aspect-ratio: 1/1;
-  border-radius: 50%;
-  overflow: hidden;
-}
-html body #dynamica .header-wrapper header .profile-container .user-dropdown-wrapper .user-wrapper .user-image {
-  width: 100%;
-  height: 100%;
-  background-position: top;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-html body #dynamica .header-wrapper header .profile-container .user-dropdown-wrapper .user-dropdown-menu {
-  position: absolute;
-  right: 0;
-  width: 200px;
-  background: var(--block-background);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
-  overflow: scroll;
-  border-radius: 12px;
-  padding: 4px;
-  z-index: 999;
-}
-html body #dynamica .header-wrapper header .profile-container .user-dropdown-wrapper .user-dropdown-menu a, html body #dynamica .header-wrapper header .profile-container .user-dropdown-wrapper .user-dropdown-menu button {
-  display: block;
-  width: 100%;
-  padding: 12px;
-  text-align: left;
-  background: none;
-  border: none;
-  cursor: pointer;
-  text-decoration: none;
-  border-radius: 7px;
-  font-size: 14px;
-}
-html body #dynamica .header-wrapper header .profile-container .user-dropdown-wrapper .user-dropdown-menu a:hover, html body #dynamica .header-wrapper header .profile-container .user-dropdown-wrapper .user-dropdown-menu button:hover {
-  background-color: var(--color-gray-50);
-}
-html body #dynamica .header-wrapper header #burger {
-  margin-left: auto;
-  aspect-ratio: 1/1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-}
-html body #dynamica .header-wrapper header #burger .body {
-  height: 20px;
-  width: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: 8px;
-}
-html body #dynamica .header-wrapper header #burger .body .line {
-  height: 2px;
-  background: var(--secondary-color);
-  border-radius: 4px;
-  width: 100%;
-  transition: transform 0.3s, opacity 0.3s;
-}
-html body #dynamica .header-wrapper .user-panel {
-  display: none !important;
-  background: var(--secondary-color);
-  width: 100%;
-  height: 33px;
-  margin: 0 auto;
-  max-width: 1600px;
-}
-html body #dynamica .header-wrapper .user-panel nav {
-  display: flex;
-  align-items: stretch;
-  height: 100%;
-}
-html body #dynamica .header-wrapper .user-panel nav a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 5px 10px;
-  height: 100%;
-  text-decoration: none;
-  font-weight: 600;
-  background: none;
-  font-size: 14px;
-  color: var(--background-color);
-  transition: color 150ms;
-}
-html body #dynamica .header-wrapper .user-panel nav a:hover {
-  color: var(--primary-color);
-}
-html body #dynamica .layout-content .left-menu {
-  display: none;
-  position: sticky;
-  top: var(--header-height-default);
-  height: calc(100vh - var(--header-height-default));
-  flex-direction: column;
-  overflow-y: auto;
-}
-html body #dynamica .layout-content .left-menu .toggle-btn {
-  margin-top: auto;
-  margin-right: auto;
-  width: auto !important;
-}
-html body #dynamica .layout-content .left-menu.collapsed .left-menu-item {
-  width: 61px;
-  justify-content: center;
-  align-content: center;
-}
-html body #dynamica .layout-content .left-menu .left-menu-item {
-  display: flex;
-  align-items: center;
-  position: relative;
-  gap: 10px;
-  background: var(--item-static-background);
-  border-radius: 0 10px 10px 0;
-  font-size: 16px;
-  font-weight: 500;
-  text-decoration: none;
-  width: 100%;
-  min-width: 45px;
-  color: var(--color-primary-700);
-  flex-shrink: 0;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  transition: all 200ms ease;
-}
-html body #dynamica .layout-content .left-menu .left-menu-item svg {
-  color: var(--color-primary-700);
-  flex-shrink: 0;
-  height: 25px;
-  width: 25px;
-  transition: all 200ms ease;
-}
-html body #dynamica .layout-content .left-menu .left-menu-item.item-contacts .contacts-navigation {
-  position: absolute;
-  top: 0;
-  right: 0;
-  z-index: 2;
-}
-html body #dynamica .layout-content .left-menu .left-menu-item:hover, html body #dynamica .layout-content .left-menu .left-menu-item.active-nav-item {
-  background: var(--block-background);
-}
-html body #dynamica .layout-content .left-menu .submenu-container {
-  margin-left: 10px;
-  margin-top: 5px;
-}
-html body #dynamica .layout-content .left-menu .general-navigation,
-html body #dynamica .layout-content .left-menu .recent-navigation {
-  display: flex;
-  gap: 2px;
-  flex-direction: column;
-}
-html body #dynamica .layout-content .left-menu .recent-navigation {
-  margin-top: 25px;
-}
-html body #dynamica .layout-content .left-menu .recent-navigation .navigation-title {
-  padding: 0 5px;
-  font-weight: 500;
-  font-size: 14px;
-  opacity: 0.6;
-  text-wrap: nowrap;
-}
-html body #dynamica .layout-content .left-menu .recent-navigation ul {
-  margin-top: 10px;
-}
 html body #dynamica .layout-content .main-container {
   position: relative;
   display: flex;
@@ -1378,7 +1124,6 @@ html body #dynamica .layout-content .main-container main .page {
 html body #dynamica .layout-content .main-container main .page .page-header {
   display: none;
   flex-direction: column;
-  padding: 0 10px;
 }
 html body #dynamica .layout-content .main-container main .page .page-header .page-title {
   font-family: "GrtskTera", sans-serif;
@@ -1418,332 +1163,9 @@ html body #dynamica .layout-content .main-container main .page .page-filters .fi
 html body #dynamica .layout-content .main-container main .page .page-content .page-content-item {
   padding: 5px;
   width: 100%;
-  height: 100%;
+  height: auto;
   background: var(--block-background);
   border-radius: 32px;
-}
-html body #dynamica .layout-content .main-container main .page.page-landing {
-  max-width: unset;
-  padding: 0;
-  margin: 0;
-}
-html body #dynamica .layout-content .main-container main .page.page-landing .landing-module-wide {
-  display: none;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-}
-html body #dynamica .layout-content .main-container main .page.page-landing .landing-module__preview .photo-container {
-  display: flex;
-  position: relative;
-  align-items: center;
-}
-html body #dynamica .layout-content .main-container main .page.page-landing .landing-module__preview .photo-container h1 {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  font-family: "GrtskTera", Arial, sans-serif;
-  transform: translateX(-50%);
-  margin-top: 24px;
-  color: #FFFFFF;
-  opacity: 0.95;
-  text-align: center;
-  font-style: italic;
-  font-weight: 600;
-  font-size: 26px;
-  line-height: 30px;
-}
-html body #dynamica .layout-content .main-container main .page.page-landing .landing-module__preview .photo-container .image-container {
-  width: 100%;
-  height: 221px;
-  display: flex;
-  justify-content: center;
-}
-html body #dynamica .layout-content .main-container main .page.page-landing .landing-module__preview .photo-container .image-container img {
-  width: 100%;
-  object-fit: cover;
-}
-html body #dynamica .layout-content .main-container main .page.page-landing .content section {
-  width: 100%;
-  height: 105vh;
-  margin: 30px auto 0 auto;
-  padding: 0 25px;
-}
-html body #dynamica .layout-content .main-container main .page.page-landing .content .section-year {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-html body #dynamica .layout-content .main-container main .page.page-landing .content .section-year h2 {
-  font-size: 36px;
-}
-html body #dynamica .layout-content .main-container main .page.page-landing .content .section-year .end {
-  margin-top: 5px;
-  text-align: center;
-  font-size: 18px;
-  font-weight: 500;
-}
-html body #dynamica .layout-content .main-container main .page.page-landing .content .section-values {
-  padding: 0 10px;
-}
-html body #dynamica .layout-content .main-container main .page.page-landing .content .values-container {
-  display: flex;
-  flex-direction: column;
-  border-radius: 25px;
-  width: 100%;
-  padding: 15px 15px 22px 15px;
-  background: #ffffff;
-}
-html body #dynamica .layout-content .main-container main .page.page-landing .content .values-container .container-title {
-  font-family: "GrtskTera", Arial, sans-serif;
-  font-size: 20px;
-  font-weight: 600;
-}
-html body #dynamica .layout-content .main-container main .page.page-landing .content .values-container .values {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: 11px;
-}
-html body #dynamica .layout-content .main-container main .page.page-landing .content .values-container .values .value span {
-  line-height: 15px;
-  font-size: 15px;
-  font-weight: 400;
-  color: rgba(0, 0, 0, 0.55);
-}
-html body #dynamica .layout-content .main-container main .page.page-landing .content .values-container .values .value span .title {
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--primary-color);
-}
-html body #dynamica .layout-content .main-container main .page.page-landing .content h2 {
-  color: var(--secondary-color);
-  font-style: italic;
-  font-weight: 700;
-  font-size: 20px;
-  text-align: center;
-}
-html body #dynamica .layout-content .main-container main .page.page-landing .content h2 .year {
-  color: var(--primary-color);
-}
-html body #dynamica .layout-content .main-container main .page.page-landing .content h2 .end {
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 10px;
-}
-html body #dynamica .layout-content .main-container main .page.page-landing .content .section-map {
-  display: none;
-}
-html body #dynamica .layout-content .main-container main .page.page-landing .content .dynamica-today {
-  display: flex;
-  flex-direction: column;
-  color: var(--secondary-color);
-}
-html body #dynamica .layout-content .main-container main .page.page-landing .content .dynamica-today p {
-  font-size: 20px;
-}
-html body #dynamica .layout-content .main-container main .page.page-landing .content .dynamica-today p.bold {
-  font-weight: 600;
-}
-html body #dynamica .layout-content .main-container main .page.page-landing .content .dynamica-today p.gray {
-  margin-top: 7px;
-  font-size: 18px;
-  color: var(--additional-color);
-}
-html body #dynamica .layout-content .main-container main .page.page-landing .content .section-achievements {
-  padding: 0;
-}
-html body #dynamica .layout-content .main-container main .page.page-landing .content .section-achievements .swiper {
-  margin-top: 13px;
-}
-html body #dynamica .layout-content .main-container main .page.page-landing .content .section-achievements .swiper .swiper-wrapper .swiper-slide .content {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-}
-html body #dynamica .layout-content .main-container main .page.page-landing .content .section-achievements .swiper .swiper-wrapper .swiper-slide .content .image-wrapper {
-  border-radius: 18px;
-  aspect-ratio: 1/1;
-  overflow: hidden;
-}
-html body #dynamica .layout-content .main-container main .page.page-landing .content .section-achievements .swiper .swiper-wrapper .swiper-slide .content .image-wrapper img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-html body #dynamica .layout-content .main-container main .page.page-landing .content .section-achievements .swiper .swiper-wrapper .swiper-slide .content .label {
-  margin-top: 5px;
-  font-weight: bold;
-  font-size: 20px;
-  opacity: 0;
-  text-align: center;
-  transition: opacity 200ms;
-}
-html body #dynamica .layout-content .main-container main .page.page-landing .content .section-achievements .swiper .swiper-wrapper .swiper-slide-active .content .label {
-  opacity: 1;
-}
-html body #dynamica .layout-content .main-container main .page.page-landing .content .section-achievements .swiper-1440 {
-  display: none;
-}
-html body #dynamica .layout-content .main-container main .page.page-landing .content .section-form {
-  height: 100vh;
-  background: var(--secondary-color);
-  margin-left: 0 !important;
-  margin-right: 0 !important;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  max-width: unset;
-  width: 100%;
-}
-html body #dynamica .layout-content .main-container main .page.page-landing .content .section-form form {
-  background: var(--secondary-color);
-  border-radius: 18px;
-  padding: 14px 18px;
-}
-html body #dynamica .layout-content .main-container main .page.page-landing .content .section-form form .form-picture {
-  display: none;
-}
-html body #dynamica .layout-content .main-container main .page.page-landing .content .section-form form .form-body__wrapper .form-header {
-  display: flex;
-  flex-direction: column;
-  padding: 0 10px;
-}
-html body #dynamica .layout-content .main-container main .page.page-landing .content .section-form form .form-body__wrapper .form-header span {
-  color: var(--primary-color);
-  font-style: italic;
-  font-weight: bold;
-  text-align: center;
-}
-html body #dynamica .layout-content .main-container main .page.page-landing .content .section-form form .form-body__wrapper .form-header .primary {
-  font-size: 20px;
-}
-html body #dynamica .layout-content .main-container main .page.page-landing .content .section-form form .form-body__wrapper .form-header .secondary {
-  font-size: 12px;
-}
-html body #dynamica .layout-content .main-container main .page.page-landing .content .section-form form .form-body__wrapper .form-body {
-  margin-top: 18px;
-}
-html body #dynamica .layout-content .main-container main .page.page-landing .content .section-form form .form-body__wrapper .form-body .form-elem__text {
-  font-size: 12px;
-  padding: 20px 17px;
-  border-radius: 12px;
-  width: 100%;
-}
-html body #dynamica .layout-content .main-container main .page.page-landing .content .section-form form .form-body__wrapper .form-body .form-elem__text::placeholder {
-  color: var(--additional-color);
-  font-weight: bold;
-  font-style: italic;
-}
-html body #dynamica .layout-content .main-container main .page.page-landing .content .section-form form .form-body__wrapper .form-body .form-elem__text.form-input__description {
-  margin-top: 11px;
-  height: 211px;
-}
-html body #dynamica .layout-content .main-container main .page.page-landing .content .section-form form .form-body__wrapper .form-body .submit-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 17px;
-}
-html body #dynamica .layout-content .main-container main .page.page-landing .content .section-form form .form-body__wrapper .form-body .submit-container .form-input__submit {
-  position: relative;
-  padding: 5px 23px;
-  border-radius: 7px;
-  color: black;
-  font-weight: bold;
-  background: var(--primary-color);
-  font-size: 17px;
-}
-html body #dynamica .layout-content .main-container main .page.page-feed {
-  display: flex;
-}
-html body #dynamica .layout-content .main-container main .page.page-feed .feed-tiles {
-  display: grid;
-  grid-template-columns: repeat(1, calc(100% - 0px));
-  gap: 5px;
-  padding: 10px;
-  border-radius: 32px;
-  width: 100%;
-}
-html body #dynamica .layout-content .main-container main .page.page-feed .feed-tiles .feed-tile {
-  background: var(--item-static-background);
-  border-radius: 20px;
-  text-decoration: none;
-  width: 100%;
-  aspect-ratio: 1/1;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  cursor: pointer;
-}
-html body #dynamica .layout-content .main-container main .page.page-feed .feed-tiles .feed-tile.pinned {
-  background: var(--primary-color);
-}
-html body #dynamica .layout-content .main-container main .page.page-feed .feed-tiles .feed-tile .feed-tile__image {
-  width: 100%;
-  aspect-ratio: 4/3;
-  display: flex;
-  justify-content: center;
-  user-select: none;
-  align-items: center;
-  overflow: hidden;
-  transition: scale 200ms ease;
-}
-html body #dynamica .layout-content .main-container main .page.page-feed .feed-tiles .feed-tile .feed-tile__image img {
-  height: 100%;
-  object-fit: contain;
-}
-html body #dynamica .layout-content .main-container main .page.page-feed .feed-tiles .feed-tile .feed-tile__info {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  padding: 5px;
-}
-html body #dynamica .layout-content .main-container main .page.page-feed .feed-tiles .feed-tile .feed-tile__info span {
-  color: var(--secondary-color);
-}
-html body #dynamica .layout-content .main-container main .page.page-feed .feed-tiles .feed-tile .feed-tile__info .feed-tile__date {
-  text-align: left;
-  user-select: none;
-  font-size: 13px;
-  opacity: 0.7;
-}
-html body #dynamica .layout-content .main-container main .page.page-feed .feed-tiles .feed-tile .feed-tile__info .feed-tile__title {
-  text-align: left;
-  margin-top: 5px;
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 12px;
-  flex: 1;
-}
-html body #dynamica .layout-content .main-container main .page.page-feed .feed-tiles .feed-tile:hover {
-  background: var(--item-hover-background);
-}
-html body #dynamica .layout-content .main-container main .page.page-feed .feed-tiles .feed-tile:active {
-  background: var(--item-active-background);
-}
-html body #dynamica .layout-content .main-container main .page.page-feed .feed-tiles .feed-tile--skeleton {
-  background: var(--background-color);
-  border-radius: 20px;
-  width: 100%;
-  aspect-ratio: 1/1;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
-html body #dynamica .layout-content .main-container main .page.page-feed .feed-tiles .feed-tile--skeleton .skeleton-image {
-  width: 100%;
-  aspect-ratio: 4/3;
-}
-html body #dynamica .layout-content .main-container main .page.page-feed .feed-tiles .feed-tile--skeleton .skeleton-title {
-  height: 14px;
-  width: 80%;
-  margin-top: 5px;
-}
-html body #dynamica .layout-content .main-container main .page.page-feed .feed-tiles .feed-tile--skeleton .skeleton-date {
-  height: 12px;
-  margin-top: 5px;
-  opacity: 0.7;
 }
 html body #dynamica .layout-content .main-container main .page.page-profile .page-header {
   display: flex !important;
@@ -1840,30 +1262,15 @@ html body #dynamica .layout-content .main-container main .page.page-admin .page-
   min-height: 100px;
 }
 html body #dynamica .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--feed .content-tab__form .content-tab__actions {
-  border-radius: 32px;
-  background: #FFFFFF;
-  padding: 4px;
   display: flex;
   flex-direction: row;
-  box-shadow: 0 2px 10px 0 rgba(106, 82, 117, 0.3);
   justify-content: space-between;
   gap: 7px;
 }
-html body #dynamica .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--feed .content-tab__form .content-tab__actions .action-file,
-html body #dynamica .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--feed .content-tab__form .content-tab__actions .action-save {
-  flex: 1;
-  padding: 12px 5px;
+html body #dynamica .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--feed .content-tab__form .content-tab__actions .action {
+  flex-grow: 1;
+  padding: 15px;
   border-radius: 32px;
-  font-size: 14px;
-  font-weight: 700;
-  font-style: italic;
-  text-align: center;
-}
-html body #dynamica .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--feed .content-tab__form .content-tab__actions .action-file {
-  background: var(--background-action-button-primary);
-}
-html body #dynamica .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--feed .content-tab__form .content-tab__actions .action-save {
-  background: var(--background-action-button-secondary);
 }
 html body #dynamica .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container {
   width: 100%;
@@ -1997,328 +1404,6 @@ html body #dynamica .layout-content .main-container main .page.page-admin .page-
 }
 html body #dynamica .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association-skeleton .skeleton-action span {
   height: 100%;
-}
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 5px;
-}
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item {
-  position: relative;
-  height: 80px;
-  width: 100%;
-}
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card {
-  position: absolute;
-  overflow: hidden;
-  border-radius: 24px;
-  max-height: 80px;
-  width: 100%;
-  background: rgb(255, 255, 255);
-  transition: opacity 1s ease;
-}
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card .employee-card__preview {
-  display: flex;
-  cursor: pointer;
-  height: 80px;
-  padding: 4px;
-  gap: 5px;
-}
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card .employee-card__preview.hidden {
-  opacity: 0.5;
-}
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card .employee-card__preview .employee-card__photo {
-  position: relative;
-  height: 65px;
-  aspect-ratio: 1/1;
-  background-size: cover;
-  background-position: top;
-  border-radius: 50%;
-  transition: all 50ms;
-}
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card .employee-card__preview .employee-card__general {
-  display: flex;
-  flex-grow: 1;
-  flex-direction: column;
-}
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card .employee-card__preview .employee-card__general .employee-card__name,
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card .employee-card__preview .employee-card__general .employee-card__position {
-  display: flex;
-  align-items: flex-start;
-  padding: 2px;
-  border-radius: 10px;
-  transition: background 50ms;
-}
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card .employee-card__preview .employee-card__general .employee-card__name:hover,
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card .employee-card__preview .employee-card__general .employee-card__position:hover {
-  background: var(--color-gray-50);
-}
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card .employee-card__preview .employee-card__general .employee-card__name:active,
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card .employee-card__preview .employee-card__general .employee-card__position:active {
-  background: var(--color-gray-100);
-}
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card .employee-card__preview .employee-card__general .employee-card__name {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  font-weight: 600;
-  line-height: 1;
-  font-size: 15px;
-}
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card .employee-card__preview .employee-card__general .employee-card__name .employee-card__lastname,
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card .employee-card__preview .employee-card__general .employee-card__name .employee-card__firstname {
-  display: inline-flex;
-}
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card .employee-card__preview .employee-card__general .employee-card__name .employee-card__firstname {
-  margin-left: 3px;
-}
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card .employee-card__preview .employee-card__general .employee-card__name .employee-card__middlename {
-  display: block;
-  width: 100%;
-}
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card .employee-card__preview .employee-card__general .employee-card__position {
-  display: flex;
-  align-items: center;
-  font-size: 12px;
-  opacity: 0.7;
-}
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card .employee-card__preview .employee-actions {
-  display: flex;
-  flex-direction: column;
-  padding: 0 5px;
-  gap: 3px;
-}
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card .employee-card__preview .employee-actions .employee-action {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 25px;
-  width: 25px;
-  cursor: pointer;
-  border-radius: 7px;
-  opacity: 0.5;
-  overflow: visible;
-  background: transparent;
-  transition: all 150ms;
-}
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card .employee-card__preview .employee-actions .employee-action svg {
-  opacity: 0.2;
-  transition: all 150ms;
-}
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card .employee-card__preview .employee-actions .employee-action .hidden-input {
-  display: none;
-}
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card .employee-card__preview .employee-actions .employee-action:hover {
-  background: var(--block-background);
-  box-shadow: var(--block-shadow);
-}
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card .employee-card__preview .employee-actions .employee-action:hover svg {
-  opacity: 1;
-}
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card .employee-card__preview .employee-actions .employee-actions-item {
-  display: flex;
-  justify-content: right;
-}
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card .employee-card__preview .employee-actions .employee-actions-photo {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card .employee-card__preview .employee-card__photo,
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card .employee-card__preview .employee-card__general {
-  align-self: center;
-}
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card .employee-card__details {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  padding: 1px;
-  opacity: 0;
-  gap: 1px;
-  transition: opacity 350ms ease-in-out;
-}
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card .employee-card__details .details-item {
-  position: relative;
-  display: flex;
-  overflow: hidden;
-  flex-direction: column;
-  padding: 3px 8px;
-  border-radius: 16px;
-  cursor: pointer;
-  text-align: left;
-  transition: background 150ms;
-}
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card .employee-card__details .details-item .details-title {
-  display: flex;
-  width: 100%;
-  align-items: center;
-  user-select: none;
-  gap: 2px;
-}
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card .employee-card__details .details-item .details-title span,
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card .employee-card__details .details-item .details-title svg {
-  font-size: 12px;
-  font-weight: 600;
-  color: rgba(0, 0, 0, 0.5);
-  fill: rgba(0, 0, 0, 0.5);
-}
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card .employee-card__details .details-item .detail {
-  font-size: 12px;
-  margin-left: 14px;
-  text-decoration: none;
-}
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card .employee-card__details .details-item .copy-label {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  right: 10px;
-}
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card .employee-card__details .details-item .copy-label .copy-label-content {
-  display: flex;
-  gap: 2px;
-  align-items: center;
-}
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card .employee-card__details .details-item .copy-label svg {
-  font-size: 12px;
-  fill: rgba(0, 0, 0, 0.5);
-}
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card .employee-card__details .details-item:hover {
-  background: var(--color-accent-50);
-}
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card .employee-card__details .details-item:active {
-  background: var(--color-gray-100);
-}
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card.hovered {
-  max-height: 1000px;
-  z-index: 2;
-  opacity: 1;
-  backdrop-filter: blur(24px);
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-  background: rgba(255, 255, 255, 0.8);
-  transition: max-height 350ms ease-in;
-}
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card.hovered .employee-card__details {
-  opacity: 1;
-}
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card-skeleton {
-  display: flex;
-  border-radius: 10px;
-  padding: 5px 10px;
-  width: 100%;
-  gap: 20px;
-}
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card-skeleton .employee-image {
-  height: 65px;
-  aspect-ratio: 1/1;
-  border-radius: 50%;
-  overflow: hidden;
-}
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card-skeleton .employee-image span {
-  aspect-ratio: 1/1;
-  height: 100%;
-  border-radius: 50%;
-}
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card-skeleton .employee-card__general {
-  display: flex;
-  justify-content: center;
-  flex: 1;
-  gap: 10px;
-  flex-direction: column;
-}
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card-skeleton .employee-card__general .employee-card__name {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px;
-  width: 100%;
-}
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card-skeleton .employee-card__general .employee-card__name .employee-lastname span,
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card-skeleton .employee-card__general .employee-card__name .employee-firstname span,
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card-skeleton .employee-card__general .employee-card__name .employee-middlename span {
-  width: 100% !important;
-  height: 13px;
-}
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card-skeleton .employee-card__general .employee-card__name .employee-lastname,
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card-skeleton .employee-card__general .employee-card__name .employee-firstname {
-  width: calc(50% - 2px);
-}
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card-skeleton .employee-card__general .employee-card__name .employee-middlename {
-  width: 60%;
-}
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card-skeleton .employee-card__general .employee-position {
-  width: 100%;
-}
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card-skeleton .employee-card__general .employee-position span {
-  height: 13px;
-}
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container.old-style {
-  grid-template-columns: 1fr;
-  overflow: auto;
-  gap: 10px;
-}
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container.old-style .employees-header,
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container.old-style .employee-card {
-  display: grid;
-  grid-template-columns: 175px 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  gap: 10px;
-}
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container.old-style .employees-header-item span,
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container.old-style .employee-card-item span {
-  text-wrap: nowrap;
-}
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container.old-style .employees-header {
-  padding: 10px;
-  background: var(--background-color);
-  border-radius: 7px;
-}
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container.old-style .employees-header-item {
-  flex-grow: 1;
-}
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container.old-style .employees-header-item span {
-  text-align: left;
-  font-weight: 600;
-}
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container.old-style .employee-card {
-  padding: 10px;
-}
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container.old-style .employee-card-item.employee-card__photo {
-  aspect-ratio: 3/4;
-  background: url("./default.webp") top;
-  background-size: cover;
-  flex-shrink: 0;
-}
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .pagination-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 3px 0;
-  margin-top: 20px;
-}
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .pagination-container .pagination {
-  display: flex;
-  flex-direction: row;
-  margin: 0 auto;
-  overflow: auto;
-  gap: 5px;
-}
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .pagination-container .pagination button {
-  font-size: 16px;
-  font-weight: 600;
-  height: 50px;
-  width: 50px;
-  flex-shrink: 0;
-  border-radius: 50%;
-  transition: all 150ms;
-}
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .pagination-container .pagination button:hover:not(:disabled) {
-  background: var(--block-background);
-}
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .pagination-container .pagination button.active {
-  background: var(--block-background);
-  box-shadow: var(--block-shadow);
-}
-html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .pagination-container .pagination button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
 }
 html body #dynamica .layout-content .main-container main .page.page-document .content {
   display: flex;
@@ -2517,37 +1602,6 @@ html body #dynamica .layout-content .main-container main .page.page-document .co
   max-width: 595.4pt;
   overflow: scroll;
 }
-html body #dynamica .layout-content .main-container main .page.page-post .page-header .page-title {
-  line-height: 20px;
-  text-align: center;
-}
-html body #dynamica .layout-content .main-container main .page.page-post .page-header .date {
-  margin-top: 5px;
-  text-align: center;
-  font-weight: 500;
-  font-size: 14px;
-  opacity: 0.7;
-}
-html body #dynamica .layout-content .main-container main .page.page-post .content {
-  margin-top: 20px;
-}
-html body #dynamica .layout-content .main-container main .page.page-post .content .content-text {
-  white-space: pre-wrap;
-  padding: 0 10px;
-}
-html body #dynamica .layout-content .main-container main .page.page-post .content .content-text ol {
-  margin-left: 10px;
-}
-html body #dynamica .layout-content .main-container main .page.page-post .content .content-text p img {
-  max-width: 600px;
-  width: 100%;
-}
-html body #dynamica .layout-content .main-container main .page.page-post .content .content-files {
-  margin-top: 10px;
-  border-radius: 32px;
-  padding: 60px 40px;
-  background: #FFFFFF;
-}
 html body #dynamica .layout-content .main-container main .page.page-documents .page-content .documents-container .documents-filter .filters-buttons {
   justify-content: left;
 }
@@ -2573,7 +1627,7 @@ html body #dynamica .layout-content .main-container main .page.page-documents .p
   transition: all 150ms;
 }
 html body #dynamica .layout-content .main-container main .page.page-documents .page-content .documents-container .documents .document:hover {
-  box-shadow: var(--document-shadow);
+  box-shadow: var(--item-shadow);
 }
 html body #dynamica .layout-content .main-container main .page.page-documents .page-content .documents-container .documents .document .document-head .document-title {
   display: flex;
@@ -2617,65 +1671,6 @@ html body #dynamica .layout-content .main-container main .page.page-not-found .c
   display: flex;
   align-items: center;
   justify-content: center;
-}
-html body #dynamica .layout-content .main-container .footer-wrapper {
-  display: flex;
-  justify-content: center;
-  background: var(--secondary-color);
-  padding: 0 20px;
-}
-html body #dynamica .layout-content .main-container .footer-wrapper footer {
-  width: 100%;
-  max-width: 1600px;
-  padding: 12px 0;
-}
-html body #dynamica .layout-content .main-container .footer-wrapper footer .nav {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  list-style: none;
-}
-html body #dynamica .layout-content .main-container .footer-wrapper footer .nav .nav-item a {
-  color: #ffffff;
-  font-size: 10px;
-  text-decoration: none;
-  text-wrap: nowrap;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-  font-weight: 400;
-}
-html body #dynamica .layout-content .main-container .footer-wrapper footer .nav .nav-item.active-nav-item {
-  color: var(--primary-color);
-}
-html body #dynamica .layout-content .main-container .footer-wrapper footer .sep {
-  border-bottom: 1px solid rgb(255, 255, 255);
-  margin-top: 11px;
-  margin-bottom: 11px;
-  width: 100%;
-}
-html body #dynamica .layout-content .main-container .footer-wrapper footer .logo-faq {
-  display: none;
-}
-html body #dynamica .layout-content .main-container .footer-wrapper footer .logo {
-  height: 22px;
-}
-html body #dynamica .layout-content .main-container .footer-wrapper footer .logo img {
-  height: 100%;
-  object-fit: contain;
-}
-html body #dynamica .layout-content .main-container .footer-wrapper footer .faq {
-  margin-top: 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  list-style: none;
-}
-html body #dynamica .layout-content .main-container .footer-wrapper footer .faq .faq-item a {
-  color: #ffffff;
-  font-size: 10px;
-  text-decoration: none;
-  text-wrap: nowrap;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-  font-weight: 400;
 }
 @media (min-width: 768px) {
   html .no-data {
@@ -2769,21 +1764,6 @@ html body #dynamica .layout-content .main-container .footer-wrapper footer .faq 
     font-size: 18px;
     user-select: none;
   }
-  html body #dynamica .header-wrapper {
-    height: var(--header-height-768);
-  }
-  html body #dynamica .header-wrapper::before, html body #dynamica .header-wrapper::after {
-    top: 13px;
-  }
-  html body #dynamica .header-wrapper header {
-    padding: 4px 20px;
-  }
-  html body #dynamica .header-wrapper header #logo {
-    padding: 4px 0;
-  }
-  html body #dynamica .header-wrapper header .global-search-container {
-    display: block;
-  }
   html body #dynamica .layout-content {
     min-height: calc(100vh - var(--header-height-768));
   }
@@ -2794,198 +1774,12 @@ html body #dynamica .layout-content .main-container .footer-wrapper footer .faq 
   html body #dynamica .layout-content .main-container main .page .page-filters .filters-search {
     gap: 10px;
   }
-  html body #dynamica .layout-content .main-container main .page.page-landing .landing-module__preview .photo-container h1 {
-    margin-top: 61px;
-    font-size: 56px;
-    line-height: 68px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .landing-module__preview .photo-container .image-container {
-    height: 530px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content section {
-    padding: 0 60px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content h2 {
-    font-size: 40px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content h2 .end {
-    font-size: 36px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content .dynamica-today p {
-    font-size: 32px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content .dynamica-today p.gray {
-    margin-top: 10px;
-    font-size: 20px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content .values-container {
-    padding: 26px 42px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content .values-container .container-title {
-    font-size: 24px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content .values-container .values {
-    gap: 20px;
-    margin-top: 18px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content .values-container .values .value span {
-    line-height: 24px;
-    font-size: 20px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content .section-achievements .swiper {
-    margin-top: 17px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content .section-achievements .swiper .swiper-wrapper .swiper-slide .content .image-wrapper {
-    border-radius: 42px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content .section-achievements .swiper .swiper-wrapper .swiper-slide .content .label {
-    margin-top: 11px;
-    font-size: 36px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content .section-form form {
-    padding: 32px 43px;
-    border-radius: 43px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content .section-form form .form-body__wrapper .form-header .primary {
-    font-size: 40px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content .section-form form .form-body__wrapper .form-header .secondary {
-    font-size: 26px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content .section-form form .form-body__wrapper .form-body {
-    margin-top: 43px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content .section-form form .form-body__wrapper .form-body .form-elem__text {
-    font-size: 30px;
-    padding: 20px 17px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content .section-form form .form-body__wrapper .form-body .form-elem__text.form-input__description {
-    margin-top: 26px;
-    height: 315px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content .section-form form .form-body__wrapper .form-body .submit-container {
-    margin-top: 43px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content .section-form form .form-body__wrapper .form-body .submit-container .form-input__submit {
-    padding: 11px 57px;
-    font-size: 40px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-feed .rectangle {
-    position: absolute;
-    background: var(--secondary-color);
-    width: 100%;
-    height: 400px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-feed h1 {
-    color: #ffffff;
-    text-align: center;
-    margin-top: 41px;
-    z-index: 2;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-feed .feed-tiles {
-    grid-template-columns: repeat(2, calc(50% - 10px));
-  }
-  html body #dynamica .layout-content .main-container main .page.page-feed .feed-tiles .feed-tile.pinned {
-    background: var(--secondary-color);
-  }
-  html body #dynamica .layout-content .main-container main .page.page-feed .feed-tiles .feed-tile .feed-tile__info {
-    padding: 15px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-feed .feed-tiles .feed-tile .feed-tile__info .feed-tile__title {
-    line-height: 22px;
-    font-size: 24px;
-    text-align: left;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-feed .feed-tiles .feed-tile .feed-tile__info .feed-tile__date {
-    font-size: 20px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-feed .feed-tiles .feed-tile .feed-tile__image {
-    margin-top: 0;
-  }
   html body #dynamica .layout-content .main-container main .page.page-profile .page-header .page-title__district {
     font-size: 20px;
   }
   html body #dynamica .layout-content .main-container main .page.page-profile .page-header .clocks {
     display: flex;
     right: 15px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container {
-    gap: 5px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item {
-    position: relative;
-    height: 100px;
-    width: calc(50% - 5px);
-  }
-  html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card {
-    max-height: 100px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card .employee-card__preview {
-    height: 100px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card .employee-card__preview .employee-card__photo {
-    height: 90px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card .employee-card__preview .employee-card__general .employee-card__name,
-  html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card .employee-card__preview .employee-card__general .employee-card__position {
-    padding: 4px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card .employee-card__preview .employee-card__general .employee-card__name {
-    font-size: 17px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card .employee-card__preview .employee-card__general .employee-card__position {
-    font-size: 14px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card .employee-card__details {
-    padding: 2px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card .employee-card__details .details-item {
-    padding: 3px 12px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card .employee-card__details .details-item .details-title {
-    gap: 4px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card .employee-card__details .details-item .details-title span,
-  html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card .employee-card__details .details-item .details-title svg {
-    font-size: 14px;
-    font-weight: 600;
-    color: rgba(0, 0, 0, 0.5);
-    fill: rgba(0, 0, 0, 0.5);
-  }
-  html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card .employee-card__details .details-item .detail {
-    font-size: 14px;
-    margin-left: 18px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card .employee-card__details .details-item .copy-label {
-    position: absolute;
-    right: 0;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card .employee-card__details .details-item .copy-label .copy-label-content {
-    display: flex;
-    gap: 2px;
-    align-items: center;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card .employee-card__details .details-item .copy-label span,
-  html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card .employee-card__details .details-item .copy-label svg {
-    font-size: 14px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card-skeleton {
-    width: calc(50% - 5px);
-  }
-  html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card-skeleton .employee-image {
-    height: 90px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-post .page-header .page-title {
-    line-height: 30px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-post .page-header .date {
-    font-size: 16px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-post .content .content-text {
-    padding: 0 15px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-post .content .content-files {
-    margin-top: 15px;
   }
   html body #dynamica .layout-content .main-container main .page.page-admin .page-admin__filters {
     display: flex;
@@ -3046,33 +1840,6 @@ html body #dynamica .layout-content .main-container .footer-wrapper footer .faq 
   html body #dynamica .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--feed .content-tab__form .content-tab__actions .action-save {
     font-size: 20px;
   }
-  html body #dynamica .layout-content .main-container .footer-wrapper {
-    padding: 0 35px;
-  }
-  html body #dynamica .layout-content .main-container .footer-wrapper footer {
-    padding: 24px 0;
-  }
-  html body #dynamica .layout-content .main-container .footer-wrapper footer .nav {
-    gap: 21px;
-  }
-  html body #dynamica .layout-content .main-container .footer-wrapper footer .nav .nav-item a {
-    font-size: 14px;
-  }
-  html body #dynamica .layout-content .main-container .footer-wrapper footer .sep {
-    border-bottom: 2px solid rgb(255, 255, 255);
-    margin-top: 23px;
-    margin-bottom: 23px;
-  }
-  html body #dynamica .layout-content .main-container .footer-wrapper footer .logo {
-    height: 50px;
-  }
-  html body #dynamica .layout-content .main-container .footer-wrapper footer .faq {
-    margin-top: 23px;
-    gap: 21px;
-  }
-  html body #dynamica .layout-content .main-container .footer-wrapper footer .faq .faq-item a {
-    font-size: 14px;
-  }
 }
 @media (min-width: 1024px) {
   html #modal-root #editEmployee .modal__content .modal__body .employee-editor .employee-editor__info .employee-editor__fields .employee-editor__main-fields .employee-editor__photo-container {
@@ -3129,221 +1896,20 @@ html body #dynamica .layout-content .main-container .footer-wrapper footer .faq 
   html body #dynamica .module-documents .module-body .document div {
     font-size: 22px;
   }
-  html body #dynamica .header-wrapper {
-    height: var(--header-height-1024);
-  }
-  html body #dynamica .header-wrapper::before, html body #dynamica .header-wrapper::after {
-    top: -7px;
-    background: var(--background-color);
-  }
-  html body #dynamica .header-wrapper .user-panel {
-    display: flex;
-  }
-  html body #dynamica .header-wrapper header {
-    padding: 4px 10px 4px 15px;
-  }
-  html body #dynamica .header-wrapper header #logo {
-    padding: 5px 0;
-  }
-  html body #dynamica .header-wrapper header .page-title {
-    display: flex;
-  }
-  html body #dynamica .header-wrapper header .page-title span {
-    font-size: 18px;
-  }
-  html body #dynamica .header-wrapper header #burger {
-    display: none;
-  }
-  html body #dynamica .header-wrapper header nav {
-    display: flex;
-    margin-left: 20px;
-  }
-  html body #dynamica .header-wrapper header nav ul li {
-    display: flex;
-    align-items: center;
-  }
-  html body #dynamica .header-wrapper header nav ul li .nav-item {
-    font-size: 14px;
-  }
-  html body #dynamica .header-wrapper header .profile-container {
-    display: flex;
-    flex-grow: unset;
-    gap: 3px;
-  }
   html body #dynamica .layout-content {
     display: flex;
     min-height: calc(100vh - var(--header-height-1024));
   }
-  html body #dynamica .layout-content .left-menu {
-    display: flex;
-    top: var(--header-height-1024);
-    height: calc(100vh - var(--header-height-1024));
-    padding: 10px 0;
-  }
-  html body #dynamica .layout-content .left-menu .left-menu-item {
-    padding: 11px 18px;
-  }
   html body #dynamica .layout-content .main-container main .page {
     border-radius: 32px;
     padding-bottom: 170px;
+    padding-left: 5px;
   }
   html body #dynamica .layout-content .main-container main .page .page-header .page-title {
     font-size: 26px;
   }
-  html body #dynamica .layout-content .main-container main .page.page-landing .landing-module-wide {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    background: var(--secondary-color);
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .landing-module-wide .image-container {
-    margin-top: 30px;
-    width: 100%;
-    max-width: 860px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .landing-module-wide .image-container img {
-    user-select: none;
-    width: 100%;
-    object-fit: cover;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .landing-module__preview {
-    display: none;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .landing-module__preview .photo-container h1 {
-    margin-top: 80px;
-    font-size: 75px;
-    line-height: 92px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .landing-module__preview .photo-container .image-container {
-    height: 707px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content section {
-    margin: 60px auto 0 auto;
-    padding: 0;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content .section-year {
-    display: none;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content h2 {
-    font-size: 66px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content h2 .end {
-    font-size: 55px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content .section-map {
-    display: block;
-    position: relative;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content .section-map .info {
-    position: absolute;
-    top: 0;
-    left: 67px;
-    width: 45%;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content .section-map .info p {
-    font-size: 28px;
-    line-height: 34px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content .section-map .info .gray {
-    font-size: 18px;
-    line-height: 22px;
-    color: rgba(0, 0, 0, 0.55);
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content .section-map .values-container {
-    position: absolute;
-    background: rgba(255, 255, 255, 0.7);
-    top: 0;
-    border-radius: 29px;
-    right: 43px;
-    width: 40%;
-    padding: 18px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content .section-map .values-container .container-title {
-    font-size: 19px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content .section-map .values-container .values {
-    margin-top: 6px;
-    gap: 10px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content .section-map .values-container .values .value span {
-    line-height: 13px;
-    font-size: 11px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content .section-map img {
-    margin-top: 68px;
-    width: 100%;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content .dynamica-today {
-    display: none;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content .section-values {
-    display: none;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content .section-achievements h2 {
-    font-size: 45px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content .section-achievements .swiper {
-    margin-top: 37px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content .section-achievements .swiper .swiper-wrapper .swiper-slide .content .image-wrapper {
-    border-radius: 48px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content .section-achievements .swiper .swiper-wrapper .swiper-slide .content .label {
-    margin-top: 23px;
-    font-size: 28px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content .section-form form {
-    padding: 42px 30px;
-    display: flex;
-    gap: 25px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content .section-form form .form-picture {
-    width: 40%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content .section-form form .form-picture img {
-    width: 65%;
-    object-fit: contain;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content .section-form form .form-body__wrapper {
-    flex-grow: 1;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content .section-form form .form-body__wrapper .form-header .primary {
-    font-size: 40px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content .section-form form .form-body__wrapper .form-header .secondary {
-    font-size: 24px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content .section-form form .form-body__wrapper .form-body {
-    margin-top: 20px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content .section-form form .form-body__wrapper .form-body .form-elem__text {
-    font-size: 24px;
-    padding: 9px 14px;
-    border-radius: 10px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content .section-form form .form-body__wrapper .form-body .form-elem__text.form-input__description {
-    margin-top: 15px;
-    height: 130px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content .section-form form .form-body__wrapper .form-body .submit-container {
-    margin-top: 14px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content .section-form form .form-body__wrapper .form-body .submit-container .form-input__submit {
-    padding: 8px 16px;
-    border-radius: 16px;
-    font-size: 27px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-feed .feed-tiles {
-    grid-template-columns: repeat(3, calc(33.3333333333% - 4.6666666667px));
-  }
   html body #dynamica .layout-content .main-container main .page.page-profile .page-header .page-title__district {
     font-size: 18px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-contacts .page-content {
-    padding-left: 5px;
   }
   html body #dynamica .layout-content .main-container main .page.page-document .content .progress-bar-container .progress-item .progress-point-wrapper .progress-point {
     width: 30px;
@@ -3378,21 +1944,6 @@ html body #dynamica .layout-content .main-container .footer-wrapper footer .faq 
     padding: 0;
     margin-top: 120px;
   }
-  html body #dynamica .layout-content .main-container main .page.page-post .page-header .page-title {
-    line-height: 34px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-post .page-header .date {
-    font-size: 18px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-post .content {
-    margin-top: 20px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-post .content .content-text {
-    padding: 0 10px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-post .content .content-files {
-    margin-top: 20px;
-  }
   html body #dynamica .layout-content .main-container main .page.page-admin .page-admin__content .content-tab .content-tab__title {
     font-size: 24px;
   }
@@ -3418,74 +1969,10 @@ html body #dynamica .layout-content .main-container .footer-wrapper footer .faq 
   html body #dynamica .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association .result .result-field {
     font-size: 16px;
   }
-  html body #dynamica .layout-content .main-container .footer-wrapper {
-    border-radius: 0 0 32px 32px;
-    padding: 0 35px;
-  }
-  html body #dynamica .layout-content .main-container .footer-wrapper footer {
-    padding: 32px 0;
-  }
-  html body #dynamica .layout-content .main-container .footer-wrapper footer .nav {
-    display: grid;
-    grid-auto-flow: column;
-    grid-template-rows: repeat(3, auto);
-    gap: 21px 100px;
-    justify-content: start;
-    grid-auto-columns: min-content;
-  }
-  html body #dynamica .layout-content .main-container .footer-wrapper footer .nav .nav-item a {
-    text-wrap: nowrap;
-    font-size: 20px;
-  }
-  html body #dynamica .layout-content .main-container .footer-wrapper footer .sep {
-    border-bottom: 3px solid rgb(255, 255, 255);
-    margin-top: 52px;
-    margin-bottom: 30px;
-  }
-  html body #dynamica .layout-content .main-container .footer-wrapper footer .logo {
-    height: 63px;
-  }
-  html body #dynamica .layout-content .main-container .footer-wrapper footer .faq {
-    margin-top: 26px;
-    gap: 28px;
-  }
-  html body #dynamica .layout-content .main-container .footer-wrapper footer .faq .faq-item a {
-    font-size: 20px;
-  }
 }
 @media (min-width: 1440px) {
-  html body #dynamica .header-wrapper {
-    height: var(--header-height-1440);
-  }
-  html body #dynamica .header-wrapper::before, html body #dynamica .header-wrapper::after {
-    top: 8px;
-  }
-  html body #dynamica .header-wrapper header {
-    padding: 5px 10px 5px 15px;
-  }
-  html body #dynamica .header-wrapper header .page-title span {
-    font-size: 28px;
-  }
-  html body #dynamica .header-wrapper header .profile-container {
-    gap: 5px;
-  }
-  html body #dynamica .header-wrapper header .profile-container .header-item {
-    font-size: 16px;
-  }
-  html body #dynamica .header-wrapper header .profile-container .header-item svg {
-    height: 27px;
-    width: 27px;
-  }
   html body #dynamica .layout-content {
     min-height: calc(100vh - var(--header-height-1440));
-  }
-  html body #dynamica .layout-content .left-menu {
-    top: var(--header-height-1440);
-    height: calc(100vh - var(--header-height-1440));
-  }
-  html body #dynamica .layout-content .left-menu .left-menu-item {
-    font-size: 18px;
-    gap: 10px;
   }
   html body #dynamica .layout-content .main-container main .page .page-header .page-title {
     font-size: 34px;
@@ -3493,202 +1980,8 @@ html body #dynamica .layout-content .main-container .footer-wrapper footer .faq 
   html body #dynamica .layout-content .main-container main .page .page-content .page-content-item {
     padding: 10px;
   }
-  html body #dynamica .layout-content .main-container main .page.page-landing .landing-module-wide .image-container {
-    margin-top: 50px;
-    max-width: 1250px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .landing-module__preview .photo-container h1 {
-    margin-top: 80px;
-    font-size: 75px;
-    line-height: 92px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .landing-module__preview .photo-container .image-container {
-    height: 707px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content section {
-    margin: 134px auto 0 auto;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content h2 {
-    font-size: 66px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content h2 .end {
-    font-size: 55px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content .section-map .info {
-    width: 45%;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content .section-map .info p {
-    font-size: 36px;
-    line-height: 44px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content .section-map .info .gray {
-    margin-top: 5px;
-    font-size: 24px;
-    line-height: 29px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content .section-map .values-container {
-    border-radius: 39px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content .section-map .values-container .container-title {
-    font-size: 24px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content .section-map .values-container .values {
-    margin-top: 15px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content .section-map .values-container .values .value span {
-    line-height: 17px;
-    font-size: 14px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content .section-map img {
-    width: 100%;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content .section-achievements {
-    max-width: none;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content .section-achievements h2 {
-    font-size: 64px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content .section-achievements .swiper {
-    margin-top: 43px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content .section-achievements .swiper .swiper-wrapper .swiper-slide .content .image-wrapper {
-    border-radius: 64px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content .section-achievements .swiper .swiper-wrapper .swiper-slide .content .label {
-    margin-top: 31px;
-    font-size: 40px;
-    opacity: 0;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content .section-achievements .swiper .swiper-wrapper .swiper-slide-active .content .label {
-    opacity: 1;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content .section-form form {
-    padding: 56px 44px;
-    gap: 60px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content .section-form form .form-body__wrapper .form-header .primary {
-    font-size: 48px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content .section-form form .form-body__wrapper .form-header .secondary {
-    font-size: 24px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content .section-form form .form-body__wrapper .form-body {
-    margin-top: 15px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content .section-form form .form-body__wrapper .form-body .form-elem__text {
-    font-size: 24px;
-    padding: 19px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content .section-form form .form-body__wrapper .form-body .form-elem__text.form-input__description {
-    margin-top: 13px;
-    height: 204px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content .section-form form .form-body__wrapper .form-body .submit-container {
-    margin-top: 19px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-landing .content .section-form form .form-body__wrapper .form-body .submit-container .form-input__submit {
-    border-radius: 18px;
-    padding: 11px 48px;
-    font-size: 32px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-feed .rectangle {
-    position: absolute;
-    background: var(--secondary-color);
-    width: 100%;
-    height: 400px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-feed h1 {
-    color: #ffffff;
-    text-align: center;
-    margin-top: 41px;
-    z-index: 2;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-feed .feed-tiles {
-    grid-template-columns: repeat(4, calc(25% - 6.75px));
-    gap: 9px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-feed .feed-tiles .feed-tile .feed-tile__info {
-    padding: 20px 15px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-feed .feed-tiles .feed-tile .feed-tile__info .feed-tile__date {
-    font-size: 22px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-feed .feed-tiles .feed-tile .feed-tile__image {
-    margin-top: 0;
-  }
   html body #dynamica .layout-content .main-container main .page.page-profile .page-header .page-title__district {
     font-size: 24px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container {
-    gap: 10px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item {
-    position: relative;
-    height: 130px;
-    width: calc(33.3333333333% - 10px);
-  }
-  html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card {
-    max-height: 130px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card .employee-card__preview {
-    height: 130px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card .employee-card__preview .employee-card__photo {
-    height: 115px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card .employee-card__preview .employee-card__general .employee-card__name,
-  html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card .employee-card__preview .employee-card__general .employee-card__position {
-    padding: 7px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card .employee-card__preview .employee-card__general .employee-card__name {
-    font-size: 20px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card .employee-card__preview .employee-card__general .employee-card__position {
-    font-size: 16px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card .employee-card__details {
-    flex-wrap: wrap;
-    flex-direction: row;
-    padding: 5px;
-    gap: 3px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card .employee-card__details .details-item {
-    padding: 5px 10px;
-    flex: 1 1 calc(50% - 1.5px);
-    max-width: calc(50% - 1.5px);
-  }
-  html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card .employee-card__details .details-item .details-title {
-    gap: 4px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card .employee-card__details .details-item .details-title span,
-  html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card .employee-card__details .details-item .details-title svg {
-    font-size: 16px;
-    font-weight: 600;
-    color: rgba(0, 0, 0, 0.5);
-    fill: rgba(0, 0, 0, 0.5);
-  }
-  html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card .employee-card__details .details-item .detail {
-    font-size: 16px;
-    margin-left: 20px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card .employee-card__details .details-item .copy-label {
-    position: absolute;
-    right: 0;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card .employee-card__details .details-item .copy-label .copy-label-content {
-    display: flex;
-    gap: 2px;
-    align-items: center;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card .employee-card__details .details-item .copy-label span,
-  html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employees-container-item .employee-card .employee-card__details .details-item .copy-label svg {
-    font-size: 16px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card-skeleton {
-    width: calc(33.3333333333% - 10px);
-  }
-  html body #dynamica .layout-content .main-container main .page.page-contacts .page-content .employees-container .employee-card-skeleton .employee-image {
-    height: 115px;
   }
   html body #dynamica .layout-content .main-container main .page.page-document .content .progress-bar-container .progress-item:first-child .progress-point-wrapper .progress-label {
     transform: translateX(0);
@@ -3714,57 +2007,6 @@ html body #dynamica .layout-content .main-container .footer-wrapper footer .faq 
   }
   html body #dynamica .layout-content .main-container main .page.page-document .content .docx-container {
     margin-top: 150px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-post .page-header .page-title {
-    line-height: 50px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-post .content {
-    margin-top: 50px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-post .content .content-text {
-    padding: 0 25px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-post .content .content-files {
-    margin-top: 25px;
-  }
-  html body #dynamica .layout-content .main-container .footer-wrapper {
-    padding: 0 35px;
-  }
-  html body #dynamica .layout-content .main-container .footer-wrapper footer {
-    padding: 36px 0;
-  }
-  html body #dynamica .layout-content .main-container .footer-wrapper footer .nav {
-    grid-template-rows: repeat(2, auto);
-    gap: 37px 120px;
-  }
-  html body #dynamica .layout-content .main-container .footer-wrapper footer .sep {
-    margin-top: 28px;
-    margin-bottom: 35px;
-  }
-  html body #dynamica .layout-content .main-container .footer-wrapper footer .logo-faq {
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    justify-content: space-between;
-  }
-  html body #dynamica .layout-content .main-container .footer-wrapper footer .logo-faq .logo {
-    display: flex;
-    height: 72px;
-  }
-  html body #dynamica .layout-content .main-container .footer-wrapper footer .logo-faq .faq {
-    margin-top: 0;
-    align-items: center;
-    display: flex;
-    flex-direction: row;
-    flex-grow: 1;
-    gap: 80px;
-    margin-left: 150px;
-  }
-  html body #dynamica .layout-content .main-container .footer-wrapper footer .logo {
-    display: none;
-  }
-  html body #dynamica .layout-content .main-container .footer-wrapper footer .faq {
-    display: none;
   }
 }
 

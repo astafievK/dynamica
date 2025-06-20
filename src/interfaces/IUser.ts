@@ -2,6 +2,7 @@ import { IDepartment } from "./IDepartment";
 import {IPosition} from "./IPosition";
 import {IImage} from "./IImage";
 import { IPermission } from "./IPermission";
+import {IMoodleUser} from "./moodle/IMoodleUser";
 
 export interface IUser {
     id_user: number;
@@ -14,5 +15,5 @@ export interface IUser {
     position: IPosition;
     image: IImage;
     permissions: IPermission[];
-    moodleUserId: number | null;
+    moodleUser: IMoodleUser;
 }

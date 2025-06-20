@@ -7,12 +7,13 @@ import {Link, NavLink} from "react-router-dom";
 import NoteAddOutlinedIcon from '@mui/icons-material/NoteAddOutlined';
 import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
 import LoginRoundedIcon from '@mui/icons-material/LoginRounded';
-import AdminPanelSettingsOutlinedIcon from '@mui/icons-material/AdminPanelSettingsOutlined';
 import {logout} from "../../api/slices/authSlice.ts";
 import {useCreateDocument} from "../Contexts/CreateDocumentContext/CreateDocumentContext.tsx";
 import {AnimatePresence, motion} from "framer-motion";
 import {useHasPermission} from "../../store/hooks/useHasPermission.ts";
 import {Permissions} from "../../constants/permissions.ts";
+import LogoutIcon from '@mui/icons-material/Logout';
+import "./Header.css"
 
 export const Header: FC = () => {
     const {user} = useTypedSelector((state) => state.auth);
@@ -26,7 +27,6 @@ export const Header: FC = () => {
     const closeMenu = () => setMenuOpen(false);
 
     const isDeveloper = useHasPermission(Permissions.Developer);
-    const isAbleToUseAdminPanel = useHasPermission([Permissions.Superuser, Permissions.UpdateUsers], 'any')
 
     // Явно закрываем меню пользователя
     useEffect(() => {
@@ -56,92 +56,85 @@ export const Header: FC = () => {
     }, []);
 
     return (
-        <div className={`header-wrapper`}>
-            <header>
-                <NavLink to="/" id="logo">
-                    <img src="/logo.svg" alt="динамика"/>
-                </NavLink>
-                {
-                    /*
-                    <div className="global-search-container">
-                        <input type="text" className="global-search styled" placeholder="Поиск по всему порталу" disabled/>
-                    </div>
-                     */
-                }
+        <header>
+            <NavLink to="/" id="logo">
+                <img src="/logo.svg" alt="динамика"/>
+            </NavLink>
+            {
+                /*
+                <div className="global-search-container">
+                    <input type="text" className="global-search styled" placeholder="Поиск по всему порталу" disabled/>
+                </div>
+                 */
+            }
 
-                <div className="profile-container">
-                    {!user && (
-                        <button className="login-btn header-item rounded" onClick={() => dispatch(setLoginModalOpen(true))}>
-                            <LoginRoundedIcon fontSize="large"/>
-                        </button>
-                    )}
+            <motion.div
+                className="profile-container">
+                {!user && (
+                    <button className="login-btn header-item rounded" onClick={() => dispatch(setLoginModalOpen(true))}>
+                        <LoginRoundedIcon fontSize="large"/>
+                    </button>
+                )}
 
-                    {user && (
-                        <>
-                            {
-                                isAbleToUseAdminPanel && (
-                                    <Link to="admin/contacts" className="admin-panel-btn header-item rounded">
-                                        <AdminPanelSettingsOutlinedIcon/>
-                                    </Link>
-                                )
-                            }
-                            {
-                                isDeveloper && (
-                                    <button className="create-doc header-item rounded" onClick={openModal}>
-                                        <NoteAddOutlinedIcon/>
-                                    </button>
-                                )
-                            }
-                            {
-                                isDeveloper && (
-                                    <button className="notifications-btn header-item rounded" onClick={() => dispatch(setNotificationsModalOpen(true))}>
-                                        <NotificationsNoneOutlinedIcon/>
-                                    </button>
-                                )
-                            }
-
-                            <div className="user-dropdown-wrapper header-item rounded" ref={menuRef}
-                                 onClick={toggleMenu}>
-                                <button className="user-wrapper">
-                                    <div
-                                        className="user-image"
-                                        style={{
-                                            backgroundImage: `url(${import.meta.env.VITE_BASE_IMAGE_URL}${user.image?.path ?? 'default.webp'})`
-                                        }}
-                                    ></div>
+                {user && (
+                    <>
+                        {
+                            isDeveloper && (
+                                <button className="create-doc header-item rounded" onClick={openModal}>
+                                    <NoteAddOutlinedIcon/>
                                 </button>
+                            )
+                        }
+                        {
+                            isDeveloper && (
+                                <button className="notifications-btn header-item rounded" onClick={() => dispatch(setNotificationsModalOpen(true))}>
+                                    <NotificationsNoneOutlinedIcon/>
+                                </button>
+                            )
+                        }
 
-                                <AnimatePresence>
-                                    {menuOpen && (
-                                        <motion.div
-                                            initial={{opacity: 0, top: "calc(100% + 25px)"}}
-                                            animate={{opacity: 1, top: "calc(100% + 8px)"}}
-                                            exit={{opacity: 0, top: "calc(100% + 25px)"}}
-                                            transition={{duration: 0.1}}
-                                            className="user-dropdown-menu"
-                                        >
-                                            <Link className="user-dropdown-menu__item" to={"/profile"}>Профиль</Link>
-                                            <button className="user-dropdown-menu__item" onClick={() => {
+                        <div className="user-dropdown-wrapper header-item rounded" ref={menuRef}
+                             onClick={toggleMenu}>
+                            <button className="user-wrapper">
+                                <div className="user-image" style={{backgroundImage: `url(${import.meta.env.VITE_BASE_IMAGE_URL}${user.image?.path ?? 'default.webp'})`}}></div>
+                                <div className="user-wrapper-label">
+                                    <span className="user-wrapper-label__name">{user.name} {user.surname}</span>
+                                    <span className="user-wrapper-label__position">{user.position.title}</span>
+                                </div>
+                            </button>
+
+                            <AnimatePresence>
+                                {menuOpen && (
+                                    <motion.div
+                                        initial={{opacity: 0, top: "calc(100% + 25px)"}}
+                                        animate={{opacity: 1, top: "calc(100% + 8px)"}}
+                                        exit={{opacity: 0, top: "calc(100% + 25px)"}}
+                                        transition={{duration: 0.1}}
+                                        className="user-dropdown-menu"
+                                    >
+                                        <div className="profile-wrapper">
+                                            <Link className="user-dropdown-menu__item profile-wrapper-item" to={"/profile"}>Профиль</Link>
+                                            <button className="user-dropdown-menu__item profile-wrapper-item" id="profileWrapperLogoutBtn" onClick={() => {
                                                 closeMenu();
                                                 dispatch(logout());
                                             }}>
-                                                Выйти
+                                                <LogoutIcon/>
                                             </button>
-                                        </motion.div>
-                                    )}
-                                </AnimatePresence>
-                            </div>
-                        </>
-                    )}
-                </div>
+                                        </div>
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+                        </div>
+                    </>
+                )}
+            </motion.div>
 
-                <div className="burger" id={"burger"} onClick={() => dispatch(setMobileMenuOpen(true))}>
-                    <div className="body">
-                        <span className="line line-1"></span>
-                        <span className="line line-2"></span>
-                    </div>
+            <div className="burger" id={"burger"} onClick={() => dispatch(setMobileMenuOpen(true))}>
+                <div className="body">
+                    <span className="line line-1"></span>
+                    <span className="line line-2"></span>
                 </div>
-            </header>
-        </div>
+            </div>
+        </header>
     );
 }

@@ -60,7 +60,7 @@
   --item-active-background: rgba(0, 0, 0, 0.1);
   --block-shadow: 0 2px 6px rgba(0,0,0,0.05);
   --block-background: rgba(255, 255, 255, 1);
-  --document-shadow: 0px 4px 12px 0px #7090b029;
+  --item-shadow: 0px 4px 12px 0px #7090b029;
 }
 
 html, body, #root {

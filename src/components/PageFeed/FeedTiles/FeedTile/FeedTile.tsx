@@ -2,6 +2,8 @@ import {FC} from "react";
 import {formatDatetime} from "../../../../constants/functions.ts";
 import { motion } from "framer-motion";
 import {pageAnimation} from "../../../../constants/motionSettings.ts";
+import "./FeedTile.css";
+import { Link } from "react-router-dom";
 
 interface IFeedTileProps {
     id: number;
@@ -10,22 +12,22 @@ interface IFeedTileProps {
     date: string;
 }
 
+const MotionLink = motion.create(Link);
+
 export const FeedTile: FC<IFeedTileProps> = ({ id, isPinned, title, date }) => {
     return (
-        <motion.a
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={pageAnimation.transition}
+        <MotionLink
+            {...pageAnimation}
             className={`feed-tile${isPinned ? " pinned" : ""}`}
-            href={`/feed/${id}`}
+            to={`/feed/${id}`}
         >
             <div className="feed-tile__image">
-                <img loading="lazy" src="/test pic.jpg" alt="Превью новости" />
+                <img loading="lazy" src="" alt="Превью новости" />
             </div>
             <div className="feed-tile__info">
                 <span className="feed-tile__date">{formatDatetime(date)}</span>
-                <h2 className="feed-tile__title">{title}</h2>
+                <span className="feed-tile__title">{title}</span>
             </div>
-        </motion.a>
+        </MotionLink>
     );
 };
