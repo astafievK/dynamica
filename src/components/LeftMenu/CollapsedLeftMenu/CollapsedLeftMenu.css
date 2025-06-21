@@ -1,5 +1,6 @@
 .left-menu.collapsed .left-menu-item {
-  width: 55px;
+  width: 43px;
+  padding: 0;
   justify-content: center;
   align-content: center;
 }

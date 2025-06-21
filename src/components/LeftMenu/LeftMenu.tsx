@@ -2,29 +2,22 @@ import { FC } from "react";
 import { motion } from "framer-motion";
 import {ExpandedLeftMenu} from "./ExpandedLeftMenu/ExpandedLeftMenu.tsx";
 import { CollapsedLeftMenu } from "./CollapsedLeftMenu/CollapsedLeftMenu.tsx";
-import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
-import {useAppDispatch, useTypedSelector} from "../../store/hooks/redux.ts";
-import {setLeftMenuIsExpanded} from "../../api/slices/leftMenuSlice.ts";
+import {useTypedSelector} from "../../store/hooks/redux.ts";
 import "./LeftMenu.css";
 
 export const LeftMenu: FC = () => {
-    const dispatch = useAppDispatch()
     const { leftMenuIsExpanded } = useTypedSelector((state) => state.leftMenuReducer)
 
     return (
         <motion.aside
             className={`left-menu ${leftMenuIsExpanded ? 'expanded' : 'collapsed'}`}
             animate={{
-                width: leftMenuIsExpanded ? 230 : 61,
+                width: leftMenuIsExpanded ? 210 : 49,
             }}
             initial={false}
             transition={{ duration: 0.15, ease: "easeInOut" }}
         >
             {leftMenuIsExpanded ? <ExpandedLeftMenu isExpanded={leftMenuIsExpanded} /> : <CollapsedLeftMenu />}
-
-            <button className="toggle-btn left-menu-item" onClick={() => dispatch(setLeftMenuIsExpanded(!leftMenuIsExpanded))}>
-                <MenuOutlinedIcon/>
-            </button>
         </motion.aside>
     );
 };
