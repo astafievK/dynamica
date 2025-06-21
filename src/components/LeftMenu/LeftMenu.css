@@ -17,7 +17,7 @@
   position: relative;
   gap: 10px;
   background: var(--color-gray-75);
-  border-radius: 0 10px 10px 0;
+  border-radius: 10px;
   font-size: 16px;
   font-weight: 500;
   text-decoration: none;
@@ -32,12 +32,12 @@
 .left-menu .left-menu-item svg {
   fill: var(--color-primary-500);
   flex-shrink: 0;
-  height: 25px;
-  width: 25px;
-  transition: all 200ms ease;
+  height: 100%;
+  transition: all 150ms ease-in-out;
 }
 .left-menu .left-menu-item span {
   color: var(--color-primary-700);
+  transition: all 150ms ease-in-out;
 }
 .left-menu .left-menu-item.item-contacts .contacts-navigation {
   position: absolute;
@@ -49,12 +49,19 @@
   background: var(--color-primary-50);
 }
 .left-menu .left-menu-item.active-nav-item {
-  background: var(--block-background);
+  background: var(--color-primary-600);
+}
+.left-menu .left-menu-item.active-nav-item span {
+  color: var(--color-gray-100);
+}
+.left-menu .left-menu-item.active-nav-item svg {
+  fill: var(--color-gray-100);
 }
 .left-menu .left-menu-navigation {
   display: flex;
   gap: 8px;
   flex-direction: column;
+  padding: 0 3px;
 }
 .left-menu .left-menu-navigation__title {
   font-weight: 600;
@@ -72,13 +79,14 @@
   .left-menu {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 30px;
     top: var(--header-height-1024);
     height: calc(100vh - var(--header-height-1024));
     padding: 10px 0;
   }
   .left-menu .left-menu-item {
-    padding: 11px 18px;
+    height: 40px;
+    padding: 9px 15px;
   }
 }
 @media (min-width: 1440px) {
@@ -87,7 +95,7 @@
     height: calc(100vh - var(--header-height-1440));
   }
   .left-menu .left-menu-item {
-    font-size: 18px;
+    font-size: 16px;
     gap: 10px;
   }
 }
