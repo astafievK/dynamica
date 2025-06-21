@@ -202,7 +202,7 @@ header #burger .body .line {
     display: flex;
   }
   header .header-section__logo #logo {
-    padding: 2px 0;
+    padding: 4px 0;
   }
   header #burger {
     display: none;

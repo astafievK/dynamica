@@ -115,7 +115,6 @@
 }
 @media (min-width: 1024px) {
   .custom-dropdown__button {
-    font-size: 18px;
     padding: 15px;
   }
   .custom-dropdown__menu {

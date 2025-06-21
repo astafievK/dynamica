@@ -315,7 +315,6 @@ textarea {
   input[type=text].styled,
   input[type=password].styled,
   textarea.styled {
-    font-size: 18px;
     padding: 15px;
   }
 }
