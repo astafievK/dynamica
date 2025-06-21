@@ -15,6 +15,25 @@ header {
   padding: 9px 12px;
   z-index: 2025;
 
+  .header-section {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+
+    &__logo {
+      #leftMenuToggler {
+        align-items: center;
+        justify-content: center;
+        display: none;
+
+        svg {
+          height: 22px;
+          width: 22px;
+        }
+      }
+    }
+  }
+
   #logo {
     display: flex;
 
@@ -202,8 +221,12 @@ header {
     height: var(--header-height-768);
     padding: 4px 20px;
 
-    #logo {
-      padding: 4px 0;
+    .header-section {
+      &__logo {
+        #logo {
+          padding: 4px 0;
+        }
+      }
     }
 
     .global-search-container {
@@ -215,10 +238,18 @@ header {
 @media (min-width: 1024px) {
   header {
     height: var(--header-height-1024);
-    padding: 4px 10px 4px 15px;
+    padding: 4px 10px 4px 3px;
 
-    #logo {
-      padding: 5px 0;
+    .header-section {
+      &__logo {
+        #leftMenuToggler {
+          display: flex;
+        }
+
+        #logo {
+          padding: 2px 0;
+        }
+      }
     }
 
     #burger {
@@ -235,7 +266,7 @@ header {
 @media (min-width: 1440px) {
   header {
     height: var(--header-height-1440);
-    padding: 5px 10px 5px 15px;
+    padding: 5px 10px 5px 3px;
 
     .profile-container {
       gap: 5px;

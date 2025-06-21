@@ -13,10 +13,13 @@ import {AnimatePresence, motion} from "framer-motion";
 import {useHasPermission} from "../../store/hooks/useHasPermission.ts";
 import {Permissions} from "../../constants/permissions.ts";
 import LogoutIcon from '@mui/icons-material/Logout';
+import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 import "./Header.css"
+import {setLeftMenuIsExpanded} from "../../api/slices/leftMenuSlice.ts";
 
 export const Header: FC = () => {
     const {user} = useTypedSelector((state) => state.auth);
+    const { leftMenuIsExpanded } = useTypedSelector((state) => state.leftMenuReducer)
     const dispatch = useAppDispatch();
     const {openModal} = useCreateDocument();
 
@@ -57,9 +60,14 @@ export const Header: FC = () => {
 
     return (
         <header>
-            <NavLink to="/" id="logo">
-                <img src="/logo.svg" alt="динамика"/>
-            </NavLink>
+            <section className="header-section header-section__logo">
+                <button id="leftMenuToggler" className={"header-item"} onClick={() => dispatch(setLeftMenuIsExpanded(!leftMenuIsExpanded))}>
+                    <MenuOutlinedIcon/>
+                </button>
+                <NavLink to="/" id="logo">
+                    <img src="/logo.svg" alt="динамика"/>
+                </NavLink>
+            </section>
             {
                 /*
                 <div className="global-search-container">
