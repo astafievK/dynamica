@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { pageAnimation } from "../../constants/motionSettings";
 import { motion } from "framer-motion";
+import "./BannerNoData.css"
 
 interface IBannerNoDataProps {
     content: string;
