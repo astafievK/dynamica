@@ -3,7 +3,7 @@ export const ROUTES = {
     FEED: "/feed",
     EDITOR: "/editor",
     DOCUMENT: "/document",
-    DOCUMENT_CREATE: "/document/create",
+    DOCUMENT_CREATE: "/documents/create",
     DOCUMENT_PARALLEL: "/document_par",
     PROFILE: "/profile",
     DOCUMENTS: "/documents",

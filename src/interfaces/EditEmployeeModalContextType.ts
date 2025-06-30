@@ -1,6 +1,6 @@
-import {Employee} from "./IEmployee";
+import {IUser} from "./IUser";
 
 export interface EditEmployeeModalContextType {
-    openModal: (employee: Employee) => void;
+    openModal: (employee: IUser) => void;
     closeModal: () => void;
 }

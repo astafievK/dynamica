@@ -1,0 +1,10 @@
+.docx-container .docx-wrapper {
+  background: none;
+  padding: 0;
+}
+.docx-container .docx-wrapper .docx {
+  margin-bottom: 10px;
+  border-radius: 16px;
+}
+
+/*# sourceMappingURL=DocxViewer.css.map */

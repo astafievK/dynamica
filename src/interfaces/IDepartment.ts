@@ -1,11 +1,11 @@
-import {City} from "./ICity";
+import {ICity} from "./ICity";
 import {IOrganization} from "./IOrganization";
 import {IDivision} from "./IDivision";
 
 export interface IDepartment {
     id_department: number;
     title: string;
-    city: City
+    city: ICity
     organization: IOrganization
     division: IDivision
 }

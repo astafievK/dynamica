@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState, ReactNode } from "react";
 import ReactDOM from "react-dom";
 import {ModalEditEmployee} from "../../Modals/ModalEditEmployee/ModalEditEmployee.tsx";
 import {EditEmployeeModalContextType} from "../../../interfaces/EditEmployeeModalContextType.ts";
-import {Employee} from "../../../interfaces/IEmployee.ts";
+import {IUser} from "../../../interfaces/IUser.ts";
 
 const ModalContext = createContext<EditEmployeeModalContextType | null>(null);
 
@@ -14,9 +14,9 @@ export const useEditEmployee = () => {
 
 export const EditEmployeeProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-    const [employee, setEmployee] = useState<Employee | null>(null);
+    const [employee, setEmployee] = useState<IUser | null>(null);
 
-    const openModal = (employee: Employee) => {
+    const openModal = (employee: IUser) => {
         setEmployee(employee);
         setIsModalOpen(true);
     };

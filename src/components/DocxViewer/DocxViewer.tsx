@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import { renderAsync } from 'docx-preview';
+import "./DocxViewer.css";
 
 interface DocxViewerProps {
     fileUrl: string;

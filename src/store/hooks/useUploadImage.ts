@@ -1,8 +1,8 @@
 import { useState } from "react";
 import {useUploadProfileImageMutation} from "../../api/methods/userApi.ts";
-import {Employee} from "../../interfaces/IEmployee.ts";
+import {IUser} from "../../interfaces/IUser.ts";
 
-export const useUploadImage = (employee: Employee) => {
+export const useUploadImage = (employee: IUser) => {
     const [uploadProfileImage, { isLoading }] = useUploadProfileImageMutation();
     const [notification, setNotification] = useState<{ title?: string; message: string } | null>(null);
 

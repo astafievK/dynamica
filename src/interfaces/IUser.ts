@@ -1,19 +1,20 @@
-import { IDepartment } from "./IDepartment";
+import {IDepartment} from "./IDepartment";
 import {IPosition} from "./IPosition";
 import {IImage} from "./IImage";
-import { IPermission } from "./IPermission";
-import {IMoodleUser} from "./moodle/IMoodleUser";
+import {IDate} from "./IDate";
 
 export interface IUser {
-    id_user: number;
-    login: string;
-    name: string;
-    surname: string;
-    email: string | null;
-    phoneNumber: string;
-    department: IDepartment;
-    position: IPosition;
-    image: IImage;
-    permissions: IPermission[];
-    moodleUser: IMoodleUser;
+    id_user: number,
+    name: string,
+    surname: string,
+    patronymic: string,
+    uid: string,
+    phone: string,
+    email: string | null,
+    birthday: IDate,
+    is_retired: boolean,
+    is_hidden: boolean,
+    department: IDepartment,
+    position: IPosition,
+    image: IImage
 }

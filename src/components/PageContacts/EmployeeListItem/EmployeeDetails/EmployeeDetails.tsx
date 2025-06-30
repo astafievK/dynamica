@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Employee } from "../../../../interfaces/IEmployee.ts";
+import { IUser } from "../../../../interfaces/IUser.ts";
 import {useTypedSelector} from "../../../../store/hooks/redux.ts";
 import { DetailsItem } from "../DetailsItem/DetailsItem.tsx";
 import { formatBirthday } from "../../../../utils/date.ts";
@@ -9,7 +9,7 @@ import { Permissions } from "../../../../constants/permissions.ts";
 import "./EmployeeDetails.css"
 
 interface Props {
-    employee: Employee;
+    employee: IUser;
 }
 
 export const EmployeeDetails: FC<Props> = ({ employee }) => {

@@ -37,6 +37,8 @@
   --color-gray-900: #454647;
   /* FEEDBACK (не из брендбука, но часто нужны) */
   --color-error: #dc3545;
+  --color-error-bg: #f8d7da;
+  --color-error-text: #ff4949;
   --color-warning: #ffc107;
   --color-info: #17a2b8;
   --color-success: var(--color-accent-500);
@@ -77,7 +79,6 @@
   margin: 0;
   box-sizing: border-box;
   border: none;
-  outline: none;
   color: var(--font-color);
   font-family: "Commissioner", Arial, sans-serif;
   -webkit-tap-highlight-color: transparent;
@@ -202,21 +203,32 @@ input[type=password],
 textarea {
   transition: all 0.1s;
 }
+input[type=text]:focus, input[type=text]:focus-visible,
+input[type=password]:focus,
+input[type=password]:focus-visible,
+textarea:focus,
+textarea:focus-visible {
+  outline: none;
+}
 input[type=text].styled,
 input[type=password].styled,
 textarea.styled {
   padding: 10px 15px;
-  border-radius: 32px;
+  border-radius: 16px;
   background: var(--block-background);
   border: 1px solid var(--color-gray-100);
   transition: all 0.1s;
   font-size: 14px;
+  outline: none;
 }
-input[type=text].styled:hover, input[type=text].styled:focus,
+input[type=text].styled:hover, input[type=text].styled:focus, input[type=text].styled:focus-visible,
 input[type=password].styled:hover,
 input[type=password].styled:focus,
+input[type=password].styled:focus-visible,
 textarea.styled:hover,
-textarea.styled:focus {
+textarea.styled:focus,
+textarea.styled:focus-visible {
+  outline: none;
   border-color: var(--color-gray-500);
 }
 input[type=text].styled:disabled,

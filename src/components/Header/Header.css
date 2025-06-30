@@ -7,9 +7,9 @@ header {
   height: var(--header-height-default);
   transition: transform 0.3s ease-in-out;
   gap: 15px;
-  background: rgba(241, 242, 242, 0.5);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
+  background: rgba(241, 242, 242, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   will-change: backdrop-filter;
   justify-content: space-between;
   padding: 9px 12px;
@@ -29,10 +29,10 @@ header .header-section__logo #leftMenuToggler svg {
   height: 22px;
   width: 22px;
 }
-header #logo {
+header .header-section__logo #logo {
   display: flex;
 }
-header #logo img {
+header .header-section__logo #logo img {
   height: 100%;
 }
 header .header-item {
@@ -96,17 +96,19 @@ header .profile-container .user-dropdown-wrapper .user-wrapper .user-image {
 header .profile-container .user-dropdown-wrapper .user-wrapper-label {
   display: flex;
   flex-direction: column;
+  gap: 2px;
 }
 header .profile-container .user-dropdown-wrapper .user-wrapper-label__name, header .profile-container .user-dropdown-wrapper .user-wrapper-label__position {
   text-wrap: nowrap;
+  line-height: 1;
   text-align: left;
 }
 header .profile-container .user-dropdown-wrapper .user-wrapper-label__name {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 500;
 }
 header .profile-container .user-dropdown-wrapper .user-wrapper-label__position {
-  font-size: 12px;
+  font-size: 11px;
   color: var(--color-gray-700);
 }
 header .profile-container .user-dropdown-wrapper .user-dropdown-menu {
@@ -218,10 +220,16 @@ header #burger .body .line {
     padding: 5px 10px 5px 3px;
   }
   header .profile-container {
-    gap: 5px;
+    gap: 10px;
+  }
+  header .profile-container .user-dropdown-wrapper .user-wrapper-label__name {
+    font-size: 16px;
+  }
+  header .profile-container .user-dropdown-wrapper .user-wrapper-label__position {
+    font-size: 13px;
   }
   header .profile-container .header-item {
-    font-size: 16px;
+    font-size: 14px;
   }
   header .profile-container .header-item svg {
     height: 27px;

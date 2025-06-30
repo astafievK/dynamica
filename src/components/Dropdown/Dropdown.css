@@ -14,8 +14,8 @@
   width: 100%;
   background-color: var(--block-background);
   text-align: left;
-  border-radius: 32px;
-  padding: 10px 15px;
+  border-radius: 16px;
+  padding: 8px 15px 8px 15px;
   font-size: 14px;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -28,20 +28,47 @@
   cursor: pointer;
   transition: all 0.1s;
 }
+.custom-dropdown__button-inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex-grow: 1;
+}
+.custom-dropdown__button-label {
+  font-size: 11px;
+  color: var(--color-gray-500);
+  line-height: 1.1;
+}
+.custom-dropdown__button-value {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.3;
+  margin-top: 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .custom-dropdown__button .arrow {
-  width: 15px;
+  width: 10px;
   aspect-ratio: 1/1;
   rotate: 90deg;
   user-select: none;
   pointer-events: none;
+  transition: transform 150ms ease;
 }
 .custom-dropdown__button:hover, .custom-dropdown__button:focus, .custom-dropdown__button.active {
   border-color: var(--color-gray-500);
+}
+.custom-dropdown__button.active .arrow {
+  transform: rotate(180deg);
 }
 .custom-dropdown__menu {
   display: flex;
   flex-direction: column;
   position: absolute;
+  min-width: 100%;
   top: calc(100% + 8px);
   left: 0;
   right: 0;
@@ -58,9 +85,10 @@
 .custom-dropdown__menu .custom-dropdown__search {
   position: sticky;
   top: 0;
-  padding: 6px 5px 6px 10px;
+  padding: 6px 5px 6px 15px;
   font-size: 14px;
   border-bottom: 1px solid var(--color-gray-300);
+  background: var(--color-gray-75);
   z-index: 2;
 }
 .custom-dropdown__menu .custom-dropdown__list {
@@ -76,7 +104,7 @@
   width: 100%;
   text-align: left;
   font-size: 14px;
-  padding: 6px 5px 6px 10px;
+  padding: 9px 5px 9px 15px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -99,7 +127,7 @@
 
 @media (min-width: 768px) {
   .custom-dropdown__button {
-    padding: 12px;
+    padding: 9px 15px 9px 20px;
     font-size: 16px;
   }
   .custom-dropdown__menu {
@@ -107,32 +135,55 @@
     max-height: 200px;
   }
   .custom-dropdown__menu .custom-dropdown__search {
-    padding: 10px 5px 10px 12px;
+    padding: 9px 5px 9px 20px;
   }
   .custom-dropdown__menu .custom-dropdown__list .custom-dropdown__item-button {
-    padding: 10px 5px 10px 12px;
+    padding: 9px 5px 9px 20px;
   }
 }
 @media (min-width: 1024px) {
   .custom-dropdown__button {
-    padding: 15px;
+    padding: 10px 15px 10px 22px;
+  }
+  .custom-dropdown__button-label {
+    font-size: 12px;
+  }
+  .custom-dropdown__button-value {
+    font-size: 15px;
   }
   .custom-dropdown__menu {
     width: 300px;
     max-height: 250px;
   }
   .custom-dropdown__menu .custom-dropdown__search {
-    font-size: 16px;
-    padding: 10px 5px 10px 15px;
+    font-size: 15px;
+    padding: 10px 5px 10px 22px;
   }
   .custom-dropdown__menu .custom-dropdown__list .custom-dropdown__item-button {
-    font-size: 16px;
-    padding: 10px 5px 10px 15px;
+    font-size: 15px;
+    padding: 10px 5px 10px 22px;
   }
 }
 @media (min-width: 1440px) {
+  .custom-dropdown__button {
+    padding: 10px 15px 10px 25px;
+  }
+  .custom-dropdown__button-label {
+    font-size: 13px;
+  }
+  .custom-dropdown__button-value {
+    font-size: 16px;
+  }
   .custom-dropdown__menu {
     max-height: 300px;
+  }
+  .custom-dropdown__menu .custom-dropdown__search {
+    font-size: 16px;
+    padding: 10px 5px 10px 25px;
+  }
+  .custom-dropdown__menu .custom-dropdown__list .custom-dropdown__item-button {
+    font-size: 16px;
+    padding: 10px 5px 10px 25px;
   }
 }
 

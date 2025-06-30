@@ -1,9 +1,9 @@
 import {baseApi} from "../api.ts";
-import {City} from "../../interfaces/ICity.ts";
+import {ICity} from "../../interfaces/ICity.ts";
 
 export const cityApi = baseApi.injectEndpoints({
     endpoints: builder => ({
-        getCities: builder.query<{status: string, cities: City[]}, void>({
+        getCities: builder.query<{status: string, cities: ICity[]}, void>({
             query: () => ({
                 url: `/City/getCities.php`,
                 method: "GET",

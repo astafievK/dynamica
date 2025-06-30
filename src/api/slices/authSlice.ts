@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IUser } from "../../interfaces/IUser";
+import { IAuthorizedUser } from "../../interfaces/IAuthorizedUser.ts";
 
 interface AuthSlice {
-    user: IUser | null;
+    user: IAuthorizedUser | null;
     isAuthenticated: boolean;
 }
 
@@ -15,7 +15,7 @@ const authSlice = createSlice({
     name: 'authorization',
     initialState,
     reducers: {
-        login: (state, action: PayloadAction<IUser>) => {
+        login: (state, action: PayloadAction<IAuthorizedUser>) => {
             const payload = action.payload;
 
             // Гарантируем, что permissions — всегда массив для избежания ошибок

@@ -13,7 +13,7 @@ export const FeedTiles: FC = () => {
 
     if ((!isLoading && (!data?.posts || data.posts.length === 0)) || !isDeveloper) {
         return (
-            <BannerNoData content={"Скоро тут будут новости"}/>
+            <BannerNoData content={"Новостей нет"}/>
         );
     }
 

@@ -3,12 +3,11 @@ import {useAppDispatch, useTypedSelector} from "../../store/hooks/redux";
 import { setIsOpen as setLoginModalOpen } from "../../api/slices/modalLoginSlice.ts";
 import { setModalNotificationsIsOpen as setNotificationsModalOpen } from "../../api/slices/modalNotificationsSlice.ts";
 import { setIsOpen as setMobileMenuOpen } from "../../api/slices/mobileMenuSlice.ts";
-import {Link, NavLink} from "react-router-dom";
+import {Link, NavLink, useNavigate} from "react-router-dom";
 import NoteAddOutlinedIcon from '@mui/icons-material/NoteAddOutlined';
 import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
 import LoginRoundedIcon from '@mui/icons-material/LoginRounded';
 import {logout} from "../../api/slices/authSlice.ts";
-import {useCreateDocument} from "../Contexts/CreateDocumentContext/CreateDocumentContext.tsx";
 import {AnimatePresence, motion} from "framer-motion";
 import {useHasPermission} from "../../store/hooks/useHasPermission.ts";
 import {Permissions} from "../../constants/permissions.ts";
@@ -19,9 +18,14 @@ import {setLeftMenuIsExpanded} from "../../api/slices/leftMenuSlice.ts";
 
 export const Header: FC = () => {
     const {user} = useTypedSelector((state) => state.auth);
-    const { leftMenuIsExpanded } = useTypedSelector((state) => state.leftMenuReducer)
+    const { leftMenuIsExpanded } = useTypedSelector((state) => state.leftMenuReducer);
     const dispatch = useAppDispatch();
-    const {openModal} = useCreateDocument();
+    const navigate = useNavigate();
+
+    const handleCreateDraftClick = () => {
+
+        navigate("/documents/create");
+    };
 
     const [menuOpen, setMenuOpen] = useState(false);
     const menuRef = useRef<HTMLDivElement | null>(null);
@@ -88,8 +92,12 @@ export const Header: FC = () => {
                     <>
                         {
                             isDeveloper && (
-                                <button className="create-doc header-item rounded" onClick={openModal}>
-                                    <NoteAddOutlinedIcon/>
+                                <button
+                                    className="create-doc header-item rounded"
+                                    onClick={handleCreateDraftClick}
+                                    type="button"
+                                >
+                                    <NoteAddOutlinedIcon />
                                 </button>
                             )
                         }

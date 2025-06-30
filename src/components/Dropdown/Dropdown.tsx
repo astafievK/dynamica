@@ -50,7 +50,7 @@ export const Dropdown: FC<DropdownProps> = ({
         };
     }, [isOpen]);
 
-    const handleSelect = (option: {id: number, title: string}) => {
+    const handleSelect = (option: { id: number, title: string }) => {
         onSelect(option);
         setIsOpen(false);
     };
@@ -69,18 +69,22 @@ export const Dropdown: FC<DropdownProps> = ({
             ref={dropdownRef}
         >
             <button
-                className={classNames("custom-dropdown__button", {
-                    active: isOpen
-                })}
+                className={classNames("custom-dropdown__button", {active: isOpen})}
                 onClick={toggleDropdown}
                 type="button"
                 disabled={isDisabled}
                 aria-haspopup="listbox"
                 aria-expanded={isOpen}
-                style={value ? { color: 'var(--font-color)' } : undefined}
             >
-                {value ? value.title : label}
-                {!isDisabled && <img className="arrow" src="/arrow.svg" alt="arrow"/>}
+                <span className="custom-dropdown__button-inner">
+                <span className="custom-dropdown__button-label">{label}</span>
+                <span className="custom-dropdown__button-value">
+                  {value ? value.title : "Не выбрано"}
+                </span>
+              </span>
+                {!isDisabled && (
+                    <img className="arrow" src="/arrow.svg" alt="arrow"/>
+                )}
             </button>
 
             <AnimatePresence>
@@ -94,9 +98,10 @@ export const Dropdown: FC<DropdownProps> = ({
                         transition={{duration: 0.1}}
                     >
                         {
-                            searchEnabled && <input type="text" name={"dropdownTitle"} className="custom-dropdown__search"
-                                                    placeholder={searchPlaceholder} value={searchValue}
-                                                    onChange={(e) => setSearchValue(e.target.value)}></input>
+                            searchEnabled &&
+                            <input type="text" name={"dropdownTitle"} className="custom-dropdown__search"
+                                   placeholder={searchPlaceholder} value={searchValue}
+                                   onChange={(e) => setSearchValue(e.target.value)}></input>
                         }
                         <ul className="custom-dropdown__list">
                             {

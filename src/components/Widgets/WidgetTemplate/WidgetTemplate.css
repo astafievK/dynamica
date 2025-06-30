@@ -4,17 +4,23 @@
   gap: 7px;
 }
 .widget__header {
-  padding: 0 3px;
+  margin-bottom: 10px;
+  padding-left: 10px;
 }
 .widget__header .widget__title {
   font-size: 20px;
   font-weight: 600;
   line-height: 1;
+  text-decoration: none;
   color: var(--color-gray-900);
+  transition: color 150ms ease-in-out;
+}
+.widget__header .widget__title:hover {
+  color: var(--secondary-color);
 }
 .widget__filters {
   display: flex;
   gap: 7px;
 }
 
-/*# sourceMappingURL=Widget.css.map */
+/*# sourceMappingURL=WidgetTemplate.css.map */

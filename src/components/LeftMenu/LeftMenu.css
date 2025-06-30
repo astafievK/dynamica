@@ -5,6 +5,7 @@
   height: calc(100vh - var(--header-height-default));
   flex-direction: column;
   overflow-y: auto;
+  flex-shrink: 0;
 }
 .left-menu .toggle-btn {
   margin-top: auto;

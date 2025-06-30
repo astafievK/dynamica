@@ -8,7 +8,7 @@ import CakeIcon from '@mui/icons-material/Cake';
 import ContentCopyRoundedIcon from '@mui/icons-material/ContentCopyRounded';
 import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
 import ReportProblemRoundedIcon from '@mui/icons-material/ReportProblemRounded';
-import { Employee } from "../../../../interfaces/IEmployee.ts";
+import { IUser } from "../../../../interfaces/IUser.ts";
 import { AnimatePresence, motion } from "framer-motion";
 import { useCopyToClipboard } from "../../../../store/hooks/useCopyToClipboard.ts";
 import {useNotification} from "../../../Contexts/NotificationContext/NotificationContext.tsx";
@@ -18,7 +18,7 @@ interface DetailsItemProps {
     title: string;
     value: string;
     isReadOnly?: boolean;
-    employee: Employee;
+    employee: IUser;
 }
 
 const iconMap: Record<string, JSX.Element> = {

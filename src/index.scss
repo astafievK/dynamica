@@ -472,42 +472,6 @@ html {
                                     font-weight: 600;
                                 }
 
-                                &.task-duration {
-                                    .calendars {
-                                        display: flex;
-                                        align-items: center;
-                                        justify-content: center;
-                                        flex-direction: row;
-                                        gap: 2px;
-
-                                        .calendar {
-                                            display: flex;
-                                            flex: 1;
-
-                                            label {
-                                                text-overflow: ellipsis;
-                                                white-space: nowrap;
-                                                overflow: hidden;
-                                                text-align: center;
-                                                flex: 1;
-                                                border-radius: 24px;
-                                                padding: 15px 10px;
-                                                cursor: pointer;
-                                                background-color: var(--item-hover-background);
-                                                transition: all 150ms;
-
-                                                &:hover {
-                                                    background-color: var(--item-active-background);
-                                                }
-                                            }
-
-                                            input {
-                                                display: none;
-                                            }
-                                        }
-                                    }
-                                }
-
                                 &.field-comment {
                                     flex-grow: 1;
 
@@ -709,27 +673,6 @@ html {
             display: flex;
             flex-direction: column;
 
-            .docx-container {
-                max-width: 100%;
-                width: 100%;
-                height: auto;
-                overflow-x: auto;
-                overflow-y: auto;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                padding: 10px;
-
-                .docx-wrapper {
-                    background: none;
-
-                    .docx {
-                        width: 100%;
-                        margin-bottom: 15px;
-                    }
-                }
-            }
-
             .layout-content {
                 .main-container {
                     position: relative;
@@ -809,31 +752,6 @@ html {
                                     height: auto;
                                     background: var(--block-background);
                                     border-radius: 32px;
-                                }
-                            }
-
-                            &.page-profile {
-                                .page-header {
-                                    display: flex !important;
-                                    position: relative;
-
-                                    .page-title__name,
-                                    .page-title__district{
-                                        width: 100%;
-                                    }
-
-                                    .page-title__district {
-                                        opacity: 0.65;
-                                        font-size: 14px;
-                                    }
-                                }
-
-                                .widget {
-                                    .widget__filters {
-                                        .filters-buttons {
-                                            justify-content: flex-start;
-                                        }
-                                    }
                                 }
                             }
 
@@ -1126,15 +1044,6 @@ html {
                                         flex-direction: row;
                                         gap: 10px;
                                         justify-content: center;
-
-                                        .docx-container {
-                                            margin-top: 0;
-                                            width: auto;
-
-                                            .docx-wrapper {
-
-                                            }
-                                        }
                                     }
 
                                     .progress-bar-container {
@@ -1350,22 +1259,6 @@ html {
                                                         }
                                                     }
                                                 }
-                                            }
-                                        }
-                                    }
-
-                                    .docx-container {
-                                        margin-top: 70px;
-                                        width: 100%;
-
-                                        .docx-wrapper {
-                                            width: 100%;
-                                            padding: 10px;
-
-                                            .docx {
-                                                width: 100% !important;
-                                                max-width: 595.4pt;
-                                                overflow: scroll;
                                             }
                                         }
                                     }
@@ -1607,19 +1500,6 @@ html {
                                     }
                                 }
 
-                                &.page-profile {
-                                    .page-header {
-                                        .page-title__district {
-                                            font-size: 20px;
-                                        }
-
-                                        .clocks {
-                                            display: flex;
-                                            right: 15px
-                                        }
-                                    }
-                                }
-
                                 &.page-admin {
                                     .page-admin__filters {
                                         display: flex;
@@ -1834,14 +1714,6 @@ html {
 
                                 }
 
-                                &.page-profile {
-                                    .page-header {
-                                        .page-title__district {
-                                            font-size: 18px;
-                                        }
-                                    }
-                                }
-
                                 &.page-document {
                                     .content {
                                         .progress-bar-container {
@@ -1891,11 +1763,6 @@ html {
                                                     }
                                                 }
                                             }
-                                        }
-
-                                        .docx-container {
-                                            padding: 0;
-                                            margin-top: 120px;
                                         }
                                     }
                                 }
@@ -1983,14 +1850,6 @@ html {
                                     }
                                 }
 
-                                &.page-profile {
-                                    .page-header {
-                                        .page-title__district {
-                                            font-size: 24px;
-                                        }
-                                    }
-                                }
-
                                 &.page-document {
                                     .content {
                                         .progress-bar-container {
@@ -2034,10 +1893,6 @@ html {
                                                     }
                                                 }
                                             }
-                                        }
-
-                                        .docx-container {
-                                            margin-top: 150px;
                                         }
                                     }
                                 }

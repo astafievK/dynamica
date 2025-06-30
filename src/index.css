@@ -38,6 +38,8 @@
   --color-gray-900: #454647;
   /* FEEDBACK (не из брендбука, но часто нужны) */
   --color-error: #dc3545;
+  --color-error-bg: #f8d7da;
+  --color-error-text: #ff4949;
   --color-warning: #ffc107;
   --color-info: #17a2b8;
   --color-success: var(--color-accent-500);
@@ -78,7 +80,6 @@
   margin: 0;
   box-sizing: border-box;
   border: none;
-  outline: none;
   color: var(--font-color);
   font-family: "Commissioner", Arial, sans-serif;
   -webkit-tap-highlight-color: transparent;
@@ -203,21 +204,32 @@ input[type=password],
 textarea {
   transition: all 0.1s;
 }
+input[type=text]:focus, input[type=text]:focus-visible,
+input[type=password]:focus,
+input[type=password]:focus-visible,
+textarea:focus,
+textarea:focus-visible {
+  outline: none;
+}
 input[type=text].styled,
 input[type=password].styled,
 textarea.styled {
   padding: 10px 15px;
-  border-radius: 32px;
+  border-radius: 16px;
   background: var(--block-background);
   border: 1px solid var(--color-gray-100);
   transition: all 0.1s;
   font-size: 14px;
+  outline: none;
 }
-input[type=text].styled:hover, input[type=text].styled:focus,
+input[type=text].styled:hover, input[type=text].styled:focus, input[type=text].styled:focus-visible,
 input[type=password].styled:hover,
 input[type=password].styled:focus,
+input[type=password].styled:focus-visible,
 textarea.styled:hover,
-textarea.styled:focus {
+textarea.styled:focus,
+textarea.styled:focus-visible {
+  outline: none;
   border-color: var(--color-gray-500);
 }
 input[type=text].styled:disabled,
@@ -845,40 +857,6 @@ html body #modal-root #createDocument .modal__content__body .fields-container .f
   margin-left: 10px;
   font-weight: 600;
 }
-html body #modal-root #createDocument .modal-content__body .fields-container .field.task-duration .calendars,
-html body #modal-root #createDocument .modal__content__body .fields-container .field.task-duration .calendars {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: row;
-  gap: 2px;
-}
-html body #modal-root #createDocument .modal-content__body .fields-container .field.task-duration .calendars .calendar,
-html body #modal-root #createDocument .modal__content__body .fields-container .field.task-duration .calendars .calendar {
-  display: flex;
-  flex: 1;
-}
-html body #modal-root #createDocument .modal-content__body .fields-container .field.task-duration .calendars .calendar label,
-html body #modal-root #createDocument .modal__content__body .fields-container .field.task-duration .calendars .calendar label {
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-  text-align: center;
-  flex: 1;
-  border-radius: 24px;
-  padding: 15px 10px;
-  cursor: pointer;
-  background-color: var(--item-hover-background);
-  transition: all 150ms;
-}
-html body #modal-root #createDocument .modal-content__body .fields-container .field.task-duration .calendars .calendar label:hover,
-html body #modal-root #createDocument .modal__content__body .fields-container .field.task-duration .calendars .calendar label:hover {
-  background-color: var(--item-active-background);
-}
-html body #modal-root #createDocument .modal-content__body .fields-container .field.task-duration .calendars .calendar input,
-html body #modal-root #createDocument .modal__content__body .fields-container .field.task-duration .calendars .calendar input {
-  display: none;
-}
 html body #modal-root #createDocument .modal-content__body .fields-container .field.field-comment,
 html body #modal-root #createDocument .modal__content__body .fields-container .field.field-comment {
   flex-grow: 1;
@@ -1077,24 +1055,6 @@ html body #dynamica {
   display: flex;
   flex-direction: column;
 }
-html body #dynamica .docx-container {
-  max-width: 100%;
-  width: 100%;
-  height: auto;
-  overflow-x: auto;
-  overflow-y: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
-}
-html body #dynamica .docx-container .docx-wrapper {
-  background: none;
-}
-html body #dynamica .docx-container .docx-wrapper .docx {
-  width: 100%;
-  margin-bottom: 15px;
-}
 html body #dynamica .layout-content .main-container {
   position: relative;
   display: flex;
@@ -1165,21 +1125,6 @@ html body #dynamica .layout-content .main-container main .page .page-content .pa
   height: auto;
   background: var(--block-background);
   border-radius: 32px;
-}
-html body #dynamica .layout-content .main-container main .page.page-profile .page-header {
-  display: flex !important;
-  position: relative;
-}
-html body #dynamica .layout-content .main-container main .page.page-profile .page-header .page-title__name,
-html body #dynamica .layout-content .main-container main .page.page-profile .page-header .page-title__district {
-  width: 100%;
-}
-html body #dynamica .layout-content .main-container main .page.page-profile .page-header .page-title__district {
-  opacity: 0.65;
-  font-size: 14px;
-}
-html body #dynamica .layout-content .main-container main .page.page-profile .widget .widget__filters .filters-buttons {
-  justify-content: flex-start;
 }
 html body #dynamica .layout-content .main-container main .page.page-admin .page-admin__filters {
   display: flex;
@@ -1413,10 +1358,6 @@ html body #dynamica .layout-content .main-container main .page.page-document .co
   gap: 10px;
   justify-content: center;
 }
-html body #dynamica .layout-content .main-container main .page.page-document .content:has(.document-status__parallel) .docx-container {
-  margin-top: 0;
-  width: auto;
-}
 html body #dynamica .layout-content .main-container main .page.page-document .content .progress-bar-container {
   display: flex;
   align-items: center;
@@ -1587,19 +1528,6 @@ html body #dynamica .layout-content .main-container main .page.page-document .co
 html body #dynamica .layout-content .main-container main .page.page-document .content .document-status__parallel .statuses-container .status-item.orange .status-label .status-label__division,
 html body #dynamica .layout-content .main-container main .page.page-document .content .document-status__parallel .statuses-container .status-item.orange .status-label .status-label__person {
   color: #bf6900;
-}
-html body #dynamica .layout-content .main-container main .page.page-document .content .docx-container {
-  margin-top: 70px;
-  width: 100%;
-}
-html body #dynamica .layout-content .main-container main .page.page-document .content .docx-container .docx-wrapper {
-  width: 100%;
-  padding: 10px;
-}
-html body #dynamica .layout-content .main-container main .page.page-document .content .docx-container .docx-wrapper .docx {
-  width: 100% !important;
-  max-width: 595.4pt;
-  overflow: scroll;
 }
 html body #dynamica .layout-content .main-container main .page.page-documents .page-content .documents-container .documents-filter .filters-buttons {
   justify-content: left;
@@ -1773,13 +1701,6 @@ html body #dynamica .layout-content .main-container main .page.page-not-found .c
   html body #dynamica .layout-content .main-container main .page .page-filters .filters-search {
     gap: 10px;
   }
-  html body #dynamica .layout-content .main-container main .page.page-profile .page-header .page-title__district {
-    font-size: 20px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-profile .page-header .clocks {
-    display: flex;
-    right: 15px;
-  }
   html body #dynamica .layout-content .main-container main .page.page-admin .page-admin__filters {
     display: flex;
     flex-direction: row;
@@ -1907,9 +1828,6 @@ html body #dynamica .layout-content .main-container main .page.page-not-found .c
   html body #dynamica .layout-content .main-container main .page .page-header .page-title {
     font-size: 26px;
   }
-  html body #dynamica .layout-content .main-container main .page.page-profile .page-header .page-title__district {
-    font-size: 18px;
-  }
   html body #dynamica .layout-content .main-container main .page.page-document .content .progress-bar-container .progress-item .progress-point-wrapper .progress-point {
     width: 30px;
     height: 30px;
@@ -1938,10 +1856,6 @@ html body #dynamica .layout-content .main-container main .page.page-not-found .c
   }
   html body #dynamica .layout-content .main-container main .page.page-document .content .progress-bar-container .progress-item .progress-point-wrapper .progress-label .progress-label__person {
     font-size: 16px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-document .content .docx-container {
-    padding: 0;
-    margin-top: 120px;
   }
   html body #dynamica .layout-content .main-container main .page.page-admin .page-admin__content .content-tab .content-tab__title {
     font-size: 24px;
@@ -1979,9 +1893,6 @@ html body #dynamica .layout-content .main-container main .page.page-not-found .c
   html body #dynamica .layout-content .main-container main .page .page-content .page-content-item {
     padding: 10px;
   }
-  html body #dynamica .layout-content .main-container main .page.page-profile .page-header .page-title__district {
-    font-size: 24px;
-  }
   html body #dynamica .layout-content .main-container main .page.page-document .content .progress-bar-container .progress-item:first-child .progress-point-wrapper .progress-label {
     transform: translateX(0);
   }
@@ -2003,9 +1914,6 @@ html body #dynamica .layout-content .main-container main .page.page-not-found .c
   }
   html body #dynamica .layout-content .main-container main .page.page-document .content .progress-bar-container .progress-item .progress-point-wrapper .progress-label .progress-label__person {
     font-size: 18px;
-  }
-  html body #dynamica .layout-content .main-container main .page.page-document .content .docx-container {
-    margin-top: 150px;
   }
 }
 

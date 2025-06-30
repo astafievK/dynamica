@@ -11,7 +11,13 @@ export const baseApi = createApi({
             return headers;
         },
     }),
-    tagTypes: ['Post', 'Department', 'Employee', 'UserFunction'],
+    tagTypes: [
+        'Post',
+        'Department',
+        'Employee',
+        'Permission',
+        'DocumentsTabs', 'Documents', 'Document'
+    ],
     keepUnusedDataFor: 60,
     refetchOnFocus: true,
     refetchOnReconnect: true,

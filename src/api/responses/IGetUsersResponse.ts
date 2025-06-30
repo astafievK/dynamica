@@ -1,6 +1,6 @@
-import {Employee} from "../../interfaces/IEmployee.ts";
+import {IUser} from "../../interfaces/IUser.ts";
 
 export interface GetUsersResponse {
     status: string,
-    users: Employee[]
+    users: IUser[]
 }

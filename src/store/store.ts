@@ -12,6 +12,7 @@ import historySlice from "../api/slices/historySlice.ts";
 import leftMenuSlice from "../api/slices/leftMenuSlice.ts";
 import employeesContainerSlice from "../api/slices/employeesContainerSlice.ts";
 import { moodleApi } from '../api/moodleApi.ts';
+import draftSlice from "../api/slices/draftSlice.ts";
 
 const persistConfig = {
     key: 'root',
@@ -36,6 +37,7 @@ const rootReducer = combineReducers({
     history: historySlice,
     leftMenuReducer: leftMenuSlice,
     employeesContainerReducer: employeesContainerSlice,
+    draftReducer: draftSlice
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

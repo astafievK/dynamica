@@ -1,7 +1,7 @@
 import {FC, useEffect} from "react";
 import {AnimatePresence, motion} from "framer-motion";
 import {pageAnimation} from "../constants/motionSettings.ts";
-import DocxViewer from "./PageDocument/DocxViewer/DocxViewer.tsx";
+import DocxViewer from "./DocxViewer/DocxViewer.tsx";
 import {DocumentProgressParallel} from "./DocumentProgressParallel/DocumentProgressParallel.tsx";
 
 export const PageDocumentParallel: FC = () => {

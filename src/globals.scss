@@ -38,36 +38,36 @@
   --color-gray-900: #454647;
 
   /* FEEDBACK (не из брендбука, но часто нужны) */
-  --color-error:    #dc3545;
-  --color-warning:  #ffc107;
-  --color-info:     #17a2b8;
-  --color-success:  var(--color-accent-500);
+  --color-error:      #dc3545;
+  --color-error-bg:   #f8d7da;
+  --color-error-text: #ff4949;
+  --color-warning:    #ffc107;
+  --color-info:       #17a2b8;
+  --color-success:    var(--color-accent-500);
 
-
-  --background-color: #F1F2F2;
-  --background-element: rgba(0, 0, 0, 0.1);
-  --primary-color: rgb(90, 176, 88);
-  --secondary-color: #0C1729;
-  --font-color: #0C1729;
-  --font-color-secondary: rgba(12, 23, 41, 0.55);
-  --additional-color: #A7A9AB;
-  --additional-color-active: #8c8e8f;
-  --header-height-default: 50px;
-  --header-height-768: 50px;
-  --header-height-1024: 42px;
-  --header-height-1440: 52px;
-  --left-menu-width-default: 180px;
-  --left-menu-width-1440: 240px;
-  --hover-background: rgba(150, 150, 150, 0.2);
-  --background-action-button-primary: #acd7aa;
+  --background-color:                   #F1F2F2;
+  --background-element:                 rgba(0, 0, 0, 0.1);
+  --primary-color:                      rgb(90, 176, 88);
+  --secondary-color:                    #0C1729;
+  --font-color:                         #0C1729;
+  --font-color-secondary:               rgba(12, 23, 41, 0.55);
+  --additional-color:                   #A7A9AB;
+  --additional-color-active:            #8c8e8f;
+  --header-height-default:              50px;
+  --header-height-768:                  50px;
+  --header-height-1024:                 42px;
+  --header-height-1440:                 52px;
+  --left-menu-width-default:            180px;
+  --left-menu-width-1440:               240px;
+  --hover-background:                   rgba(150, 150, 150, 0.2);
+  --background-action-button-primary:   #acd7aa;
   --background-action-button-secondary: #e6e6e6;
-  --item-static-background: transparent;
-  --item-hover-background: rgba(0, 0, 0, 0.05);
-  --item-active-background: rgba(0, 0, 0, 0.1);
-
-  --block-shadow: 0 2px 10px 3px rgba(0,0,0,0.05);
-  --block-background: rgba(255, 255, 255, 1);
-  --item-shadow: 0px 7px 12px 0px rgba(0, 0, 0, 0.2);
+  --item-static-background:             transparent;
+  --item-hover-background:              rgba(0, 0, 0, 0.05);
+  --item-active-background:             rgba(0, 0, 0, 0.1);
+  --block-shadow:                       0 2px 10px 3px rgba(0,0,0,0.05);
+  --block-background:                   rgba(255, 255, 255, 1);
+  --item-shadow:                        0px 7px 12px 0px rgba(0, 0, 0, 0.2);
 }
 
 @font-face {
@@ -83,7 +83,6 @@
   margin: 0;
   box-sizing: border-box;
   border: none;
-  outline: none;
   color: var(--font-color);
   font-family: 'Commissioner', Arial, sans-serif;
   -webkit-tap-highlight-color: transparent;
@@ -232,16 +231,24 @@ input[type="password"],
 textarea {
   transition: all 0.1s;
 
+  &:focus,
+  &:focus-visible {
+    outline: none;
+  }
+
   &.styled {
     padding: 10px 15px;
-    border-radius: 32px;
+    border-radius: 16px;
     background: var(--block-background);
     border: 1px solid var(--color-gray-100);
     transition: all 0.1s;
     font-size: 14px;
+    outline: none;
 
     &:hover,
-    &:focus {
+    &:focus,
+    &:focus-visible {
+      outline: none;
       border-color: var(--color-gray-500);
     }
 

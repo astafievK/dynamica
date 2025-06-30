@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Employee } from "../../../interfaces/IEmployee.ts";
+import { IUser } from "../../../interfaces/IUser.ts";
 import {useNotification } from "../../Contexts/NotificationContext/NotificationContext.tsx";
 import { useCopyToClipboard } from "../../../store/hooks/useCopyToClipboard.ts";
 import { EmployeeActions } from "./EmployeeActions/EmployeeActions.tsx";
@@ -11,7 +11,7 @@ import { Permissions } from "../../../constants/permissions.ts";
 import "./EmployeeListItem.css"
 
 interface IEmployeeCardProps {
-    employee: Employee;
+    employee: IUser;
 }
 
 export const EmployeeListItem: FC<IEmployeeCardProps> = React.memo(({ employee }) => {

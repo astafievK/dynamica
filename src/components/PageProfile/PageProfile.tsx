@@ -5,6 +5,8 @@ import { setIsOpen as setLoginModalOpen } from "../../api/slices/modalLoginSlice
 import { useAppDispatch, useTypedSelector } from "../../store/hooks/redux.ts";
 import {useNavigate} from "react-router-dom";
 import {WidgetTests} from "./WidgetTests/WidgetTests.tsx";
+import {WidgetDocuments} from "./WidgetDocuments/WidgetDocuments.tsx";
+import "./PageProfile.css"
 
 export const PageProfile: FC = () => {
     const {user} = useTypedSelector(state => state.auth);
@@ -31,8 +33,9 @@ export const PageProfile: FC = () => {
                  */
             }
             <div className="page-content">
-                <div className="modules">
+                <div className="widgets">
                     <WidgetTests/>
+                    <WidgetDocuments/>
                 </div>
             </div>
         </motion.div>

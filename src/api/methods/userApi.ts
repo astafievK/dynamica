@@ -1,11 +1,11 @@
 import { baseApi } from "../api.ts";
 import { GetUsersResponse } from "../responses/IGetUsersResponse.ts";
-import { Employee } from "../../interfaces/IEmployee.ts";
+import { IUser } from "../../interfaces/IUser.ts";
 import {UpdateUserCommand} from "../commands/IUpdateUserCommand.ts";
 
 export const userApi = baseApi.injectEndpoints({
     endpoints: builder => ({
-        getUserById: builder.query<Employee, { id_user: number }>({
+        getUserById: builder.query<IUser, { id_user: number }>({
             query: ({ id_user }) => ({
                 url: `/Users/getUser.php?id_user=${id_user}`,
                 method: "GET",

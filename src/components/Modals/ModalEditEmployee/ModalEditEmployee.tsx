@@ -1,29 +1,29 @@
 import { FC, useState } from "react";
 import { Cross } from "../../Cross/Cross.tsx";
 import { useModal } from "../../../store/hooks/useModal.ts";
-import { Employee } from "../../../interfaces/IEmployee.ts";
+import { IUser } from "../../../interfaces/IUser.ts";
 import { useEditEmployee } from "../../Contexts/EditEmployeeContext/EditEmployeeContext.tsx";
 import { UpdateUserCommand } from "../../../api/commands/IUpdateUserCommand.ts";
 import { DropdownCheckbox } from "../../DropdownCheckbox/DropdownCheckbox.tsx";
-import { useGetUserFunctionQuery } from "../../../api/methods/userFunctionApi.ts";
+import { useGetPermissionQuery } from "../../../api/methods/permissionApi.ts";
 import {
-    useGetUserHasUserFunctionIdsByIdUserQuery,
+    useGetUserHasPermissionIdsByIdUserQuery,
     useUpdateUserPermissionMutation
-} from "../../../api/methods/userHasUserFunctionApi.ts";
+} from "../../../api/methods/userHasPermissionApi.ts";
 import { useUpdateUserMutation } from "../../../api/methods/userApi.ts";
 import { useHasPermission } from "../../../store/hooks/useHasPermission.ts";
 import { Permissions } from "../../../constants/permissions.ts";
 
 type ModalEditEmployeeProps = {
-    employee: Employee;
+    employee: IUser;
 }
 
 export const ModalEditEmployee: FC<ModalEditEmployeeProps> = ({ employee }) => {
     const {closeModal} = useEditEmployee();
     const {isClosing, handleClose} = useModal(true, () => closeModal());
 
-    const {data: allUserFunctions} = useGetUserFunctionQuery();
-    const {data: selectedUserFunctions} = useGetUserHasUserFunctionIdsByIdUserQuery(
+    const {data: allUserFunctions} = useGetPermissionQuery();
+    const {data: selectedUserFunctions} = useGetUserHasPermissionIdsByIdUserQuery(
         {idUser: employee.id_user},
         {skip: !employee.id_user}
     );
@@ -160,7 +160,7 @@ export const ModalEditEmployee: FC<ModalEditEmployeeProps> = ({ employee }) => {
                                     {allUserFunctions && canViewDropdown && (
                                         <DropdownCheckbox
                                             options={allUserFunctions.functions.map(item => ({
-                                                id: item.id_user_function,
+                                                id: item.id_permission,
                                                 title: item.title,
                                             }))}
                                             selectedValues={selectedUserFunctions ? selectedUserFunctions.functions : []}

@@ -6,12 +6,12 @@ import { EmployeeCardLine } from "../EmployeeCardLine/EmployeeCardLine.tsx";
 import { EmployeesHeader } from "../EmployeesHeader/EmployeesHeader.tsx";
 import { BannerNoData } from "../../BannerNoData/BannerNoData.tsx";
 import { pageAnimation } from "../../../constants/motionSettings.ts";
-import {Employee} from "../../../interfaces/IEmployee.ts";
+import {IUser} from "../../../interfaces/IUser.ts";
 import "./EmployeesList.css";
 
 interface EmployeesListProps {
     isLoading: boolean;
-    users: Employee[];
+    users: IUser[];
     showHidden: boolean;
     isOldStyleEnabled: boolean;
 }

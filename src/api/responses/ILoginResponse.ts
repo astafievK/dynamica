@@ -1,7 +1,7 @@
-import { IUser } from "../../interfaces/IUser.ts";
+import { IAuthorizedUser } from "../../interfaces/IAuthorizedUser.ts";
 
 export interface ILoginResponse {
     status: string;
     message?: string;
-    user?: IUser;
+    user?: IAuthorizedUser;
 }

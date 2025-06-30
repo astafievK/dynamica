@@ -7,9 +7,9 @@ header {
   height: var(--header-height-default);
   transition: transform 0.3s ease-in-out;
   gap: 15px;
-  background: rgba(241, 242, 242, 0.5);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
+  background: rgba(241, 242, 242, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   will-change: backdrop-filter;
   justify-content: space-between;
   padding: 9px 12px;
@@ -31,14 +31,14 @@ header {
           width: 22px;
         }
       }
-    }
-  }
 
-  #logo {
-    display: flex;
+      #logo {
+        display: flex;
 
-    img {
-      height: 100%;
+        img {
+          height: 100%;
+        }
+      }
     }
   }
 
@@ -109,21 +109,22 @@ header {
         &-label {
           display: flex;
           flex-direction: column;
+          gap: 2px;
 
           &__name,
           &__position {
             text-wrap: nowrap;
+            line-height: 1;
             text-align: left;
           }
 
           &__name {
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 500;
-
           }
 
           &__position {
-            font-size: 12px;
+            font-size: 11px;
             color: var(--color-gray-700);
           }
         }
@@ -269,10 +270,24 @@ header {
     padding: 5px 10px 5px 3px;
 
     .profile-container {
-      gap: 5px;
+      gap: 10px;
+
+      .user-dropdown-wrapper {
+        .user-wrapper {
+          &-label {
+            &__name {
+              font-size: 16px;
+            }
+
+            &__position {
+              font-size: 13px;
+            }
+          }
+        }
+      }
 
       .header-item {
-        font-size: 16px;
+        font-size: 14px;
 
         svg {
           height: 27px;

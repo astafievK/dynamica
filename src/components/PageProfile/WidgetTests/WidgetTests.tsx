@@ -1,26 +1,36 @@
 import React, { FC, useMemo, useState } from "react";
-import { TestCard } from "./TestCard/TestCard.tsx";
-import { BannerNoData } from "../../BannerNoData/BannerNoData.tsx"; // убедись, что путь верный
-import './WidgetTests.css';
-import '../Widget.css';
-import { useGetUserTestsQuery } from "../../../api/methods/moodle/testMoodleApi.ts";
-import { useTypedSelector } from "../../../store/hooks/redux.ts";
-import {Dropdown} from "../../Dropdown/Dropdown.tsx";
-
-const testStatuses = [
-    { id: 0, title: "Все" },
-    { id: 1, title: "Новое" },
-    { id: 2, title: "В процессе" },
-    { id: 3, title: "Завершено" },
-];
+import {useGetStatusesQuery, useGetUserTestsQuery} from "../../../api/methods/moodle/testMoodleApi";
+import { useTypedSelector } from "../../../store/hooks/redux";
+import { TestCard } from "./TestCard/TestCard";
+import { WidgetTemplate } from "../../Widgets/WidgetTemplate/WidgetTemplate";
+import "./WidgetTests.css";
 
 export const WidgetTests: FC = React.memo(() => {
-    const [selectedStatus, setSelectedStatus] = useState<{id: number, title: string}>(testStatuses[0]);
     const { user } = useTypedSelector(state => state.auth);
     const moodleUserId = user?.moodleUser?.id;
+    const queryLimit: number = 5;
+
+    const { data: testStatusesRaw } = useGetStatusesQuery();
+
+    const testStatuses = useMemo(() => {
+        if (!testStatusesRaw) return [{ id: 0, title: "Все" }];
+        return [
+            { id: 0, title: "Все" },
+            ...testStatusesRaw.data.map((status, index) => ({
+                id: index + 1,
+                title: status.title,
+            })),
+        ];
+    }, [testStatusesRaw]);
+
+    const [selectedStatus, setSelectedStatus] = useState<{id: number; title: string}>(testStatuses[0]);
 
     const { data: coursesData } = useGetUserTestsQuery(
-        { idUser: moodleUserId },
+        {
+            idUser: moodleUserId,
+            limit: queryLimit,
+            ...(selectedStatus.title !== "Все" && { status: selectedStatus.title }),
+        },
         { skip: !moodleUserId }
     );
 
@@ -33,47 +43,38 @@ export const WidgetTests: FC = React.memo(() => {
     }, [tests, selectedStatus]);
 
     return (
-        <div className="widget widget-tests">
-            <div className="widget__header">
-                <span className="widget__title">Тестирование и анкетирование</span>
-            </div>
-            {tests.length > 0 && (
-                <div className="widget__filters">
-                    <Dropdown
-                        options={testStatuses}
-                        label="Статус"
-                        value={selectedStatus}
-                        onSelect={setSelectedStatus}
-                        externalClasses={[]}
-                        searchEnabled={false}
-                    />
-                </div>
+        <WidgetTemplate
+            title="Тестирование и анкетирование"
+            linkTo="/tests"
+            data={tests}
+            filteredItems={filteredTests}
+            filters={[
+                {
+                    label: "Статус",
+                    options: testStatuses,
+                    selected: selectedStatus,
+                    onChange: setSelectedStatus,
+                },
+            ]}
+            renderItem={(test) => (
+                <TestCard
+                    key={test.quiz_id}
+                    title={test.quiz_name}
+                    status={test.status}
+                    typeTitle={test.quiz_type}
+                    systemTypeTitle={test.quiz_type_system}
+                    id={test.quiz_id}
+                    quizOpenUnix={test.quiz_open_date}
+                    quizFinishUnix={test.quiz_close_date}
+                    userStartUnix={test.quiz_open_date}
+                    userFinishUnix={test.user_start_date}
+                    questionsCount={test.questions_count}
+                />
             )}
-            <div className="widget__body">
-                {filteredTests.length === 0 ? (
-                    <BannerNoData content={"Тесты или анкеты не найдены"} />
-                ) : (
-                    <div className={"tests-grid"}>
-                        {
-                            filteredTests.map((test) => (
-                                <TestCard
-                                    key={test.quiz_id}
-                                    title={test.quiz_name}
-                                    status={test.status}
-                                    typeTitle={test.quiz_type}
-                                    systemTypeTitle={test.quiz_type_system}
-                                    id={test.quiz_id}
-                                    quizOpenUnix={test.quiz_open_date}
-                                    quizFinishUnix={test.quiz_close_date}
-                                    userStartUnix={test.quiz_open_date}
-                                    userFinishUnix={test.user_start_date}
-                                    questionsCount={test.questions_count}
-                                />
-                            ))
-                        }
-                    </div>
-                )}
-            </div>
-        </div>
+            emptyMessage="Тесты или анкеты не найдены"
+            gridClass="tests-grid"
+            widgetClass="widget-tests"
+            queryLimit={queryLimit}
+        />
     );
 });

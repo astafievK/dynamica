@@ -1,10 +1,10 @@
 import React, { FC } from "react";
 import { motion } from "framer-motion";
-import { Employee } from "../../../interfaces/IEmployee.ts";
+import { IUser } from "../../../interfaces/IUser.ts";
 import {monthsGenitive} from "../../../constants/months.ts";
 
 interface IEmployeeCardLineProps {
-    employee: Employee;
+    employee: IUser;
 }
 
 export const EmployeeCardLine: FC<IEmployeeCardLineProps> = React.memo(({ employee }) => {

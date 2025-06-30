@@ -28,15 +28,11 @@ export const authApi = baseApi.injectEndpoints({
                                 })
                             ).unwrap();
 
-                            console.log(response)
-
                             if (response && response.length > 0 && response[0].id) {
                                 userToDispatch = {
                                     ...data.user,
                                     moodleUser: response[0],
                                 };
-
-                                console.log(userToDispatch)
                             }
                         }
 
