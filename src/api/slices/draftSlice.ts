@@ -1,18 +1,18 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface DraftState {
-    activeDraftId: number;
+    activeDraftId: number | null;
 }
 
 const initialState: DraftState = {
-    activeDraftId: 0,
+    activeDraftId: null,
 };
 
 const draftSlice = createSlice({
     name: 'draft',
     initialState,
     reducers: {
-        setActiveDraft(state, action: PayloadAction<number>) {
+        setActiveDraft(state, action: PayloadAction<number | null>) {
             state.activeDraftId = action.payload;
         },
     },

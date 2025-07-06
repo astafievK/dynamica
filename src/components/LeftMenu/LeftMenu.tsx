@@ -12,7 +12,7 @@ export const LeftMenu: FC = () => {
         <motion.aside
             className={`left-menu ${leftMenuIsExpanded ? 'expanded' : 'collapsed'}`}
             animate={{
-                width: leftMenuIsExpanded ? 210 : 49,
+                width: leftMenuIsExpanded ? 210 : 56,
             }}
             initial={false}
             transition={{ duration: 0.15, ease: "easeInOut" }}

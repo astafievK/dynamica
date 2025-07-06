@@ -7,21 +7,21 @@ export const departmentApi = baseApi.injectEndpoints({
     endpoints: builder => ({
         getDepartments: builder.query<{status: string, departments: IDepartment[]}, void>({
             query: () => ({
-                url: `/Department/getDepartments.php`,
+                url: `/department/get_departments.php`,
                 method: "GET",
             }),
             providesTags: ['Department'],
         }),
         getDepartmentsTitlesNotNull: builder.query<{status: string, departments: string[]}, void>({
             query: () => ({
-                url: `/Department/getDepartmentsTitlesNotNull.php`,
+                url: `/department/get_departments_titles_not_null.php`,
                 method: "GET",
             }),
             providesTags: ['Department'],
         }),
         createDepartment: builder.mutation<{status: string, message: string}, CreateDepartmentCommand>({
             query: (query) => ({
-                url: `/Department/createDepartment.php`,
+                url: `/department/create_new_department.php`,
                 method: "POST",
                 body: query
             }),
@@ -29,7 +29,7 @@ export const departmentApi = baseApi.injectEndpoints({
         }),
         editDepartmentTitleById: builder.mutation<{status: string, message: string}, EditDepartmentTitleCommand>({
             query: (query) => ({
-                url: `/Department/editDepartmentTitleById.php`,
+                url: `/department/update_department_title.php`,
                 method: "POST",
                 body: query
             }),

@@ -9,28 +9,18 @@ import {useSelector} from "react-redux";
 import {RootState} from "../../store/store.ts";
 import {
     useGetDocumentByIdQuery,
+    useGetDocumentsTabsByAuthorQuery,
     useUpdateDocumentFieldMutation
 } from "../../api/methods/documentApi.ts";
-import {useGetCitiesQuery} from "../../api/methods/cityApi.ts";
-import { Dropdown } from "../Dropdown/Dropdown.tsx";
-import {useGetOrganizationsQuery} from "../../api/methods/organizationApi.ts";
-import {useTypedSelector} from "../../store/hooks/redux.ts";
+import {useAppDispatch, useTypedSelector} from "../../store/hooks/redux.ts";
+import {DocumentFields} from "./DocumentFields/DocumentFields.tsx";
+import {useDocumentDraftActions} from "../../store/hooks/useDocumentDraftActions.ts";
+import {setActiveDraft} from "../../api/slices/draftSlice.ts";
 
 export const PageCreateDocument: FC = () => {
     const navigate = useNavigate();
-    const [localCity, setLocalCity] = useState<{ id: number, title: string } | null>(null);
-    const [localOrganization, setLocalOrganization] = useState<{ id: number, title: string } | null>(null);
-    const [documentTitle, setDocumentTitle] = useState('');
-    const { user } = useTypedSelector((state) => state.auth)
-
-    const activeDraftId = useSelector((state: RootState) => state.draftReducer.activeDraftId);
-    const [updateDocumentField, {isLoading: isUpdating}] = useUpdateDocumentFieldMutation();
-    const { data } = useGetDocumentByIdQuery(
-        { id_document: activeDraftId },
-        { skip: activeDraftId === null }
-    );
-    const {data: dataCities} = useGetCitiesQuery();
-    const {data: dataOrganizations} = useGetOrganizationsQuery();
+    const dispatch = useAppDispatch();
+    const { user } = useTypedSelector((state) => state.auth);
 
 
     useEffect(() => {
@@ -38,6 +28,38 @@ export const PageCreateDocument: FC = () => {
             navigate("/", { replace: true });
         }
     }, [user, navigate]);
+
+    const activeDraftId = useSelector((state: RootState) => state.draftReducer.activeDraftId);
+    const { data: dataTabs, isSuccess: tabsLoaded } = useGetDocumentsTabsByAuthorQuery({ id_author: user!.id_user });
+    const { createDocument } = useDocumentDraftActions();
+
+    const [hasHandledInitialState, setHasHandledInitialState] = useState(false);
+
+    useEffect(() => {
+        if (tabsLoaded && !hasHandledInitialState) {
+            setHasHandledInitialState(true);
+
+            // если вообще ничего нет — создаём
+            if (activeDraftId === null && dataTabs?.tabs.length === 0) {
+                createDocument().catch((error) => {
+                    console.error("Ошибка при создании документа:", error);
+                });
+            }
+
+            // если есть вкладки — ставим первую активной
+            if (activeDraftId === null && dataTabs?.tabs.length > 0) {
+                dispatch(setActiveDraft(dataTabs.tabs[0].id_document));
+            }
+        }
+    }, [tabsLoaded, activeDraftId, hasHandledInitialState, createDocument, dataTabs, dispatch]);
+
+    const [documentTitle, setDocumentTitle] = useState('');
+    const [updateDocumentField] = useUpdateDocumentFieldMutation();
+
+    const { data } = useGetDocumentByIdQuery(
+        { id_document: activeDraftId as number },
+        { skip: activeDraftId === null }
+    );
 
     useEffect(() => {
         if (data?.document?.title) {
@@ -62,75 +84,16 @@ export const PageCreateDocument: FC = () => {
                 .catch(err => {
                     console.error("Ошибка при обновлении названия:", err);
                 });
-        }, 750);
+        }, 300);
 
         return () => clearTimeout(timeout);
     }, [documentTitle]);
-
-
-    useEffect(() => {
-        if (data?.document?.city) {
-            setLocalCity({
-                id: data.document.city.id_city,
-                title: data.document.city.title
-            });
-        } else {
-            setLocalCity(null);
-        }
-    }, [data?.document]);
-
-    useEffect(() => {
-        if (data?.document?.organization) {
-            setLocalOrganization({
-                id: data.document.organization.id_organization,
-                title: data.document.organization.title
-            });
-        } else {
-            setLocalOrganization(null);
-        }
-    }, [data?.document]);
-
-    const handleCityChange = async (selected: { id: number; title: string }) => {
-        setLocalCity(selected); // показать выбранное сразу
-
-        try {
-            const response = await updateDocumentField({
-                id_document: activeDraftId,
-                field: "id_city",
-                value: selected.id
-            }).unwrap();
-
-            if (response.status !== "success") {
-                console.error("Ошибка при обновлении документа:", response.message);
-            }
-        } catch (error) {
-            console.error("Ошибка при обновлении документа:", error);
-        }
-    };
-
-    const handleOrganizationChange = async (selected: { id: number; title: string }) => {
-        setLocalOrganization(selected); // показать выбранное сразу
-
-        try {
-            const response = await updateDocumentField({
-                id_document: activeDraftId,
-                field: "id_organization",
-                value: selected.id
-            }).unwrap();
-
-            if (response.status !== "success") {
-                console.error("Ошибка при обновлении документа:", response.message);
-            }
-        } catch (error) {
-            console.error("Ошибка при обновлении документа:", error);
-        }
-    };
 
     return (
         <motion.div {...pageAnimation} className="page page-create-document">
             <div className="page-header">
                 <div className="tabs-container">
-                    <Tabs/>
+                    <Tabs tabs={dataTabs?.tabs || []} />
                 </div>
                 {
                     data && data.document && activeDraftId && (
@@ -142,7 +105,6 @@ export const PageCreateDocument: FC = () => {
                                 placeholder="Название документа"
                                 value={documentTitle}
                                 onChange={(e) => setDocumentTitle(e.target.value)}
-                                disabled={isUpdating}
                             />
                         </div>
                     )
@@ -150,10 +112,15 @@ export const PageCreateDocument: FC = () => {
             </div>
             <div className="page-content">
                 {
-                    data && data.document && (
+                    data && data.document && activeDraftId && (
                         <div className="create-document">
                             <div className="create-document__preview">
-                                <DocxViewer fileUrl="/test.docx"/>
+                                {
+                                    data.document.path && (
+                                        <DocxViewer fileUrl={import.meta.env.VITE_BASE_DOCUMENT_URL + encodeURIComponent(data.document.path)}/>
+                                    )
+                                }
+
                                 <div className="upload-document__container">
                                     <button className="upload-document">
                                         Удалить файл
@@ -161,26 +128,7 @@ export const PageCreateDocument: FC = () => {
                                 </div>
                             </div>
                             <div className="create-document__fields">
-                                <Dropdown
-                                    options={dataCities?.cities?.map(city => ({
-                                        id: city.id_city,
-                                        title: city.title
-                                    })) ?? []}
-                                    label="Город расположение ДЦ"
-                                    value={localCity}
-                                    onSelect={handleCityChange}
-                                    isDisabled={isUpdating}
-                                />
-                                <Dropdown
-                                    options={dataOrganizations?.organizations?.map(organization => ({
-                                        id: organization.id_organization,
-                                        title: organization.title
-                                    })) ?? []}
-                                    label="Юр. лицо ГК"
-                                    value={localOrganization}
-                                    onSelect={handleOrganizationChange}
-                                    isDisabled={isUpdating}
-                                />
+                                <DocumentFields document={data.document} activeDraftId={activeDraftId}/>
                                 {
                                     /*
                                     <div className="task-duration">

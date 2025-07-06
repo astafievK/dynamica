@@ -15,17 +15,15 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 import "./Header.css"
 import {setLeftMenuIsExpanded} from "../../api/slices/leftMenuSlice.ts";
+import { useCreateNewDocumentMutation } from "../../api/methods/documentApi.ts";
+import {setActiveDraft} from "../../api/slices/draftSlice.ts";
 
 export const Header: FC = () => {
     const {user} = useTypedSelector((state) => state.auth);
     const { leftMenuIsExpanded } = useTypedSelector((state) => state.leftMenuReducer);
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
-
-    const handleCreateDraftClick = () => {
-
-        navigate("/documents/create");
-    };
+    const [createDocument, { isLoading: isCreating }] = useCreateNewDocumentMutation();
 
     const [menuOpen, setMenuOpen] = useState(false);
     const menuRef = useRef<HTMLDivElement | null>(null);
@@ -62,6 +60,21 @@ export const Header: FC = () => {
         };
     }, []);
 
+    const handleCreateDocument = async () => {
+        if (!user || isCreating) return;
+        try {
+            const response = await createDocument({ id_author: user.id_user }).unwrap();
+            if (response.status === "success" && response.id_document) {
+                dispatch(setActiveDraft(response.id_document));
+                navigate("/documents/create");
+            } else {
+                console.error("Ошибка при создании документа:", response.message);
+            }
+        } catch (e) {
+            console.error("Ошибка при создании документа:", e);
+        }
+    }
+
     return (
         <header>
             <section className="header-section header-section__logo">
@@ -94,8 +107,9 @@ export const Header: FC = () => {
                             isDeveloper && (
                                 <button
                                     className="create-doc header-item rounded"
-                                    onClick={handleCreateDraftClick}
+                                    onClick={handleCreateDocument}
                                     type="button"
+                                    disabled={isCreating}
                                 >
                                     <NoteAddOutlinedIcon />
                                 </button>
@@ -109,9 +123,8 @@ export const Header: FC = () => {
                             )
                         }
 
-                        <div className="user-dropdown-wrapper header-item rounded" ref={menuRef}
-                             onClick={toggleMenu}>
-                            <button className="user-wrapper">
+                        <div className="user-dropdown-wrapper header-item rounded" ref={menuRef}>
+                            <button className="user-wrapper" onClick={toggleMenu}>
                                 <div className="user-image" style={{backgroundImage: `url(${import.meta.env.VITE_BASE_IMAGE_URL}${user.image?.path ?? 'default.webp'})`}}></div>
                                 <div className="user-wrapper-label">
                                     <span className="user-wrapper-label__name">{user.name} {user.surname}</span>

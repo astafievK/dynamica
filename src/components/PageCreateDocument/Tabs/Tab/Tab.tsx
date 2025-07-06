@@ -1,23 +1,23 @@
 import React from "react";
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import classNames from "classnames";
-import { pageAnimation } from "../../../../constants/motionSettings.ts";
-import { motion } from "framer-motion";
 
 interface ITabProps {
-    id: number;
     title: string;
     isActive: boolean;
     onClick: () => void;
     onClose: () => void;
     tabsCount: number;
+    isRemoving?: boolean;
 }
 
-export const Tab: React.FC<ITabProps> = ({ title, isActive, onClick, onClose, tabsCount }) => {
+export const Tab: React.FC<ITabProps> = ({ title, isActive, onClick, onClose, tabsCount, isRemoving }) => {
     return (
-        <motion.button
-            {...pageAnimation}
-            className={classNames("tab tabs-item", { active: isActive })}
+        <div
+            className={classNames("tab tabs-item", {
+                active: isActive,
+                removing: isRemoving,
+            })}
             onClick={onClick}
             title={title}
         >
@@ -26,7 +26,7 @@ export const Tab: React.FC<ITabProps> = ({ title, isActive, onClick, onClose, ta
                 <button
                     type="button"
                     className="tab-close"
-                    title={"Удалить документ"}
+                    title="Удалить документ"
                     onMouseDown={(e) => e.stopPropagation()}
                     onClick={(e) => {
                         e.stopPropagation();
@@ -36,6 +36,6 @@ export const Tab: React.FC<ITabProps> = ({ title, isActive, onClick, onClose, ta
                     <CloseRoundedIcon />
                 </button>
             )}
-        </motion.button>
+        </div>
     );
 };

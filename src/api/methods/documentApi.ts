@@ -38,7 +38,7 @@ export const documentApi = baseApi.injectEndpoints({
                 method: "POST",
                 body: query
             }),
-            invalidatesTags: ["DocumentsTabs", "Document"],
+            invalidatesTags: ["DocumentsTabs", "Documents"],
         }),
         deleteDocument: builder.mutation<{status: string, message: string, id_document?: number, details?: string}, { id_document: number }>({
             query: (query) => ({
@@ -46,7 +46,15 @@ export const documentApi = baseApi.injectEndpoints({
                 method: "POST",
                 body: query
             }),
-            invalidatesTags: ["DocumentsTabs", "Document"],
+            invalidatesTags: ["DocumentsTabs", "Documents"],
+        }),
+        deleteDocumentFile: builder.mutation<{status: string, message: string, id_document?: number, details?: string}, { id_document: number }>({
+            query: (query) => ({
+                url: `/document/delete_document_file.php`,
+                method: "POST",
+                body: query
+            }),
+            invalidatesTags: ["Document"],
         }),
     }),
 })

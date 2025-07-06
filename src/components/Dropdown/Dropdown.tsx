@@ -79,7 +79,7 @@ export const Dropdown: FC<DropdownProps> = ({
                 <span className="custom-dropdown__button-inner">
                 <span className="custom-dropdown__button-label">{label}</span>
                 <span className="custom-dropdown__button-value">
-                  {value ? value.title : "Не выбрано"}
+                  {value?.title ?? "Не выбрано"}
                 </span>
               </span>
                 {!isDisabled && (
@@ -98,7 +98,7 @@ export const Dropdown: FC<DropdownProps> = ({
                         transition={{duration: 0.1}}
                     >
                         {
-                            searchEnabled &&
+                            searchEnabled && options.length >= 5 &&
                             <input type="text" name={"dropdownTitle"} className="custom-dropdown__search"
                                    placeholder={searchPlaceholder} value={searchValue}
                                    onChange={(e) => setSearchValue(e.target.value)}></input>

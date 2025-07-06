@@ -35,21 +35,18 @@ const styleToIdMap: Record<"new" | "old", number> = {
 const normalizeSearch = (value: string) => value.trim().replace(/\s+/g, " ");
 
 export const PageContacts: FC = () => {
-    const [isFiltersReady, setIsFiltersReady] = useState(false);
     const [selectedDepartment, setSelectedDepartment] = useState<{id: number, title: string}>({ id: 0, title: "Все" });
     const [temporarySearchValue, setTemporarySearchValue] = useState<string>("");
-    const debouncedSearchValue = useDebounce(temporarySearchValue, 150);
+    const debouncedSearchValue = useDebounce(temporarySearchValue, 80);
     const [currentPage, setCurrentPage] = useState<number>(1);
     const { user } = useTypedSelector(state => state.auth)
     const { data: departmentsTitles, isLoading: departmentsLoading } = useGetDepartmentsTitlesNotNullQuery();
+
     const { data, isLoading } = useGetUsersFilteredQuery(
         {
-            department: selectedDepartment?.title,
+            department: selectedDepartment?.title === "Все" ? "" : selectedDepartment?.title,
             search: normalizeSearch(debouncedSearchValue)
         },
-        {
-            skip: !isFiltersReady
-        }
     );
 
     const canViewHiddenUsers = useHasPermission(Permissions.Superuser);
@@ -63,13 +60,10 @@ export const PageContacts: FC = () => {
     const urlSearch = searchParams.get("search");
 
     useEffect(() => {
-        if (!departmentsLoading && departmentsTitles) {
-            if (urlDepartment && departmentsTitles.departments.includes(urlDepartment)) {
-                setSelectedDepartment({ id: 0, title: urlDepartment });
-            }
-            setIsFiltersReady(true);
+        if (departmentsTitles && urlDepartment && departmentsTitles.departments.includes(urlDepartment)) {
+            setSelectedDepartment({ id: 0, title: urlDepartment });
         }
-    }, [departmentsTitles, departmentsLoading]);
+    }, [departmentsTitles, urlDepartment]);
 
     // установка строки поиска один раз при монтировании
     useEffect(() => {
@@ -80,7 +74,6 @@ export const PageContacts: FC = () => {
 
     // синхронизация URL с фильтрами
     useEffect(() => {
-        if (!isFiltersReady) return;
         setCurrentPage(1);
 
         const normalizedSearch = normalizeSearch(temporarySearchValue);
@@ -101,7 +94,7 @@ export const PageContacts: FC = () => {
         if (newParams.toString() !== searchParams.toString()) {
             setSearchParams(newParams);
         }
-    }, [selectedDepartment, temporarySearchValue, isFiltersReady]);
+    }, [selectedDepartment, temporarySearchValue]);
 
     const paginatedUsers = useMemo(() => {
         if (!data?.users) return [];
