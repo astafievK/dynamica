@@ -15,7 +15,6 @@ import {TextEditor} from "./components/TextEditor/TextEditor.tsx";
 import {PageAdmin} from "./components/PageAdmin/PageAdmin.tsx";
 import {PageContacts} from "./components/PageContacts/PageContacts.tsx";
 import {PageNotFound} from "./components/PageNotFound/PageNotFound.tsx";
-import {Header} from "./components/Header/Header.tsx";
 import {PageDocument} from "./components/PageDocument/PageDocument.tsx";
 import {PageDocumentParallel} from "./components/PageDocumentParallel.tsx";
 import {AnimatePresence} from "framer-motion";
@@ -45,7 +44,6 @@ const Root = () => {
         <>
             <HistoryTracker/>
             <ScrollToTop />
-            <Header/>
             <div className="layout-content">
                 <LeftMenu/>
                 <div className="main-container">

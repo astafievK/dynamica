@@ -455,9 +455,6 @@ html {
 html::-webkit-scrollbar {
   width: 12px;
 }
-html body {
-  background: var(--color-gray-50);
-}
 html body::-webkit-scrollbar {
   width: 12px;
 }
