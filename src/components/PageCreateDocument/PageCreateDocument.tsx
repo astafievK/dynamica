@@ -22,7 +22,6 @@ export const PageCreateDocument: FC = () => {
     const dispatch = useAppDispatch();
     const { user } = useTypedSelector((state) => state.auth);
 
-
     useEffect(() => {
         if (!user) {
             navigate("/", { replace: true });
@@ -30,7 +29,10 @@ export const PageCreateDocument: FC = () => {
     }, [user, navigate]);
 
     const activeDraftId = useSelector((state: RootState) => state.draftReducer.activeDraftId);
-    const { data: dataTabs, isSuccess: tabsLoaded } = useGetDocumentsTabsByAuthorQuery({ id_author: user!.id_user });
+    const { data: dataTabs, isSuccess: tabsLoaded } = useGetDocumentsTabsByAuthorQuery(
+        { id_author: user?.id_user as number},
+        { skip: !user }
+    );
     const { createDocument } = useDocumentDraftActions();
 
     const [hasHandledInitialState, setHasHandledInitialState] = useState(false);
@@ -87,7 +89,9 @@ export const PageCreateDocument: FC = () => {
         }, 300);
 
         return () => clearTimeout(timeout);
-    }, [documentTitle]);
+    }, [documentTitle, activeDraftId]);
+
+    if (!user) return null;
 
     return (
         <motion.div {...pageAnimation} className="page page-create-document">
