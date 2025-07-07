@@ -41,7 +41,7 @@ export const LeftMenu: FC = () => {
     return (
         <aside className={`left-menu`}>
             <div className="logo-wrapper">
-                <img className="logo" src={"logo-horizontal-black.svg"} alt={"динамика"}></img>
+                <img className="logo" src="/logo-horizontal-black.svg" alt={"динамика"}></img>
             </div>
             <nav className="general-navigation left-menu-navigation">
                 <div className="left-menu-navigation__items">

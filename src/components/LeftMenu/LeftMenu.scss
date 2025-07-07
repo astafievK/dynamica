@@ -1,5 +1,6 @@
 .left-menu {
   width: 240px;
+  top: 0;
   display: none;
   position: sticky;
   height: 100vh;
@@ -32,7 +33,7 @@
     text-overflow: ellipsis;
 
     svg {
-      fill: var(--color-gray-600);
+      fill: var(--color-primary-700);
       flex-shrink: 0;
       height: 24px;
       width: 24px;
@@ -40,7 +41,7 @@
     }
 
     span {
-      color: var(--color-gray-600);
+      color: var(--color-primary-700);
     }
 
     &.item-contacts {
@@ -55,11 +56,11 @@
     &:hover,
     &.active-nav-item {
       span {
-        color: var(--color-primary-700);
+        color: var(--color-accent-700);
       }
 
       svg {
-        fill: var(--color-primary-700);
+        fill: var(--color-accent-700);
       }
     }
   }
@@ -71,7 +72,7 @@
     &__title {
       font-weight: 600;
       font-size: 13px;
-      margin-left: 10px;
+      margin-bottom: 5px;
       color: var(--color-gray-800);
     }
 
