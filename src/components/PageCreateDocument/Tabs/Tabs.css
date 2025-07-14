@@ -9,33 +9,17 @@
   align-items: center;
   height: 35px;
   border-radius: 32px;
-  background: var(--color-gray-75);
-}
-.tabs .tabs-item span {
-  color: var(--color-primary-700);
-}
-.tabs .tabs-item svg {
-  fill: var(--color-primary-700);
-  font-size: 18px;
-}
-.tabs .tabs-item:not(.active):hover {
-  background: var(--color-primary-50);
-}
-.tabs .tabs-item:not(.active):active {
-  background: var(--color-primary-100);
-  transition: none;
-}
-.tabs .tab {
   width: 200px;
   flex-shrink: 0;
   cursor: pointer;
   padding: 0 10px 0 12px;
   transition: all 150ms ease-in-out;
 }
-.tabs .tab.removing {
-  opacity: 0.5;
+.tabs .tabs-item svg {
+  fill: var(--color-primary-700);
+  font-size: 18px;
 }
-.tabs .tab .tab-title {
+.tabs .tabs-item .tab-title {
   user-select: none;
   overflow: hidden;
   text-wrap: nowrap;
@@ -46,7 +30,7 @@
   flex-grow: 1;
   transition: all 150ms ease-in-out;
 }
-.tabs .tab .tab-close {
+.tabs .tabs-item .tab-close {
   display: flex;
   align-items: center;
   padding: 1px;
@@ -54,32 +38,31 @@
   cursor: pointer;
   flex-shrink: 0;
 }
-.tabs .tab .tab-close svg {
+.tabs .tabs-item .tab-close svg {
   width: 0.9em;
   height: 0.9em;
   transition: fill 150ms ease-in-out;
 }
-.tabs .tab .tab-close:hover {
+.tabs .tabs-item .tab-close:hover {
   background: var(--color-gray-200);
 }
-.tabs .tab.active {
+.tabs .tabs-item.active {
   cursor: unset;
-  background: var(--color-primary-600);
-  transition: all 150ms ease-in-out;
+  background: var(--color-accent-100);
 }
-.tabs .tab.active .tab-title {
-  color: var(--color-gray-100);
+.tabs .tabs-item.active .tab-close:hover {
+  background: var(--color-gray-200);
 }
-.tabs .tab.active .tab-close svg {
-  fill: var(--color-gray-100);
-}
-.tabs .tab.active .tab-close:hover {
-  background: var(--color-primary-700);
+.tabs .tabs-item:not(.active):hover {
+  background: var(--color-gray-100);
 }
 .tabs .add-tab {
   justify-content: center;
+  align-items: center;
+  padding: 0;
   border-radius: 50%;
   aspect-ratio: 1/1;
+  width: unset;
 }
 .tabs .add-tab svg {
   font-size: 20px;

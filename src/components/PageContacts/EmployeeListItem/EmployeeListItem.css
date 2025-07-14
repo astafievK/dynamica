@@ -17,7 +17,7 @@
   cursor: pointer;
   height: 80px;
   padding: 4px;
-  gap: 5px;
+  gap: 10px;
 }
 .employees-list-item .employee-card .employee-card__preview.hidden {
   opacity: 0.5;
@@ -42,7 +42,7 @@
   align-items: flex-start;
   padding: 2px;
   border-radius: 10px;
-  transition: background 50ms;
+  transition: all 150ms ease-in-out;
 }
 .employees-list-item .employee-card .employee-card__preview .employee-card__general .employee-card__name:hover,
 .employees-list-item .employee-card .employee-card__preview .employee-card__general .employee-card__position:hover {
@@ -166,7 +166,7 @@
   .employees-list-item {
     position: relative;
     height: 130px;
-    width: calc(33.3333333333% - 10px);
+    width: calc(33.3333333333% - 5px);
   }
   .employees-list-item .employee-card {
     max-height: 130px;
@@ -179,13 +179,18 @@
   }
   .employees-list-item .employee-card .employee-card__preview .employee-card__general .employee-card__name,
   .employees-list-item .employee-card .employee-card__preview .employee-card__general .employee-card__position {
-    padding: 7px;
+    padding: 5px;
   }
   .employees-list-item .employee-card .employee-card__preview .employee-card__general .employee-card__name {
     font-size: 20px;
   }
   .employees-list-item .employee-card .employee-card__preview .employee-card__general .employee-card__position {
     font-size: 16px;
+  }
+}
+@media (min-width: 1650px) {
+  .employees-list-item {
+    width: calc(25% - 5px);
   }
 }
 

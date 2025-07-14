@@ -5,7 +5,6 @@ import { pageAnimation } from "../../constants/motionSettings.ts";
 import { useDebounce } from "../../store/hooks/useDebounce.ts";
 import { useSearchParams } from "react-router-dom";
 import {useAppDispatch, useTypedSelector} from "../../store/hooks/redux.ts";
-import ClearRoundedIcon from '@mui/icons-material/ClearRounded';
 import { Pagination } from "../Pagination/Pagination.tsx";
 import { Dropdown } from "../Dropdown/Dropdown.tsx";
 import {EmployeesList} from "./EmployeesList/EmployeesList.tsx";
@@ -14,6 +13,7 @@ import {useGetDepartmentsTitlesNotNullQuery} from "../../api/methods/departmentA
 import {Permissions} from "../../constants/permissions.ts";
 import {useHasPermission} from "../../store/hooks/useHasPermission.ts";
 import "./PageContacts.css"
+import {SearchInput} from "../SearchInput/SearchInput.tsx";
 
 const ITEMS_PER_PAGE = 100;
 
@@ -158,18 +158,13 @@ export const PageContacts: FC = () => {
                             />
                         )
                     }
-                    <div className="filters-search">
-                        <input
-                            type="text"
-                            className="filters-search__text styled"
-                            placeholder="Поиск по ФИО / Должности"
-                            value={temporarySearchValue}
-                            onChange={(e) => setTemporarySearchValue(e.target.value)}
-                        />
-                        {
-                            temporarySearchValue.length > 0 && <ClearRoundedIcon onClick={() => setTemporarySearchValue('')}/>
-                        }
-                    </div>
+                    <SearchInput
+                        value={temporarySearchValue}
+                        onChange={setTemporarySearchValue}
+                        placeholder={"Поиск сотрудников"}
+                        className={"page-filters-item"}
+                        id={"page-contacts-filter-search"}
+                    />
                 </div>
                 <div className="page-content">
                     <EmployeesList

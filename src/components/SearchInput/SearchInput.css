@@ -1,0 +1,77 @@
+.search-input {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  min-height: 40px;
+  padding-left: 16px;
+  background: var(--color-gray-50);
+  border-radius: 16px;
+  transition: all 150ms ease-in-out;
+}
+.search-input__main {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  height: 100%;
+  flex-grow: 1;
+}
+.search-input__main .search-input__icon {
+  fill: var(--color-gray-500);
+  width: 0.9em;
+  height: 0.9em;
+  transition: all 150ms ease-in-out;
+}
+.search-input__main .search-input__field {
+  background: none;
+  height: 100%;
+  font-size: 14px;
+  font-weight: 500;
+  flex-grow: 1;
+  outline: 0;
+}
+.search-input__main .search-input__field::-webkit-search-decoration, .search-input__main .search-input__field::-webkit-search-cancel-button, .search-input__main .search-input__field::-webkit-search-results-button, .search-input__main .search-input__field::-webkit-search-results-decoration {
+  display: none;
+}
+.search-input__clear {
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: 100%;
+  aspect-ratio: 1/1;
+  overflow: hidden;
+}
+.search-input__clear--button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  transition: transform 150ms ease-in-out;
+}
+.search-input__clear--button .search-input__icon--end {
+  position: absolute;
+  width: 1.2em;
+  height: 1.2em;
+}
+.search-input__clear:not(.visible) .search-input__clear--button {
+  transform: translateX(100%);
+}
+.search-input:hover {
+  background-color: var(--color-gray-100);
+}
+
+@media (min-width: 768px) {
+  .search-input {
+    padding-left: 17px;
+  }
+  .search-input__main .search-input__field {
+    font-size: 16px;
+  }
+}
+@media (min-width: 1440px) {
+  .search-input {
+    padding-left: 20px;
+  }
+}
+
+/*# sourceMappingURL=SearchInput.css.map */

@@ -14,7 +14,7 @@ interface ITabProps {
 export const Tab: React.FC<ITabProps> = ({ title, isActive, onClick, onClose, tabsCount, isRemoving }) => {
     return (
         <div
-            className={classNames("tab tabs-item", {
+            className={classNames("tabs-item", {
                 active: isActive,
                 removing: isRemoving,
             })}

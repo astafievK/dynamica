@@ -61,6 +61,8 @@ export const Dropdown: FC<DropdownProps> = ({
         }
     }, [isOpen]);
 
+    const selectedOption = options.find(o => o.title === value?.title);
+
     return (
         <div
             className={classNames("custom-dropdown", externalClasses, {
@@ -112,10 +114,10 @@ export const Dropdown: FC<DropdownProps> = ({
                                             key={option.id}
                                             className={classNames(
                                                 "custom-dropdown__item",
-                                                {selected: value?.id === option.id},
+                                                { selected: selectedOption?.id === option.id }
                                             )}
                                             role="option"
-                                            aria-selected={value?.id === option.id}
+                                            aria-selected={selectedOption?.id === option.id}
                                         >
                                             <button
                                                 className="custom-dropdown__item-button"

@@ -7,7 +7,7 @@
   border-radius: 16px;
   cursor: pointer;
   text-align: left;
-  transition: background 150ms;
+  transition: all 150ms ease-in-out;
 
   .details-title {
     display: flex;
@@ -16,11 +16,14 @@
     user-select: none;
     gap: 2px;
 
-    span,
+    span {
+      font-size: 10px;
+      color: rgba(0, 0, 0, 0.5);
+      font-weight: 500;
+    }
+
     svg {
       font-size: 12px;
-      font-weight: 600;
-      color: rgba(0, 0, 0, 0.5);
       fill: rgba(0, 0, 0, 0.5);
     }
   }
@@ -29,6 +32,9 @@
     font-size: 12px;
     margin-left: 14px;
     text-decoration: none;
+    text-wrap: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .copy-label {
@@ -50,7 +56,7 @@
   }
 
   &:hover {
-    background: var(--color-accent-50);
+    background: var(--color-gray-50);
   }
 
   &:active {
@@ -61,22 +67,23 @@
 @media (min-width: 768px) {
   .details-item {
     padding: 3px 12px;
+    border-radius: 22px;
 
     .details-title {
       gap: 4px;
 
-      span,
+      span {
+        font-size: 12px;
+      }
+
       svg {
         font-size: 14px;
-        font-weight: 600;
-        color: rgba(0, 0, 0, 0.5);
-        fill: rgba(0, 0, 0, 0.5);
       }
     }
 
     .detail {
       font-size: 14px;
-      margin-left: 18px;
+      margin-left: 20px;
     }
 
     .copy-label {
@@ -95,7 +102,6 @@
       }
     }
   }
-
 }
 
 @media (min-width: 1024px) {
@@ -107,22 +113,23 @@
     padding: 5px 10px;
     flex: 1 1 calc(50% - 1.5px);
     max-width: calc(50% - 1.5px);
+    border-radius: 19px;
 
     .details-title {
-      gap: 4px;
+      gap: 6px;
 
-      span,
+      span {
+        font-size: 14px;
+      }
+
       svg {
         font-size: 16px;
-        font-weight: 600;
-        color: rgba(0, 0, 0, 0.5);
-        fill: rgba(0, 0, 0, 0.5);
       }
     }
 
     .detail {
       font-size: 16px;
-      margin-left: 20px;
+      margin-left: 22px;
     }
 
     .copy-label {

@@ -4,7 +4,7 @@ import {IMoodleTestStatus} from "../../../interfaces/moodle/IMoodleTestStatus.ts
 
 export const courseMoodleApi = baseApi.injectEndpoints({
     endpoints: builder => ({
-        getUserTests: builder.query<{status: string, data: IMoodleUserTestsInfoResponse[]}, { idUser: number | undefined, limit?: number, status?: string }>({
+        getUserTests: builder.query<{status: string, tests: IMoodleUserTestsInfoResponse[]}, { idUser: number | undefined, limit?: number, status?: string }>({
             query: ({ idUser, limit, status }) => ({
                 url: `/moodle/get_user_tests_info.php`,
                 method: "GET",
@@ -15,7 +15,7 @@ export const courseMoodleApi = baseApi.injectEndpoints({
                 },
             }),
         }),
-        getStatuses: builder.query<{status: string, data: IMoodleTestStatus[]},  void>({
+        getStatuses: builder.query<{status: string, statuses: IMoodleTestStatus[]},  void>({
             query: () => ({
                 url: `/moodle/get_tests_statuses.php`,
                 method: "GET",

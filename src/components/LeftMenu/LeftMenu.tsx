@@ -1,17 +1,32 @@
-import { FC } from "react";
+import React, {FC} from "react";
 import "./LeftMenu.css";
-import {NavLink, useLocation} from "react-router-dom";
 import {useHasPermission} from "../../store/hooks/useHasPermission.ts";
 import {Permissions} from "../../constants/permissions.ts";
 import {navItems} from "../../constants/navItems.tsx";
 import {ROUTES} from "../../constants/routes.ts";
+import { LeftMenuNavigationItem } from "./LeftMenuNavigationItem/LeftMenuNavigationItem.tsx";
+import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
+import {useAppDispatch, useTypedSelector} from "../../store/hooks/redux.ts";
+import {useDocumentDraftActions} from "../../store/hooks/useDocumentDraftActions.ts";
+import AddRoundedIcon from '@mui/icons-material/AddRounded';
+import { useNavigate } from "react-router-dom";
+import LoginRoundedIcon from '@mui/icons-material/LoginRounded';
+import {logout} from "../../api/slices/authSlice.ts";
+import {setIsOpen as setLoginModalOpen} from "../../api/slices/modalLoginSlice.ts";
 
 export const LeftMenu: FC = () => {
-    const location = useLocation();
-    const currentPath = location.pathname;
+    const dispatch = useAppDispatch();
+    const {user} = useTypedSelector((state) => state.auth);
+    const {createDocument, isCreating} = useDocumentDraftActions();
+    const navigate = useNavigate();
 
-    const isNavItemActive = (targetPath: string) =>
-        currentPath === targetPath || currentPath.startsWith(targetPath + "/");
+    const handleCreateDocumentClick = async (e: React.MouseEvent) => {
+        e.stopPropagation();
+        if (isCreating) return;
+
+        await createDocument();
+        navigate("/documents/create");
+    };
 
     const isAdminMenuEnabled = useHasPermission(
         [
@@ -45,21 +60,14 @@ export const LeftMenu: FC = () => {
             </div>
             <nav className="general-navigation left-menu-navigation">
                 <div className="left-menu-navigation__items">
-                    {navItems.map(({ title, path, icon }) => {
-                        const isActive =
-                            path === "/"
-                                ? currentPath === "/" || currentPath.startsWith("/feed")
-                                : isNavItemActive(path);
-
+                    {navItems.map(({title, path, icon}) => {
                         return (
-                            <NavLink
+                            <LeftMenuNavigationItem
                                 key={path}
-                                to={path}
-                                className={`left-menu-item ${isActive ? "active-nav-item" : ""}`}
-                            >
-                                {icon}
-                                <span className="menu-text">{title}</span>
-                            </NavLink>
+                                label={title}
+                                linkTo={path}
+                                icon={icon}
+                            />
                         );
                     })}
                 </div>
@@ -70,20 +78,16 @@ export const LeftMenu: FC = () => {
                     <span className="left-menu-navigation__title">Администрирование</span>
                     <div className="left-menu-navigation__items">
                         {canViewContacts && (
-                            <NavLink
-                                to={ROUTES.ADMIN_CONTACTS}
-                                className={`left-menu-item ${isNavItemActive(ROUTES.ADMIN_CONTACTS) ? "active-nav-item" : ""}`}
-                            >
-                                <span className="menu-text">Отделы</span>
-                            </NavLink>
+                            <LeftMenuNavigationItem
+                                label="Отделы"
+                                linkTo={ROUTES.ADMIN_CONTACTS}
+                            />
                         )}
                         {canViewFeed && (
-                            <NavLink
-                                to={ROUTES.ADMIN_FEED}
-                                className={`left-menu-item ${isNavItemActive(ROUTES.ADMIN_FEED) ? "active-nav-item" : ""}`}
-                            >
-                                <span className="menu-text">Новости</span>
-                            </NavLink>
+                            <LeftMenuNavigationItem
+                                label="Новости"
+                                linkTo={ROUTES.ADMIN_FEED}
+                            />
                         )}
                     </div>
                 </div>
@@ -93,27 +97,51 @@ export const LeftMenu: FC = () => {
                 <div className="documents-navigation left-menu-navigation">
                     <span className="left-menu-navigation__title">Документооборот</span>
                     <div className="left-menu-navigation__items">
-                        <NavLink
-                            to={ROUTES.DOCUMENTS}
-                            className={`left-menu-item ${isNavItemActive(ROUTES.DOCUMENTS) ? "active-nav-item" : ""}`}
-                        >
-                            <span className="menu-text">Все документы</span>
-                        </NavLink>
-                        <NavLink
-                            to={ROUTES.DOCUMENT_PARALLEL}
-                            className={`left-menu-item ${isNavItemActive(ROUTES.DOCUMENT_PARALLEL) ? "active-nav-item" : ""}`}
-                        >
-                            <span className="menu-text">Тест | Пар. документ</span>
-                        </NavLink>
-                        <NavLink
-                            to={ROUTES.DOCUMENT}
-                            className={`left-menu-item ${isNavItemActive(ROUTES.DOCUMENT) ? "active-nav-item" : ""}`}
-                        >
-                            <span className="menu-text">Тест | Посл. документ</span>
-                        </NavLink>
+                        <LeftMenuNavigationItem
+                            label="Все документы"
+                            linkTo={ROUTES.DOCUMENTS}
+                            action={{
+                                icon: <AddRoundedIcon/>,
+                                title: "Создать черновик документа",
+                                onClick: (e) => handleCreateDocumentClick(e)
+                            }}
+                        />
+                        <LeftMenuNavigationItem
+                            label="Тест | Пар. документ"
+                            linkTo={ROUTES.DOCUMENT_PARALLEL}
+                        />
+                        <LeftMenuNavigationItem
+                            label="Тест | Посл. документ"
+                            linkTo={ROUTES.DOCUMENT}
+                        />
                     </div>
                 </div>
             )}
+
+            <div className="profile-container left-menu-navigation">
+                {
+                    user && (
+                        <>
+                            <LeftMenuNavigationItem
+                                label={"Профиль"}
+                                linkTo={"/profile"}
+                            />
+                            <button className="logout-btn" onClick={() => {dispatch(logout());}}>
+                                <LogoutRoundedIcon/>
+                            </button>
+                        </>
+
+                    )
+                }
+                {
+                    !user && (
+                        <button className="left-menu-navigation__item" onClick={() => dispatch(setLoginModalOpen(true))}>
+                            <span className="icon"><LoginRoundedIcon/></span>
+                            <span className="label">Вход</span>
+                        </button>
+                    )
+                }
+            </div>
         </aside>
     );
-};
+}

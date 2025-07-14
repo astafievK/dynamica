@@ -5,18 +5,17 @@
   text-decoration: none;
   text-align: center;
   font-weight: 500;
-  margin: 0 auto;
+  margin: 15px auto 0 auto;
   border-radius: 32px;
   font-size: 14px;
-  background: #FFFFFF;
   transition: all 150ms ease-in-out;
 
   &:hover {
-    background: var(--color-primary-50);
+    background: var(--color-gray-50);
   }
 
   &:active {
-    background: var(--color-primary-100);
+    background: var(--color-accent-200);
     transition: none;
   }
 }

@@ -8,10 +8,10 @@ import CakeIcon from '@mui/icons-material/Cake';
 import ContentCopyRoundedIcon from '@mui/icons-material/ContentCopyRounded';
 import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
 import ReportProblemRoundedIcon from '@mui/icons-material/ReportProblemRounded';
-import { IUser } from "../../../../interfaces/IUser.ts";
+import { IUser } from "../../../../../interfaces/IUser.ts";
 import { AnimatePresence, motion } from "framer-motion";
-import { useCopyToClipboard } from "../../../../store/hooks/useCopyToClipboard.ts";
-import {useNotification} from "../../../Contexts/NotificationContext/NotificationContext.tsx";
+import { useCopyToClipboard } from "../../../../../store/hooks/useCopyToClipboard.ts";
+import {useNotification} from "../../../../Contexts/NotificationContext/NotificationContext.tsx";
 import "./DetailsItem.css";
 
 interface DetailsItemProps {
@@ -38,12 +38,13 @@ export const DetailsItem: FC<DetailsItemProps> = ({ title, value }) => {
 
     const handleClick = async () => {
         await copyToClipboard(value);
-        notify({title: title, message: `Скопировано` });
+        notify({title: title, message: 'Скопировано' });
     };
 
     return (
         <div
             className="details-item"
+            title={value}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
             onClick={handleClick}

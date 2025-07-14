@@ -16,7 +16,7 @@
   background-color: var(--color-gray-50);
   text-align: left;
   border-radius: 16px;
-  padding: 6px 15px 6px 13px;
+  padding: var(--dropdown-button-input-padding-default);
   font-size: 14px;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -26,7 +26,7 @@
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
-  transition: all 0.1s;
+  transition: all 150ms ease-in-out;
 }
 .custom-dropdown__button-inner {
   display: flex;
@@ -39,7 +39,7 @@
 }
 .custom-dropdown__button-label {
   font-size: 11px;
-  color: var(--color-gray-500);
+  color: var(--color-gray-800);
   line-height: 1.1;
 }
 .custom-dropdown__button-value {
@@ -58,7 +58,7 @@
   transition: transform 150ms ease;
 }
 .custom-dropdown__button:hover, .custom-dropdown__button:focus, .custom-dropdown__button.active {
-  border-color: var(--color-gray-500);
+  background-color: var(--color-gray-100);
 }
 .custom-dropdown__button.active .arrow {
   transform: rotate(180deg);
@@ -74,7 +74,7 @@
   background-color: var(--color-gray-50);
   backdrop-filter: blur(10px);
   border: 1px solid var(--color-gray-200);
-  max-height: 50px !important;
+  max-height: 200px;
   width: 210px;
   overflow-y: auto;
   border-radius: 14px;
@@ -149,7 +149,7 @@
 
 @media (min-width: 768px) {
   .custom-dropdown__button {
-    padding: 9px 15px 9px 20px;
+    padding: var(--dropdown-button-input-padding-768);
     font-size: 16px;
   }
   .custom-dropdown__menu {
@@ -165,7 +165,7 @@
 }
 @media (min-width: 1024px) {
   .custom-dropdown__button {
-    padding: 10px 15px 10px 22px;
+    padding: var(--dropdown-button-input-padding-1024);
   }
   .custom-dropdown__button-label {
     font-size: 12px;
@@ -188,10 +188,10 @@
 }
 @media (min-width: 1440px) {
   .custom-dropdown__button {
-    padding: 10px 15px 10px 20px;
+    padding: var(--dropdown-button-input-padding-1440);
   }
   .custom-dropdown__button-label {
-    font-size: 13px;
+    font-size: 14px;
   }
   .custom-dropdown__button-value {
     font-size: 16px;

@@ -1,23 +1,19 @@
 .test-card {
-  position: relative;
   display: flex;
   flex-direction: column;
-  border-radius: 16px;
+  border-radius: 24px;
   text-decoration: none;
   overflow: hidden;
-  transition: all 0.15s;
+  border: 1px solid var(--color-gray-50);
+  transition: all 150ms ease-in-out;
 }
 .test-card .test-card__general {
-  position: relative;
   display: flex;
   flex-grow: 1;
   flex-direction: column;
   gap: 10px;
   padding: 10px;
   border-radius: 16px;
-  box-shadow: var(--block-shadow);
-  background: #FFFFFF;
-  z-index: 2;
 }
 .test-card .test-card__general .test-card__labels {
   display: flex;
@@ -31,7 +27,7 @@
   border-radius: 7px;
   font-weight: 500;
   user-select: none;
-  background: var(--color-gray-50);
+  border: 1px solid var(--color-gray-50);
   color: var(--color-gray-700);
 }
 .test-card .test-card__general .test-card__title {
@@ -56,10 +52,8 @@
 .test-card .test-card__info {
   display: flex;
   justify-content: space-between;
-  padding: 23px 15px 8px 15px;
-  background: var(--color-gray-75);
+  padding: 8px 15px 8px 15px;
   border-radius: 0 0 16px 16px;
-  margin-top: -15px;
 }
 .test-card .test-card__info .test-card__size {
   font-size: 12px;
@@ -82,7 +76,6 @@
 }
 .test-card:hover {
   transform: translateY(-3px);
-  box-shadow: var(--item-shadow);
 }
 
 @media (min-width: 768px) {
@@ -110,7 +103,7 @@
     font-size: 14px;
   }
   .test-card .test-card__info {
-    padding: 25px 15px 10px 15px;
+    padding: 10px 15px 10px 15px;
   }
   .test-card .test-card__info .test-card__size {
     font-size: 14px;
@@ -123,4 +116,4 @@
   }
 }
 
-/*# sourceMappingURL=DocumentCard.css.map */
+/*# sourceMappingURL=TestCard.css.map */

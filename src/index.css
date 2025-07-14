@@ -25,6 +25,7 @@
   --color-accent-800: #326f33;
   --color-accent-900: #215021;
   /* GRAY / NEUTRAL (серый #A7A9AB и светлый #F1F2F2) */
+  --color-gray-25: #f4f5f5;
   --color-gray-50: #f1f2f2;
   --color-gray-75: #eaeceb;
   --color-gray-100: #e2e3e4;
@@ -67,6 +68,10 @@
   --block-shadow: 0 2px 10px 3px rgba(0,0,0,0.05);
   --block-background: rgba(255, 255, 255, 1);
   --item-shadow: 0px 7px 12px 0px rgba(0, 0, 0, 0.2);
+  --dropdown-button-input-padding-default: 4px 16px;
+  --dropdown-button-input-padding-768: 6px 20px;
+  --dropdown-button-input-padding-1024: 7px 20px;
+  --dropdown-button-input-padding-1440: 9px 20px;
 }
 
 @font-face {
@@ -203,7 +208,7 @@ button:disabled {
 input[type=text],
 input[type=password],
 textarea {
-  transition: all 0.1s;
+  transition: all 150ms ease-in-out;
 }
 input[type=text]:focus, input[type=text]:focus-visible,
 input[type=password]:focus,
@@ -218,7 +223,6 @@ textarea.styled {
   padding: 10px 15px;
   border-radius: 16px;
   background: var(--color-gray-50);
-  transition: all 0.1s;
   font-size: 14px;
   outline: none;
 }
@@ -230,7 +234,7 @@ textarea.styled:hover,
 textarea.styled:focus,
 textarea.styled:focus-visible {
   outline: none;
-  border-color: var(--color-gray-500);
+  background: var(--color-gray-100);
 }
 input[type=text].styled:disabled,
 input[type=password].styled:disabled,
@@ -1053,13 +1057,14 @@ html body #dynamica .layout-content .main-container main .page {
   flex-direction: column;
   flex-grow: 1;
   width: 100%;
-  gap: 5px;
+  gap: 3px;
   max-width: 1920px;
   margin: 0 auto;
 }
 html body #dynamica .layout-content .main-container main .page .page-header {
   display: none;
   flex-direction: column;
+  padding: 5px;
 }
 html body #dynamica .layout-content .main-container main .page .page-header .page-title {
   font-family: "GrtskTera", sans-serif;
@@ -1071,262 +1076,20 @@ html body #dynamica .layout-content .main-container main .page .page-header .pag
 }
 html body #dynamica .layout-content .main-container main .page .page-filters {
   display: flex;
-  padding: 5px;
+  padding: 3px;
   background: rgba(255, 255, 255, 0.76);
   backdrop-filter: blur(16px);
-  gap: 2px;
+  gap: 3px;
+  border-radius: 0 0 16px 16px;
 }
-html body #dynamica .layout-content .main-container main .page .page-filters .filters-search {
-  display: flex;
-  position: relative;
-  flex-grow: 1;
-  gap: 5px;
-}
-html body #dynamica .layout-content .main-container main .page .page-filters .filters-search .filters-search__text {
-  width: 100%;
-  flex: 1;
-}
-html body #dynamica .layout-content .main-container main .page .page-filters .filters-search svg {
-  position: absolute;
-  top: 50%;
-  right: 0;
-  transform: translate(-25%, -50%);
-  cursor: pointer;
-  font-size: 40px;
-  transition: all 150ms;
-}
-html body #dynamica .layout-content .main-container main .page .page-filters .filters-search svg:hover {
-  fill: var(--primary-color);
+html body #dynamica .layout-content .main-container main .page .page-content {
+  padding: 5px;
 }
 html body #dynamica .layout-content .main-container main .page .page-content .page-content-item {
-  padding: 5px;
   width: 100%;
   height: auto;
   background: var(--block-background);
   border-radius: 32px;
-}
-html body #dynamica .layout-content .main-container main .page.page-admin .page-admin__filters {
-  display: flex;
-  flex-direction: row;
-  gap: 5px;
-  width: fit-content;
-  max-width: 90%;
-  margin: 20px auto 0 auto;
-  border-radius: 32px;
-  flex-wrap: wrap;
-  padding: 7px;
-  filter: drop-shadow(0px 2px 10px rgba(106, 82, 117, 0.1));
-  background: #fff;
-}
-html body #dynamica .layout-content .main-container main .page.page-admin .page-admin__filters .admin-tab {
-  text-decoration: none;
-  font-weight: 500;
-  flex-grow: 1;
-  text-align: center;
-  user-select: none;
-  font-size: 14px;
-  padding: 12px 33px;
-  background: var(--background-color);
-  border-radius: 32px;
-  white-space: nowrap;
-  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
-}
-html body #dynamica .layout-content .main-container main .page.page-admin .page-admin__filters .admin-tab.active {
-  background-color: var(--primary-color);
-  color: #fff;
-}
-html body #dynamica .layout-content .main-container main .page.page-admin .page-admin__filters .admin-tab:not(.active):hover {
-  background-color: rgba(0, 0, 0, 0.1);
-  transition-duration: 200ms;
-}
-html body #dynamica .layout-content .main-container main .page.page-admin .page-admin__filters .admin-tab:not(.active):active {
-  background-color: rgba(0, 0, 0, 0.15);
-  transition-duration: 70ms;
-}
-html body #dynamica .layout-content .main-container main .page.page-admin .page-admin__content {
-  width: 100%;
-}
-html body #dynamica .layout-content .main-container main .page.page-admin .page-admin__content .content-tab .content-tab__title {
-  font-weight: 700;
-  font-size: 16px;
-  font-style: italic;
-}
-html body #dynamica .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--feed .content-tab__form {
-  display: flex;
-  flex-direction: column;
-  margin-top: 10px;
-  gap: 5px;
-}
-html body #dynamica .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--feed .content-tab__form .quill {
-  position: relative;
-  border-radius: 32px;
-  z-index: 2;
-  overflow: hidden;
-  border: 1px solid var(--background-color);
-}
-html body #dynamica .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--feed .content-tab__form .quill .ql-toolbar {
-  border: none;
-}
-html body #dynamica .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--feed .content-tab__form .quill .ql-container {
-  border: none;
-  overflow: hidden;
-}
-html body #dynamica .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--feed .content-tab__form .quill .ql-container .ql-editor {
-  white-space: pre-wrap;
-  min-height: 200px;
-}
-html body #dynamica .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--feed .content-tab__form .content-tab__input {
-  font-size: 14px;
-}
-html body #dynamica .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--feed .content-tab__form .content-tab__input--content {
-  min-height: 180px;
-}
-html body #dynamica .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--feed .content-tab__form .content-tab__input--description {
-  min-height: 100px;
-}
-html body #dynamica .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--feed .content-tab__form .content-tab__actions {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  gap: 7px;
-}
-html body #dynamica .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--feed .content-tab__form .content-tab__actions .action {
-  flex-grow: 1;
-  padding: 15px;
-  border-radius: 32px;
-}
-html body #dynamica .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container {
-  width: 100%;
-  display: grid;
-  padding: 5px;
-  border-radius: 14px;
-  box-shadow: var(--block-shadow);
-  background: #FFFFFF;
-  grid-template-columns: repeat(1, calc(100% - 0px));
-  overflow-y: auto;
-}
-html body #dynamica .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association {
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  padding: 3px;
-  height: 55px;
-  gap: 7px;
-  transition: all 150ms;
-}
-html body #dynamica .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association .variants {
-  display: flex;
-  gap: 5px;
-  flex-grow: 1;
-}
-html body #dynamica .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association .variants .variant {
-  flex: 2;
-  display: flex;
-  align-items: center;
-  padding: 0 3px;
-}
-html body #dynamica .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association .variants .variant .variant-title {
-  font-size: 14px;
-}
-html body #dynamica .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association .variants .variant:first-child {
-  flex: 1;
-}
-html body #dynamica .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association .arrow-container {
-  display: flex;
-  justify-content: center;
-}
-html body #dynamica .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association .arrow-container .arrow {
-  user-select: none;
-  width: 20px;
-}
-html body #dynamica .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association .result {
-  display: flex;
-  justify-content: center;
-  width: 30%;
-}
-html body #dynamica .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association .result .result-field {
-  height: 48px;
-  width: 100%;
-}
-html body #dynamica .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association .actions-container {
-  display: flex;
-  height: 100%;
-  gap: 5px;
-}
-html body #dynamica .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association .actions-container .action {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  aspect-ratio: 1/1;
-  border-radius: 10px;
-  background: var(--item-static-background);
-}
-html body #dynamica .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association .actions-container .action svg {
-  height: 70%;
-  width: 70%;
-}
-html body #dynamica .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association .actions-container .action:hover {
-  background: var(--item-hover-background);
-}
-html body #dynamica .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association .actions-container .action:active {
-  background: var(--item-active-background);
-}
-html body #dynamica .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association:hover, html body #dynamica .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association:focus-within {
-  background: rgba(90, 176, 88, 0.15);
-}
-html body #dynamica .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association-skeleton {
-  border-radius: 20px;
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  gap: 7px;
-}
-html body #dynamica .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association-skeleton .variants {
-  display: flex;
-  flex-grow: 1;
-  gap: 10px;
-}
-html body #dynamica .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association-skeleton .variants .skeleton-variant {
-  flex: 2;
-  min-width: 100px;
-  height: 48px;
-  border-radius: 32px;
-  overflow: hidden;
-}
-html body #dynamica .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association-skeleton .variants .skeleton-variant span {
-  height: 100%;
-}
-html body #dynamica .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association-skeleton .variants .skeleton-variant:first-child {
-  flex: 1;
-}
-html body #dynamica .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association-skeleton .arrow-container {
-  display: flex;
-  justify-content: center;
-}
-html body #dynamica .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association-skeleton .arrow-container .arrow {
-  user-select: none;
-  width: 20px;
-}
-html body #dynamica .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association-skeleton .skeleton-result {
-  height: 48px;
-  width: 220px;
-  flex-shrink: 0;
-  overflow: hidden;
-  border-radius: 32px;
-}
-html body #dynamica .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association-skeleton .skeleton-result span {
-  height: 100%;
-}
-html body #dynamica .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association-skeleton .skeleton-action {
-  border-radius: 10px;
-  height: 48px;
-  flex-shrink: 0;
-  aspect-ratio: 1/1;
-  overflow: hidden;
-}
-html body #dynamica .layout-content .main-container main .page.page-admin .page-admin__content .content-tab--contacts .associations-container .association-skeleton .skeleton-action span {
-  height: 100%;
 }
 html body #dynamica .layout-content .main-container main .page.page-document .content {
   display: flex;
@@ -1677,8 +1440,8 @@ html body #dynamica .layout-content .main-container main .page.page-not-found .c
     line-height: unset;
     font-size: 24px;
   }
-  html body #dynamica .layout-content .main-container main .page .page-filters .filters-search {
-    gap: 10px;
+  html body #dynamica .layout-content .main-container main .page .page-filters {
+    gap: 7px;
   }
   html body #dynamica .layout-content .main-container main .page.page-admin .page-admin__filters {
     display: flex;
@@ -1806,6 +1569,9 @@ html body #dynamica .layout-content .main-container main .page.page-not-found .c
   html body #dynamica .layout-content .main-container main .page .page-header .page-title {
     font-size: 26px;
   }
+  html body #dynamica .layout-content .main-container main .page .page-filters {
+    gap: 10px;
+  }
   html body #dynamica .layout-content .main-container main .page.page-document .content .progress-bar-container .progress-item .progress-point-wrapper .progress-point {
     width: 30px;
     height: 30px;
@@ -1868,7 +1634,7 @@ html body #dynamica .layout-content .main-container main .page.page-not-found .c
   html body #dynamica .layout-content .main-container main .page .page-header .page-title {
     font-size: 34px;
   }
-  html body #dynamica .layout-content .main-container main .page .page-content .page-content-item {
+  html body #dynamica .layout-content .main-container main .page .page-content {
     padding: 10px;
   }
   html body #dynamica .layout-content .main-container main .page.page-document .content .progress-bar-container .progress-item:first-child .progress-point-wrapper .progress-label {

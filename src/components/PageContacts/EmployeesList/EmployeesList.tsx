@@ -31,7 +31,7 @@ export const EmployeesList: FC<EmployeesListProps> = React.memo(({
                 animate={pageAnimation.animate}
                 exit={pageAnimation.exit}
                 transition={pageAnimation.transition}
-                className="employees-list page-content-item"
+                className="employees-list"
             >
                 {[...Array(4)].map((_, i) => (
                     <EmployeeCardSkeleton key={i} />
@@ -46,7 +46,7 @@ export const EmployeesList: FC<EmployeesListProps> = React.memo(({
 
     return (
         <div
-            className={`employees-list page-content-item ${isOldStyleEnabled ? "old-style" : ""}`}
+            className={`employees-list ${isOldStyleEnabled ? "old-style" : ""}`}
         >
             {isOldStyleEnabled && <EmployeesHeader />}
             {visibleUsers.map((employee) =>

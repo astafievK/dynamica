@@ -16,7 +16,7 @@
     background-color: var(--color-gray-50);
     text-align: left;
     border-radius: 16px;
-    padding: 6px 15px 6px 13px;
+    padding: var(--dropdown-button-input-padding-default);
     font-size: 14px;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -26,7 +26,7 @@
     align-items: center;
     justify-content: space-between;
     cursor: pointer;
-    transition: all 0.1s;
+    transition: all 150ms ease-in-out;
 
     &-inner {
       display: flex;
@@ -40,7 +40,7 @@
 
     &-label {
       font-size: 11px;
-      color: var(--color-gray-500);
+      color: var(--color-gray-800);
       line-height: 1.1;
     }
 
@@ -64,7 +64,7 @@
     &:hover,
     &:focus,
     &.active {
-      border-color: var(--color-gray-500);
+      background-color: var(--color-gray-100);
     }
 
     &.active {
@@ -85,7 +85,7 @@
     background-color: var(--color-gray-50);
     backdrop-filter: blur(10px);
     border: 1px solid var(--color-gray-200);
-    max-height: 50px !important;
+    max-height: 200px;
     width: 210px;
     overflow-y: auto;
     border-radius: 14px;
@@ -175,7 +175,7 @@
 @media (min-width: 768px) {
   .custom-dropdown {
     &__button {
-      padding: 9px 15px 9px 20px;
+      padding: var(--dropdown-button-input-padding-768);
       font-size: 16px;
     }
 
@@ -201,7 +201,7 @@
 @media (min-width: 1024px) {
   .custom-dropdown {
     &__button {
-      padding: 10px 15px 10px 22px;
+      padding: var(--dropdown-button-input-padding-1024);
 
       &-label {
         font-size: 12px;
@@ -236,10 +236,10 @@
 @media (min-width: 1440px) {
   .custom-dropdown {
     &__button {
-      padding: 10px 15px 10px 20px;
+      padding: var(--dropdown-button-input-padding-1440);
 
       &-label {
-        font-size: 13px;
+        font-size: 14px;
       }
 
       &-value {

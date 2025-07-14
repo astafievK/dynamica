@@ -13,10 +13,10 @@ export const WidgetTests: FC = React.memo(() => {
     const { data: testStatusesRaw } = useGetStatusesQuery();
 
     const testStatuses = useMemo(() => {
-        if (!testStatusesRaw) return [{ id: 0, title: "Все" }];
+        if (!testStatusesRaw || !testStatusesRaw.statuses) return [{ id: 0, title: "Все" }];
         return [
             { id: 0, title: "Все" },
-            ...testStatusesRaw.data.map((status, index) => ({
+            ...testStatusesRaw.statuses.map((status, index) => ({
                 id: index + 1,
                 title: status.title,
             })),
@@ -34,13 +34,15 @@ export const WidgetTests: FC = React.memo(() => {
         { skip: !moodleUserId }
     );
 
-    const tests = useMemo(() => coursesData?.data ?? [], [coursesData]);
+    const tests = useMemo(() => coursesData?.tests ?? [], [coursesData]);
 
     const filteredTests = useMemo(() => {
         return selectedStatus.title === "Все"
             ? tests
             : tests.filter(test => test.status === selectedStatus.title);
     }, [tests, selectedStatus]);
+
+    if (!tests && !testStatuses) return;
 
     return (
         <WidgetTemplate

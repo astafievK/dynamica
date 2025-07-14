@@ -22,6 +22,8 @@ export const Tabs: React.FC<ITabsProps> = ({ tabs }) => {
     const { createDocument, deleteDocumentAndSelectNext, isCreating } = useDocumentDraftActions();
 
     const handleAddClick = async () => {
+        if (isCreating) return;
+
         await createDocument();
     };
 

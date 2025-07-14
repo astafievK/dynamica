@@ -1,22 +1,19 @@
 .document-card {
-  position: relative;
   display: flex;
   flex-direction: column;
   border-radius: 16px;
   text-decoration: none;
   overflow: hidden;
+  border: 1px solid var(--color-gray-50);
+  transition: all 150ms ease-in-out;
 }
 .document-card .document-card__general {
-  position: relative;
   display: flex;
   flex-grow: 1;
   flex-direction: column;
   gap: 10px;
   padding: 10px;
   border-radius: 16px;
-  box-shadow: var(--block-shadow);
-  background: #FFFFFF;
-  z-index: 2;
 }
 .document-card .document-card__general .document-card__labels {
   display: flex;
@@ -30,7 +27,6 @@
   border-radius: 7px;
   font-weight: 500;
   user-select: none;
-  background: var(--color-gray-50);
   color: var(--color-gray-700);
 }
 .document-card .document-card__general .document-card__title {
@@ -56,7 +52,6 @@
   display: flex;
   justify-content: space-between;
   padding: 23px 15px 8px 15px;
-  background: var(--color-gray-75);
   border-radius: 0 0 16px 16px;
   margin-top: -15px;
 }
@@ -81,7 +76,6 @@
 }
 .document-card:hover {
   transform: translateY(-3px);
-  box-shadow: var(--item-shadow);
 }
 
 @media (min-width: 768px) {

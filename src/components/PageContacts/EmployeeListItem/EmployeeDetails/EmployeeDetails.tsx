@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { IUser } from "../../../../interfaces/IUser.ts";
 import {useTypedSelector} from "../../../../store/hooks/redux.ts";
-import { DetailsItem } from "../DetailsItem/DetailsItem.tsx";
+import { DetailsItem } from "./DetailsItem/DetailsItem.tsx";
 import { formatBirthday } from "../../../../utils/date.ts";
 import { formatPhone } from "../../../../utils/formatPhone.ts";
 import {useHasPermission} from "../../../../store/hooks/useHasPermission.ts";

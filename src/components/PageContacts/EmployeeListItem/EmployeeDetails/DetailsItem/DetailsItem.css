@@ -7,7 +7,7 @@
   border-radius: 16px;
   cursor: pointer;
   text-align: left;
-  transition: background 150ms;
+  transition: all 150ms ease-in-out;
 }
 .details-item .details-title {
   display: flex;
@@ -16,17 +16,22 @@
   user-select: none;
   gap: 2px;
 }
-.details-item .details-title span,
+.details-item .details-title span {
+  font-size: 10px;
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: 500;
+}
 .details-item .details-title svg {
   font-size: 12px;
-  font-weight: 600;
-  color: rgba(0, 0, 0, 0.5);
   fill: rgba(0, 0, 0, 0.5);
 }
 .details-item .detail {
   font-size: 12px;
   margin-left: 14px;
   text-decoration: none;
+  text-wrap: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .details-item .copy-label {
   position: absolute;
@@ -44,7 +49,7 @@
   fill: rgba(0, 0, 0, 0.5);
 }
 .details-item:hover {
-  background: var(--color-accent-50);
+  background: var(--color-gray-50);
 }
 .details-item:active {
   background: var(--color-gray-100);
@@ -53,20 +58,20 @@
 @media (min-width: 768px) {
   .details-item {
     padding: 3px 12px;
+    border-radius: 22px;
   }
   .details-item .details-title {
     gap: 4px;
   }
-  .details-item .details-title span,
+  .details-item .details-title span {
+    font-size: 12px;
+  }
   .details-item .details-title svg {
     font-size: 14px;
-    font-weight: 600;
-    color: rgba(0, 0, 0, 0.5);
-    fill: rgba(0, 0, 0, 0.5);
   }
   .details-item .detail {
     font-size: 14px;
-    margin-left: 18px;
+    margin-left: 20px;
   }
   .details-item .copy-label {
     position: absolute;
@@ -87,20 +92,20 @@
     padding: 5px 10px;
     flex: 1 1 calc(50% - 1.5px);
     max-width: calc(50% - 1.5px);
+    border-radius: 19px;
   }
   .details-item .details-title {
-    gap: 4px;
+    gap: 6px;
   }
-  .details-item .details-title span,
+  .details-item .details-title span {
+    font-size: 14px;
+  }
   .details-item .details-title svg {
     font-size: 16px;
-    font-weight: 600;
-    color: rgba(0, 0, 0, 0.5);
-    fill: rgba(0, 0, 0, 0.5);
   }
   .details-item .detail {
     font-size: 16px;
-    margin-left: 20px;
+    margin-left: 22px;
   }
   .details-item .copy-label {
     position: absolute;

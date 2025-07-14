@@ -17,7 +17,7 @@
       cursor: pointer;
       height: 80px;
       padding: 4px;
-      gap: 5px;
+      gap: 10px;
 
       &.hidden {
         opacity: 0.5;
@@ -44,7 +44,7 @@
           align-items: flex-start;
           padding: 2px;
           border-radius: 10px;
-          transition: background 50ms;
+          transition: all 150ms ease-in-out;
 
           &:hover {
             background: var(--color-gray-50);
@@ -205,7 +205,7 @@
   .employees-list-item {
     position: relative;
     height: 130px;
-    width: calc(100% / 3 - 10px);
+    width: calc(100% / 3 - 5px);
 
     .employee-card {
       max-height: 130px;
@@ -220,7 +220,7 @@
         .employee-card__general {
           .employee-card__name,
           .employee-card__position {
-            padding: 7px;
+            padding: 5px;
           }
 
           .employee-card__name {
@@ -233,5 +233,11 @@
         }
       }
     }
+  }
+}
+
+@media (min-width: 1650px) {
+  .employees-list-item {
+    width: calc(100% / 4 - 5px);
   }
 }

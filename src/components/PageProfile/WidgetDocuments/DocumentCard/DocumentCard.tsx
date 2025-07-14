@@ -24,33 +24,33 @@ export const DocumentCard: FC<IDocumentCardProps> = ({
     const getStatusStyle = (status: string): React.CSSProperties => {
         switch (status) {
             case "На согласовании":
-                return { backgroundColor: 'var(--color-accent-50)', color: 'var(--color-accent-500)' };
+                return { backgroundColor: 'var(--color-accent-50)', color: 'var(--color-accent-700)' };
             case "На редактировании":
                 return { backgroundColor: '#fff3cd', color: '#856404' };
             case "В архиве":
-                return { backgroundColor: 'var(--color-gray-50)', color: 'var(--color-gray-700)' };
+                return { backgroundColor: 'var(--color-gray-100)', color: 'var(--color-gray-700)' };
             case "Отклонено":
                 return { backgroundColor: 'var(--color-error-bg)', color: 'var(--color-error-text)' };
             default:
-                return { backgroundColor: 'var(--color-gray-50)', color: 'var(--color-gray-700)' };
+                return { backgroundColor: 'var(--color-gray-100)', color: 'var(--color-gray-700)' };
         }
     };
 
     return (
         <motion.a
             {...pageAnimation}
-            href={`documents/${id}`} className="widget-item test-card"
+            href={`documents/${id}`} className="widget-item document-card"
         >
-            <div className="test-card__general">
-                <div className="test-card__labels">
-                    <span className="test-card__type">{type}</span>
-                    <span className="test-card__status" style={getStatusStyle(status)}>{status}</span>
+            <div className="document-card__general">
+                <div className="document-card__labels">
+                    <span className="document-card__type">{type}</span>
+                    <span className="document-card__status" style={getStatusStyle(status)}>{status}</span>
                 </div>
 
-                <span className="test-card__title">{title}</span>
+                <span className="document-card__title">{title}</span>
             </div>
 
-            <div className="test-card__info">
+            <div className="document-card__info">
             </div>
         </motion.a>
     );

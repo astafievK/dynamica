@@ -2,7 +2,16 @@
   .page-filters {
     position: sticky;
     top: 0;
-    z-index: 20;
+    flex-wrap: wrap;
+    z-index: 3;
+
+    .custom-dropdown {
+      flex-basis: calc(50% - 1.5px);
+    }
+  }
+
+  .search-input {
+    flex-grow: 1;
   }
 
   .page-content {

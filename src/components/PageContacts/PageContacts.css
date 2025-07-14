@@ -1,7 +1,14 @@
 .page-contacts .page-filters {
   position: sticky;
   top: 0;
-  z-index: 20;
+  flex-wrap: wrap;
+  z-index: 3;
+}
+.page-contacts .page-filters .custom-dropdown {
+  flex-basis: calc(50% - 1.5px);
+}
+.page-contacts .search-input {
+  flex-grow: 1;
 }
 .page-contacts .page-content .pagination-container {
   display: flex;

@@ -95,7 +95,9 @@ export const EmployeeListItem: FC<IEmployeeCardProps> = React.memo(({ employee }
                         </AnimatePresence>
                     )}
                 </div>
-                <EmployeeDetails employee={employee}/>
+                <AnimatePresence>
+                    {isHovered && <EmployeeDetails employee={employee} />}
+                </AnimatePresence>
             </motion.div>
         </div>
     );

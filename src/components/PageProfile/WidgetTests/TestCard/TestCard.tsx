@@ -71,13 +71,13 @@ export const TestCard: FC<ITestCardProps> = ({ title, status, typeTitle, systemT
     const getStatusStyle = (status: string): React.CSSProperties => {
         switch (status) {
             case "Новое":
-                return { backgroundColor: 'var(--color-accent-50)', color: 'var(--color-accent-500)' };
+                return { borderColor: 'var(--color-accent-500)' };
             case "В процессе":
-                return { backgroundColor: '#fff3cd', color: '#856404' };
+                return { borderColor: '#856404' };
             case "Завершено":
-                return { backgroundColor: 'var(--color-gray-50)', color: 'var(--color-gray-700)' };
+                return { borderColor: 'var(--color-gray-50)' };
             default:
-                return { backgroundColor: 'var(--color-gray-50)', color: 'var(--color-gray-700)' };
+                return { borderColor: 'var(--color-gray-50)' };
         }
     };
 
