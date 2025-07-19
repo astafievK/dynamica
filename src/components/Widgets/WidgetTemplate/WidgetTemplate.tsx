@@ -21,7 +21,8 @@ export type WidgetTemplateProps<T> = {
     emptyMessage: string;
     gridClass: string;
     widgetClass: string;
-    queryLimit?: number
+    queryLimit?: number;
+    actions?: React.ReactNode;
 };
 
 export function WidgetTemplate<T>({
@@ -34,25 +35,32 @@ export function WidgetTemplate<T>({
                                       emptyMessage,
                                       gridClass,
                                       widgetClass,
-                                      queryLimit
+                                      queryLimit,
+                                      actions,
                                   }: WidgetTemplateProps<T>) {
     return (
         <div className={`widget ${widgetClass}`}>
             <div className="widget__header">
                 <Link to={linkTo} className="widget__title">{title}</Link>
-            </div>
-            <div className="widget__filters">
-                {filters.map((filter, index) => (
-                    <Dropdown
-                        key={index}
-                        label={filter.label}
-                        options={filter.options}
-                        value={filter.selected}
-                        onSelect={filter.onChange}
-                        externalClasses={[]}
-                        searchEnabled={false}
-                    />
-                ))}
+                <div className="widget__controls">
+                    {
+                        actions && <div className="widget__actions">{actions}</div>
+                    }
+                    <div className="widget__filters">
+
+                        {filters.map((filter, index) => (
+                            <Dropdown
+                                key={index}
+                                label={filter.label}
+                                options={filter.options}
+                                value={filter.selected}
+                                onSelect={filter.onChange}
+                                externalClasses={[]}
+                                searchEnabled={false}
+                            />
+                        ))}
+                    </div>
+                </div>
             </div>
             <div className="widget__body">
                 {filteredItems.length === 0 ? (

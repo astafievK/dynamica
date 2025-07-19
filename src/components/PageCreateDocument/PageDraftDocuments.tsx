@@ -1,6 +1,6 @@
-import "./PageCreateDocument.css";
+import "./PageDraftDocuments.css";
 import { Tabs } from "./Tabs/Tabs.tsx";
-import { pageAnimation } from "../../constants/motionSettings.ts";
+import { pageAnimation } from "../../constants/pageAnimation.ts";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import {FC, useEffect, useState} from "react";
@@ -17,7 +17,7 @@ import {DocumentFields} from "./DocumentFields/DocumentFields.tsx";
 import {useDocumentDraftActions} from "../../store/hooks/useDocumentDraftActions.ts";
 import {setActiveDraft} from "../../api/slices/draftSlice.ts";
 
-export const PageCreateDocument: FC = () => {
+export const PageDraftDocuments: FC = () => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const { user } = useTypedSelector((state) => state.auth);
@@ -108,6 +108,7 @@ export const PageCreateDocument: FC = () => {
                                 name="document-create-title"
                                 placeholder="Название документа"
                                 value={documentTitle}
+                                autoComplete={"off"}
                                 onChange={(e) => setDocumentTitle(e.target.value)}
                             />
                         </div>
@@ -167,6 +168,10 @@ export const PageCreateDocument: FC = () => {
                                 </div>
                                      */
                                 }
+                                <div className="create-document__actions">
+                                    <button className="create-document__action-button create-document__action-button--save">Сохранить</button>
+                                    <button className="create-document__action-button create-document__action-button--delete">Удалить черновик</button>
+                                </div>
                             </div>
                         </div>
                     )

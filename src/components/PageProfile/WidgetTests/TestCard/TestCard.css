@@ -1,59 +1,48 @@
 .test-card {
   display: flex;
   flex-direction: column;
+  gap: 8px;
   border-radius: 24px;
   text-decoration: none;
   overflow: hidden;
-  border: 1px solid var(--color-gray-50);
-  transition: all 150ms ease-in-out;
 }
-.test-card .test-card__general {
-  display: flex;
-  flex-grow: 1;
-  flex-direction: column;
-  gap: 10px;
-  padding: 10px;
-  border-radius: 16px;
-}
-.test-card .test-card__general .test-card__labels {
+.test-card .test-card__labels {
   display: flex;
   gap: 3px;
 }
-.test-card .test-card__general .test-card__labels .test-card__type,
-.test-card .test-card__general .test-card__labels .test-card__status {
+.test-card .test-card__labels .test-card__type,
+.test-card .test-card__labels .test-card__status {
   display: flex;
   padding: 4px 6px;
   font-size: 12px;
-  border-radius: 7px;
+  border-radius: 24px;
   font-weight: 500;
   user-select: none;
   border: 1px solid var(--color-gray-50);
-  color: var(--color-gray-700);
+  color: var(--color-gray-900);
 }
-.test-card .test-card__general .test-card__title {
+.test-card .test-card__title {
   font-size: 16px;
   font-weight: 500;
   line-height: 1.1;
 }
-.test-card .test-card__general .test-card__dates {
+.test-card .test-card__dates {
   display: flex;
   flex-direction: row;
   gap: 4px;
   align-items: center;
   font-size: 12px;
 }
-.test-card .test-card__general .test-card__dates span {
-  color: var(--color-gray-700);
+.test-card .test-card__dates span {
+  color: var(--color-gray-800);
 }
-.test-card .test-card__general .test-card__dates svg {
+.test-card .test-card__dates svg {
   font-size: 16px;
   fill: var(--color-accent-500);
 }
 .test-card .test-card__info {
   display: flex;
   justify-content: space-between;
-  padding: 8px 15px 8px 15px;
-  border-radius: 0 0 16px 16px;
 }
 .test-card .test-card__info .test-card__size {
   font-size: 12px;
@@ -74,36 +63,33 @@
   font-weight: 500;
   color: var(--color-gray-700);
 }
-.test-card:hover {
-  transform: translateY(-3px);
+.test-card:active {
+  background: var(--color-gray-50);
 }
 
 @media (min-width: 768px) {
-  .test-card .test-card__general .test-card__labels .test-card__type,
-  .test-card .test-card__general .test-card__labels .test-card__status {
+  .test-card .test-card__labels .test-card__type,
+  .test-card .test-card__labels .test-card__status {
     padding: 5px 7px;
   }
 }
 @media (min-width: 1440px) {
-  .test-card .test-card__general {
+  .test-card {
     padding: 15px;
   }
-  .test-card .test-card__general .test-card__labels .test-card__type,
-  .test-card .test-card__general .test-card__labels .test-card__status {
+  .test-card .test-card__labels .test-card__type,
+  .test-card .test-card__labels .test-card__status {
     font-size: 14px;
     padding: 5px 10px;
   }
-  .test-card .test-card__general .test-card__title {
+  .test-card .test-card__title {
     font-size: 18px;
   }
-  .test-card .test-card__general .test-card__dates svg {
+  .test-card .test-card__dates svg {
     font-size: 18px;
   }
-  .test-card .test-card__general .test-card__dates span {
+  .test-card .test-card__dates span {
     font-size: 14px;
-  }
-  .test-card .test-card__info {
-    padding: 10px 15px 10px 15px;
   }
   .test-card .test-card__info .test-card__size {
     font-size: 14px;

@@ -177,7 +177,7 @@ button {
   overflow: hidden;
   position: relative;
   background: none;
-  transition: all 0.1s;
+  transition: all 150ms ease-in-out;
 
   &.primary {
     background-color: var(--color-primary-600);
@@ -221,6 +221,10 @@ button {
   &:disabled {
     opacity: 0.5;
   }
+
+  &:active {
+    transition: background 0ms ease-in-out;
+  }
 }
 
 .shimmer {
@@ -250,9 +254,7 @@ textarea {
     font-size: 14px;
     outline: none;
 
-    &:hover,
-    &:focus,
-    &:focus-visible {
+    &:hover {
       outline: none;
       background: var(--color-gray-100);
     }
@@ -332,6 +334,17 @@ textarea {
   span {
     color: var(--background-color);
     user-select: none;
+  }
+}
+
+.grid-card {
+  border-radius: 24px;
+  background: transparent;
+  transition: all 150ms ease-in-out;
+
+  &:hover {
+    background: var(--color-gray-50);
+    transform: translateY(-3px);
   }
 }
 

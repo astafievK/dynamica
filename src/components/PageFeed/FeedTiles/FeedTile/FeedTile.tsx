@@ -1,7 +1,7 @@
 import {FC} from "react";
 import {formatDatetime} from "../../../../constants/functions.ts";
 import { motion } from "framer-motion";
-import {pageAnimation} from "../../../../constants/motionSettings.ts";
+import {pageAnimation} from "../../../../constants/pageAnimation.ts";
 import "./FeedTile.css";
 import { Link } from "react-router-dom";
 
@@ -18,7 +18,7 @@ export const FeedTile: FC<IFeedTileProps> = ({ id, isPinned, title, date }) => {
     return (
         <MotionLink
             {...pageAnimation}
-            className={`feed-tile${isPinned ? " pinned" : ""}`}
+            className={`feed-tile${isPinned ? " pinned" : ""} grid-card`}
             to={`/feed/${id}`}
         >
             <div className="feed-tile__image">

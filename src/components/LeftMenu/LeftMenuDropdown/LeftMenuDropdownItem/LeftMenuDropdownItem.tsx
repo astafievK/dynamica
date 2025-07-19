@@ -13,7 +13,7 @@ interface ILeftMenuNavigationItemProps {
     }
 }
 
-export const LeftMenuNavigationItem: React.FC<ILeftMenuNavigationItemProps> = ({
+export const LeftMenuDropdownItem: React.FC<ILeftMenuNavigationItemProps> = ({
                                                                label,
                                                                linkTo,
                                                                icon,

@@ -1,6 +1,6 @@
 import {FC} from "react";
 import {FeedTiles} from "./FeedTiles/FeedTiles.tsx";
-import {pageAnimation} from "../../constants/motionSettings.ts";
+import {pageAnimation} from "../../constants/pageAnimation.ts";
 import {motion} from "framer-motion";
 
 export const PageFeed: FC = () => {

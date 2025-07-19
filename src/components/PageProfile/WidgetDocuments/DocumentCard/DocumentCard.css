@@ -4,8 +4,6 @@
   border-radius: 16px;
   text-decoration: none;
   overflow: hidden;
-  border: 1px solid var(--color-gray-50);
-  transition: all 150ms ease-in-out;
 }
 .document-card .document-card__general {
   display: flex;
@@ -24,10 +22,11 @@
   display: flex;
   padding: 4px 6px;
   font-size: 12px;
-  border-radius: 7px;
+  border-radius: 24px;
   font-weight: 500;
   user-select: none;
-  color: var(--color-gray-700);
+  border: 1px solid var(--color-gray-50);
+  color: var(--color-gray-900);
 }
 .document-card .document-card__general .document-card__title {
   font-size: 16px;
@@ -42,7 +41,7 @@
   font-size: 12px;
 }
 .document-card .document-card__general .document-card__dates span {
-  color: var(--color-gray-700);
+  color: var(--color-gray-900);
 }
 .document-card .document-card__general .document-card__dates svg {
   font-size: 16px;
@@ -74,9 +73,6 @@
   font-weight: 500;
   color: var(--color-gray-700);
 }
-.document-card:hover {
-  transform: translateY(-3px);
-}
 
 @media (min-width: 768px) {
   .document-card .document-card__general .document-card__labels .document-card__type,
@@ -91,7 +87,7 @@
   .document-card .document-card__general .document-card__labels .document-card__type,
   .document-card .document-card__general .document-card__labels .document-card__status {
     font-size: 14px;
-    padding: 5px 10px;
+    padding: 5px 9px;
   }
   .document-card .document-card__general .document-card__title {
     font-size: 18px;

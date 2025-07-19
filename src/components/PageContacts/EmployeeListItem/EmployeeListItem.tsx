@@ -9,6 +9,7 @@ import { handleCopyUtil } from "../../../utils/handleCopy.ts";
 import { useHasPermission } from "../../../store/hooks/useHasPermission.ts";
 import { Permissions } from "../../../constants/permissions.ts";
 import "./EmployeeListItem.css"
+import { getNextZIndex } from "./hooks/getNextZIndex.ts";
 
 interface IEmployeeCardProps {
     employee: IUser;
@@ -24,23 +25,41 @@ export const EmployeeListItem: FC<IEmployeeCardProps> = React.memo(({ employee }
         [Permissions.Superuser, Permissions.UpdateUsers],
         'any'
     )
+    const [zIndex, setZIndex] = useState<number>(1);
+
+    const isPointerInsideRef = useRef(false);
 
     const handleMouseEnter = () => {
-        if (!timeoutRef.current) {
-            timeoutRef.current = setTimeout(() => {
-                setIsHovered(true);
-                timeoutRef.current = null;
-            }, 200);
-        }
-    };
+        isPointerInsideRef.current = true;
 
-    const handleMouseLeave = () => {
         if (timeoutRef.current) {
             clearTimeout(timeoutRef.current);
             timeoutRef.current = null;
-        } else {
-            setIsHovered(false);
         }
+
+        timeoutRef.current = setTimeout(() => {
+            if (isPointerInsideRef.current) {
+                const nextZIndex = getNextZIndex();
+                setZIndex(nextZIndex);
+                setIsHovered(true);
+            }
+            timeoutRef.current = null;
+        }, 350);
+    };
+
+    const handleMouseLeave = () => {
+        isPointerInsideRef.current = false;
+
+        if (timeoutRef.current) {
+            clearTimeout(timeoutRef.current);
+            timeoutRef.current = null;
+        }
+
+        timeoutRef.current = setTimeout(() => {
+            setIsHovered(false);
+            setZIndex(1);
+            timeoutRef.current = null;
+        }, 100);
     };
 
     useEffect(() => {
@@ -58,18 +77,21 @@ export const EmployeeListItem: FC<IEmployeeCardProps> = React.memo(({ employee }
     return (
         <div className="employees-list-item">
             <motion.div
-                initial={{opacity: 0}}
-                animate={{opacity: 1}}
-                exit={{opacity: 0}}
-                transition={{duration: 0.17}}
-                className={`employee-card ${isHovered ? 'hovered' : ''}`}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.17 }}
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
+                className={`employee-card ${isHovered ? 'hovered' : ''}`}
+                style={{ zIndex }}
             >
                 <div className={`employee-card__preview ${employee.is_hidden ? 'hidden' : ''}`}>
-                    <div
+                    <img
                         className="employee-card__photo"
-                        style={{backgroundImage: `url(https://newportal/files/images/${employee.image.path})`}}
+                        src={`https://newportal/files/images/${employee.image.path}`}
+                        alt={`${employee.name}`}
+                        loading={"lazy"}
                     />
                     <div className="employee-card__general">
                         <div
@@ -91,13 +113,14 @@ export const EmployeeListItem: FC<IEmployeeCardProps> = React.memo(({ employee }
                     </div>
                     {canViewActions && (
                         <AnimatePresence>
-                            <EmployeeActions employee={employee}/>
+                            <EmployeeActions employee={employee} />
                         </AnimatePresence>
                     )}
                 </div>
-                <AnimatePresence>
-                    {isHovered && <EmployeeDetails employee={employee} />}
-                </AnimatePresence>
+                {
+                    isHovered && <EmployeeDetails employee={employee} />
+                }
+
             </motion.div>
         </div>
     );

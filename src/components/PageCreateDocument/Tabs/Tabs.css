@@ -54,7 +54,7 @@
   background: var(--color-gray-200);
 }
 .tabs .tabs-item:not(.active):hover {
-  background: var(--color-gray-100);
+  background: var(--color-gray-50);
 }
 .tabs .add-tab {
   justify-content: center;

@@ -2,12 +2,14 @@
   position: fixed;
   display: flex;
   flex-direction: column;
+  left: 50%;
+  top: 70px;
+  transform: translateX(-50%);
   gap: 5px;
   width: 95%;
   max-width: unset;
   border-radius: 10px;
   background-color: #fff;
-  bottom: 0;
   box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.15);
   padding: 15px;
   z-index: 10001;
@@ -42,8 +44,7 @@
 
 @media (min-width: 1024px) {
   .modal-notification {
-    border-radius: 24px;
-    left: 50px;
+    border-radius: 32px;
     padding: 18px;
 
     .modal-notification__title {
@@ -61,7 +62,7 @@
     max-width: 450px;
 
     .modal-notification__title {
-      font-size: 24px;
+      font-size: 20px;
     }
 
     .modal-notification__description {

@@ -5,7 +5,7 @@ import { EmployeeCardSkeleton } from "../../Skeletons/EmployeeCardSkeleton.tsx";
 import { EmployeeCardLine } from "../EmployeeCardLine/EmployeeCardLine.tsx";
 import { EmployeesHeader } from "../EmployeesHeader/EmployeesHeader.tsx";
 import { BannerNoData } from "../../BannerNoData/BannerNoData.tsx";
-import { pageAnimation } from "../../../constants/motionSettings.ts";
+import { pageAnimation } from "../../../constants/pageAnimation.ts";
 import {IUser} from "../../../interfaces/IUser.ts";
 import "./EmployeesList.css";
 

@@ -1,19 +1,25 @@
 import React, { FC, useMemo, useState } from "react";
-import {useGetStatusesQuery, useGetUserTestsQuery} from "../../../api/methods/moodle/testMoodleApi";
+import { useGetStatusesQuery, useGetUserTestsQuery } from "../../../api/methods/moodle/testMoodleApi";
 import { useTypedSelector } from "../../../store/hooks/redux";
 import { TestCard } from "./TestCard/TestCard";
 import { WidgetTemplate } from "../../Widgets/WidgetTemplate/WidgetTemplate";
 import "./WidgetTests.css";
+import {ButtonRefetch} from "../../ButtonRefetch/ButtonRefetch.tsx";
 
 export const WidgetTests: FC = React.memo(() => {
     const { user } = useTypedSelector(state => state.auth);
     const moodleUserId = user?.moodleUser?.id;
-    const queryLimit: number = 5;
+    const queryLimit = 5;
 
-    const { data: testStatusesRaw } = useGetStatusesQuery();
+    const {
+        data: testStatusesRaw,
+        isFetching: isFetchingStatuses,
+        refetch: refetchStatuses,
+    } = useGetStatusesQuery();
 
     const testStatuses = useMemo(() => {
         if (!testStatusesRaw || !testStatusesRaw.statuses) return [{ id: 0, title: "Все" }];
+
         return [
             { id: 0, title: "Все" },
             ...testStatusesRaw.statuses.map((status, index) => ({
@@ -23,9 +29,13 @@ export const WidgetTests: FC = React.memo(() => {
         ];
     }, [testStatusesRaw]);
 
-    const [selectedStatus, setSelectedStatus] = useState<{id: number; title: string}>(testStatuses[0]);
+    const [selectedStatus, setSelectedStatus] = useState<{ id: number; title: string }>(testStatuses[0]);
 
-    const { data: coursesData } = useGetUserTestsQuery(
+    const {
+        data: coursesData,
+        isFetching: isFetchingTests,
+        refetch: refetchTests,
+    } = useGetUserTestsQuery(
         {
             idUser: moodleUserId,
             limit: queryLimit,
@@ -42,7 +52,16 @@ export const WidgetTests: FC = React.memo(() => {
             : tests.filter(test => test.status === selectedStatus.title);
     }, [tests, selectedStatus]);
 
-    if (!tests && !testStatuses) return;
+    // Объединённая перезагрузка
+    const handleRefetchAll = () => {
+        refetchStatuses();
+        refetchTests();
+    };
+
+    // Объединённый статус загрузки
+    const isFetchingAll = isFetchingStatuses || isFetchingTests;
+
+    if (!tests && !testStatuses) return null;
 
     return (
         <WidgetTemplate
@@ -50,14 +69,12 @@ export const WidgetTests: FC = React.memo(() => {
             linkTo="/tests"
             data={tests}
             filteredItems={filteredTests}
-            filters={[
-                {
-                    label: "Статус",
-                    options: testStatuses,
-                    selected: selectedStatus,
-                    onChange: setSelectedStatus,
-                },
-            ]}
+            filters={[{
+                label: "Статус",
+                options: testStatuses,
+                selected: selectedStatus,
+                onChange: setSelectedStatus,
+            }]}
             renderItem={(test) => (
                 <TestCard
                     key={test.quiz_id}
@@ -77,6 +94,9 @@ export const WidgetTests: FC = React.memo(() => {
             gridClass="tests-grid"
             widgetClass="widget-tests"
             queryLimit={queryLimit}
+            actions={
+                <ButtonRefetch isFetching={isFetchingAll} onClick={handleRefetchAll}/>
+            }
         />
     );
 });

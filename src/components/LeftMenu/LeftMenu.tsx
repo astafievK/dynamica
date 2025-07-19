@@ -4,7 +4,7 @@ import {useHasPermission} from "../../store/hooks/useHasPermission.ts";
 import {Permissions} from "../../constants/permissions.ts";
 import {navItems} from "../../constants/navItems.tsx";
 import {ROUTES} from "../../constants/routes.ts";
-import { LeftMenuNavigationItem } from "./LeftMenuNavigationItem/LeftMenuNavigationItem.tsx";
+import { LeftMenuDropdownItem } from "./LeftMenuDropdown/LeftMenuDropdownItem/LeftMenuDropdownItem.tsx";
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 import {useAppDispatch, useTypedSelector} from "../../store/hooks/redux.ts";
 import {useDocumentDraftActions} from "../../store/hooks/useDocumentDraftActions.ts";
@@ -13,6 +13,11 @@ import { useNavigate } from "react-router-dom";
 import LoginRoundedIcon from '@mui/icons-material/LoginRounded';
 import {logout} from "../../api/slices/authSlice.ts";
 import {setIsOpen as setLoginModalOpen} from "../../api/slices/modalLoginSlice.ts";
+import {LeftMenuDropdown} from "./LeftMenuDropdown/LeftMenuDropdown.tsx";
+import DataUsageRoundedIcon from '@mui/icons-material/DataUsageRounded';
+import DescriptionRoundedIcon from '@mui/icons-material/DescriptionRounded';
+import EditRoundedIcon from '@mui/icons-material/EditRounded';
+import Person2RoundedIcon from '@mui/icons-material/Person2Rounded';
 
 export const LeftMenu: FC = () => {
     const dispatch = useAppDispatch();
@@ -25,7 +30,7 @@ export const LeftMenu: FC = () => {
         if (isCreating) return;
 
         await createDocument();
-        navigate("/documents/create");
+        navigate(ROUTES.DOCUMENTS_DRAFTS);
     };
 
     const isAdminMenuEnabled = useHasPermission(
@@ -35,6 +40,11 @@ export const LeftMenu: FC = () => {
             Permissions.Superuser,
             Permissions.CreateUpdateNews,
         ],
+        "any"
+    );
+
+    const canViewMetrics = useHasPermission(
+        [Permissions.Developer],
         "any"
     );
 
@@ -58,11 +68,12 @@ export const LeftMenu: FC = () => {
             <div className="logo-wrapper">
                 <img className="logo" src="/logo-horizontal-black.svg" alt={"динамика"}></img>
             </div>
+
             <nav className="general-navigation left-menu-navigation">
                 <div className="left-menu-navigation__items">
                     {navItems.map(({title, path, icon}) => {
                         return (
-                            <LeftMenuNavigationItem
+                            <LeftMenuDropdownItem
                                 key={path}
                                 label={title}
                                 linkTo={path}
@@ -74,30 +85,36 @@ export const LeftMenu: FC = () => {
             </nav>
 
             {isAdminMenuEnabled && (
-                <div className="admin-navigation left-menu-navigation">
-                    <span className="left-menu-navigation__title">Администрирование</span>
-                    <div className="left-menu-navigation__items">
-                        {canViewContacts && (
-                            <LeftMenuNavigationItem
+                <LeftMenuDropdown
+                    label="Администрирование"
+                    classNames={["admin-navigation"]}
+                    icon={<EditRoundedIcon/>}
+                    items={[
+                        canViewContacts && (
+                            <LeftMenuDropdownItem
+                                key="departments"
                                 label="Отделы"
                                 linkTo={ROUTES.ADMIN_CONTACTS}
                             />
-                        )}
-                        {canViewFeed && (
-                            <LeftMenuNavigationItem
+                        ),
+                        canViewFeed && (
+                            <LeftMenuDropdownItem
+                                key="news"
                                 label="Новости"
                                 linkTo={ROUTES.ADMIN_FEED}
                             />
-                        )}
-                    </div>
-                </div>
+                        ),
+                    ]}
+                />
             )}
 
             {canViewDocuments && (
-                <div className="documents-navigation left-menu-navigation">
-                    <span className="left-menu-navigation__title">Документооборот</span>
-                    <div className="left-menu-navigation__items">
-                        <LeftMenuNavigationItem
+                <LeftMenuDropdown
+                    label="Документооборот"
+                    classNames={["documents-navigation"]}
+                    icon={<DescriptionRoundedIcon/>}
+                    items={[
+                        <LeftMenuDropdownItem
                             label="Все документы"
                             linkTo={ROUTES.DOCUMENTS}
                             action={{
@@ -105,26 +122,42 @@ export const LeftMenu: FC = () => {
                                 title: "Создать черновик документа",
                                 onClick: (e) => handleCreateDocumentClick(e)
                             }}
-                        />
-                        <LeftMenuNavigationItem
+                        />,
+                        <LeftMenuDropdownItem
+                            label="Черновики"
+                            linkTo={ROUTES.DOCUMENTS_DRAFTS}
+                        />,
+                        <LeftMenuDropdownItem
                             label="Тест | Пар. документ"
                             linkTo={ROUTES.DOCUMENT_PARALLEL}
-                        />
-                        <LeftMenuNavigationItem
+                        />,
+                        <LeftMenuDropdownItem
                             label="Тест | Посл. документ"
                             linkTo={ROUTES.DOCUMENT}
                         />
-                    </div>
-                </div>
+                    ]}
+                />
             )}
 
-            <div className="profile-container left-menu-navigation">
+            {canViewMetrics && (
+                <LeftMenuDropdown
+                    label="Метрики"
+                    classNames={["metrics-navigation"]}
+                    icon={<DataUsageRoundedIcon/>}
+                    items={[
+
+                    ]}
+                />
+            )}
+
+            <div className="profile-container">
                 {
                     user && (
                         <>
-                            <LeftMenuNavigationItem
+                            <LeftMenuDropdownItem
                                 label={"Профиль"}
                                 linkTo={"/profile"}
+                                icon={<Person2RoundedIcon/>}
                             />
                             <button className="logout-btn" onClick={() => {dispatch(logout());}}>
                                 <LogoutRoundedIcon/>

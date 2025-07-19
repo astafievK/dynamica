@@ -1,5 +1,5 @@
 import { FC, useEffect } from "react";
-import { pageAnimation } from "../../constants/motionSettings.ts";
+import { pageAnimation } from "../../constants/pageAnimation.ts";
 import { motion } from "framer-motion";
 import { useGetPostQuery } from "../../api/methods/postApi.ts";
 import { useParams } from "react-router-dom";

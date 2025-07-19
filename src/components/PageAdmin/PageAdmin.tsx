@@ -1,5 +1,6 @@
 import {Outlet} from "react-router-dom";
 import {FC} from "react";
+import "./PageAdmin.css";
 
 export const PageAdmin: FC = () => {
     return (

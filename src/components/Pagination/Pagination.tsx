@@ -1,6 +1,7 @@
 import {motion } from "framer-motion";
 import React, {FC, useMemo} from "react";
-import {pageAnimation} from "../../constants/motionSettings.ts";
+import {pageAnimation} from "../../constants/pageAnimation.ts";
+import "./Pagination.css"
 
 interface PaginationProps {
     currentPage: number;

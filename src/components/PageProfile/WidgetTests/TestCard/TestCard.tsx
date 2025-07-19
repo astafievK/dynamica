@@ -5,7 +5,7 @@ import {formatUnixTime, getRemainingTimeString} from "../../../../utils/date.ts"
 import TimelapseIcon from '@mui/icons-material/Timelapse';
 import {formatTasksCount} from "../../../../utils/formatTasksCount.ts";
 import { motion } from "framer-motion";
-import {pageAnimation} from "../../../../constants/motionSettings.ts";
+import {pageAnimation} from "../../../../constants/pageAnimation.ts";
 
 interface ITestCardProps {
     title: string;
@@ -84,19 +84,18 @@ export const TestCard: FC<ITestCardProps> = ({ title, status, typeTitle, systemT
     return (
         <motion.a
             {...pageAnimation}
-            href={`${import.meta.env.VITE_MOODLE_API_URL}/mod/${systemTypeTitle}/view.php?id=${id}`} className="widget-item test-card"
+            href={`${import.meta.env.VITE_MOODLE_API_URL}/mod/${systemTypeTitle}/view.php?id=${id}`}
+            className="widget-item test-card grid-card"
             target="_blank"
             rel="noopener noreferrer"
         >
-            <div className="test-card__general">
-                <div className="test-card__labels">
-                    <span className="test-card__type">{typeTitle}</span>
-                    <span className="test-card__status" style={getStatusStyle(status)}>{status}</span>
-                </div>
-
-                <span className="test-card__title">{title}</span>
-                {renderDate()}
+            <div className="test-card__labels">
+                <span className="test-card__type">{typeTitle}</span>
+                <span className="test-card__status" style={getStatusStyle(status)}>{status}</span>
             </div>
+
+            <span className="test-card__title">{title}</span>
+            {renderDate()}
 
             <div className="test-card__info">
                 {questionsCount && <span className="test-card__size">{formatTasksCount(questionsCount)}</span>}

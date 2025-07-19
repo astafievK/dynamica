@@ -24,9 +24,6 @@ export const ModalUserNotification: FC<ModalUserNotificationProps> = ({ title, m
             {visible && (
                 <motion.div
                     className="modal-notification"
-                    initial={{ y: "100%" }}
-                    animate={{ y: "-50px" }}
-                    exit={{ y: "100%" }}
                     transition={{ duration: 0.3, ease: "easeInOut" }}
                 >
                     {title && <span className="modal-notification__title">{title}</span>}

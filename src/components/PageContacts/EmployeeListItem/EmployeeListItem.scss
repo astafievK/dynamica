@@ -10,7 +10,12 @@
     max-height: 80px;
     width: 100%;
     background: rgba(255, 255, 255, 1);
-    transition: opacity 1s ease;
+    transition:
+            max-height 100ms ease-in-out,
+            box-shadow 150ms ease-in-out,
+            opacity 150ms ease-in-out,
+            background 150ms ease-in-out,
+            backdrop-filter 150ms ease-in-out;
 
     .employee-card__preview {
       display: flex;
@@ -25,12 +30,12 @@
 
       .employee-card__photo {
         position: relative;
-        height: 65px;
+        height: 100%;
         aspect-ratio: 1/1;
-        background-size: cover;
-        background-position: top;
+        object-fit: cover;
+        object-position: top;
         border-radius: 50%;
-        transition: all 50ms;
+        transition: all 100ms ease-in-out;
       }
 
       .employee-card__general {
@@ -147,13 +152,26 @@
     }
 
     &.hovered {
-      max-height: 1000px;
-      z-index: 2;
-      opacity: 1;
       backdrop-filter: blur(24px);
       box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-      background: rgba(255, 255, 255, 0.8);
-      transition: max-height 350ms ease-in;
+      background: rgba(255, 255, 255, 0.8) !important;
+      transition: background 150ms ease-in-out, max-height 100ms ease-in-out;
+    }
+  }
+
+  &:hover {
+    .employee-card {
+      background: var(--color-gray-50);
+      max-height: 300px;
+      opacity: 1;
+      transition: max-height 100ms ease-in-out 350ms, background 150ms ease-in-out;
+
+      .employee-card__preview {
+        .employee-card__photo {
+          border-radius: 20px;
+          transition: all 100ms ease-in-out 350ms;
+        }
+      }
 
       .employee-card__details {
         opacity: 1;
@@ -173,10 +191,6 @@
 
       .employee-card__preview {
         height: 100px;
-
-        .employee-card__photo {
-          height: 90px;
-        }
 
         .employee-card__general {
           .employee-card__name,
@@ -205,17 +219,13 @@
   .employees-list-item {
     position: relative;
     height: 130px;
-    width: calc(100% / 3 - 5px);
+    width: calc(100% / 3 - 2px);
 
     .employee-card {
       max-height: 130px;
 
       .employee-card__preview {
         height: 130px;
-
-        .employee-card__photo {
-          height: 115px;
-        }
 
         .employee-card__general {
           .employee-card__name,
@@ -224,7 +234,7 @@
           }
 
           .employee-card__name {
-            font-size: 20px;
+            font-size: 19px;
           }
 
           .employee-card__position {
@@ -238,6 +248,6 @@
 
 @media (min-width: 1650px) {
   .employees-list-item {
-    width: calc(100% / 4 - 5px);
+    width: calc(100% / 4 - 2px);
   }
 }

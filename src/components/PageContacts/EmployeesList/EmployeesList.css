@@ -102,7 +102,7 @@
 }
 @media (min-width: 1440px) {
   .employees-list {
-    gap: 5px;
+    gap: 2px;
   }
   .employees-list .employee-card-skeleton {
     width: calc(33.3333333333% - 10px);

@@ -1,4 +1,4 @@
-import {FC, useEffect, useMemo, useState} from "react";
+import {ChangeEvent, FC, useEffect, useMemo, useRef, useState} from "react";
 import {Dropdown} from "../../Dropdown/Dropdown.tsx";
 import {useGetCitiesQuery} from "../../../api/methods/cityApi.ts"
 import {useGetOrganizationsQuery} from "../../../api/methods/organizationApi.ts";
@@ -23,6 +23,17 @@ export const DocumentFields: FC<IDocumentFields> = ({ document, activeDraftId })
     const [localOrganization, setLocalOrganization] = useState<{ id: number; title: string } | null>(null);
     const [localServiceType, setLocalServiceType] = useState<{ id: number; title: string } | null>(null);
     const [localPartner, setLocalPartner] = useState<{ id: number; title: string } | null>(null);
+    const [localComment, setLocalComment] = useState<string>("");
+
+    const textareaCommentRef = useRef<HTMLTextAreaElement>(null);
+
+    const handleCommentChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        setLocalComment(e.target.value);
+
+        setInterval(() => {
+            handleFieldChange('comment', localComment.trim(), activeDraftId)
+        }, 500)
+    };
 
     useEffect(() => {
         if (document?.city) {
@@ -105,7 +116,7 @@ export const DocumentFields: FC<IDocumentFields> = ({ document, activeDraftId })
     );
 
     return (
-        <div className="create-document__fields">
+        <>
             <Dropdown
                 options={cityOptions}
                 label="Город расположение ДЦ"
@@ -150,6 +161,16 @@ export const DocumentFields: FC<IDocumentFields> = ({ document, activeDraftId })
                     }
                 }}
             />
-        </div>
+            <textarea
+                className={"styled"}
+                placeholder={"Комментарий"}
+                id={"draftCommentTextarea"}
+                name={"draft_comment"}
+                ref={textareaCommentRef}
+                onChange={handleCommentChange}
+            >
+                {localComment}
+            </textarea>
+        </>
     );
 };

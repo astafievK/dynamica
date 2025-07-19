@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import './DocumentCard.css'
 import { motion } from "framer-motion";
-import {pageAnimation} from "../../../../constants/motionSettings.ts";
+import {pageAnimation} from "../../../../constants/pageAnimation.ts";
 
 interface IDocumentCardProps {
     id: number;
@@ -24,22 +24,22 @@ export const DocumentCard: FC<IDocumentCardProps> = ({
     const getStatusStyle = (status: string): React.CSSProperties => {
         switch (status) {
             case "На согласовании":
-                return { backgroundColor: 'var(--color-accent-50)', color: 'var(--color-accent-700)' };
+                return { borderColor: 'var(--color-accent-50)', color: 'var(--color-accent-700)' };
             case "На редактировании":
-                return { backgroundColor: '#fff3cd', color: '#856404' };
+                return { borderColor: '#fff3cd', color: '#856404' };
             case "В архиве":
-                return { backgroundColor: 'var(--color-gray-100)', color: 'var(--color-gray-700)' };
+                return { borderColor: 'var(--color-gray-100)', color: 'var(--color-gray-700)' };
             case "Отклонено":
-                return { backgroundColor: 'var(--color-error-bg)', color: 'var(--color-error-text)' };
+                return { borderColor: 'var(--color-error-bg)', color: 'var(--color-error-text)' };
             default:
-                return { backgroundColor: 'var(--color-gray-100)', color: 'var(--color-gray-700)' };
+                return { borderColor: 'var(--color-gray-100)', color: 'var(--color-gray-700)' };
         }
     };
 
     return (
         <motion.a
             {...pageAnimation}
-            href={`documents/${id}`} className="widget-item document-card"
+            href={`documents/${id}`} className="widget-item document-card grid-card"
         >
             <div className="document-card__general">
                 <div className="document-card__labels">

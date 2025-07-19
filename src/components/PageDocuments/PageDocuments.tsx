@@ -1,5 +1,5 @@
 import {FC, useState} from "react";
-import { pageAnimation } from "../../constants/motionSettings.ts";
+import { pageAnimation } from "../../constants/pageAnimation.ts";
 import { motion } from "framer-motion";
 import {FilterButtons} from "../FilterButtons/FilterButtons.tsx";
 import {DocumentTile} from "./DocumentTile/DocumentTile.tsx";

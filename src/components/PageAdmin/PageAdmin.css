@@ -1,59 +1,28 @@
-.page-admin .page-admin__filters {
-  display: flex;
-  flex-direction: row;
-  gap: 5px;
-  width: fit-content;
-  max-width: 90%;
-  margin: 20px auto 0 auto;
-  border-radius: 32px;
-  flex-wrap: wrap;
-  padding: 7px;
-  filter: drop-shadow(0px 2px 10px rgba(106, 82, 117, 0.1));
-  background: #fff;
-}
-.page-admin .page-admin__filters .admin-tab {
-  text-decoration: none;
-  font-weight: 500;
-  flex-grow: 1;
-  text-align: center;
-  user-select: none;
-  font-size: 14px;
-  padding: 12px 33px;
-  background: var(--background-color);
-  border-radius: 32px;
-  white-space: nowrap;
-  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
-}
-.page-admin .page-admin__filters .admin-tab.active {
-  background-color: var(--primary-color);
-  color: #fff;
-}
-.page-admin .page-admin__filters .admin-tab:not(.active):hover {
-  background-color: rgba(0, 0, 0, 0.1);
-  transition-duration: 200ms;
-}
-.page-admin .page-admin__filters .admin-tab:not(.active):active {
-  background-color: rgba(0, 0, 0, 0.15);
-  transition-duration: 70ms;
-}
-.page-admin .page-content {
-  width: 100%;
+.page-admin {
+  padding-bottom: unset !important;
 }
 .page-admin .page-content .content-tab .content-tab__title {
   font-weight: 700;
   font-size: 16px;
   font-style: italic;
 }
+.page-admin .page-content .content-tab--feed {
+  display: flex;
+  flex-direction: column;
+  min-height: 90vh;
+}
 .page-admin .page-content .content-tab--feed .content-tab__form {
   display: flex;
   flex-direction: column;
   margin-top: 10px;
+  flex-grow: 1;
   gap: 5px;
 }
 .page-admin .page-content .content-tab--feed .content-tab__form .quill {
   position: relative;
   border-radius: 32px;
   z-index: 2;
+  flex-grow: 1;
   overflow: hidden;
   border: 1px solid var(--background-color);
 }
@@ -91,9 +60,6 @@
 .page-admin .page-content .content-tab--contacts .associations-container {
   width: 100%;
   display: grid;
-  padding: 5px;
-  border-radius: 14px;
-  box-shadow: var(--block-shadow);
   background: #FFFFFF;
   grid-template-columns: repeat(1, calc(100% - 0px));
   overflow-y: auto;
@@ -220,6 +186,17 @@
 }
 .page-admin .page-content .content-tab--contacts .associations-container .association-skeleton .skeleton-action span {
   height: 100%;
+}
+
+@media (min-width: 1024px) {
+  .page-admin .page-content .content-tab .content-tab__title {
+    font-size: 18px;
+  }
+}
+@media (min-width: 1440px) {
+  .page-admin .page-content .content-tab .content-tab__title {
+    font-size: 21px;
+  }
 }
 
 /*# sourceMappingURL=PageAdmin.css.map */

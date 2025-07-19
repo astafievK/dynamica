@@ -57,7 +57,7 @@
   pointer-events: none;
   transition: transform 150ms ease;
 }
-.custom-dropdown__button:hover, .custom-dropdown__button:focus, .custom-dropdown__button.active {
+.custom-dropdown__button:hover, .custom-dropdown__button.active {
   background-color: var(--color-gray-100);
 }
 .custom-dropdown__button.active .arrow {

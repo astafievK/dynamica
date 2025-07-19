@@ -62,6 +62,43 @@
           }
         }
       }
+
+      &__actions {
+        display: flex;
+        justify-content: flex-start;
+        gap: 5px;
+
+        .create-document__action-button {
+          width: 100%;
+          max-width: 170px;
+          border-radius: 16px;
+          font-size: 16px;
+          font-weight: 500;
+          padding: 12px 0;
+
+          &--save {
+            background: var(--color-accent-100);
+
+            &:hover {
+              background: var(--color-accent-200);
+            }
+
+            &:active {
+              background: var(--color-accent-300);
+            }
+          }
+
+          &--delete {
+            &:hover {
+              background: var(--color-gray-100);
+            }
+
+            &:active {
+              background: var(--color-gray-200);
+            }
+          }
+        }
+      }
     }
   }
 }

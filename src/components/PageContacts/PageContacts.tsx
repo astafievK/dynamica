@@ -1,7 +1,7 @@
 import {AnimatePresence, motion} from "framer-motion";
 import { useGetUsersFilteredQuery } from "../../api/methods/userApi.ts";
 import { FC, useEffect, useMemo, useState } from "react";
-import { pageAnimation } from "../../constants/motionSettings.ts";
+import { pageAnimation } from "../../constants/pageAnimation.ts";
 import { useDebounce } from "../../store/hooks/useDebounce.ts";
 import { useSearchParams } from "react-router-dom";
 import {useAppDispatch, useTypedSelector} from "../../store/hooks/redux.ts";

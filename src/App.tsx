@@ -33,7 +33,7 @@ import {ScrollToTop} from "./components/ScrollToTop/ScrollToTop.tsx";
 import {HistoryTracker} from "./components/HistoryTracker/HistoryTracker.tsx";
 import {ROUTES} from "./constants/routes.ts";
 import {usePageTitle} from "./store/hooks/usePageTitle.ts";
-import {PageCreateDocument} from "./components/PageCreateDocument/PageCreateDocument.tsx";
+import {PageDraftDocuments} from "./components/PageCreateDocument/PageDraftDocuments.tsx";
 
 const Root = () => {
     usePageTitle();
@@ -67,7 +67,7 @@ const router = createBrowserRouter(
             <Route path={`${ROUTES.FEED}/:idPost`} element={<PagePost />} />
             <Route path={ROUTES.EDITOR} element={<TextEditor />} />
             <Route path={ROUTES.DOCUMENT} element={<PageDocument />} />
-            <Route path={ROUTES.DOCUMENT_CREATE} element={<PageCreateDocument/>} />
+            <Route path={ROUTES.DOCUMENTS_DRAFTS} element={<PageDraftDocuments/>} />
             <Route path={ROUTES.DOCUMENT_PARALLEL} element={<PageDocumentParallel />} />
             <Route path={ROUTES.PROFILE} element={<PageProfile />} />
             <Route path={ROUTES.DOCUMENTS} element={<PageDocuments />} />

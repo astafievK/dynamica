@@ -2,7 +2,7 @@ import {Association} from "./Association/Association.tsx";
 import {useGetDepartmentsQuery} from "../../../api/methods/departmentApi.ts";
 import {FC} from "react";
 import {AssociationSkeleton} from "./AssociationSkeleton/AssociationSkeleton.tsx";
-import {pageAnimation} from "../../../constants/motionSettings.ts";
+import {pageAnimation} from "../../../constants/pageAnimation.ts";
 import {motion} from "framer-motion";
 import {BannerNoData} from "../../BannerNoData/BannerNoData.tsx";
 
