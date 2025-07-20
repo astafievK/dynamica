@@ -4,9 +4,10 @@ import "./DocxViewer.css";
 
 interface DocxViewerProps {
     fileUrl: string;
+    classNames?: string[]
 }
 
-const DocxViewer: React.FC<DocxViewerProps> = ({ fileUrl }) => {
+const DocxViewer: React.FC<DocxViewerProps> = ({ fileUrl, classNames = [] }) => {
     const viewerRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
@@ -26,7 +27,7 @@ const DocxViewer: React.FC<DocxViewerProps> = ({ fileUrl }) => {
     }, [fileUrl]);
 
     return (
-        <div ref={viewerRef} className="docx-container"></div>
+        <div ref={viewerRef} className={`docx-container ${classNames}`}></div>
     );
 };
 

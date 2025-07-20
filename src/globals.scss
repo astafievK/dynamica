@@ -92,6 +92,7 @@
   border: none;
   color: var(--font-color);
   font-family: 'Commissioner', Arial, sans-serif;
+  overscroll-behavior: contain;
   -webkit-tap-highlight-color: transparent;
 
   &::-webkit-scrollbar {

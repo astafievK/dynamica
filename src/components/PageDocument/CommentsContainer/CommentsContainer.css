@@ -1,0 +1,91 @@
+.comments-wrapper {
+  display: flex;
+  height: 100%;
+  position: sticky;
+  top: 10px;
+  margin: 0 auto;
+  flex-direction: column;
+}
+.comments-wrapper .comments__title {
+  font-size: 18px;
+  font-weight: 600;
+  padding: 10px 15px 0 15px;
+  color: var(--color-gray-800);
+  margin-bottom: 5px;
+}
+.comments-wrapper .comments__list {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 5px;
+  padding: 7px 5px;
+  overflow-y: auto;
+}
+.comments-wrapper .comments__list .comment {
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  padding: 7px 10px;
+  width: 100%;
+  max-width: 250px;
+  background: var(--color-gray-50);
+}
+.comments-wrapper .comments__list .comment__author {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+.comments-wrapper .comments__list .comment__content {
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+.comments-wrapper .comments__list .comment__datetime {
+  font-size: 12px;
+  text-align: right;
+  color: var(--color-gray-800);
+  user-select: none;
+}
+.comments-wrapper .comments__list .comment.current-author {
+  align-self: flex-end;
+  background: var(--color-primary-50);
+}
+.comments-wrapper .comments__list::-webkit-scrollbar {
+  width: 5px !important;
+}
+.comments-wrapper .create-comment-container {
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 55px;
+  padding-top: 5px;
+  padding-left: 5px;
+  display: flex;
+  gap: 5px;
+  border-top: 1px solid var(--color-gray-50);
+}
+.comments-wrapper .create-comment-container .create-comment__input, .comments-wrapper .create-comment-container .create-comment__button {
+  height: 100%;
+}
+.comments-wrapper .create-comment-container .create-comment__input {
+  flex-grow: 1;
+}
+.comments-wrapper .create-comment-container .create-comment__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  cursor: pointer;
+  background: var(--color-gray-50);
+}
+.comments-wrapper .create-comment-container .create-comment__button svg {
+  height: 1.5em;
+  width: 1.5em;
+  transform: translateX(5%);
+}
+.comments-wrapper .create-comment-container .create-comment__button:hover {
+  background: var(--color-gray-100);
+}
+
+/*# sourceMappingURL=CommentsContainer.css.map */

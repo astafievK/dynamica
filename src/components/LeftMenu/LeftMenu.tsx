@@ -86,7 +86,31 @@ export const LeftMenu: FC = () => {
 
             {isAdminMenuEnabled && (
                 <LeftMenuDropdown
-                    label="Администрирование"
+                    label="Управление"
+                    classNames={["admin-navigation"]}
+                    icon={<EditRoundedIcon/>}
+                    items={[
+                        canViewContacts && (
+                            <LeftMenuDropdownItem
+                                key="departments"
+                                label="Отделы"
+                                linkTo={ROUTES.ADMIN_CONTACTS}
+                            />
+                        ),
+                        canViewFeed && (
+                            <LeftMenuDropdownItem
+                                key="news"
+                                label="Новости"
+                                linkTo={ROUTES.ADMIN_FEED}
+                            />
+                        ),
+                    ]}
+                />
+            )}
+
+            {true && (
+                <LeftMenuDropdown
+                    label="Управление"
                     classNames={["admin-navigation"]}
                     icon={<EditRoundedIcon/>}
                     items={[

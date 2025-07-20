@@ -1,0 +1,30 @@
+.page-document {
+  padding-bottom: 0 !important;
+
+  .page-content {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 3fr 2fr;
+
+    .document-signers-wrapper,
+    .comments-wrapper {
+      position: sticky;
+      height: fit-content;
+      top: 10px;
+      max-height: calc(100vh - 20px);
+      width: 100%;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+
+}
+
+@media (min-width: 1024px) {
+
+}
+
+@media (min-width: 1440px) {
+
+}
