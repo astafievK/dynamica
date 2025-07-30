@@ -17,7 +17,7 @@ const ModalDocumentComments: FC = () => {
 
             </div>
             <div className={`modal__overlay ${isClosing ? "modal__overlay--hidden" : ""}`} onClick={handleClose}></div>
-        </dialog>
+        </div>
     )
 }
 

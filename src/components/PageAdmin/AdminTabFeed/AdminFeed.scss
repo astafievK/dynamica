@@ -1,0 +1,35 @@
+.content-tab--feed {
+  .content-tab__form {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+
+    .quill {
+      display: flex;
+      flex-direction: column;
+      min-height: 55vh;
+
+      .ql-container {
+        flex-grow: 1;
+        border-radius: 0 0 16px 16px;
+      }
+    }
+  }
+
+  .content-tab__actions {
+    display: flex;
+    gap: 3px;
+  }
+
+  @media (min-width: 768px) {
+
+  }
+
+  @media (min-width: 1024px) {
+    gap: 8px;
+  }
+
+  @media (min-width: 1440px) {
+    gap: 10px;
+  }
+}

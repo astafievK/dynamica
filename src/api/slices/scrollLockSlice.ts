@@ -13,11 +13,14 @@ const scrollLockSlice = createSlice({
         updateScrollLock: (state, action) => {
             state.scrollLocked = action.payload;
             const bodyElement = document.body;
-            if (bodyElement) {
+            const htmlElement = document.getElementsByTagName('html')[0];
+            if (bodyElement && htmlElement) {
                 if (action.payload) {
-                    bodyElement.classList.add("scroll-locked");
+                    bodyElement.style.overflow = 'hidden';
+                    htmlElement.style.overflow = 'hidden';
                 } else {
-                    bodyElement.classList.remove("scroll-locked");
+                    bodyElement.style.overflow = '';
+                    htmlElement.style.overflow = '';
                 }
             }
         },

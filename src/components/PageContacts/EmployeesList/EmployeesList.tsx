@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { motion } from "framer-motion";
 import { EmployeeListItem } from "../EmployeeListItem/EmployeeListItem.tsx";
-import { EmployeeCardSkeleton } from "../../Skeletons/EmployeeCardSkeleton.tsx";
+import { EmployeeListItemSkeleton } from "../../Skeletons/EmployeeListItemSkeleton.tsx";
 import { EmployeeCardLine } from "../EmployeeCardLine/EmployeeCardLine.tsx";
 import { EmployeesHeader } from "../EmployeesHeader/EmployeesHeader.tsx";
 import { BannerNoData } from "../../BannerNoData/BannerNoData.tsx";
@@ -31,10 +31,10 @@ export const EmployeesList: FC<EmployeesListProps> = React.memo(({
                 animate={pageAnimation.animate}
                 exit={pageAnimation.exit}
                 transition={pageAnimation.transition}
-                className="employees-list"
+                className="employees-list page-item"
             >
                 {[...Array(4)].map((_, i) => (
-                    <EmployeeCardSkeleton key={i} />
+                    <EmployeeListItemSkeleton key={i} />
                 ))}
             </motion.div>
         );
@@ -46,7 +46,7 @@ export const EmployeesList: FC<EmployeesListProps> = React.memo(({
 
     return (
         <div
-            className={`employees-list ${isOldStyleEnabled ? "old-style" : ""}`}
+            className={`employees-list page-item ${isOldStyleEnabled ? "old-style" : ""}`}
         >
             {isOldStyleEnabled && <EmployeesHeader />}
             {visibleUsers.map((employee) =>

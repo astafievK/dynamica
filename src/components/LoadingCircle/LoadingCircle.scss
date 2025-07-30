@@ -1,0 +1,12 @@
+.loading-circle {
+  display: inline-block;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  animation: loading-spin 1s infinite;
+}
+
+@keyframes loading-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

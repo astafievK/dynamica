@@ -1,28 +1,26 @@
 .document-signers-wrapper {
   display: flex;
-  height: 100%;
-  position: sticky;
-  top: 10px;
-  margin: 0 auto;
+  height: fit-content;
   flex-direction: column;
 
   .document-signers__title {
-    font-size: 18px;
+    font-size: 14px;
     font-weight: 600;
-    padding: 10px 15px 0 15px;
-    color: var(--color-gray-800);
-    margin-bottom: 5px;
+    margin-left: 10px;
+    margin-bottom: 10px;
   }
 
   .document-signers__list {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr;
     gap: 3px;
-    padding: 7px 5px 7px 0;
 
     .signer {
-      border-radius: 16px;
-      padding: 7px 15px;
+      border-radius: 12px;
+      padding: 5px 10px;
+      user-select: none;
+      cursor: pointer;
+      background: var(--color-gray-50);
       transition: all 150ms ease-in-out;
 
       &__info {
@@ -38,11 +36,13 @@
           .signer {
             &__division,
             &__status {
-              font-size: 12px;
+              font-size: 10px;
+              text-wrap: nowrap;
             }
 
             &__division {
-
+              overflow: hidden;
+              text-overflow: ellipsis;
             }
 
             &__status {
@@ -52,9 +52,11 @@
         }
 
         &-main {
+          display: flex;
+
           .signer {
             &__name {
-              font-size: 16px;
+              font-size: 12px;
               font-weight: 500;
             }
           }
@@ -62,7 +64,82 @@
       }
 
       &:hover {
-        background: var(--color-gray-50);
+        background: var(--color-gray-100);
+      }
+
+      &:active {
+        background: var(--color-gray-200);
+        transition: background 0ms;
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+
+}
+
+@media (min-width: 1024px) {
+  .document-signers-wrapper {
+    .document-signers__list {
+      .signer {
+        padding: 6px 15px;
+
+        &__info {
+          &-secondary {
+            .signer {
+              &__division,
+              &__status {
+                font-size: 12px;
+              }
+            }
+          }
+
+          &-main {
+            .signer {
+              &__name {
+                font-size: 14px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 1440px) {
+  .document-signers-wrapper {
+    .document-signers__title {
+      font-size: 18px;
+    }
+
+    .document-signers__list {
+      grid-template-columns: 1fr 1fr;
+
+      .signer {
+        padding: 7px 10px;
+
+        &__info {
+          &-secondary {
+            .signer {
+              &__division,
+              &__status {
+                font-size: 14px;
+              }
+            }
+          }
+
+          &-main {
+            .signer {
+              padding: 10px 15px;
+
+              &__name {
+                font-size: 16px;
+              }
+            }
+          }
+        }
       }
     }
   }

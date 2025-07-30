@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import { Tab } from "./Tab/Tab";
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import { useDispatch, useSelector } from "react-redux";
@@ -7,24 +7,28 @@ import { RootState } from "../../../store/store";
 import { useTypedSelector } from "../../../store/hooks/redux.ts";
 import "./Tabs.css";
 import { useDocumentDraftActions } from "../../../store/hooks/useDocumentDraftActions.ts";
-import { IDocumentTab } from "../../../interfaces/IDocumentTab.ts";
+import { IDraftTab } from "../../../interfaces/IDraftTab.ts";
+import {LoadingCircle} from "../../LoadingCircle/LoadingCircle.tsx";
 
 interface ITabsProps {
-    tabs: IDocumentTab[];
+    tabs: IDraftTab[];
+    removingIds: number[];
+    setRemovingIds: React.Dispatch<React.SetStateAction<number[]>>
+    isFetching: boolean;
+    isLoading: boolean;
 }
 
-export const Tabs: React.FC<ITabsProps> = ({ tabs }) => {
-    const [removingIds, setRemovingIds] = useState<number[]>([]);
+export const Tabs: React.FC<ITabsProps> = ({ tabs, removingIds, setRemovingIds, isLoading, isFetching }) => {
     const activeDraftId = useSelector((state: RootState) => state.draftReducer.activeDraftId);
     const dispatch = useDispatch();
     const { user } = useTypedSelector((state) => state.auth);
 
-    const { createDocument, deleteDocumentAndSelectNext, isCreating } = useDocumentDraftActions();
+    const { deleteDocumentAndSelectNext, isCreating, createDocumentAndSelect } = useDocumentDraftActions();
 
     const handleAddClick = async () => {
         if (isCreating) return;
 
-        await createDocument();
+        await createDocumentAndSelect();
     };
 
     const handleTabClick = (id: number) => {
@@ -41,14 +45,18 @@ export const Tabs: React.FC<ITabsProps> = ({ tabs }) => {
     };
 
     return (
-        <div className="tabs">
+        <div className="tabs-list">
             <button
                 className="add-tab tabs-item"
                 onClick={handleAddClick}
-                title="Создать документ"
-                disabled={!user || isCreating}
+                title="Создать черновик"
+                disabled={!user || isCreating || isFetching || isLoading}
             >
-                <AddRoundedIcon />
+                {
+                    (isCreating || isLoading || isFetching) ?
+                        <LoadingCircle size={30} /> :
+                        <AddRoundedIcon />
+                }
             </button>
 
             {tabs.map((tab) => (

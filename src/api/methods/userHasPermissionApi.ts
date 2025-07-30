@@ -4,7 +4,8 @@ import {IUpdateUserPermissionCommand} from "../commands/IUpdateUserPermissionCom
 
 export const userHasPermissionApi = baseApi.injectEndpoints({
     endpoints: builder => ({
-        getUserHasPermission: builder.query<{ status: string; functions: IUserHasPermission[] },
+        getUserHasPermission: builder.query<
+            { status: string; permissions: IUserHasPermission[] },
             void
         >({
             query: () => ({
@@ -13,8 +14,18 @@ export const userHasPermissionApi = baseApi.injectEndpoints({
             }),
             providesTags: ['Permission'],
         }),
+        getUsersBySystemTitle: builder.query<
+            { status: string; users: [{id_user: number, name: string, surname: string}] },
+            { system_title: string }
+        >({
+            query: ({ system_title }) => ({
+                url: `/user_has_permission/get_users_by_system_title.php?system_title=${encodeURIComponent(system_title)}`,
+                method: "GET",
+            }),
+            providesTags: ['Permission'],
+        }),
         getUserHasPermissionByIdUser: builder.query<
-            { status: string; functions: IUserHasPermission[] },
+            { status: string; permissions: IUserHasPermission[] },
             { idUser: number }
         >({
             query: ({ idUser }) => ({
@@ -26,7 +37,7 @@ export const userHasPermissionApi = baseApi.injectEndpoints({
             ],
         }),
         getUserHasPermissionIdsByIdUser: builder.query<
-            { status: string; functions: number[] },
+            { status: string; permissions: number[] },
             { idUser: number }
         >({
             query: ({ idUser }) => ({
@@ -56,6 +67,7 @@ export const userHasPermissionApi = baseApi.injectEndpoints({
 export const {
     useGetUserHasPermissionQuery,
     useGetUserHasPermissionByIdUserQuery,
+    useGetUsersBySystemTitleQuery,
     useGetUserHasPermissionIdsByIdUserQuery,
     useUpdateUserPermissionMutation,
 } = userHasPermissionApi;

@@ -10,6 +10,7 @@ import { useHasPermission } from "../../../store/hooks/useHasPermission.ts";
 import { Permissions } from "../../../constants/permissions.ts";
 import "./EmployeeListItem.css"
 import { getNextZIndex } from "./hooks/getNextZIndex.ts";
+import {pageAnimation} from "../../../constants/pageAnimation.ts";
 
 interface IEmployeeCardProps {
     employee: IUser;
@@ -77,22 +78,28 @@ export const EmployeeListItem: FC<IEmployeeCardProps> = React.memo(({ employee }
     return (
         <div className="employees-list-item">
             <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.17 }}
+                {...pageAnimation}
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
                 className={`employee-card ${isHovered ? 'hovered' : ''}`}
                 style={{ zIndex }}
             >
                 <div className={`employee-card__preview ${employee.is_hidden ? 'hidden' : ''}`}>
-                    <img
-                        className="employee-card__photo"
-                        src={`https://newportal/files/images/${employee.image.path}`}
-                        alt={`${employee.name}`}
-                        loading={"lazy"}
-                    />
+                    <motion.div {...pageAnimation} className="image-wrapper">
+                        {employee.image.path ? (
+                            <img
+                                className="employee-card__photo"
+                                src={`https://newportal/files/images/${employee.image.path}`}
+                                alt={employee.name}
+                                loading="lazy"
+                            />
+                        ) : (
+                            <span className="image-wrapper-label">
+                              {employee.surname[0]} {employee.name[0]}
+                            </span>
+                        )}
+                    </motion.div>
+
                     <div className="employee-card__general">
                         <div
                             className="employee-card__name"

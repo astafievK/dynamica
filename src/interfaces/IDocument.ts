@@ -8,7 +8,6 @@ import {IDocumentStatus} from "./IDocumentStatus";
 export interface IDocument {
     id_document: number;
     title: string;
-    path: string;
     document_service_type: IDocumentServiceType;
     city: ICity;
     author: IUser;

@@ -12,7 +12,7 @@ dist
 dist-ssr
 *.local
 
-# TextEditor directories and files
+# TextEditor directories and documents_icons
 .vscode/*
 !.vscode/extensions.json
 .idea

@@ -4,7 +4,7 @@ import { useTypedSelector } from "../../../store/hooks/redux";
 import { TestCard } from "./TestCard/TestCard";
 import { WidgetTemplate } from "../../Widgets/WidgetTemplate/WidgetTemplate";
 import "./WidgetTests.css";
-import {ButtonRefetch} from "../../ButtonRefetch/ButtonRefetch.tsx";
+import {ButtonRefetch} from "../../Buttons/ButtonRefetch/ButtonRefetch.tsx";
 
 export const WidgetTests: FC = React.memo(() => {
     const { user } = useTypedSelector(state => state.auth);

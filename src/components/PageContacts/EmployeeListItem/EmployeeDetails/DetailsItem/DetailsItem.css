@@ -53,6 +53,7 @@
 }
 .details-item:active {
   background: var(--color-gray-100);
+  transition: all 0ms;
 }
 
 @media (min-width: 768px) {

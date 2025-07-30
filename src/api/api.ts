@@ -7,7 +7,6 @@ export const baseApi = createApi({
     baseQuery: fetchBaseQuery({
         baseUrl,
         prepareHeaders: (headers) => {
-            headers.set('Cache-Control', 'no-cache');
             return headers;
         },
     }),
@@ -18,8 +17,7 @@ export const baseApi = createApi({
         'Permission',
         'DocumentsTabs', 'Documents', 'Document'
     ],
-    keepUnusedDataFor: 60,
-    refetchOnFocus: true,
+    keepUnusedDataFor: 120,
     refetchOnReconnect: true,
     endpoints: () => ({})
 });

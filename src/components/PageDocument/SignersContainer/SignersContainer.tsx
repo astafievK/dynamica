@@ -1,12 +1,6 @@
 import { FC } from "react";
 import "./SignersContainer.css";
 
-const statuses = [
-    { label: "Выполнено", color: "lime" },
-    { label: "В процессе", color: "orange" },
-    { label: "Невозможно", color: "gray" },
-];
-
 const progressData = [
     { status: true, division: "Центральный маркетинг", person: "Максим Александров" },
     { status: true, division: "Служба безопасности", person: "Алексей Усачев" },

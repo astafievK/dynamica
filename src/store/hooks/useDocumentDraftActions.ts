@@ -4,7 +4,7 @@ import {
 } from "../../api/methods/documentApi.ts";
 import { setActiveDraft } from "../../api/slices/draftSlice.ts";
 import { useAppDispatch, useTypedSelector } from "./redux.ts";
-import {IDocumentTab} from "../../interfaces/IDocumentTab.ts";
+import {IDraftTab} from "../../interfaces/IDraftTab.ts";
 
 export const useDocumentDraftActions = () => {
     const [createDocMutation, { isLoading: isCreating }] = useCreateNewDocumentMutation();
@@ -21,7 +21,7 @@ export const useDocumentDraftActions = () => {
         try {
             const response = await createDocMutation({ id_author: user.id_user }).unwrap();
             if (response.status === "success" && response.id_document) {
-                dispatch(setActiveDraft(response.id_document));
+                return response.id_document;
             } else {
                 console.error("Ошибка при создании документа:", response.message);
             }
@@ -48,7 +48,7 @@ export const useDocumentDraftActions = () => {
 
     const deleteDocumentAndSelectNext = async (
         idToDelete: number,
-        tabs: IDocumentTab[],
+        tabs: IDraftTab[],
         activeDraftId: number | null
     ) => {
         const isCurrentTab = activeDraftId === idToDelete;
@@ -80,10 +80,18 @@ export const useDocumentDraftActions = () => {
         }
     };
 
+    const createDocumentAndSelect = async () => {
+        const newDraftId = await createDocument();
+        if (newDraftId) {
+            dispatch(setActiveDraft(newDraftId));
+        }
+    }
+
     return {
         createDocument,
         deleteDocument,
         deleteDocumentAndSelectNext,
+        createDocumentAndSelect,
         isCreating,
         isDeleting,
     };

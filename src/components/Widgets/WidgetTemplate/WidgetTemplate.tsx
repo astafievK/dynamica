@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Dropdown } from "../../Dropdown/Dropdown.tsx";
+import { Dropdown } from "../../CustomComponents/Dropdown/Dropdown.tsx";
 import { BannerNoData } from "../../BannerNoData/BannerNoData.tsx";
 import { LinkShowMore } from "../../PageProfile/ButtonShowMore/LinkShowMore.tsx";
 import { FilterOption } from "../../../types/FilterOption.ts";

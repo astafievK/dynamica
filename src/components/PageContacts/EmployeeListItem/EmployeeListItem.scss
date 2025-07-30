@@ -28,14 +28,30 @@
         opacity: 0.5;
       }
 
-      .employee-card__photo {
-        position: relative;
+      .image-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         height: 100%;
         aspect-ratio: 1/1;
-        object-fit: cover;
-        object-position: top;
-        border-radius: 50%;
-        transition: all 100ms ease-in-out;
+
+        &-label {
+          font-weight: 700;
+          font-size: 26px;
+          word-spacing: -7px;
+          color: var(--color-accent-500);
+          font-family: "GrtskTera", Arial, sans-serif;
+        }
+
+        .employee-card__photo {
+          position: relative;
+          height: 100%;
+          aspect-ratio: 1/1;
+          object-fit: cover;
+          object-position: top;
+          border-radius: 50%;
+          transition: all 100ms ease-in-out;
+        }
       }
 
       .employee-card__general {
@@ -57,6 +73,7 @@
 
           &:active {
             background: var(--color-gray-100);
+            transition: all 0ms;
           }
         }
 
@@ -66,7 +83,7 @@
           flex-wrap: wrap;
           font-weight: 600;
           line-height: 1;
-          font-size: 15px;
+          font-size: 14px;
 
           .employee-card__lastname,
           .employee-card__firstname {
@@ -192,6 +209,12 @@
       .employee-card__preview {
         height: 100px;
 
+        .image-wrapper {
+          &-label {
+            font-size: 30px;
+          }
+        }
+
         .employee-card__general {
           .employee-card__name,
           .employee-card__position {
@@ -199,7 +222,7 @@
           }
 
           .employee-card__name {
-            font-size: 17px;
+            font-size: 16px;
           }
 
           .employee-card__position {
@@ -212,7 +235,22 @@
 }
 
 @media (min-width: 1024px) {
+  .employees-list-item {
+    .employee-card {
+      .employee-card__preview {
+        .employee-card__general {
 
+          .employee-card__name {
+            font-size: 16px;
+          }
+
+          .employee-card__position {
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
 }
 
 @media (min-width: 1440px) {
@@ -226,6 +264,12 @@
 
       .employee-card__preview {
         height: 130px;
+
+        .image-wrapper {
+          &-label {
+            font-size: 34px;
+          }
+        }
 
         .employee-card__general {
           .employee-card__name,

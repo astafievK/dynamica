@@ -5,13 +5,12 @@ import "react-quill/dist/quill.snow.css";
 interface TextEditorProps {
     value?: string;
     onChange?: (content: string) => void;
-    initialValue?: string;
 }
 
-export const TextEditor: FC<TextEditorProps> = ({ value, onChange, initialValue = "" }) => {
+export const TextEditor: FC<TextEditorProps> = ({ value = '', onChange}) => {
     return (
         <ReactQuill
-            value={value ?? initialValue}
+            value={value}
             onChange={onChange}
             modules={modules}
             formats={formats}

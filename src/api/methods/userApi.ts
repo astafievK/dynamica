@@ -46,7 +46,7 @@ export const userApi = baseApi.injectEndpoints({
                     url: `/Users/getUsersFiltered.php?department=${encodeURIComponent(department)}&search=${encodeURIComponent(search)}`,
                     method: "GET",
                 }),
-                providesTags: ["Employee"],
+                providesTags: ["Employee"]
             }
         ),
         uploadProfileImage: builder.mutation<{ status: string; message: string; path?: string, user?: string, image?: string }, FormData>({

@@ -52,11 +52,11 @@ export const SearchInput: FC<SearchInputProps> = ({
                     visible: (isFocused && value.trim().length > 0)
                 })}
             >
-                <button className="search-input__clear--button">
-                    <ClearRoundedIcon
-                        className="search-input__icon search-input__icon--end"
-                        onClick={handleClear}
-                    />
+                <button
+                    className="search-input__clear--button"
+                    onMouseDown={handleClear}
+                >
+                    <ClearRoundedIcon className="search-input__icon search-input__icon--end"/>
                 </button>
             </div>
         </div>

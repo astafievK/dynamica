@@ -1,0 +1,111 @@
+.custom-button {
+  position: relative;
+  font-size: 14px;
+  min-height: 36px;
+  user-select: none;
+  padding: 0 16px;
+  border-radius: 32px;
+  overflow: hidden;
+  font-weight: 500;
+  transition: all 150ms ease-in-out;
+  background: none;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      background: var(--color-gray-100);
+    }
+  }
+
+  &:active {
+    background: var(--color-gray-200);
+    transition: background 0ms;
+  }
+
+  &.action {
+    background: var(--color-accent-100);
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        background: var(--color-accent-200);
+      }
+    }
+
+    &:active {
+      background: var(--color-accent-300);
+    }
+  }
+
+  &.secondary {
+    background: var(--color-gray-50);
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        background: var(--color-gray-100);
+      }
+    }
+
+    &:active {
+      background: var(--color-gray-200);
+    }
+  }
+
+  &.outlined {
+    background: transparent;
+    border: 1px solid var(--color-primary-700);
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        color: var(--color-gray-50);
+        background: var(--color-primary-700);
+      }
+    }
+
+    &:active {
+      background: var(--color-primary-600);
+    }
+  }
+
+  &.error {
+    color: var(--color-error-800);
+    background: #FFFFFF;
+
+    &:hover,
+    &:active {
+      color: unset;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        background: var(--color-error-100);
+      }
+    }
+
+    &:active {
+      background: var(--color-error-200);
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .custom-button {
+    font-size: 15px;
+    min-height: 38px;
+    padding: 0 20px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .custom-button {
+    font-size: 16px;
+    min-height: 42px;
+    padding: 0 24px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .custom-button {
+    font-size: 17px;
+    min-height: 46px;
+    padding: 0 28px;
+  }
+}

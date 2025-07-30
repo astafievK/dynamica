@@ -1,0 +1,89 @@
+.date-range-picker {
+  display: flex;
+  gap: 3px;
+  margin: 0 auto;
+
+  .date-picker-item {
+    display: flex;
+    background: var(--color-gray-50);
+    border-radius: 12px;
+    cursor: pointer;
+    align-items: center;
+    gap: 5px;
+    transition: all 150ms ease-in-out;
+
+    label, input {
+      padding: var(--dropdown-button-padding-default);
+      cursor: pointer;
+    }
+
+    label {
+      user-select: none;
+      font-size: 14px;
+      padding-right: 0 !important;
+    }
+
+    input {
+      background: none;
+      border-radius: 13px;
+      outline: none;
+      font-size: 14px;
+      padding-left: 0 !important;
+    }
+
+    &:hover {
+      background: var(--color-gray-100);
+    }
+
+    &:active,
+    &:focus-within {
+      background: var(--color-gray-200);
+      transition: all 0ms;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .date-range-picker {
+    .date-picker-item {
+      label, input {
+        padding: var(--dropdown-button-padding-768);
+      }
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .date-range-picker {
+    .date-picker-item {
+      label, input {
+        padding: var(--dropdown-button-padding-1024);
+      }
+
+      label {
+        font-size: 16px;
+      }
+
+      input {
+        font-size: 15px;
+      }
+    }
+  }
+}
+
+@media (min-width: 1440px) {
+  .date-range-picker {
+    .date-picker-item {
+      label, input {
+        padding: var(--dropdown-button-padding-1440);
+      }
+
+      label {
+
+      }
+
+      input {
+      }
+    }
+  }
+}

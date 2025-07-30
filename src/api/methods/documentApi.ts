@@ -1,5 +1,5 @@
 import {baseApi} from "../api.ts";
-import {IDocumentTab} from "../../interfaces/IDocumentTab.ts";
+import {IDraftTab} from "../../interfaces/IDraftTab.ts";
 import {IDocument} from "../../interfaces/IDocument.ts";
 
 export const documentApi = baseApi.injectEndpoints({
@@ -14,7 +14,7 @@ export const documentApi = baseApi.injectEndpoints({
             }),
             providesTags: ["Document"],
         }),
-        getDocumentsTabsByAuthor: builder.query<{status: string, tabs: IDocumentTab[]}, { id_author: number }>({
+        getDocumentsTabsByAuthor: builder.query<{status: string, tabs: IDraftTab[]}, { id_author: number }>({
             query: ({ id_author }) => ({
                 url: `/document/get_documents_tabs_by_author.php`,
                 method: "GET",
@@ -30,7 +30,7 @@ export const documentApi = baseApi.injectEndpoints({
                 method: "POST",
                 body: query
             }),
-            invalidatesTags: ["DocumentsTabs", "Document", "DocumentsTabs"],
+            invalidatesTags: ["Document", "DocumentsTabs"],
         }),
         createNewDocument: builder.mutation<{status: string, message: string, id_document?: number}, { id_author: number }>({
             query: (query) => ({
@@ -56,6 +56,14 @@ export const documentApi = baseApi.injectEndpoints({
             }),
             invalidatesTags: ["Document"],
         }),
+        uploadDocumentFile: builder.mutation<{ status: string; message: string; path?: string }, FormData>({
+            query: (formData) => ({
+                url: `/document/upload_document_file.php`,
+                method: "POST",
+                body: formData,
+            }),
+            invalidatesTags: ["Document"],
+        }),
     }),
 })
 
@@ -65,4 +73,5 @@ export const {
     useUpdateDocumentFieldMutation,
     useCreateNewDocumentMutation,
     useDeleteDocumentMutation,
+    useUploadDocumentFileMutation
 } = documentApi;

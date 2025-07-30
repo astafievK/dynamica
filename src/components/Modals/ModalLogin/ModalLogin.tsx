@@ -87,7 +87,7 @@ export const ModalLogin: FC = () => {
                                 id="loginUsername"
                                 type="text"
                                 className={"styled"}
-                                placeholder={"name.surname"}
+                                placeholder={"Логин"}
                                 {...register("username")}
                                 autoComplete="new-password"
                                 required

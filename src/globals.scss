@@ -38,6 +38,19 @@
   --color-gray-800: #5e5f61;
   --color-gray-900: #454647;
 
+  /* ERROR / DANGER (красный #DC3545) */
+  --color-error-50:  #f9e5e7;
+  --color-error-75:  #f4d7da;
+  --color-error-100: #efc8cc;
+  --color-error-200: #e6a7ac;
+  --color-error-300: #db8086;
+  --color-error-400: #d35e67;
+  --color-error-500: #dc3545;
+  --color-error-600: #c72f3e;
+  --color-error-700: #b02936;
+  --color-error-800: #92232d;
+  --color-error-900: #6e1b22;
+
   /* FEEDBACK (не из брендбука, но часто нужны) */
   --color-error:      #dc3545;
   --color-error-bg:   #f8d7da;
@@ -71,14 +84,23 @@
   --block-shadow:                       0 2px 10px 3px rgba(0,0,0,0.05);
   --block-background:                   rgba(255, 255, 255, 1);
   --item-shadow:                        0px 7px 12px 0px rgba(0, 0, 0, 0.2);
-  --dropdown-button-input-padding-default:  4px 16px;
-  --dropdown-button-input-padding-768:      6px 20px;
-  --dropdown-button-input-padding-1024:     7px 20px;
-  --dropdown-button-input-padding-1440:     9px 20px;
+  --dropdown-button-padding-default:  6px 16px;
+  --dropdown-button-padding-768:      6px 20px;
+  --dropdown-button-padding-1024:     7px 20px;
+  --dropdown-button-padding-1440:     9px 20px;
 }
+
 
 @font-face {
   font-family: "GrtskTera";
+  src: url(fonts/GrtskTera-Bold-Slant-Italic.woff2);
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Commissioner";
   src: url(fonts/GrtskTera-Bold-Slant-Italic.woff2);
   font-style: italic;
   font-weight: 700;
@@ -91,7 +113,7 @@
   box-sizing: border-box;
   border: none;
   color: var(--font-color);
-  font-family: 'Commissioner', Arial, sans-serif;
+  font-family: 'Commissioner', "GrtskTera", sans-serif;
   overscroll-behavior: contain;
   -webkit-tap-highlight-color: transparent;
 
@@ -102,20 +124,30 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--background-color);
+
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(150, 150, 150, 0.2);
-  transition: background 0.3s;
+  background: var(--color-gray-500);
+  border-radius: 15px;
 
   &:hover {
     background: rgba(150, 150, 150, 0.75);
   }
 }
 
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
 ul {
   list-style: none;
+}
+
+html {
+  -webkit-font-smoothing: antialiased; /* Chrome, Safari */
+  -moz-osx-font-smoothing: grayscale;  /* Firefox */
+  text-rendering: optimizeLegibility;
 }
 
 html, body {
@@ -176,7 +208,6 @@ input[type='button'] {
 
 button {
   overflow: hidden;
-  position: relative;
   background: none;
   transition: all 150ms ease-in-out;
 
@@ -234,29 +265,25 @@ button {
   left: calc(100% / -3);
   height: 100%;
   width: calc(100% / 3);
-  background: linear-gradient(to left, transparent, rgba(#fff, 0.4), transparent);
+  background: linear-gradient(to left, transparent, rgba(#000, 0.25), transparent);
   animation: shimmer-animation .8s linear infinite;
 }
 
 input[type="text"],
 input[type="password"],
 textarea {
+  min-height: 40px;
+  padding: var(--dropdown-button-padding-default);
+  border-radius: 16px;
+  background: var(--color-gray-50);
+  font-size: 14px;
+  outline: none;
   transition: all 150ms ease-in-out;
 
-  &:focus,
-  &:focus-visible {
-    outline: none;
-  }
-
   &.styled {
-    padding: 10px 15px;
-    border-radius: 16px;
-    background: var(--color-gray-50);
-    font-size: 14px;
     outline: none;
 
     &:hover {
-      outline: none;
       background: var(--color-gray-100);
     }
 
@@ -267,6 +294,19 @@ textarea {
       cursor: not-allowed;
       box-shadow: none;
     }
+  }
+
+  @media (min-width: 768px) {
+    font-size: 16px;
+    padding: var(--dropdown-button-padding-768);
+  }
+
+  @media (min-width: 1024px) {
+    padding: var(--dropdown-button-padding-1024);
+  }
+
+  @media (min-width: 1440px) {
+    padding: var(--dropdown-button-padding-1440);
   }
 }
 
@@ -350,24 +390,11 @@ textarea {
 }
 
 @media (min-width: 768px) {
-  input[type="text"],
-  input[type="password"],
-  textarea {
-    &.styled {
-      padding: 12px;
-      font-size: 16px;
-    }
-  }
+
 }
 
 @media (min-width: 1024px) {
-  input[type="text"],
-  input[type="password"],
-  textarea {
-    &.styled {
-      padding: 15px;
-    }
-  }
+
 }
 
 @media (min-width: 1440px) {

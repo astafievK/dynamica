@@ -140,11 +140,19 @@
     gap: 2px;
 
     .employee-card-skeleton {
-      width: calc(100% / 3 - 10px);
+      width: calc(100% / 3 - 2px);
 
       .employee-image {
         height: 115px;
       }
+    }
+  }
+}
+
+@media (min-width: 1650px) {
+  .employees-list {
+    .employee-card-skeleton {
+      width: calc(100% / 4 - 2px);
     }
   }
 }

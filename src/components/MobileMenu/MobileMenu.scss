@@ -1,0 +1,31 @@
+.mobile-menu {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: calc(100vh - var(--header-height-default));
+  z-index: 50;
+
+  &__content {
+    position: absolute;
+    right: 0;
+    height: 100%;
+    background: #FFFFFF;
+    width: 60%;
+    max-width: 500px;
+    z-index: 2;
+    overscroll-behavior: none;
+  }
+
+  &__spoiler {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+  }
+}

@@ -2,15 +2,15 @@ import React, { FC } from "react";
 import { FilterDepartmentSkeleton } from "../Skeletons/FilterDepartmentSkeleton.tsx";
 import './FilterButtons.css'
 
-interface FilterButtonsProps<T> {
-    filter: T | null;
-    setFilter: (filter: T) => void;
-    data: T[] | undefined;
+interface FilterButtonsProps {
+    filter: string | null;
+    setFilter: (filter: string) => void;
+    data: string[] | undefined;
     isLoading?: boolean;
-    renderLabel: (item: T) => string;
+    renderLabel: (item: string) => string;
 }
 
-export const FilterButtons: FC<FilterButtonsProps<string>> = React.memo(({ filter, setFilter, data, isLoading, renderLabel }) => {
+export const FilterButtons: FC<FilterButtonsProps> = React.memo(({ filter, setFilter, data, isLoading, renderLabel }) => {
     return (
         <div className="filters-buttons">
             {isLoading ? (

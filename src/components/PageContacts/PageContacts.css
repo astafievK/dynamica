@@ -1,6 +1,4 @@
 .page-contacts .page-filters {
-  position: sticky;
-  top: 0;
   flex-wrap: wrap;
   z-index: 15;
 }

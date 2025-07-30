@@ -1,61 +1,13 @@
-.page-admin {
-  padding-bottom: unset !important;
+.page-admin .page-content .content-tab {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 5px;
 }
 .page-admin .page-content .content-tab .content-tab__title {
   font-weight: 700;
   font-size: 16px;
   font-style: italic;
-}
-.page-admin .page-content .content-tab--feed {
-  display: flex;
-  flex-direction: column;
-  min-height: 90vh;
-}
-.page-admin .page-content .content-tab--feed .content-tab__form {
-  display: flex;
-  flex-direction: column;
-  margin-top: 10px;
-  flex-grow: 1;
-  gap: 5px;
-}
-.page-admin .page-content .content-tab--feed .content-tab__form .quill {
-  position: relative;
-  border-radius: 32px;
-  z-index: 2;
-  flex-grow: 1;
-  overflow: hidden;
-  border: 1px solid var(--background-color);
-}
-.page-admin .page-content .content-tab--feed .content-tab__form .quill .ql-toolbar {
-  border: none;
-}
-.page-admin .page-content .content-tab--feed .content-tab__form .quill .ql-container {
-  border: none;
-  overflow: hidden;
-}
-.page-admin .page-content .content-tab--feed .content-tab__form .quill .ql-container .ql-editor {
-  white-space: pre-wrap;
-  min-height: 200px;
-}
-.page-admin .page-content .content-tab--feed .content-tab__form .content-tab__input {
-  font-size: 14px;
-}
-.page-admin .page-content .content-tab--feed .content-tab__form .content-tab__input--content {
-  min-height: 180px;
-}
-.page-admin .page-content .content-tab--feed .content-tab__form .content-tab__input--description {
-  min-height: 100px;
-}
-.page-admin .page-content .content-tab--feed .content-tab__form .content-tab__actions {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  gap: 7px;
-}
-.page-admin .page-content .content-tab--feed .content-tab__form .content-tab__actions .action {
-  flex-grow: 1;
-  padding: 15px;
-  border-radius: 32px;
 }
 .page-admin .page-content .content-tab--contacts .associations-container {
   width: 100%;

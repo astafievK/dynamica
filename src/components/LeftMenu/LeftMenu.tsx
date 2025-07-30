@@ -18,6 +18,8 @@ import DataUsageRoundedIcon from '@mui/icons-material/DataUsageRounded';
 import DescriptionRoundedIcon from '@mui/icons-material/DescriptionRounded';
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
 import Person2RoundedIcon from '@mui/icons-material/Person2Rounded';
+import { motion } from "framer-motion";
+import {pageAnimation} from "../../constants/pageAnimation.ts";
 
 export const LeftMenu: FC = () => {
     const dispatch = useAppDispatch();
@@ -59,12 +61,21 @@ export const LeftMenu: FC = () => {
     );
 
     const canViewDocuments = useHasPermission(
-        [Permissions.DocumentApprover, Permissions.Superuser, Permissions.Developer],
+        [
+            Permissions.ApproverLegal,
+            Permissions.ApproverCentralMarketing,
+            Permissions.ApproverSecurityService,
+            Permissions.ApproverAccounting,
+            Permissions.Superuser,
+            Permissions.Developer
+        ],
         "any"
     );
 
     return (
-        <aside className={`left-menu`}>
+        <motion.aside
+            {...pageAnimation}
+            className={`left-menu`}>
             <div className="logo-wrapper">
                 <img className="logo" src="/logo-horizontal-black.svg" alt={"динамика"}></img>
             </div>
@@ -108,33 +119,9 @@ export const LeftMenu: FC = () => {
                 />
             )}
 
-            {true && (
-                <LeftMenuDropdown
-                    label="Управление"
-                    classNames={["admin-navigation"]}
-                    icon={<EditRoundedIcon/>}
-                    items={[
-                        canViewContacts && (
-                            <LeftMenuDropdownItem
-                                key="departments"
-                                label="Отделы"
-                                linkTo={ROUTES.ADMIN_CONTACTS}
-                            />
-                        ),
-                        canViewFeed && (
-                            <LeftMenuDropdownItem
-                                key="news"
-                                label="Новости"
-                                linkTo={ROUTES.ADMIN_FEED}
-                            />
-                        ),
-                    ]}
-                />
-            )}
-
             {canViewDocuments && (
                 <LeftMenuDropdown
-                    label="Документооборот"
+                    label="ЭДО"
                     classNames={["documents-navigation"]}
                     icon={<DescriptionRoundedIcon/>}
                     items={[
@@ -199,6 +186,6 @@ export const LeftMenu: FC = () => {
                     )
                 }
             </div>
-        </aside>
+        </motion.aside>
     );
 }

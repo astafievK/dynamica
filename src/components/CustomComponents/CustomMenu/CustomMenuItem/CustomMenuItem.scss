@@ -1,0 +1,32 @@
+.custom-menu-item {
+  padding: 6px 13px;
+  cursor: pointer;
+  font-size: 14px;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      background: var(--color-accent-50);
+      color: var(--color-accent-700);
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .custom-menu-item {
+    padding: 7px 17px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .custom-menu-item {
+    font-size: 14px;
+    padding: 10px 17px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .custom-menu-item {
+    font-size: 16px;
+    padding: 10px 20px;
+  }
+}

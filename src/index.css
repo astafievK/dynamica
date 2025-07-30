@@ -37,6 +37,18 @@
   --color-gray-700: #76787a;
   --color-gray-800: #5e5f61;
   --color-gray-900: #454647;
+  /* ERROR / DANGER (красный #DC3545) */
+  --color-error-50: #f9e5e7;
+  --color-error-75: #f4d7da;
+  --color-error-100: #efc8cc;
+  --color-error-200: #e6a7ac;
+  --color-error-300: #db8086;
+  --color-error-400: #d35e67;
+  --color-error-500: #dc3545;
+  --color-error-600: #c72f3e;
+  --color-error-700: #b02936;
+  --color-error-800: #92232d;
+  --color-error-900: #6e1b22;
   /* FEEDBACK (не из брендбука, но часто нужны) */
   --color-error: #dc3545;
   --color-error-bg: #f8d7da;
@@ -68,14 +80,21 @@
   --block-shadow: 0 2px 10px 3px rgba(0,0,0,0.05);
   --block-background: rgba(255, 255, 255, 1);
   --item-shadow: 0px 7px 12px 0px rgba(0, 0, 0, 0.2);
-  --dropdown-button-input-padding-default: 4px 16px;
-  --dropdown-button-input-padding-768: 6px 20px;
-  --dropdown-button-input-padding-1024: 7px 20px;
-  --dropdown-button-input-padding-1440: 9px 20px;
+  --dropdown-button-padding-default: 6px 16px;
+  --dropdown-button-padding-768: 6px 20px;
+  --dropdown-button-padding-1024: 7px 20px;
+  --dropdown-button-padding-1440: 9px 20px;
 }
 
 @font-face {
   font-family: "GrtskTera";
+  src: url(fonts/GrtskTera-Bold-Slant-Italic.woff2);
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Commissioner";
   src: url(fonts/GrtskTera-Bold-Slant-Italic.woff2);
   font-style: italic;
   font-weight: 700;
@@ -87,7 +106,7 @@
   box-sizing: border-box;
   border: none;
   color: var(--font-color);
-  font-family: "Commissioner", Arial, sans-serif;
+  font-family: "Commissioner", "GrtskTera", sans-serif;
   overscroll-behavior: contain;
   -webkit-tap-highlight-color: transparent;
 }
@@ -96,20 +115,26 @@
   height: 0;
 }
 
-::-webkit-scrollbar-track {
-  background: var(--background-color);
-}
-
 ::-webkit-scrollbar-thumb {
-  background: rgba(150, 150, 150, 0.2);
-  transition: background 0.3s;
+  background: var(--color-gray-500);
+  border-radius: 15px;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(150, 150, 150, 0.75);
 }
 
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
 ul {
   list-style: none;
+}
+
+html {
+  -webkit-font-smoothing: antialiased; /* Chrome, Safari */
+  -moz-osx-font-smoothing: grayscale; /* Firefox */
+  text-rendering: optimizeLegibility;
 }
 
 html, body {
@@ -157,7 +182,6 @@ input[type=button] {
 
 button {
   overflow: hidden;
-  position: relative;
   background: none;
   transition: all 150ms ease-in-out;
 }
@@ -205,35 +229,29 @@ button:active {
   left: -33.3333333333%;
   height: 100%;
   width: 33.3333333333%;
-  background: linear-gradient(to left, transparent, rgba(255, 255, 255, 0.4), transparent);
+  background: linear-gradient(to left, transparent, rgba(0, 0, 0, 0.25), transparent);
   animation: shimmer-animation 0.8s linear infinite;
 }
 
 input[type=text],
 input[type=password],
 textarea {
-  transition: all 150ms ease-in-out;
-}
-input[type=text]:focus, input[type=text]:focus-visible,
-input[type=password]:focus,
-input[type=password]:focus-visible,
-textarea:focus,
-textarea:focus-visible {
+  min-height: 40px;
+  padding: var(--dropdown-button-padding-default);
+  border-radius: 16px;
+  background: var(--color-gray-50);
+  font-size: 14px;
   outline: none;
+  transition: all 150ms ease-in-out;
 }
 input[type=text].styled,
 input[type=password].styled,
 textarea.styled {
-  padding: 10px 15px;
-  border-radius: 16px;
-  background: var(--color-gray-50);
-  font-size: 14px;
   outline: none;
 }
 input[type=text].styled:hover,
 input[type=password].styled:hover,
 textarea.styled:hover {
-  outline: none;
   background: var(--color-gray-100);
 }
 input[type=text].styled:disabled,
@@ -244,6 +262,28 @@ textarea.styled:disabled {
   color: #999;
   cursor: not-allowed;
   box-shadow: none;
+}
+@media (min-width: 768px) {
+  input[type=text],
+  input[type=password],
+  textarea {
+    font-size: 16px;
+    padding: var(--dropdown-button-padding-768);
+  }
+}
+@media (min-width: 1024px) {
+  input[type=text],
+  input[type=password],
+  textarea {
+    padding: var(--dropdown-button-padding-1024);
+  }
+}
+@media (min-width: 1440px) {
+  input[type=text],
+  input[type=password],
+  textarea {
+    padding: var(--dropdown-button-padding-1440);
+  }
 }
 
 textarea {
@@ -310,21 +350,6 @@ textarea {
   transform: translateY(-3px);
 }
 
-@media (min-width: 768px) {
-  input[type=text].styled,
-  input[type=password].styled,
-  textarea.styled {
-    padding: 12px;
-    font-size: 16px;
-  }
-}
-@media (min-width: 1024px) {
-  input[type=text].styled,
-  input[type=password].styled,
-  textarea.styled {
-    padding: 15px;
-  }
-}
 @keyframes spin {
   0% {
     transform: rotate(0deg);
@@ -573,146 +598,6 @@ html body .module-notifications .module-body .notification:hover {
 }
 html body .module-notifications .module-body .notification:active {
   background: var(--item-active-background);
-}
-html body #mobileMenu {
-  position: fixed;
-  display: flex;
-  flex-direction: column;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 50;
-}
-html body #mobileMenu.hidden .modal-content,
-html body #mobileMenu.hidden .modal__content {
-  animation-name: moveSlideUp;
-}
-html body #mobileMenu .content {
-  background: var(--secondary-color);
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  width: 100%;
-  animation: moveSlideDown 0.25s forwards;
-  animation-timing-function: cubic-bezier(0.36, 0.67, 0.43, 0.99);
-  z-index: 2;
-}
-html body #mobileMenu .content.hidden {
-  animation: moveSlideUp 0.25s forwards;
-  animation-timing-function: cubic-bezier(0.36, 0.67, 0.43, 0.99);
-}
-html body #mobileMenu .content .header {
-  display: flex;
-  align-items: center;
-  padding: 9px 12px;
-  height: 50px;
-}
-html body #mobileMenu .content .header .logo {
-  display: flex;
-  align-items: center;
-  height: 100%;
-  margin-right: auto;
-}
-html body #mobileMenu .content .header .logo img {
-  height: 100%;
-}
-html body #mobileMenu .content .header .notifications,
-html body #mobileMenu .content .header .cross {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  aspect-ratio: 1/1;
-  padding: 0 3px;
-}
-html body #mobileMenu .content .header .notifications svg,
-html body #mobileMenu .content .header .cross svg {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-html body #mobileMenu .content .header .cross {
-  margin-left: 5px;
-}
-html body #mobileMenu .content .body {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  opacity: 0;
-  transform: translateY(100%);
-  background: #FFFFFF;
-  overflow-y: scroll;
-  flex-grow: 1;
-  border-top-left-radius: 28px;
-  border-top-right-radius: 28px;
-  animation: modalMenuDown 0.25s forwards;
-  animation-timing-function: cubic-bezier(0.36, 0.67, 0.43, 0.99);
-}
-html body #mobileMenu .content .body.visible {
-  opacity: 1;
-  transform: translateY(0);
-  animation: modalMenuUp 0.25s forwards;
-  animation-timing-function: cubic-bezier(0.36, 0.67, 0.43, 0.99);
-}
-html body #mobileMenu .content .body nav {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  list-style: none;
-  padding: 5px 15px;
-}
-html body #mobileMenu .content .body nav .nav-item {
-  list-style: none;
-}
-html body #mobileMenu .content .body nav .nav-item a {
-  display: flex;
-  flex-direction: column;
-  border-bottom: 0.6px solid var(--additional-color);
-  width: 100%;
-  padding: 10px 7px;
-  text-decoration: none;
-  font-size: 18px;
-  font-family: "GrtskTera", sans-serif;
-  color: var(--secondary-color);
-}
-html body #mobileMenu .content .body nav .nav-item a span {
-  margin-top: 2px;
-  font-style: italic;
-  opacity: 0.6;
-  font-size: 18px;
-  font-weight: 600;
-}
-html body #mobileMenu .content .body .logout-btn,
-html body #mobileMenu .content .body .login-btn {
-  width: 100%;
-  padding: 30px 10px;
-  text-decoration: none;
-  font-size: 18px;
-  cursor: pointer;
-  flex-shrink: 0;
-  font-family: "GrtskTera", sans-serif;
-  background-color: transparent;
-}
-html body #mobileMenu .content .body .logout-btn {
-  color: rgba(255, 0, 0, 0.45);
-}
-html body #mobileMenu .content .body .login-btn {
-  color: var(--primary-color);
-  opacity: 0.7;
-}
-html body #mobileMenu .spoiler {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5);
-  cursor: pointer;
-  animation: fadeIn 0.35s ease-out forwards;
-}
-html body #mobileMenu .spoiler.hidden {
-  animation: fadeOut 0.35s ease-out forwards;
 }
 html body #modal-root #editEmployee .modal-content,
 html body #modal-root #editEmployee .modal__content,
@@ -1055,6 +940,10 @@ html body #dynamica {
   display: flex;
   flex-direction: column;
 }
+html body #dynamica .layout-content {
+  min-height: calc(100vh - var(--header-height-default));
+  padding-top: var(--header-height-default);
+}
 html body #dynamica .layout-content .main-container {
   position: relative;
   display: flex;
@@ -1079,35 +968,14 @@ html body #dynamica .layout-content .main-container main .page {
   max-width: 1920px;
   margin: 0 auto;
 }
-html body #dynamica .layout-content .main-container main .page .page-header {
-  display: none;
-  flex-direction: column;
-  padding: 5px;
-}
-html body #dynamica .layout-content .main-container main .page .page-header .page-title {
-  font-family: "GrtskTera", sans-serif;
-  font-weight: 700;
-  line-height: 17px;
-  font-style: italic;
-  text-align: left;
-  font-size: 14px;
-}
 html body #dynamica .layout-content .main-container main .page .page-filters {
   display: flex;
-  padding: 3px;
   background: rgba(255, 255, 255, 0.76);
   backdrop-filter: blur(16px);
   gap: 3px;
-  border-radius: 0 0 16px 16px;
 }
-html body #dynamica .layout-content .main-container main .page .page-content {
+html body #dynamica .layout-content .main-container main .page .page-item {
   padding: 5px;
-}
-html body #dynamica .layout-content .main-container main .page .page-content .page-content-item {
-  width: 100%;
-  height: auto;
-  background: var(--block-background);
-  border-radius: 32px;
 }
 html body #dynamica .layout-content .main-container main .page.page-documents .page-content .documents-container .documents-filter .filters-buttons {
   justify-content: left;
@@ -1272,13 +1140,16 @@ html body #dynamica .layout-content .main-container main .page.page-not-found .c
     user-select: none;
   }
   html body #dynamica .layout-content {
-    min-height: calc(100vh - var(--header-height-768));
+    min-height: 100vh;
+    padding-top: 0;
   }
   html body #dynamica .layout-content .main-container main .page .page-header .page-title {
     line-height: unset;
     font-size: 24px;
   }
   html body #dynamica .layout-content .main-container main .page .page-filters {
+    position: sticky;
+    top: 0;
     gap: 7px;
   }
   html body #dynamica .layout-content .main-container main .page.page-admin .page-admin__filters {
@@ -1360,9 +1231,6 @@ html body #dynamica .layout-content .main-container main .page.page-not-found .c
   html #modal-root #editEmployee .modal__content .modal__actions .modal__action {
     font-size: 19px;
   }
-  html .styled {
-    font-size: 16px;
-  }
   html body #modal-root #createDocument .modal-content__body,
   html body #modal-root #createDocument .modal__content__body {
     grid-template-columns: 1fr 2fr;
@@ -1398,11 +1266,6 @@ html body #dynamica .layout-content .main-container main .page.page-not-found .c
   }
   html body #dynamica .layout-content {
     display: flex;
-    min-height: calc(100vh - var(--header-height-1024));
-  }
-  html body #dynamica .layout-content .main-container main .page {
-    border-radius: 32px;
-    padding-bottom: 150px;
   }
   html body #dynamica .layout-content .main-container main .page .page-header .page-title {
     font-size: 26px;
@@ -1466,14 +1329,8 @@ html body #dynamica .layout-content .main-container main .page.page-not-found .c
   }
 }
 @media (min-width: 1440px) {
-  html body #dynamica .layout-content {
-    min-height: calc(100vh - var(--header-height-1440));
-  }
   html body #dynamica .layout-content .main-container main .page .page-header .page-title {
     font-size: 34px;
-  }
-  html body #dynamica .layout-content .main-container main .page .page-content {
-    padding: 10px;
   }
   html body #dynamica .layout-content .main-container main .page.page-document .content .progress-bar-container .progress-item:first-child .progress-point-wrapper .progress-label {
     transform: translateX(0);

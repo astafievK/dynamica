@@ -13,7 +13,7 @@
     padding: 0 20px;
 
     img {
-      width: 90%;
+      width: 85%;
     }
   }
 
@@ -21,15 +21,16 @@
     display: flex;
     align-items: center;
     position: relative;
-    font-size: 14px;
-    font-weight: 500;
     text-decoration: none;
     width: 100%;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
     opacity: 0.7;
     transition: all 150ms ease-in-out;
+
+    .label {
+      font-family: "GrtskTera", Arial, sans-serif;
+      white-space: nowrap;
+      font-size: 12px;
+    }
 
     .action-button {
       display: flex;
@@ -38,8 +39,7 @@
       margin-left: auto;
       height: 80%;
       aspect-ratio: 1/1;
-      background: var(--color-gray-50);
-      padding: 7px;
+      padding: 3px;
       border-radius: 50%;
       transition: all 150ms ease-in-out;
 
@@ -204,7 +204,7 @@
 
 @media (min-width: 1440px) {
   .left-menu {
-    width: 270px;
+    width: 250px;
 
     .logo-wrapper {
       padding: 0 20px;
@@ -215,17 +215,20 @@
       padding: 0 20px;
 
       .left-menu-navigation__item {
-        font-size: 17px;
         height: 40px;
 
+        .label {
+          font-size: 14px;
+        }
+
         .icon {
-          margin-right: 12px;
+          margin-right: 10px;
 
           svg {
             fill: var(--color-primary-700);
             flex-shrink: 0;
-            height: 25px;
-            width: 25px;
+            height: 22px;
+            width: 22px;
           }
         }
       }
@@ -240,16 +243,16 @@
       padding: 5px 20px;
 
       .label {
-        font-size: 17px;
+        font-size: 16px;
       }
 
       .icon {
         display: flex;
-        margin-right: 12px;
+        margin-right: 7px;
 
         svg {
-          height: 25px;
-          width: 25px;
+          height: 22px;
+          width: 22px;
         }
       }
     }

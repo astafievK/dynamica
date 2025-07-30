@@ -1,6 +1,6 @@
-.tabs {
+.tabs-list {
   display: flex;
-  overflow-x: auto;
+  overflow: auto;
   width: 100%;
   gap: 5px;
 
@@ -11,8 +11,9 @@
     border-radius: 32px;
     width: 200px;
     flex-shrink: 0;
+    border: 1px solid var(--color-gray-100);
     cursor: pointer;
-    padding: 0 10px 0 12px;
+    padding: 5px 10px 5px 12px;
     transition: all 150ms ease-in-out;
 
     svg {
@@ -34,8 +35,11 @@
 
     .tab-close {
       display: flex;
+      justify-content: center;
       align-items: center;
       padding: 1px;
+      height: 100%;
+      aspect-ratio: 1/1;
       border-radius: 50%;
       cursor: pointer;
       flex-shrink: 0;
@@ -53,7 +57,9 @@
 
     &.active {
       cursor: unset;
-      background: var(--color-accent-100);
+      background: var(--color-gray-50);
+      border-color: var(--color-gray-50);
+      transition: all 0ms;
 
       .tab-close {
         &:hover {
@@ -63,7 +69,7 @@
     }
 
     &:not(.active):hover {
-      background: var(--color-gray-50);
+      border-color: var(--color-gray-500);
     }
   }
 
@@ -78,5 +84,11 @@
     svg {
       font-size: 20px;
     }
+  }
+}
+
+@media (min-width: 768px) {
+  .tabs-list {
+    flex-wrap: wrap;
   }
 }

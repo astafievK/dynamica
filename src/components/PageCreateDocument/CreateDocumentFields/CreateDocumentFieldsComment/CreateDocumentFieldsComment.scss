@@ -1,0 +1,54 @@
+.create-document__comment {
+  .fields-block {
+    &__fields {
+      display: flex;
+      flex-direction: column;
+
+      #draftDescriptionTextarea {
+        min-height: 80px;
+      }
+    }
+  }
+}
+
+
+
+@media (min-width: 768px) {
+  .create-document__comment {
+    .fields-block {
+      &__fields {
+        #draftDescriptionTextarea {
+          min-height: 110px;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .create-document__comment {
+    .fields-block {
+      &__fields {
+        gap: 4px;
+
+        #draftDescriptionTextarea {
+          min-height: 130px;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 1440px) {
+  .create-document__comment {
+    .fields-block {
+      &__fields {
+        gap: 6px;
+      }
+
+      #draftDescriptionTextarea {
+        min-height: 160px;
+      }
+    }
+  }
+}

@@ -4,7 +4,7 @@ import { useModal } from "../../../store/hooks/useModal.ts";
 import { IUser } from "../../../interfaces/IUser.ts";
 import { useEditEmployee } from "../../Contexts/EditEmployeeContext/EditEmployeeContext.tsx";
 import { UpdateUserCommand } from "../../../api/commands/IUpdateUserCommand.ts";
-import { DropdownCheckbox } from "../../DropdownCheckbox/DropdownCheckbox.tsx";
+import { DropdownCheckbox } from "../../CustomComponents/DropdownCheckbox/DropdownCheckbox.tsx";
 import { useGetPermissionQuery } from "../../../api/methods/permissionApi.ts";
 import {
     useGetUserHasPermissionIdsByIdUserQuery,
@@ -13,6 +13,7 @@ import {
 import { useUpdateUserMutation } from "../../../api/methods/userApi.ts";
 import { useHasPermission } from "../../../store/hooks/useHasPermission.ts";
 import { Permissions } from "../../../constants/permissions.ts";
+import Button from "../../Buttons/Button/Button.tsx";
 
 type ModalEditEmployeeProps = {
     employee: IUser;
@@ -22,8 +23,8 @@ export const ModalEditEmployee: FC<ModalEditEmployeeProps> = ({ employee }) => {
     const {closeModal} = useEditEmployee();
     const {isClosing, handleClose} = useModal(true, () => closeModal());
 
-    const {data: allUserFunctions} = useGetPermissionQuery();
-    const {data: selectedUserFunctions} = useGetUserHasPermissionIdsByIdUserQuery(
+    const {data: allPermissions} = useGetPermissionQuery();
+    const {data: selectedUserPermissions} = useGetUserHasPermissionIdsByIdUserQuery(
         {idUser: employee.id_user},
         {skip: !employee.id_user}
     );
@@ -41,7 +42,7 @@ export const ModalEditEmployee: FC<ModalEditEmployeeProps> = ({ employee }) => {
     const [selected, setSelected] = useState<number[]>([]);
     const [loadingId, setLoadingId] = useState<number | null>(null);
 
-    const handleFunctionChanged = async (optionId: number) => {
+    const handlePermissionChanged = async (optionId: number) => {
         const isSelected = selected.includes(optionId);
         let newSelected: number[];
 
@@ -55,15 +56,17 @@ export const ModalEditEmployee: FC<ModalEditEmployeeProps> = ({ employee }) => {
         setLoadingId(optionId);
 
         try {
-            setSelected(newSelected);
-
+            // Ждем успешного обновления на сервере
             await updateUserPermission({
                 id_user: employee.id_user,
-                id_user_function: optionId
+                id_permission: optionId,
             }).unwrap();
+
+            // Только после успеха обновляем локальный стейт
+            setSelected(newSelected);
         } catch (e) {
             console.error("Ошибка при обновлении прав пользователя:", e);
-            setSelected(selected); // откат
+            // Не меняем selected, оставляем прежнее состояние (откат)
         } finally {
             setLoadingId(null);
         }
@@ -78,8 +81,7 @@ export const ModalEditEmployee: FC<ModalEditEmployeeProps> = ({ employee }) => {
         };
 
         try {
-            const response = await updateUser(payload).unwrap();
-            console.log(response)
+            await updateUser(payload).unwrap();
         } catch (error) {
             console.error("Ошибка при обновлении:", error);
         } finally {
@@ -157,14 +159,14 @@ export const ModalEditEmployee: FC<ModalEditEmployeeProps> = ({ employee }) => {
                                             disabled={isLoading}
                                         />
                                     </div>
-                                    {allUserFunctions && canViewDropdown && (
+                                    {allPermissions && canViewDropdown && (
                                         <DropdownCheckbox
-                                            options={allUserFunctions.functions.map(item => ({
+                                            options={allPermissions.permissions.map(item => ({
                                                 id: item.id_permission,
                                                 title: item.title,
                                             }))}
-                                            selectedValues={selectedUserFunctions ? selectedUserFunctions.functions : []}
-                                            onChange={handleFunctionChanged}
+                                            selectedValues={selectedUserPermissions ? selectedUserPermissions.permissions : []}
+                                            onChange={handlePermissionChanged}
                                             placeholder="Права и возможности"
                                             areVariantsDisabled={isUpdateUserPermissionLoading}
                                             loadingId={loadingId}
@@ -176,17 +178,22 @@ export const ModalEditEmployee: FC<ModalEditEmployeeProps> = ({ employee }) => {
                     </div>
                 </div>
                 <div className="modal__actions">
-                    <button className="modal__action modal__action--save primary" onClick={handleSave}
-                            disabled={isLoading}>
+                    <Button
+                        variant={"action"}
+                        onClick={handleSave}
+                        disabled={isLoading}
+                    >
                         Сохранить
                         {isLoading && (
                             <div className={"shimmer"}></div>
                         )}
-                    </button>
-                    <button className="modal__action modal__action--cancel secondary" onClick={handleClose}
-                            disabled={isLoading}>
+                    </Button>
+                    <Button
+                        onClick={handleClose}
+                        disabled={isLoading}
+                    >
                         Отмена
-                    </button>
+                    </Button>
                 </div>
             </div>
 

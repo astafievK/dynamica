@@ -18,5 +18,5 @@ const draftSlice = createSlice({
     },
 });
 
-export const { setActiveDraft} = draftSlice.actions;
+export const { setActiveDraft } = draftSlice.actions;
 export default draftSlice.reducer;

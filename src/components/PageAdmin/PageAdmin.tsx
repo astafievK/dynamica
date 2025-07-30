@@ -4,12 +4,10 @@ import "./PageAdmin.css";
 
 export const PageAdmin: FC = () => {
     return (
-        <>
-            <div className="page page-admin">
-                <div className="page-content">
-                    <Outlet />
-                </div>
+        <div className="page page-admin">
+            <div className="page-content">
+                <Outlet />
             </div>
-        </>
+        </div>
     );
 };

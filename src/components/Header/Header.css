@@ -1,241 +1,35 @@
 header {
   display: flex;
-  position: sticky;
-  flex-direction: row;
-  width: 100%;
+  position: fixed;
   top: 0;
-  height: var(--header-height-default);
-  transition: transform 0.3s ease-in-out;
-  gap: 15px;
-  background: rgba(241, 242, 242, 0.8);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  will-change: backdrop-filter;
   justify-content: space-between;
-  padding: 9px 12px;
+  width: 100%;
+  height: var(--header-height-default);
+  gap: 15px;
+  background: #FFFFFF;
+  padding: 9px 20px;
   z-index: 2025;
 }
-header .header-section {
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-}
-header .header-section__logo #leftMenuToggler {
-  align-items: center;
-  justify-content: center;
-  display: none;
-}
-header .header-section__logo #leftMenuToggler svg {
-  height: 22px;
-  width: 22px;
-}
-header .header-section__logo #logo {
-  display: flex;
-}
-header .header-section__logo #logo img {
+header #logo {
   height: 100%;
-}
-header .header-item {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: row;
-  gap: 5px;
-  background: var(--color-gray-75);
-  border-radius: 32px;
-  height: 100%;
-  aspect-ratio: 1/1;
-  transition: all 150ms ease-in-out;
-}
-header .header-item svg {
-  fill: var(--color-primary-500);
-}
-header .header-item:hover {
-  background: var(--color-primary-50);
-}
-header .header-item:active {
-  background: var(--color-primary-100);
-  transition: none;
-}
-header .global-search-container {
-  display: none;
-  flex-grow: 1;
-}
-header .global-search-container .global-search {
-  border-radius: 32px;
-  width: 100%;
-  height: 100%;
-  font-weight: 600;
-  background: transparent;
-}
-header .profile-container {
-  display: none;
-  height: 100%;
-}
-header .profile-container .user-dropdown-wrapper {
-  position: relative;
-  padding: 2px;
-}
-header .profile-container .user-dropdown-wrapper .user-wrapper {
-  display: flex;
-  flex-direction: row;
-  gap: 7px;
-  align-items: center;
-  cursor: pointer;
-  padding-right: 15px;
-  background: none;
-  border: none;
-  height: 100%;
-  overflow: hidden;
-}
-header .profile-container .user-dropdown-wrapper .user-wrapper .user-image {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  aspect-ratio: 1/1;
-  background-position: top;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-header .profile-container .user-dropdown-wrapper .user-wrapper-label {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-header .profile-container .user-dropdown-wrapper .user-wrapper-label__name, header .profile-container .user-dropdown-wrapper .user-wrapper-label__position {
-  text-wrap: nowrap;
-  line-height: 1;
-  text-align: left;
-}
-header .profile-container .user-dropdown-wrapper .user-wrapper-label__name {
-  font-size: 14px;
-  font-weight: 500;
-}
-header .profile-container .user-dropdown-wrapper .user-wrapper-label__position {
-  font-size: 11px;
-  color: var(--color-gray-700);
-}
-header .profile-container .user-dropdown-wrapper .user-dropdown-menu {
-  position: absolute;
-  right: 0;
-  width: 200px;
-  background: var(--block-background);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
-  overflow: scroll;
-  border-radius: 12px;
-  padding: 4px;
-  z-index: 999;
-}
-header .profile-container .user-dropdown-wrapper .user-dropdown-menu .profile-wrapper {
-  display: flex;
-  flex-direction: row;
-  gap: 5px;
-}
-header .profile-container .user-dropdown-wrapper .user-dropdown-menu .profile-wrapper-item {
-  display: flex;
-  align-items: center;
-}
-header .profile-container .user-dropdown-wrapper .user-dropdown-menu .profile-wrapper a {
-  flex-grow: 1;
-}
-header .profile-container .user-dropdown-wrapper .user-dropdown-menu .profile-wrapper #profileWrapperLogoutBtn {
-  aspect-ratio: 1/1;
-  justify-content: center;
   width: auto;
 }
-header .profile-container .user-dropdown-wrapper .user-dropdown-menu .profile-wrapper #profileWrapperLogoutBtn:hover svg {
-  fill: var(--color-error);
-}
-header .profile-container .user-dropdown-wrapper .user-dropdown-menu a, header .profile-container .user-dropdown-wrapper .user-dropdown-menu button {
-  display: block;
-  width: 100%;
-  padding: 12px;
-  text-align: left;
-  background: none;
-  border: none;
-  cursor: pointer;
-  text-decoration: none;
-  border-radius: 7px;
-  font-size: 16px;
-  transition: all 150ms ease-in-out;
-}
-header .profile-container .user-dropdown-wrapper .user-dropdown-menu a:hover, header .profile-container .user-dropdown-wrapper .user-dropdown-menu button:hover {
-  background-color: var(--color-gray-50);
+header #logo img {
+  height: 100%;
 }
 header #burger {
-  margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: unset !important;
+  padding: 0 !important;
   aspect-ratio: 1/1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-}
-header #burger .body {
-  height: 20px;
-  width: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: 8px;
-}
-header #burger .body .line {
-  height: 2px;
-  background: var(--secondary-color);
-  border-radius: 4px;
-  width: 100%;
-  transition: transform 0.3s, opacity 0.3s;
 }
 
 @media (min-width: 768px) {
   header {
-    height: var(--header-height-768);
-    padding: 4px 20px;
-  }
-  header .header-section__logo #logo {
-    padding: 4px 0;
-  }
-  header .global-search-container {
-    display: block;
-  }
-}
-@media (min-width: 1024px) {
-  header {
-    height: var(--header-height-1024);
-    padding: 4px 10px 4px 3px;
-  }
-  header .header-section__logo #leftMenuToggler {
-    display: flex;
-  }
-  header .header-section__logo #logo {
-    padding: 4px 0;
-  }
-  header #burger {
     display: none;
-  }
-  header .profile-container {
-    display: flex;
-    gap: 3px;
-  }
-  header .profile-container .header-item {
-    font-size: 14px;
-  }
-  header .profile-container .header-item svg {
-    height: 20px;
-    width: 20px;
-  }
-}
-@media (min-width: 1440px) {
-  header {
-    height: var(--header-height-1440);
-    padding: 5px 10px 5px 3px;
-  }
-  header .profile-container {
-    gap: 10px;
-  }
-  header .profile-container .header-item svg {
-    height: 24px;
-    width: 24px;
   }
 }
 

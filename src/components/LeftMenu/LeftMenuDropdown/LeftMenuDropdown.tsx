@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "./LeftMenuDropdown.css";
 import {AnimatePresence, motion} from "framer-motion";
-import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
-import ArrowDropUpRoundedIcon from '@mui/icons-material/ArrowDropUpRounded';
+import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
+import KeyboardArrowUpRoundedIcon from '@mui/icons-material/KeyboardArrowUpRounded';
 
 interface ILeftMenuDropdownProps {
     label: string;
@@ -31,7 +31,7 @@ export const LeftMenuDropdown: React.FC<ILeftMenuDropdownProps> = ({
             >
                 {icon && <span className="icon">{icon}</span>}
                 <span className="label">{label}</span>
-                {isOpen ? <ArrowDropUpRoundedIcon /> : <ArrowDropDownRoundedIcon />}
+                {isOpen ? <KeyboardArrowUpRoundedIcon /> : <KeyboardArrowDownRoundedIcon />}
             </div>
 
             <AnimatePresence>

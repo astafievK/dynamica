@@ -1,0 +1,82 @@
+.checkbox-dropdown {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.checkbox-dropdown.expanded .checkbox-dropdown__toggle {
+  border-radius: 32px 32px 0 0;
+}
+.checkbox-dropdown__toggle {
+  width: 100%;
+  padding: 15px;
+  font-size: 14px;
+  border-radius: 32px;
+  background-color: var(--block-background);
+  border: 1px solid var(--color-gray-100);
+  cursor: pointer;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.15s;
+}
+.checkbox-dropdown__toggle:hover {
+  border-color: var(--color-gray-500);
+}
+.checkbox-dropdown__menu {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  width: 100%;
+  border: 1px solid var(--color-gray-100);
+  border-top: none;
+  border-radius: 0 0 32px 32px;
+  background: var(--block-background);
+  will-change: height, opacity;
+  overflow: hidden;
+  z-index: 1000;
+}
+.checkbox-dropdown__menu-inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1px;
+  padding: 10px;
+}
+.checkbox-dropdown__menu-inner .checkbox-dropdown__option {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  padding: 12px 10px;
+  border-radius: 18px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+.checkbox-dropdown__menu-inner .checkbox-dropdown__option:hover {
+  background-color: var(--color-primary-50);
+}
+.checkbox-dropdown__menu-inner .checkbox-dropdown__option input {
+  display: none;
+}
+.checkbox-dropdown__menu-inner .checkbox-dropdown__option--selected {
+  background-color: var(--color-primary-500);
+  color: #FFFFFF;
+}
+.checkbox-dropdown__menu-inner .checkbox-dropdown__option--selected:hover {
+  background-color: var(--color-primary-600);
+}
+.checkbox-dropdown__menu-inner .checkbox-dropdown__option.is-disabled {
+  opacity: 0.5;
+}
+
+@media (min-width: 1024px) {
+  .checkbox-dropdown__toggle {
+    font-size: 16px;
+  }
+  .checkbox-dropdown__menu-inner .checkbox-dropdown__option {
+    font-size: 14px;
+  }
+}
+
+/*# sourceMappingURL=DropdownCheckbox.css.map */

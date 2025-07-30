@@ -1,6 +1,7 @@
 import React from "react";
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import classNames from "classnames";
+import {LoadingCircle} from "../../../LoadingCircle/LoadingCircle.tsx";
 
 interface ITabProps {
     title: string;
@@ -13,29 +14,34 @@ interface ITabProps {
 
 export const Tab: React.FC<ITabProps> = ({ title, isActive, onClick, onClose, tabsCount, isRemoving }) => {
     return (
-        <div
+        <button
             className={classNames("tabs-item", {
                 active: isActive,
                 removing: isRemoving,
             })}
-            onClick={onClick}
+            onMouseDown={onClick}
             title={title}
+            type={"button"}
         >
             <span className="tab-title">{title}</span>
             {tabsCount > 1 && (
                 <button
                     type="button"
                     className="tab-close"
-                    title="Удалить документ"
+                    title="Удалить черновик"
                     onMouseDown={(e) => e.stopPropagation()}
                     onClick={(e) => {
                         e.stopPropagation();
                         onClose();
                     }}
                 >
-                    <CloseRoundedIcon />
+                    {
+                        isRemoving ?
+                            <LoadingCircle size={18} /> :
+                            <CloseRoundedIcon />
+                    }
                 </button>
             )}
-        </div>
+        </button>
     );
 };

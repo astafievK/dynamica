@@ -4,19 +4,19 @@ import { FC, useEffect, useMemo, useState } from "react";
 import { pageAnimation } from "../../constants/pageAnimation.ts";
 import { useDebounce } from "../../store/hooks/useDebounce.ts";
 import { useSearchParams } from "react-router-dom";
-import {useAppDispatch, useTypedSelector} from "../../store/hooks/redux.ts";
+import {useTypedSelector} from "../../store/hooks/redux.ts";
 import { Pagination } from "../Pagination/Pagination.tsx";
-import { Dropdown } from "../Dropdown/Dropdown.tsx";
+import { Dropdown } from "../CustomComponents/Dropdown/Dropdown.tsx";
 import {EmployeesList} from "./EmployeesList/EmployeesList.tsx";
-import {setEmployeesContainerStyle} from "../../api/slices/employeesContainerSlice.ts";
 import {useGetDepartmentsTitlesNotNullQuery} from "../../api/methods/departmentApi.ts";
 import {Permissions} from "../../constants/permissions.ts";
 import {useHasPermission} from "../../store/hooks/useHasPermission.ts";
 import "./PageContacts.css"
 import {SearchInput} from "../SearchInput/SearchInput.tsx";
 
-const ITEMS_PER_PAGE = 100;
+const ITEMS_PER_PAGE = 150;
 
+/*
 const contactsStyles = [
     { id: 0, title: "Новый вид" },
     { id: 1, title: "Старый вид" },
@@ -31,10 +31,12 @@ const styleToIdMap: Record<"new" | "old", number> = {
     new: 0,
     old: 1,
 };
+*/
 
 const normalizeSearch = (value: string) => value.trim().replace(/\s+/g, " ");
 
 export const PageContacts: FC = () => {
+    const [isInitializedFromUrl, setIsInitializedFromUrl] = useState(false);
     const [selectedDepartment, setSelectedDepartment] = useState<{id: number, title: string}>({ id: 0, title: "Все" });
     const [temporarySearchValue, setTemporarySearchValue] = useState<string>("");
     const debouncedSearchValue = useDebounce(temporarySearchValue, 80);
@@ -47,33 +49,38 @@ export const PageContacts: FC = () => {
             department: selectedDepartment?.title === "Все" ? "" : selectedDepartment?.title,
             search: normalizeSearch(debouncedSearchValue)
         },
+        {
+            pollingInterval: 90000
+        }
     );
 
     const canViewHiddenUsers = useHasPermission(Permissions.Superuser);
 
     const style = useTypedSelector(state => state.employeesContainerReducer.style);
-    const dispatch = useAppDispatch();
-    const selectedStyle = contactsStyles.find(c => styleToIdMap[style] === c.id) || null;
+    //const dispatch = useAppDispatch();
+    //const selectedStyle = contactsStyles.find(c => styleToIdMap[style] === c.id) || null;
 
     const [searchParams, setSearchParams] = useSearchParams();
     const urlDepartment = searchParams.get("department");
     const urlSearch = searchParams.get("search");
 
     useEffect(() => {
-        if (departmentsTitles && urlDepartment && departmentsTitles.departments.includes(urlDepartment)) {
-            setSelectedDepartment({ id: 0, title: urlDepartment });
-        }
-    }, [departmentsTitles, urlDepartment]);
+        if (departmentsTitles && !isInitializedFromUrl) {
+            if (urlDepartment && departmentsTitles.departments.includes(urlDepartment)) {
+                setSelectedDepartment({ id: 0, title: urlDepartment });
+            }
 
-    // установка строки поиска один раз при монтировании
-    useEffect(() => {
-        if (urlSearch) {
-            setTemporarySearchValue(urlSearch);
-        }
-    }, []);
+            if (urlSearch) {
+                setTemporarySearchValue(urlSearch);
+            }
 
-    // синхронизация URL с фильтрами
+            setIsInitializedFromUrl(true);
+        }
+    }, [departmentsTitles, urlDepartment, urlSearch, isInitializedFromUrl]);
+
     useEffect(() => {
+        if (!isInitializedFromUrl) return;
+
         setCurrentPage(1);
 
         const normalizedSearch = normalizeSearch(temporarySearchValue);
@@ -94,7 +101,7 @@ export const PageContacts: FC = () => {
         if (newParams.toString() !== searchParams.toString()) {
             setSearchParams(newParams);
         }
-    }, [selectedDepartment, temporarySearchValue]);
+    }, [selectedDepartment, temporarySearchValue, isInitializedFromUrl]);
 
     const paginatedUsers = useMemo(() => {
         if (!data?.users) return [];
@@ -113,11 +120,14 @@ export const PageContacts: FC = () => {
         scrollTo(0,0)
     }
 
+    /*
     const onSelectStyle = (option: { id: number; title: string }) => {
         const styleValue = idToStyleMap[option.id];
         dispatch(setEmployeesContainerStyle(styleValue));
         scrollTo(0,0)
     };
+    */
+
 
     const onSelectDepartment = (option: { id: number; title: string }) => {
         setSelectedDepartment(option);
@@ -130,8 +140,10 @@ export const PageContacts: FC = () => {
                 {...pageAnimation}
                 className="page page-contacts"
             >
-                <div className="page-filters">
-                    <Dropdown
+                <div className="page-filters page-item">
+                    {
+                        /*
+                        <Dropdown
                         options={contactsStyles}
                         label="Стиль"
                         searchPlaceholder={"Поиск по стилю"}
@@ -140,6 +152,8 @@ export const PageContacts: FC = () => {
                         externalClasses={['page-filters-item']}
                         searchEnabled={false}
                     />
+                         */
+                    }
                     {
                         departmentsTitles && !departmentsLoading && (
                             <Dropdown

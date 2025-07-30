@@ -31,7 +31,7 @@ export const PagePost: FC = () => {
                 <div className="content-text page-content-item" dangerouslySetInnerHTML={{ __html: data.post.description || "" }} />
                 {
                     /*
-                        <div className="content-files page-content-item"><span>123</span></div>
+                        <div className="content-documents_icons page-content-item"><span>123</span></div>
                      */
                 }
             </div>

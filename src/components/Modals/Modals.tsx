@@ -2,18 +2,17 @@ import { ModalLogin } from "./ModalLogin/ModalLogin";
 import { ModalNotifications } from "./ModalNotifications/ModalNotifications";
 import { MobileMenu } from "../MobileMenu/MobileMenu";
 import { useTypedSelector } from "../../store/hooks/redux";
-import {FC} from "react";
+import { FC } from "react";
 
 export const Modals: FC = () => {
-    const {modalLoginIsOpen} = useTypedSelector(state => state.modalLoginReducer);
-    const {modalNotificationsIsOpen} = useTypedSelector(state => state.modalNotificationsReducer);
-    const {mobileMenuIsOpen} = useTypedSelector(state => state.mobileMenuReducer);
+    const { modalLoginIsOpen } = useTypedSelector(state => state.modalLoginReducer);
+    const { modalNotificationsIsOpen } = useTypedSelector(state => state.modalNotificationsReducer);
 
     return (
         <>
-            {modalLoginIsOpen && <ModalLogin/>}
-            {mobileMenuIsOpen && <MobileMenu/>}
-            {modalNotificationsIsOpen && <ModalNotifications/>}
+            {modalLoginIsOpen && <ModalLogin />}
+            <MobileMenu />
+            {modalNotificationsIsOpen && <ModalNotifications />}
         </>
     );
-}
+};

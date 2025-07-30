@@ -1,17 +1,14 @@
 .comments-wrapper {
   display: flex;
   height: 100%;
-  position: sticky;
-  top: 10px;
-  margin: 0 auto;
   flex-direction: column;
+  overflow: hidden;
 
   .comments__title {
-    font-size: 18px;
+    font-size: 14px;
     font-weight: 600;
-    padding: 10px 15px 0 15px;
-    color: var(--color-gray-800);
-    margin-bottom: 5px;
+    margin-left: 10px;
+    margin-bottom: 10px;
   }
 
   .comments__list {
@@ -19,7 +16,7 @@
     flex-direction: column;
     flex-grow: 1;
     gap: 5px;
-    padding: 7px 5px;
+    padding-right: 3px;
     overflow-y: auto;
 
     .comment {
@@ -32,18 +29,18 @@
       background: var(--color-gray-50);
 
       &__author {
-        font-size: 16px;
+        font-size: 12px;
         font-weight: 500;
         margin-bottom: 2px;
       }
 
       &__content {
-        font-size: 16px;
+        font-size: 12px;
         margin-bottom: 6px;
       }
 
       &__datetime {
-        font-size: 12px;
+        font-size: 10px;
         text-align: right;
         color: var(--color-gray-800);
         user-select: none;
@@ -61,16 +58,15 @@
   }
 
   .create-comment-container {
+    display: flex;
     position: sticky;
+    flex-shrink: 0;
     bottom: 0;
     left: 0;
     right: 0;
     height: 55px;
     padding-top: 5px;
-    padding-left: 5px;
-    display: flex;
     gap: 5px;
-    border-top: 1px solid var(--color-gray-50);
 
     .create-comment {
       &__input,
@@ -92,13 +88,59 @@
         background: var(--color-gray-50);
 
         svg {
-          height: 1.5em;
-          width: 1.5em;
           transform: translateX(5%);
         }
 
         &:hover {
           background: var(--color-gray-100);
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+
+}
+
+@media (min-width: 1024px) {
+  .comments-wrapper {
+    .comments__list {
+      .comment {
+        &__author {
+          font-size: 14px;
+        }
+
+        &__content {
+          font-size: 14px;
+        }
+
+        &__datetime {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 1440px) {
+  .comments-wrapper {
+    .comments__title {
+      font-size: 18px;
+    }
+
+    .comments__list {
+      .comment {
+        &__author {
+          font-size: 16px;
+        }
+
+        &__content {
+          font-size: 16px;
+        }
+
+        &__datetime {
+          font-size: 14px;
         }
       }
     }

@@ -1,78 +1,15 @@
 .page-admin {
-  padding-bottom: unset !important;
-
   .page-content {
     .content-tab {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      padding: 5px;
+
       .content-tab__title {
         font-weight: 700;
         font-size: 16px;
         font-style: italic;
-      }
-
-      &--feed {
-        display: flex;
-        flex-direction: column;
-        min-height: 90vh;
-
-        .content-tab__form {
-          display: flex;
-          flex-direction: column;
-          margin-top: 10px;
-          flex-grow: 1;
-          gap: 5px;
-
-          .quill {
-            position: relative;
-            border-radius: 32px;
-            z-index: 2;
-            flex-grow: 1;
-            overflow: hidden;
-            border: 1px solid var(--background-color);
-
-            .ql-toolbar {
-              border: none;
-            }
-
-            .ql-container {
-              border: none;
-              overflow: hidden;
-
-              .ql-editor {
-                white-space: pre-wrap;
-                min-height: 200px;
-              }
-            }
-          }
-
-          .content-tab__input {
-            font-size: 14px;
-
-            &--title {
-
-            }
-
-            &--content {
-              min-height: 180px;
-            }
-
-            &--description {
-              min-height: 100px;
-            }
-          }
-
-          .content-tab__actions {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            gap: 7px;
-
-            .action {
-              flex-grow: 1;
-              padding: 15px;
-              border-radius: 32px;
-            }
-          }
-        }
       }
 
       &--contacts {
