@@ -4,7 +4,7 @@ import { useModal } from "../../../store/hooks/useModal.ts";
 import { IUser } from "../../../interfaces/IUser.ts";
 import { useEditEmployee } from "../../Contexts/EditEmployeeContext/EditEmployeeContext.tsx";
 import { UpdateUserCommand } from "../../../api/commands/IUpdateUserCommand.ts";
-import { DropdownCheckbox } from "../../CustomComponents/DropdownCheckbox/DropdownCheckbox.tsx";
+import { DropdownCheckbox } from "../../CustomDefaultComponents/DropdownCheckbox/DropdownCheckbox.tsx";
 import { useGetPermissionQuery } from "../../../api/methods/permissionApi.ts";
 import {
     useGetUserHasPermissionIdsByIdUserQuery,
@@ -13,7 +13,7 @@ import {
 import { useUpdateUserMutation } from "../../../api/methods/userApi.ts";
 import { useHasPermission } from "../../../store/hooks/useHasPermission.ts";
 import { Permissions } from "../../../constants/permissions.ts";
-import Button from "../../Buttons/Button/Button.tsx";
+import Button from "../../CustomDefaultComponents/Button/Button.tsx";
 
 type ModalEditEmployeeProps = {
     employee: IUser;

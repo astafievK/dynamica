@@ -30,7 +30,7 @@ import {ScrollToTop} from "./components/ScrollToTop/ScrollToTop.tsx";
 import {HistoryTracker} from "./components/HistoryTracker/HistoryTracker.tsx";
 import {ROUTES} from "./constants/routes.ts";
 import {usePageTitle} from "./store/hooks/usePageTitle.ts";
-import {PageDrafts} from "./components/PageCreateDocument/PageDrafts.tsx";
+import {PageDrafts} from "./components/PageDrafts/PageDrafts.tsx";
 import {Header} from "./components/Header/Header.tsx";
 
 const Root = () => {

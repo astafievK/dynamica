@@ -3,7 +3,7 @@ import {useAppDispatch, useTypedSelector} from "../../store/hooks/redux";
 import {NavLink, } from "react-router-dom";
 import "./Header.css"
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
-import Button from "../Buttons/Button/Button.tsx";
+import Button from "../CustomDefaultComponents/Button/Button.tsx";
 import {setIsOpen} from "../../api/slices/mobileMenuSlice.ts";
 
 export const Header: FC = () => {
